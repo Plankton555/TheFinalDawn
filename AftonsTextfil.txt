@@ -1,0 +1,3 @@
+//SUPERPROJECT
+
+Double money = null;
