@@ -1,3 +1,5 @@
 //SUPERPROJECT
 
-int money = null;
+
+String money = null;
+
