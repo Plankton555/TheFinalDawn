@@ -4,14 +4,20 @@ public class Unit implements IUnit {
 
 	private Position position;
 	
-	public Unit()
+	public Unit(Position spawnPos)
 	{
+		this.position = spawnPos;
 	}
 	
 	@Override
 	public Position getPosition() {
-		// TODO Unit.getPosition()
-		return null;
+		return this.position;
+	}
+
+	@Override
+	public float getSize() {
+		// TODO Unit.getSize()
+		return 0;
 	}
 	
 	/**
@@ -30,5 +36,5 @@ public class Unit implements IUnit {
 	public void moveTo(Position p)
 	{
 		// TODO Unit.moveTo()
-	}	
+	}
 }
