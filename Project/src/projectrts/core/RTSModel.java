@@ -2,6 +2,7 @@ package projectrts.core;
 
 /**
  * The main model class of the RTS Game
+ * The class handles the world and they players in the game
  * @author Björn Persson Mattson, Modified by Filip Brynfors
  */
 public class RTSModel implements IGame {
