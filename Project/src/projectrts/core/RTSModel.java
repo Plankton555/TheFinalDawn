@@ -1,22 +1,24 @@
 package projectrts.core;
 
+/**
+ * The main model class of the RTS Game
+ * @author Björn Persson Mattson, Modified by Filip Brynfors
+ */
 public class RTSModel implements IGame {
 	private World world = new World(P.INSTANCE.getWorldHeight(), P.INSTANCE.getWorldWidth());
+	Player humanPlayer = new Player();
+	Player aiPlayer = new Player();
 	
-	public RTSModel() {
-		
-	}
 	
 	@Override
 	public void update(float tpf) {
-		// TODO RTSModel.update()
-		
+		humanPlayer.update(tpf);
+		aiPlayer.update(tpf);
 	}
 
 	@Override
 	public IPlayer getPlayer() {
-		// TODO RTSModel.getPlayer()
-		return null;
+		return humanPlayer;
 	}
 
 	@Override

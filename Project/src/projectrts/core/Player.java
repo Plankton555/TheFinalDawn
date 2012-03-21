@@ -3,6 +3,10 @@ package projectrts.core;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Player class for handling all of one players units.
+ * @author Björn Persson Mattson, Modified by Filip Brynfors
+ */
 public class Player implements IPlayer {
 	List<Unit> units = new ArrayList<Unit>();
 	List<Unit> selectedUnits = new ArrayList<Unit>();
