@@ -11,6 +11,14 @@ public class Player implements IPlayer {
 	List<Unit> units = new ArrayList<Unit>();
 	List<Unit> selectedUnits = new ArrayList<Unit>();
 	
+	/**
+	 * Constructs a player
+	 */
+	public Player(){
+		//TODO: Temp test unit
+		
+	}
+	
 	@Override
 	public void select(Position pos) {
 

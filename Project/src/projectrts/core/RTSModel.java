@@ -10,7 +10,6 @@ public class RTSModel implements IGame {
 	Player humanPlayer = new Player();
 	Player aiPlayer = new Player();
 	
-	
 	@Override
 	public void update(float tpf) {
 		humanPlayer.update(tpf);
