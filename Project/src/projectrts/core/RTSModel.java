@@ -1,7 +1,12 @@
 package projectrts.core;
 
 public class RTSModel implements IGame {
-
+	private World world = new World(P.INSTANCE.getWorldHeight(), P.INSTANCE.getWorldWidth());
+	
+	public RTSModel() {
+		
+	}
+	
 	@Override
 	public void update(float tpf) {
 		// TODO RTSModel.update()
@@ -16,7 +21,6 @@ public class RTSModel implements IGame {
 
 	@Override
 	public ITile[][] getTileMap() {
-		// TODO RTSModel.getTileMap()
-		return null;
+		return world.getTileMap();
 	}
 }

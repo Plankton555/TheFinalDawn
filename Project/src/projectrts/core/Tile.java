@@ -4,8 +4,7 @@ public class Tile implements ITile {
 
 	@Override
 	public int getSideLength() {
-		// TODO Tile.getSideLength()
-		return 0;
+		return 2;
 	}
 
 	@Override

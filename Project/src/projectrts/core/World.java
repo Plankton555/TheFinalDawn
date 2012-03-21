@@ -1,13 +1,24 @@
 package projectrts.core;
 
 public class World {
-
-	/**
-	 * @return The matrix of tiles in the world.
-	 */
+	private ITile[][] tileMap;
+	
+	public World(int height, int width) {
+		initializeTileMap(height, width);
+	}
+	
+	private void initializeTileMap(int height, int width) {
+		tileMap = new ITile[height][width];
+		
+		for(int i = 0; i < height; i++) {
+			for(int j = 0; j < width; j++) {
+				tileMap[i][j] = new Tile();
+			}
+		}
+	}
+	
 	public ITile[][] getTileMap()
 	{
-		// TODO World.getTileMap()
-		return null;
+		return tileMap;
 	}
 }
