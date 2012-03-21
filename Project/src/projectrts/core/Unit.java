@@ -7,6 +7,7 @@ package projectrts.core;
  */
 public class Unit implements IUnit {
 
+	private Player owner;
 	private Position position;
 	private Position targetPosition;
 	private MicroAI microAI;
@@ -21,9 +22,10 @@ public class Unit implements IUnit {
 	 * Spawns a unit at the provided position.
 	 * @param spawnPos Spawn position
 	 */
-	public Unit(Position spawnPos)
+	public Unit(Position spawnPos, Player owner)
 	{
 		this.position = new Position(spawnPos);
+		this.owner = owner;
 		this.microAI = new MicroAI(this);
 		this.stance = Stance.IDLE;
 	}
@@ -37,6 +39,11 @@ public class Unit implements IUnit {
 	public float getSize() {
 		// TODO Change this later
 		return 1;
+	}
+
+	@Override
+	public IPlayer getOwner() {
+		return owner;
 	}
 	
 	/**

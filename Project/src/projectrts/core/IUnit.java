@@ -16,4 +16,9 @@ public interface IUnit {
 	 * @return The size of the unit.
 	 */
 	public float getSize();
+	
+	/**
+	 * @return The unit's owner.
+	 */
+	public IPlayer getOwner();
 }
