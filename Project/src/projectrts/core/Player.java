@@ -1,12 +1,17 @@
 package projectrts.core;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player implements IPlayer {
-
+	List<Unit> units = new ArrayList<Unit>();
+	List<Unit> selectedUnits = new ArrayList<Unit>();
+	
 	@Override
 	public void select(Position pos) {
-		// TODO Player.select()
+		for(Unit unit: units){
+			
+		}
 		
 	}
 
