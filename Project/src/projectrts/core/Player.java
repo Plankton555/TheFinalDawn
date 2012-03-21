@@ -16,7 +16,7 @@ public class Player implements IPlayer {
 	 */
 	public Player(){
 		//TODO: Temp test unit
-		
+		units.add(new Unit(new Position(10,10), this));
 	}
 	
 	@Override
