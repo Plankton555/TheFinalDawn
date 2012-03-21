@@ -8,8 +8,8 @@ import java.util.List;
  * @author Björn Persson Mattson, Modified by Filip Brynfors
  */
 public class Player implements IPlayer {
-	List<Unit> units = new ArrayList<Unit>();
-	List<Unit> selectedUnits = new ArrayList<Unit>();
+	private List<Unit> units = new ArrayList<Unit>();
+	private List<Unit> selectedUnits = new ArrayList<Unit>();
 	
 	/**
 	 * Constructs a player
@@ -21,15 +21,15 @@ public class Player implements IPlayer {
 	
 	@Override
 	public void select(Position pos) {
-
+		//TODO: Add support for selection of multiple units and enemy units
+		selectedUnits.clear();
+		
 		for(Unit unit: units){
 			float size = unit.getSize();
 			Position unitPos = unit.getPosition();
 			if(unitPos.getX()>= pos.getX()-size/2 && unitPos.getX()<= pos.getX()+size/2){
 				if(unitPos.getY()>= pos.getY()-size/2 && unitPos.getY()<= pos.getY()+size/2){
 					
-					//TODO: Add support for selection of multiple units
-					selectedUnits.clear();
 					
 					selectedUnits.add(unit);
 					break;
@@ -53,6 +53,15 @@ public class Player implements IPlayer {
 		}
 		return iUnits;
 	}
+
+	@Override
+	public List<IUnit> getSelectedUnits() {
+		List<IUnit> iUnits = new ArrayList<IUnit>();
+		for(Unit unit: selectedUnits){
+			iUnits.add(unit);
+		}
+		return iUnits;
+	}
 	
 	/**
 	 * Updates the player.
@@ -64,5 +73,4 @@ public class Player implements IPlayer {
 			unit.update(tpf);
 		}
 	}
-
 }

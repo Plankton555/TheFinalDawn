@@ -22,7 +22,12 @@ public interface IPlayer {
 	public void moveSelectedTo(Position p);
 	
 	/**
-	 * @return The list of all units.
+	 * @return A list of all units.
 	 */
 	public List<IUnit> getUnits();
+	
+	/**
+	 * @return A list of selected units.
+	 */
+	public List<IUnit> getSelectedUnits();
 }
