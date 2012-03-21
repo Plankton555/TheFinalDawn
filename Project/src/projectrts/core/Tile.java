@@ -3,8 +3,8 @@ package projectrts.core;
 public class Tile implements ITile {
 
 	@Override
-	public int getSideLength() {
-		return 2;
+	public float getSideLength() {
+		return 1;
 	}
 
 	@Override
