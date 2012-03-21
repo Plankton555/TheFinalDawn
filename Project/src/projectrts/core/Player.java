@@ -9,22 +9,37 @@ public class Player implements IPlayer {
 	
 	@Override
 	public void select(Position pos) {
+
 		for(Unit unit: units){
-			
+			float size = unit.getSize();
+			Position unitPos = unit.getPosition();
+			if(unitPos.getX()>= pos.getX()-size/2 && unitPos.getX()<= pos.getX()+size/2){
+				if(unitPos.getY()>= pos.getY()-size/2 && unitPos.getY()<= pos.getY()+size/2){
+					
+					//TODO: Add support for selection of multiple units
+					selectedUnits.clear();
+					
+					selectedUnits.add(unit);
+					break;
+				}
+			}
 		}
-		
 	}
 
 	@Override
 	public void moveSelectedTo(Position p) {
-		// TODO Player.moveSelectedTo()
-		
+		for(Unit unit: selectedUnits){
+			unit.moveTo(p);
+		}
 	}
 	
 	@Override
 	public List<IUnit> getUnits() {
-		// TODO Player.getUnits()
-		return null;
+		List<IUnit> iUnits = new ArrayList<IUnit>();
+		for(Unit unit: units){
+			iUnits.add(unit);
+		}
+		return iUnits;
 	}
 	
 	/**
@@ -33,7 +48,9 @@ public class Player implements IPlayer {
 	 */
 	public void update(float tpf)
 	{
-		// TODO player.update()
+		for(Unit unit: units){
+			unit.update(tpf);
+		}
 	}
 
 }
