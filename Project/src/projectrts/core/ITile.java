@@ -10,7 +10,7 @@ public interface ITile {
 	/**
 	 * @return The side length of the tile.
 	 */
-	public int getSideLength();
+	public float getSideLength();
 	
 	/**
 	 * @return The texture of the tile.

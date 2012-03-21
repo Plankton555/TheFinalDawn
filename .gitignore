@@ -2,3 +2,4 @@ Project/bin/
 Project/lib/
 *.classpath
 *.project
+*.dll
