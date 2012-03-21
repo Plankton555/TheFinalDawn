@@ -77,7 +77,7 @@ public class InGameState extends AbstractAppState {
     	redMaterial.setColor("Color", ColorRGBA.Brown);
     	blueMaterial.setColor("Color", ColorRGBA.DarkGray);
     	
-    	float sideLength = P.INSTANCE.getTileSideLength();
+    	float sideLength = P.INSTANCE.getUnitLength();
     	
         for(int i = 0; i < tileMap.length; i++) {
         	for(int j = 0; j < tileMap[0].length; j++) {

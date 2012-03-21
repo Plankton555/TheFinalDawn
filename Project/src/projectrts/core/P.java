@@ -12,7 +12,7 @@ public enum P {
 		return 100;
 	}
 	
-	public float getTileSideLength() {
-		return 0.05f;
+	public float getUnitLength() {
+		return 1;
 	}
 }
