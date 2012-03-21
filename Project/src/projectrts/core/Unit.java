@@ -3,6 +3,7 @@ package projectrts.core;
 public class Unit implements IUnit {
 
 	private Position position;
+	private MicroAI microAI;
 	
 	public Unit(Position spawnPos)
 	{
