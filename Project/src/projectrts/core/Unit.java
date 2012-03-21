@@ -2,15 +2,15 @@ package projectrts.core;
 
 public class Unit implements IUnit {
 
+	private Position position;
+	
+	public Unit()
+	{
+	}
+	
 	@Override
 	public Position getPosition() {
 		// TODO Unit.getPosition()
-		return null;
-	}
-
-	@Override
-	public Texture getTexture() {
-		// TODO Unit.getTexture()
 		return null;
 	}
 	

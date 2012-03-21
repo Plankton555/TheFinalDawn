@@ -11,9 +11,4 @@ public interface ITile {
 	 * @return The side length of the tile.
 	 */
 	public float getSideLength();
-	
-	/**
-	 * @return The texture of the tile.
-	 */
-	public Texture getTexture();
 }

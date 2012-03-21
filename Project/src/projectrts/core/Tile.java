@@ -7,10 +7,4 @@ public class Tile implements ITile {
 		return P.INSTANCE.getTileSideLength();
 	}
 
-	@Override
-	public Texture getTexture() {
-		// TODO Tile.getTexture()
-		return null;
-	}
-
 }
