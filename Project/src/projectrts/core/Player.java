@@ -15,7 +15,7 @@ public class Player implements IPlayer {
 		// TODO Player.moveSelectedTo()
 		
 	}
-
+	
 	@Override
 	public List<IUnit> getUnits() {
 		// TODO Player.getUnits()
