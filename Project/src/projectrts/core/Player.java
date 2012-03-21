@@ -6,25 +6,29 @@ public class Player implements IPlayer {
 
 	@Override
 	public void select(Position pos) {
-		// TODO
+		// TODO Player.select()
 		
 	}
 
 	@Override
 	public void moveSelectedTo(Position p) {
-		// TODO
+		// TODO Player.moveSelectedTo()
 		
 	}
 
 	@Override
 	public List<IUnit> getUnits() {
-		// TODO
+		// TODO Player.getUnits()
 		return null;
 	}
 	
+	/**
+	 * Updates the player.
+	 * @param tpf Time per frame
+	 */
 	public void update(float tpf)
 	{
-		// TODO
+		// TODO player.update()
 	}
 
 }

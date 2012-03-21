@@ -4,13 +4,13 @@ public class Tile implements ITile {
 
 	@Override
 	public int getSideLength() {
-		// TODO
+		// TODO Tile.getSideLength()
 		return 0;
 	}
 
 	@Override
 	public Texture getTexture() {
-		// TODO
+		// TODO Tile.getTexture()
 		return null;
 	}
 

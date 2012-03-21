@@ -4,19 +4,19 @@ public class RTSModel implements IGame {
 
 	@Override
 	public void update(float tpf) {
-		// TODO
+		// TODO RTSModel.update()
 		
 	}
 
 	@Override
 	public IPlayer getPlayer() {
-		// TODO
+		// TODO RTSModel.getPlayer()
 		return null;
 	}
 
 	@Override
 	public ITile[][] getTileMap() {
-		// TODO
+		// TODO RTSModel.getTileMap()
 		return null;
 	}
 }
