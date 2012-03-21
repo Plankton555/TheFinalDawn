@@ -1,13 +1,31 @@
 package projectrts.core;
 
+/**
+ * A simple unit.
+ * @author Bjorn Persson Mattsson
+ *
+ */
 public class Unit implements IUnit {
 
 	private Position position;
+	private Position targetPosition;
 	private MicroAI microAI;
+	private Stance stance;
 	
+	private enum Stance
+	{
+		IDLE, MOVING;
+	}
+	
+	/**
+	 * Spawns a unit at the provided position.
+	 * @param spawnPos Spawn position
+	 */
 	public Unit(Position spawnPos)
 	{
-		this.position = spawnPos;
+		this.position = new Position(spawnPos);
+		this.microAI = new MicroAI(this);
+		this.stance = Stance.IDLE;
 	}
 	
 	@Override
@@ -17,8 +35,8 @@ public class Unit implements IUnit {
 
 	@Override
 	public float getSize() {
-		// TODO Unit.getSize()
-		return 0;
+		// TODO Change this later
+		return 1;
 	}
 	
 	/**
@@ -27,7 +45,22 @@ public class Unit implements IUnit {
 	 */
 	public void update(float tpf)
 	{
-		// TODO Unit.update()
+		switch (stance)
+		{
+		case IDLE:
+			// Do nothing atm
+			break;
+			
+		case MOVING:
+			this.position = microAI.determinePath(targetPosition, tpf);
+			
+			if (this.position.equals(targetPosition))
+			{
+				// if on target position, stop
+				stance = Stance.IDLE;
+			}
+			break;
+		}
 	}
 	
 	/**
@@ -36,6 +69,7 @@ public class Unit implements IUnit {
 	 */
 	public void moveTo(Position p)
 	{
-		// TODO Unit.moveTo()
+		targetPosition = new Position(p);
+		stance = Stance.MOVING;
 	}
 }

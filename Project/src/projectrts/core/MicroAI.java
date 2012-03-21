@@ -7,6 +7,12 @@ package projectrts.core;
  */
 public class MicroAI {
 
+	private Unit myUnit;
+	
+	public MicroAI(Unit unit) {
+		this.myUnit = unit;
+	}
+
 	/**
 	 * Determines the next step towards the target.
 	 * @param target The target position.
