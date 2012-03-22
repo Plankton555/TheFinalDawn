@@ -4,6 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import projectrts.model.core.Player;
+import projectrts.model.core.Position;
+import projectrts.model.core.Unit;
+
 public class UnitTest {
 
 	@Test

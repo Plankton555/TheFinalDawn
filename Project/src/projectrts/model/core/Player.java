@@ -1,4 +1,4 @@
-package projectrts.core;
+package projectrts.model.core;
 
 import java.util.ArrayList;
 import java.util.List;

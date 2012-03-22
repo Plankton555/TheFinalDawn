@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import projectrts.model.core.Player;
+import projectrts.model.core.Position;
+
 public class PlayerTest {
 
 	// This test requires the player to instantiate a unit in the constructor

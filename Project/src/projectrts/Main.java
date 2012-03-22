@@ -4,8 +4,9 @@ package projectrts;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.renderer.RenderManager;
-import projectrts.core.IGame;
-import projectrts.core.GameModel;
+
+import projectrts.model.core.GameModel;
+import projectrts.model.core.IGame;
 
 public class Main extends SimpleApplication {
 

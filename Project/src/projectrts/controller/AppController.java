@@ -1,6 +1,6 @@
 package projectrts.controller;
 
-public class GameController {
+public class AppController {
 
 	// TODO Implement this class
 }

@@ -1,4 +1,4 @@
-package projectrts.core;
+package projectrts.model.core;
 
 public class Tile implements ITile {
 

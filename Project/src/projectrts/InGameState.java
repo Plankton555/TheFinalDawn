@@ -18,9 +18,10 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
-import projectrts.core.IGame;
-import projectrts.core.ITile;
-import projectrts.core.P;
+
+import projectrts.model.core.IGame;
+import projectrts.model.core.ITile;
+import projectrts.model.core.P;
 
 public class InGameState extends AbstractAppState {
 	

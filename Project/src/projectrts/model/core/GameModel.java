@@ -1,4 +1,4 @@
-package projectrts.core;
+package projectrts.model.core;
 
 /**
  * The main model class of the RTS Game
