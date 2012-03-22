@@ -9,6 +9,7 @@ import projectrts.model.core.Position;
 
 public class PlayerTest {
 
+	
 	// This test requires the player to instantiate a unit in the constructor
 	@Test
 	public void testSelect() {
