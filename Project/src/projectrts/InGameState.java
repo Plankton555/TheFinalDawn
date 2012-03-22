@@ -23,6 +23,8 @@ import projectrts.core.ITile;
 import projectrts.core.P;
 
 public class InGameState extends AbstractAppState {
+	
+	//TODO This class should be moved to another package
  
     private SimpleApplication app;
     private IGame game;

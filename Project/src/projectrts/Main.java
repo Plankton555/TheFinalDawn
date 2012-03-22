@@ -9,6 +9,7 @@ import projectrts.core.GameModel;
 
 public class Main extends SimpleApplication {
 
+	//TODO This class should only contain main method
     public static void main(String[] args) {
         Main app = new Main();
         app.start();
