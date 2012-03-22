@@ -6,6 +6,7 @@ import org.junit.Test;
 
 public class PlayerTest {
 
+	
 	// This test requires the player to instantiate a unit in the constructor
 	@Test
 	public void testSelect() {
