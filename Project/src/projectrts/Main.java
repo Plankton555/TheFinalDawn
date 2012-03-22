@@ -5,7 +5,7 @@ package projectrts;
 import com.jme3.app.SimpleApplication;
 import com.jme3.renderer.RenderManager;
 import projectrts.core.IGame;
-import projectrts.core.RTSModel;
+import projectrts.core.GameModel;
 
 public class Main extends SimpleApplication {
 
@@ -19,7 +19,7 @@ public class Main extends SimpleApplication {
     	this.cam.setParallelProjection(true);
     	
     	
-        IGame game = new RTSModel();
+        IGame game = new GameModel();
         InGameState inGameState = new InGameState(game);
         inGameState.initialize(stateManager, this);
         this.stateManager.attach(inGameState);

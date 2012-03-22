@@ -1,7 +1,5 @@
 package projectrts;
 
-import projectrts.core.P;
-
 public enum Constants {INSTANCE;
 	private float modelBaseLength = 0.05f;
 	
