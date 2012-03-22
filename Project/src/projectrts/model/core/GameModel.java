@@ -11,6 +11,7 @@ public class GameModel implements IGame {
 	Player aiPlayer = new Player();
 	
 	
+	
 	@Override
 	public void update(float tpf) {
 		humanPlayer.update(tpf);
