@@ -46,6 +46,5 @@ public class PlayerTest {
 			
 			assertTrue(counter < 1000);
 		}
-		System.out.println("counter: " + counter);
 	}
 }

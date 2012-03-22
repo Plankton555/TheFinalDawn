@@ -55,6 +55,5 @@ public class UnitTest {
 			
 			assertTrue(counter < 1000);
 		}
-		System.out.println("counter: " + counter);
 	}
 }
