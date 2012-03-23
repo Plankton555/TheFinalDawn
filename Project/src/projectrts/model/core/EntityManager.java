@@ -40,6 +40,7 @@ public class EntityManager {
 		
 		List<IEntity> output = new ArrayList<IEntity>();
 		
+		/* TODO FIIIIIX!
 		for (IEntity e : allEntities)
 		{
 			Vector2d distance = new Vector2d(
@@ -50,6 +51,7 @@ public class EntityManager {
 				output.add(e);
 			}
 		}
+		*/
 		return output;
 	}
 	
@@ -60,7 +62,9 @@ public class EntityManager {
 	 */
 	public List<IEntity> getEntitiesOfPlayer(Player player)
 	{
+		
 		List<IEntity> output = new ArrayList<IEntity>();
+		/* TODO FIIIX!
 		for (IEntity e : allEntities)
 		{
 			if (e.getOwner().equals(player))
@@ -68,6 +72,7 @@ public class EntityManager {
 				output.add(e);
 			}
 		}
+		*/
 		return output;
 	}
 	
