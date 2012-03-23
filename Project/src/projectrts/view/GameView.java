@@ -30,14 +30,12 @@ public class GameView {
 	
 	public GameView(SimpleApplication app, IGame model) {
 		this.app = app;
-
 		this.model = model;
 	}
 	
 	public void initializeView() {
 		initializeWorld();
 		initializeEntities();
-
 	}
 	
 	/**
