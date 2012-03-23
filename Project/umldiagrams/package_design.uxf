@@ -4,21 +4,6 @@
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>20</x>
-      <y>140</y>
-      <w>140</w>
-      <h>180</h>
-    </coordinates>
-    <panel_attributes>global
---
-
-bg=gray
-fg=red</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Package</type>
-    <coordinates>
       <x>30</x>
       <y>170</y>
       <w>120</w>
@@ -27,8 +12,8 @@ fg=red</panel_attributes>
     <panel_attributes>constants
 --
 Constants
-bg=gray
-fg=red</panel_attributes>
+bg=white
+fg=blue</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -42,8 +27,8 @@ fg=red</panel_attributes>
     <panel_attributes>utils
 --
 Utils
-bg=gray
-fg=red</panel_attributes>
+bg=white
+fg=blue</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -68,8 +53,8 @@ Position
 Tile
 Unit
 World
-bg=gray
-fg=red</panel_attributes>
+bg=white
+fg=blue</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -83,8 +68,8 @@ fg=red</panel_attributes>
     <panel_attributes>menu
 --
 Menu
-bg=gray
-fg=red</panel_attributes>
+bg=white
+fg=blue</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -98,8 +83,8 @@ fg=red</panel_attributes>
     <panel_attributes>model
 --
 
-bg=gray
-fg=red</panel_attributes>
+bg=white
+fg=blue</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -115,8 +100,8 @@ fg=red</panel_attributes>
 AppController
 AppStates
 InputControl
-bg=gray
-fg=red</panel_attributes>
+bg=white
+fg=blue</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -132,8 +117,8 @@ fg=red</panel_attributes>
 GameView
 MenuView
 HighscoreView
-bg=gray
-fg=red</panel_attributes>
+bg=white
+fg=blue</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -192,5 +177,20 @@ main():void</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&gt;.</panel_attributes>
     <additional_attributes>30;30;110;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>20</x>
+      <y>140</y>
+      <w>140</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>global
+--
+
+bg=white
+fg=blue</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
