@@ -1,5 +1,7 @@
 package projectrts.model.core;
 
+import java.util.List;
+
 /**
  * The main model class of the RTS Game
  * The class handles the world and they players in the game
@@ -7,8 +9,9 @@ package projectrts.model.core;
  */
 public class GameModel implements IGame {
 	private World world = new World(P.INSTANCE.getWorldHeight(), P.INSTANCE.getWorldWidth());
-	Player humanPlayer = new Player();
-	Player aiPlayer = new Player();
+	private EntityManager entityManager = EntityManager.getInstance();
+	private Player humanPlayer = new Player();
+	private Player aiPlayer = new Player();
 	
 	
 	
@@ -26,5 +29,10 @@ public class GameModel implements IGame {
 	@Override
 	public ITile[][] getTileMap() {
 		return world.getTileMap();
+	}
+
+	@Override
+	public List<IEntity> getAllEntities() {
+		return entityManager.getAllEntities();
 	}
 }

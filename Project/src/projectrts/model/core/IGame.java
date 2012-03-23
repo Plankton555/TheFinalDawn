@@ -1,5 +1,7 @@
 package projectrts.model.core;
 
+import java.util.List;
+
 /**
  * 
  * @author Bjorn Persson Mattsson
@@ -17,6 +19,11 @@ public interface IGame {
 	 * @return The human player
 	 */
 	public IPlayer getPlayer();
+	
+	/**
+	 * @return All entities.
+	 */
+	public List<IEntity> getAllEntities();
 	
 	/**
 	 * @return The tile matrix

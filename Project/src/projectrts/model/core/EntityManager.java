@@ -1,5 +1,6 @@
 package projectrts.model.core;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +11,8 @@ import java.util.List;
 public class EntityManager {
 
 	private static EntityManager instance = new EntityManager();
+	
+	private List<IEntity> allEntities = new ArrayList<IEntity>();
 	
 	/**
 	 * @return The instance of this class.
@@ -32,7 +35,27 @@ public class EntityManager {
 		// TODO Implement this
 		return null;
 	}
-	/*
-	mappnign
-	*/
+	
+	/**
+	 * Returns all entities that the provided player owns.
+	 * @param player Player
+	 * @return A list of all entities of player.
+	 */
+	public List<IEntity> getEntitiesOfPlayer(Player player)
+	{
+		List<IEntity> output = new ArrayList<IEntity>();
+		for (IEntity e : allEntities)
+		{
+			if (e.getOwner().equals(player))
+			{
+				output.add(e);
+			}
+		}
+		return output;
+	}
+	
+	public List<IEntity> getAllEntities()
+	{
+		return allEntities;
+	}
 }
