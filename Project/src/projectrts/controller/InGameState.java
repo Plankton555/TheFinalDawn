@@ -30,9 +30,11 @@ public class InGameState extends AbstractAppState {
         this.app = (SimpleApplication)app;          // cast to a more specific class
       // init stuff that is independent of whether state is PAUSED or RUNNING // modify scene graph...
       input = new InputControl(this.app);
-      view = new GameView(this.app, game.getTileMap());
-        
+      view = new GameView(this.app, game);
       initializeCamera();
+      
+      // Initialize view last, after model and controller, since its initialization is dependent on the other's.
+      view.initializeView();
    }
  
    @Override

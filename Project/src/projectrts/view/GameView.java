@@ -1,6 +1,7 @@
 package projectrts.view;
 
 import projectrts.global.constants.*;
+import projectrts.model.core.IGame;
 import projectrts.model.core.ITile;
 
 import com.jme3.app.SimpleApplication;
@@ -14,11 +15,17 @@ import com.jme3.scene.shape.Box;
 public class GameView {
 	private SimpleApplication app;
     private Node terrain = new Node("terrain");
+    private Node units = new Node("units");
+    private IGame model;
 	
-	public GameView(SimpleApplication app, ITile[][] tileMap) {
+	public GameView(SimpleApplication app, IGame model) {
 		this.app = app;
-		
-		initializeWorld(tileMap);
+		this.model = model;
+	}
+	
+	public void initializeView() {
+		initializeWorld(model.getTileMap());
+		initializeEntities();
 	}
 	
     private void initializeWorld(ITile[][] tileMap) {
@@ -55,5 +62,11 @@ public class GameView {
         		terrain.attachChild(terrainSpatials[i][j]);
         	}
         }
+    }
+    
+    private void initializeEntities() {
+    	this.app.getRootNode().attachChild(units);
+    	
+    	
     }
 }

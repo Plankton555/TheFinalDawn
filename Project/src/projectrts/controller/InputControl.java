@@ -10,6 +10,7 @@ import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseAxisTrigger;
+import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 
@@ -73,19 +74,26 @@ public class InputControl {
     	this.app.getInputManager().addMapping("cameraUpMouse",  new MouseAxisTrigger(MouseInput.AXIS_Y, true) );
     	this.app.getInputManager().addMapping("cameraDownMouse", new MouseAxisTrigger(MouseInput.AXIS_Y, false) );
     	
+    	// Map left and right mouse buttons
+    	this.app.getInputManager().addMapping("mouseLeftButton", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
+    	this.app.getInputManager().addMapping("rightMouseButton", new MouseButtonTrigger(MouseInput.BUTTON_RIGHT));
+    	
     	
     	
     	
     	// Add the names to the action/analog listener.	
     	this.app.getInputManager().addListener(analogListener, new String[]{"cameraRightKey", "cameraLeftKey", "cameraUpKey", "cameraDownKey"});
-    	this.app.getInputManager().addListener(actionListener, new String[]{"cameraRightMouse", "cameraLeftMouse", "cameraUpMouse", "cameraDownMouse"});
+    	
+    	this.app.getInputManager().addListener(actionListener, new String[]{"cameraRightMouse", "cameraLeftMouse", "cameraUpMouse", "cameraDownMouse", 
+    																		"mouseLeftButton", "mouseRightButton"});
     	
     	//Debug control mapping
     	this.app.getInputManager().addMapping("exit",  new KeyTrigger(KeyInput.KEY_ESCAPE));
+    	this.app.getInputManager().addMapping("checkMouseLoc", new KeyTrigger(KeyInput.KEY_M));
     	
     	
     	//Add debug controls to action/analog listener
-    	this.app.getInputManager().addListener(actionListener, new String[]{"exit"});
+    	this.app.getInputManager().addListener(actionListener, new String[]{"exit", "checkMouseLoc"});
     }
     
     private AnalogListener analogListener = new AnalogListener() {
@@ -114,13 +122,23 @@ public class InputControl {
     private ActionListener actionListener = new ActionListener() {
     	public void onAction(String name, boolean keyPressed, float tpf) {
 	    	
-    		if (name.equals("exit")) {
+    		if (name.equals("exit") && keyPressed) {
 	            app.stop();
 	    	}
 	    	
 	    	
 	    	if(enabled) {
+	    		if (name.equals("mouseLeftButton") && keyPressed) {
+	    			
+	    		}
+	    		if (name.equals("mouseRightButton") && keyPressed) {
+	    			
+	    		}
 	    		
+	    		//Debugging
+	    		if (name.equals("checkMouseLoc") && keyPressed) {
+	    			System.out.println(app.getInputManager().getCursorPosition().toString());
+	    		}
 	    	} else {
 	    		
 	    	}
