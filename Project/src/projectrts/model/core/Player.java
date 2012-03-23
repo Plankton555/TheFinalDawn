@@ -25,17 +25,27 @@ public class Player implements IPlayer {
 		selectedUnits.clear();
 		
 		for(Unit unit: units){
-			float size = unit.getSize();
+			float unitSize = unit.getSize();
 			Position unitPos = unit.getPosition();
-			if(unitPos.getX()>= pos.getX()-size/2 && unitPos.getX()<= pos.getX()+size/2){
-				if(unitPos.getY()>= pos.getY()-size/2 && unitPos.getY()<= pos.getY()+size/2){
+			
+			//If the point is within the area of the unit
+			/*
+			if((unitPos.getX()>= pos.getX()-unitSize/2 && unitPos.getX()<= pos.getX()+unitSize/2)
+					&& (unitPos.getY()>= pos.getY()-unitSize/2 && unitPos.getY()<= pos.getY()+unitSize/2)){
+			*/
+			if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getY()+unitSize/2)
+					&& isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
+				
 					
-					
-					selectedUnits.add(unit);
-					break;
-				}
+				selectedUnits.add(unit);
+				break;
+				
 			}
 		}
+	}
+	
+	private boolean isWithin(float p, float low, float high){
+		return p>=low && p<=high;
 	}
 
 	@Override
@@ -72,5 +82,19 @@ public class Player implements IPlayer {
 		for(Unit unit: units){
 			unit.update(tpf);
 		}
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		if(this==o){
+			return true;
+		} else if(o != null && o instanceof Player){
+			Player otherPlayer = (Player) o;
+			if(units.equals(otherPlayer.units)){
+				return true;
+			}
+		}
+		return false;
+		
 	}
 }

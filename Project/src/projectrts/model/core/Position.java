@@ -33,6 +33,7 @@ public class Position {
 	/**
 	 * @return Returns a clone of this position.
 	 */
+	@Override
 	public Position clone()
 	{
 		return new Position(this.x, this.y);
