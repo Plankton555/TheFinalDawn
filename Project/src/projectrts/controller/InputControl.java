@@ -1,7 +1,10 @@
 package projectrts.controller;
 
 import projectrts.global.constants.*;
+import projectrts.global.utils.Utils;
+import projectrts.model.core.IGame;
 import projectrts.model.core.P;
+import projectrts.view.GameView;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
@@ -18,11 +21,15 @@ public class InputControl {
 
 	private boolean enabled = false;
 	private boolean mouseActivated = false;
+	private SimpleApplication app;
+	private IGame model;
+	private GameView view;
 	
-	SimpleApplication app;
 	
-	public InputControl(SimpleApplication app) {
+	public InputControl(SimpleApplication app, IGame model, GameView view) {
 		this.app = app;
+		this.model = model;
+		this.view = view;
 		initializeKeys();
 	}
 	
@@ -43,13 +50,13 @@ public class InputControl {
 	    	Vector3f loc = app.getCamera().getLocation();
 	    	Vector2f mLoc = app.getInputManager().getCursorPosition();
 	    	float margin = Constants.INSTANCE.getCameraMoveMargin();
-	    	if(mLoc.x >= app.getCamera().getWidth() - margin && loc.x <= P.INSTANCE.getWorldWidth() * Constants.INSTANCE.getBaseLength()) {
+	    	if(mLoc.x >= app.getCamera().getWidth() - margin && loc.x <= P.INSTANCE.getWorldWidth() * Constants.INSTANCE.getModifier()) {
 	    		app.getCamera().setLocation(loc.add(tpf * Constants.INSTANCE.getCameraSpeed(), 0, 0));
 	    	}
 	    	if(mLoc.x <= margin && loc.x >= 0) {
 	    		app.getCamera().setLocation(loc.add(tpf * -Constants.INSTANCE.getCameraSpeed(), 0, 0));
 	    	}
-	    	if(mLoc.y <= margin && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.INSTANCE.getBaseLength()) {
+	    	if(mLoc.y <= margin && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.INSTANCE.getModifier()) {
 	    		app.getCamera().setLocation(loc.add(0, tpf * -Constants.INSTANCE.getCameraSpeed(), 0));
 	    	}
 	    	if(mLoc.y >= app.getCamera().getHeight() - margin && loc.y <= 0) {
@@ -101,7 +108,7 @@ public class InputControl {
 	    	Vector3f loc = app.getCamera().getLocation();
 	    	
 	    	if (enabled) {
-	            if (name.equals("cameraRightKey") && loc.x <= P.INSTANCE.getWorldWidth() * Constants.INSTANCE.getBaseLength()) {
+	            if (name.equals("cameraRightKey") && loc.x <= P.INSTANCE.getWorldWidth() * Constants.INSTANCE.getModifier()) {
 	            	app.getCamera().setLocation(loc.add(new Vector3f(value*Constants.INSTANCE.getCameraSpeed(), 0, 0)));
 	            }
 	            if (name.equals("cameraLeftKey") && loc.x >= 0) {
@@ -110,7 +117,7 @@ public class InputControl {
 	            if (name.equals("cameraUpKey") && loc.y <= 0) {
 	            	app.getCamera().setLocation(loc.add(new Vector3f(0, value*Constants.INSTANCE.getCameraSpeed(), 0)));
 	            }
-	            if (name.equals("cameraDownKey") && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.INSTANCE.getBaseLength()) {
+	            if (name.equals("cameraDownKey") && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.INSTANCE.getModifier()) {
 	            	app.getCamera().setLocation(loc.add(new Vector3f(0, -value*Constants.INSTANCE.getCameraSpeed(), 0)));
 	            }
           	} else {
@@ -129,10 +136,11 @@ public class InputControl {
 	    	
 	    	if(enabled) {
 	    		if (name.equals("mouseLeftButton") && keyPressed) {
-	    			
+	    			;
+	    			model.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    		}
 	    		if (name.equals("mouseRightButton") && keyPressed) {
-	    			
+	    			model.getPlayer().moveSelectedTo(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    		}
 	    		
 	    		//Debugging

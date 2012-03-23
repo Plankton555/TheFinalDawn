@@ -29,7 +29,7 @@ public class InGameState extends AbstractAppState {
         super.initialize(stateManager, app); 
         this.app = (SimpleApplication)app;          // cast to a more specific class
       // init stuff that is independent of whether state is PAUSED or RUNNING // modify scene graph...
-      input = new InputControl(this.app);
+      input = new InputControl(this.app, game, view);
       view = new GameView(this.app, game);
       initializeCamera();
       
@@ -62,6 +62,7 @@ public class InGameState extends AbstractAppState {
       if(isEnabled()){
         // do the following while game is RUNNING // modify scene graph...
     	  input.update(tpf, this.isEnabled());
+    	  view.update(tpf);
       } else {
         // do the following while game is PAUSED, e.g. play an idle animation.
         //...        
@@ -69,7 +70,7 @@ public class InGameState extends AbstractAppState {
     }
     
     private void initializeCamera() {
-    	app.getCamera().setLocation(app.getCamera().getLocation().add(new Vector3f((P.INSTANCE.getWorldWidth() / 4) * Constants.INSTANCE.getBaseLength(),
-    			-(P.INSTANCE.getWorldHeight() / 4) * Constants.INSTANCE.getBaseLength(), 0)));
+    	app.getCamera().setLocation(app.getCamera().getLocation().add(new Vector3f((P.INSTANCE.getWorldWidth() / 4) * Constants.INSTANCE.getModifier(),
+    			-(P.INSTANCE.getWorldHeight() / 4) * Constants.INSTANCE.getModifier(), 0)));
     }
 }

@@ -1,7 +1,11 @@
 package projectrts.view;
 
+import java.util.List;
+
 import projectrts.global.constants.*;
+import projectrts.model.core.entities.*;
 import projectrts.model.core.IGame;
+import projectrts.model.core.IPlayer;
 import projectrts.model.core.ITile;
 
 import com.jme3.app.SimpleApplication;
@@ -12,6 +16,7 @@ import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import com.jme3.terrain.geomipmap.TerrainLodControl;
 import com.jme3.terrain.geomipmap.TerrainQuad;
@@ -22,7 +27,7 @@ import com.jme3.texture.Texture.WrapMode;
 
 public class GameView {
 	private SimpleApplication app;
-	private Node units = new Node("units");
+    private Node entities = new Node("units");
     private IGame model;
     private Node terrainNode = new Node("terrain");
     private Material matTerrain;
@@ -109,6 +114,28 @@ public class GameView {
     }
     
     private void initializeEntities() {
-    	this.app.getRootNode().attachChild(units);
+    	this.app.getRootNode().attachChild(entities);
+    	List<IEntity> entitiesList = model.getAllEntities();
+    	Box[] entityShapes = new Box[model.getAllEntities().size()];
+    	Geometry[] entitySpatials = new Geometry[model.getAllEntities().size()];
+    	Material entityMaterial = new Material(this.app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+    	entityMaterial.setColor("Color", ColorRGBA.Pink);
+    	
+    	float mod = Constants.INSTANCE.getModifier();
+    	
+    	for(int i = 0; i < model.getAllEntities().size(); i++) {
+    		// Create shape
+    		entityShapes[i] = new Box(new Vector3f(entitiesList.get(i).getPosition().getX() * mod, -entitiesList.get(i).getPosition().getY() * mod, 0), 
+    									mod/2, mod/2, 0);
+    		// Create spatial
+    		entitySpatials[i] = new Geometry(entitiesList.get(i).getName() + i, entityShapes[i]);
+    		// Apply material
+    		entitySpatials[i].setMaterial(entityMaterial);
+    		// Attach spatial
+    		entities.attachChild(entitySpatials[i]);
+    	}
+    }
+    
+    public void update(float tpf) {
     }
 }
