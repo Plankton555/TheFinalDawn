@@ -29,10 +29,6 @@ public class Player implements IPlayer {
 			Position unitPos = unit.getPosition();
 			
 			//If the point is within the area of the unit
-			/*
-			if((unitPos.getX()>= pos.getX()-unitSize/2 && unitPos.getX()<= pos.getX()+unitSize/2)
-					&& (unitPos.getY()>= pos.getY()-unitSize/2 && unitPos.getY()<= pos.getY()+unitSize/2)){
-			*/
 			if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getY()+unitSize/2)
 					&& isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
 				
