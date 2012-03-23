@@ -18,25 +18,20 @@ public class Structure extends AbstractEntity {
 		super(spawnPos, owner);
 	}
 	
-
-
 	@Override
 	public float getSize() {
 		// TODO Change this later
 		return 1;
 	}
 
-
-	
+	@Override
 	public void update(float tpf){
-		//TODO: Add a micro AI for attacking
+		//TODO: Add a micro AI for attacking the structure has offensive abilities
 	}
-
-
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		//TODO: Change name
+		return "Basic Structure";
 	}
 }

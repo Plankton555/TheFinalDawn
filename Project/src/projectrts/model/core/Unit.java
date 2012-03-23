@@ -2,7 +2,7 @@ package projectrts.model.core;
 
 /**
  * A simple unit.
- * @author Bjorn Persson Mattsson
+ * @author Bjorn Persson Mattsson, Modified by Filip Brynfors
  *
  */
 public class Unit extends AbstractEntity {
@@ -19,6 +19,7 @@ public class Unit extends AbstractEntity {
 	/**
 	 * Spawns a unit at the provided position.
 	 * @param spawnPos Spawn position
+	 * @param owner The owner of the unit
 	 */
 	public Unit(Position spawnPos, Player owner)
 	{
@@ -39,6 +40,7 @@ public class Unit extends AbstractEntity {
 	 * Updates the unit.
 	 * @param tpf Time per frame
 	 */
+	@Override
 	public void update(float tpf)
 	{
 		switch (stance)
