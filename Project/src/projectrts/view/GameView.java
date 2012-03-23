@@ -27,7 +27,6 @@ public class GameView {
     private Node terrainNode = new Node("terrain");
     private Material matTerrain;
     private TerrainQuad terrain;
-
 	
 	public GameView(SimpleApplication app, IGame model) {
 		this.app = app;
@@ -108,13 +107,10 @@ public class GameView {
         TerrainLodControl control = new TerrainLodControl(terrain, app.getCamera());
         terrain.addControl(control);
         
-    	
         
     }
     
     private void initializeEntities() {
     	this.app.getRootNode().attachChild(units);
-    	
-    	
     }
 }
