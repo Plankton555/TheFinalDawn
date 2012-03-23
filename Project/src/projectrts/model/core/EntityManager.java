@@ -54,8 +54,21 @@ public class EntityManager {
 		return output;
 	}
 	
+	/**
+	 * @return All entities.
+	 */
 	public List<IEntity> getAllEntities()
 	{
 		return allEntities;
+	}
+	
+	/**
+	 * Adds an entity to the EntityManager.
+	 * This does not keep track of multiple copies of the same entity.
+	 * @param entity The entity.
+	 */
+	public void addEntity(IEntity entity)
+	{
+		allEntities.add(entity);
 	}
 }
