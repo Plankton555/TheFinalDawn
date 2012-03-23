@@ -24,7 +24,6 @@ public class GameView {
 	private SimpleApplication app;
 	private Node units = new Node("units");
     private IGame model;
-
     private Node terrainNode = new Node("terrain");
     private Material matTerrain;
     private TerrainQuad terrain;
