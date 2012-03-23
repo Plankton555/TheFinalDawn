@@ -1,5 +1,10 @@
 package projectrts.model.core;
 
+/**
+ * 
+ * @author Filip Brynfors
+ *
+ */
 public interface IEntity {
 	/**
 	 * @return The position of the entity.

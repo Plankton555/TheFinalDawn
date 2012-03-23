@@ -2,23 +2,10 @@ package projectrts.model.core;
 
 /**
  * 
- * @author Bjorn Persson Mattsson
+ * @author Bjorn Persson Mattsson, Modified by Filip Brynfors
  *
  */
-public interface IUnit {
-
-	/**
-	 * @return The position of the unit.
-	 */
-	public Position getPosition();
+public interface IUnit extends IEntity {
+	//TODO: Add methods specific for Units
 	
-	/**
-	 * @return The size of the unit.
-	 */
-	public float getSize();
-	
-	/**
-	 * @return The unit's owner.
-	 */
-	public IPlayer getOwner();
 }
