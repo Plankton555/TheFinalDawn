@@ -3,6 +3,7 @@ package projectrts.model.core.entities;
 import projectrts.model.core.MicroAI;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
+import projectrts.model.core.abilities.AttackAbility;
 
 /**
  * A simple unit.
@@ -30,6 +31,7 @@ public class Unit extends PlayerControlledEntity {
 		super(spawnPos, owner);
 		this.microAI = new MicroAI(this);
 		this.stance = Stance.IDLE;
+		abilities.add(new AttackAbility());
 	}
 	
 
