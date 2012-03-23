@@ -1,6 +1,6 @@
 package projectrts.controller;
 
-import projectrts.global.Constants;
+import projectrts.global.constants.*;
 import projectrts.model.core.P;
 
 import com.jme3.app.SimpleApplication;

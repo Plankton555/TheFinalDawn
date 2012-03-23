@@ -1,4 +1,4 @@
-package projectrts.global;
+package projectrts.global.utils;
 
 public class Utils {
 

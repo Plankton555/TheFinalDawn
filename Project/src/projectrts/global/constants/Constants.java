@@ -1,4 +1,4 @@
-package projectrts.global;
+package projectrts.global.constants;
 
 public enum Constants {INSTANCE;
 

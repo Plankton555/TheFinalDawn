@@ -1,6 +1,6 @@
 package projectrts.view;
 
-import projectrts.global.Constants;
+import projectrts.global.constants.*;
 import projectrts.model.core.ITile;
 
 import com.jme3.app.SimpleApplication;
