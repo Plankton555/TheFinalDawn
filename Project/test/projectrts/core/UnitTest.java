@@ -36,12 +36,14 @@ public class UnitTest {
 		assertTrue(unit.getSize() == 1); // Does basically nothing atm
 	}
 
-	/* Already tested in constructor
 	@Test
 	public void testGetOwner() {
-		fail("Not yet implemented");
+		Player player = new Player();
+		Position pos = new Position(15, 13);
+		Unit unit = new Unit(pos, player);
+		
+		assertTrue(player.equals(unit.getOwner()));
 	}
-	*/
 
 	@Test
 	public void testMove() {
