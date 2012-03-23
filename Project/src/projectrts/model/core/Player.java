@@ -52,8 +52,8 @@ public class Player implements IPlayer {
 	}
 	
 	@Override
-	public List<IUnit> getUnits() {
-		List<IUnit> iUnits = new ArrayList<IUnit>();
+	public List<IEntity> getUnits() {
+		List<IEntity> iUnits = new ArrayList<IEntity>();
 		for(Unit unit: units){
 			iUnits.add(unit);
 		}
@@ -61,8 +61,8 @@ public class Player implements IPlayer {
 	}
 
 	@Override
-	public List<IUnit> getSelectedUnits() {
-		List<IUnit> iUnits = new ArrayList<IUnit>();
+	public List<IEntity> getSelectedUnits() {
+		List<IEntity> iUnits = new ArrayList<IEntity>();
 		for(Unit unit: selectedUnits){
 			iUnits.add(unit);
 		}
