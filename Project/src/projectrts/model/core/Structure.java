@@ -6,7 +6,7 @@ package projectrts.model.core;
  * @author Filip Brynfors
  *
  */
-public class Structure extends AbstractEntity implements IStructure  {
+public class Structure extends AbstractEntity {
 	
 	
 	
@@ -30,5 +30,13 @@ public class Structure extends AbstractEntity implements IStructure  {
 	
 	public void update(float tpf){
 		//TODO: Add a micro AI for attacking
+	}
+
+
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

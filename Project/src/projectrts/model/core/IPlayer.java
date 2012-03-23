@@ -24,10 +24,10 @@ public interface IPlayer {
 	/**
 	 * @return A list of all units.
 	 */
-	public List<IUnit> getUnits();
+	public List<IEntity> getUnits();
 	
 	/**
 	 * @return A list of selected units.
 	 */
-	public List<IUnit> getSelectedUnits();
+	public List<IEntity> getSelectedUnits();
 }

@@ -5,10 +5,8 @@ package projectrts.model.core;
  * @author Bjorn Persson Mattsson
  *
  */
-public class Unit implements IUnit {
+public class Unit extends AbstractEntity {
 
-	private Player owner;
-	private Position position;
 	private Position targetPosition;
 	private MicroAI microAI;
 	private Stance stance;
@@ -24,16 +22,11 @@ public class Unit implements IUnit {
 	 */
 	public Unit(Position spawnPos, Player owner)
 	{
-		this.position = new Position(spawnPos);
-		this.owner = owner;
+		super(spawnPos, owner);
 		this.microAI = new MicroAI(this);
 		this.stance = Stance.IDLE;
 	}
 	
-	@Override
-	public Position getPosition() {
-		return this.position;
-	}
 
 	@Override
 	public float getSize() {
@@ -41,10 +34,6 @@ public class Unit implements IUnit {
 		return 1;
 	}
 
-	@Override
-	public IPlayer getOwner() {
-		return owner;
-	}
 	
 	/**
 	 * Updates the unit.
@@ -78,5 +67,11 @@ public class Unit implements IUnit {
 	{
 		targetPosition = new Position(p);
 		stance = Stance.MOVING;
+	}
+
+	@Override
+	public String getName() {
+		//TODO: Fix name
+		return "Basic unit";
 	}
 }

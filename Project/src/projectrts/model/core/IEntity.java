@@ -20,4 +20,9 @@ public interface IEntity {
 	 * @return The owner of the entity.
 	 */
 	public IPlayer getOwner();
+	
+	/**
+	 * @return The name of the entity
+	 */
+	public String getName();
 }
