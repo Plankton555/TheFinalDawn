@@ -1,5 +1,8 @@
 package projectrts.model.core;
 
+import projectrts.model.core.Player;
+import projectrts.model.core.Position;
+
 
 /**
  * A simple Structure

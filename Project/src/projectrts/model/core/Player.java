@@ -3,8 +3,8 @@ package projectrts.model.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import projectrts.model.core.entites.IEntity;
 import projectrts.model.core.entites.units.Unit;
+import projectrts.model.core.entities.IEntity;
 
 /**
  * Player class for handling all of one players units.

@@ -1,4 +1,6 @@
-package projectrts.model.core;
+package projectrts.model.core.entities;
+
+import projectrts.model.core.Position;
 
 /**
  * Abstract class for the common parts of the different entities
@@ -7,7 +9,7 @@ package projectrts.model.core;
  */
 public abstract class AbstractEntity implements IEntity {
 
-	private Player owner;
+	
 	protected Position position;
 	
 	/**
@@ -15,9 +17,9 @@ public abstract class AbstractEntity implements IEntity {
 	 * @param spawnPos Spawn position
 	 * @param owner The owner of the unit
 	 */
-	public AbstractEntity(Position spawnPos, Player owner){
+	public AbstractEntity(Position spawnPos){
 		this.position = new Position(spawnPos);
-		this.owner = owner;
+		
 	}
 	
 	@Override
@@ -26,10 +28,7 @@ public abstract class AbstractEntity implements IEntity {
 	}
 
 
-	@Override
-	public IPlayer getOwner() {
-		return owner;
-	}
+	
 	
 	/**
 	 * Updates the unit.

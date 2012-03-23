@@ -1,4 +1,4 @@
-package projectrts.model.core.entites;
+package projectrts.model.core.entities;
 
 import projectrts.model.core.IPlayer;
 import projectrts.model.core.Player;

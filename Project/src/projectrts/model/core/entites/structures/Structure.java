@@ -2,7 +2,7 @@ package projectrts.model.core.entites.structures;
 
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
-import projectrts.model.core.entites.PlayerControlledEntity;
+import projectrts.model.core.entities.AbstractEntity;
 
 
 /**
@@ -10,7 +10,7 @@ import projectrts.model.core.entites.PlayerControlledEntity;
  * @author Filip Brynfors
  *
  */
-public class Structure extends PlayerControlledEntity {
+public class Structure extends AbstractEntity {
 	
 	
 	
@@ -35,7 +35,13 @@ public class Structure extends PlayerControlledEntity {
 
 	@Override
 	public String getName() {
-		//TODO: Change name
+		// TODO Change name
 		return "Basic Structure";
+	}
+
+	@Override
+	public float getRange() {
+		// TODO Change this later
+		return 10;
 	}
 }

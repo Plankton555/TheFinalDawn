@@ -1,5 +1,9 @@
 package projectrts.model.core;
 
+import projectrts.model.core.MicroAI;
+import projectrts.model.core.Player;
+import projectrts.model.core.Position;
+
 /**
  * A simple unit.
  * @author Bjorn Persson Mattsson, Modified by Filip Brynfors

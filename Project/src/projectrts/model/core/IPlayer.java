@@ -2,7 +2,7 @@ package projectrts.model.core;
 
 import java.util.List;
 
-import projectrts.model.core.entites.IEntity;
+import projectrts.model.core.entities.IEntity;
 
 /**
  * 

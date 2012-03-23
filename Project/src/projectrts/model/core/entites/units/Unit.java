@@ -3,7 +3,7 @@ package projectrts.model.core.entites.units;
 import projectrts.model.core.MicroAI;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
-import projectrts.model.core.entites.PlayerControlledEntity;
+import projectrts.model.core.entities.PlayerControlledEntity;
 
 /**
  * A simple unit.
