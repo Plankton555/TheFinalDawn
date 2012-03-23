@@ -2,7 +2,6 @@ package projectrts.model.core.entites.structures;
 
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
-import projectrts.model.core.entities.AbstractEntity;
 import projectrts.model.core.entities.PlayerControlledEntity;
 
 
@@ -38,5 +37,11 @@ public class Structure extends PlayerControlledEntity {
 	public String getName() {
 		// TODO Change name
 		return "Basic Structure";
+	}
+
+	@Override
+	public float getSightRange() {
+		// TODO Change this later
+		return 10;
 	}
 }

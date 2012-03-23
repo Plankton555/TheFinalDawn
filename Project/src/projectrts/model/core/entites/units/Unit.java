@@ -81,4 +81,11 @@ public class Unit extends PlayerControlledEntity {
 		//TODO: Fix name
 		return "Basic unit";
 	}
+
+
+	@Override
+	public float getSightRange() {
+		// TODO Change this later
+		return 10;
+	}
 }

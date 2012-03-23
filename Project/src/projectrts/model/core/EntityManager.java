@@ -3,7 +3,6 @@ package projectrts.model.core;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javax.vecmath.Vector2d;
 
 import projectrts.model.core.entities.IEntity;

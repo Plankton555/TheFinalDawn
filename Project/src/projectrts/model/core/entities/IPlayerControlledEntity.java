@@ -13,4 +13,8 @@ public interface IPlayerControlledEntity extends IEntity{
 	 */
 	public IPlayer getOwner();
 	
+	/**
+	 * @return The sight range of the entity.
+	 */
+	public float getSightRange();
 }
