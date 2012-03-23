@@ -31,7 +31,13 @@ public class Structure extends AbstractEntity {
 
 	@Override
 	public String getName() {
-		//TODO: Change name
+		// TODO Change name
 		return "Basic Structure";
+	}
+
+	@Override
+	public float getRange() {
+		// TODO Change this later
+		return 10;
 	}
 }

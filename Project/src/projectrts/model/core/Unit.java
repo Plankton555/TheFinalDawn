@@ -74,6 +74,13 @@ public class Unit extends AbstractEntity {
 	@Override
 	public String getName() {
 		//TODO: Fix name
-		return "Basic unit";
+		return "basicUnit";
+	}
+
+
+	@Override
+	public float getRange() {
+		// TODO Change this later
+		return 10;
 	}
 }

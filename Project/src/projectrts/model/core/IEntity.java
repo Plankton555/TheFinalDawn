@@ -2,7 +2,7 @@ package projectrts.model.core;
 
 /**
  * 
- * @author Filip Brynfors
+ * @author Filip Brynfors, modified by Bjorn Persson Mattsson
  *
  */
 public interface IEntity {
@@ -22,7 +22,12 @@ public interface IEntity {
 	public IPlayer getOwner();
 	
 	/**
-	 * @return The name of the entity
+	 * @return The name of the entity.
 	 */
 	public String getName();
+	
+	/**
+	 * @return The sight range of the entity.
+	 */
+	public float getRange();
 }
