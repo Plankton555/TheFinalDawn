@@ -2,6 +2,9 @@ package projectrts.model.core;
 
 import java.util.List;
 
+import projectrts.model.core.entites.EntityManager;
+import projectrts.model.core.entites.IEntity;
+
 /**
  * The main model class of the RTS Game
  * The class handles the world and they players in the game

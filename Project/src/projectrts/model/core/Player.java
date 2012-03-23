@@ -3,6 +3,9 @@ package projectrts.model.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import projectrts.model.core.entites.IEntity;
+import projectrts.model.core.entites.units.Unit;
+
 /**
  * Player class for handling all of one players units.
  * @author Björn Persson Mattson, Modified by Filip Brynfors

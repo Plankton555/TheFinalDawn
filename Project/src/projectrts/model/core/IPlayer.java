@@ -2,6 +2,8 @@ package projectrts.model.core;
 
 import java.util.List;
 
+import projectrts.model.core.entites.IEntity;
+
 /**
  * 
  * @author Bjorn Persson Mattsson
