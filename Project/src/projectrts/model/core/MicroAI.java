@@ -1,6 +1,6 @@
 package projectrts.model.core;
 
-import projectrts.model.core.entites.units.Unit;
+import projectrts.model.core.entities.Unit;
 
 /**
  * The "brain" of a unit.

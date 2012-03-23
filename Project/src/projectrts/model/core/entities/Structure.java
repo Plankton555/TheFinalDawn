@@ -1,8 +1,7 @@
-package projectrts.model.core.entites.structures;
+package projectrts.model.core.entities;
 
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
-import projectrts.model.core.entities.PlayerControlledEntity;
 
 
 /**
