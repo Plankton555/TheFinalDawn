@@ -21,13 +21,9 @@ public interface IPlayer {
 	 */
 	public void moveSelectedTo(Position p);
 	
-	/**
-	 * @return A list of all units.
-	 */
-	public List<IEntity> getUnits();
 	
 	/**
-	 * @return A list of selected units.
+	 * @return A list of selected entities.
 	 */
-	public List<IEntity> getSelectedUnits();
+	public List<IEntity> getSelectedEntities();
 }

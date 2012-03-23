@@ -8,32 +8,36 @@ import java.util.List;
  * @author Björn Persson Mattson, Modified by Filip Brynfors
  */
 public class Player implements IPlayer {
-	private List<Unit> units = new ArrayList<Unit>();
-	private List<Unit> selectedUnits = new ArrayList<Unit>();
+
+	private List<IEntity> selectedEntities = new ArrayList<IEntity>();
 	
 	/**
 	 * Constructs a player
 	 */
 	public Player(){
 		//TODO: Temp test unit
-		units.add(new Unit(new Position(10,10), this));
+		//units.add(new Unit(new Position(10,10), this));
 	}
 	
 	@Override
 	public void select(Position pos) {
 		//TODO: Add support for selection of multiple units and enemy units
-		selectedUnits.clear();
+		selectedEntities.clear();
 		
-		for(Unit unit: units){
-			float unitSize = unit.getSize();
-			Position unitPos = unit.getPosition();
+		
+		List<IEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(this);
+		
+		for(IEntity entity: entities){
+			float unitSize = entity.getSize();
+			Position unitPos = entity.getPosition();
+			
 			
 			//If the point is within the area of the unit
 			if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getY()+unitSize/2)
 					&& isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
 				
-					
-				selectedUnits.add(unit);
+				
+				selectedEntities.add(entity);
 				break;
 				
 			}
@@ -46,27 +50,22 @@ public class Player implements IPlayer {
 
 	@Override
 	public void moveSelectedTo(Position p) {
-		for(Unit unit: selectedUnits){
-			unit.moveTo(p);
+		for(IEntity entity: selectedEntities){
+			if(entity instanceof Unit){
+				Unit unit = (Unit) entity;
+				unit.moveTo(p);
+			}
+			
 		}
-	}
-	
-	@Override
-	public List<IEntity> getUnits() {
-		List<IEntity> iUnits = new ArrayList<IEntity>();
-		for(Unit unit: units){
-			iUnits.add(unit);
-		}
-		return iUnits;
 	}
 
 	@Override
-	public List<IEntity> getSelectedUnits() {
-		List<IEntity> iUnits = new ArrayList<IEntity>();
-		for(Unit unit: selectedUnits){
-			iUnits.add(unit);
+	public List<IEntity> getSelectedEntities() {
+		List<IEntity> entities = new ArrayList<IEntity>();
+		for(IEntity entity: selectedEntities){
+			entities.add(entity);
 		}
-		return iUnits;
+		return entities;
 	}
 	
 	/**
@@ -75,8 +74,14 @@ public class Player implements IPlayer {
 	 */
 	public void update(float tpf)
 	{
-		for(Unit unit: units){
-			unit.update(tpf);
+		List<IEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(this);
+		
+		for(IEntity entity: entities){
+			if(entity instanceof AbstractEntity){
+				Unit unit = (Unit) entity;
+				unit.update(tpf);
+			}
+			
 		}
 	}
 	
@@ -86,7 +91,7 @@ public class Player implements IPlayer {
 			return true;
 		} else if(o != null && o instanceof Player){
 			Player otherPlayer = (Player) o;
-			if(units.equals(otherPlayer.units)){
+			if(selectedEntities.equals(otherPlayer.selectedEntities)){
 				return true;
 			}
 		}
