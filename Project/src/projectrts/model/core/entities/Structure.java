@@ -21,7 +21,7 @@ public class Structure extends PlayerControlledEntity {
 	 * @param spawnPos Spawn position
 	 */
 	public Structure(Position spawnPos, Player owner){
-		super(spawnPos, owner);
+		super(spawnPos, owner, 500);
 		abilities.add(new BuildTowerAbility());
 	}
 	

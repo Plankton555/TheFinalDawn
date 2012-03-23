@@ -25,4 +25,14 @@ public interface IPlayerControlledEntity extends IEntity{
 	 * @return The list of available abilities of the entity
 	 */
 	public List<IAbility> getAbilities();
+	
+	/**
+	 * @return The health of the entity
+	 */
+	public int getHealth();
+	
+	/**
+	 * @return The maximum health of the entity
+	 */
+	public int getMaxHealth();
 }

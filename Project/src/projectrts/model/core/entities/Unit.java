@@ -28,7 +28,7 @@ public class Unit extends PlayerControlledEntity {
 	 */
 	public Unit(Position spawnPos, Player owner)
 	{
-		super(spawnPos, owner);
+		super(spawnPos, owner, 100);
 		this.microAI = new MicroAI(this);
 		this.stance = Stance.IDLE;
 		abilities.add(new AttackAbility());

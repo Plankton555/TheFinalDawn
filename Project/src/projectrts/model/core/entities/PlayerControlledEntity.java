@@ -15,13 +15,22 @@ import projectrts.model.core.abilities.IAbility;
  */
 public abstract class PlayerControlledEntity extends AbstractEntity implements IPlayerControlledEntity{
 	protected List<IAbility> abilities = new ArrayList<IAbility>();
+	protected int health;
+	private int maxHealth;
 	
 	private Player owner;
 	
-	public PlayerControlledEntity(Position spawnPos, Player owner) {
+	/**
+	 * Spawns an entity
+	 * @param spawnPos
+	 * @param owner
+	 * @param maxHealth
+	 */
+	public PlayerControlledEntity(Position spawnPos, Player owner, int maxHealth) {
 		super(spawnPos);
 		this.owner = owner;
-		// TODO Auto-generated constructor stub
+		this.maxHealth = maxHealth;
+		this.health = maxHealth;
 	}
 	
 	@Override
@@ -37,5 +46,28 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		}
 		return retAbilities;
 	}
+	
+	@Override
+	public int getHealth(){
+		return health;
+	}
 
+	
+	@Override
+	public int getMaxHealth(){
+		return maxHealth;
+	}
+	
+	/**
+	 * Reduces the current health by the provided amount of damage
+	 * @param amount the amout the hp is reduced by
+	 */
+	public void takeDamage(int amount){
+		if(amount>=health){
+			health = 0;
+			//TODO: Set dead? Send event?
+		} else {
+			health -= amount;
+		}
+	}
 }
