@@ -3,6 +3,8 @@ package projectrts.model.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.vecmath.Vector2d;
+
 /**
  * The singleton entity manager.
  * @author Bjorn Persson Mattsson
@@ -26,14 +28,26 @@ public class EntityManager {
 	 * Returns a list of all entities close to the position.
 	 * Returns all entities that can be seen from the circle with center in 'p'
 	 * and the radius 'range'.
-	 * @param p The position
-	 * @param range The distance from the position.
+	 * @param entity The entity from which to check.
 	 * @return List of all entities close to position.
 	 */
-	public List<IEntity> getNearbyEntities(Position p, float range)
+	public List<IEntity> getNearbyEntities(IEntity entity)
 	{
-		// TODO Implement this
-		return null;
+		// Preliminary method. May need to be changed to optimize.
+		
+		List<IEntity> output = new ArrayList<IEntity>();
+		
+		for (IEntity e : allEntities)
+		{
+			Vector2d distance = new Vector2d(
+					e.getPosition().getX()-entity.getPosition().getX(),
+					e.getPosition().getY()-entity.getPosition().getY());
+			if (distance.length() - (e.getSize()/2) <= entity.getRange())
+			{
+				output.add(e);
+			}
+		}
+		return output;
 	}
 	
 	/**
