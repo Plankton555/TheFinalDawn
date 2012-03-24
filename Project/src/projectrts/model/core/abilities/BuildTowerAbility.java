@@ -7,6 +7,11 @@ import projectrts.model.core.Position;
 import projectrts.model.core.entities.IPlayerControlledEntity;
 import projectrts.model.core.entities.Structure;
 
+/**
+ * A basic ability for constructing structures
+ * @author Filip Brynfors
+ *
+ */
 public class BuildTowerAbility implements IAbility {
 
 	@Override
