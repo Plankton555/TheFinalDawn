@@ -77,25 +77,6 @@ public class Player implements IPlayer {
 		return entities;
 	}
 	
-	/**
-	 * Updates the player.
-	 * @param tpf Time per frame
-	 */
-	public void update(float tpf)
-	{
-		// TODO Should the entity updates really ba handled by the Player? Not in EntityManager?
-		// E.g. entities that are not controlled by a player can't be updated atm.
-		List<IPlayerControlledEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(this);
-		
-		for(IEntity entity: entities){
-			if(entity instanceof AbstractEntity){
-				Unit unit = (Unit) entity;
-				unit.update(tpf);
-			}
-			
-		}
-	}
-	
 	@Override
 	public boolean equals(Object o){
 		if(this==o){

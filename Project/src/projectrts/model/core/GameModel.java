@@ -19,8 +19,7 @@ public class GameModel implements IGame {
 	
 	@Override
 	public void update(float tpf) {
-		humanPlayer.update(tpf);
-		aiPlayer.update(tpf);
+		entityManager.update(tpf);
 	}
 
 	@Override

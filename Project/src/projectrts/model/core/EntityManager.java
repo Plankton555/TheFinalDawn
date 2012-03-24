@@ -34,7 +34,10 @@ public class EntityManager {
 	 */
 	public void update(float tpf)
 	{
-		// TODO Update all entities here instead of in respective player
+		for (AbstractEntity e : allEntities)
+		{
+			e.update(tpf);
+		}
 	}
 	
 	/**
