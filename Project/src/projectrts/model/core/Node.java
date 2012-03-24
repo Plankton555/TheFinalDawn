@@ -54,6 +54,9 @@ public class Node {
 	 */
 	public void addNeighbour(Node node)
 	{
-		neighbours.add(node);
+		if (!this.equals(node))
+		{
+			neighbours.add(node);
+		}
 	}
 }

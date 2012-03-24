@@ -37,9 +37,9 @@ public class World {
 	
 	private void createNodeConnections()
 	{
-		for (int i=0; i<=nodes.length; i++)
+		for (int i=0; i<nodes.length; i++)
 		{
-			for (int j=0; j<=nodes[i].length; j++)
+			for (int j=0; j<nodes[i].length; j++)
 			{
 				// Add all nodes surrounding this node
 				for (int k=i-1; k<=i+1; k++)
@@ -60,9 +60,32 @@ public class World {
 			}
 		}
 	}
+	
+	public Node[][] getNodes()
+	{
+		return nodes;
+	}
 
 	public ITile[][] getTileMap()
 	{
 		return tileMap;
 	}
+	
+	/*
+	public static void main(String[] args)
+	{
+		World world = new World(10, 10);
+		Node[][] myNodes = world.getNodes();
+		
+		int x = 5;
+		int y = 5;
+		System.out.println(myNodes[y][x].getPosition());
+		System.out.println("has the neighbours:");
+		
+		for (Node n : myNodes[y][x].getNeighbours())
+		{
+			System.out.println(n.getPosition());
+		}
+	}
+	*/
 }
