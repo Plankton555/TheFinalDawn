@@ -20,6 +20,9 @@ public class AppController extends SimpleApplication{
         this.stateManager.attach(inGameState);
         inGameState.setEnabled(true);
         //inGameState.setEnabled(false);
+        
+        // Set logger level
+        Logger.getLogger("").setLevel(Level.SEVERE);
     }
 
     @Override

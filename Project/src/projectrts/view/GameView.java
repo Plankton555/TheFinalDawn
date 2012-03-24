@@ -156,8 +156,8 @@ public class GameView{
     	selected.detachAllChildren();
     	for(IEntity entity : entityList) {
 	    	Vector3f cV = Utils.INSTANCE.convertModelToWorld(entity.getPosition());
-	    	Box circle = new Box(new Vector3f(0, 0, 1), 
-	    			(entity.getSize() + 0.3f)/2 * mod, (entity.getSize() + 0.3f)/2 * mod, -1);
+	    	Box circle = new Box(new Vector3f(0, 0, -1), 
+	    			(entity.getSize() + 0.3f)/2 * mod, (entity.getSize() + 0.3f)/2 * mod, 0);
 	    	Geometry circleSpatial = new Geometry(entity.getName(), circle);
 	    	Material circleMaterial = new Material(this.app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
 	    	circleMaterial.setColor("Color", ColorRGBA.Green);

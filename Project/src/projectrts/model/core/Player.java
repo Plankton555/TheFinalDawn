@@ -33,14 +33,12 @@ public class Player implements IPlayer {
 		selectedEntities.clear();
 		
 		List<IPlayerControlledEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(this);
-		
 		for(IPlayerControlledEntity entity: entities){
 			float unitSize = entity.getSize();
 			Position unitPos = entity.getPosition();
 			
-			
 			//If the point is within the area of the unit
-			if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getY()+unitSize/2)
+			if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
 					&& isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
 				selectedEntities.add(entity);
 				break;
@@ -50,7 +48,7 @@ public class Player implements IPlayer {
 	}
 	
 	private boolean isWithin(float p, float low, float high){
-		return p>=low && p<=high;
+		return (p>=low && p<=high);
 	}
 
 	@Override
