@@ -25,9 +25,4 @@ public interface IEntity{
 	 * @return The name of the entity
 	 */
 	public String getName();
-	
-	/**
-	 * Add pcl as a listener.
-	 */
-	public void addListener(PropertyChangeListener pcl);
 }

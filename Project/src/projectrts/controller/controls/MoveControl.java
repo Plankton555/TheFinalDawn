@@ -11,29 +11,23 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.Spatial.CullHint;
 import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
 
-public class MoveControl extends AbstractControl implements PropertyChangeListener {
+public class MoveControl extends AbstractControl{
 	private IEntity entity;
 	
 	
-	public MoveControl(IEntity entity, Spatial spatial) {
+	public MoveControl(IEntity entity) {
 		super();
 		this.entity = entity;
-		this.entity.addListener(this);
-		this.setSpatial(spatial);
-		spatial.addControl(this);
 	}
 	
 	@Override
 	public Control cloneForSpatial(Spatial spatial) {
-		MoveControl control = new MoveControl(entity, spatial);
-		return control;
-	}
-	
-	public Control cloneForSpatial(Spatial spatial, IEntity entity) {
-		MoveControl control = new MoveControl(entity, spatial);
+		MoveControl control = new MoveControl(entity);
+		control.setSpatial(spatial);
 		return control;
 	}
 
@@ -44,15 +38,13 @@ public class MoveControl extends AbstractControl implements PropertyChangeListen
 
 	@Override
 	protected void controlUpdate(float tpf) {
-		
-	}
-
-	@Override
-	public void propertyChange(PropertyChangeEvent pce) {
-		if(pce.getPropertyName() == "move" && pce.getNewValue() instanceof Position) {
-			Position pos = (Position)pce.getNewValue();
-			Vector3f worldPos = spatial.getWorldTranslation().add(Utils.INSTANCE.convertModelToWorld(pos));
-			spatial.setLocalTranslation(worldPos);
+		if(this.enabled && spatial != null) {
+			Position pos = entity.getPosition();
+			Vector3f worldPos = Utils.INSTANCE.convertModelToWorld(pos);
+			Vector3f moveVector = worldPos.subtract(spatial.getWorldTranslation());
+			if(!moveVector.equals(Vector3f.ZERO)) {
+				spatial.move(moveVector);
+			}		
 		}
 	}
 }

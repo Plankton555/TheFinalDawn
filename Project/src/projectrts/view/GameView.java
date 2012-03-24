@@ -12,6 +12,7 @@ import projectrts.model.core.entities.*;
 import projectrts.model.core.IGame;
 import projectrts.model.core.IPlayer;
 import projectrts.model.core.ITile;
+import projectrts.model.core.Player;
 import projectrts.model.core.Position;
 
 import com.jme3.app.SimpleApplication;
@@ -31,23 +32,25 @@ import com.jme3.terrain.heightmap.ImageBasedHeightMap;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
 
-public class GameView implements PropertyChangeListener{
+public class GameView{
 	private SimpleApplication app;
-	private IGame model;
+	private IGame game;
     private Node entities = new Node("entities");
     private Node selected = new Node("selected");
     private Node terrainNode = new Node("terrain");
     private Material matTerrain;
     private TerrainQuad terrain;
+    private float mod = Constants.INSTANCE.getModifier();
 	
 	public GameView(SimpleApplication app, IGame model) {
 		this.app = app;
-		this.model = model;
+		this.game = model;
 	}
 	
 	public void initializeView() {
 		initializeWorld();
 		initializeEntities();
+		this.app.getRootNode().attachChild(selected);
 	}
 	
 	/**
@@ -122,8 +125,7 @@ public class GameView implements PropertyChangeListener{
     }
     
     private void initializeEntities() {
-    	this.app.getRootNode().attachChild(entities);
-    	List<IEntity> entitiesList = model.getAllEntities();
+    	List<IEntity> entitiesList = game.getAllEntities();
     	Box[] entityShapes = new Box[entitiesList.size()];
     	Geometry[] entitySpatials = new Geometry[entitiesList.size()];
     	Material entityMaterial = new Material(this.app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
@@ -131,46 +133,39 @@ public class GameView implements PropertyChangeListener{
     	
     	float mod = Constants.INSTANCE.getModifier();
     	
-    	for(int i = 0; i < model.getAllEntities().size(); i++) {
+    	for(int i = 0; i < entitiesList.size(); i++) {
     		// Create shape
-    		entityShapes[i] = new Box(new Vector3f(entitiesList.get(i).getPosition().getX() * mod, -entitiesList.get(i).getPosition().getY() * mod, 0), 
+    		entityShapes[i] = new Box(new Vector3f(0, 0, 0), 
     									mod/2, mod/2, 0);
     		// Create spatial
     		entitySpatials[i] = new Geometry(entitiesList.get(i).getName() + i, entityShapes[i]);
     		// Apply material
     		entitySpatials[i].setMaterial(entityMaterial);
     		// Create a MoveControl for the spatial
-    		new MoveControl(entitiesList.get(i), entitySpatials[i]);
+    		entitySpatials[i].addControl(new MoveControl(entitiesList.get(i)));
     		// Attach spatial
     		entities.attachChild(entitySpatials[i]);
     	}
+    	this.app.getRootNode().attachChild(entities);
     }
     
     public void update(float tpf) {
     }
     
-    private void drawSelected(IEntity entity) {
-    	
-    	Box circle = new Box(Utils.INSTANCE.convertModelToWorld(entity.getPosition()), 
-    			entity.getSize()/2 * Constants.INSTANCE.getModifier(), entity.getSize()/2 * Constants.INSTANCE.getModifier(), 0);
-    	Geometry circleSpatial = new Geometry(entity.getName(), circle);
-    	Material circleMaterial = new Material(this.app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
-    	circleMaterial.setColor("Color", ColorRGBA.Green);
-    	circleSpatial.setMaterial(circleMaterial);
-    	// Create a SelectControl for the spatial
-    	new SelectControl(entity, circleSpatial);
-    	selected.attachChild(circleSpatial);
-    }
-
-	public void propertyChange(PropertyChangeEvent pce) {
-		for(Spatial s : entities.getChildren()) {
-    		s.removeControl(SelectControl.class);
-    		selected.detachAllChildren();
+    public void drawSelected(List<IEntity> entityList) {
+    	selected.detachAllChildren();
+    	for(IEntity entity : entityList) {
+	    	Vector3f cV = Utils.INSTANCE.convertModelToWorld(entity.getPosition());
+	    	Box circle = new Box(new Vector3f(0, 0, 1), 
+	    			(entity.getSize() + 0.3f)/2 * mod, (entity.getSize() + 0.3f)/2 * mod, -1);
+	    	Geometry circleSpatial = new Geometry(entity.getName(), circle);
+	    	Material circleMaterial = new Material(this.app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+	    	circleMaterial.setColor("Color", ColorRGBA.Green);
+	    	circleSpatial.setMaterial(circleMaterial);
+	    	// Create a SelectControl for the spatial
+	    	SelectControl control = new SelectControl(entity);
+	    	circleSpatial.addControl(control);
+	    	selected.attachChild(circleSpatial);
     	}
-		
-		if(pce.getPropertyName() == "selected" && pce.getNewValue() instanceof IEntity) {
-			IEntity entity = (IEntity)pce.getNewValue();
-			drawSelected(entity);
-		}
-	}
+    }
 }
