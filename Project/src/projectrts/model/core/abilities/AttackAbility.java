@@ -15,6 +15,11 @@ public class AttackAbility implements IAbility {
 		return "Attack";
 	}
 	
+	@Override
+	public float getCooldown() {
+		return 1;
+	}
+	
 	public void doAbility(IPlayerControlledEntity attacker, IPlayerControlledEntity target){
 		
 		//TODO: Implement functionality for this ability
@@ -26,6 +31,5 @@ public class AttackAbility implements IAbility {
 			entityTarget.takeDamage(50);
 		}
 	}
-	
-	
+
 }

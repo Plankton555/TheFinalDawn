@@ -12,4 +12,10 @@ public interface IAbility {
 	 * @return The name of the ability.
 	 */
 	public String getName();
+	
+	/**
+	 * Gets the cooldown of the ability
+	 * @return the cooldown
+	 */
+	public float getCooldown();
 }

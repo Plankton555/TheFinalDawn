@@ -14,6 +14,11 @@ public class BuildTowerAbility implements IAbility {
 		return "Build Tower";
 	}
 	
+	@Override
+	public float getCooldown() {
+		return 0.1f;
+	}
+	
 	public void doAbility(IPlayerControlledEntity builder, Position pos){
 		Player owner = (Player) builder.getOwner();
 		Structure struct = new Structure(pos, owner);
