@@ -5,6 +5,7 @@ package projectrts.model.core.entities;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
 import projectrts.model.core.abilities.BuildTowerAbility;
+import projectrts.model.core.abilities.IAbility;
 
 
 
@@ -14,7 +15,7 @@ import projectrts.model.core.abilities.BuildTowerAbility;
  *
  */
 public class Structure extends PlayerControlledEntity {
-	
+	BuildTowerAbility buildTowerAbility;
 	
 	/**
 	 * Spawns a Structure at the provided position.
@@ -22,7 +23,7 @@ public class Structure extends PlayerControlledEntity {
 	 */
 	public Structure(Position spawnPos, Player owner){
 		super(spawnPos, owner, 500);
-		abilities.add(new BuildTowerAbility());
+		abilities.add((buildTowerAbility = new BuildTowerAbility()));
 	}
 	
 	@Override
@@ -46,6 +47,14 @@ public class Structure extends PlayerControlledEntity {
 	public float getSightRange() {
 		// TODO Change this later
 		return 10;
+	}
+
+	@Override
+	public void doAbility(IAbility ability, Position pos) {
+		if(ability instanceof BuildTowerAbility){
+			buildTowerAbility.doAbility(this, pos);
+		}
+		
 	}
 
 

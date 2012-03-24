@@ -4,6 +4,7 @@ import projectrts.model.core.MicroAI;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
 import projectrts.model.core.abilities.AttackAbility;
+import projectrts.model.core.abilities.IAbility;
 
 /**
  * A simple unit.
@@ -88,5 +89,12 @@ public class Unit extends PlayerControlledEntity {
 	public float getSightRange() {
 		// TODO Change this later
 		return 10;
+	}
+
+
+	@Override
+	public void doAbility(IAbility ability, Position pos) {
+		// TODO Implement this
+		
 	}
 }

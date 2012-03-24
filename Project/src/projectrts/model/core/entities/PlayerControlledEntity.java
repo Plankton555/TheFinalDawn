@@ -70,4 +70,6 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 			health -= amount;
 		}
 	}
+	
+	public abstract void doAbility(IAbility ability, Position pos);
 }
