@@ -7,6 +7,7 @@ import java.util.List;
 
 import projectrts.model.core.entities.AbstractEntity;
 import projectrts.model.core.entities.IEntity;
+import projectrts.model.core.entities.IPlayerControlledEntity;
 import projectrts.model.core.entities.Unit;
 
 /**
@@ -15,7 +16,8 @@ import projectrts.model.core.entities.Unit;
  */
 public class Player implements IPlayer {
 
-	private List<IEntity> selectedEntities = new ArrayList<IEntity>();
+	// TODO Change this list to a set?
+	private List<IPlayerControlledEntity> selectedEntities = new ArrayList<IPlayerControlledEntity>();
 	
 	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	
@@ -32,10 +34,9 @@ public class Player implements IPlayer {
 		//TODO: Add support for selection of multiple units and enemy units
 		selectedEntities.clear();
 		
+		List<IPlayerControlledEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(this);
 		
-		List<IEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(this);
-		
-		for(IEntity entity: entities){
+		for(IPlayerControlledEntity entity: entities){
 			float unitSize = entity.getSize();
 			Position unitPos = entity.getPosition();
 			
@@ -82,7 +83,9 @@ public class Player implements IPlayer {
 	 */
 	public void update(float tpf)
 	{
-		List<IEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(this);
+		// TODO Should the entity updates really ba handled by the Player? Not in EntityManager?
+		// E.g. entities that are not controlled by a player can't be updated atm.
+		List<IPlayerControlledEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(this);
 		
 		for(IEntity entity: entities){
 			if(entity instanceof AbstractEntity){

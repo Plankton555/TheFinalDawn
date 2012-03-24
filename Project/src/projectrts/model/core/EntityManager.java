@@ -6,6 +6,7 @@ import java.util.List;
 import javax.vecmath.Vector2d;
 
 import projectrts.model.core.entities.IEntity;
+import projectrts.model.core.entities.IPlayerControlledEntity;
 
 /**
  * The singleton entity manager.
@@ -33,24 +34,22 @@ public class EntityManager {
 	 * @param entity The entity from which to check.
 	 * @return List of all entities close to position.
 	 */
-	public List<IEntity> getNearbyEntities(IEntity entity)
+	public List<IEntity> getNearbyEntities(IPlayerControlledEntity entity)
 	{
 		// Preliminary method. May need to be changed to optimize.
 		
 		List<IEntity> output = new ArrayList<IEntity>();
 		
-		/* TODO FIIIIIX!
 		for (IEntity e : allEntities)
 		{
 			Vector2d distance = new Vector2d(
 					e.getPosition().getX()-entity.getPosition().getX(),
 					e.getPosition().getY()-entity.getPosition().getY());
-			if (distance.length() - (e.getSize()/2) <= entity.getRange())
+			if (distance.length() - (e.getSize()/2) <= entity.getSightRange())
 			{
 				output.add(e);
 			}
 		}
-		*/
 		return output;
 	}
 	
@@ -59,19 +58,21 @@ public class EntityManager {
 	 * @param player Player
 	 * @return A list of all entities of player.
 	 */
-	public List<IEntity> getEntitiesOfPlayer(Player player)
+	public List<IPlayerControlledEntity> getEntitiesOfPlayer(Player player)
 	{
 		
-		List<IEntity> output = new ArrayList<IEntity>();
-		/* TODO FIIIX!
+		List<IPlayerControlledEntity> output = new ArrayList<IPlayerControlledEntity>();
 		for (IEntity e : allEntities)
 		{
-			if (e.getOwner().equals(player))
+			if (e instanceof IPlayerControlledEntity)
 			{
-				output.add(e);
+				IPlayerControlledEntity pce = (IPlayerControlledEntity)e;
+				if (pce.getOwner().equals(player))
+				{
+					output.add(pce);
+				}
 			}
 		}
-		*/
 		return output;
 	}
 	
