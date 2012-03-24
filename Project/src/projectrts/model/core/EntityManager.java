@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.vecmath.Vector2d;
 
+import projectrts.model.core.entities.AbstractEntity;
 import projectrts.model.core.entities.IEntity;
 import projectrts.model.core.entities.IPlayerControlledEntity;
 
@@ -17,7 +18,7 @@ public class EntityManager {
 
 	private static EntityManager instance = new EntityManager();
 	
-	private List<IEntity> allEntities = new ArrayList<IEntity>();
+	private List<AbstractEntity> allEntities = new ArrayList<AbstractEntity>();
 	
 	/**
 	 * @return The instance of this class.
@@ -28,19 +29,28 @@ public class EntityManager {
 	}
 	
 	/**
+	 * Updates all entities.
+	 * @param tpf
+	 */
+	public void update(float tpf)
+	{
+		// TODO Update all entities here instead of in respective player
+	}
+	
+	/**
 	 * Returns a list of all entities close to the position.
 	 * Returns all entities that can be seen from the circle with center in 'p'
 	 * and the radius 'range'.
 	 * @param entity The entity from which to check.
 	 * @return List of all entities close to position.
 	 */
-	public List<IEntity> getNearbyEntities(IPlayerControlledEntity entity)
+	public List<AbstractEntity> getNearbyEntities(IPlayerControlledEntity entity)
 	{
 		// Preliminary method. May need to be changed to optimize.
 		
-		List<IEntity> output = new ArrayList<IEntity>();
+		List<AbstractEntity> output = new ArrayList<AbstractEntity>();
 		
-		for (IEntity e : allEntities)
+		for (AbstractEntity e : allEntities)
 		{
 			Vector2d distance = new Vector2d(
 					e.getPosition().getX()-entity.getPosition().getX(),
@@ -62,7 +72,7 @@ public class EntityManager {
 	{
 		
 		List<IPlayerControlledEntity> output = new ArrayList<IPlayerControlledEntity>();
-		for (IEntity e : allEntities)
+		for (AbstractEntity e : allEntities)
 		{
 			if (e instanceof IPlayerControlledEntity)
 			{
@@ -81,7 +91,12 @@ public class EntityManager {
 	 */
 	public List<IEntity> getAllEntities()
 	{
-		return allEntities;
+		List<IEntity> output = new ArrayList<IEntity>();
+		for (IEntity e : allEntities)
+		{
+			output.add(e);
+		}
+		return output;
 	}
 	
 	/**
@@ -89,7 +104,7 @@ public class EntityManager {
 	 * This does not keep track of multiple copies of the same entity.
 	 * @param entity The entity.
 	 */
-	public void addEntity(IEntity entity)
+	public void addEntity(AbstractEntity entity)
 	{
 		allEntities.add(entity);
 	}
