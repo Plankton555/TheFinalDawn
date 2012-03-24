@@ -4,7 +4,10 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import projectrts.controller.controls.MoveControl;
+import projectrts.controller.controls.SelectControl;
 import projectrts.global.constants.*;
+import projectrts.global.utils.Utils;
 import projectrts.model.core.entities.*;
 import projectrts.model.core.IGame;
 import projectrts.model.core.IPlayer;
@@ -30,8 +33,9 @@ import com.jme3.texture.Texture.WrapMode;
 
 public class GameView implements PropertyChangeListener{
 	private SimpleApplication app;
-    private Node entities = new Node("units");
-    private IGame model;
+	private IGame model;
+    private Node entities = new Node("entities");
+    private Node selected = new Node("selected");
     private Node terrainNode = new Node("terrain");
     private Material matTerrain;
     private TerrainQuad terrain;
@@ -106,6 +110,7 @@ public class GameView implements PropertyChangeListener{
         terrainNode.attachChild(terrain);
         app.getRootNode().attachChild(terrainNode);
 
+        terrainNode.setLocalTranslation(0, 0, -100);
         terrainNode.rotateUpTo(new Vector3f(0f,0f,1f));
 
      
@@ -119,8 +124,8 @@ public class GameView implements PropertyChangeListener{
     private void initializeEntities() {
     	this.app.getRootNode().attachChild(entities);
     	List<IEntity> entitiesList = model.getAllEntities();
-    	Box[] entityShapes = new Box[model.getAllEntities().size()];
-    	Geometry[] entitySpatials = new Geometry[model.getAllEntities().size()];
+    	Box[] entityShapes = new Box[entitiesList.size()];
+    	Geometry[] entitySpatials = new Geometry[entitiesList.size()];
     	Material entityMaterial = new Material(this.app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
     	entityMaterial.setColor("Color", ColorRGBA.Pink);
     	
@@ -134,6 +139,8 @@ public class GameView implements PropertyChangeListener{
     		entitySpatials[i] = new Geometry(entitiesList.get(i).getName() + i, entityShapes[i]);
     		// Apply material
     		entitySpatials[i].setMaterial(entityMaterial);
+    		// Create a MoveControl for the spatial
+    		new MoveControl(entitiesList.get(i), entitySpatials[i]);
     		// Attach spatial
     		entities.attachChild(entitySpatials[i]);
     	}
@@ -142,14 +149,28 @@ public class GameView implements PropertyChangeListener{
     public void update(float tpf) {
     }
     
-    private void drawSelected(Position p, float size) {
+    private void drawSelected(IEntity entity) {
+    	
+    	Box circle = new Box(Utils.INSTANCE.convertModelToWorld(entity.getPosition()), 
+    			entity.getSize()/2 * Constants.INSTANCE.getModifier(), entity.getSize()/2 * Constants.INSTANCE.getModifier(), 0);
+    	Geometry circleSpatial = new Geometry(entity.getName(), circle);
+    	Material circleMaterial = new Material(this.app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+    	circleMaterial.setColor("Color", ColorRGBA.Green);
+    	circleSpatial.setMaterial(circleMaterial);
+    	// Create a SelectControl for the spatial
+    	new SelectControl(entity, circleSpatial);
+    	selected.attachChild(circleSpatial);
     }
 
 	public void propertyChange(PropertyChangeEvent pce) {
+		for(Spatial s : entities.getChildren()) {
+    		s.removeControl(SelectControl.class);
+    		selected.detachAllChildren();
+    	}
+		
 		if(pce.getPropertyName() == "selected" && pce.getNewValue() instanceof IEntity) {
 			IEntity entity = (IEntity)pce.getNewValue();
-			drawSelected(entity.getPosition(), entity.getSize());
+			drawSelected(entity);
 		}
-		
 	}
 }

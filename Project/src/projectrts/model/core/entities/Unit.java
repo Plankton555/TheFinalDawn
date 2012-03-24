@@ -59,7 +59,7 @@ public class Unit extends PlayerControlledEntity {
 			Position oldPos = this.position;
 			this.position = microAI.determinePath(targetPosition, tpf);
 			// Notify the view about the new position.
-			pcs.firePropertyChange("Position", oldPos, this.position);
+			pcs.firePropertyChange("move", oldPos, this.position);
 			if (this.position.equals(targetPosition))
 			{
 				// if on target position, stop

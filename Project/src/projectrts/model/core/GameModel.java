@@ -3,6 +3,7 @@ package projectrts.model.core;
 import java.util.List;
 
 import projectrts.model.core.entities.IEntity;
+import projectrts.model.core.entities.Unit;
 
 /**
  * The main model class of the RTS Game
@@ -15,6 +16,9 @@ public class GameModel implements IGame {
 	private Player humanPlayer = new Player();
 	private Player aiPlayer = new Player();
 	
+	public GameModel() {
+		entityManager.addEntity(new Unit(new Position(10, 10), humanPlayer));
+	}
 	
 	
 	@Override

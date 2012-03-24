@@ -1,5 +1,7 @@
 package projectrts.model.core.entities;
 
+import java.beans.PropertyChangeListener;
+
 import projectrts.model.core.Position;
 
 /**
@@ -7,7 +9,7 @@ import projectrts.model.core.Position;
  * @author Filip Brynfors
  *
  */
-public interface IEntity {
+public interface IEntity{
 	/**
 	 * @return The position of the entity.
 	 */
@@ -23,4 +25,9 @@ public interface IEntity {
 	 * @return The name of the entity
 	 */
 	public String getName();
+	
+	/**
+	 * Add pcl as a listener.
+	 */
+	public void addListener(PropertyChangeListener pcl);
 }
