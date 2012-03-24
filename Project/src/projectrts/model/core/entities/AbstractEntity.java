@@ -12,7 +12,6 @@ import projectrts.model.core.Position;
  */
 public abstract class AbstractEntity implements IEntity {
 
-	protected PropertyChangeSupport pcs = new PropertyChangeSupport(this); 
 	protected Position position;
 	
 	/**
@@ -28,10 +27,6 @@ public abstract class AbstractEntity implements IEntity {
 	@Override
 	public Position getPosition() {
 		return position;
-	}
-
-	public void addListener(PropertyChangeListener pcl) {
-		pcs.addPropertyChangeListener(pcl);
 	}
 	
 	

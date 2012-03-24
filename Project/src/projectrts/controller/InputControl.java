@@ -22,13 +22,13 @@ public class InputControl {
 	private boolean enabled = false;
 	private boolean mouseActivated = false;
 	private SimpleApplication app;
-	private IGame model;
+	private IGame game;
 	private GameView view;
 	
 	
 	public InputControl(SimpleApplication app, IGame model, GameView view) {
 		this.app = app;
-		this.model = model;
+		this.game = model;
 		this.view = view;
 		initializeKeys();
 	}
@@ -83,7 +83,7 @@ public class InputControl {
     	
     	// Map left and right mouse buttons
     	this.app.getInputManager().addMapping("mouseLeftButton", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
-    	this.app.getInputManager().addMapping("rightMouseButton", new MouseButtonTrigger(MouseInput.BUTTON_RIGHT));
+    	this.app.getInputManager().addMapping("mouseRightButton", new MouseButtonTrigger(MouseInput.BUTTON_RIGHT));
     	
     	
     	
@@ -134,15 +134,17 @@ public class InputControl {
     		
 	    	if(enabled) {
 	    		if (name.equals("mouseLeftButton") && keyPressed) {
-	    			model.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+	    			game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+	    			view.drawSelected(game.getPlayer().getSelectedEntities());
 	    		}
 	    		if (name.equals("mouseRightButton") && keyPressed) {
-	    			model.getPlayer().moveSelectedTo(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+	    			game.getPlayer().moveSelectedTo(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    		}
 	    		
 	    		//Debugging
 	    		if (name.equals("checkMouseLoc") && keyPressed) {
-	    			System.out.println(app.getInputManager().getCursorPosition().toString());
+	    			System.out.println("mLoc = " + app.getInputManager().getCursorPosition().toString());
+	    			System.out.println("wLoc = " + app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
 	    		}
 	    	} else {
 	    		

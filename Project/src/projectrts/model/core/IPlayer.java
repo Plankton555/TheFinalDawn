@@ -1,5 +1,6 @@
 package projectrts.model.core;
 
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import projectrts.model.core.entities.IEntity;

@@ -71,7 +71,7 @@ public class EntityManager {
 	 * @param player Player
 	 * @return A list of all entities of player.
 	 */
-	public List<IPlayerControlledEntity> getEntitiesOfPlayer(Player player)
+	public List<IPlayerControlledEntity> getEntitiesOfPlayer(IPlayer player)
 	{
 		
 		List<IPlayerControlledEntity> output = new ArrayList<IPlayerControlledEntity>();

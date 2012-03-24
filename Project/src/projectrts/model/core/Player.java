@@ -19,8 +19,6 @@ public class Player implements IPlayer {
 	// TODO Change this list to a set?
 	private List<IPlayerControlledEntity> selectedEntities = new ArrayList<IPlayerControlledEntity>();
 	
-	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-	
 	/**
 	 * Constructs a player
 	 */
@@ -44,8 +42,6 @@ public class Player implements IPlayer {
 			//If the point is within the area of the unit
 			if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getY()+unitSize/2)
 					&& isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
-				
-				pcs.firePropertyChange("selected", 0, entity);
 				selectedEntities.add(entity);
 				break;
 				
@@ -64,7 +60,6 @@ public class Player implements IPlayer {
 				Unit unit = (Unit) entity;
 				unit.moveTo(p);
 			}
-			
 		}
 	}
 
@@ -89,9 +84,5 @@ public class Player implements IPlayer {
 		}
 		return false;
 		
-	}
-	
-	public void addListener(PropertyChangeListener pcl) {
-		pcs.addPropertyChangeListener(pcl);
 	}
 }

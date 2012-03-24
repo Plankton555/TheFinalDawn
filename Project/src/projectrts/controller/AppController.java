@@ -1,5 +1,8 @@
 package projectrts.controller;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.jme3.app.SimpleApplication;
 import com.jme3.renderer.RenderManager;
 
@@ -12,11 +15,8 @@ public class AppController extends SimpleApplication{
     @Override
     public void simpleInitApp() {
     	this.cam.setParallelProjection(true);
-    	
-    	
         IGame game = new GameModel();
         InGameState inGameState = new InGameState(game);
-        inGameState.initialize(stateManager, this);
         this.stateManager.attach(inGameState);
         inGameState.setEnabled(true);
         //inGameState.setEnabled(false);
