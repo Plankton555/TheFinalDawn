@@ -1,5 +1,7 @@
 package projectrts.view;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import projectrts.global.constants.*;
@@ -7,6 +9,7 @@ import projectrts.model.core.entities.*;
 import projectrts.model.core.IGame;
 import projectrts.model.core.IPlayer;
 import projectrts.model.core.ITile;
+import projectrts.model.core.Position;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.AssetManager;
@@ -25,7 +28,7 @@ import com.jme3.terrain.heightmap.ImageBasedHeightMap;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
 
-public class GameView {
+public class GameView implements PropertyChangeListener{
 	private SimpleApplication app;
     private Node entities = new Node("units");
     private IGame model;
@@ -138,4 +141,15 @@ public class GameView {
     
     public void update(float tpf) {
     }
+    
+    private void drawSelected(Position p, float size) {
+    }
+
+	public void propertyChange(PropertyChangeEvent pce) {
+		if(pce.getPropertyName() == "selected" && pce.getNewValue() instanceof IEntity) {
+			IEntity entity = (IEntity)pce.getNewValue();
+			drawSelected(entity.getPosition(), entity.getSize());
+		}
+		
+	}
 }

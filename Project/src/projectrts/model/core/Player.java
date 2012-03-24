@@ -1,5 +1,7 @@
 package projectrts.model.core;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,8 @@ import projectrts.model.core.entities.Unit;
 public class Player implements IPlayer {
 
 	private List<IEntity> selectedEntities = new ArrayList<IEntity>();
+	
+	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	
 	/**
 	 * Constructs a player
@@ -40,7 +44,7 @@ public class Player implements IPlayer {
 			if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getY()+unitSize/2)
 					&& isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
 				
-				
+				pcs.firePropertyChange("selected", 0, entity);
 				selectedEntities.add(entity);
 				break;
 				
@@ -101,5 +105,9 @@ public class Player implements IPlayer {
 		}
 		return false;
 		
+	}
+	
+	public void addListener(PropertyChangeListener pcl) {
+		pcs.addPropertyChangeListener(pcl);
 	}
 }

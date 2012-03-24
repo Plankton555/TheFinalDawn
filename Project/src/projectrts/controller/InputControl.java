@@ -128,15 +128,12 @@ public class InputControl {
       
     private ActionListener actionListener = new ActionListener() {
     	public void onAction(String name, boolean keyPressed, float tpf) {
-	    	
     		if (name.equals("exit") && keyPressed) {
 	            app.stop();
 	    	}
-	    	
-	    	
+    		
 	    	if(enabled) {
 	    		if (name.equals("mouseLeftButton") && keyPressed) {
-	    			;
 	    			model.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    		}
 	    		if (name.equals("mouseRightButton") && keyPressed) {
@@ -156,8 +153,7 @@ public class InputControl {
 	    			name.equals("cameraUpMouse") ||
 	    			name.equals("cameraDownMouse"))) {
 	            mouseActivated = true;
-	    	}
-    		
+	    	}	
 	    }
     };
 }
