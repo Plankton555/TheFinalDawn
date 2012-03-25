@@ -10,31 +10,31 @@ import projectrts.model.core.utils.ModelUtils;
  * @author Filip Brynfors
  *
  */
-public class OffensiveSpellAbility implements IAbility {
+public class OffensiveSpellAbility extends AbstractAbility {
 	private int abilityRange = 50;
 	private int damage = 90;
+	
+	public OffensiveSpellAbility() {
+		super(5);
+	}
 
 	@Override
 	public String getName() {
 		return "Offensive Spell";
 	}
 	
-	@Override
-	public float getCooldown() {
-		return 5;
-	}
-	
-	public void doAbility(IPlayerControlledEntity attacker, IPlayerControlledEntity target){
-		
-		//TODO: Implement functionality for this ability
-		//Check if possible? Should it be check multiple times (Here + in AI)?
-		//The amount of dmg should be attacker.getDamage()
+
+	public void useAbility(IPlayerControlledEntity attacker, IPlayerControlledEntity target){
 		
 		
-		
-		if(ModelUtils.INSTANCE.getDistance(attacker.getPosition(), target.getPosition()) <= abilityRange && target instanceof PlayerControlledEntity){
-			PlayerControlledEntity entityTarget = (PlayerControlledEntity) target;
-			entityTarget.takeDamage(damage);
+		if(this.getRemainingCooldown()<=0){
+			if(ModelUtils.INSTANCE.getDistance(attacker.getPosition(), target.getPosition()) <= abilityRange 
+					&& target instanceof PlayerControlledEntity){
+				PlayerControlledEntity entityTarget = (PlayerControlledEntity) target;
+				entityTarget.takeDamage(damage);
+				
+				this.setAbilityUsed();
+			}
 		}
 	}
 

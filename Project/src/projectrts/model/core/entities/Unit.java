@@ -5,6 +5,7 @@ import projectrts.model.core.Player;
 import projectrts.model.core.Position;
 import projectrts.model.core.abilities.AttackAbility;
 import projectrts.model.core.abilities.IAbility;
+import projectrts.model.core.abilities.OffensiveSpellAbility;
 
 /**
  * A simple unit.
@@ -16,6 +17,8 @@ public class Unit extends PlayerControlledEntity {
 	private Position targetPosition;
 	private MicroAI microAI;
 	private Stance stance;
+	private AttackAbility attackAbility;
+	private OffensiveSpellAbility offensiveSpellAbility;
 	
 	private enum Stance
 	{
@@ -32,7 +35,8 @@ public class Unit extends PlayerControlledEntity {
 		super(spawnPos, owner, 100);
 		this.microAI = new MicroAI(this);
 		this.stance = Stance.IDLE;
-		abilities.add(new AttackAbility());
+		abilities.add(attackAbility = new AttackAbility());
+		abilities.add(offensiveSpellAbility = new OffensiveSpellAbility());
 	}
 	
 
@@ -94,7 +98,12 @@ public class Unit extends PlayerControlledEntity {
 
 	@Override
 	public void doAbility(IAbility ability, Position pos) {
-		// TODO Implement this
+		//TODO: GetEntityAtPosition(Position p) in EntityManager
+		if(ability instanceof AttackAbility){
+			//attackAbility.doAbility(this, target);
+		} else if (ability instanceof OffensiveSpellAbility){
+			//offensiveSpellAbility.doAbility(this, target);
+		}
 		
 	}
 }

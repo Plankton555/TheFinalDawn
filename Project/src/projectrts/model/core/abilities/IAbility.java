@@ -18,4 +18,11 @@ public interface IAbility {
 	 * @return the cooldown
 	 */
 	public float getCooldown();
+	
+	
+	/**
+	 * Gets the remaining time of the cooldown
+	 * @return the remaining cooldown
+	 */
+	public float getRemainingCooldown();
 }

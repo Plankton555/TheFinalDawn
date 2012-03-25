@@ -8,27 +8,27 @@ import projectrts.model.core.entities.PlayerControlledEntity;
  * @author Filip Brynfors
  *
  */
-public class AttackAbility implements IAbility {
+public class AttackAbility extends AbstractAbility {
 
+	public AttackAbility(){
+		super(1);
+	}
+	
 	@Override
 	public String getName() {
 		return "Attack";
 	}
 	
-	@Override
-	public float getCooldown() {
-		return 1;
-	}
-	
 	public void doAbility(IPlayerControlledEntity attacker, IPlayerControlledEntity target){
 		
-		//TODO: Implement functionality for this ability
-		//Check if possible? Should it be check multiple times (Here + in AI)?
-		//The amount of dmg should be attacker.getDamage()
+		
+		//TODO: The amount of dmg should be attacker.getDamage()
 		
 		if(target instanceof PlayerControlledEntity){
 			PlayerControlledEntity entityTarget = (PlayerControlledEntity) target;
 			entityTarget.takeDamage(50);
+			
+			this.setAbilityUsed();
 		}
 	}
 

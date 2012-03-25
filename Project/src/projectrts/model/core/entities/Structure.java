@@ -15,7 +15,7 @@ import projectrts.model.core.abilities.IAbility;
  *
  */
 public class Structure extends PlayerControlledEntity {
-	BuildTowerAbility buildTowerAbility;
+	private BuildTowerAbility buildTowerAbility;
 	
 	/**
 	 * Spawns a Structure at the provided position.
