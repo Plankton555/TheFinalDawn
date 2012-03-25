@@ -15,7 +15,6 @@ import projectrts.model.core.abilities.IAbility;
  *
  */
 public class Structure extends PlayerControlledEntity {
-	private BuildTowerAbility buildTowerAbility;
 	
 	/**
 	 * Spawns a Structure at the provided position.
@@ -23,7 +22,7 @@ public class Structure extends PlayerControlledEntity {
 	 */
 	public Structure(Position spawnPos, Player owner){
 		super(spawnPos, owner, 500);
-		abilities.add((buildTowerAbility = new BuildTowerAbility()));
+		abilities.add(new BuildTowerAbility());
 	}
 	
 	@Override
