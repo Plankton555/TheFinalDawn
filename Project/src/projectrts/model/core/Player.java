@@ -70,17 +70,4 @@ public class Player implements IPlayer {
 		return entities;
 	}
 	
-	@Override
-	public boolean equals(Object o){
-		if(this==o){
-			return true;
-		} else if(o != null && o instanceof Player){
-			Player otherPlayer = (Player) o;
-			if(selectedEntities.equals(otherPlayer.selectedEntities)){
-				return true;
-			}
-		}
-		return false;
-		
-	}
 }
