@@ -65,7 +65,7 @@ public class GameView{
      
         /** 1.1) Add ALPHA map (for red-blue-green coded splat textures) */
         matTerrain.setTexture("Alpha", assetManager.loadTexture(
-                "Textures/Terrain/splat/alphamap.png"));
+                "assets/terrain/alphamap.png"));
      
         /** 1.2) Add GRASS texture into the red layer (Tex1). */
         Texture grass = assetManager.loadTexture(
@@ -74,9 +74,9 @@ public class GameView{
         matTerrain.setTexture("Tex1", grass);
         matTerrain.setFloat("Tex1Scale", 64f);
      
-        /** 1.3) Add DIRT texture into the green layer (Tex2) */
+        /** 1.3) Add WATER texture into the green layer (Tex2) */
         Texture dirt = assetManager.loadTexture(
-                "Textures/Terrain/splat/dirt.jpg");
+                "assets/terrain/Water_Texture.png");
         dirt.setWrap(WrapMode.Repeat);
         matTerrain.setTexture("Tex2", dirt);
         matTerrain.setFloat("Tex2Scale", 32f);
@@ -113,7 +113,7 @@ public class GameView{
         terrainNode.attachChild(terrain);
         app.getRootNode().attachChild(terrainNode);
 
-        terrainNode.setLocalTranslation(0, 0, -100);
+        terrainNode.setLocalTranslation(2, -2, -100);
         terrainNode.rotateUpTo(new Vector3f(0f,0f,1f));
 
      
