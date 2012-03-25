@@ -6,6 +6,7 @@ import java.util.List;
 import projectrts.model.core.IPlayer;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
+import projectrts.model.core.abilities.AbstractAbility;
 import projectrts.model.core.abilities.IAbility;
 
 /**
@@ -14,8 +15,8 @@ import projectrts.model.core.abilities.IAbility;
  *
  */
 public abstract class PlayerControlledEntity extends AbstractEntity implements IPlayerControlledEntity{
-	protected List<IAbility> abilities = new ArrayList<IAbility>();
-	protected int health;
+	protected List<AbstractAbility> abilities = new ArrayList<AbstractAbility>();
+	private int health;
 	private int maxHealth;
 	
 	private Player owner;
@@ -71,5 +72,13 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		}
 	}
 	
-	public abstract void doAbility(IAbility ability, Position pos);
+
+	public void doAbility(IAbility ability, Position pos) {
+		for(AbstractAbility ownAbility: abilities){
+			if(ability.getName() == ownAbility.getName()){
+				ownAbility.useAbility(this, pos);
+			}
+		}
+		
+	}
 }

@@ -48,15 +48,5 @@ public class Structure extends PlayerControlledEntity {
 		// TODO Change this later
 		return 10;
 	}
-
-	@Override
-	public void doAbility(IAbility ability, Position pos) {
-		if(ability instanceof BuildTowerAbility){
-			buildTowerAbility.useAbility(this, pos);
-		}
-		
-	}
-
-
 	
 }
