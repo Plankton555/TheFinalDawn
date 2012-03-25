@@ -40,6 +40,7 @@ public class Unit extends PlayerControlledEntity {
 	public float getSize() {
 		// TODO Change this later
 		return 1;
+		
 	}
 
 	
@@ -57,8 +58,8 @@ public class Unit extends PlayerControlledEntity {
 			break;
 			
 		case MOVING:
+			Position oldPos = this.position;
 			this.position = microAI.determinePath(targetPosition, tpf);
-			
 			if (this.position.equals(targetPosition))
 			{
 				// if on target position, stop
@@ -83,8 +84,7 @@ public class Unit extends PlayerControlledEntity {
 		//TODO: Fix name
 		return "Basic unit";
 	}
-
-
+	
 	@Override
 	public float getSightRange() {
 		// TODO Change this later

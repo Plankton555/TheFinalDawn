@@ -1,10 +1,13 @@
 package projectrts.model.core;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
 import projectrts.model.core.entities.AbstractEntity;
 import projectrts.model.core.entities.IEntity;
+import projectrts.model.core.entities.IPlayerControlledEntity;
 import projectrts.model.core.entities.Unit;
 
 /**
@@ -13,7 +16,8 @@ import projectrts.model.core.entities.Unit;
  */
 public class Player implements IPlayer {
 
-	private List<IEntity> selectedEntities = new ArrayList<IEntity>();
+	// TODO Change this list to a set?
+	private List<IPlayerControlledEntity> selectedEntities = new ArrayList<IPlayerControlledEntity>();
 	
 	/**
 	 * Constructs a player
@@ -28,19 +32,14 @@ public class Player implements IPlayer {
 		//TODO: Add support for selection of multiple units and enemy units
 		selectedEntities.clear();
 		
-		
-		List<IEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(this);
-		
-		for(IEntity entity: entities){
+		List<IPlayerControlledEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(this);
+		for(IPlayerControlledEntity entity: entities){
 			float unitSize = entity.getSize();
 			Position unitPos = entity.getPosition();
 			
-			
 			//If the point is within the area of the unit
-			if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getY()+unitSize/2)
+			if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
 					&& isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
-				
-				
 				selectedEntities.add(entity);
 				break;
 				
@@ -49,7 +48,7 @@ public class Player implements IPlayer {
 	}
 	
 	private boolean isWithin(float p, float low, float high){
-		return p>=low && p<=high;
+		return (p>=low && p<=high);
 	}
 
 	@Override
@@ -59,7 +58,6 @@ public class Player implements IPlayer {
 				Unit unit = (Unit) entity;
 				unit.moveTo(p);
 			}
-			
 		}
 	}
 
@@ -70,23 +68,6 @@ public class Player implements IPlayer {
 			entities.add(entity);
 		}
 		return entities;
-	}
-	
-	/**
-	 * Updates the player.
-	 * @param tpf Time per frame
-	 */
-	public void update(float tpf)
-	{
-		List<IEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(this);
-		
-		for(IEntity entity: entities){
-			if(entity instanceof AbstractEntity){
-				Unit unit = (Unit) entity;
-				unit.update(tpf);
-			}
-			
-		}
 	}
 	
 	@Override

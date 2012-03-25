@@ -1,5 +1,8 @@
 package projectrts.model.core.entities;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import projectrts.model.core.Position;
 
 /**
@@ -9,7 +12,6 @@ import projectrts.model.core.Position;
  */
 public abstract class AbstractEntity implements IEntity {
 
-	
 	protected Position position;
 	
 	/**
@@ -26,8 +28,6 @@ public abstract class AbstractEntity implements IEntity {
 	public Position getPosition() {
 		return position;
 	}
-
-
 	
 	
 	/**
