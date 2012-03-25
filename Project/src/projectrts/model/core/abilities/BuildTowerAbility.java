@@ -5,7 +5,7 @@ package projectrts.model.core.abilities;
 import projectrts.model.core.EntityManager;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
-import projectrts.model.core.entities.IPlayerControlledEntity;
+import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.model.core.entities.Structure;
 
 /**
@@ -24,7 +24,8 @@ public class BuildTowerAbility extends AbstractAbility {
 		return "Build Tower";
 	}
 	
-	public void doAbility(IPlayerControlledEntity builder, Position pos){
+	@Override
+	public void useAbility(PlayerControlledEntity builder, Position pos){
 		Player owner = (Player) builder.getOwner();
 		Structure struct = new Structure(pos, owner);
 		EntityManager.getInstance().addEntity(struct);

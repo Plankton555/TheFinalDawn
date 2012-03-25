@@ -1,5 +1,8 @@
 package projectrts.model.core.abilities;
 
+import projectrts.model.core.Position;
+import projectrts.model.core.entities.PlayerControlledEntity;
+
 
 public abstract class AbstractAbility implements IAbility {
 	private float cooldown;
@@ -39,6 +42,6 @@ public abstract class AbstractAbility implements IAbility {
 	
 	
 	//TODO: Add this abstract method and update sub classes to implement this method
-	//public abstract void useAbility(PlayerControlledEntity caster, Position target);
+	public abstract void useAbility(PlayerControlledEntity caster, Position target);
 
 }

@@ -1,6 +1,12 @@
 package projectrts.model.core.utils;
 
+import java.util.List;
+
+import projectrts.model.core.EntityManager;
 import projectrts.model.core.Position;
+import projectrts.model.core.entities.IEntity;
+import projectrts.model.core.entities.IPlayerControlledEntity;
+import projectrts.model.core.entities.PlayerControlledEntity;
 
 /**
  * Utility class
@@ -21,5 +27,32 @@ public enum ModelUtils {
 		float dy = p1.getY() - p2.getY();
 		
 		return (float) Math.sqrt(dx*dx+dy*dy);
+	}
+	
+	
+	//TODO: Should this method be in EntityManager?
+	public PlayerControlledEntity getPlayerControlledEntityAtPosition(Position pos){
+		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
+		for(IEntity entity: entities){
+			if(entity instanceof PlayerControlledEntity){
+				
+				float unitSize = entity.getSize();
+				Position unitPos = entity.getPosition();
+				
+				//If the point is within the area of the unit
+				if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
+						&& isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
+					PlayerControlledEntity pcEntity  = (PlayerControlledEntity) entity; 
+					return pcEntity;
+					
+				}
+			}
+		}
+		return null;
+		
+	}
+	
+	public boolean isWithin(float p, float low, float high){
+		return (p>=low && p<=high);
 	}
 }
