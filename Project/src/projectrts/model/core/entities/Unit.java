@@ -4,6 +4,7 @@ import projectrts.model.core.MicroAI;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
 import projectrts.model.core.abilities.AttackAbility;
+import projectrts.model.core.abilities.OffensiveSpellAbility;
 
 /**
  * A simple unit.
@@ -15,6 +16,7 @@ public class Unit extends PlayerControlledEntity {
 	private Position targetPosition;
 	private MicroAI microAI;
 	private Stance stance;
+
 	
 	private enum Stance
 	{
@@ -32,6 +34,7 @@ public class Unit extends PlayerControlledEntity {
 		this.microAI = new MicroAI(this);
 		this.stance = Stance.IDLE;
 		abilities.add(new AttackAbility());
+		abilities.add(new OffensiveSpellAbility());
 	}
 	
 
@@ -89,4 +92,7 @@ public class Unit extends PlayerControlledEntity {
 		// TODO Change this later
 		return 10;
 	}
+
+
+
 }

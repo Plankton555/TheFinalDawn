@@ -8,7 +8,9 @@ import java.util.List;
 import projectrts.model.core.entities.AbstractEntity;
 import projectrts.model.core.entities.IEntity;
 import projectrts.model.core.entities.IPlayerControlledEntity;
+import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.model.core.entities.Unit;
+import projectrts.model.core.utils.ModelUtils;
 
 /**
  * Player class for handling all of one players units.
@@ -17,7 +19,7 @@ import projectrts.model.core.entities.Unit;
 public class Player implements IPlayer {
 
 	// TODO Change this list to a set?
-	private List<IPlayerControlledEntity> selectedEntities = new ArrayList<IPlayerControlledEntity>();
+	private List<PlayerControlledEntity> selectedEntities = new ArrayList<PlayerControlledEntity>();
 	
 	/**
 	 * Constructs a player
@@ -32,6 +34,7 @@ public class Player implements IPlayer {
 		//TODO: Add support for selection of multiple units and enemy units
 		selectedEntities.clear();
 		
+		/*
 		List<IPlayerControlledEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(this);
 		for(IPlayerControlledEntity entity: entities){
 			float unitSize = entity.getSize();
@@ -45,11 +48,15 @@ public class Player implements IPlayer {
 				
 			}
 		}
+		*/
+		PlayerControlledEntity entity = ModelUtils.INSTANCE.getPlayerControlledEntityAtPosition(pos);
+		if(entity!=null){ //No entity is at that position
+			selectedEntities.add(entity);
+		}
+		
 	}
 	
-	private boolean isWithin(float p, float low, float high){
-		return (p>=low && p<=high);
-	}
+
 
 	@Override
 	public void moveSelectedTo(Position p) {
@@ -70,17 +77,4 @@ public class Player implements IPlayer {
 		return entities;
 	}
 	
-	@Override
-	public boolean equals(Object o){
-		if(this==o){
-			return true;
-		} else if(o != null && o instanceof Player){
-			Player otherPlayer = (Player) o;
-			if(selectedEntities.equals(otherPlayer.selectedEntities)){
-				return true;
-			}
-		}
-		return false;
-		
-	}
 }

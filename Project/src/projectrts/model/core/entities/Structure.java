@@ -5,6 +5,7 @@ package projectrts.model.core.entities;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
 import projectrts.model.core.abilities.BuildTowerAbility;
+import projectrts.model.core.abilities.IAbility;
 
 
 
@@ -14,7 +15,6 @@ import projectrts.model.core.abilities.BuildTowerAbility;
  *
  */
 public class Structure extends PlayerControlledEntity {
-	
 	
 	/**
 	 * Spawns a Structure at the provided position.
@@ -47,7 +47,5 @@ public class Structure extends PlayerControlledEntity {
 		// TODO Change this later
 		return 10;
 	}
-
-
 	
 }
