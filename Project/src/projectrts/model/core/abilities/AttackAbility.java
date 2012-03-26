@@ -10,7 +10,12 @@ import projectrts.model.core.utils.ModelUtils;
  *
  */
 public class AttackAbility extends AbstractAbility {
-
+	private PlayerControlledEntity attacker;
+	private PlayerControlledEntity target;
+	
+	private MoveAbility moveAbility = new MoveAbility();
+	
+	
 	public AttackAbility(){
 		super(1);
 	}
@@ -22,14 +27,47 @@ public class AttackAbility extends AbstractAbility {
 	
 	@Override
 	public void useAbility(PlayerControlledEntity attacker, Position pos){
-		PlayerControlledEntity target = ModelUtils.INSTANCE.getPlayerControlledEntityAtPosition(pos);
+		this.attacker = attacker;
+		target = ModelUtils.INSTANCE.getPlayerControlledEntityAtPosition(pos);
 		
-		//TODO: The amount of dmg should be attacker.getDamage()
+		//TODO: Are these needed?
+		setActive(false);
+		setFinnished(false);
 		
-		if(target != null){
-			target.takeDamage(50);
+	}
+
+	@Override
+	public void update(float tpf) {
+		updateCooldown(tpf);		
+		
+		
+		
+		//attacker.getRange();
+		if(ModelUtils.INSTANCE.getDistance(attacker.getPosition(), target.getPosition())>1){
+			//Out of range
 			
-			this.setAbilityUsed();
+			if(!moveAbility.isActive()){
+				moveAbility.useAbility(attacker, target.getPosition());
+			}
+			
+			moveAbility.update(tpf);
+			if(moveAbility.isFinnished()){
+				moveAbility.setActive(false);
+				moveAbility.setFinnished(false);
+			}
+			
+		} else {
+			//In range
+			if(getRemainingCooldown()<=0){
+				//TODO: The amount of dmg should be attacker.getDamage()
+			
+				target.takeDamage(50);
+				
+				this.setAbilityUsed();
+				
+				//TODO: Not setting finnished = true?
+				
+			}
 		}
 	}
 

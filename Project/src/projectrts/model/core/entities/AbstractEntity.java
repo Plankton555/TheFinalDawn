@@ -29,6 +29,14 @@ public abstract class AbstractEntity implements IEntity {
 		return position;
 	}
 	
+	/**
+	 * Sets the position of the entity
+	 * @param pos the new position
+	 */
+	public void setPosition(Position pos){
+		position = pos.clone();
+	}
+	
 	
 	/**
 	 * Updates the unit.

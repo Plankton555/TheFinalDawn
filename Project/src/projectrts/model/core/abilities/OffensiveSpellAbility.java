@@ -14,6 +14,12 @@ public class OffensiveSpellAbility extends AbstractAbility {
 	private int abilityRange = 50;
 	private int damage = 90;
 	
+	private PlayerControlledEntity attacker;
+	private PlayerControlledEntity target;
+	
+	private MoveAbility moveAbility = new MoveAbility();
+	
+	
 	public OffensiveSpellAbility() {
 		super(5);
 	}
@@ -25,13 +31,39 @@ public class OffensiveSpellAbility extends AbstractAbility {
 	
 
 	public void useAbility(PlayerControlledEntity attacker, Position pos){
-		PlayerControlledEntity target = ModelUtils.INSTANCE.getPlayerControlledEntityAtPosition(pos);
+		this.attacker = attacker;
+		target = ModelUtils.INSTANCE.getPlayerControlledEntityAtPosition(pos);
+	}
+
+	@Override
+	public void update(float tpf) {
+		updateCooldown(tpf);		
 		
-		if(target != null && this.getRemainingCooldown()<=0){
-			if(ModelUtils.INSTANCE.getDistance(attacker.getPosition(), target.getPosition()) <= abilityRange){
+		
+		
+		//attacker.getRange();
+		if(ModelUtils.INSTANCE.getDistance(attacker.getPosition(), target.getPosition())>abilityRange){
+			//Out of range
+			
+			if(!moveAbility.isActive()){
+				moveAbility.useAbility(attacker, target.getPosition());
+			}
+			
+			moveAbility.update(tpf);
+			if(moveAbility.isFinnished()){
+				moveAbility.setActive(false);
+				moveAbility.setFinnished(false);
+			}
+			
+		} else {
+			//In range			
+			
+			if(this.getRemainingCooldown()<=0){
 				target.takeDamage(damage);
 				
 				this.setAbilityUsed();
+				this.setFinnished(true);
+			
 			}
 		}
 	}

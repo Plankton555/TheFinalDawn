@@ -5,11 +5,17 @@ import projectrts.model.core.entities.PlayerControlledEntity;
 
 
 public abstract class AbstractAbility implements IAbility {
+	private boolean isFinnished = false;
+	private boolean isActive = false;
 	private float cooldown;
 	private float remainingCooldown = 0;
 	
 	public AbstractAbility(float cooldown){
 		this.cooldown = cooldown;
+	}
+	
+	public AbstractAbility(){
+		this.cooldown = 0;
 	}
 
 	@Override
@@ -23,14 +29,33 @@ public abstract class AbstractAbility implements IAbility {
 	}
 	
 	/**
-	 * Updates the cooldown of the ability
+	 * Updates the ability
 	 */
-	public void update(float tpf){
+	public abstract void update(float tpf);
+	
+	
+	protected void updateCooldown(float tpf){
 		if(remainingCooldown < tpf){
 			remainingCooldown = 0;
 		} else {
 			remainingCooldown -= tpf;
 		}
+	}
+	
+	public boolean isFinnished(){
+		return isFinnished;
+	}
+	
+	public boolean isActive(){
+		return isActive;
+	}
+	
+	public void setActive(boolean b){
+		isActive = b;
+	}
+	
+	public void setFinnished(boolean b){
+		isFinnished = b;
 	}
 	
 	/**
@@ -41,7 +66,6 @@ public abstract class AbstractAbility implements IAbility {
 	}
 	
 	
-	//TODO: Add this abstract method and update sub classes to implement this method
 	public abstract void useAbility(PlayerControlledEntity caster, Position target);
 
 }
