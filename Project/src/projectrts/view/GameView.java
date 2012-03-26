@@ -7,6 +7,8 @@ import java.util.List;
 import projectrts.controller.controls.MoveControl;
 import projectrts.controller.controls.SelectControl;
 import projectrts.global.constants.*;
+import projectrts.global.utils.MaterialManager;
+import projectrts.global.utils.TextureManager;
 import projectrts.global.utils.Utils;
 import projectrts.model.core.entities.*;
 import projectrts.model.core.IGame;
@@ -66,40 +68,34 @@ public class GameView{
 	 * http://jmonkeyengine.org/wiki/doku.php/jme3:beginner:hello_terrain
 	 */
     private void initializeWorld() {
-    	AssetManager assetManager = app.getAssetManager();
+    	
     	  /** 1. Create terrain material and load four textures into it. */
-        matTerrain = new Material(assetManager, 
-                "Common/MatDefs/Terrain/Terrain.j3md");
+        matTerrain = MaterialManager.INSTANCE.getMaterial("Terrain");
      
         /** 1.1) Add ALPHA map (for red-blue-green coded splat textures) */
-        matTerrain.setTexture("Alpha", assetManager.loadTexture(
-                "assets/terrain/alphamap.png"));
+        matTerrain.setTexture("Alpha",TextureManager.INSTANCE.getTexture("Alpha"));
      
         /** 1.2) Add GRASS texture into the red layer (Tex1). */
-        Texture grass = assetManager.loadTexture(
-                "Textures/Terrain/splat/grass.jpg");
+        Texture grass = TextureManager.INSTANCE.getTexture("Grass");
         grass.setWrap(WrapMode.Repeat);
         matTerrain.setTexture("Tex1", grass);
         matTerrain.setFloat("Tex1Scale", 64f);
      
         /** 1.3) Add WATER texture into the green layer (Tex2) */
-        Texture dirt = assetManager.loadTexture(
-                "assets/terrain/Water_Texture.png");
-        dirt.setWrap(WrapMode.Repeat);
-        matTerrain.setTexture("Tex2", dirt);
+        Texture water = TextureManager.INSTANCE.getTexture("Water");
+        water.setWrap(WrapMode.Repeat);
+        matTerrain.setTexture("Tex2", water);
         matTerrain.setFloat("Tex2Scale", 32f);
      
         /** 1.4) Add ROAD texture into the blue layer (Tex3) */
-        Texture rock = assetManager.loadTexture(
-                "Textures/Terrain/splat/road.jpg");
+        Texture rock = TextureManager.INSTANCE.getTexture("Rock");
         rock.setWrap(WrapMode.Repeat);
         matTerrain.setTexture("Tex3", rock);
         matTerrain.setFloat("Tex3Scale", 128f);
      
         /** 2. Create the height map */
         AbstractHeightMap heightmap = null;
-        Texture heightMapImage = assetManager.loadTexture(
-                "assets/terrain/mountains512.png");
+        Texture heightMapImage = TextureManager.INSTANCE.getTexture("HeightMap");
         heightmap = new ImageBasedHeightMap(heightMapImage.getImage());
         heightmap.load();
      
@@ -136,7 +132,7 @@ public class GameView{
     	List<IEntity> entitiesList = game.getAllEntities(); 
     	Box[] entityShapes = new Box[entitiesList.size()];
     	Geometry[] entitySpatials = new Geometry[entitiesList.size()];
-    	Material entityMaterial = new Material(this.app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+    	Material entityMaterial = MaterialManager.INSTANCE.getMaterial("Unshaded");
     	entityMaterial.setColor("Color", ColorRGBA.Pink);
     	
     	float mod = Constants.INSTANCE.getModelToWorld();
@@ -177,7 +173,7 @@ public class GameView{
 	    	Box circle = new Box(new Vector3f(0, 0, -1), 
 	    			(entity.getSize() + 0.3f)/2 * mod, (entity.getSize() + 0.3f)/2 * mod, 0);
 	    	Geometry circleSpatial = new Geometry(entity.getName(), circle);
-	    	Material circleMaterial = new Material(this.app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+	    	Material circleMaterial = MaterialManager.INSTANCE.getMaterial("Unshaded");
 	    	circleMaterial.setColor("Color", ColorRGBA.Green);
 	    	circleSpatial.setMaterial(circleMaterial);
 	    	// Create a SelectControl and add it to the spatial
