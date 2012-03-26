@@ -7,6 +7,8 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.renderer.RenderManager;
 
 import projectrts.controller.InGameState;
+import projectrts.global.utils.MaterialManager;
+import projectrts.global.utils.TextureManager;
 import projectrts.model.core.GameModel;
 import projectrts.model.core.IGame;
 
@@ -23,6 +25,8 @@ public class AppController extends SimpleApplication{
     @Override
     public void simpleInitApp() {
     	this.cam.setParallelProjection(true);
+    	TextureManager.INSTANCE.initializeTextures(this);
+    	MaterialManager.INSTANCE.initializeMaterial(this);
         IGame game = new GameModel();
         InGameState inGameState = new InGameState(game);
         this.stateManager.attach(inGameState);
