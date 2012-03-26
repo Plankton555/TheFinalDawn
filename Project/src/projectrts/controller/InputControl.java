@@ -17,13 +17,19 @@ import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 
+/**
+ * A class for handling all input.
+ * @author Heqir
+ *
+ */
 public class InputControl {
 
-	private boolean enabled = false;
-	private boolean mouseActivated = false;
+	// Before the mouse is moved it has the position (0, 0), causing the camera to move in that direction.
+	// mouseActivated suppresses the camera until set to true (which is done when the mouse is first moved).
+	private boolean mouseActivated = false; 
 	private SimpleApplication app;
-	private IGame game;
-	private GameView view;
+	private IGame game; // The model
+	private GameView view; 
 	
 	
 	public InputControl(SimpleApplication app, IGame model, GameView view) {
@@ -33,10 +39,14 @@ public class InputControl {
 		initializeKeys();
 	}
 	
-    public void update(float tpf, boolean enabled) {
-    	this.enabled = enabled;
+	/**
+	 * Updates the input, should be hooked into the main update loop
+	 * @param tpf Time-per-frame
+	 */
+    public void update(float tpf) {
     	
-        if(enabled){
+    	
+        if(app.getStateManager().getState(InGameState.class).isEnabled()){
           // do the following while game is RUNNING // modify scene graph...
         	updateCamera(tpf);
         } else {
@@ -45,18 +55,25 @@ public class InputControl {
         }
       }
     
+    /**
+     * Updates the camera.
+     * 
+     * If the mouse cursor is close enough to one of the edges, it moves the camera a certain amount
+     * in that direction. The amount is decided by the getCameraSpeed method in the Constants class. 
+     * @param tpf
+     */
     private void updateCamera(float tpf) {
     	if(mouseActivated) {
 	    	Vector3f loc = app.getCamera().getLocation();
 	    	Vector2f mLoc = app.getInputManager().getCursorPosition();
 	    	float margin = Constants.INSTANCE.getCameraMoveMargin();
-	    	if(mLoc.x >= app.getCamera().getWidth() - margin && loc.x <= P.INSTANCE.getWorldWidth() * Constants.INSTANCE.getModifier()) {
+	    	if(mLoc.x >= app.getCamera().getWidth() - margin && loc.x <= P.INSTANCE.getWorldWidth() * Constants.INSTANCE.getModelToWorld()) {
 	    		app.getCamera().setLocation(loc.add(tpf * Constants.INSTANCE.getCameraSpeed(), 0, 0));
 	    	}
 	    	if(mLoc.x <= margin && loc.x >= 0) {
 	    		app.getCamera().setLocation(loc.add(tpf * -Constants.INSTANCE.getCameraSpeed(), 0, 0));
 	    	}
-	    	if(mLoc.y <= margin && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.INSTANCE.getModifier()) {
+	    	if(mLoc.y <= margin && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.INSTANCE.getModelToWorld()) {
 	    		app.getCamera().setLocation(loc.add(0, tpf * -Constants.INSTANCE.getCameraSpeed(), 0));
 	    	}
 	    	if(mLoc.y >= app.getCamera().getHeight() - margin && loc.y <= 0) {
@@ -65,7 +82,11 @@ public class InputControl {
     	}
     }
 	
-	/** Custom Keybinding: Map named actions to inputs. */
+	/** 
+	 * Initializes all keybinds.
+	 * 
+	 * Maps named actions to inputs and assigns listeners. 
+	 */
     private void initializeKeys() {
     	this.app.getInputManager().setCursorVisible(true);
     	this.app.getInputManager().clearMappings();
@@ -85,30 +106,31 @@ public class InputControl {
     	this.app.getInputManager().addMapping("mouseLeftButton", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
     	this.app.getInputManager().addMapping("mouseRightButton", new MouseButtonTrigger(MouseInput.BUTTON_RIGHT));
     	
-    	
-    	
-    	
     	// Add the names to the action/analog listener.	
     	this.app.getInputManager().addListener(analogListener, new String[]{"cameraRightKey", "cameraLeftKey", "cameraUpKey", "cameraDownKey"});
-    	
     	this.app.getInputManager().addListener(actionListener, new String[]{"cameraRightMouse", "cameraLeftMouse", "cameraUpMouse", "cameraDownMouse", 
     																		"mouseLeftButton", "mouseRightButton"});
-    	
     	//Debug control mapping
     	this.app.getInputManager().addMapping("exit",  new KeyTrigger(KeyInput.KEY_ESCAPE));
     	this.app.getInputManager().addMapping("checkMouseLoc", new KeyTrigger(KeyInput.KEY_M));
-    	
     	
     	//Add debug controls to action/analog listener
     	this.app.getInputManager().addListener(actionListener, new String[]{"exit", "checkMouseLoc"});
     }
     
+    /**
+     * An analog listener, use if the input is analog - i.e. it can take on several
+     * values, not just "on" and "off". 
+     * 
+     */
     private AnalogListener analogListener = new AnalogListener() {
 	    public void onAnalog(String name, float value, float tpf) {
-	    	Vector3f loc = app.getCamera().getLocation();
 	    	
-	    	if (enabled) {
-	            if (name.equals("cameraRightKey") && loc.x <= P.INSTANCE.getWorldWidth() * Constants.INSTANCE.getModifier()) {
+	    	// Make sure we are in the correct state and that it is enabled.
+	    	if (app.getStateManager().getState(InGameState.class).isEnabled()) {
+	    		Vector3f loc = app.getCamera().getLocation();
+	    		
+	            if (name.equals("cameraRightKey") && loc.x <= P.INSTANCE.getWorldWidth() * Constants.INSTANCE.getModelToWorld()) {
 	            	app.getCamera().setLocation(loc.add(new Vector3f(value*Constants.INSTANCE.getCameraSpeed(), 0, 0)));
 	            }
 	            if (name.equals("cameraLeftKey") && loc.x >= 0) {
@@ -117,7 +139,7 @@ public class InputControl {
 	            if (name.equals("cameraUpKey") && loc.y <= 0) {
 	            	app.getCamera().setLocation(loc.add(new Vector3f(0, value*Constants.INSTANCE.getCameraSpeed(), 0)));
 	            }
-	            if (name.equals("cameraDownKey") && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.INSTANCE.getModifier()) {
+	            if (name.equals("cameraDownKey") && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.INSTANCE.getModelToWorld()) {
 	            	app.getCamera().setLocation(loc.add(new Vector3f(0, -value*Constants.INSTANCE.getCameraSpeed(), 0)));
 	            }
           	} else {
@@ -126,13 +148,17 @@ public class InputControl {
     	}
     };
       
+    /**
+     * A digital listener, use if the input is digital - i.e. it can only
+     * be either "on" or "off".
+     */
     private ActionListener actionListener = new ActionListener() {
     	public void onAction(String name, boolean keyPressed, float tpf) {
     		if (name.equals("exit") && keyPressed) {
 	            app.stop();
 	    	}
     		
-	    	if(enabled) {
+	    	if(app.getStateManager().getState(InGameState.class).isEnabled()) {
 	    		if (name.equals("mouseLeftButton") && keyPressed) {
 	    			game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    			view.drawSelected(game.getPlayer().getSelectedEntities());
@@ -150,6 +176,8 @@ public class InputControl {
 	    		
 	    	}
 	    	
+	    	// Bypass the fact that the cursor position is (0, 0) before it is moved,
+	    	// which causes the camera to move towards that location would this not be in place.
 	    	if ((!mouseActivated && name.equals("cameraRightMouse") ||
 	    			name.equals("cameraLeftMouse") ||
 	    			name.equals("cameraUpMouse") ||

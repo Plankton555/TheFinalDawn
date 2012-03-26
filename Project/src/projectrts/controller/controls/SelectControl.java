@@ -13,7 +13,14 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
-
+//TODO Check if MoveControl could be used instead of this class.
+/**
+ * A custom Control that handles selected-spatial's movement.
+ * Currently is no different from MoveControl and is probably redundant.
+ * 
+ * @author Heqir
+ *
+ */
 public class SelectControl extends AbstractControl{
 	private IEntity entity;
 	
@@ -34,14 +41,18 @@ public class SelectControl extends AbstractControl{
 		
 	}
 
+	/**
+	 * Automatically hooks into the update loop. Should not be manually called!
+	 * @param tpf Time-per-frame
+	 */
 	@Override
 	protected void controlUpdate(float arg0) {
 		if(this.enabled && spatial != null) {
-			Position pos = entity.getPosition();
-			Vector3f worldPos = Utils.INSTANCE.convertModelToWorld(pos);
-			Vector3f moveVector = worldPos.subtract(spatial.getWorldTranslation());
-			if(!moveVector.equals(Vector3f.ZERO)) {
-				spatial.move(moveVector);
+			Position pos = entity.getPosition(); // Gets the position from it's associated entity. 
+			Vector3f worldPos = Utils.INSTANCE.convertModelToWorld(pos); // Converts it to world position.
+			Vector3f moveVector = worldPos.subtract(spatial.getWorldTranslation()); // Subtracts the current position from the desired to get a movement vector.
+			if(!moveVector.equals(Vector3f.ZERO)) { // If the spatial needs to be moved.
+				spatial.move(moveVector); // Move the spatial according to the movement vector.
 			}		
 		}
 	}

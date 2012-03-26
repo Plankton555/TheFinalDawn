@@ -10,6 +10,14 @@ import projectrts.controller.InGameState;
 import projectrts.model.core.GameModel;
 import projectrts.model.core.IGame;
 
+/**
+ * The top-level controller.
+ * 
+ * Is the connection to jMonkeyEngine (extends SimpleApplication)
+ * and handles top-level stuff like swapping AppStates.
+ * @author Heqir
+ *
+ */
 public class AppController extends SimpleApplication{
 
     @Override

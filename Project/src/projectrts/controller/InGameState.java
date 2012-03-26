@@ -11,6 +11,11 @@ import projectrts.model.core.IGame;
 import projectrts.model.core.P;
 import projectrts.view.GameView;
 
+/**
+ * The in-game state that controls everything inside the game.
+ * @author Heqir
+ *
+ */
 public class InGameState extends AbstractAppState {
 	
  
@@ -23,7 +28,16 @@ public class InGameState extends AbstractAppState {
         super();
         this.game = game;
     }
- 
+    
+    /**
+     * Initializes the state. 
+     * 
+     * Do not manually call this method! This method is invoked automatically
+     * by SimpleApplication.
+     * 
+     * @param stateManager SimpleApplication's stateManager
+     * @param app A class extending SimpleApplication
+     */
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app); 
@@ -36,13 +50,20 @@ public class InGameState extends AbstractAppState {
       view.initializeView();
    }
  
+    /**
+     * This method is probably called automatically when changing states, I haven't looked it up
+     * though but I think it is not supposed to be called manually.
+     */
    @Override
     public void cleanup() {
       super.cleanup();
       // unregister all my listeners, detach all my nodes, etc... // modify scene graph...
-      
     }
  
+   /**
+    * Sets whether this state is enabled or not.
+    * @param enabled Decides if the state is enabled or not.
+    */
     @Override
     public void setEnabled(boolean enabled) {
       // Pause and unpause
@@ -56,11 +77,17 @@ public class InGameState extends AbstractAppState {
       }
     }
  
+    /**
+     * The update loop, do not call manually!
+     * 
+     * Invoked automatically by SimpleApplication.
+     * @param tpf Time-per-frame
+     */
     @Override
     public void update(float tpf) {
       if(isEnabled()){
         // do the following while game is RUNNING // modify scene graph...
-    	  input.update(tpf, this.isEnabled());
+    	  input.update(tpf);
     	  game.update(tpf);
     	  view.update(tpf);
       } else {
@@ -69,8 +96,11 @@ public class InGameState extends AbstractAppState {
       }
     }
     
+    /**
+     * Initializes the camera to the center of the playable world.
+     */
     private void initializeCamera() {
-    	app.getCamera().setLocation(app.getCamera().getLocation().add(new Vector3f((P.INSTANCE.getWorldWidth() / 2) * Constants.INSTANCE.getModifier(),
-    			-(P.INSTANCE.getWorldHeight() / 2) * Constants.INSTANCE.getModifier(), 0)));
+    	app.getCamera().setLocation(app.getCamera().getLocation().add(new Vector3f((P.INSTANCE.getWorldWidth() / 2) * Constants.INSTANCE.getModelToWorld(),
+    			-(P.INSTANCE.getWorldHeight() / 2) * Constants.INSTANCE.getModelToWorld(), 0)));
     }
 }

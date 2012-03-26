@@ -32,21 +32,29 @@ import com.jme3.terrain.heightmap.ImageBasedHeightMap;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
 
+/**
+ * The in-game view, creating and managing the scene.
+ * @author Heqir
+ *
+ */
 public class GameView{
 	private SimpleApplication app;
-	private IGame game;
-    private Node entities = new Node("entities");
-    private Node selected = new Node("selected");
-    private Node terrainNode = new Node("terrain");
+	private IGame game; // The model
+    private Node entities = new Node("entities"); // The node for all entities
+    private Node selected = new Node("selected"); // The node for the selected graphics
+    private Node terrainNode = new Node("terrain"); // The node for all terrain
     private Material matTerrain;
     private TerrainQuad terrain;
-    private float mod = Constants.INSTANCE.getModifier();
+    private float mod = Constants.INSTANCE.getModelToWorld(); // The modifier value for converting lengths between model and world.
 	
 	public GameView(SimpleApplication app, IGame model) {
 		this.app = app;
 		this.game = model;
 	}
 	
+	/**
+	 * Initializes the scene.
+	 */
 	public void initializeView() {
 		initializeWorld();
 		initializeEntities();
@@ -125,46 +133,56 @@ public class GameView{
     }
     
     private void initializeEntities() {
-    	List<IEntity> entitiesList = game.getAllEntities();
+    	List<IEntity> entitiesList = game.getAllEntities(); 
     	Box[] entityShapes = new Box[entitiesList.size()];
     	Geometry[] entitySpatials = new Geometry[entitiesList.size()];
     	Material entityMaterial = new Material(this.app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
     	entityMaterial.setColor("Color", ColorRGBA.Pink);
     	
-    	float mod = Constants.INSTANCE.getModifier();
+    	float mod = Constants.INSTANCE.getModelToWorld();
     	
     	for(int i = 0; i < entitiesList.size(); i++) {
-    		// Create shape
-    		entityShapes[i] = new Box(new Vector3f(0, 0, 0), 
-    									mod/2, mod/2, 0);
-    		// Create spatial
+    		// Create shape.
+    		// The location of the entity is initialized (0, 0, 0) but is then instantly translated to the correct place by moveControl.
+    		// Gets the size from the model and converts it to world size.
+    		entityShapes[i] = new Box(new Vector3f(0, 0, 0),  
+    									(entitiesList.get(i).getSize() * mod)/2, (entitiesList.get(i).getSize() * mod)/2, 0); 
+    		// Create spatial.
     		entitySpatials[i] = new Geometry(entitiesList.get(i).getName() + i, entityShapes[i]);
-    		// Apply material
+    		// Apply material.
     		entitySpatials[i].setMaterial(entityMaterial);
-    		// Create a MoveControl for the spatial
+    		// Create a MoveControl and add it to the spatial.
     		entitySpatials[i].addControl(new MoveControl(entitiesList.get(i)));
-    		// Attach spatial
+    		// Attach spatial to the entities node.
     		entities.attachChild(entitySpatials[i]);
     	}
+    	//Attach the entities node to the root node, connecting it to the world.
     	this.app.getRootNode().attachChild(entities);
     }
     
     public void update(float tpf) {
     }
     
+    /**
+     * Draws the selected graphics for all entities in the passed list.
+     * @param entityList A list of selected entities.
+     */
     public void drawSelected(List<IEntity> entityList) {
+    	// Remove all previously selected graphics
     	selected.detachAllChildren();
     	for(IEntity entity : entityList) {
 	    	Vector3f cV = Utils.INSTANCE.convertModelToWorld(entity.getPosition());
+	    	// Sets the location of the spatial to (0, 0, -1) to make sure it's behind the entities that use (x, y, 0).
+	    	// The selectControl will instantly translate it to the correct location.
 	    	Box circle = new Box(new Vector3f(0, 0, -1), 
 	    			(entity.getSize() + 0.3f)/2 * mod, (entity.getSize() + 0.3f)/2 * mod, 0);
 	    	Geometry circleSpatial = new Geometry(entity.getName(), circle);
 	    	Material circleMaterial = new Material(this.app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
 	    	circleMaterial.setColor("Color", ColorRGBA.Green);
 	    	circleSpatial.setMaterial(circleMaterial);
-	    	// Create a SelectControl for the spatial
-	    	SelectControl control = new SelectControl(entity);
-	    	circleSpatial.addControl(control);
+	    	// Create a SelectControl and add it to the spatial
+	    	circleSpatial.addControl(new SelectControl(entity));
+	    	// Attach spatial to the selected node, connecting it to the world.
 	    	selected.attachChild(circleSpatial);
     	}
     }
