@@ -3,7 +3,6 @@ package projectrts.model.core.abilities;
 import projectrts.model.core.P;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.PlayerControlledEntity;
-import projectrts.model.core.utils.ModelUtils;
 
 /**
  * An ability for attacking
