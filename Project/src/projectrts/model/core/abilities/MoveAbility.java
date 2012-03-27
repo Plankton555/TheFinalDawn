@@ -20,12 +20,12 @@ public class MoveAbility extends AbstractAbility {
 	
 	@Override
 	public String getName() {
-		return "Attack";
+		return "Move";
 	}
 	
 	@Override
-	public void useAbility(PlayerControlledEntity attacker, Position pos){
-		this.entity = attacker;
+	public void useAbility(PlayerControlledEntity entity, Position pos){
+		this.entity = entity;
 		this.targetPosition = pos;
 		
 		//TODO: Are these needed?
