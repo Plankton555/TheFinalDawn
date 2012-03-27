@@ -21,7 +21,7 @@ public class Structure extends PlayerControlledEntity {
 	 * @param spawnPos Spawn position
 	 */
 	public Structure(Position spawnPos, Player owner){
-		super(spawnPos, owner, 500);
+		super(owner, spawnPos);
 		abilities.add(new BuildTowerAbility());
 	}
 	
@@ -46,6 +46,12 @@ public class Structure extends PlayerControlledEntity {
 	public float getSightRange() {
 		// TODO Change this later
 		return 10;
+	}
+
+	@Override
+	public PlayerControlledEntity createPCE(Player owner, Position pos) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

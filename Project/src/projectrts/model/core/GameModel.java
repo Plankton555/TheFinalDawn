@@ -2,9 +2,7 @@ package projectrts.model.core;
 
 import java.util.List;
 
-import projectrts.model.core.entities.IEntity;
-import projectrts.model.core.entities.IPlayerControlledEntity;
-import projectrts.model.core.entities.Unit;
+import projectrts.model.core.entities.*;
 
 /**
  * The main model class of the RTS Game
@@ -17,10 +15,22 @@ public class GameModel implements IGame {
 	private Player humanPlayer = new Player();
 	private Player aiPlayer = new Player();
 	
+	static {
+		try
+		{
+			Class.forName("projectrts.model.core.entities.BasicUnit");
+		}
+		catch (ClassNotFoundException any)
+		{
+			any.printStackTrace();
+		}
+    }
+		
 	public GameModel() {
 		entityManager.addEntity(new Unit(new Position(50, 50), humanPlayer));
+		PlayerControlledEntity basicUnit = EntityFactory.INSTANCE.createPCE("BasicUnit", humanPlayer, new Position(35, 35));
+		System.out.println(basicUnit.getName());
 	}
-	
 	
 	@Override
 	public void update(float tpf) {

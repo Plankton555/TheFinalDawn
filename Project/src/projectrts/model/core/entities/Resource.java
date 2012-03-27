@@ -1,6 +1,5 @@
 package projectrts.model.core.entities;
 
-import projectrts.model.core.Player;
 import projectrts.model.core.Position;
 
 /**
@@ -8,9 +7,9 @@ import projectrts.model.core.Position;
  * @author Jakob Svensson
  *
  */
-public class Resource extends AbstractEntity{
+public class Resource extends NonPlayerControlledEntity{
 
-	public Resource(Position spawnPos, Player owner) {
+	public Resource(Position spawnPos) {
 		super(spawnPos);
 		// TODO Auto-generated constructor stub
 	}
@@ -31,6 +30,11 @@ public class Resource extends AbstractEntity{
 	public void update(float tpf) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public NonPlayerControlledEntity createNPCE(Position pos) {
+		return null;
 	}
 
 }

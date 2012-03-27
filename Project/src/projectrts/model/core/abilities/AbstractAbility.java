@@ -43,5 +43,7 @@ public abstract class AbstractAbility implements IAbility {
 	
 	//TODO: Add this abstract method and update sub classes to implement this method
 	public abstract void useAbility(PlayerControlledEntity caster, Position target);
+	
+	
 
 }
