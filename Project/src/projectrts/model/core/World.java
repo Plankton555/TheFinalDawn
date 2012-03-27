@@ -1,22 +1,10 @@
 package projectrts.model.core;
 
 public class World {
-	private ITile[][] tileMap;
 	private Node[][] nodes;
 	
 	public World(int height, int width) {
-		initializeTileMap(height, width);
 		initNodes(height, width);
-	}
-	
-	private void initializeTileMap(int height, int width) {
-		tileMap = new ITile[height][width];
-		
-		for(int i = 0; i < height; i++) {
-			for(int j = 0; j < width; j++) {
-				tileMap[i][j] = new Tile();
-			}
-		}
 	}
 	
 	private void initNodes(int height, int width)
@@ -65,13 +53,8 @@ public class World {
 	{
 		return nodes;
 	}
-
-	public ITile[][] getTileMap()
-	{
-		return tileMap;
-	}
 	
-	/*
+	/* Testing correct neighbours
 	public static void main(String[] args)
 	{
 		World world = new World(10, 10);
