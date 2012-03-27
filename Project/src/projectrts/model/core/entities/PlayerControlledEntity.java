@@ -11,13 +11,15 @@ import projectrts.model.core.abilities.IAbility;
 
 /**
  * 
- * @author Jakob Svensson, Modified by Filip Brynfors
+ * @author Jakob Svensson, Modified by Filip Brynfors, Markus Ekström
+ * 
  *
  */
 public abstract class PlayerControlledEntity extends AbstractEntity implements IPlayerControlledEntity{
 	protected List<AbstractAbility> abilities = new ArrayList<AbstractAbility>();
 	private int health;
 	private int maxHealth;
+	private String name;
 	
 	private Player owner;
 	
@@ -25,13 +27,14 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	 * Spawns an entity
 	 * @param spawnPos
 	 * @param owner
-	 * @param maxHealth
 	 */
-	public PlayerControlledEntity(Position spawnPos, Player owner, int maxHealth) {
+	protected PlayerControlledEntity(Player owner, Position spawnPos) {
 		super(spawnPos);
 		this.owner = owner;
-		this.maxHealth = maxHealth;
-		this.health = maxHealth;
+	}
+	
+	protected void setName(String name) {
+		this.name = name;
 	}
 	
 	@Override
@@ -79,6 +82,30 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 				ownAbility.useAbility(this, pos);
 			}
 		}
+	}
+	
+	@Override
+	public float getSightRange() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public float getSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public void update(float tpf) {
+		// TODO Auto-generated method stub
 		
 	}
+
+	public abstract PlayerControlledEntity createPCE(Player owner, Position pos);
 }

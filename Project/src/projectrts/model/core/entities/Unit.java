@@ -30,7 +30,7 @@ public class Unit extends PlayerControlledEntity {
 	 */
 	public Unit(Position spawnPos, Player owner)
 	{
-		super(spawnPos, owner, 100);
+		super(owner, spawnPos);
 		this.microAI = new MicroAI(this);
 		this.stance = Stance.IDLE;
 		abilities.add(new AttackAbility());
@@ -91,6 +91,13 @@ public class Unit extends PlayerControlledEntity {
 	public float getSightRange() {
 		// TODO Change this later
 		return 10;
+	}
+
+
+	@Override
+	public PlayerControlledEntity createPCE(Player owner, Position pos) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
