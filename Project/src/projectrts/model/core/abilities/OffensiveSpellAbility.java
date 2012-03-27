@@ -50,9 +50,9 @@ public class OffensiveSpellAbility extends AbstractAbility {
 			}
 			
 			moveAbility.update(tpf);
-			if(moveAbility.isFinnished()){
+			if(moveAbility.isFinished()){
 				moveAbility.setActive(false);
-				moveAbility.setFinnished(false);
+				moveAbility.setFinished(false);
 			}
 			
 		} else {
@@ -62,7 +62,7 @@ public class OffensiveSpellAbility extends AbstractAbility {
 				target.takeDamage(damage);
 				
 				this.setAbilityUsed();
-				this.setFinnished(true);
+				this.setFinished(true);
 			
 			}
 		}

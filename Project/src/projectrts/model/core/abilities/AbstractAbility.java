@@ -5,7 +5,7 @@ import projectrts.model.core.entities.PlayerControlledEntity;
 
 
 public abstract class AbstractAbility implements IAbility {
-	private boolean isFinnished = false;
+	private boolean isFinished = false;
 	private boolean isActive = false;
 	private float cooldown;
 	private float remainingCooldown = 0;
@@ -42,8 +42,8 @@ public abstract class AbstractAbility implements IAbility {
 		}
 	}
 	
-	public boolean isFinnished(){
-		return isFinnished;
+	public boolean isFinished(){
+		return isFinished;
 	}
 	
 	public boolean isActive(){
@@ -54,8 +54,8 @@ public abstract class AbstractAbility implements IAbility {
 		isActive = b;
 	}
 	
-	public void setFinnished(boolean b){
-		isFinnished = b;
+	public void setFinished(boolean b){
+		isFinished = b;
 	}
 	
 	/**

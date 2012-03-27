@@ -32,7 +32,7 @@ public class AttackAbility extends AbstractAbility {
 		
 		//TODO: Are these needed?
 		setActive(false);
-		setFinnished(false);
+		setFinished(false);
 		
 	}
 
@@ -51,9 +51,9 @@ public class AttackAbility extends AbstractAbility {
 			}
 			
 			moveAbility.update(tpf);
-			if(moveAbility.isFinnished()){
+			if(moveAbility.isFinished()){
 				moveAbility.setActive(false);
-				moveAbility.setFinnished(false);
+				moveAbility.setFinished(false);
 			}
 			
 		} else {
