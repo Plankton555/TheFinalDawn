@@ -43,11 +43,6 @@ public class GameModel implements IGame {
 	}
 
 	@Override
-	public ITile[][] getTileMap() {
-		return world.getTileMap();
-	}
-
-	@Override
 	public List<IEntity> getAllEntities() {
 		return entityManager.getAllEntities();
 	}

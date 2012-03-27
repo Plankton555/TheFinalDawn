@@ -13,7 +13,6 @@ import projectrts.global.utils.Utils;
 import projectrts.model.core.entities.*;
 import projectrts.model.core.IGame;
 import projectrts.model.core.IPlayer;
-import projectrts.model.core.ITile;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
 

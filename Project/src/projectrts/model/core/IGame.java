@@ -26,9 +26,4 @@ public interface IGame {
 	 * @return All entities.
 	 */
 	public List<IEntity> getAllEntities();
-	
-	/**
-	 * @return The tile matrix
-	 */
-	public ITile[][] getTileMap();
 }
