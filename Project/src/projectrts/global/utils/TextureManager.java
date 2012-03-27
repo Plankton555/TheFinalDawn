@@ -5,7 +5,11 @@ import java.util.HashMap;
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.AssetManager;
 import com.jme3.texture.Texture;
-
+/**
+ * Handles import of textures
+ * @author Jakob Svensson
+ *
+ */
 public enum TextureManager {
 	INSTANCE;
 	private HashMap<String, Texture> textures = new HashMap<String, Texture>();
