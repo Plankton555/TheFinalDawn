@@ -9,15 +9,15 @@ public class World {
 	
 	private void initNodes(int height, int width)
 	{
-		nodes = new Node[height+1][width+1];
+		nodes = new Node[height][width];
 		
-		// Creates a matrix of nodes with the upper left at position (0,0)
-		// and the lower right at position (width,height)
-		for (int i = 0; i <= height; i++)
+		// Creates a matrix of nodes with the upper left at position (0.5, 0.5)
+		// and the lower right at position (width+0.5, height+0.5)
+		for (int i = 0; i < height; i++)
 		{
-			for (int j = 0; j <= width; j++)
+			for (int j = 0; j < width; j++)
 			{
-				nodes[i][j] = new Node(j, i);
+				nodes[i][j] = new Node(j+0.5f, i+0.5f);
 			}
 		}
 		createNodeConnections();
