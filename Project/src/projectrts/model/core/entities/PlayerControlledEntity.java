@@ -23,6 +23,9 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	
 	private Player owner;
 	
+	protected PlayerControlledEntity() {
+	}
+	
 	/**
 	 * Spawns an entity
 	 * @param spawnPos

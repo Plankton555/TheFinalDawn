@@ -15,6 +15,9 @@ public abstract class AbstractEntity implements IEntity {
 
 	protected Position position;
 	
+	protected AbstractEntity() {
+	}
+	
 	/**
 	 * Spawns a entity at the provided position.
 	 * @param spawnPos Spawn position

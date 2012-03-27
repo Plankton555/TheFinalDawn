@@ -7,14 +7,19 @@ import projectrts.model.core.abilities.AttackAbility;
 
 public class BasicUnit extends PlayerControlledEntity{
 
+	private static String name = "BasicUnit";
+	
 	static {
-		EntityFactory.INSTANCE.registerPCE("BasicUnit", new BasicUnit(new Player(), new Position(0, 0)));
+		EntityFactory.INSTANCE.registerPCE(name, new BasicUnit());
+	}
+	
+	private BasicUnit() {
 	}
 	
 	private BasicUnit(Player owner, Position spawnPos) {
 		super(owner, spawnPos);
 		this.abilities.add(new AttackAbility());
-		setName("BasicUnit");
+		setName(name);
 	}
 
 	@Override
