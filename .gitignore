@@ -1,6 +1,6 @@
 Project/bin/
 Project/lib/
-*.settings
+Project/.settings/
 *.classpath
 *.project
 *.dll
