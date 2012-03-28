@@ -16,6 +16,7 @@ public class AStarNode implements Comparable<AStarNode> {
 	private float totalCost = 0;
 	private float costFromStart;
 	private float heuristic;
+	private AStarNode parent;
 	
 	/**
 	 * Creates a new AStarNode that refers to the provided node.
@@ -50,6 +51,7 @@ public class AStarNode implements Comparable<AStarNode> {
 		this.costFromStart = parentNode.getCostFromStart() + node.getCost();
 		this.heuristic = ModelUtils.INSTANCE.getDistance(this.getPosition(), endNode.getPosition());
 		this.totalCost = this.costFromStart + this.heuristic;
+		this.parent = parentNode;
 	}
 	
 	/**
@@ -74,6 +76,14 @@ public class AStarNode implements Comparable<AStarNode> {
 	public Position getPosition()
 	{
 		return node.getPosition();
+	}
+	
+	/**
+	 * @return Parent node
+	 */
+	public AStarNode getParent()
+	{
+		return parent;
 	}
 	
 	@Override
