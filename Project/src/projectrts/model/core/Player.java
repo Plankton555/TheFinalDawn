@@ -69,6 +69,16 @@ public class Player implements IPlayer {
 	}
 
 	@Override
+	public void useAbilitySelected(String ability, Position p){
+		for(IEntity entity: selectedEntities){
+			if(entity instanceof PlayerControlledEntity){
+				PlayerControlledEntity unit = (PlayerControlledEntity) entity;
+				unit.doAbility(ability, p);
+			}
+		}
+	}
+	
+	@Override
 	public List<IEntity> getSelectedEntities() {
 		List<IEntity> entities = new ArrayList<IEntity>();
 		for(IEntity entity: selectedEntities){

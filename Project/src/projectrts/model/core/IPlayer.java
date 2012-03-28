@@ -29,4 +29,11 @@ public interface IPlayer {
 	 * @return A list of selected entities.
 	 */
 	public List<IEntity> getSelectedEntities();
+
+	/**
+	 * Gives an order for all selected units to use the given ability
+	 * @param ability the name of the ability that will be used
+	 * @param p the position to use the ability at
+	 */
+	public void useAbilitySelected(String ability, Position p);
 }
