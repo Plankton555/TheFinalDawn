@@ -11,34 +11,23 @@ import java.util.List;
  */
 public class AStar {
 
-	private static AStar instance;
-	private World world;
+	private static World world;
 	
-	private AStar(World world)
+	public AStar()
 	{
-		this.world = world;
+		if (world == null)
+		{
+			throw new IllegalStateException("You must initialize this class before you can use it");
+		}
 	}
 	
 	/**
-	 * Initializes the singleton A* class
+	 * Initializes the A* class
 	 * @param world Game world
 	 */
 	public static void initialize(World world)
 	{
-		instance = new AStar(world);
-	}
-	
-	/**
-	 * @return Singleton instance.
-	 * @throws IllegalStateException If not yet initialized.
-	 */
-	public static AStar getInstance() throws IllegalStateException
-	{
-		if (instance == null)
-		{
-			throw new IllegalStateException("You must initialize this class before you can use it");
-		}
-		return instance;
+		AStar.world = world;
 	}
 	
 	public void calculatePath(Position startPos, Position targetPos)
