@@ -55,6 +55,13 @@ public class World {
 		return nodes;
 	}
 	
+	public Node getNodeAt(Position p)
+	{
+		int x = (int)p.getX();
+		int y = (int)p.getY();
+		return nodes[y][x];
+	}
+	
 	/* Testing correct neighbours
 	public static void main(String[] args)
 	{
