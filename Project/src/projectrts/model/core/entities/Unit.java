@@ -1,5 +1,6 @@
 package projectrts.model.core.entities;
 
+import projectrts.model.core.EntityFactory;
 import projectrts.model.core.MicroAI;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
@@ -16,19 +17,25 @@ public class Unit extends PlayerControlledEntity {
 	private Position targetPosition;
 	private MicroAI microAI;
 	private Stance stance;
+	private static final String name = "Unit";
 
+	static {
+		EntityFactory.INSTANCE.registerPCE(name, new Unit());
+	}
 	
 	private enum Stance
 	{
 		IDLE, MOVING;
 	}
 	
+	private Unit() {}
+	
 	/**
 	 * Spawns a unit at the provided position.
 	 * @param spawnPos Spawn position
 	 * @param owner The owner of the unit
 	 */
-	public Unit(Position spawnPos, Player owner)
+	private Unit(Player owner, Position spawnPos)
 	{
 		super(owner, spawnPos);
 		this.microAI = new MicroAI(this);
@@ -96,10 +103,6 @@ public class Unit extends PlayerControlledEntity {
 
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Unit(owner, pos);
 	}
-
-
-
 }

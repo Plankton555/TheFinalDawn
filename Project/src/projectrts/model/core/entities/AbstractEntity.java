@@ -23,7 +23,7 @@ public abstract class AbstractEntity implements IEntity {
 	 * @param spawnPos Spawn position
 	 * @param owner The owner of the unit
 	 */
-	public AbstractEntity(Position spawnPos){
+	protected AbstractEntity(Position spawnPos){
 		this.position = new Position(spawnPos);
 		
 	}
