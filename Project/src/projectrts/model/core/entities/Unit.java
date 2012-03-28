@@ -5,6 +5,7 @@ import projectrts.model.core.MicroAI;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
 import projectrts.model.core.abilities.AttackAbility;
+import projectrts.model.core.abilities.MoveAbility;
 import projectrts.model.core.abilities.OffensiveSpellAbility;
 
 /**
@@ -42,6 +43,7 @@ public class Unit extends PlayerControlledEntity {
 		this.stance = Stance.IDLE;
 		abilities.add(new AttackAbility());
 		abilities.add(new OffensiveSpellAbility());
+		abilities.add(new MoveAbility());
 	}
 	
 
@@ -52,11 +54,12 @@ public class Unit extends PlayerControlledEntity {
 		
 	}
 
-	
+
 	/**
 	 * Updates the unit.
 	 * @param tpf Time per frame
-	 */
+	 **/
+	/*
 	@Override
 	public void update(float tpf)
 	{
@@ -77,6 +80,9 @@ public class Unit extends PlayerControlledEntity {
 			break;
 		}
 	}
+	
+
+	*/
 	
 	/**
 	 * Orders the unit to move to the provided position.

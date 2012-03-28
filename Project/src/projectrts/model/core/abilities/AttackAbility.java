@@ -41,32 +41,34 @@ public class AttackAbility extends AbstractAbility {
 		updateCooldown(tpf);		
 		
 		
-		
-		//attacker.getRange();
-		if(ModelUtils.INSTANCE.getDistance(attacker.getPosition(), target.getPosition())>1){
-			//Out of range
+		if(isActive() && !isFinished()){
 			
-			if(!moveAbility.isActive()){
-				moveAbility.useAbility(attacker, target.getPosition());
-			}
-			
-			moveAbility.update(tpf);
-			if(moveAbility.isFinished()){
-				moveAbility.setActive(false);
-				moveAbility.setFinished(false);
-			}
-			
-		} else {
-			//In range
-			if(getRemainingCooldown()<=0){
-				//TODO: The amount of dmg should be attacker.getDamage()
-			
-				target.takeDamage(50);
+			//attacker.getRange();
+			if(ModelUtils.INSTANCE.getDistance(attacker.getPosition(), target.getPosition())>1){
+				//Out of range
 				
-				this.setAbilityUsed();
+				if(!moveAbility.isActive()){
+					moveAbility.useAbility(attacker, target.getPosition());
+				}
 				
-				//TODO: Not setting finnished = true?
+				moveAbility.update(tpf);
+				if(moveAbility.isFinished()){
+					moveAbility.setActive(false);
+					moveAbility.setFinished(false);
+				}
 				
+			} else {
+				//In range
+				if(getRemainingCooldown()<=0){
+					//TODO: The amount of dmg should be attacker.getDamage()
+				
+					target.takeDamage(50);
+					
+					this.setAbilityUsed();
+					
+					//TODO: Not setting finnished = true?
+					
+				}
 			}
 		}
 	}

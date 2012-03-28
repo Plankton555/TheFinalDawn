@@ -111,8 +111,9 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 
 	@Override
 	public void update(float tpf) {
-		// TODO Auto-generated method stub
-		
+		for(AbstractAbility ability: abilities){
+			ability.update(tpf);
+		}
 	}
 
 	public abstract PlayerControlledEntity createPCE(Player owner, Position pos);

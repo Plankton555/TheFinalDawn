@@ -39,33 +39,34 @@ public class OffensiveSpellAbility extends AbstractAbility {
 	public void update(float tpf) {
 		updateCooldown(tpf);		
 		
-		
-		
-		//attacker.getRange();
-		if(ModelUtils.INSTANCE.getDistance(attacker.getPosition(), target.getPosition())>abilityRange){
-			//Out of range
+			if(isActive() && !isFinished()){
 			
-			if(!moveAbility.isActive()){
-				moveAbility.useAbility(attacker, target.getPosition());
-			}
-			
-			moveAbility.update(tpf);
-			if(moveAbility.isFinished()){
-				moveAbility.setActive(false);
-				moveAbility.setFinished(false);
-			}
-			
-		} else {
-			//In range			
-			
-			if(this.getRemainingCooldown()<=0){
-				target.takeDamage(damage);
+			//attacker.getRange();
+			if(ModelUtils.INSTANCE.getDistance(attacker.getPosition(), target.getPosition())>abilityRange){
+				//Out of range
 				
-				this.setAbilityUsed();
-				this.setFinished(true);
-			
+				if(!moveAbility.isActive()){
+					moveAbility.useAbility(attacker, target.getPosition());
+				}
+				
+				moveAbility.update(tpf);
+				if(moveAbility.isFinished()){
+					moveAbility.setActive(false);
+					moveAbility.setFinished(false);
+				}
+				
+			} else {
+				//In range			
+				
+				if(this.getRemainingCooldown()<=0){
+					target.takeDamage(damage);
+					
+					this.setAbilityUsed();
+					this.setFinished(true);
+				
+				}
 			}
+
 		}
 	}
-
 }
