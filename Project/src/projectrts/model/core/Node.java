@@ -13,6 +13,7 @@ public class Node {
 	private Position position;
 	private boolean occupied = false;
 	private int distanceToObstacle = 10;
+	private float cost = 1;
 	private List<Node> neighbours = new ArrayList<Node>();
 	
 	/**
@@ -108,5 +109,13 @@ public class Node {
 		} else if (!position.equals(other.position))
 			return false;
 		return true;
+	}
+	
+	public float getCost() {
+		return cost;
+	}
+	public void setCost(float cost)
+	{
+		this.cost = cost;
 	}
 }

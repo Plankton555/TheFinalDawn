@@ -74,7 +74,7 @@ public class AStar {
 							if (!node.isObstacle())
 							{
 								openList.add(node);
-								node.calculateCost(currentNode.getCostFromStart(), endNode);
+								node.calculateCost(currentNode, endNode);
 							}
 						}
 					}

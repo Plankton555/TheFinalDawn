@@ -3,11 +3,19 @@ package projectrts.model.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import projectrts.model.core.utils.ModelUtils;
+
+/**
+ * A node that is specifically configured to work with the A* pathfinding algorithm.
+ * @author Bjorn Persson Mattsson
+ *
+ */
 public class AStarNode implements Comparable<AStarNode> {
 	
 	private Node node;
 	private float totalCost = 0;
 	private float costFromStart;
+	private float heuristic;
 	
 	/**
 	 * Creates a new AStarNode that refers to the provided node.
@@ -18,6 +26,9 @@ public class AStarNode implements Comparable<AStarNode> {
 		this.node = node;
 	}
 	
+	/**
+	 * @return The neighbours (adjecent nodes) to this one.
+	 */
 	public List<AStarNode> getNeighbours()
 	{
 		List<AStarNode> output = new ArrayList<AStarNode>();
@@ -31,22 +42,38 @@ public class AStarNode implements Comparable<AStarNode> {
 	}
 	
 	/**
-	 * Sets the cost for this node. AStarNodes are sorted by cost.
+	 * Calculated the cost for this node.
 	 * @param cost Cost
 	 */
-	public void calculateCost(float costFromStart, AStarNode endNode)
+	public void calculateCost(AStarNode parentNode, AStarNode endNode)
 	{
-		// TODO
+		this.costFromStart = parentNode.getCostFromStart() + node.getCost();
+		this.heuristic = ModelUtils.INSTANCE.getDistance(this.getPosition(), endNode.getPosition());
+		this.totalCost = this.costFromStart + this.heuristic;
 	}
 	
+	/**
+	 * @return The total cost from the start node.
+	 */
 	public float getCostFromStart()
 	{
 		return costFromStart;
 	}
 	
+	/**
+	 * @return The total cost of the node (cost from start + heuristic).
+	 */
 	public float getTotalCost()
 	{
 		return totalCost;
+	}
+	
+	/**
+	 * @return Position of the node.
+	 */
+	public Position getPosition()
+	{
+		return node.getPosition();
 	}
 	
 	@Override
@@ -64,8 +91,10 @@ public class AStarNode implements Comparable<AStarNode> {
 		return node.equals(other.node);
 	}
 
+	/**
+	 * @return true if this node is unwalkable, otherwise false.
+	 */
 	public boolean isObstacle() {
-		// TODO Auto-generated method stub
-		return false;
+		return node.isOccupied();
 	}
 }
