@@ -11,6 +11,8 @@ import java.util.List;
 public class Node {
 
 	private Position position;
+	private boolean occupied = false;
+	private int distanceToObstacle = 10;
 	private List<Node> neighbours = new ArrayList<Node>();
 	
 	/**
@@ -32,20 +34,36 @@ public class Node {
 	}
 	
 	/**
-	 * Returns a list of all nodes that are neighbours (connected) to this node.
-	 * @return List of the node's neighbours.
-	 */
-	public List<Node> getNeighbours()
-	{
-		return neighbours;
-	}
-	
-	/**
 	 * @return Position of the node.
 	 */
 	public Position getPosition()
 	{
 		return this.position.clone();
+	}
+	
+	public boolean isOccupied() {
+		return occupied;
+	}
+	public void setOccupied(boolean occupied) {
+		this.occupied = occupied;
+	}
+	
+	/**
+	 * Updates the distance to the nearest obstacle.
+	 */
+	public void updateDistanceToObstaccle()
+	{
+		// TODO Implement this algorithm
+	}
+	
+	/**
+	 * Returns a list of all nodes that are neighbours (connected) to this node.
+	 * @return List of the node's neighbours.
+	 */
+	public List<Node> getNeighbours()
+	{
+		// May need to "secure" this list
+		return neighbours;
 	}
 	
 	/**
