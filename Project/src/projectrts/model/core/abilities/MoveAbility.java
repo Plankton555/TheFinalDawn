@@ -35,10 +35,7 @@ public class MoveAbility extends AbstractAbility {
 
 	@Override
 	public void update(float tpf) {
-		System.out.println("1");
-		System.out.println(isActive() + " - " + isFinished());
 		if(isActive() && !isFinished()){
-			System.out.println("2");
 			
 			entity.setPosition(determinePath(targetPosition, tpf));
 			if (entity.getPosition().equals(targetPosition))
