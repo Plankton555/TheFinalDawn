@@ -31,7 +31,7 @@ public class AttackAbility extends AbstractAbility {
 		target = ModelUtils.INSTANCE.getPlayerControlledEntityAtPosition(pos);
 		
 		//TODO: Are these needed?
-		setActive(false);
+		setActive(true);
 		setFinished(false);
 		
 	}

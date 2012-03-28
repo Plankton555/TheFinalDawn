@@ -51,7 +51,7 @@ public class OffensiveSpellAbility extends AbstractAbility {
 				
 				moveAbility.update(tpf);
 				if(moveAbility.isFinished()){
-					moveAbility.setActive(false);
+					moveAbility.setActive(true);
 					moveAbility.setFinished(false);
 				}
 				
