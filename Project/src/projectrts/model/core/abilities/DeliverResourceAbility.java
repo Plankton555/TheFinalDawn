@@ -1,5 +1,6 @@
 package projectrts.model.core.abilities;
 
+import projectrts.model.core.Player;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.model.core.utils.ModelUtils;
@@ -13,6 +14,7 @@ public class DeliverResourceAbility extends AbstractAbility{
 	private PlayerControlledEntity unit;
 	private PlayerControlledEntity depositStructure;
 	private MoveAbility moveAbility = new MoveAbility();
+	private int resourceCarriedAmount;
 	
 	@Override
 	public String getName() {
@@ -28,7 +30,9 @@ public class DeliverResourceAbility extends AbstractAbility{
 			if(ModelUtils.INSTANCE.getDistance(unit.getPosition(),depositStructure.getPosition() )<1){
 				//If in range of deposit structure
 				
-				//TODO: deliver resources
+				Player player = (Player)unit.getOwner();
+				player.addResource(resourceCarriedAmount);
+				resourceCarriedAmount = 0;
 				setFinished(true);
 			}else{
 				// Not in range
@@ -53,6 +57,10 @@ public class DeliverResourceAbility extends AbstractAbility{
 		setActive(true);
 		setFinished(false);
 		
+	}
+	
+	public void setResourceCarriedAmount(int rca){
+		this.resourceCarriedAmount=rca;
 	}
 
 }

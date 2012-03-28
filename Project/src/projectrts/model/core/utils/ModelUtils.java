@@ -6,11 +6,12 @@ import projectrts.model.core.EntityManager;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.IEntity;
 import projectrts.model.core.entities.IPlayerControlledEntity;
+import projectrts.model.core.entities.NonPlayerControlledEntity;
 import projectrts.model.core.entities.PlayerControlledEntity;
 
 /**
  * Utility class
- * @author Filip Brynfors
+ * @author Filip Brynfors Modified by Jakob Svensson 
  *
  */
 public enum ModelUtils {
@@ -50,6 +51,27 @@ public enum ModelUtils {
 		}
 		return null;
 		
+	}
+	
+	//TODO: Extraxt common code from getPlayerControlledEntityAtPosition and this method
+	public NonPlayerControlledEntity getNonPlayerControlledEntity (Position pos){
+		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
+		for(IEntity entity: entities){
+			if(entity instanceof NonPlayerControlledEntity){
+				
+				float unitSize = entity.getSize();
+				Position unitPos = entity.getPosition();
+				
+				//If the point is within the area of the unit
+				if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
+						&& isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
+					NonPlayerControlledEntity npcEntity  = (NonPlayerControlledEntity) entity; 
+					return npcEntity;
+					
+				}
+			}
+		}
+		return null;
 	}
 	
 	public boolean isWithin(float p, float low, float high){

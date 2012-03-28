@@ -11,9 +11,9 @@ import projectrts.model.core.utils.ModelUtils;
  */
 public class MineResourceAbility extends AbstractAbility{
 	private Resource targetResource;
-	private Position target; //TODO: Remove this and use targetResource instead 
 	private PlayerControlledEntity unit;
 	private MoveAbility moveAbility = new MoveAbility();
+	private int resourceCarriedAmount;
 	
 	@Override
 	public String getName() {
@@ -24,16 +24,16 @@ public class MineResourceAbility extends AbstractAbility{
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			
-			if(ModelUtils.INSTANCE.getDistance(unit.getPosition(),target )<1){
+			if(ModelUtils.INSTANCE.getDistance(unit.getPosition(),targetResource.getPosition() )<1){
 				//If in range of resource
 				
-				//TODO: Mine from resource
+				resourceCarriedAmount = targetResource.mine();
 				setFinished(true);
 			}else{
 				// Not in range
 				
 				if(!moveAbility.isActive()){
-					moveAbility.useAbility(unit, target);
+					moveAbility.useAbility(unit, targetResource.getPosition());
 				}
 				
 				moveAbility.update(tpf);
@@ -49,9 +49,14 @@ public class MineResourceAbility extends AbstractAbility{
 	@Override
 	public void useAbility(PlayerControlledEntity entity, Position target) {
 		this.unit = entity;
-		this.target =  target;
+		this.targetResource = (Resource) ModelUtils.INSTANCE.getNonPlayerControlledEntity(target);
+		resourceCarriedAmount = 0;
 		setActive(true);
 		setFinished(false);
+	}
+	
+	public int getResourceCarriedAmount(){
+		return resourceCarriedAmount;
 	}
 
 }

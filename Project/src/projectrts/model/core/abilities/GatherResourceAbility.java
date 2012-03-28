@@ -26,6 +26,7 @@ public class GatherResourceAbility extends AbstractAbility{
 				mineResourceAbility.update(tpf);
 				deliverResourceAbility.update(tpf);
 				if(mineResourceAbility.isFinished()){
+					deliverResourceAbility.setResourceCarriedAmount(mineResourceAbility.getResourceCarriedAmount());
 					mineResourceAbility.setActive(false);
 					mineResourceAbility.setFinished(false);
 					deliverResourceAbility.useAbility(unit, target);

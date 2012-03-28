@@ -14,12 +14,13 @@ import projectrts.model.core.utils.ModelUtils;
 
 /**
  * Player class for handling all of one players units.
- * @author Björn Persson Mattson, Modified by Filip Brynfors
+ * @author Björn Persson Mattson, Modified by Filip Brynfors, Jakob Svensson
  */
 public class Player implements IPlayer {
 
 	// TODO Change this list to a set?
 	private List<PlayerControlledEntity> selectedEntities = new ArrayList<PlayerControlledEntity>();
+	private int resources;
 	
 	/**
 	 * Constructs a player
@@ -27,6 +28,7 @@ public class Player implements IPlayer {
 	public Player(){
 		//TODO: Temp test unit
 		//units.add(new Unit(new Position(10,10), this));
+		resources=0; //TODO: Decide starting amount of resources
 	}
 	
 	@Override
@@ -75,6 +77,10 @@ public class Player implements IPlayer {
 			entities.add(entity);
 		}
 		return entities;
+	}
+	
+	public void addResource(int amount){
+		resources+=amount;
 	}
 	
 }
