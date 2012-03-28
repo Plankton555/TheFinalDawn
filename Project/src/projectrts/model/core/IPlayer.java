@@ -18,12 +18,6 @@ public interface IPlayer {
 	 */
 	public void select(Position p);
 	
-	/**
-	 * Gives a move order to all selected units.
-	 * @param p The position for the units to move to.
-	 */
-	public void moveSelectedTo(Position p);
-	
 	
 	/**
 	 * @return A list of selected entities.

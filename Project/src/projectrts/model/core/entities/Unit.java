@@ -84,15 +84,6 @@ public class Unit extends PlayerControlledEntity {
 
 	*/
 	
-	/**
-	 * Orders the unit to move to the provided position.
-	 * @param p Target position
-	 */
-	public void moveTo(Position p)
-	{
-		targetPosition = new Position(p);
-		stance = Stance.MOVING;
-	}
 
 	@Override
 	public String getName() {

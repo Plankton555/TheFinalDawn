@@ -57,17 +57,6 @@ public class Player implements IPlayer {
 	}
 	
 
-
-	@Override
-	public void moveSelectedTo(Position p) {
-		for(IEntity entity: selectedEntities){
-			if(entity instanceof Unit){
-				Unit unit = (Unit) entity;
-				unit.moveTo(p);
-			}
-		}
-	}
-
 	@Override
 	public void useAbilitySelected(String ability, Position p){
 		for(IEntity entity: selectedEntities){
