@@ -6,7 +6,11 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 
-
+/**
+ * Handles import of materials
+ * @author Jakob Svensson
+ *
+ */
 public enum MaterialManager {
 	INSTANCE;
 	private HashMap<String, Material> materials = new HashMap<String, Material>();

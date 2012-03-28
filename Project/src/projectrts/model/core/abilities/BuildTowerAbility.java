@@ -28,7 +28,7 @@ public class BuildTowerAbility extends AbstractAbility {
 	public void useAbility(PlayerControlledEntity builder, Position pos){
 		Player owner = (Player) builder.getOwner();
 		Structure struct = new Structure(pos, owner);
-		EntityManager.getInstance().addEntity(struct);
+		EntityManager.getInstance().addNewPCE("Structure", owner, pos);
 		
 		this.setAbilityUsed();
 		

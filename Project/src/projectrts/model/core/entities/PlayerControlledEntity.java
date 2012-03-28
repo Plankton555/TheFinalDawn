@@ -79,9 +79,14 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	}
 	
 
-	public void doAbility(IAbility ability, Position pos) {
+	/**
+	 * Uses an ability at the given position
+	 * @param ability the name of ability to be used
+	 * @param pos the position that the ability will be used at
+	 */
+	public void doAbility(String ability, Position pos) {
 		for(AbstractAbility ownAbility: abilities){
-			if(ability.getName() == ownAbility.getName()){
+			if(ability.equals(ownAbility.getName())){
 				ownAbility.useAbility(this, pos);
 			}
 		}
@@ -106,8 +111,9 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 
 	@Override
 	public void update(float tpf) {
-		// TODO Auto-generated method stub
-		
+		for(AbstractAbility ability: abilities){
+			ability.update(tpf);
+		}
 	}
 
 	public abstract PlayerControlledEntity createPCE(Player owner, Position pos);

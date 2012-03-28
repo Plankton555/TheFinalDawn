@@ -8,10 +8,12 @@ import javax.vecmath.Vector2d;
 import projectrts.model.core.entities.AbstractEntity;
 import projectrts.model.core.entities.IEntity;
 import projectrts.model.core.entities.IPlayerControlledEntity;
+import projectrts.model.core.entities.NonPlayerControlledEntity;
+import projectrts.model.core.entities.PlayerControlledEntity;
 
 /**
  * The singleton entity manager.
- * @author Bjorn Persson Mattsson
+ * @author Bjorn Persson Mattsson, Modified by Markus Ekström
  *
  */
 public class EntityManager {
@@ -103,12 +105,24 @@ public class EntityManager {
 	}
 	
 	/**
-	 * Adds an entity to the EntityManager.
-	 * This does not keep track of multiple copies of the same entity.
-	 * @param entity The entity.
+	 * Adds a new non-player controlled entity to the EntityManager.
+	 * 
+	 * @param npce The class name of the npce as a string, e.g. "Rock".
+	 * @param pos The position of the entity.
 	 */
-	public void addEntity(AbstractEntity entity)
+	public void addNewNPCE(String npce, Position pos)
 	{
-		allEntities.add(entity);
+		allEntities.add(EntityFactory.INSTANCE.createNPCE(npce, pos));
+	}
+	
+	/**
+	 * Adds a new player controlled entity to the EntityManager.
+	 * 
+	 * @param pce The class name of the npce as a string, e.g. "Worker".
+	 * @param owner The player that shall have control over the new entity.
+	 * @param pos The position of the entity.
+	 */
+	public void addNewPCE(String pce, Player owner, Position pos) {
+		allEntities.add(EntityFactory.INSTANCE.createPCE(pce, owner, pos));
 	}
 }

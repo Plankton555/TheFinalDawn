@@ -19,6 +19,7 @@ public class GameModel implements IGame {
 		try
 		{
 			Class.forName("projectrts.model.core.entities.BasicUnit");
+			Class.forName("projectrts.model.core.entities.Unit");
 		}
 		catch (ClassNotFoundException any)
 		{
@@ -27,9 +28,7 @@ public class GameModel implements IGame {
     }
 		
 	public GameModel() {
-		entityManager.addEntity(new Unit(new Position(50, 50), humanPlayer));
-		PlayerControlledEntity basicUnit = EntityFactory.INSTANCE.createPCE("BasicUnit", humanPlayer, new Position(35, 35));
-		System.out.println(basicUnit.getName());
+		entityManager.addNewPCE("Unit", humanPlayer, new Position(50, 50));
 	}
 	
 	@Override

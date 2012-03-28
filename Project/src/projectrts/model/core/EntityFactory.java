@@ -12,7 +12,6 @@ public enum EntityFactory {INSTANCE;
 
 	public void registerPCE(String pceType, PlayerControlledEntity pce) {
 		pceMap.put(pceType, pce);
-		System.out.println("registered");
 	}
 
 	public PlayerControlledEntity createPCE(String pceType, Player owner, Position pos) {

@@ -4,7 +4,7 @@ import projectrts.model.core.Position;
 
 public abstract class NonPlayerControlledEntity extends AbstractEntity {
 	
-	public NonPlayerControlledEntity(Position spawnPos) {
+	protected NonPlayerControlledEntity(Position spawnPos) {
 		super(spawnPos);
 	}
 
