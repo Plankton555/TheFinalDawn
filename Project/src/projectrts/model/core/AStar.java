@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import projectrts.model.core.entities.PlayerControlledEntity;
+import projectrts.model.core.utils.ModelUtils;
 
 /**
  * A* pathfinding algorithm.
@@ -14,15 +15,6 @@ import projectrts.model.core.entities.PlayerControlledEntity;
 public class AStar {
 
 	private static World world;
-	
-	public AStar()
-	{
-		if (world == null)
-		{
-			throw new IllegalStateException("You must initialize this class before you can use it");
-		}
-	}
-	
 	/**
 	 * Initializes the A* class
 	 * @param world Game world
@@ -32,13 +24,32 @@ public class AStar {
 		AStar.world = world;
 	}
 	
-	public Position determineNextStep(float tpf, PlayerControlledEntity entity, Position targetPos)
+	AStarPath path;
+	
+	public AStar()
 	{
-		calculatePath(entity.getPosition(), targetPos);
+		if (world == null)
+		{
+			throw new IllegalStateException("You must initialize this class before you can use it");
+		}
+	}
+	
+	public Position determineNextStep(float stepLength, PlayerControlledEntity entity, Position targetPos)
+	{
+		path = calculatePath(entity.getPosition(), targetPos);
+		Position nextPos = path.getNextNodePosition();
+		Position currentPos = entity.getPosition();
+		float distanceToNextPos = ModelUtils.INSTANCE.getDistance(currentPos, nextPos);
+		
+		if (distanceToNextPos < stepLength)
+		{
+			stepLength -= distanceToNextPos;
+			// TODO Plankton var här senast
+		}
 		return null;
 	}
 	
-	private void calculatePath(Position startPos, Position targetPos)
+	private AStarPath calculatePath(Position startPos, Position targetPos)
 	{
 		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
 		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
@@ -56,6 +67,17 @@ public class AStar {
 			if (currentNode.sameNodeAs(endNode))
 			{
 				// path complete
+				AStarPath path = new AStarPath();
+				path.addNodeToPath(currentNode);
+				AStarNode nextNode = currentNode.getParent();
+				
+				while (!nextNode.sameNodeAs(startNode))
+				{
+					path.addNodeToPath(nextNode);
+					nextNode = nextNode.getParent();
+				}
+				
+				return path;
 			}
 			else
 			{
@@ -82,5 +104,8 @@ public class AStar {
 				}
 			}
 		}
+		
+		// path not found
+		return new AStarPath();
 	}
 }
