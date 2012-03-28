@@ -1,8 +1,18 @@
 package projectrts.model.core;
 
+/**
+ * The class containing the "world"
+ * @author Bjorn Persson Mattsson
+ *
+ */
 public class World {
 	private Node[][] nodes;
 	
+	/**
+	 * Creates a new world with specified height and width.
+	 * @param height Height.
+	 * @param width Width.
+	 */
 	public World(int height, int width) {
 		initNodes(height, width);
 	}
@@ -50,13 +60,23 @@ public class World {
 		}
 	}
 	
+	/**
+	 * @return The matrix of all nodes.
+	 */
 	public Node[][] getNodes()
 	{
+		// TODO Return a shallow copy?
 		return nodes;
 	}
 	
+	/**
+	 * Returns the node closest to the specified position.
+	 * @param p Position.
+	 * @return Node at position.
+	 */
 	public Node getNodeAt(Position p)
 	{
+		// TODO Make sure that the position is legal.
 		int x = (int)p.getX();
 		int y = (int)p.getY();
 		return nodes[y][x];
