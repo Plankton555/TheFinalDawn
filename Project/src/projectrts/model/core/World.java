@@ -21,6 +21,7 @@ public class World {
 			}
 		}
 		createNodeConnections();
+		// Update all nodes distance to obstacles.
 	}
 	
 	private void createNodeConnections()
