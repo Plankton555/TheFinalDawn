@@ -18,5 +18,4 @@ public class AStarNode extends Node implements Comparable<AStarNode> {
 		// Need to negate since the lower the cost, the higher the node should be sorted.
 		return -Float.compare(cost, other.cost);
 	}
-
 }

@@ -77,4 +77,36 @@ public class Node {
 			neighbours.add(node);
 		}
 	}
+
+	/*
+	 * Auto generated hashcode method based on position.
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 173;
+		int result = 1;
+		result = prime * result
+				+ ((position == null) ? 0 : position.hashCode());
+		return result;
+	}
+
+	/*
+	 * Auto generated equals method based on Position.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Node other = (Node) obj;
+		if (position == null) {
+			if (other.position != null)
+				return false;
+		} else if (!position.equals(other.position))
+			return false;
+		return true;
+	}
 }
