@@ -1,5 +1,9 @@
 package projectrts.model.core;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * A* pathfinding algorithm.
  * @author Bjorn Persson Mattsson
@@ -39,7 +43,43 @@ public class AStar {
 	
 	public void calculatePath(Position startPos, Position targetPos)
 	{
-		Node startNode = world.getNodeAt(startPos);
-		Node endNode = world.getNodeAt(targetPos);
+		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
+		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
+		List<AStarNode> openList = new ArrayList<AStarNode>();
+		List<AStarNode> closedList = new ArrayList<AStarNode>();
+		
+		// A* algorithm starts here
+		openList.add(startNode);
+		while (openList.size() > 0)
+		{
+			Collections.sort(openList);
+			AStarNode currentNode = openList.get(0);
+			
+			if (currentNode.sameNodeAs(endNode))
+			{
+				// path complete
+			}
+			else
+			{
+				openList.remove(currentNode);
+				closedList.add(currentNode);
+				
+				List<AStarNode> adjecentNodes = currentNode.getNeighbours();
+				for (AStarNode node : adjecentNodes)
+				{
+					if (!openList.contains(node))
+					{
+						if (!closedList.contains(node))
+						{
+							if (!node.isObstacle())
+							{
+								openList.add(node);
+								node.calculateCost(currentNode.getCostFromStart(), endNode);
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }

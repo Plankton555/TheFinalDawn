@@ -6,7 +6,8 @@ import java.util.List;
 public class AStarNode implements Comparable<AStarNode> {
 	
 	private Node node;
-	private float cost = 0;
+	private float totalCost = 0;
+	private float costFromStart;
 	
 	/**
 	 * Creates a new AStarNode that refers to the provided node.
@@ -33,15 +34,25 @@ public class AStarNode implements Comparable<AStarNode> {
 	 * Sets the cost for this node. AStarNodes are sorted by cost.
 	 * @param cost Cost
 	 */
-	public void setCost(float cost)
+	public void calculateCost(float costFromStart, AStarNode endNode)
 	{
-		this.cost = cost;
+		// TODO
+	}
+	
+	public float getCostFromStart()
+	{
+		return costFromStart;
+	}
+	
+	public float getTotalCost()
+	{
+		return totalCost;
 	}
 	
 	@Override
 	public int compareTo(AStarNode other) {
 		// Need to negate since the lower the cost, the higher the node should be sorted.
-		return -Float.compare(cost, other.cost);
+		return -Float.compare(getTotalCost(), other.getTotalCost());
 	}
 	
 	/**
@@ -51,5 +62,10 @@ public class AStarNode implements Comparable<AStarNode> {
 	public boolean sameNodeAs(AStarNode other)
 	{
 		return node.equals(other.node);
+	}
+
+	public boolean isObstacle() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
