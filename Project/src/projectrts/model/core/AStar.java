@@ -50,8 +50,9 @@ public class AStar {
 		
 		// A* algorithm starts here
 		openList.add(startNode);
-		while (openList.size() > 0)
+		while (openList.size() > 0) // while open list is not empty
 		{
+			// current node  = node from the open list with the lowest cost
 			Collections.sort(openList);
 			AStarNode currentNode = openList.get(0);
 			
@@ -61,18 +62,21 @@ public class AStar {
 			}
 			else
 			{
+				// mode current node to the closed list
 				openList.remove(currentNode);
 				closedList.add(currentNode);
 				
-				List<AStarNode> adjecentNodes = currentNode.getNeighbours();
-				for (AStarNode node : adjecentNodes)
+				// examine each node adjacent to the current node
+				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
+				for (AStarNode node : adjacentNodes)
 				{
-					if (!openList.contains(node))
+					if (!openList.contains(node)) // if not on open list
 					{
-						if (!closedList.contains(node))
+						if (!closedList.contains(node)) // and not on closed list
 						{
-							if (!node.isObstacle())
+							if (!node.isObstacle()) // and not an obstacle
 							{
+								// move to open list and calculate cost
 								openList.add(node);
 								node.calculateCost(currentNode, endNode);
 							}
