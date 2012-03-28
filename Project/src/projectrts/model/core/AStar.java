@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import projectrts.model.core.entities.PlayerControlledEntity;
+
 /**
  * A* pathfinding algorithm.
  * @author Bjorn Persson Mattsson
@@ -30,7 +32,13 @@ public class AStar {
 		AStar.world = world;
 	}
 	
-	public void calculatePath(Position startPos, Position targetPos)
+	public Position determineNextStep(float tpf, PlayerControlledEntity entity, Position targetPos)
+	{
+		calculatePath(entity.getPosition(), targetPos);
+		return null;
+	}
+	
+	private void calculatePath(Position startPos, Position targetPos)
 	{
 		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
 		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
