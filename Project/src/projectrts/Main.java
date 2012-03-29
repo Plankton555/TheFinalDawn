@@ -6,7 +6,7 @@ import projectrts.controller.*;
 
 /**
  * The entry point of the application.
- * @author Heqir
+ * @author Markus Ekström
  *
  */
 public class Main {

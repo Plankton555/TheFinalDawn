@@ -17,7 +17,7 @@ import com.jme3.scene.control.Control;
 
 /**
  * A custom Control that handles entity-spatial's movement.
- * @author Heqir
+ * @author Markus Ekström
  *
  */
 public class MoveControl extends AbstractControl{

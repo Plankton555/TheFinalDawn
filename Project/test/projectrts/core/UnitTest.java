@@ -9,7 +9,7 @@ import projectrts.model.core.Position;
 import projectrts.model.core.entities.Unit;
 
 public class UnitTest {
-
+	/*
 	@Test
 	public void testUnit() {
 		Player player = new Player();
@@ -19,6 +19,7 @@ public class UnitTest {
 		assertTrue(pos.equals(unit.getPosition()));
 		assertTrue(player.equals(unit.getOwner()));
 	}
+*/
 
 	/* Already tested in constructor
 	@Test
@@ -27,6 +28,8 @@ public class UnitTest {
 	}
 	*/
 
+	
+	/*
 	@Test
 	public void testGetSize() {
 		Player player = new Player();
@@ -62,4 +65,5 @@ public class UnitTest {
 			assertTrue(counter < 1000);
 		}
 	}
+	*/
 }

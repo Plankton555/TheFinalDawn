@@ -13,7 +13,7 @@ import projectrts.view.GameView;
 
 /**
  * The in-game state that controls everything inside the game.
- * @author Heqir
+ * @author Markus Ekström
  *
  */
 public class InGameState extends AbstractAppState {

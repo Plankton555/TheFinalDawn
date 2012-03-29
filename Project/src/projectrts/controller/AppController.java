@@ -17,7 +17,7 @@ import projectrts.model.core.IGame;
  * 
  * Is the connection to jMonkeyEngine (extends SimpleApplication)
  * and handles top-level stuff like swapping AppStates.
- * @author Heqir
+ * @author Markus Ekström
  *
  */
 public class AppController extends SimpleApplication{

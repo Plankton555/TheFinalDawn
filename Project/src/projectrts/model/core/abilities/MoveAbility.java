@@ -29,15 +29,13 @@ public class MoveAbility extends AbstractAbility {
 		this.targetPosition = pos;
 		
 		//TODO: Are these needed?
-		setActive(false);
+		setActive(true);
 		setFinished(false);
 	}
 
 	@Override
 	public void update(float tpf) {
-		
 		if(isActive() && !isFinished()){
-			
 			
 			entity.setPosition(determinePath(targetPosition, tpf));
 			if (entity.getPosition().equals(targetPosition))

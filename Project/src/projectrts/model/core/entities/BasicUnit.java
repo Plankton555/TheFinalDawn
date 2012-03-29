@@ -5,6 +5,11 @@ import projectrts.model.core.Player;
 import projectrts.model.core.Position;
 import projectrts.model.core.abilities.AttackAbility;
 
+/**
+ *  An example of a concrete unit and it's methods.
+ * @author Markus Ekström
+ *
+ */
 public class BasicUnit extends PlayerControlledEntity{
 
 	private static String name = "BasicUnit";

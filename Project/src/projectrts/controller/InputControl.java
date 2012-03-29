@@ -19,7 +19,7 @@ import com.jme3.math.Vector3f;
 
 /**
  * A class for handling all input.
- * @author Heqir
+ * @author Markus Ekström
  *
  */
 public class InputControl {
@@ -164,7 +164,7 @@ public class InputControl {
 	    			view.drawSelected(game.getPlayer().getSelectedEntities());
 	    		}
 	    		if (name.equals("mouseRightButton") && keyPressed) {
-	    			game.getPlayer().moveSelectedTo(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+	    			game.getPlayer().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    		}
 	    		
 	    		//Debugging

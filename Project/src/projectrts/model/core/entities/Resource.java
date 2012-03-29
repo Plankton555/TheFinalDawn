@@ -13,7 +13,7 @@ public class Resource extends NonPlayerControlledEntity{
 		super(spawnPos);
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	@Override
 	public float getSize() {
 		// TODO Auto-generated method stub
@@ -35,6 +35,10 @@ public class Resource extends NonPlayerControlledEntity{
 	@Override
 	public NonPlayerControlledEntity createNPCE(Position pos) {
 		return null;
+	}
+	
+	public int mine(){
+		return 10;
 	}
 
 }
