@@ -183,7 +183,7 @@
       <w>540</w>
       <h>370</h>
     </coordinates>
-    <panel_attributes>model.core
+    <panel_attributes>model.core.abilities
 --
 bg=white
 fg=blue</panel_attributes>
