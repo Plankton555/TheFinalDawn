@@ -18,8 +18,8 @@ public class GameModel implements IGame {
 	static {
 		try
 		{
-			Class.forName("projectrts.model.core.entities.BasicUnit");
-			Class.forName("projectrts.model.core.entities.Unit");
+			Class.forName(BasicUnit.class.getName());
+			Class.forName(Unit.class.getName());
 		}
 		catch (ClassNotFoundException any)
 		{

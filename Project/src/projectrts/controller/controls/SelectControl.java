@@ -18,7 +18,7 @@ import com.jme3.scene.control.Control;
  * A custom Control that handles selected-spatial's movement.
  * Currently is no different from MoveControl and is probably redundant.
  * 
- * @author Heqir
+ * @author Markus Ekström
  *
  */
 public class SelectControl extends AbstractControl{

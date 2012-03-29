@@ -35,7 +35,7 @@ import com.jme3.texture.Texture.WrapMode;
 
 /**
  * The in-game view, creating and managing the scene.
- * @author Heqir
+ * @author Markus Ekström
  *
  */
 public class GameView{

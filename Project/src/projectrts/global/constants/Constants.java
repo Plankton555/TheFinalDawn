@@ -2,7 +2,7 @@ package projectrts.global.constants;
 
 /**
  * A singleton containing constants for use by the controllers and the world.
- * @author Heqir
+ * @author Markus Ekström
  *
  */
 public enum Constants {INSTANCE;

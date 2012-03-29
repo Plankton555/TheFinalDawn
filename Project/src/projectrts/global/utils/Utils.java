@@ -7,7 +7,7 @@ import projectrts.model.core.Position;
 
 /**
  * A singleton containing utility methods for use by the controllers and the world.
- * @author Heqir
+ * @author Markus Ekström
  *
  */
 public enum Utils {INSTANCE;

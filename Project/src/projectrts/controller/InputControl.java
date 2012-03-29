@@ -19,7 +19,7 @@ import com.jme3.math.Vector3f;
 
 /**
  * A class for handling all input.
- * @author Heqir
+ * @author Markus Ekström
  *
  */
 public class InputControl {
