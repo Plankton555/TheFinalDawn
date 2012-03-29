@@ -21,6 +21,10 @@ public class AStar {
 		AStar.world = world;
 	}
 	
+	/**
+	 * Creates a new A* instance. AStar must have been initialized,
+	 * otherwise an IllegalStateException will be thrown.
+	 */
 	public AStar()
 	{
 		if (world == null)
@@ -29,6 +33,12 @@ public class AStar {
 		}
 	}
 	
+	/**
+	 * Calculates a path using the A* algorithm.
+	 * @param startPos Start position.
+	 * @param targetPos End position.
+	 * @return An AStarPath from startPos to targetPos.
+	 */
 	public AStarPath calculatePath(Position startPos, Position targetPos)
 	{
 		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));

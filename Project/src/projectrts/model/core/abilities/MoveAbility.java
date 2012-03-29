@@ -9,7 +9,7 @@ import projectrts.model.core.utils.ModelUtils;
 
 /**
  * An ability for attacking
- * @author Filip Brynfors
+ * @author Filip Brynfors, modified by Bjorn Persson Mattsson
  *
  */
 public class MoveAbility extends AbstractAbility {
@@ -53,7 +53,14 @@ public class MoveAbility extends AbstractAbility {
 		}
 	}
 	
-	public Position determineNextStep(float stepLength, PlayerControlledEntity entity, Position targetPos)
+	/**
+	 * Returns the position of the next step using A* algorithm.
+	 * @param stepLength Length of the step the entity can take this update.
+	 * @param entity The entity that's moving.
+	 * @param targetPos The position that the entity will move towards.
+	 * @return Position of next step.
+	 */
+	private Position determineNextStep(float stepLength, PlayerControlledEntity entity, Position targetPos)
 	{
 		path = aStar.calculatePath(entity.getPosition(), targetPos);
 		Position nextPos = path.getNextNodePosition();
