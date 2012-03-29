@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import projectrts.model.core.entities.PlayerControlledEntity;
-import projectrts.model.core.utils.ModelUtils;
-
 /**
  * A* pathfinding algorithm.
  * @author Bjorn Persson Mattsson
@@ -24,8 +21,6 @@ public class AStar {
 		AStar.world = world;
 	}
 	
-	AStarPath path;
-	
 	public AStar()
 	{
 		if (world == null)
@@ -34,22 +29,7 @@ public class AStar {
 		}
 	}
 	
-	public Position determineNextStep(float stepLength, PlayerControlledEntity entity, Position targetPos)
-	{
-		path = calculatePath(entity.getPosition(), targetPos);
-		Position nextPos = path.getNextNodePosition();
-		Position currentPos = entity.getPosition();
-		float distanceToNextPos = ModelUtils.INSTANCE.getDistance(currentPos, nextPos);
-		
-		if (distanceToNextPos < stepLength)
-		{
-			stepLength -= distanceToNextPos;
-			// TODO Plankton var här senast
-		}
-		return null;
-	}
-	
-	private AStarPath calculatePath(Position startPos, Position targetPos)
+	public AStarPath calculatePath(Position startPos, Position targetPos)
 	{
 		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
 		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));

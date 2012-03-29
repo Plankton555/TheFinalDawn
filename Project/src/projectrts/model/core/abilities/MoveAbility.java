@@ -1,8 +1,11 @@
 package projectrts.model.core.abilities;
 
+import projectrts.model.core.AStar;
+import projectrts.model.core.AStarPath;
 import projectrts.model.core.P;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.PlayerControlledEntity;
+import projectrts.model.core.utils.ModelUtils;
 
 /**
  * An ability for attacking
@@ -13,9 +16,13 @@ public class MoveAbility extends AbstractAbility {
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
 	
+	AStar aStar;
+	AStarPath path;
+	
 	
 	public MoveAbility(){
 
+		this.aStar = new AStar();
 	}
 	
 	@Override
@@ -44,6 +51,21 @@ public class MoveAbility extends AbstractAbility {
 			}
 			
 		}
+	}
+	
+	public Position determineNextStep(float stepLength, PlayerControlledEntity entity, Position targetPos)
+	{
+		path = aStar.calculatePath(entity.getPosition(), targetPos);
+		Position nextPos = path.getNextNodePosition();
+		Position currentPos = entity.getPosition();
+		float distanceToNextPos = ModelUtils.INSTANCE.getDistance(currentPos, nextPos);
+		
+		if (distanceToNextPos < stepLength)
+		{
+			stepLength -= distanceToNextPos;
+			// TODO Plankton var här senast
+		}
+		return null;
 	}
 
 	private Position determinePath(Position target, float tpf){
