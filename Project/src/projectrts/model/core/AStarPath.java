@@ -20,4 +20,9 @@ public class AStarPath {
 	{
 		nodeStack.pop();
 	}
+	
+	public int nrOfNodesLeft()
+	{
+		return nodeStack.size();
+	}
 }

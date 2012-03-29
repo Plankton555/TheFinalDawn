@@ -62,6 +62,7 @@ public class MoveAbility extends AbstractAbility {
 	 */
 	private Position determineNextStep(float stepLength, PlayerControlledEntity entity, Position targetPos)
 	{
+		// TODO Don't update the path every update.
 		path = aStar.calculatePath(entity.getPosition(), targetPos);
 		Position nextPos = path.getNextNodePosition();
 		Position currentPos = entity.getPosition();
