@@ -16,8 +16,8 @@ public class MoveAbility extends AbstractAbility {
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
 	
-	AStar aStar;
-	AStarPath path;
+	private AStar aStar;
+	private AStarPath path;
 	
 	
 	public MoveAbility(){
@@ -64,14 +64,20 @@ public class MoveAbility extends AbstractAbility {
 	{
 		// TODO Don't update the path every update.
 		path = aStar.calculatePath(entity.getPosition(), targetPos);
+		if (path.nrOfNodesLeft() < 1)
+		{
+			// at position
+		}
 		Position nextPos = path.getNextNodePosition();
 		Position currentPos = entity.getPosition();
-		float distanceToNextPos = ModelUtils.INSTANCE.getDistance(currentPos, nextPos);
+		float distanceToNextNode = ModelUtils.INSTANCE.getDistance(currentPos, nextPos);
 		
-		if (distanceToNextPos < stepLength)
+		if (distanceToNextNode > stepLength)
 		{
-			stepLength -= distanceToNextPos;
-			// TODO Plankton var här senast
+			// flytta steplength mot nextPos
+		}
+		else if (distanceToNextNode < stepLength)
+		{
 		}
 		return null;
 	}
