@@ -4,81 +4,10 @@
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>30</x>
-      <y>170</y>
-      <w>120</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>constants
---
-Constants
-bg=white
-fg=blue</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Package</type>
-    <coordinates>
-      <x>30</x>
-      <y>240</y>
-      <w>120</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>utils
---
-Utils
-bg=white
-fg=blue</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Package</type>
-    <coordinates>
-      <x>460</x>
-      <y>40</y>
-      <w>120</w>
-      <h>250</h>
-    </coordinates>
-    <panel_attributes>core
---
-IGame
-IPlayer
-ITile
-IUnit
-GameModel
-MicroAI
-P
-Player
-Position
-Tile
-Unit
-World
-bg=white
-fg=blue</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Package</type>
-    <coordinates>
-      <x>460</x>
-      <y>300</y>
-      <w>120</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>menu
---
-Menu
-bg=white
-fg=blue</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Package</type>
-    <coordinates>
-      <x>450</x>
-      <y>10</y>
+      <x>440</x>
+      <y>20</y>
       <w>140</w>
-      <h>370</h>
+      <h>390</h>
     </coordinates>
     <panel_attributes>model
 --
@@ -90,33 +19,28 @@ fg=blue</panel_attributes>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>230</x>
-      <y>10</y>
+      <x>220</x>
+      <y>20</y>
       <w>140</w>
-      <h>90</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>controller
 --
-AppController
-AppStates
-InputControl
 bg=white
-fg=blue</panel_attributes>
+fg=blue
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>230</x>
-      <y>190</y>
+      <x>220</x>
+      <y>200</y>
       <w>140</w>
-      <h>90</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>view
 --
-GameView
-MenuView
-HighscoreView
 bg=white
 fg=blue</panel_attributes>
     <additional_attributes/>
@@ -124,8 +48,8 @@ fg=blue</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>60</x>
-      <y>20</y>
+      <x>50</x>
+      <y>30</y>
       <w>100</w>
       <h>50</h>
     </coordinates>
@@ -137,8 +61,8 @@ main():void</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>130</x>
-      <y>20</y>
+      <x>120</x>
+      <y>30</y>
       <w>120</w>
       <h>50</h>
     </coordinates>
@@ -148,47 +72,159 @@ main():void</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>300</x>
-      <y>70</y>
+      <x>290</x>
+      <y>100</y>
       <w>50</w>
-      <h>160</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=&gt;.</panel_attributes>
-    <additional_attributes>30;30;30;140</additional_attributes>
+    <additional_attributes>30;30;30;120</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>340</x>
-      <y>40</y>
+      <x>330</x>
+      <y>50</y>
       <w>130</w>
-      <h>50</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&gt;.</panel_attributes>
-    <additional_attributes>30;30;110;30</additional_attributes>
+    <additional_attributes>30;30;110;60</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>340</x>
-      <y>220</y>
+      <x>330</x>
+      <y>210</y>
       <w>130</w>
-      <h>50</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&gt;.</panel_attributes>
-    <additional_attributes>30;30;110;30</additional_attributes>
+    <additional_attributes>30;50;110;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>20</x>
-      <y>140</y>
+      <x>10</x>
+      <y>150</y>
       <w>140</w>
       <h>180</h>
     </coordinates>
     <panel_attributes>global
 --
 
+bg=white
+fg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>450</x>
+      <y>330</y>
+      <w>120</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>menu
+--
+bg=white
+fg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>450</x>
+      <y>50</y>
+      <w>120</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>core
+--
+bg=white
+fg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>230</x>
+      <y>50</y>
+      <w>120</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>controls
+--
+bg=white
+fg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>20</x>
+      <y>180</y>
+      <w>120</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>constants
+--
+bg=white
+fg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>20</x>
+      <y>250</y>
+      <w>120</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>utils
+--
+bg=white
+fg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>460</x>
+      <y>160</y>
+      <w>100</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>entities
+--
+bg=white
+fg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>460</x>
+      <y>80</y>
+      <w>100</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>abilities
+--
+bg=white
+fg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Package</type>
+    <coordinates>
+      <x>460</x>
+      <y>240</y>
+      <w>100</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>utils
+--
 bg=white
 fg=blue</panel_attributes>
     <additional_attributes/>
