@@ -1,8 +1,17 @@
 package projectrts.model.core.entities;
 
 import projectrts.model.core.Position;
-
+/**
+ * Abstract class for the common part of different non player controlled entities
+ * @author Jakob Svensson
+ *
+ */
 public abstract class NonPlayerControlledEntity extends AbstractEntity {
+	
+	
+	protected NonPlayerControlledEntity(){
+		
+	}
 	
 	protected NonPlayerControlledEntity(Position spawnPos) {
 		super(spawnPos);

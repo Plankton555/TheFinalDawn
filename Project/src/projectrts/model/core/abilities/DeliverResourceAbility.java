@@ -1,7 +1,12 @@
 package projectrts.model.core.abilities;
 
+import java.util.List;
+
+import projectrts.model.core.EntityManager;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
+import projectrts.model.core.entities.Headquarter;
+import projectrts.model.core.entities.IPlayerControlledEntity;
 import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.model.core.utils.ModelUtils;
 /**
@@ -25,7 +30,7 @@ public class DeliverResourceAbility extends AbstractAbility{
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			
-			//TODO: Find closest deposit structure
+			findDepositStructure();
 			
 			if(ModelUtils.INSTANCE.getDistance(unit.getPosition(),depositStructure.getPosition() )<1){
 				//If in range of deposit structure
@@ -61,6 +66,25 @@ public class DeliverResourceAbility extends AbstractAbility{
 	
 	public void setResourceCarriedAmount(int rca){
 		this.resourceCarriedAmount=rca;
+	}
+	
+	private void findDepositStructure(){
+		List<IPlayerControlledEntity> entities = 
+				EntityManager.getInstance().getEntitiesOfPlayer(unit.getOwner());
+		
+		for(IPlayerControlledEntity e: entities){
+			if(e instanceof Headquarter){
+				if(depositStructure==null){
+					depositStructure = (Headquarter)e;
+				}else{
+					if(ModelUtils.INSTANCE.getDistance(unit.getPosition(), e.getPosition())
+							<ModelUtils.INSTANCE.getDistance(unit.getPosition(), depositStructure.getPosition())){
+						//If e is closer to unit than saved depositStructure
+						depositStructure = (Headquarter)e;
+					}
+				}
+			}
+		}
 	}
 
 }

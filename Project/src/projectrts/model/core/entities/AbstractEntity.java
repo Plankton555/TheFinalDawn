@@ -8,12 +8,14 @@ import projectrts.model.core.Position;
 
 /**
  * Abstract class for the common parts of the different entities
- * @author Filip Brynfors, Modified by Markus Ekström
+ * @author Filip Brynfors, Modified by Markus Ekström, Jakob Svensson
  *
  */
 public abstract class AbstractEntity implements IEntity {
 
 	protected Position position;
+	private String name;
+	private float size;
 	
 	protected AbstractEntity() {
 	}
@@ -26,6 +28,23 @@ public abstract class AbstractEntity implements IEntity {
 	protected AbstractEntity(Position spawnPos){
 		this.position = new Position(spawnPos);
 		
+	}
+	
+	protected void setSize(float size){
+		this.size=size;
+	}
+	protected void setName(String name) {
+		this.name = name;
+	}
+	
+	@Override
+	public float getSize() {
+		return size;
+	}
+
+	@Override
+	public String getName() {
+		return name;
 	}
 	
 	@Override

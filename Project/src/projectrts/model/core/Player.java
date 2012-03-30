@@ -78,6 +78,10 @@ public class Player implements IPlayer {
 		return entities;
 	}
 	
+	public int getResource(){
+		return resources; 
+	}
+	
 	public void addResource(int amount){
 		resources+=amount;
 	}

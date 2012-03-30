@@ -10,7 +10,7 @@ import projectrts.model.core.abilities.AbstractAbility;
 import projectrts.model.core.abilities.IAbility;
 
 /**
- * 
+ *  Abstract class for the common part of different  player controlled entities
  * @author Jakob Svensson, Modified by Filip Brynfors, Markus Ekström
  * 
  *
@@ -19,7 +19,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	protected List<AbstractAbility> abilities = new ArrayList<AbstractAbility>();
 	private int health;
 	private int maxHealth;
-	private String name;
+
 	
 	private Player owner;
 	
@@ -36,9 +36,6 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		this.owner = owner;
 	}
 	
-	protected void setName(String name) {
-		this.name = name;
-	}
 	
 	@Override
 	public IPlayer getOwner() {
@@ -98,16 +95,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		return 0;
 	}
 
-	@Override
-	public float getSize() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public String getName() {
-		return name;
-	}
+	
 
 	@Override
 	public void update(float tpf) {

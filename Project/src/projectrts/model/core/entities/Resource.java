@@ -1,40 +1,41 @@
 package projectrts.model.core.entities;
 
+import projectrts.model.core.EntityFactory;
 import projectrts.model.core.Position;
 
 /**
- * 
+ * A resource to be gathered
  * @author Jakob Svensson
  *
  */
 public class Resource extends NonPlayerControlledEntity{
+	
 
-	public Resource(Position spawnPos) {
-		super(spawnPos);
-		// TODO Auto-generated constructor stub
+	private static String name = "Resource";
+	private static float size = 1f;
+	static {
+		EntityFactory.INSTANCE.registerNPCE(name, new Resource());
 	}
 	
-	@Override
-	public float getSize() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Resource(){
+		
 	}
-
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public Resource(Position spawnPos) {
+		super(spawnPos);
+		setName(name);
+		setSize(size);
 	}
 
 	@Override
 	public void update(float tpf) {
-		// TODO Auto-generated method stub
+		// Do nothing yet
 		
 	}
 
 	@Override
 	public NonPlayerControlledEntity createNPCE(Position pos) {
-		return null;
+		return new Resource(pos);
 	}
 	
 	public int mine(){

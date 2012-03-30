@@ -7,7 +7,7 @@ import projectrts.model.core.entities.*;
 /**
  * The main model class of the RTS Game
  * The class handles the world and they players in the game
- * @author Björn Persson Mattson, Modified by Filip Brynfors
+ * @author Björn Persson Mattson, Modified by Filip Brynfors, Jakob Svensson
  */
 public class GameModel implements IGame {
 	private World world = new World(P.INSTANCE.getWorldHeight(), P.INSTANCE.getWorldWidth());
@@ -20,6 +20,9 @@ public class GameModel implements IGame {
 		{
 			Class.forName(BasicUnit.class.getName());
 			Class.forName(Unit.class.getName());
+			Class.forName(Worker.class.getName());
+			Class.forName(Resource.class.getName());
+			Class.forName(Headquarter.class.getName());
 		}
 		catch (ClassNotFoundException any)
 		{
