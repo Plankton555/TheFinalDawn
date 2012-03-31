@@ -4,12 +4,11 @@ import java.util.List;
 
 import projectrts.controller.controls.MoveControl;
 import projectrts.controller.controls.SelectControl;
-import projectrts.global.constants.*;
+import projectrts.global.constants.Constants;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
-import projectrts.global.utils.Utils;
-import projectrts.model.core.entities.*;
 import projectrts.model.core.IGame;
+import projectrts.model.core.entities.IEntity;
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -157,7 +156,6 @@ public class GameView{
     	// Remove all previously selected graphics
     	selected.detachAllChildren();
     	for(IEntity entity : entityList) {
-	    	Vector3f cV = Utils.INSTANCE.convertModelToWorld(entity.getPosition());
 	    	// Sets the location of the spatial to (0, 0, -1) to make sure it's behind the entities that use (x, y, 0).
 	    	// The selectControl will instantly translate it to the correct location.
 	    	Box circle = new Box(new Vector3f(0, 0, -1), 

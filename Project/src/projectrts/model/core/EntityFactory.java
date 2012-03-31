@@ -5,6 +5,11 @@ import java.util.HashMap;
 import projectrts.model.core.entities.NonPlayerControlledEntity;
 import projectrts.model.core.entities.PlayerControlledEntity;
 
+/**
+ * 
+ * @author Markus Ekström
+ *
+ */
 public enum EntityFactory {INSTANCE;
 	
 	private HashMap<String, PlayerControlledEntity> pceMap = new HashMap<String, PlayerControlledEntity>();
