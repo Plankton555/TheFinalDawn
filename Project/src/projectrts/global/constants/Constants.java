@@ -18,8 +18,8 @@ public enum Constants {INSTANCE;
 	/**
 	 * Returns the value needed to convert lengths between the model and the world.
 	 * 
-	 * Multiply with this value to go from model -> world.
-	 * Divide with it to go from world -> model.
+	 * Multiply with this value to go from model --> world.
+	 * Divide with it to go from world --> model.
 	 * @return The modifier in the form of a float.
 	 */
 	public float getModelToWorld() {
