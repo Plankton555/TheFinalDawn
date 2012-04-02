@@ -62,33 +62,41 @@ public class MoveAbility extends AbstractAbility {
 	 * @param targetPos The position that the entity will move towards.
 	 * @return Position of next step.
 	 */
-	private Position determineNextStep(float stepLength, PlayerControlledEntity entity, Position targetPos)
+	private Position determineNextStep(double stepLength, PlayerControlledEntity entity, Position targetPos)
 	{
 		// TODO Don't update the path every update.
 		path = aStar.calculatePath(entity.getPosition(), targetPos);
-		if (path.nrOfNodesLeft() < 1)
-		{
-			// at position
-		}
-		Position nextNode = path.getNextNodePosition();
-		Position currentPos = entity.getPosition();
-		double distanceToNextNode = ModelUtils.INSTANCE.getDistance(currentPos, nextNode);
 		
-		if (distanceToNextNode > stepLength)
+		Position outputPos = entity.getPosition();
+		
+		while (stepLength > 0) // repeat until the whole step is taken (or no nodes are left in the path)
 		{
-			// TODO Plankton är här
-			Vector2d direction = Position.getVectorBetween(currentPos, nextNode);
-			Position newPos = currentPos.add(stepLength, direction);
+			if (path.nrOfNodesLeft() < 1)
+			{
+				break;
+			}
+			Position nextNode = path.getNextNodePosition();
+			double distanceToNextNode = ModelUtils.INSTANCE.getDistance(outputPos, nextNode);
+			
+			if (distanceToNextNode > stepLength)
+			{
+				Vector2d direction = Position.getVectorBetween(outputPos, nextNode);
+				outputPos = outputPos.add(stepLength, direction);
+				stepLength = 0;
+			}
+			else //if (distanceToNextNode <= stepLength)
+			{
+				stepLength -= distanceToNextNode;
+				outputPos = nextNode;
+				path.removeNodeFromPath();
+			}
 		}
-		else if (distanceToNextNode <= stepLength)
-		{
-		}
-		return null;
+		return outputPos;
 	}
 
 	private Position determinePath(Position target, float tpf){
 		// TODO Extremely simple path algorithm
-		float stepSize = P.INSTANCE.getUnitLength()*tpf;
+		double stepSize = P.INSTANCE.getUnitLength()*tpf;
 		Position myPos = entity.getPosition();
 		double newX = 0;
 		double newY = 0;
