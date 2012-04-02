@@ -10,7 +10,7 @@ import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.model.core.utils.ModelUtils;
 
 /**
- * An ability for attacking
+ * An ability for moving
  * @author Filip Brynfors, modified by Bjorn Persson Mattsson
  *
  */
@@ -21,9 +21,10 @@ public class MoveAbility extends AbstractAbility {
 	private AStar aStar;
 	private AStarPath path;
 	
-	
+	/**
+	 * Creates a new instance of this ability.
+	 */
 	public MoveAbility(){
-
 		this.aStar = new AStar();
 	}
 	
@@ -95,8 +96,10 @@ public class MoveAbility extends AbstractAbility {
 		return outputPos;
 	}
 
+	// TODO Remove this when no longer needed
+	/*
 	private Position determinePath(Position target, float tpf){
-		// TODO Extremely simple path algorithm
+		// Extremely simple path algorithm
 		double stepSize = P.INSTANCE.getUnitLength()*tpf;
 		Position myPos = entity.getPosition();
 		double newX = 0;
@@ -132,5 +135,5 @@ public class MoveAbility extends AbstractAbility {
 		
 		return new Position(newX, newY);
 	}
-
+	*/
 }

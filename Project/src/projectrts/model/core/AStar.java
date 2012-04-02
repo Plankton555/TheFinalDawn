@@ -29,7 +29,7 @@ public class AStar {
 	{
 		if (world == null)
 		{
-			throw new IllegalStateException("You must initialize this class before you can use it");
+			throw new IllegalStateException("You must initialize the AStar class before you can use it");
 		}
 	}
 	
@@ -94,7 +94,7 @@ public class AStar {
 			}
 		}
 		
-		// path not found
+		// path not found, return empty path
 		return new AStarPath();
 	}
 }
