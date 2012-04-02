@@ -57,9 +57,9 @@ public class Position {
 		if (getClass() != obj.getClass())
 			return false;
 		Position other = (Position) obj;
-		if (Double.doubleToLongBits(coord.x) != Double.doubleToLongBits(other.coord.x))
+		if (coord.x != other.coord.x)
 			return false;
-		if (Double.doubleToLongBits(coord.y) != Double.doubleToLongBits(other.coord.y))
+		if (coord.y != other.coord.y)
 			return false;
 		return true;
 	}

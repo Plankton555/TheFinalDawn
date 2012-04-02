@@ -46,7 +46,8 @@ public class MoveAbility extends AbstractAbility {
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			
-			entity.setPosition(determinePath(targetPosition, tpf));
+			double stepSize = P.INSTANCE.getUnitLength()*tpf;
+			entity.setPosition(determineNextStep(stepSize, entity, targetPosition));
 			if (entity.getPosition().equals(targetPosition))
 			{
 				setFinished(true);

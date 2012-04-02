@@ -88,8 +88,7 @@ public class AStarNode implements Comparable<AStarNode> {
 	
 	@Override
 	public int compareTo(AStarNode other) {
-		// Need to negate since the lower the cost, the higher the node should be sorted.
-		return -Double.compare(getTotalCost(), other.getTotalCost());
+		return Double.compare(getTotalCost(), other.getTotalCost());
 	}
 	
 	/**

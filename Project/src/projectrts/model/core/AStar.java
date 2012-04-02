@@ -58,8 +58,7 @@ public class AStar {
 			{
 				// path complete
 				AStarPath path = new AStarPath();
-				path.addNodeToPath(currentNode);
-				AStarNode nextNode = currentNode.getParent();
+				AStarNode nextNode = currentNode;
 				
 				while (!nextNode.sameNodeAs(startNode))
 				{
@@ -71,7 +70,7 @@ public class AStar {
 			}
 			else
 			{
-				// mode current node to the closed list
+				// move current node to the closed list
 				openList.remove(currentNode);
 				closedList.add(currentNode);
 				
