@@ -1,21 +1,31 @@
 package projectrts.model.core.abilities;
 
+import javax.vecmath.Vector2d;
+
 import projectrts.model.core.P;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.PlayerControlledEntity;
+import projectrts.model.core.pathfinding.AStar;
+import projectrts.model.core.pathfinding.AStarPath;
+import projectrts.model.core.utils.ModelUtils;
 
 /**
- * An ability for attacking
- * @author Filip Brynfors
+ * An ability for moving
+ * @author Filip Brynfors, modified by Bjorn Persson Mattsson
  *
  */
 public class MoveAbility extends AbstractAbility {
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
 	
+	private AStar aStar;
+	private AStarPath path;
 	
+	/**
+	 * Creates a new instance of this ability.
+	 */
 	public MoveAbility(){
-
+		this.aStar = new AStar();
 	}
 	
 	@Override
@@ -37,7 +47,8 @@ public class MoveAbility extends AbstractAbility {
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			
-			entity.setPosition(determinePath(targetPosition, tpf));
+			double stepSize = P.INSTANCE.getUnitLength()*tpf;
+			entity.setPosition(determineNextStep(stepSize, entity, targetPosition));
 			if (entity.getPosition().equals(targetPosition))
 			{
 				setFinished(true);
@@ -45,13 +56,54 @@ public class MoveAbility extends AbstractAbility {
 			
 		}
 	}
+	
+	/**
+	 * Returns the position of the next step using A* algorithm.
+	 * @param stepLength Length of the step the entity can take this update.
+	 * @param entity The entity that's moving.
+	 * @param targetPos The position that the entity will move towards.
+	 * @return Position of next step.
+	 */
+	private Position determineNextStep(double stepLength, PlayerControlledEntity entity, Position targetPos)
+	{
+		// TODO Don't update the path every update.
+		path = aStar.calculatePath(entity.getPosition(), targetPos);
+		
+		Position outputPos = entity.getPosition();
+		
+		while (stepLength > 0) // repeat until the whole step is taken (or no nodes are left in the path)
+		{
+			if (path.nrOfNodesLeft() < 1)
+			{
+				break;
+			}
+			Position nextNode = path.getNextNodePosition();
+			double distanceToNextNode = ModelUtils.INSTANCE.getDistance(outputPos, nextNode);
+			
+			if (distanceToNextNode > stepLength)
+			{
+				Vector2d direction = Position.getVectorBetween(outputPos, nextNode);
+				outputPos = outputPos.add(stepLength, direction);
+				stepLength = 0;
+			}
+			else //if (distanceToNextNode <= stepLength)
+			{
+				stepLength -= distanceToNextNode;
+				outputPos = nextNode;
+				path.removeNodeFromPath();
+			}
+		}
+		return outputPos;
+	}
 
+	// TODO Remove this when no longer needed
+	/*
 	private Position determinePath(Position target, float tpf){
-		// TODO Extremely simple path algorithm
-		float stepSize = P.INSTANCE.getUnitLength()*tpf;
+		// Extremely simple path algorithm
+		double stepSize = P.INSTANCE.getUnitLength()*tpf;
 		Position myPos = entity.getPosition();
-		float newX = 0;
-		float newY = 0;
+		double newX = 0;
+		double newY = 0;
 		
 		// For x axis
 		if (Math.abs(myPos.getX() - target.getX()) < stepSize)
@@ -83,5 +135,5 @@ public class MoveAbility extends AbstractAbility {
 		
 		return new Position(newX, newY);
 	}
-
+	*/
 }
