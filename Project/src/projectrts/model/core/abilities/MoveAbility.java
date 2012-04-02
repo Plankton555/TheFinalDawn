@@ -77,11 +77,10 @@ public class MoveAbility extends AbstractAbility {
 		if (distanceToNextNode > stepLength)
 		{
 			// TODO Plankton är här
-			Vector2d direction = null;
+			Vector2d direction = Position.getVectorBetween(currentPos, nextNode);
 			Position newPos = currentPos.add(stepLength, direction);
-			// flytta steplength mot nextPos
 		}
-		else if (distanceToNextNode < stepLength)
+		else if (distanceToNextNode <= stepLength)
 		{
 		}
 		return null;

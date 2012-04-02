@@ -103,4 +103,17 @@ public class Position {
 		Position result = new Position(this.getX() + delta.x, this.getY() + delta.y);
 		return result;
 	}
+
+	/**
+	 * Returns a vector that goes from startPos to endPos.
+	 * @param startPos Start position.
+	 * @param endPos End position.
+	 * @return Vector2d between the two positions.
+	 */
+	public static Vector2d getVectorBetween(Position startPos,
+			Position endPos) {
+		Vector2d result = new Vector2d(endPos.getX()-startPos.getX(),
+				endPos.getY()-startPos.getY());
+		return result;
+	}
 }
