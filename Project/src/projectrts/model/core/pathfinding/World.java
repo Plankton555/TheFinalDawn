@@ -1,4 +1,6 @@
-package projectrts.model.core;
+package projectrts.model.core.pathfinding;
+
+import projectrts.model.core.Position;
 
 /**
  * The class containing the "world"

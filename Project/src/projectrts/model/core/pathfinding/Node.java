@@ -1,7 +1,9 @@
-package projectrts.model.core;
+package projectrts.model.core.pathfinding;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import projectrts.model.core.Position;
 
 /**
  * A node with the primary purpose of helping with pathfinding.

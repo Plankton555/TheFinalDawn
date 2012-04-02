@@ -1,6 +1,8 @@
-package projectrts.model.core;
+package projectrts.model.core.pathfinding;
 
 import java.util.Stack;
+
+import projectrts.model.core.Position;
 
 /**
  * A class representing an A* movement path. This class uses a stack for storing the nodes.

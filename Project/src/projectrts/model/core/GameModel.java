@@ -3,6 +3,8 @@ package projectrts.model.core;
 import java.util.List;
 
 import projectrts.model.core.entities.*;
+import projectrts.model.core.pathfinding.AStar;
+import projectrts.model.core.pathfinding.World;
 
 /**
  * The main model class of the RTS Game

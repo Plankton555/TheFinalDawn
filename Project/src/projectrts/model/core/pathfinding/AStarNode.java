@@ -1,8 +1,9 @@
-package projectrts.model.core;
+package projectrts.model.core.pathfinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import projectrts.model.core.Position;
 import projectrts.model.core.utils.ModelUtils;
 
 /**

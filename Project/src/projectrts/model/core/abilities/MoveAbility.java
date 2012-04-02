@@ -2,11 +2,11 @@ package projectrts.model.core.abilities;
 
 import javax.vecmath.Vector2d;
 
-import projectrts.model.core.AStar;
-import projectrts.model.core.AStarPath;
 import projectrts.model.core.P;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.PlayerControlledEntity;
+import projectrts.model.core.pathfinding.AStar;
+import projectrts.model.core.pathfinding.AStarPath;
 import projectrts.model.core.utils.ModelUtils;
 
 /**
