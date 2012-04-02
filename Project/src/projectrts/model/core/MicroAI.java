@@ -30,8 +30,8 @@ public class MicroAI {
 		// TODO Extremely simple path algorithm
 		float stepSize = P.INSTANCE.getUnitLength()*tpf;
 		Position myPos = myUnit.getPosition();
-		float newX = 0;
-		float newY = 0;
+		double newX = 0;
+		double newY = 0;
 		
 		// For x axis
 		if (Math.abs(myPos.getX() - target.getX()) < stepSize)

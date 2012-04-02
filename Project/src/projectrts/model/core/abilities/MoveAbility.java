@@ -1,5 +1,7 @@
 package projectrts.model.core.abilities;
 
+import javax.vecmath.Vector2d;
+
 import projectrts.model.core.AStar;
 import projectrts.model.core.AStarPath;
 import projectrts.model.core.P;
@@ -68,12 +70,15 @@ public class MoveAbility extends AbstractAbility {
 		{
 			// at position
 		}
-		Position nextPos = path.getNextNodePosition();
+		Position nextNode = path.getNextNodePosition();
 		Position currentPos = entity.getPosition();
-		float distanceToNextNode = ModelUtils.INSTANCE.getDistance(currentPos, nextPos);
+		double distanceToNextNode = ModelUtils.INSTANCE.getDistance(currentPos, nextNode);
 		
 		if (distanceToNextNode > stepLength)
 		{
+			// TODO Plankton är här
+			Vector2d direction = null;
+			Position newPos = currentPos.add(stepLength, direction);
 			// flytta steplength mot nextPos
 		}
 		else if (distanceToNextNode < stepLength)
@@ -86,8 +91,8 @@ public class MoveAbility extends AbstractAbility {
 		// TODO Extremely simple path algorithm
 		float stepSize = P.INSTANCE.getUnitLength()*tpf;
 		Position myPos = entity.getPosition();
-		float newX = 0;
-		float newY = 0;
+		double newX = 0;
+		double newY = 0;
 		
 		// For x axis
 		if (Math.abs(myPos.getX() - target.getX()) < stepSize)

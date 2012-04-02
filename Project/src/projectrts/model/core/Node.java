@@ -29,7 +29,7 @@ public class Node {
 	 * @param posX X coordinate.
 	 * @param posY Y coordinate.
 	 */
-	public Node(float posX, float posY)
+	public Node(double posX, double posY)
 	{
 		this.position = new Position(posX, posY);
 	}

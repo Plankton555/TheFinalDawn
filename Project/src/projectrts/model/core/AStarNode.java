@@ -13,9 +13,9 @@ import projectrts.model.core.utils.ModelUtils;
 public class AStarNode implements Comparable<AStarNode> {
 	
 	private Node node;
-	private float totalCost = 0;
-	private float costFromStart;
-	private float heuristic;
+	private double totalCost = 0;
+	private double costFromStart;
+	private double heuristic;
 	private AStarNode parent;
 	
 	/**
@@ -57,7 +57,7 @@ public class AStarNode implements Comparable<AStarNode> {
 	/**
 	 * @return The total cost from the start node.
 	 */
-	public float getCostFromStart()
+	public double getCostFromStart()
 	{
 		return costFromStart;
 	}
@@ -65,7 +65,7 @@ public class AStarNode implements Comparable<AStarNode> {
 	/**
 	 * @return The total cost of the node (cost from start + heuristic).
 	 */
-	public float getTotalCost()
+	public double getTotalCost()
 	{
 		return totalCost;
 	}
@@ -89,7 +89,7 @@ public class AStarNode implements Comparable<AStarNode> {
 	@Override
 	public int compareTo(AStarNode other) {
 		// Need to negate since the lower the cost, the higher the node should be sorted.
-		return -Float.compare(getTotalCost(), other.getTotalCost());
+		return -Double.compare(getTotalCost(), other.getTotalCost());
 	}
 	
 	/**
