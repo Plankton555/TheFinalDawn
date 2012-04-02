@@ -10,9 +10,10 @@ import projectrts.model.core.entities.PlayerControlledEntity;
  * @author Jakob Svensson
  *
  */
-public class TainWorkerAbility extends AbstractAbility{
+public class TrainWorkerAbility extends AbstractAbility{
 	private PlayerControlledEntity structure;
-	private float buildTime = 100;
+	private float buildTime = 100; //TODO: Decide buidlTime and maybe set as a constant
+	private Position spawnPos;
 	
 	@Override
 	public String getName() {
@@ -23,8 +24,7 @@ public class TainWorkerAbility extends AbstractAbility{
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			if(buildTime<=0){
-				EntityManager.getInstance().addNewPCE("Worker",
-						(Player)structure.getOwner(),structure.getPosition());
+				EntityManager.getInstance().addNewPCE("Worker", (Player)structure.getOwner(),spawnPos);
 				setFinished(true);
 				buildTime =100;
 			}else{
@@ -36,6 +36,8 @@ public class TainWorkerAbility extends AbstractAbility{
 	@Override
 	public void useAbility(PlayerControlledEntity caster, Position target) {
 		structure = caster;
+		spawnPos = new Position(structure.getPosition().getX()+structure.getSize(),
+				structure.getPosition().getX()+structure.getSize()); //TODO: Decide spawnPos, Rally points?
 		setActive(true);
 		setFinished(false);
 	}
