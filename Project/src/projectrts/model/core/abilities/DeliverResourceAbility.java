@@ -36,7 +36,7 @@ public class DeliverResourceAbility extends AbstractAbility{
 				//If in range of deposit structure
 				
 				Player player = (Player)unit.getOwner();
-				player.addResource(resourceCarriedAmount);
+				player.modifyResource(resourceCarriedAmount);
 				resourceCarriedAmount = 0;
 				setFinished(true);
 			}else{

@@ -82,7 +82,7 @@ public class Player implements IPlayer {
 		return resources; 
 	}
 	
-	public void addResource(int amount){
+	public void modifyResource(int amount){
 		resources+=amount;
 	}
 	

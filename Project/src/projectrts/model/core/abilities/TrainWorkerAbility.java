@@ -13,6 +13,7 @@ import projectrts.model.core.entities.PlayerControlledEntity;
 public class TrainWorkerAbility extends AbstractAbility{
 	private PlayerControlledEntity structure;
 	private float buildTime = 100; //TODO: Decide buidlTime and maybe set as a constant
+	private int buidlCost = 50; //TODO: Decide buidlCost and maybe set as a constant
 	private Position spawnPos;
 	
 	@Override
@@ -36,6 +37,7 @@ public class TrainWorkerAbility extends AbstractAbility{
 	@Override
 	public void useAbility(PlayerControlledEntity caster, Position target) {
 		structure = caster;
+		
 		spawnPos = new Position(structure.getPosition().getX()+structure.getSize(),
 				structure.getPosition().getX()+structure.getSize()); //TODO: Decide spawnPos, Rally points?
 		setActive(true);
