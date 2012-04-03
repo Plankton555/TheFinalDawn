@@ -39,8 +39,7 @@ public class GatherResourceAbilityTest {
 			counter++;
 			assertTrue(counter < 1000);	
 		}
-		System.out.println(counter);
-		System.out.println(worker.getPosition());
+		
 		
 		
 	}

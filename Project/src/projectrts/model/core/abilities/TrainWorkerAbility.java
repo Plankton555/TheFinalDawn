@@ -37,7 +37,8 @@ public class TrainWorkerAbility extends AbstractAbility{
 	@Override
 	public void useAbility(PlayerControlledEntity caster, Position target) {
 		structure = caster;
-		
+		Player owner = (Player)structure.getOwner();
+		owner.modifyResource(-buidlCost); //TODO: Check if player has enough resources
 		spawnPos = new Position(structure.getPosition().getX()+structure.getSize(),
 				structure.getPosition().getX()+structure.getSize()); //TODO: Decide spawnPos, Rally points?
 		setActive(true);
