@@ -29,8 +29,8 @@ public enum Utils {INSTANCE;
 	 * @return The world position in the form of a Vector3f.
 	 */
 	public Vector3f convertModelToWorld(Position modelLoc) {
-		float x = modelLoc.getX() * Constants.INSTANCE.getModelToWorld();
-		float y = -modelLoc.getY() * Constants.INSTANCE.getModelToWorld();
+		float x = (float) (modelLoc.getX() * Constants.INSTANCE.getModelToWorld());
+		float y = (float) (-modelLoc.getY() * Constants.INSTANCE.getModelToWorld());
 		return new Vector3f(x, y, 0);
 	}
 }

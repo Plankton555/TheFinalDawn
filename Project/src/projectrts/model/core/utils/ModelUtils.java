@@ -11,7 +11,7 @@ import projectrts.model.core.entities.PlayerControlledEntity;
 
 /**
  * Utility class
- * @author Filip Brynfors Modified by Jakob Svensson 
+ * @author Filip Brynfors. Modified by Jakob Svensson & Bjorn Persson Mattsson
  *
  */
 public enum ModelUtils {
@@ -23,11 +23,12 @@ public enum ModelUtils {
 	 * @param p2 the second point
 	 * @return the distance between the points
 	 */
-	public float getDistance(Position p1, Position p2){
-		float dx = p1.getX() - p2.getX();
-		float dy = p1.getY() - p2.getY();
+	public double getDistance(Position p1, Position p2){
+		// TODO Plankton: change this method?
+		double dx = p1.getX() - p2.getX();
+		double dy = p1.getY() - p2.getY();
 		
-		return (float) Math.sqrt(dx*dx+dy*dy);
+		return Math.sqrt(dx*dx+dy*dy);
 	}
 	
 	
@@ -74,7 +75,7 @@ public enum ModelUtils {
 		return null;
 	}
 	
-	public boolean isWithin(float p, float low, float high){
+	public boolean isWithin(double p, double low, double high){
 		return (p>=low && p<=high);
 	}
 }
