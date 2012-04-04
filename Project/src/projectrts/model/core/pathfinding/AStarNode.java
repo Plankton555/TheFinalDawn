@@ -49,7 +49,9 @@ public class AStarNode implements Comparable<AStarNode> {
 	 */
 	public void calculateCost(AStarNode parentNode, AStarNode endNode)
 	{
-		this.costFromStart = parentNode.getCostFromStart() + node.getCost();
+		// calculate the distance in a more inaccurate way to boost performance
+		double distance = ModelUtils.INSTANCE.getDistance(this.getPosition(), parentNode.getPosition());
+		this.costFromStart = parentNode.getCostFromStart() + distance*node.getCost();
 		this.heuristic = ModelUtils.INSTANCE.getDistance(this.getPosition(), endNode.getPosition());
 		this.totalCost = this.costFromStart + this.heuristic;
 		this.parent = parentNode;
