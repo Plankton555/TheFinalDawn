@@ -17,6 +17,7 @@ public class World {
 	 */
 	public World(int height, int width) {
 		initNodes(height, width);
+		setTestOccupation();
 	}
 	
 	private void initNodes(int height, int width)
@@ -82,5 +83,13 @@ public class World {
 		int x = (int)p.getX();
 		int y = (int)p.getY();
 		return nodes[y][x];
+	}
+	
+	private void setTestOccupation()
+	{
+		for (int i=40; i<60; i++)
+		{
+			nodes[40][i].setOccupied(true);
+		}
 	}
 }
