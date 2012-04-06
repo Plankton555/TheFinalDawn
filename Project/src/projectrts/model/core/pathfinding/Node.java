@@ -14,7 +14,7 @@ public class Node {
 
 	private Position position;
 	private boolean occupied = false;
-	private int distanceToObstacle = 10;
+	//private int distanceToObstacle = 10; // needed for different entity sizes
 	private float cost = 1;
 	private List<Node> neighbours = new ArrayList<Node>();
 	
@@ -44,9 +44,15 @@ public class Node {
 		return this.position.clone();
 	}
 	
+	/**
+	 * @return Is occupied
+	 */
 	public boolean isOccupied() {
 		return occupied;
 	}
+	/**
+	 * @param occupied Node occupied
+	 */
 	public void setOccupied(boolean occupied) {
 		this.occupied = occupied;
 	}
@@ -113,9 +119,15 @@ public class Node {
 		return true;
 	}
 	
+	/**
+	 * @return Cost
+	 */
 	public float getCost() {
 		return cost;
 	}
+	/**
+	 * @param cost Cost
+	 */
 	public void setCost(float cost)
 	{
 		this.cost = cost;
