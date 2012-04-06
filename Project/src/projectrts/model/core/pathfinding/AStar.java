@@ -76,6 +76,7 @@ public class AStar {
 				openList.remove(currentNode);
 				closedList.add(currentNode);
 				
+				System.out.println(closedList.size());
 				// examine each node adjacent to the current node
 				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
 				for (AStarNode node : adjacentNodes)
@@ -84,6 +85,7 @@ public class AStar {
 					{
 						if (!closedList.contains(node)) // and not on closed list
 						{
+							//System.out.println(node.getPosition() + " " + node.isObstacle());
 							if (!node.isObstacle()) // and not an obstacle
 							{
 								// move to open list and calculate cost
