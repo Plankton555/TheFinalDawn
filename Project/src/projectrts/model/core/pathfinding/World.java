@@ -83,22 +83,4 @@ public class World {
 		int y = (int)p.getY();
 		return nodes[y][x];
 	}
-	
-	/* Testing correct neighbours
-	public static void main(String[] args)
-	{
-		World world = new World(10, 10);
-		Node[][] myNodes = world.getNodes();
-		
-		int x = 5;
-		int y = 5;
-		System.out.println(myNodes[y][x].getPosition());
-		System.out.println("has the neighbours:");
-		
-		for (Node n : myNodes[y][x].getNeighbours())
-		{
-			System.out.println(n.getPosition());
-		}
-	}
-	*/
 }
