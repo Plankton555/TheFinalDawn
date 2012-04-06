@@ -71,7 +71,7 @@ public class Node {
 	 */
 	public List<Node> getNeighbours()
 	{
-		// May need to "secure" this list
+		// TODO Return shallow copy
 		return neighbours;
 	}
 	

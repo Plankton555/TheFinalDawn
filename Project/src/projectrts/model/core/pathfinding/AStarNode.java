@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import projectrts.model.core.Position;
-import projectrts.model.core.utils.ModelUtils;
 
 /**
  * A node that is specifically configured to work with the A* pathfinding algorithm.
@@ -14,9 +13,9 @@ import projectrts.model.core.utils.ModelUtils;
 public class AStarNode implements Comparable<AStarNode> {
 	
 	private Node node;
-	private double totalCost = 0;
-	private double costFromStart;
-	private double heuristic;
+	private int totalCost = 0;
+	private int costFromStart;
+	private int heuristic;
 	private AStarNode parent;
 	
 	/**
@@ -29,7 +28,7 @@ public class AStarNode implements Comparable<AStarNode> {
 	}
 	
 	/**
-	 * @return The neighbours (adjecent nodes) to this one.
+	 * @return The neighbours (adjacent nodes) to this one.
 	 */
 	public List<AStarNode> getNeighbours()
 	{
@@ -49,10 +48,24 @@ public class AStarNode implements Comparable<AStarNode> {
 	 */
 	public void calculateCost(AStarNode parentNode, AStarNode endNode)
 	{
-		// calculate the distance in a more inaccurate way to boost performance
-		double distance = ModelUtils.INSTANCE.getDistance(this.getPosition(), parentNode.getPosition());
-		this.costFromStart = parentNode.getCostFromStart() + distance*node.getCost();
-		this.heuristic = ModelUtils.INSTANCE.getDistance(this.getPosition(), endNode.getPosition());
+		Position mePos = this.getPosition();
+		Position parPos = parentNode.getPosition();
+		Position endPos = endNode.getPosition();
+		int distance = 0;
+		if (mePos.getX() == parPos.getX() && mePos.getY() == parPos.getY())
+		{
+			distance = 0;
+		}
+		else if (mePos.getX() != parPos.getX() && mePos.getY() != parPos.getY())
+		{
+			distance = 14; //diagonal: sqrt(2) ~= 1.4
+		}
+		else
+		{
+			distance = 10;
+		}
+		this.costFromStart = (int) Math.round(parentNode.getCostFromStart() + distance*node.getCost());
+		this.heuristic = ((int) (Math.abs(endPos.getX() - mePos.getX()) + Math.abs(endPos.getY() - mePos.getY())))*10;
 		this.totalCost = this.costFromStart + this.heuristic;
 		this.parent = parentNode;
 	}
@@ -68,7 +81,7 @@ public class AStarNode implements Comparable<AStarNode> {
 	/**
 	 * @return The total cost of the node (cost from start + heuristic).
 	 */
-	public double getTotalCost()
+	public int getTotalCost()
 	{
 		return totalCost;
 	}
@@ -91,16 +104,38 @@ public class AStarNode implements Comparable<AStarNode> {
 	
 	@Override
 	public int compareTo(AStarNode other) {
-		return Double.compare(getTotalCost(), other.getTotalCost());
+		return Integer.compare(getTotalCost(), other.getTotalCost());
 	}
-	
-	/**
-	 * @param other Another AStarNode
-	 * @return true if both AStarNodes refer to the same Node, otherwise false.
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
 	 */
-	public boolean sameNodeAs(AStarNode other)
-	{
-		return node.equals(other.node);
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((node == null) ? 0 : node.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AStarNode other = (AStarNode) obj;
+		if (node == null) {
+			if (other.node != null)
+				return false;
+		} else if (!node.equals(other.node))
+			return false;
+		return true;
 	}
 
 	/**

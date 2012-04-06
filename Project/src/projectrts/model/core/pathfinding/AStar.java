@@ -56,13 +56,13 @@ public class AStar {
 			Collections.sort(openList);
 			AStarNode currentNode = openList.get(0);
 			
-			if (currentNode.sameNodeAs(endNode))
+			if (currentNode.equals(endNode))
 			{
 				// path complete
 				AStarPath path = new AStarPath();
 				AStarNode nextNode = currentNode;
 				
-				while (!nextNode.sameNodeAs(startNode))
+				while (!nextNode.equals(startNode))
 				{
 					path.addNodeToPath(nextNode);
 					nextNode = nextNode.getParent();
@@ -72,11 +72,12 @@ public class AStar {
 			}
 			else
 			{
+				// http://www.policyalmanac.org/games/aStarTutorial.htm
+				
 				// move current node to the closed list
-				openList.remove(currentNode);
+				openList.remove(0);
 				closedList.add(currentNode);
 				
-				System.out.println(closedList.size());
 				// examine each node adjacent to the current node
 				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
 				for (AStarNode node : adjacentNodes)
@@ -85,7 +86,6 @@ public class AStar {
 					{
 						if (!closedList.contains(node)) // and not on closed list
 						{
-							//System.out.println(node.getPosition() + " " + node.isObstacle());
 							if (!node.isObstacle()) // and not an obstacle
 							{
 								// move to open list and calculate cost
