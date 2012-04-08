@@ -58,17 +58,7 @@ public class AStar {
 			
 			if (currentNode.equals(endNode))
 			{
-				// path complete
-				AStarPath path = new AStarPath();
-				AStarNode nextNode = currentNode;
-				
-				while (!nextNode.equals(startNode))
-				{
-					path.addNodeToPath(nextNode);
-					nextNode = nextNode.getParent();
-				}
-				
-				return path;
+				return generatePath(startNode, currentNode);
 			}
 			else
 			{
@@ -77,6 +67,7 @@ public class AStar {
 				// move current node to the closed list
 				openList.remove(0);
 				closedList.add(currentNode);
+				System.out.println(closedList.size());
 				
 				// examine each node adjacent to the current node
 				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
@@ -99,6 +90,22 @@ public class AStar {
 		}
 		
 		// path not found, return empty path
-		return new AStarPath();
+		//return new AStarPath();
+		Collections.sort(closedList);
+		return generatePath(startNode, closedList.get(0));
+	}
+	
+	public AStarPath generatePath(AStarNode startNode, AStarNode endNode)
+	{
+		AStarPath path = new AStarPath();
+		AStarNode nextNode = endNode;
+		
+		while (!nextNode.equals(startNode))
+		{
+			path.addNodeToPath(nextNode);
+			nextNode = nextNode.getParent();
+		}
+		
+		return path;
 	}
 }
