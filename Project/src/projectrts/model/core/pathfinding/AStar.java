@@ -91,7 +91,7 @@ public class AStar {
 		
 		// path not found, return empty path
 		//return new AStarPath();
-		Collections.sort(closedList);
+		Collections.sort(closedList, AStarNode.getHeuristicComparator());
 		return generatePath(startNode, closedList.get(0));
 	}
 	

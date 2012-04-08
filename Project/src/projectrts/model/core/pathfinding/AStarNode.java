@@ -1,6 +1,7 @@
 package projectrts.model.core.pathfinding;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import projectrts.model.core.Position;
@@ -87,6 +88,14 @@ public class AStarNode implements Comparable<AStarNode> {
 	}
 	
 	/**
+	 * @return The heuristic of the node.
+	 */
+	public int getHeuristic()
+	{
+		return heuristic;
+	}
+	
+	/**
 	 * @return Position of the node.
 	 */
 	public Position getPosition()
@@ -100,6 +109,17 @@ public class AStarNode implements Comparable<AStarNode> {
 	public AStarNode getParent()
 	{
 		return parent;
+	}
+	
+	public static Comparator<AStarNode> getHeuristicComparator()
+	{
+		return new Comparator<AStarNode>() {
+
+			@Override
+			public int compare(AStarNode o1, AStarNode o2) {
+				return Integer.compare(o1.getHeuristic(), o2.getHeuristic());
+			}
+		};
 	}
 	
 	@Override
