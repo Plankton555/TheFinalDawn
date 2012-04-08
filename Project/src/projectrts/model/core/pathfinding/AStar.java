@@ -48,6 +48,11 @@ public class AStar {
 		List<AStarNode> openList = new ArrayList<AStarNode>();
 		List<AStarNode> closedList = new ArrayList<AStarNode>();
 		
+		if (endNode.isObstacle())
+		{
+			// TODO Plankton: Find some faster way to do it.
+		}
+		
 		// A* algorithm starts here
 		openList.add(startNode);
 		while (openList.size() > 0) // while open list is not empty
@@ -67,7 +72,6 @@ public class AStar {
 				// move current node to the closed list
 				openList.remove(0);
 				closedList.add(currentNode);
-				System.out.println(closedList.size());
 				
 				// examine each node adjacent to the current node
 				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
@@ -90,12 +94,14 @@ public class AStar {
 		}
 		
 		// path not found, return empty path
-		//return new AStarPath();
+		return new AStarPath();
+		/*
 		Collections.sort(closedList, AStarNode.getHeuristicComparator());
 		return generatePath(startNode, closedList.get(0));
+		*/
 	}
 	
-	public AStarPath generatePath(AStarNode startNode, AStarNode endNode)
+	private AStarPath generatePath(AStarNode startNode, AStarNode endNode)
 	{
 		AStarPath path = new AStarPath();
 		AStarNode nextNode = endNode;
