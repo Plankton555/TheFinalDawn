@@ -20,6 +20,8 @@ public class MoveAbility extends AbstractAbility {
 	
 	private AStar aStar;
 	private AStarPath path;
+	private float pathRefreshInterval = 1; // refreshes path every second
+	private float timeSincePathRefresh = pathRefreshInterval;
 	
 	/**
 	 * Creates a new instance of this ability.
@@ -38,6 +40,9 @@ public class MoveAbility extends AbstractAbility {
 		this.entity = entity;
 		this.targetPosition = pos;
 		
+		// Want to refresh path as soon as a click is made
+		this.timeSincePathRefresh = pathRefreshInterval;
+		
 		//TODO: Are these needed?
 		setActive(true);
 		setFinished(false);
@@ -47,8 +52,7 @@ public class MoveAbility extends AbstractAbility {
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			
-			double stepSize = P.INSTANCE.getUnitLength()*tpf;
-			entity.setPosition(determineNextStep(stepSize, entity, targetPosition));
+			entity.setPosition(determineNextStep(tpf, entity, targetPosition));
 			if (entity.getPosition().equals(targetPosition))
 			{
 				setFinished(true);
@@ -64,10 +68,19 @@ public class MoveAbility extends AbstractAbility {
 	 * @param targetPos The position that the entity will move towards.
 	 * @return Position of next step.
 	 */
-	private Position determineNextStep(double stepLength, PlayerControlledEntity entity, Position targetPos)
+	private Position determineNextStep(float tpf, PlayerControlledEntity entity, Position targetPos)
 	{
-		// TODO Don't update the path every update.
-		path = aStar.calculatePath(entity.getPosition(), targetPos);
+		double stepLength = P.INSTANCE.getUnitLength()*tpf;
+		
+		if (timeSincePathRefresh >= pathRefreshInterval)
+		{
+			path = aStar.calculatePath(entity.getPosition(), targetPos);
+			timeSincePathRefresh = 0;
+		}
+		else
+		{
+			timeSincePathRefresh += tpf;
+		}
 		
 		Position outputPos = entity.getPosition();
 		
