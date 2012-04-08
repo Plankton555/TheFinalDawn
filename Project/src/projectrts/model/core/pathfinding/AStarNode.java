@@ -53,19 +53,8 @@ public class AStarNode implements Comparable<AStarNode> {
 		Position mePos = this.getPosition();
 		Position parPos = parentNode.getPosition();
 		Position endPos = endNode.getPosition();
-		int distance = 0;
-		if (mePos.getX() == parPos.getX() && mePos.getY() == parPos.getY())
-		{
-			distance = 0;
-		}
-		else if (mePos.getX() != parPos.getX() && mePos.getY() != parPos.getY())
-		{
-			distance = 14; //diagonal: sqrt(2) ~= 1.4
-		}
-		else
-		{
-			distance = 10;
-		}
+		int distance = calcNodeDistance(mePos, parPos);
+		
 		this.costFromStart = (int) Math.round(parentNode.getCostFromStart() + distance*node.getCost());
 		this.heuristic = ((int) (Math.abs(endPos.getX() - mePos.getX()) + Math.abs(endPos.getY() - mePos.getY())))*10;
 		this.totalCost = this.costFromStart + this.heuristic;
@@ -80,19 +69,7 @@ public class AStarNode implements Comparable<AStarNode> {
 	{
 		Position mePos = this.getPosition();
 		Position parPos = parentNode.getPosition();
-		int distance = 0;
-		if (mePos.getX() == parPos.getX() && mePos.getY() == parPos.getY())
-		{
-			distance = 0;
-		}
-		else if (mePos.getX() != parPos.getX() && mePos.getY() != parPos.getY())
-		{
-			distance = 14; //diagonal: sqrt(2) ~= 1.4
-		}
-		else
-		{
-			distance = 10;
-		}
+		int distance = calcNodeDistance(mePos, parPos);
 		
 		int newCostFromStart = (int) Math.round(parentNode.getCostFromStart() + distance*node.getCost());
 		if (newCostFromStart < this.costFromStart)
@@ -103,6 +80,24 @@ public class AStarNode implements Comparable<AStarNode> {
 		}
 	}
 	
+	// Calculates "A*" distance between two adjacent nodes.
+	private int calcNodeDistance(Position pos1, Position pos2) {
+		int distance = 0;
+		if (pos1.getX() == pos2.getX() && pos1.getY() == pos2.getY())
+		{
+			distance = 0;
+		}
+		else if (pos1.getX() != pos2.getX() && pos1.getY() != pos2.getY())
+		{
+			distance = 14; //diagonal: sqrt(2) ~= 1.4
+		}
+		else
+		{
+			distance = 10;
+		}
+		return distance;
+	}
+
 	/**
 	 * @return The total cost from the start node.
 	 */
