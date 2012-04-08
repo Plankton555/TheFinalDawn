@@ -43,6 +43,7 @@ public class AStar {
 	 */
 	public AStarPath calculatePath(Position startPos, Position targetPos)
 	{
+		// TODO Plankton: Use threads or something to not "freeze" the game when calculating?
 		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
 		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
 		List<AStarNode> openList = new ArrayList<AStarNode>();
@@ -51,6 +52,8 @@ public class AStar {
 		if (endNode.isObstacle())
 		{
 			// TODO Plankton: Find some faster way to do it.
+			// Find the walkable node that's the closest to endNode.
+			// If there are more than one, pick the one with the shortest path from the player.
 		}
 		
 		// A* algorithm starts here

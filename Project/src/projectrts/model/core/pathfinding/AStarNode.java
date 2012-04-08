@@ -56,7 +56,9 @@ public class AStarNode implements Comparable<AStarNode> {
 		int distance = calcNodeDistance(mePos, parPos);
 		
 		this.costFromStart = (int) Math.round(parentNode.getCostFromStart() + distance*node.getCost());
-		this.heuristic = ((int) (Math.abs(endPos.getX() - mePos.getX()) + Math.abs(endPos.getY() - mePos.getY())))*10;
+		// Calculating heuristic using the "Manhattan" distance
+		this.heuristic = ((int) (Math.abs(endPos.getX() - mePos.getX()) +
+				Math.abs(endPos.getY() - mePos.getY())))*10;
 		this.totalCost = this.costFromStart + this.heuristic;
 		this.parent = parentNode;
 	}
