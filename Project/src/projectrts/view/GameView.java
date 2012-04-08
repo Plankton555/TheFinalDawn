@@ -1,7 +1,5 @@
 package projectrts.view;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import projectrts.controller.controls.MoveControl;
@@ -12,19 +10,12 @@ import projectrts.global.utils.TextureManager;
 import projectrts.global.utils.Utils;
 import projectrts.model.core.entities.*;
 import projectrts.model.core.IGame;
-import projectrts.model.core.IPlayer;
-import projectrts.model.core.Player;
-import projectrts.model.core.Position;
-
 import com.jme3.app.SimpleApplication;
-import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
-import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import com.jme3.terrain.geomipmap.TerrainLodControl;
 import com.jme3.terrain.geomipmap.TerrainQuad;

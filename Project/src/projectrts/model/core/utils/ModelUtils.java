@@ -5,7 +5,6 @@ import java.util.List;
 import projectrts.model.core.EntityManager;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.IEntity;
-import projectrts.model.core.entities.IPlayerControlledEntity;
 import projectrts.model.core.entities.NonPlayerControlledEntity;
 import projectrts.model.core.entities.PlayerControlledEntity;
 

@@ -15,6 +15,7 @@ public class GameModel implements IGame {
 	private World world = new World(P.INSTANCE.getWorldHeight(), P.INSTANCE.getWorldWidth());
 	private EntityManager entityManager = EntityManager.getInstance();
 	private Player humanPlayer = new Player();
+	// TODO Plankton: Implement some sort of AI
 	private Player aiPlayer = new Player();
 	
 	static {

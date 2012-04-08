@@ -1,15 +1,10 @@
 package projectrts.model.core;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-import projectrts.model.core.entities.AbstractEntity;
 import projectrts.model.core.entities.IEntity;
-import projectrts.model.core.entities.IPlayerControlledEntity;
 import projectrts.model.core.entities.PlayerControlledEntity;
-import projectrts.model.core.entities.Unit;
 import projectrts.model.core.utils.ModelUtils;
 
 /**

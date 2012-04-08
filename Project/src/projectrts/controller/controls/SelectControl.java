@@ -1,8 +1,5 @@
 package projectrts.controller.controls;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
 import projectrts.global.utils.Utils;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.IEntity;

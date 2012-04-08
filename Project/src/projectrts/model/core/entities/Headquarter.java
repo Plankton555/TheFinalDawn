@@ -3,7 +3,6 @@ package projectrts.model.core.entities;
 import projectrts.model.core.EntityFactory;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
-import projectrts.model.core.abilities.AttackAbility;
 import projectrts.model.core.abilities.TrainWorkerAbility;
 /**
  * 

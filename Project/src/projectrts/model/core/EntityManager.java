@@ -8,8 +8,6 @@ import javax.vecmath.Vector2d;
 import projectrts.model.core.entities.AbstractEntity;
 import projectrts.model.core.entities.IEntity;
 import projectrts.model.core.entities.IPlayerControlledEntity;
-import projectrts.model.core.entities.NonPlayerControlledEntity;
-import projectrts.model.core.entities.PlayerControlledEntity;
 
 /**
  * The singleton entity manager.

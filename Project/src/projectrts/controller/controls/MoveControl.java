@@ -1,8 +1,5 @@
 package projectrts.controller.controls;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
 import projectrts.global.utils.Utils;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.IEntity;
@@ -11,7 +8,6 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.Spatial.CullHint;
 import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
 

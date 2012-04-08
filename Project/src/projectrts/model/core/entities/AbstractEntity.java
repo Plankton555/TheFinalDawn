@@ -1,9 +1,5 @@
 package projectrts.model.core.entities;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
-
-import projectrts.model.core.Player;
 import projectrts.model.core.Position;
 
 /**
