@@ -1,4 +1,8 @@
+<<<<<<< HEAD:Project/src/projectrts/view/controls/MoveControl.java
 package projectrts.view.controls;
+=======
+package projectrts.controller.controls;
+>>>>>>> Fixed warnings in code (mostly unused import):Project/src/projectrts/controller/controls/MoveControl.java
 
 import projectrts.global.utils.Utils;
 import projectrts.model.core.Position;
@@ -8,6 +12,10 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
+<<<<<<< HEAD:Project/src/projectrts/view/controls/MoveControl.java
+=======
+import com.jme3.scene.control.AbstractControl;
+>>>>>>> Fixed warnings in code (mostly unused import):Project/src/projectrts/controller/controls/MoveControl.java
 import com.jme3.scene.control.Control;
 
 /**
