@@ -69,7 +69,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	public void takeDamage(int amount){
 		if(amount>=health){
 			health = 0;
-			//TODO: Set dead? Send event?
+			//TODO Anyone: Set dead? Send event?
 		} else {
 			health -= amount;
 		}
@@ -91,7 +91,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	
 	@Override
 	public float getSightRange() {
-		// TODO Auto-generated method stub
+		// TODO Anyone: Implement PCE.getSightRange()
 		return 0;
 	}
 

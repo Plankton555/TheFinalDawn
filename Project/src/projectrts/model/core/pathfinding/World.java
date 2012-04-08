@@ -68,7 +68,7 @@ public class World {
 	 */
 	public Node[][] getNodes()
 	{
-		// TODO Return a shallow copy?
+		// TODO Plankton: Return a shallow copy?
 		return nodes;
 	}
 	
@@ -79,7 +79,7 @@ public class World {
 	 */
 	public Node getNodeAt(Position p)
 	{
-		// TODO Make sure that the position is legal.
+		// TODO Plankton: Make sure that the position is legal.
 		int x = (int)p.getX();
 		int y = (int)p.getY();
 		return nodes[y][x];

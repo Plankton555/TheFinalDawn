@@ -18,7 +18,6 @@ import projectrts.model.core.utils.ModelUtils;
  */
 public class Player implements IPlayer {
 
-	// TODO Change this list to a set?
 	private List<PlayerControlledEntity> selectedEntities = new ArrayList<PlayerControlledEntity>();
 	private int resources;
 	
@@ -26,14 +25,14 @@ public class Player implements IPlayer {
 	 * Constructs a player
 	 */
 	public Player(){
-		//TODO: Temp test unit
+		// TODO Anyone: Remove this test unit?
 		//units.add(new Unit(new Position(10,10), this));
-		resources=0; //TODO: Decide starting amount of resources
+		resources=0; //TODO Anyone: Decide starting amount of resources
 	}
 	
 	@Override
 	public void select(Position pos) {
-		//TODO: Add support for selection of multiple units and enemy units
+		//TODO Anyone: Add support for selection of multiple units and enemy units
 		selectedEntities.clear();
 		
 		/*

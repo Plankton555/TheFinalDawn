@@ -13,7 +13,7 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
-//TODO Check if MoveControl could be used instead of this class.
+//TODO Markus: Check if MoveControl could be used instead of this class.
 /**
  * A custom Control that handles selected-spatial's movement.
  * Currently is no different from MoveControl and is probably redundant.

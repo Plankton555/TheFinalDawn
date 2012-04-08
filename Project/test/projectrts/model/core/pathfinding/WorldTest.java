@@ -82,7 +82,7 @@ public class WorldTest {
 		Collections.sort(allNodes, comparatorDistance);
 		assertTrue(allNodes.get(0) == node);
 		
-		// TODO Test illegal positions!
+		// TODO Plankton: Test illegal positions!
 	}
 
 	/*

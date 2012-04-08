@@ -27,30 +27,30 @@ public class Structure extends PlayerControlledEntity {
 	
 	@Override
 	public float getSize() {
-		// TODO Change this later
+		// TODO Afton: Change Structure.getSize() later
 		return 1;
 	}
 
 	@Override
 	public void update(float tpf){
-		//TODO: Add a micro AI for attacking the structure has offensive abilities
+		// TODO Afton: Add a micro AI for attacking the structure has offensive abilities
 	}
 
 	@Override
 	public String getName() {
-		// TODO Change name
+		// TODO Afton: Change name in Structure.getName()
 		return "Basic Structure";
 	}
 
 	@Override
 	public float getSightRange() {
-		// TODO Change this later
+		// TODO Afton: Change Structure.getSightRange() later
 		return 10;
 	}
 
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
-		// TODO Auto-generated method stub
+		// TODO Afton: Implement Structure.createPCE()
 		return null;
 	}
 	

@@ -60,9 +60,9 @@ public class Node {
 	/**
 	 * Updates the distance to the nearest obstacle.
 	 */
-	public void updateDistanceToObstaccle()
+	public void updateDistanceToObstacle()
 	{
-		// TODO Implement this algorithm
+		// TODO Plankton: Implement Node.updateDistanceToObstacle()
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public class Node {
 	 */
 	public List<Node> getNeighbours()
 	{
-		// TODO Return shallow copy
+		// TODO Plankton: Return shallow copy
 		return neighbours;
 	}
 	

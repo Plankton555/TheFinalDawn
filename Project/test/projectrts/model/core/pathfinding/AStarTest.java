@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class AStarTest {
 
-	// TODO Test A* class!
+	// TODO Plankton: Test A* class!
 	@Test
 	public void testInitialize() {
 		fail("Not yet implemented");

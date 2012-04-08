@@ -33,7 +33,7 @@ public class PlayerTest {
 		assertTrue(player.getSelectedEntities().size() == 0);
 	}
 
-	//TODO: Fix with EntityManager
+	//TODO Anyone: Fix with EntityManager
 	/*
 	@Test
 	public void testMoveSelected() {

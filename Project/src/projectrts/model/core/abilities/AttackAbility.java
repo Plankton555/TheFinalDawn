@@ -30,7 +30,7 @@ public class AttackAbility extends AbstractAbility {
 		this.attacker = attacker;
 		target = ModelUtils.INSTANCE.getPlayerControlledEntityAtPosition(pos);
 		
-		//TODO: Are these needed?
+		//TODO Afton: Are these needed?
 		setActive(true);
 		setFinished(false);
 		
@@ -66,7 +66,7 @@ public class AttackAbility extends AbstractAbility {
 					
 					this.setAbilityUsed();
 					
-					//TODO: Not setting finnished = true?
+					//TODO Afton: Not setting finished = true?
 					
 				}
 			}

@@ -32,7 +32,7 @@ public class BuildTowerAbility extends AbstractAbility {
 		
 		this.setAbilityUsed();
 		
-		//TODO: Check if the position is buildable (nothing else there)
+		//TODO Afton: Check if the position is buildable (nothing else there)
 	}
 
 	@Override

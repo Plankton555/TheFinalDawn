@@ -43,7 +43,7 @@ public class MoveAbility extends AbstractAbility {
 		// Want to refresh path as soon as a click is made
 		this.timeSincePathRefresh = pathRefreshInterval;
 		
-		//TODO: Are these needed?
+		//TODO Afton: Are these needed?
 		setActive(true);
 		setFinished(false);
 	}
@@ -109,7 +109,7 @@ public class MoveAbility extends AbstractAbility {
 		return outputPos;
 	}
 
-	// TODO Remove this when no longer needed
+	// TODO Anyone: Remove old determinePath() when no longer needed
 	/*
 	private Position determinePath(Position target, float tpf){
 		// Extremely simple path algorithm

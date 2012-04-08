@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class AStarPathTest {
 
-	// TODO Test A*-path!
+	// TODO Plankton: Test A*-path!
 	@Test
 	public void testAddNodeToPath() {
 		fail("Not yet implemented");

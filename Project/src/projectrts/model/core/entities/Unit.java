@@ -49,7 +49,7 @@ public class Unit extends PlayerControlledEntity {
 
 	@Override
 	public float getSize() {
-		// TODO Change this later
+		// TODO Anyone: Change Unit.getSize() later
 		return 1;
 		
 	}
@@ -87,13 +87,13 @@ public class Unit extends PlayerControlledEntity {
 
 	@Override
 	public String getName() {
-		//TODO: Fix name
+		//TODO Afton: Fix name
 		return "Basic unit";
 	}
 	
 	@Override
 	public float getSightRange() {
-		// TODO Change this later
+		// TODO Afton: Change Unit.getSightRange() later
 		return 10;
 	}
 

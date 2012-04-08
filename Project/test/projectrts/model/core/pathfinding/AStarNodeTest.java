@@ -8,7 +8,7 @@ import projectrts.model.core.Position;
 
 public class AStarNodeTest {
 
-	// TODO Test A*-node!
+	// TODO Plankton: Test A*-node!
 
 	@Test
 	public void testGetNeighbours() {
