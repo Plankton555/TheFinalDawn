@@ -77,15 +77,19 @@ public class AStar {
 				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
 				for (AStarNode node : adjacentNodes)
 				{
-					if (!openList.contains(node)) // if not on open list
+					if (!node.isObstacle()) // if not an obstacle
 					{
 						if (!closedList.contains(node)) // and not on closed list
 						{
-							if (!node.isObstacle()) // and not an obstacle
+							if (!openList.contains(node)) // and not on open list
 							{
 								// move to open list and calculate cost
 								openList.add(node);
 								node.calculateCost(currentNode, endNode);
+							}
+							else // if on open list, check to see if new path is better
+							{
+								node.refreshCost(currentNode);
 							}
 						}
 					}

@@ -45,7 +45,8 @@ public class AStarNode implements Comparable<AStarNode> {
 	
 	/**
 	 * Calculated the cost for this node.
-	 * @param cost Cost
+	 * @param parentNode Parent node
+	 * @param endNode End node (used to calculate heuristic)
 	 */
 	public void calculateCost(AStarNode parentNode, AStarNode endNode)
 	{
@@ -70,11 +71,42 @@ public class AStarNode implements Comparable<AStarNode> {
 		this.totalCost = this.costFromStart + this.heuristic;
 		this.parent = parentNode;
 	}
+
+	/**
+	 * Refreshes the cost from start for this node.
+	 * @param parentNode Parent node
+	 */
+	public void refreshCost(AStarNode parentNode)
+	{
+		Position mePos = this.getPosition();
+		Position parPos = parentNode.getPosition();
+		int distance = 0;
+		if (mePos.getX() == parPos.getX() && mePos.getY() == parPos.getY())
+		{
+			distance = 0;
+		}
+		else if (mePos.getX() != parPos.getX() && mePos.getY() != parPos.getY())
+		{
+			distance = 14; //diagonal: sqrt(2) ~= 1.4
+		}
+		else
+		{
+			distance = 10;
+		}
+		
+		int newCostFromStart = (int) Math.round(parentNode.getCostFromStart() + distance*node.getCost());
+		if (newCostFromStart < this.costFromStart)
+		{
+			this.costFromStart = newCostFromStart;
+			this.totalCost = this.costFromStart + this.heuristic;
+			this.parent = parentNode;
+		}
+	}
 	
 	/**
 	 * @return The total cost from the start node.
 	 */
-	public double getCostFromStart()
+	public int getCostFromStart()
 	{
 		return costFromStart;
 	}
