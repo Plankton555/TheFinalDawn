@@ -101,11 +101,11 @@ public class AStar {
 		}
 		
 		// path not found, return empty path
-		return new AStarPath();
-		/*
+		//return new AStarPath();
+		
 		Collections.sort(closedList, AStarNode.getHeuristicComparator());
-		return generatePath(startNode, closedList.get(0));
-		*/
+		return generatePath(startNode, closedList.get(1));
+		// the second element in closedList since the first one is the start node
 	}
 	
 	private AStarPath generatePath(AStarNode startNode, AStarNode endNode)
