@@ -127,8 +127,7 @@ public class AStar {
 			}
 		}
 		
-		// path not found, return empty path
-		//return new AStarPath();
+		// path not found, return path to the closest node instead.
 		
 		Collections.sort(closedList, AStarNode.getHeuristicComparator());
 		return generatePath(startNode, closedList.get(1));

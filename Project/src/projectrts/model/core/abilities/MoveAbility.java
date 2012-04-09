@@ -55,6 +55,9 @@ public class MoveAbility extends AbstractAbility {
 			entity.setPosition(determineNextStep(tpf, entity, targetPosition));
 			if (entity.getPosition().equals(targetPosition))
 			{
+				// TODO Anyone: This will probably never happen since A* goes to the position of
+				// the closest node of targetPosition, and not targetPosition itself. Maybe use
+				// the closest node's position instead?..
 				setFinished(true);
 			}
 			
