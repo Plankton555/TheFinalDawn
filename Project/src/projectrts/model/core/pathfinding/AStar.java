@@ -51,11 +51,35 @@ public class AStar {
 		
 		if (endNode.isObstacle())
 		{
-			List<AStarNode> endOpenList = new ArrayList<AStarNode>();
+			// Use A* "backwards" from the end node to find the closest walkable node.
+			// Probably not the best way of dealing with it, but it will do for now.
 			List<AStarNode> endClosedList = new ArrayList<AStarNode>();
-			// TODO Plankton: Find some faster way to do it.
-			// Find the walkable node that's the closest to endNode.
-			// If there are more than one, pick the one with the shortest path from the player.
+			List<AStarNode> endOpenList = new ArrayList<AStarNode>();
+			endOpenList.add(endNode);
+			while (endOpenList.size() > 0)
+			{
+				Collections.sort(endOpenList);
+				AStarNode currentNode = endOpenList.get(0);
+				
+				if (!currentNode.isObstacle())
+				{
+					endNode = currentNode;
+					break;
+				}
+				endOpenList.remove(currentNode);
+				endClosedList.add(currentNode);
+				
+				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
+				for (AStarNode node : adjacentNodes)
+				{
+					if (!endOpenList.contains(node) && !endClosedList.contains(node))
+					{
+						endOpenList.add(node);
+						node.calculateCostFromStart(currentNode, false);
+						node.calculateHeuristic(startNode);
+					}
+				}
+			}
 		}
 		
 		// A* algorithm starts here
