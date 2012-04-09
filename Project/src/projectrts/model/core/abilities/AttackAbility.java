@@ -60,7 +60,7 @@ public class AttackAbility extends AbstractAbility {
 			} else {
 				//In range
 				if(getRemainingCooldown()<=0){
-					//TODO: The amount of dmg should be attacker.getDamage()
+					//TODO Afton: The amount of dmg should be attacker.getDamage()
 				
 					target.takeDamage(50);
 					
