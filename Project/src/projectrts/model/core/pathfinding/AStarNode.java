@@ -14,7 +14,6 @@ import projectrts.model.core.Position;
 public class AStarNode implements Comparable<AStarNode> {
 	
 	private Node node;
-	private int totalCost = 0;
 	private int costFromStart;
 	private int heuristic;
 	private AStarNode parent;
@@ -48,36 +47,34 @@ public class AStarNode implements Comparable<AStarNode> {
 	 * @param parentNode Parent node
 	 * @param endNode End node (used to calculate heuristic)
 	 */
-	public void calculateCost(AStarNode parentNode, AStarNode endNode)
+	public void calculateHeuristic(AStarNode endNode)
 	{
 		Position mePos = this.getPosition();
-		Position parPos = parentNode.getPosition();
 		Position endPos = endNode.getPosition();
-		int distance = calcNodeDistance(mePos, parPos);
-		
-		this.costFromStart = (int) Math.round(parentNode.getCostFromStart() + distance*node.getCost());
 		// Calculating heuristic using the "Manhattan" distance
 		this.heuristic = ((int) (Math.abs(endPos.getX() - mePos.getX()) +
 				Math.abs(endPos.getY() - mePos.getY())))*10;
-		this.totalCost = this.costFromStart + this.heuristic;
-		this.parent = parentNode;
 	}
 
 	/**
 	 * Refreshes the cost from start for this node.
 	 * @param parentNode Parent node
 	 */
-	public void refreshCost(AStarNode parentNode)
+	public void calculateCostFromStart(AStarNode parentNode, boolean refresh)
 	{
 		Position mePos = this.getPosition();
 		Position parPos = parentNode.getPosition();
 		int distance = calcNodeDistance(mePos, parPos);
 		
 		int newCostFromStart = (int) Math.round(parentNode.getCostFromStart() + distance*node.getCost());
-		if (newCostFromStart < this.costFromStart)
+		if (refresh && newCostFromStart < this.costFromStart)
 		{
 			this.costFromStart = newCostFromStart;
-			this.totalCost = this.costFromStart + this.heuristic;
+			this.parent = parentNode;
+		} // TODO Plankton: Can this if statement be shorter?..
+		else
+		{
+			this.costFromStart = newCostFromStart;
 			this.parent = parentNode;
 		}
 	}
@@ -113,7 +110,7 @@ public class AStarNode implements Comparable<AStarNode> {
 	 */
 	public int getTotalCost()
 	{
-		return totalCost;
+		return this.costFromStart + this.heuristic;
 	}
 	
 	/**

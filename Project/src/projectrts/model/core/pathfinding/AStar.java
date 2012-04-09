@@ -51,6 +51,8 @@ public class AStar {
 		
 		if (endNode.isObstacle())
 		{
+			List<AStarNode> endOpenList = new ArrayList<AStarNode>();
+			List<AStarNode> endClosedList = new ArrayList<AStarNode>();
 			// TODO Plankton: Find some faster way to do it.
 			// Find the walkable node that's the closest to endNode.
 			// If there are more than one, pick the one with the shortest path from the player.
@@ -88,11 +90,12 @@ public class AStar {
 							{
 								// move to open list and calculate cost
 								openList.add(node);
-								node.calculateCost(currentNode, endNode);
+								node.calculateCostFromStart(currentNode, false);
+								node.calculateHeuristic(endNode);
 							}
 							else // if on open list, check to see if new path is better
 							{
-								node.refreshCost(currentNode);
+								node.calculateCostFromStart(currentNode, true);
 							}
 						}
 					}
