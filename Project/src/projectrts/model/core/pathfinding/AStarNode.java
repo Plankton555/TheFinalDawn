@@ -43,9 +43,8 @@ public class AStarNode implements Comparable<AStarNode> {
 	}
 	
 	/**
-	 * Calculated the cost for this node.
-	 * @param parentNode Parent node
-	 * @param endNode End node (used to calculate heuristic)
+	 * Calculates the heuristic from this node to the end node.
+	 * @param endNode End node
 	 */
 	public void calculateHeuristic(AStarNode endNode)
 	{
@@ -57,8 +56,10 @@ public class AStarNode implements Comparable<AStarNode> {
 	}
 
 	/**
-	 * Refreshes the cost from start for this node.
+	 * Calculates the cost from start for this node.
 	 * @param parentNode Parent node
+	 * @param refresh If true, overwrites the old result only if the new result is better.
+	 * If false, overwrites the old result no matter what.
 	 */
 	public void calculateCostFromStart(AStarNode parentNode, boolean refresh)
 	{
