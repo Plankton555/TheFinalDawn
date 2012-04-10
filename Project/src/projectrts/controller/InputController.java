@@ -10,6 +10,7 @@ import projectrts.model.core.P;
 import projectrts.model.core.Position;
 import projectrts.model.core.abilities.IAbility;
 import projectrts.model.core.entities.IEntity;
+import projectrts.model.core.entities.IPlayerControlledEntity;
 import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.view.GameView;
 
@@ -258,19 +259,32 @@ public class InputController {
         	Screen screen = view.getNifty().getScreen("Screen_ID");
     	
     	
-	    	//Loops through every button and sets its attributes
-	    	for(int i = 1; i<=8; i++){
-	    		Element button = screen.findElementByName("Button_Ability_" + i);
-	    		if(button != null){
-			    	if(selectedEntities.size() > 0){
-			    		//button.setVisibleToMouseEvents(true);
-			    		button.setVisible(true);
-			    	} else {
-			    		button.setVisible(false);
-			
-			    	}
-	    		}
-	    	}
+        	boolean oneIsSelected = selectedEntities.size()==1;
+        	List<IAbility> abilities = null;
+        
+        	
+        	if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
+        		IPlayerControlledEntity pce = (IPlayerControlledEntity) selectedEntities.get(0);
+        		abilities = pce.getAbilities();
+        	}
+        	
+        	//Loops through every button and sets its attributes
+        	for(int i = 0; i<8; i++){
+        		Element button = screen.findElementByName("Button_Ability_" + (i+1));
+      
+        		if(button != null){
+        			
+    		    	if(abilities != null && i<abilities.size()){
+    		    		//button.setVisibleToMouseEvents(true);
+    		    		
+    		    		button.setVisible(true);
+    		    		
+    		    	} else {
+    		    		button.setVisible(false);
+    		    	}
+        		}
+
+        	}
         }
     };
     

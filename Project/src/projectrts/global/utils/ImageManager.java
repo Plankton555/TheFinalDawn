@@ -2,6 +2,10 @@ package projectrts.global.utils;
 
 import java.util.HashMap;
 
+import projectrts.model.core.abilities.AttackAbility;
+import projectrts.model.core.abilities.MoveAbility;
+import projectrts.model.core.abilities.OffensiveSpellAbility;
+
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.render.NiftyRenderEngine;
@@ -21,10 +25,9 @@ public enum ImageManager {
 	public void initializeImages(Nifty nifty){
 		NiftyRenderEngine engine = nifty.getRenderEngine();
 
-		images.put("Move", engine.createImage("assets/gui/MoveAbility.bmp", true));
-		images.put("Attack", engine.createImage("/assets/gui/AttackAbility.bmp", false));
-		images.put("Offensive Spell", engine.createImage("/assets/gui/OffensiveSpellAbility.bmp", false));
-		
+		images.put(MoveAbility.class.getSimpleName(), engine.createImage("assets/gui/MoveAbility.bmp", true));
+		images.put(AttackAbility.class.getSimpleName(), engine.createImage("/assets/gui/AttackAbility.bmp", false));
+		images.put(OffensiveSpellAbility.class.getSimpleName(), engine.createImage("/assets/gui/OffensiveSpellAbility.bmp", false));
 	}
 	
 	

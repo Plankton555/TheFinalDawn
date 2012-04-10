@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import projectrts.global.constants.Constants;
+import projectrts.global.utils.ImageManager;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.core.IGame;
@@ -207,6 +208,8 @@ public class GameView{
 	    nifty.loadStyleFile("nifty-default-styles.xml");
 	    nifty.loadControlFile("nifty-default-controls.xml");
 	 
+	    ImageManager.INSTANCE.initializeImages(nifty);
+	    
 	    // <screen>
 	    nifty.addScreen("Screen_ID", new ScreenBuilder("GUI Screen"){{
 	        controller(new DefaultScreenController()); // Screen properties       
@@ -253,21 +256,29 @@ public class GameView{
 			                control(new ButtonBuilder("Button_Ability_1"){{
 			                    width("25%");
 			                    height("100%");
+			                    visible(false);
+			                    focusable(false);
 			                }});
 			 
 			                control(new ButtonBuilder("Button_Ability_2"){{
 			                    width("25%");
 			                    height("100%");
+			                    visible(false);
+			                    focusable(false);
 			                }});
 			                
 			                control(new ButtonBuilder("Button_Ability_3"){{
 			                    width("25%");
 			                    height("100%");
+			                    visible(false);
+			                    focusable(false);
 			                }});
 			 
 			                control(new ButtonBuilder("Button_Ability_4"){{
 			                    width("25%");
 			                    height("100%");
+			                    visible(false);
+			                    focusable(false);
 			                }});  
 			                
 		               }});    
@@ -282,21 +293,29 @@ public class GameView{
 			                control(new ButtonBuilder("Button_Ability_5"){{
 			                    width("25%");
 			                    height("100%");
+			                    visible(false);
+			                    focusable(false);
 			                }});  
 			                
 			                control(new ButtonBuilder("Button_Ability_6"){{
 			                    width("25%");
 			                    height("100%");
+			                    visible(false);
+			                    focusable(false);
 			                }});  
 			                
 			                control(new ButtonBuilder("Button_Ability_7"){{
 			                    width("25%");
 			                    height("100%");
+			                    visible(false);
+			                    focusable(false);
 			                }});  
 			                
 			                control(new ButtonBuilder("Button_Ability_8"){{
 			                    width("25%");
 			                    height("100%");
+			                    visible(false);
+			                    focusable(false);
 			                }});  
 	                
 		               }});
