@@ -47,6 +47,7 @@ public class GameView{
     private Material matTerrain;
     private TerrainQuad terrain;
     private float mod = Constants.INSTANCE.getModelToWorld(); // The modifier value for converting lengths between model and world.
+    private Nifty nifty;
 	
 	public GameView(SimpleApplication app, IGame model) {
 		this.app = app;
@@ -161,7 +162,7 @@ public class GameView{
 		
 		NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
 	            app.getAssetManager(), app.getInputManager(), app.getAudioRenderer(), app.getGuiViewPort());
-	    Nifty nifty = niftyDisplay.getNifty();
+	    nifty = niftyDisplay.getNifty();
 	    app.getGuiViewPort().addProcessor(niftyDisplay);
 	    app.getFlyByCamera().setDragToRotate(true);
 	    //flyCam.setDragToRotate(true);
@@ -189,7 +190,7 @@ public class GameView{
 	            
 	 
 	            // <panel>
-	            panel(new PanelBuilder("Panel_ID") {{
+	            panel(new PanelBuilder("Panel_GUI") {{
 	               childLayoutHorizontal(); // panel properties, add more...  
 	               backgroundColor("#f00f"); 
 		           height("20%");
@@ -197,13 +198,13 @@ public class GameView{
 	               
 	 
 	                // GUI elements
-	                control(new ButtonBuilder("Button_ID1", "Hello Nifty"){{
+	                control(new ButtonBuilder("Button_1", "Hello Nifty"){{
 
 	                    height("40%");
 	                    width("15%");
 	                }});
 	 
-	                control(new ButtonBuilder("Button_ID2", "Hello Nifty 2"){{
+	                control(new ButtonBuilder("Button_2", "Hello Nifty 2"){{
 
 	                    height("40%");
 	                    width("15%");
@@ -220,6 +221,14 @@ public class GameView{
 		
 	}
     
+	/**
+	 * Returns the nifty object for the GUI
+	 * @return the nifty
+	 */
+	public Nifty getNifty(){
+		return nifty;
+	}
+	
     public void update(float tpf) {
     }
     
