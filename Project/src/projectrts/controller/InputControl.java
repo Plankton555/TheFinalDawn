@@ -6,7 +6,9 @@ import projectrts.global.constants.Constants;
 import projectrts.global.utils.Utils;
 import projectrts.model.core.IGame;
 import projectrts.model.core.P;
+import projectrts.model.core.abilities.IAbility;
 import projectrts.model.core.entities.IEntity;
+import projectrts.model.core.entities.IPlayerControlledEntity;
 import projectrts.view.GameView;
 
 import com.jme3.app.SimpleApplication;
@@ -20,6 +22,7 @@ import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 
+import de.lessvoid.nifty.controls.Button;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.screen.Screen;
 
@@ -199,23 +202,31 @@ public class InputControl {
     private void updateAbilities(List<IEntity> selectedEntities){
     	Screen screen = view.getNifty().getScreen("Screen_ID");
     	
-    	boolean oneIsSelected = (selectedEntities.size()==1);
-    	
+    	boolean oneIsSelected = selectedEntities.size()==1;
+    	List<IAbility> abilities = null;
     
     	
+    	if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
+    		IPlayerControlledEntity pce = (IPlayerControlledEntity) selectedEntities.get(0);
+    		abilities = pce.getAbilities();
+    	}
     	
     	//Loops through every button and sets its attributes
-    	for(int i = 1; i<=8; i++){
-    		Element button = screen.findElementByName("Button_Ability_" + i);
+    	for(int i = 0; i<8; i++){
+    		Element button = screen.findElementByName("Button_Ability_" + (i+1));
+  
     		if(button != null){
-		    	if(oneIsSelected){
+    			
+		    	if(abilities != null && i<abilities.size()){
 		    		//button.setVisibleToMouseEvents(true);
+		    		
 		    		button.setVisible(true);
+		    		
 		    	} else {
 		    		button.setVisible(false);
-		
 		    	}
     		}
+
     	}
     }
 }
