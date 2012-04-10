@@ -20,13 +20,15 @@ public enum ImageManager {
 
 	public void initializeImages(Nifty nifty){
 		NiftyRenderEngine engine = nifty.getRenderEngine();
-		images.put("MoveAbility", engine.createImage("assets/interface/move.bmp", false));
-		images.put("AttackAbility", engine.createImage("assets/interface/attack.bmp", false));
+
+		images.put("Move", engine.createImage("assets/gui/MoveAbility.bmp", true));
+		images.put("Attack", engine.createImage("/assets/gui/AttackAbility.bmp", false));
+		
 	}
 	
 	
 	
-	public NiftyImage getTexture(String name){
+	public NiftyImage getImage(String name){
 		return images.get(name);
 	}
 
