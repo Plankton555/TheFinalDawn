@@ -3,6 +3,7 @@ package projectrts.controller;
 import java.util.List;
 
 import projectrts.global.constants.Constants;
+import projectrts.global.utils.ImageManager;
 import projectrts.global.utils.Utils;
 import projectrts.model.core.EntityManager;
 import projectrts.model.core.IGame;
@@ -26,6 +27,8 @@ import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 
 import de.lessvoid.nifty.elements.Element;
+import de.lessvoid.nifty.elements.render.ImageRenderer;
+import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.screen.Screen;
 
 /**
@@ -238,8 +241,7 @@ public class InputController {
     	
     	private IEntity getEntityAtPosition(Position pos){
     		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
-    		for(IEntity entity: entities){
-    			
+    		for(IEntity entity: entities){	
 				float unitSize = entity.getSize();
 				Position unitPos = entity.getPosition();
 				
@@ -250,7 +252,6 @@ public class InputController {
 					return entity;
 					
 				}
-			
     		}
     		return null;
         }
@@ -275,15 +276,17 @@ public class InputController {
         		if(button != null){
         			
     		    	if(abilities != null && i<abilities.size()){
+    		    		IAbility ability = abilities.get(i);
     		    		//button.setVisibleToMouseEvents(true);
     		    		
+    		    		button.getRenderer(ImageRenderer.class).setImage(ImageManager.INSTANCE.getImage(ability.getName()));
     		    		button.setVisible(true);
     		    		
     		    	} else {
     		    		button.setVisible(false);
     		    	}
-        		}
 
+        		}
         	}
         }
     };
