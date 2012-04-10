@@ -232,20 +232,75 @@ public class GameView{
 	               backgroundColor("#f00f"); 
 		           height("20%");
 		           
-	               
+		           
+	               panel(new PanelBuilder("Panel_Main"){{
+	            	   width("60%");
+	            	   childLayoutVertical();
+	            	   
+	               }});
+		           
+	               panel(new PanelBuilder("Panel_Abilities"){{
+	            	   width("40%");
+	            	   childLayoutVertical();
+	    
 	 
-	                // GUI elements
-	                control(new ButtonBuilder("Button_1", "Hello Nifty"){{
-
-	                    height("40%");
-	                    width("15%");
-	                }});
-	 
-	                control(new ButtonBuilder("Button_2", "Hello Nifty 2"){{
-
-	                    height("40%");
-	                    width("15%");
-	                }});        
+	            	   //First row with buttons
+		               panel(new PanelBuilder("Panel_Abilities_Row1"){{
+		            	   height("50%");
+		            	   childLayoutHorizontal();
+		            	   
+			                // GUI elements
+			                control(new ButtonBuilder("Button_Ability_1"){{
+			                    width("25%");
+			                    height("100%");
+			                }});
+			 
+			                control(new ButtonBuilder("Button_Ability_2"){{
+			                    width("25%");
+			                    height("100%");
+			                }});
+			                
+			                control(new ButtonBuilder("Button_Ability_3"){{
+			                    width("25%");
+			                    height("100%");
+			                }});
+			 
+			                control(new ButtonBuilder("Button_Ability_4"){{
+			                    width("25%");
+			                    height("100%");
+			                }});  
+			                
+		               }});    
+		               
+		               
+		               
+		               //Second row with buttons
+		               panel(new PanelBuilder("Panel_Abilities_Row2"){{
+		            	   height("50%");
+		            	   childLayoutHorizontal();
+			                
+			                control(new ButtonBuilder("Button_Ability_5"){{
+			                    width("25%");
+			                    height("100%");
+			                }});  
+			                
+			                control(new ButtonBuilder("Button_Ability_6"){{
+			                    width("25%");
+			                    height("100%");
+			                }});  
+			                
+			                control(new ButtonBuilder("Button_Ability_7"){{
+			                    width("25%");
+			                    height("100%");
+			                }});  
+			                
+			                control(new ButtonBuilder("Button_Ability_8"){{
+			                    width("25%");
+			                    height("100%");
+			                }});  
+	                
+		               }});
+	               }});
 	 
 	            }});
 	            // </panel>

@@ -252,7 +252,26 @@ public class InputController {
 			
     		}
     		return null;
-    	}
+        }
+        
+        private void updateAbilities(List<IEntity> selectedEntities){
+        	Screen screen = view.getNifty().getScreen("Screen_ID");
+    	
+    	
+	    	//Loops through every button and sets its attributes
+	    	for(int i = 1; i<=8; i++){
+	    		Element button = screen.findElementByName("Button_Ability_" + i);
+	    		if(button != null){
+			    	if(selectedEntities.size() > 0){
+			    		//button.setVisibleToMouseEvents(true);
+			    		button.setVisible(true);
+			    	} else {
+			    		button.setVisible(false);
+			
+			    	}
+	    		}
+	    	}
+        }
     };
     
     /**
