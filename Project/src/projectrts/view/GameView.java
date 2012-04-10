@@ -11,10 +11,10 @@ import projectrts.model.core.entities.IEntity;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.spatials.AbstractSpatial;
 import projectrts.view.spatials.SpatialFactory;
-
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
+import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
@@ -24,6 +24,13 @@ import com.jme3.terrain.heightmap.AbstractHeightMap;
 import com.jme3.terrain.heightmap.ImageBasedHeightMap;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
+
+import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.builder.LayerBuilder;
+import de.lessvoid.nifty.builder.PanelBuilder;
+import de.lessvoid.nifty.builder.ScreenBuilder;
+import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
+import de.lessvoid.nifty.screen.DefaultScreenController;
 
 /**
  * The in-game view, creating and managing the scene.
@@ -54,6 +61,7 @@ public class GameView{
 	public void initialize() {
 		initializeWorld();
 		initializeEntities();
+		initializeGUI();
 		this.app.getRootNode().attachChild(selected);
 	}
 	
@@ -186,6 +194,69 @@ public class GameView{
     		entities.attachChild(entitySpatial);
     	}
     }
+    	
+	private void initializeGUI() {
+		
+		NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
+	            app.getAssetManager(), app.getInputManager(), app.getAudioRenderer(), app.getGuiViewPort());
+	    Nifty nifty = niftyDisplay.getNifty();
+	    app.getGuiViewPort().addProcessor(niftyDisplay);
+	    app.getFlyByCamera().setDragToRotate(true);
+	    //flyCam.setDragToRotate(true);
+	 
+	    nifty.loadStyleFile("nifty-default-styles.xml");
+	    nifty.loadControlFile("nifty-default-controls.xml");
+	 
+	    // <screen>
+	    nifty.addScreen("Screen_ID", new ScreenBuilder("GUI Screen"){{
+	        controller(new DefaultScreenController()); // Screen properties       
+	 
+	        // <layer>
+	        layer(new LayerBuilder("Layer_ID") {{
+	            childLayoutVertical(); // layer properties, add more...
+
+	            
+	            
+	            panel(new PanelBuilder("panel_main") {{
+	                childLayoutVertical();
+	                backgroundColor("#0000");
+	                height("80%");
+
+	                // <!-- spacer -->
+	            }});
+	            
+	 
+	            // <panel>
+	            panel(new PanelBuilder("Panel_ID") {{
+	               childLayoutHorizontal(); // panel properties, add more...  
+	               backgroundColor("#f00f"); 
+		           height("20%");
+		           
+	               
+	 
+	                // GUI elements
+	                control(new ButtonBuilder("Button_ID1", "Hello Nifty"){{
+
+	                    height("40%");
+	                    width("15%");
+	                }});
+	 
+	                control(new ButtonBuilder("Button_ID2", "Hello Nifty 2"){{
+
+	                    height("40%");
+	                    width("15%");
+	                }});        
+	 
+	            }});
+	            // </panel>
+	          }});
+	        // </layer>
+	      }}.build(nifty));
+	    // </screen>
+	 
+	    nifty.gotoScreen("Screen_ID"); // start the screen
+		
+	}
     
     /**
      * Draws the selected graphics for all entities in the passed list.

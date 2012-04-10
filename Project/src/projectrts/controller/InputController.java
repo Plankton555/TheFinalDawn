@@ -2,25 +2,16 @@ package projectrts.controller;
 
 import java.util.List;
 
-
-import projectrts.global.constants.*;
-import projectrts.global.utils.ImageManager;
-
+import projectrts.global.constants.Constants;
 import projectrts.global.utils.Utils;
 import projectrts.model.core.EntityManager;
 import projectrts.model.core.IGame;
 import projectrts.model.core.P;
 import projectrts.model.core.Position;
-import projectrts.model.core.abilities.GatherResourceAbility;
-import projectrts.model.core.entities.IEntity;
-import projectrts.model.core.entities.NonPlayerControlledEntity;
-import projectrts.model.core.entities.PlayerControlledEntity;
-
 import projectrts.model.core.abilities.IAbility;
 import projectrts.model.core.entities.IEntity;
-import projectrts.model.core.entities.IPlayerControlledEntity;
+import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.view.GameView;
-import sun.security.jca.GetInstance.Instance;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
@@ -32,11 +23,6 @@ import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
-
-import de.lessvoid.nifty.elements.Element;
-import de.lessvoid.nifty.elements.render.ImageRenderer;
-import de.lessvoid.nifty.render.NiftyImage;
-import de.lessvoid.nifty.screen.Screen;
 
 /**
  * A class for handling all input.
@@ -266,7 +252,6 @@ public class InputController {
     	}
     };
     
-    
     /**
      * Sets the GUI Control
      * @param guiControl
@@ -284,6 +269,4 @@ public class InputController {
     	//TODO Afton: Add code to handle ability clicks
     	System.out.println(ability.getName());
     }
-    
-    
 }
