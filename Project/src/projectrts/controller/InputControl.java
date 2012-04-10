@@ -1,9 +1,12 @@
 package projectrts.controller;
 
-import projectrts.global.constants.*;
+import java.util.List;
+
+import projectrts.global.constants.Constants;
 import projectrts.global.utils.Utils;
 import projectrts.model.core.IGame;
 import projectrts.model.core.P;
+import projectrts.model.core.entities.IEntity;
 import projectrts.view.GameView;
 
 import com.jme3.app.SimpleApplication;
@@ -161,7 +164,10 @@ public class InputControl {
 	    	if(app.getStateManager().getState(InGameState.class).isEnabled()) {
 	    		if (name.equals("mouseLeftButton") && keyPressed) {
 	    			game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
-	    			view.drawSelected(game.getPlayer().getSelectedEntities());
+	    			List<IEntity> selectedEntities = game.getPlayer().getSelectedEntities();
+	    			view.drawSelected(selectedEntities);
+	    			updateAbilities(selectedEntities);
+	    			
 	    		}
 	    		if (name.equals("mouseRightButton") && keyPressed) {
 	    			game.getPlayer().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
@@ -186,4 +192,8 @@ public class InputControl {
 	    	}	
 	    }
     };
+    
+    private void updateAbilities(List<IEntity> selectedEntities){
+    	
+    }
 }
