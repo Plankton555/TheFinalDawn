@@ -198,21 +198,24 @@ public class InputControl {
     
     private void updateAbilities(List<IEntity> selectedEntities){
     	Screen screen = view.getNifty().getScreen("Screen_ID");
-    	Element layer = screen.findElementByName("Layer_ID");
-    	Element panel = layer.findElementByName("Panel_GUI");
     	
     	boolean oneIsSelected = (selectedEntities.size()==1);
     	
+    
+    	
+    	
     	//Loops through every button and sets its attributes
-    	for(int i = 1; i<=2; i++){
-    		Element button = panel.findElementByName("Button_" + i);
-	    	if(oneIsSelected){
-	    		//button.setVisibleToMouseEvents(true);
-	    		button.setVisible(true);
-	    	} else {
-	    		button.setVisible(false);
-	
-	    	}
+    	for(int i = 1; i<=8; i++){
+    		Element button = screen.findElementByName("Button_Ability_" + i);
+    		if(button != null){
+		    	if(oneIsSelected){
+		    		//button.setVisibleToMouseEvents(true);
+		    		button.setVisible(true);
+		    	} else {
+		    		button.setVisible(false);
+		
+		    	}
+    		}
     	}
     }
 }
