@@ -59,7 +59,7 @@ public class OffensiveSpellAbility extends AbstractAbility {
 				//In range			
 				
 				if(this.getRemainingCooldown()<=0){
-					target.takeDamage(damage);
+					target.adjustHealth(-damage);
 					
 					this.setAbilityUsed();
 					this.setFinished(true);

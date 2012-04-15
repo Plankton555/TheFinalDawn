@@ -29,7 +29,7 @@ public interface IPlayerControlledEntity extends IEntity{
 	/**
 	 * @return The health of the entity
 	 */
-	public int getHealth();
+	public int getCurrentHealth();
 	
 	/**
 	 * @return The maximum health of the entity

@@ -21,7 +21,7 @@ public class GameModel implements IGame {
 	static {
 		try
 		{
-			Class.forName(BasicUnit.class.getName());
+			Class.forName(Warrior.class.getName());
 			Class.forName(Unit.class.getName());
 			Class.forName(Worker.class.getName());
 			Class.forName(Resource.class.getName());

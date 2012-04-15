@@ -61,7 +61,7 @@ public class AttackAbility extends AbstractAbility {
 				if(getRemainingCooldown()<=0){
 					//TODO Afton: The amount of dmg should be attacker.getDamage()
 				
-					target.takeDamage(50);
+					target.adjustHealth(-50);
 					
 					this.setAbilityUsed();
 					

@@ -17,10 +17,8 @@ import projectrts.model.core.abilities.IAbility;
  */
 public abstract class PlayerControlledEntity extends AbstractEntity implements IPlayerControlledEntity{
 	protected List<AbstractAbility> abilities = new ArrayList<AbstractAbility>();
-	private int health;
+	private int currentHealth;
 	private int maxHealth;
-
-	
 	private Player owner;
 	
 	protected PlayerControlledEntity() {
@@ -44,35 +42,34 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	
 	@Override
 	public List<IAbility> getAbilities() {
-		List<IAbility> retAbilities = new ArrayList<IAbility>();
+		List<IAbility> copy = new ArrayList<IAbility>();
 		for(IAbility ability: abilities){
-			retAbilities.add(ability);
+			copy.add(ability);
 		}
-		return retAbilities;
+		return copy;
 	}
 	
 	@Override
-	public int getHealth(){
-		return health;
+	public int getCurrentHealth(){
+		return currentHealth;
 	}
 
-	
 	@Override
 	public int getMaxHealth(){
 		return maxHealth;
 	}
 	
 	/**
-	 * Reduces the current health by the provided amount of damage
-	 * @param amount the amout the hp is reduced by
+	 * Adjusts the current health by the provided amount. Insert a negative number to
+	 * deal damage to the unit and a positive number to heal it.
+	 * @param amount The amout the hp is adjusted by.
 	 */
-	public void takeDamage(int amount){
-		if(amount>=health){
-			health = 0;
-			//TODO Markus: Set dead? Send event?
-		} else {
-			health -= amount;
+	public void adjustHealth(int amount){
+		currentHealth += amount;
+		if(currentHealth <= 0){
+			currentHealth = 0;
 		}
+			//TODO Markus: Set dead? Send event?
 	}
 	
 
@@ -90,11 +87,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	}
 	
 	@Override
-	public float getSightRange() {
-		// TODO Markus: Implement PCE.getSightRange()
-		return 0;
-	}
-
+	public abstract float getSightRange();
 	
 
 	@Override

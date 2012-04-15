@@ -2,6 +2,7 @@ package projectrts.view.spatials;
 
 import projectrts.model.core.entities.IEntity;
 import projectrts.view.controls.ControlFactory;
+import projectrts.view.controls.SelectControl;
 
 import com.jme3.material.Material;
 import com.jme3.scene.shape.Box;
@@ -28,7 +29,7 @@ public class SelectSpatial extends AbstractSpatial{
 	public AbstractSpatial createSpatial(String name, Material material, Box box, IEntity entity) {
 		SelectSpatial newSpatial = new SelectSpatial(name, box);
 		newSpatial.setMaterial(material);
-		newSpatial.addControl(ControlFactory.INSTANCE.createControl("SelectControl", entity));
+		newSpatial.addControl(ControlFactory.INSTANCE.createControl(SelectControl.class.getSimpleName(), entity));
 		
 		return newSpatial;
 	}

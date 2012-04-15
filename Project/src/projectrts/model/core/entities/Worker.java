@@ -14,11 +14,10 @@ import projectrts.model.core.abilities.MoveAbility;
  */
 public class Worker extends PlayerControlledEntity{
 	
-	private static String name = "Worker";
 	private static float size = 1f;
 
 	static {
-		EntityFactory.INSTANCE.registerPCE(name, new Worker());
+		EntityFactory.INSTANCE.registerPCE(Worker.class.getSimpleName(), new Worker());
 	}
 	
 	private Worker() {
@@ -29,12 +28,17 @@ public class Worker extends PlayerControlledEntity{
 		this.abilities.add(new AttackAbility());
 		this.abilities.add(new GatherResourceAbility());
 		abilities.add(new MoveAbility());
-		setName(name);
+		setName(Worker.class.getSimpleName());
 		setSize(size);
 	}
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		return new Worker(owner, pos);
+	}
+
+	@Override
+	public float getSightRange() {
+		return 5;
 	}
 
 }

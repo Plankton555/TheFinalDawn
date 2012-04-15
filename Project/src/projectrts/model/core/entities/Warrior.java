@@ -10,26 +10,29 @@ import projectrts.model.core.abilities.AttackAbility;
  * @author Markus Ekström
  *
  */
-public class BasicUnit extends PlayerControlledEntity{
-
-	private static String name = "BasicUnit";
+public class Warrior extends PlayerControlledEntity{
 	
 	static {
-		EntityFactory.INSTANCE.registerPCE(name, new BasicUnit());
+		EntityFactory.INSTANCE.registerPCE(Warrior.class.getSimpleName(), new Warrior());
 	}
 	
-	private BasicUnit() {
+	private Warrior() {
 	}
 	
-	private BasicUnit(Player owner, Position spawnPos) {
+	private Warrior(Player owner, Position spawnPos) {
 		super(owner, spawnPos);
 		this.abilities.add(new AttackAbility());
-		setName(name);
+		setName(Warrior.class.getSimpleName());
 	}
 
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
-		return new BasicUnit(owner, pos);
+		return new Warrior(owner, pos);
+	}
+
+	@Override
+	public float getSightRange() {
+		return 5;
 	}
 
 }

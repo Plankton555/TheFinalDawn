@@ -5,6 +5,7 @@ import java.util.List;
 import projectrts.model.core.entities.IEntity;
 import projectrts.view.controls.AbstractControl;
 import projectrts.view.controls.ControlFactory;
+import projectrts.view.controls.MoveControl;
 
 import com.jme3.material.Material;
 import com.jme3.scene.shape.Box;
@@ -16,7 +17,7 @@ import com.jme3.scene.shape.Box;
 public class UnitSpatial extends AbstractSpatial {
 	
 	static {
-		SpatialFactory.INSTANCE.registerSpatial("UnitSpatial", new UnitSpatial("UnitSpatialCreator", new Box()));
+		SpatialFactory.INSTANCE.registerSpatial(UnitSpatial.class.getSimpleName(), new UnitSpatial("UnitSpatialCreator", new Box()));
 	}
 	
 	private UnitSpatial(String name, Box box) {
@@ -34,7 +35,7 @@ public class UnitSpatial extends AbstractSpatial {
 	public AbstractSpatial createSpatial(String name, Material material, Box box, IEntity entity) {
 		UnitSpatial newSpatial = new UnitSpatial(name, box);
 		newSpatial.setMaterial(material);
-		newSpatial.addControl(ControlFactory.INSTANCE.createControl("MoveControl", entity));
+		newSpatial.addControl(ControlFactory.INSTANCE.createControl(MoveControl.class.getSimpleName(), entity));
 		
 		return newSpatial;
 	}
