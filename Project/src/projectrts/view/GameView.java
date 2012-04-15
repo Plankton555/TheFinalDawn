@@ -2,20 +2,19 @@ package projectrts.view;
 
 import java.util.List;
 
-import projectrts.controller.controls.AbstractControl;
-import projectrts.controller.controls.ControlFactory;
-import projectrts.controller.controls.MoveControl;
-import projectrts.controller.controls.SelectControl;
 import projectrts.global.constants.Constants;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.core.IGame;
 import projectrts.model.core.entities.IEntity;
+import projectrts.view.controls.AbstractControl;
+import projectrts.view.spatials.AbstractSpatial;
+import projectrts.view.spatials.SpatialFactory;
+
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
-import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
 import com.jme3.terrain.geomipmap.TerrainLodControl;
@@ -32,7 +31,7 @@ import com.jme3.texture.Texture.WrapMode;
  */
 public class GameView{
 	private SimpleApplication app;
-	private IGame game; // The model
+	private IGame game;
     private Node entities = new Node("entities"); // The node for all entities
     private Node selected = new Node("selected"); // The node for the selected graphics
     private Node terrainNode = new Node("terrain"); // The node for all terrain
@@ -40,15 +39,17 @@ public class GameView{
     private TerrainQuad terrain;
     private float mod = Constants.INSTANCE.getModelToWorld(); // The modifier value for converting lengths between model and world.
 	
-	public GameView(SimpleApplication app, IGame model) {
+	public GameView(SimpleApplication app, IGame game) {
 		this.app = app;
-		this.game = model;
+		this.game = game;
 	}
 	
 	/**
 	 * Initializes the scene.
+	 * @param entitiesList A list containing the initial entities.
+	 * @param controlList The controls for the initial entities.
 	 */
-	public void initializeView() {
+	public void initialize() {
 		initializeWorld();
 		initializeEntities();
 		this.app.getRootNode().attachChild(selected);
@@ -120,9 +121,8 @@ public class GameView{
     }
     
     private void initializeEntities() {
-    	List<IEntity> entitiesList = game.getAllEntities(); 
+    	List<IEntity> entitiesList = game.getAllEntities();
     	Box[] entityShapes = new Box[entitiesList.size()];
-    	Geometry[] entitySpatials = new Geometry[entitiesList.size()];
     	Material entityMaterial = MaterialManager.INSTANCE.getMaterial("Unshaded");
     	entityMaterial.setColor("Color", ColorRGBA.Pink);
     	
@@ -130,25 +130,17 @@ public class GameView{
     	
     	for(int i = 0; i < entitiesList.size(); i++) {
     		// Create shape.
-    		// The location of the entity is initialized (0, 0, 0) but is then instantly translated to the correct place by moveControl.
+    		// The location of the entity is initialized to (0, 0, 0) but is then instantly translated to the correct place by moveControl.
     		// Gets the size from the model and converts it to world size.
     		entityShapes[i] = new Box(new Vector3f(0, 0, 0),  
     									(entitiesList.get(i).getSize() * mod)/2, (entitiesList.get(i).getSize() * mod)/2, 0); 
     		// Create spatial.
-    		entitySpatials[i] = new Geometry(entitiesList.get(i).getName() + i, entityShapes[i]);
-    		// Apply material.
-    		entitySpatials[i].setMaterial(entityMaterial);
-    		// Create a MoveControl and add it to the spatial.
-    		entitySpatials[i].addControl(ControlFactory.INSTANCE.createControl("MoveControl", entitiesList.get(i)));
+    		AbstractSpatial entitySpatial = SpatialFactory.INSTANCE.createSpatial("UnitSpatial", "unit" + i, entityMaterial, entityShapes[i], entitiesList.get(i));
     		// Attach spatial to the entities node.
-    		entities.attachChild(entitySpatials[i]);
+    		entities.attachChild(entitySpatial);
     	}
     	//Attach the entities node to the root node, connecting it to the world.
     	this.app.getRootNode().attachChild(entities);
-    }
-    
-    public void CreateEntity(AbstractControl control) {
-    	Box entityShape = new
     }
     
     public void update(float tpf) {
@@ -156,22 +148,22 @@ public class GameView{
     
     /**
      * Draws the selected graphics for all entities in the passed list.
-     * @param entityList A list of selected entities.
+     * @param selectedEntities A list of selected entities.
+     * @param controlList A list of controls for the select-spatials, one for each spatial.
      */
-    public void drawSelected(List<IEntity> entityList) {
+    public void drawSelected(List<IEntity> selectedEntities) {
     	// Remove all previously selected graphics
     	selected.detachAllChildren();
-    	for(IEntity entity : entityList) {
+    	// Create the material for the spatials.
+    	Material circleMaterial = MaterialManager.INSTANCE.getMaterial("Unshaded");
+    	circleMaterial.setColor("Color", ColorRGBA.Green);
+    	
+    	for(int i = 0; i < selectedEntities.size(); i++) {
 	    	// Sets the location of the spatial to (0, 0, -1) to make sure it's behind the entities that use (x, y, 0).
-	    	// The selectControl will instantly translate it to the correct location.
+	    	// The control will instantly translate it to the correct location.
 	    	Box circle = new Box(new Vector3f(0, 0, -1), 
-	    			(entity.getSize() + 0.3f)/2 * mod, (entity.getSize() + 0.3f)/2 * mod, 0);
-	    	Geometry circleSpatial = new Geometry(entity.getName(), circle);
-	    	Material circleMaterial = MaterialManager.INSTANCE.getMaterial("Unshaded");
-	    	circleMaterial.setColor("Color", ColorRGBA.Green);
-	    	circleSpatial.setMaterial(circleMaterial);
-	    	// Create a SelectControl and add it to the spatial
-	    	circleSpatial.addControl(ControlFactory.INSTANCE.createControl("SelectControl", entity));
+	    			(selectedEntities.get(i).getSize() + 0.3f)/2 * mod, (selectedEntities.get(i).getSize() + 0.3f)/2 * mod, 0);
+	    	AbstractSpatial circleSpatial = SpatialFactory.INSTANCE.createSpatial("SelectSpatial", selectedEntities.get(i).getName(), circleMaterial, circle, selectedEntities.get(i));	
 	    	// Attach spatial to the selected node, connecting it to the world.
 	    	selected.attachChild(circleSpatial);
     	}

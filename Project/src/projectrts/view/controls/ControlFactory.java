@@ -1,4 +1,4 @@
-package projectrts.controller.controls;
+package projectrts.view.controls;
 
 import java.util.HashMap;
 

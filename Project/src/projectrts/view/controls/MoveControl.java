@@ -1,4 +1,4 @@
-package projectrts.controller.controls;
+package projectrts.view.controls;
 
 import projectrts.global.utils.Utils;
 import projectrts.model.core.Position;

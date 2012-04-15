@@ -7,12 +7,14 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.renderer.RenderManager;
 
 import projectrts.controller.InGameState;
-import projectrts.controller.controls.MoveControl;
-import projectrts.controller.controls.SelectControl;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.core.GameModel;
 import projectrts.model.core.IGame;
+import projectrts.view.controls.MoveControl;
+import projectrts.view.controls.SelectControl;
+import projectrts.view.spatials.SelectSpatial;
+import projectrts.view.spatials.UnitSpatial;
 
 /**
  * The top-level controller.
@@ -27,8 +29,13 @@ public class AppController extends SimpleApplication{
 	static{
 		try
 		{
+			// Initialize the control classes.
 			Class.forName(MoveControl.class.getName());
 			Class.forName(SelectControl.class.getName());
+			
+			// Initialize the spatial classes.
+			Class.forName(UnitSpatial.class.getName());
+			Class.forName(SelectSpatial.class.getName());
 		}
 		catch (ClassNotFoundException any)
 		{
