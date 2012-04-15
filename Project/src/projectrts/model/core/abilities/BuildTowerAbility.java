@@ -15,7 +15,11 @@ import projectrts.model.core.entities.Structure;
  */
 public class BuildTowerAbility extends AbstractAbility {
 
-	public BuildTowerAbility(){
+	static {
+		AbilityFactory.INSTANCE.registerAbility(BuildTowerAbility.class.getSimpleName(), new BuildTowerAbility());
+	}
+	
+	private BuildTowerAbility(){
 		super(0.1f);
 	}
 	
@@ -41,4 +45,8 @@ public class BuildTowerAbility extends AbstractAbility {
 		
 	}
 
+	@Override
+	public AbstractAbility createAbility() {
+		return new BuildTowerAbility();
+	}
 }

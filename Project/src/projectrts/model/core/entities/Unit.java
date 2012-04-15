@@ -4,7 +4,9 @@ import projectrts.model.core.EntityFactory;
 import projectrts.model.core.MicroAI;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
+import projectrts.model.core.abilities.AbilityFactory;
 import projectrts.model.core.abilities.AttackAbility;
+import projectrts.model.core.abilities.BuildTowerAbility;
 import projectrts.model.core.abilities.MoveAbility;
 import projectrts.model.core.abilities.OffensiveSpellAbility;
 
@@ -42,9 +44,9 @@ public class Unit extends PlayerControlledEntity {
 		super(owner, spawnPos);
 		this.microAI = new MicroAI(this);
 		this.stance = Stance.IDLE;
-		abilities.add(new AttackAbility());
-		abilities.add(new OffensiveSpellAbility());
-		abilities.add(new MoveAbility());
+		abilities.add(AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName()));
+		abilities.add(AbilityFactory.INSTANCE.createAbility(OffensiveSpellAbility.class.getSimpleName()));
+		abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
 	}
 	
 
@@ -72,5 +74,10 @@ public class Unit extends PlayerControlledEntity {
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		return new Unit(owner, pos);
+	}
+
+	@Override
+	public int getDamage() {
+		return 10;
 	}
 }

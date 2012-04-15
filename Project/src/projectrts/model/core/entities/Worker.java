@@ -3,6 +3,7 @@ package projectrts.model.core.entities;
 import projectrts.model.core.EntityFactory;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
+import projectrts.model.core.abilities.AbilityFactory;
 import projectrts.model.core.abilities.AttackAbility;
 import projectrts.model.core.abilities.GatherResourceAbility;
 import projectrts.model.core.abilities.MoveAbility;
@@ -25,9 +26,9 @@ public class Worker extends PlayerControlledEntity{
 	
 	private Worker(Player owner, Position spawnPos) {
 		super(owner, spawnPos);
-		this.abilities.add(new AttackAbility());
-		this.abilities.add(new GatherResourceAbility());
-		abilities.add(new MoveAbility());
+		this.abilities.add(AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName()));
+		this.abilities.add(AbilityFactory.INSTANCE.createAbility(GatherResourceAbility.class.getSimpleName()));
+		abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
 		setName(Worker.class.getSimpleName());
 		setSize(size);
 	}
@@ -38,6 +39,11 @@ public class Worker extends PlayerControlledEntity{
 
 	@Override
 	public float getSightRange() {
+		return 5;
+	}
+
+	@Override
+	public int getDamage() {
 		return 5;
 	}
 

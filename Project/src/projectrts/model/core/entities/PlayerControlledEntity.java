@@ -89,6 +89,8 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	@Override
 	public abstract float getSightRange();
 	
+	public abstract int getDamage();
+	
 
 	@Override
 	public void update(float tpf) {

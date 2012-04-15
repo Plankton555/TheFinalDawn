@@ -16,4 +16,8 @@ public enum P {
 	public float getUnitLength() {
 		return 1;
 	}
+	
+	public int getWorkerCarryAmount() {
+		return 12;
+	}
 }

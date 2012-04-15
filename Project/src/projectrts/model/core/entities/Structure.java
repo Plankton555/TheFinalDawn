@@ -4,6 +4,7 @@ package projectrts.model.core.entities;
 
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
+import projectrts.model.core.abilities.AbilityFactory;
 import projectrts.model.core.abilities.BuildTowerAbility;
 
 
@@ -21,7 +22,7 @@ public class Structure extends PlayerControlledEntity {
 	 */
 	public Structure(Position spawnPos, Player owner){
 		super(owner, spawnPos);
-		abilities.add(new BuildTowerAbility());
+		abilities.add(AbilityFactory.INSTANCE.createAbility(BuildTowerAbility.class.getSimpleName()));
 	}
 	
 	@Override
@@ -51,6 +52,11 @@ public class Structure extends PlayerControlledEntity {
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		// TODO Afton: Implement Structure.createPCE()
 		return null;
+	}
+
+	@Override
+	public int getDamage() {
+		return 0;
 	}
 	
 }

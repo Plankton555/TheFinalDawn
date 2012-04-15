@@ -3,6 +3,7 @@ package projectrts.model.core.abilities;
 import java.util.List;
 
 import projectrts.model.core.EntityManager;
+import projectrts.model.core.P;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.Headquarter;
@@ -18,8 +19,15 @@ public class DeliverResourceAbility extends AbstractAbility{
 	
 	private PlayerControlledEntity unit;
 	private PlayerControlledEntity depositStructure;
-	private MoveAbility moveAbility = new MoveAbility();
-	private int resourceCarriedAmount;
+	private AbstractAbility moveAbility;
+	
+	static {
+		AbilityFactory.INSTANCE.registerAbility(DeliverResourceAbility.class.getSimpleName(), new DeliverResourceAbility());
+	}
+	
+	private DeliverResourceAbility() {
+		super();
+	}
 	
 	@Override
 	public String getName() {
@@ -36,8 +44,7 @@ public class DeliverResourceAbility extends AbstractAbility{
 				//If in range of deposit structure
 				
 				Player player = (Player)unit.getOwner();
-				player.modifyResource(resourceCarriedAmount);
-				resourceCarriedAmount = 0;
+				player.modifyResource(P.INSTANCE.getWorkerCarryAmount());
 				setFinished(true);
 			}else{
 				// Not in range
@@ -64,11 +71,6 @@ public class DeliverResourceAbility extends AbstractAbility{
 		
 	}
 	
-	// TODO Jakob: Add javadoc
-	public void setResourceCarriedAmount(int rca){
-		this.resourceCarriedAmount=rca;
-	}
-	
 	private void findDepositStructure(){
 		List<IPlayerControlledEntity> entities = 
 				EntityManager.getInstance().getEntitiesOfPlayer(unit.getOwner());
@@ -86,6 +88,14 @@ public class DeliverResourceAbility extends AbstractAbility{
 				}
 			}
 		}
+	}
+
+	@Override
+	public AbstractAbility createAbility() {
+		DeliverResourceAbility newAbility = new DeliverResourceAbility();
+		newAbility.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
+		return newAbility;
+		
 	}
 
 }

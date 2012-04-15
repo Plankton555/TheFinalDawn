@@ -23,11 +23,15 @@ public class MoveAbility extends AbstractAbility {
 	private float pathRefreshInterval = 1; // refreshes path every second
 	private float timeSincePathRefresh = pathRefreshInterval;
 	
+	static {
+		AbilityFactory.INSTANCE.registerAbility(MoveAbility.class.getSimpleName(), new MoveAbility());
+	}
+	
 	/**
 	 * Creates a new instance of this ability.
 	 */
-	public MoveAbility(){
-		this.aStar = new AStar();
+	private MoveAbility(){
+		
 	}
 	
 	@Override
@@ -109,5 +113,12 @@ public class MoveAbility extends AbstractAbility {
 			}
 		}
 		return outputPos;
+	}
+	
+	@Override
+	public AbstractAbility createAbility() {
+		MoveAbility newAbility = new MoveAbility();
+		newAbility.aStar = new AStar();
+		return newAbility;
 	}
 }

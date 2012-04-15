@@ -17,10 +17,13 @@ public class OffensiveSpellAbility extends AbstractAbility {
 	private PlayerControlledEntity attacker;
 	private PlayerControlledEntity target;
 	
-	private MoveAbility moveAbility = new MoveAbility();
+	private AbstractAbility moveAbility;
 	
+	static {
+		AbilityFactory.INSTANCE.registerAbility(OffensiveSpellAbility.class.getSimpleName(), new OffensiveSpellAbility());
+	}
 	
-	public OffensiveSpellAbility() {
+	private OffensiveSpellAbility() {
 		super(5);
 	}
 
@@ -68,5 +71,12 @@ public class OffensiveSpellAbility extends AbstractAbility {
 			}
 
 		}
+	}
+
+	@Override
+	public AbstractAbility createAbility() {
+		OffensiveSpellAbility newAbility = new OffensiveSpellAbility();
+		newAbility.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
+		return newAbility;
 	}
 }

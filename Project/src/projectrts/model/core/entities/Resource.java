@@ -38,7 +38,7 @@ public class Resource extends NonPlayerControlledEntity{
 	
 	// TODO Jakob: Add javadoc
 	public int mine(){
-		return 10;
+		return 4;
 	}
 
 }
