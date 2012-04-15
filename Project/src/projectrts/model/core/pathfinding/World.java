@@ -21,7 +21,7 @@ public class World {
 	 */
 	public World(int height, int width) {
 		initNodes(height, width);
-		setTestOccupation();
+		//setTestOccupation();
 	}
 	
 	private void initNodes(int height, int width)
@@ -85,14 +85,11 @@ public class World {
 	 */
 	public Node getNodeAt(Position p)
 	{
-		if (p.getX() < 0 || p.getY() < 0 || p.getX() > width || p.getY() > height)
-		{
-			// position is not legal
-			p = new Position(ModelUtils.INSTANCE.clamp(p.getX(), 0, width),
-					ModelUtils.INSTANCE.clamp(p.getY(), 0, height));
-		}
 		int x = (int)p.getX();
 		int y = (int)p.getY();
+		
+		x = (int)ModelUtils.INSTANCE.clamp(x, 0, width-1);
+		y = (int)ModelUtils.INSTANCE.clamp(y, 0, height-1);
 		return nodes[y][x];
 	}
 	
