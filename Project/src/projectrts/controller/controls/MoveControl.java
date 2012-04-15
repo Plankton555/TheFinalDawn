@@ -8,7 +8,6 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
 
 /**
@@ -19,8 +18,11 @@ import com.jme3.scene.control.Control;
 public class MoveControl extends AbstractControl{
 	private IEntity entity;
 	
+	static {
+		ControlFactory.INSTANCE.registerControl("MoveControl", new MoveControl(null));
+	}
 	
-	public MoveControl(IEntity entity) {
+	private MoveControl(IEntity entity) {
 		super();
 		this.entity = entity;
 	}
@@ -51,5 +53,10 @@ public class MoveControl extends AbstractControl{
 				spatial.move(moveVector); // Move the spatial according to the movement vector.
 			}		
 		}
+	}
+
+	@Override
+	public AbstractControl createControl(IEntity entity) {
+		return new MoveControl(entity);
 	}
 }

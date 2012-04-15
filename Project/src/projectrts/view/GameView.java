@@ -2,6 +2,8 @@ package projectrts.view;
 
 import java.util.List;
 
+import projectrts.controller.controls.AbstractControl;
+import projectrts.controller.controls.ControlFactory;
 import projectrts.controller.controls.MoveControl;
 import projectrts.controller.controls.SelectControl;
 import projectrts.global.constants.Constants;
@@ -137,12 +139,16 @@ public class GameView{
     		// Apply material.
     		entitySpatials[i].setMaterial(entityMaterial);
     		// Create a MoveControl and add it to the spatial.
-    		entitySpatials[i].addControl(new MoveControl(entitiesList.get(i)));
+    		entitySpatials[i].addControl(ControlFactory.INSTANCE.createControl("MoveControl", entitiesList.get(i)));
     		// Attach spatial to the entities node.
     		entities.attachChild(entitySpatials[i]);
     	}
     	//Attach the entities node to the root node, connecting it to the world.
     	this.app.getRootNode().attachChild(entities);
+    }
+    
+    public void CreateEntity(AbstractControl control) {
+    	Box entityShape = new
     }
     
     public void update(float tpf) {
@@ -165,7 +171,7 @@ public class GameView{
 	    	circleMaterial.setColor("Color", ColorRGBA.Green);
 	    	circleSpatial.setMaterial(circleMaterial);
 	    	// Create a SelectControl and add it to the spatial
-	    	circleSpatial.addControl(new SelectControl(entity));
+	    	circleSpatial.addControl(ControlFactory.INSTANCE.createControl("SelectControl", entity));
 	    	// Attach spatial to the selected node, connecting it to the world.
 	    	selected.attachChild(circleSpatial);
     	}

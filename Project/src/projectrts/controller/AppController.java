@@ -7,6 +7,8 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.renderer.RenderManager;
 
 import projectrts.controller.InGameState;
+import projectrts.controller.controls.MoveControl;
+import projectrts.controller.controls.SelectControl;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.core.GameModel;
@@ -22,6 +24,18 @@ import projectrts.model.core.IGame;
  */
 public class AppController extends SimpleApplication{
 
+	static{
+		try
+		{
+			Class.forName(MoveControl.class.getName());
+			Class.forName(SelectControl.class.getName());
+		}
+		catch (ClassNotFoundException any)
+		{
+			any.printStackTrace();
+		}
+	}
+	
     @Override
     public void simpleInitApp() {
     	this.cam.setParallelProjection(true);
