@@ -1,8 +1,5 @@
-<<<<<<< HEAD:Project/src/projectrts/view/controls/SelectControl.java
+
 package projectrts.view.controls;
-=======
-package projectrts.controller.controls;
->>>>>>> Fixed warnings in code (mostly unused import):Project/src/projectrts/controller/controls/SelectControl.java
 
 import projectrts.global.utils.Utils;
 import projectrts.model.core.Position;
