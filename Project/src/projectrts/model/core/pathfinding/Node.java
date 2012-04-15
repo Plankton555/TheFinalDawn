@@ -71,8 +71,12 @@ public class Node {
 	 */
 	public List<Node> getNeighbours()
 	{
-		// TODO Plankton: Return shallow copy
-		return neighbours;
+		List<Node> output = new ArrayList<Node>();
+		for (Node n : neighbours)
+		{
+			output.add(n);
+		}
+		return output;
 	}
 	
 	/**
