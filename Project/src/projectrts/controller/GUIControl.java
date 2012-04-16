@@ -181,7 +181,7 @@ public class GUIControl implements ScreenController {
 
     	}
     }
-
+	
 	@Override
 	public void bind(Nifty nifty, Screen screen) {
 		this.nifty = nifty;
@@ -212,8 +212,5 @@ public class GUIControl implements ScreenController {
 		} catch (NumberFormatException e){
 			
 		}
-		
-		
 	}
-
 }

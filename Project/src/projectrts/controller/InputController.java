@@ -47,7 +47,6 @@ public class InputController {
 	private GameView view; 
 	private GUIControl guiControl;
 	
-	
 	public InputController(SimpleApplication app, IGame game, GameView view) {
 		this.app = app;
 		this.game = game;
