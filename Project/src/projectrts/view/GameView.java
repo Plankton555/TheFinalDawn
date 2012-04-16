@@ -196,7 +196,7 @@ public class GameView{
 	               childLayoutHorizontal(); // panel properties, add more...  
 	               backgroundColor("#f00f"); 
 		           height("20%");
-		           visibleToMouse(false);
+		           visibleToMouse(true);
 		           
 		           
 	               panel(new PanelBuilder("Panel_Main"){{
