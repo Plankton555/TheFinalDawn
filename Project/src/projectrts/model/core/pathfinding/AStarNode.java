@@ -68,12 +68,7 @@ public class AStarNode implements Comparable<AStarNode> {
 		int distance = calcNodeDistance(mePos, parPos);
 		
 		int newCostFromStart = (int) Math.round(parentNode.getCostFromStart() + distance*node.getCost());
-		if (refresh && newCostFromStart < this.costFromStart)
-		{
-			this.costFromStart = newCostFromStart;
-			this.parent = parentNode;
-		} // TODO Plankton: Can this if statement be shorter?..
-		else
+		if (!refresh || newCostFromStart < this.costFromStart)
 		{
 			this.costFromStart = newCostFromStart;
 			this.parent = parentNode;
