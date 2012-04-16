@@ -54,6 +54,8 @@ public class AppController extends SimpleApplication{
 			Class.forName(MoveAbility.class.getName());
 			Class.forName(OffensiveSpellAbility.class.getName());
 			Class.forName(TrainWorkerAbility.class.getName());
+			
+			// TODO Markus: should entities be here as well or should abilities be in GameModel?
 		}
 		catch (ClassNotFoundException any)
 		{
