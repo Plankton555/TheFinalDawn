@@ -43,6 +43,7 @@ public class InputControl {
 	private GameView view; 
 	
 	
+	
 	public InputControl(SimpleApplication app, IGame model, GameView view) {
 		this.app = app;
 		this.game = model;

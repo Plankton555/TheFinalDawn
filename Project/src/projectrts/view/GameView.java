@@ -2,6 +2,7 @@ package projectrts.view;
 
 import java.util.List;
 
+import projectrts.controller.GUIControl;
 import projectrts.controller.controls.MoveControl;
 import projectrts.controller.controls.SelectControl;
 import projectrts.global.constants.Constants;
@@ -32,7 +33,6 @@ import de.lessvoid.nifty.builder.LayerBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.ScreenBuilder;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
-import de.lessvoid.nifty.screen.DefaultScreenController;
 
 /**
  * The in-game view, creating and managing the scene.
@@ -49,6 +49,7 @@ public class GameView{
     private TerrainQuad terrain;
     private float mod = Constants.INSTANCE.getModelToWorld(); // The modifier value for converting lengths between model and world.
     private Nifty nifty;
+    private int i;
 	
 	public GameView(SimpleApplication app, IGame model) {
 		this.app = app;
@@ -160,13 +161,11 @@ public class GameView{
     
 
 	private void initializeGUI() {
-		
 		NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
 	            app.getAssetManager(), app.getInputManager(), app.getAudioRenderer(), app.getGuiViewPort());
 	    nifty = niftyDisplay.getNifty();
 	    app.getGuiViewPort().addProcessor(niftyDisplay);
 	    app.getFlyByCamera().setDragToRotate(true);
-	    //flyCam.setDragToRotate(true);
 	 
 	    nifty.loadStyleFile("nifty-default-styles.xml");
 	    nifty.loadControlFile("nifty-default-controls.xml");
@@ -175,7 +174,7 @@ public class GameView{
 	    
 	    // <screen>
 	    nifty.addScreen("Screen_ID", new ScreenBuilder("GUI Screen"){{
-	        controller(new DefaultScreenController()); // Screen properties       
+	        controller(new GUIControl()); // Screen properties       
 	 
 	        // <layer>
 	        layer(new LayerBuilder("Layer_ID") {{
@@ -197,6 +196,7 @@ public class GameView{
 	               childLayoutHorizontal(); // panel properties, add more...  
 	               backgroundColor("#f00f"); 
 		           height("20%");
+		           visibleToMouse(false);
 		           
 		           
 	               panel(new PanelBuilder("Panel_Main"){{
@@ -215,19 +215,24 @@ public class GameView{
 		            	   height("50%");
 		            	   childLayoutHorizontal();
 		            	   
+		            	   for(i = 1; i<=4; i++){
 			                // GUI elements
-			                control(new ButtonBuilder("Button_Ability_1"){{
+			                control(new ButtonBuilder("Button_Ability_" + i){{
 			                    width("25%");
 			                    height("100%");
 			                    visible(false);
 			                    focusable(false);
+			                    interactOnClick("buttonClicked("+i+")");
 			                }});
-			 
+			                
+		            	   }
+			 /*
 			                control(new ButtonBuilder("Button_Ability_2"){{
 			                    width("25%");
 			                    height("100%");
 			                    visible(false);
 			                    focusable(false);
+			                    interactOnClick("buttonClicked(2)");
 			                }});
 			                
 			                control(new ButtonBuilder("Button_Ability_3"){{
@@ -243,7 +248,7 @@ public class GameView{
 			                    visible(false);
 			                    focusable(false);
 			                }});  
-			                
+			             */   
 		               }});    
 		               
 		               
@@ -292,8 +297,10 @@ public class GameView{
 	    // </screen>
 	 
 	    nifty.gotoScreen("Screen_ID"); // start the screen
+
 		
 	}
+	
     
 	/**
 	 * Returns the nifty object for the GUI

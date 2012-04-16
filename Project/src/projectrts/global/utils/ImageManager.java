@@ -23,6 +23,7 @@ public enum ImageManager {
 
 		images.put("Move", engine.createImage("assets/gui/MoveAbility.bmp", true));
 		images.put("Attack", engine.createImage("/assets/gui/AttackAbility.bmp", false));
+		images.put("Offensive Spell", engine.createImage("/assets/gui/OffensiveSpellAbility.bmp", false));
 		
 	}
 	
