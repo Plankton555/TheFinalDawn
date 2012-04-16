@@ -25,9 +25,8 @@ public class Player implements IPlayer {
 	
 	@Override
 	public void select(Position pos) {
-		//TODO Anyone: Add support for selection of multiple units and enemy units
+		//TODO Anyone: Add support for selection of multiple units and enemy units.
 		selectedEntities.clear();
-
 		PlayerControlledEntity entity = ModelUtils.INSTANCE.getPCEAtPosition(pos, this);
 		if(entity!=null){ //No entity is at that position
 			selectedEntities.add(entity);

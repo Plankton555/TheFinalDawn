@@ -71,7 +71,6 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		}
 			//TODO Markus: Set dead? Send event?
 	}
-	
 
 	/**
 	 * Uses an ability at the given position
