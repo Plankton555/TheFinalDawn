@@ -19,6 +19,7 @@ public enum EntityFactory {INSTANCE;
 		pceMap.put(pceType, pce);
 	}
 
+	// TODO Markus: Add javadoc
 	public PlayerControlledEntity createPCE(String pceType, Player owner, Position pos) {
 		return pceMap.get(pceType).createPCE(owner, pos);
 	}

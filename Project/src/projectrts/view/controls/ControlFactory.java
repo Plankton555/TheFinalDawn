@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import projectrts.model.core.entities.IEntity;
 
+// TODO Markus: ADD JAVADOC
 public enum ControlFactory {INSTANCE;
 	
 	

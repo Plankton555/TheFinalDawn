@@ -16,5 +16,6 @@ public abstract class AbstractSpatial extends Geometry{
 		super(name, box);
 	}
 	
+	// TODO Markus: Add javadoc
 	public abstract AbstractSpatial createSpatial(String name, Material material, Box box, IEntity entity);
 }

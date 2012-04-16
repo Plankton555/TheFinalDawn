@@ -64,6 +64,7 @@ public class DeliverResourceAbility extends AbstractAbility{
 		
 	}
 	
+	// TODO Jakob: Add javadoc
 	public void setResourceCarriedAmount(int rca){
 		this.resourceCarriedAmount=rca;
 	}

@@ -140,6 +140,7 @@ public class GameView{
     	this.app.getRootNode().attachChild(entities);
     }
     
+    // TODO Markus: Is this method doing anything?
     public void update(float tpf) {
     }
     

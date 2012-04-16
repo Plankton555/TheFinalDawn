@@ -72,6 +72,7 @@ public class Player implements IPlayer {
 		return entities;
 	}
 	
+	// TODO Anyone: ADD JAVADOC
 	public int getResource(){
 		return resources; 
 	}

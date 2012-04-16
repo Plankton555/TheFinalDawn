@@ -133,6 +133,7 @@ public class AStarNode implements Comparable<AStarNode> {
 		return parent;
 	}
 	
+	// TODO Plankton: Add javadoc
 	public static Comparator<AStarNode> getHeuristicComparator()
 	{
 		return new Comparator<AStarNode>() {

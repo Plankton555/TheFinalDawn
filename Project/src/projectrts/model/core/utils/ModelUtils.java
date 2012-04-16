@@ -52,7 +52,7 @@ public enum ModelUtils {
 		
 	}
 	
-	//TODO Anyone: Extraxt common code from getPlayerControlledEntityAtPosition and this method
+	//TODO Anyone: Extract common code from getPlayerControlledEntityAtPosition and this method
 	public NonPlayerControlledEntity getNonPlayerControlledEntity (Position pos){
 		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
 		for(IEntity entity: entities){
@@ -73,6 +73,7 @@ public enum ModelUtils {
 		return null;
 	}
 	
+	// TODO Anyone: Add javadoc
 	public boolean isWithin(double p, double low, double high){
 		return (p>=low && p<=high);
 	}

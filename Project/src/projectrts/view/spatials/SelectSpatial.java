@@ -6,6 +6,7 @@ import projectrts.view.controls.ControlFactory;
 import com.jme3.material.Material;
 import com.jme3.scene.shape.Box;
 
+// TODO Markus: ADD JAVADOC
 public class SelectSpatial extends AbstractSpatial{
 
 	static {
