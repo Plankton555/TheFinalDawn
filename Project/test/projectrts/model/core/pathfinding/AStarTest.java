@@ -12,7 +12,7 @@ public class AStarTest {
 		
 		try {
 			astar = new AStar();
-			fail("Exception should have been thrown");
+			assertTrue(false);
 		} catch (IllegalStateException e) {
 			assertTrue(true);
 		}
