@@ -30,7 +30,7 @@ public enum ModelUtils {
 	}
 	
 	
-	//TODO Anyone: Should this method be in EntityManager?
+	//TODO Markus: Should this method be in EntityManager?
 	public PlayerControlledEntity getPlayerControlledEntityAtPosition(Position pos){
 		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
 		for(IEntity entity: entities){

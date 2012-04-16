@@ -1,6 +1,6 @@
 package projectrts.model.core;
 
-// TODO Anyone: ADD JAVADOC
+// TODO Markus: ADD JAVADOC
 public enum P {
 	
 	INSTANCE;

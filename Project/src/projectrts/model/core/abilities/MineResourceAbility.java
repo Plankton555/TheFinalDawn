@@ -55,7 +55,6 @@ public class MineResourceAbility extends AbstractAbility{
 		setFinished(false);
 	}
 	
-	// TODO Anyone: Should Mine-, Deliver- and GatherResource be different abilities?.. Can you do one without doing the others?..
 	// TODO Jakob: Add javadoc
 	public int getResourceCarriedAmount(){
 		return resourceCarriedAmount;

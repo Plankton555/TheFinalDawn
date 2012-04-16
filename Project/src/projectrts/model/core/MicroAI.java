@@ -9,7 +9,7 @@ import projectrts.model.core.entities.Unit;
  */
 public class MicroAI {
 
-	// TODO Anyone: Implement MicroAI (if it's going to be used)
+	// TODO Markus: Implement MicroAI (if it's going to be used)
 	private Unit myUnit;
 	
 	/**

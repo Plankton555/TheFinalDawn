@@ -20,8 +20,6 @@ public class Player implements IPlayer {
 	 * Constructs a player
 	 */
 	public Player(){
-		// TODO Anyone: Remove this test unit?
-		//units.add(new Unit(new Position(10,10), this));
 		resources=0; //TODO Anyone: Decide starting amount of resources
 	}
 	
@@ -29,22 +27,6 @@ public class Player implements IPlayer {
 	public void select(Position pos) {
 		//TODO Anyone: Add support for selection of multiple units and enemy units
 		selectedEntities.clear();
-		
-		/*
-		List<IPlayerControlledEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(this);
-		for(IPlayerControlledEntity entity: entities){
-			float unitSize = entity.getSize();
-			Position unitPos = entity.getPosition();
-			
-			//If the point is within the area of the unit
-			if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
-					&& isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
-				selectedEntities.add(entity);
-				break;
-				
-			}
-		}
-		*/
 		PlayerControlledEntity entity = ModelUtils.INSTANCE.getPlayerControlledEntityAtPosition(pos);
 		if(entity!=null){ //No entity is at that position
 			selectedEntities.add(entity);
@@ -72,7 +54,7 @@ public class Player implements IPlayer {
 		return entities;
 	}
 	
-	// TODO Anyone: ADD JAVADOC
+	// TODO Jakob: ADD JAVADOC
 	public int getResource(){
 		return resources; 
 	}

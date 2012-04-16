@@ -15,6 +15,7 @@ import projectrts.model.core.abilities.OffensiveSpellAbility;
  */
 public class Unit extends PlayerControlledEntity {
 
+	// TODO Anyone: Remove this class later
 	private Position targetPosition;
 	private MicroAI microAI;
 	private Stance stance;
@@ -49,40 +50,10 @@ public class Unit extends PlayerControlledEntity {
 
 	@Override
 	public float getSize() {
-		// TODO Anyone: Change Unit.getSize() later
+		// Change Unit.getSize() later
 		return 1;
 		
 	}
-
-
-	/**
-	 * Updates the unit.
-	 * @param tpf Time per frame
-	 **/
-	/*
-	@Override
-	public void update(float tpf)
-	{
-		switch (stance)
-		{
-		case IDLE:
-			// Do nothing atm
-			break;
-			
-		case MOVING:
-			Position oldPos = this.position;
-			this.position = microAI.determinePath(targetPosition, tpf);
-			if (this.position.equals(targetPosition))
-			{
-				// if on target position, stop
-				stance = Stance.IDLE;
-			}
-			break;
-		}
-	}
-	
-
-	*/
 	
 
 	@Override

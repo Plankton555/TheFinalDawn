@@ -3,7 +3,7 @@ package projectrts.model.core.abilities;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.PlayerControlledEntity;
 
-// TODO Anyone: ADD JAVADOC
+// TODO Afton: ADD JAVADOC
 public abstract class AbstractAbility implements IAbility {
 	private boolean isFinished = false;
 	private boolean isActive = false;
