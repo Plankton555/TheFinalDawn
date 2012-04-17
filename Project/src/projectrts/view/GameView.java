@@ -35,6 +35,7 @@ public class GameView{
     private Material matTerrain;
     private TerrainQuad terrain;
     private float mod = Constants.INSTANCE.getModelToWorld(); // The modifier value for converting lengths between model and world.
+    private List<IEntity> entitiesList;
 	
 	public GameView(SimpleApplication app, IGame game) {
 		this.app = app;
@@ -118,7 +119,7 @@ public class GameView{
     }
     
     private void initializeEntities() {
-    	List<IEntity> entitiesList = game.getAllEntities();
+    	entitiesList = game.getAllEntities();
     	Box[] entityShapes = new Box[entitiesList.size()];
     	Material entityMaterial = MaterialManager.INSTANCE.getMaterial("Unshaded");
     	entityMaterial.setColor("Color", ColorRGBA.Pink);
@@ -135,6 +136,7 @@ public class GameView{
     		AbstractSpatial entitySpatial = SpatialFactory.INSTANCE.createSpatial("UnitSpatial", "unit" + i, entityMaterial, entityShapes[i], entitiesList.get(i));
     		// Attach spatial to the entities node.
     		entities.attachChild(entitySpatial);
+    		System.out.println("fixar spatials");
     	}
     	//Attach the entities node to the root node, connecting it to the world.
     	this.app.getRootNode().attachChild(entities);
@@ -142,6 +144,8 @@ public class GameView{
     
     // TODO Markus: Is this method doing anything?
     public void update(float tpf) {
+    	entitiesList = game.getAllEntities();
+    	System.out.println("update view");
     }
     
     /**

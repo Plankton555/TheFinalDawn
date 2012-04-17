@@ -12,9 +12,8 @@ import projectrts.model.core.entities.PlayerControlledEntity;
  */
 public class TrainWorkerAbility extends AbstractAbility{
 	private PlayerControlledEntity structure;
-	private float buildTime = 100; //TODO Jakob: Decide buidlTime and maybe set as a constant
-	// TODO Jakob: Fix spelling mistake
-	private int buidlCost = 50; //TODO Jakob: Decide buidlCost and maybe set as a constant
+	private float buildTime = 5; //TODO Jakob: Decide buidlTime and maybe set as a constant
+	private int buildCost = 50; //TODO Jakob: Decide buidlCost and maybe set as a constant
 	private Position spawnPos;
 	
 	@Override
@@ -28,10 +27,11 @@ public class TrainWorkerAbility extends AbstractAbility{
 			if(buildTime<=0){
 				EntityManager.getInstance().addNewPCE("Worker", (Player)structure.getOwner(),spawnPos);
 				setFinished(true);
-				buildTime =100;
+				buildTime =5;
 			}else{
 				buildTime-=tpf;
 			}
+			System.out.println(buildTime);
 		}
 	}
 
@@ -39,7 +39,7 @@ public class TrainWorkerAbility extends AbstractAbility{
 	public void useAbility(PlayerControlledEntity caster, Position target) {
 		structure = caster;
 		Player owner = (Player)structure.getOwner();
-		owner.modifyResource(-buidlCost); //TODO Jakob: Check if player has enough resources
+		owner.modifyResource(-buildCost); //TODO Jakob: Check if player has enough resources
 		spawnPos = new Position(structure.getPosition().getX()+structure.getSize(),
 				structure.getPosition().getX()+structure.getSize()); //TODO Jakob: Decide spawnPos, Rally points?
 		setActive(true);

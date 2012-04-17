@@ -30,6 +30,12 @@ public class Player implements IPlayer {
 		PlayerControlledEntity entity = ModelUtils.INSTANCE.getPlayerControlledEntityAtPosition(pos);
 		if(entity!=null){ //No entity is at that position
 			selectedEntities.add(entity);
+			if(entity.getName().equals("Worker")){
+				entity.doAbility("GatherResource", new Position(40, 50));
+			}
+			if(entity.getName().equals("Headquarter")){
+				entity.doAbility("TrainWorker", new Position(40, 50));
+			}
 		}
 		
 	}
@@ -61,6 +67,8 @@ public class Player implements IPlayer {
 	
 	public void modifyResource(int amount){
 		resources+=amount;
+		System.out.println(resources);
+		System.out.println(EntityManager.getInstance().getAllEntities());
 	}
 	
 }
