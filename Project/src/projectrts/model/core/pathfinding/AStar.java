@@ -145,6 +145,7 @@ public class AStar {
 			path.addNodeToPath(nextNode);
 			nextNode = nextNode.getParent();
 		}
+		path.addNodeToPath(nextNode);
 		
 		return path;
 	}
