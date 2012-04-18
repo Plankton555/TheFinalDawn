@@ -22,7 +22,7 @@ public class MoveAbility extends AbstractAbility {
 	
 	private AStar aStar;
 	private AStarPath path;
-	private float pathRefreshInterval = 1; // refreshes path every second
+	private float pathRefreshInterval = 0.1f; // refreshes path every second
 	private float timeSincePathRefresh = pathRefreshInterval;
 	
 	static {
@@ -56,10 +56,13 @@ public class MoveAbility extends AbstractAbility {
 	@Override
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
-			Node nodeAtTarget = World.getInstance().getNodeAt(targetPosition);
 			entity.setPosition(determineNextStep(tpf, entity, targetPosition));
-			if (entity.getPosition().equals(nodeAtTarget.getPosition()))
+			//if (entity.getPosition().equals(nodeAtTarget.getPosition()))
+			// TODO Plankton: Solve this shit!
+			if (ModelUtils.INSTANCE.getDistance(entity.getPosition(),
+					targetPosition) < 0.6*P.INSTANCE.getUnitLength())
 			{
+				System.out.println(entity.getEntityID() + " är nu framme");
 				setFinished(true);
 			}
 			
