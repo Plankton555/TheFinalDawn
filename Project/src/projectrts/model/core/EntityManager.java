@@ -125,7 +125,9 @@ public class EntityManager {
 		allEntities.add(EntityFactory.INSTANCE.createPCE(pce, owner, pos));
 	}
 	
-	// TODO Plankton: Add javadoc
+	/**
+	 * @return New entity ID.
+	 */
 	public int requestNewEntityID()
 	{
 		idCounter++;

@@ -8,6 +8,7 @@ import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.model.core.pathfinding.AStar;
 import projectrts.model.core.pathfinding.AStarPath;
 import projectrts.model.core.pathfinding.Node;
+import projectrts.model.core.pathfinding.World;
 import projectrts.model.core.utils.ModelUtils;
 
 /**
@@ -55,13 +56,10 @@ public class MoveAbility extends AbstractAbility {
 	@Override
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
-			
+			Node nodeAtTarget = World.getInstance().getNodeAt(targetPosition);
 			entity.setPosition(determineNextStep(tpf, entity, targetPosition));
-			if (entity.getPosition().equals(targetPosition))
+			if (entity.getPosition().equals(nodeAtTarget.getPosition()))
 			{
-				// TODO Plankton: This will probably never happen since A* goes to the position of
-				// the closest node of targetPosition, and not targetPosition itself. Maybe use
-				// the closest node's position instead?..
 				setFinished(true);
 			}
 			
@@ -77,7 +75,6 @@ public class MoveAbility extends AbstractAbility {
 	 */
 	private Position determineNextStep(float tpf, PlayerControlledEntity entity, Position targetPos)
 	{
-		// TODO Plankton: entity.speed, add here
 		double stepLength = P.INSTANCE.getUnitLength()*tpf*entity.getSpeed();
 		
 		if (timeSincePathRefresh >= pathRefreshInterval)
