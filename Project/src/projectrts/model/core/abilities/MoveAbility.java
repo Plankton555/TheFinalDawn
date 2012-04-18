@@ -77,6 +77,7 @@ public class MoveAbility extends AbstractAbility {
 	 */
 	private Position determineNextStep(float tpf, PlayerControlledEntity entity, Position targetPos)
 	{
+		// TODO Plankton: entity.speed, add here
 		double stepLength = P.INSTANCE.getUnitLength()*tpf;
 		
 		if (timeSincePathRefresh >= pathRefreshInterval)
