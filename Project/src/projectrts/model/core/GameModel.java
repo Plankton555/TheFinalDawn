@@ -26,7 +26,7 @@ import projectrts.model.core.pathfinding.World;
  * @author Björn Persson Mattson, Modified by Filip Brynfors, Jakob Svensson
  */
 public class GameModel implements IGame {
-	private World world = new World(P.INSTANCE.getWorldHeight(), P.INSTANCE.getWorldWidth());
+	private World world = World.getInstance();
 	private EntityManager entityManager = EntityManager.getInstance();
 	private Player humanPlayer = new Player();
 	// TODO Plankton: Implement some sort of AI
@@ -59,6 +59,7 @@ public class GameModel implements IGame {
     }
 		
 	public GameModel() {
+		world.initializeWorld(P.INSTANCE.getWorldHeight(), P.INSTANCE.getWorldWidth());
 		AStar.initialize(world);
 		entityManager.addNewPCE(Unit.class.getSimpleName(), humanPlayer, new Position(50, 50));
 		entityManager.addNewPCE(Unit.class.getSimpleName(), aiPlayer, new Position(50, 51));

@@ -2,6 +2,7 @@ package projectrts.model.core.entities;
 
 import projectrts.model.core.Position;
 import projectrts.model.core.pathfinding.Node;
+import projectrts.model.core.pathfinding.World;
 
 /**
  * Abstract class for the common parts of the different entities
@@ -24,6 +25,7 @@ public abstract class AbstractEntity implements IEntity {
 	 * @param owner The owner of the unit
 	 */
 	protected AbstractEntity(Position spawnPos){
+		this.occupiedNode = World.getInstance().getNodeAt(spawnPos);
 		this.setPosition(spawnPos);
 		
 	}
@@ -56,7 +58,7 @@ public abstract class AbstractEntity implements IEntity {
 	 */
 	public void setPosition(Position pos){
 		position = pos.clone();
-		enterNewNode(aStar.getWorld().getNodeAt(pos));
+		enterNewNode(World.getInstance().getNodeAt(pos));
 	}
 
 	private void enterNewNode(Node newNode)
