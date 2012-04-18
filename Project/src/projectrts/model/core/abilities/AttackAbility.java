@@ -62,7 +62,7 @@ public class AttackAbility extends AbstractAbility {
 				//In range
 				if(getRemainingCooldown()<=0){
 					
-					target.adjustHealth(attacker.getDamage());
+					target.adjustHealth(-attacker.getDamage());
 					
 					this.setAbilityUsed();
 					

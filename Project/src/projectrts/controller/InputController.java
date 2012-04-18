@@ -1,10 +1,19 @@
 package projectrts.controller;
 
+import java.util.List;
+
 import projectrts.global.constants.*;
 import projectrts.global.utils.Utils;
+import projectrts.model.core.EntityManager;
 import projectrts.model.core.IGame;
 import projectrts.model.core.P;
+import projectrts.model.core.Position;
+import projectrts.model.core.abilities.GatherResourceAbility;
+import projectrts.model.core.entities.IEntity;
+import projectrts.model.core.entities.NonPlayerControlledEntity;
+import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.view.GameView;
+import sun.security.jca.GetInstance.Instance;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
@@ -160,11 +169,10 @@ public class InputController {
     		
 	    	if(app.getStateManager().getState(InGameState.class).isEnabled()) {
 	    		if (name.equals("mouseLeftButton") && keyPressed) {
-	    			game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
-	    			view.drawSelected(game.getPlayer().getSelectedEntities());
+	    			handleLeftClick();
 	    		}
 	    		if (name.equals("mouseRightButton") && keyPressed) {
-	    			game.getPlayer().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+	    			handleRightClick();
 	    		}
 	    		
 	    		//Debugging
@@ -185,5 +193,58 @@ public class InputController {
 	            mouseActivated = true;
 	    	}	
 	    }
+    	
+    	private void handleLeftClick(){
+    		game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+			view.drawSelected(game.getPlayer().getSelectedEntities());
+    	}
+    	
+    	private void handleRightClick(){
+    		Position click = Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(
+    				app.getInputManager().getCursorPosition(), 0));
+    		IEntity e = getEntityAtPosition(click);
+    		if(e!=null){
+    			if(e.getName().equals("Resource")){
+    				game.getPlayer().useAbilitySelected("GatherResource", click);
+    				
+    			}else if(e instanceof PlayerControlledEntity){
+    				PlayerControlledEntity pce = (PlayerControlledEntity) e;
+    				if(!pce.getOwner().equals(game.getPlayer())){
+    					game.getPlayer().useAbilitySelected("Attack", pce.getPosition());
+    				}else{
+    					game.getPlayer().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
+    	    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+    				}
+    			}
+    			
+    		}
+    		else{
+    			game.getPlayer().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
+    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+    		}
+    	}
+    	
+    	private boolean isWithin(double p, double low, double high){
+    		return (p>=low && p<=high);
+    	}
+    	
+    	private IEntity getEntityAtPosition(Position pos){
+    		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
+    		for(IEntity entity: entities){
+    			
+				float unitSize = entity.getSize();
+				Position unitPos = entity.getPosition();
+				
+				//If the point is within the area of the unit
+				if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
+						&& isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
+					
+					return entity;
+					
+				}
+			
+    		}
+    		return null;
+    	}
     };
 }

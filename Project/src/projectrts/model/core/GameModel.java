@@ -61,7 +61,10 @@ public class GameModel implements IGame {
 	public GameModel() {
 		AStar.initialize(world);
 		entityManager.addNewPCE(Unit.class.getSimpleName(), humanPlayer, new Position(50, 50));
+		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(55, 50));
+		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(40, 50));
 		entityManager.addNewPCE(Unit.class.getSimpleName(), aiPlayer, new Position(50, 51));
+		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40,40));
 	}
 	
 	@Override

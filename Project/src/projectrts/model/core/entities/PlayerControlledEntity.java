@@ -69,6 +69,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		if(currentHealth <= 0){
 			currentHealth = 0;
 		}
+		System.out.println(getName()+" "+currentHealth);
 			//TODO Markus: Set dead? Send event?
 	}
 
