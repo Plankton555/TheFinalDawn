@@ -111,7 +111,7 @@ public class World {
 		for (int i=40; i<60; i++)
 		{
 			// Creates a "wall" (currently invisible) from pos (40,40) to (60,40)
-			nodes[40][i].setOccupied(1);
+			nodes[40][i].setOccupied(-1);
 		}
 	}
 }
