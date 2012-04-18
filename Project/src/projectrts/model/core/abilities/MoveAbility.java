@@ -22,7 +22,7 @@ public class MoveAbility extends AbstractAbility {
 	
 	private AStar aStar;
 	private AStarPath path;
-	private float pathRefreshInterval = 0.1f; // refreshes path every second
+	private float pathRefreshInterval = 1; // refreshes path every second
 	private float timeSincePathRefresh = pathRefreshInterval;
 	
 	static {
