@@ -2,5 +2,5 @@ package projectrts.view;
 
 public class MenuView {
 
-	// TODO Anyone: Implement MenuView
+	// // TODO Afton: Implement MenuView, even if it's just "Press enter to continue"
 }

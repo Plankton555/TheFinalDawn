@@ -13,10 +13,13 @@ public class AttackAbility extends AbstractAbility {
 	private PlayerControlledEntity attacker;
 	private PlayerControlledEntity target;
 	
-	private MoveAbility moveAbility = new MoveAbility();
+	private AbstractAbility moveAbility;
 	
+	static {
+		AbilityFactory.INSTANCE.registerAbility(AttackAbility.class.getSimpleName(), new AttackAbility());
+	}
 	
-	public AttackAbility(){
+	private AttackAbility(){
 		super(1);
 	}
 	
@@ -28,9 +31,7 @@ public class AttackAbility extends AbstractAbility {
 	@Override
 	public void useAbility(PlayerControlledEntity attacker, Position pos){
 		this.attacker = attacker;
-		target = ModelUtils.INSTANCE.getPlayerControlledEntityAtPosition(pos);
-		
-		//TODO Afton: Are these needed?
+		target = ModelUtils.INSTANCE.getPCEAtPosition(pos);
 		setActive(true);
 		setFinished(false);
 		
@@ -60,17 +61,24 @@ public class AttackAbility extends AbstractAbility {
 			} else {
 				//In range
 				if(getRemainingCooldown()<=0){
-					//TODO: The amount of dmg should be attacker.getDamage()
-				
-					target.takeDamage(50);
+					
+					target.adjustHealth(attacker.getDamage());
 					
 					this.setAbilityUsed();
 					
-					//TODO Afton: Not setting finished = true?
+					this.setActive(false);
+					this.setFinished(true);
 					
 				}
 			}
 		}
+	}
+
+	@Override
+	public AbstractAbility createAbility() {
+		AttackAbility newAbility = new AttackAbility();
+		newAbility.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
+		return newAbility;
 	}
 
 }

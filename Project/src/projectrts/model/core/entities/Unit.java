@@ -4,6 +4,7 @@ import projectrts.model.core.EntityFactory;
 import projectrts.model.core.MicroAI;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
+import projectrts.model.core.abilities.AbilityFactory;
 import projectrts.model.core.abilities.AttackAbility;
 import projectrts.model.core.abilities.MoveAbility;
 import projectrts.model.core.abilities.OffensiveSpellAbility;
@@ -15,6 +16,7 @@ import projectrts.model.core.abilities.OffensiveSpellAbility;
  */
 public class Unit extends PlayerControlledEntity {
 
+	// TODO Anyone: Remove this class later
 	private Position targetPosition;
 	private MicroAI microAI;
 	private Stance stance;
@@ -41,48 +43,18 @@ public class Unit extends PlayerControlledEntity {
 		super(owner, spawnPos);
 		this.microAI = new MicroAI(this);
 		this.stance = Stance.IDLE;
-		abilities.add(new AttackAbility());
-		abilities.add(new OffensiveSpellAbility());
-		abilities.add(new MoveAbility());
+		abilities.add(AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName()));
+		abilities.add(AbilityFactory.INSTANCE.createAbility(OffensiveSpellAbility.class.getSimpleName()));
+		abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
 	}
 	
 
 	@Override
 	public float getSize() {
-		// TODO Anyone: Change Unit.getSize() later
+		// Change Unit.getSize() later
 		return 1;
 		
 	}
-
-
-	/**
-	 * Updates the unit.
-	 * @param tpf Time per frame
-	 **/
-	/*
-	@Override
-	public void update(float tpf)
-	{
-		switch (stance)
-		{
-		case IDLE:
-			// Do nothing atm
-			break;
-			
-		case MOVING:
-			Position oldPos = this.position;
-			this.position = microAI.determinePath(targetPosition, tpf);
-			if (this.position.equals(targetPosition))
-			{
-				// if on target position, stop
-				stance = Stance.IDLE;
-			}
-			break;
-		}
-	}
-	
-
-	*/
 	
 
 	@Override
@@ -101,5 +73,10 @@ public class Unit extends PlayerControlledEntity {
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		return new Unit(owner, pos);
+	}
+
+	@Override
+	public int getDamage() {
+		return 10;
 	}
 }

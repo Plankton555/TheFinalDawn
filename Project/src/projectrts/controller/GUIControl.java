@@ -30,7 +30,7 @@ public class GUIControl implements ScreenController {
 	private Nifty nifty;
 	private Screen screen;
 	
-	private InputControl input;
+	private InputController input;
 	private ScreenController sc;
 	private int i;
 	private SimpleApplication app;
@@ -38,7 +38,7 @@ public class GUIControl implements ScreenController {
 	private List<IAbility> abilities; 
 
 	
-	public GUIControl(Application app, InputControl input) {
+	public GUIControl(Application app, InputController input) {
 		sc = this;
 		this.app = (SimpleApplication) app;
 		initializeGUI();

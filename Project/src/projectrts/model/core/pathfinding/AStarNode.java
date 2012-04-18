@@ -14,7 +14,6 @@ import projectrts.model.core.Position;
 public class AStarNode implements Comparable<AStarNode> {
 	
 	private Node node;
-	private int totalCost = 0;
 	private int costFromStart;
 	private int heuristic;
 	private AStarNode parent;
@@ -44,38 +43,34 @@ public class AStarNode implements Comparable<AStarNode> {
 	}
 	
 	/**
-	 * Calculated the cost for this node.
-	 * @param parentNode Parent node
-	 * @param endNode End node (used to calculate heuristic)
+	 * Calculates the heuristic from this node to the end node.
+	 * @param endNode End node
 	 */
-	public void calculateCost(AStarNode parentNode, AStarNode endNode)
+	public void calculateHeuristic(AStarNode endNode)
 	{
 		Position mePos = this.getPosition();
-		Position parPos = parentNode.getPosition();
 		Position endPos = endNode.getPosition();
-		int distance = calcNodeDistance(mePos, parPos);
-		
-		this.costFromStart = (int) Math.round(parentNode.getCostFromStart() + distance*node.getCost());
-		this.heuristic = ((int) (Math.abs(endPos.getX() - mePos.getX()) + Math.abs(endPos.getY() - mePos.getY())))*10;
-		this.totalCost = this.costFromStart + this.heuristic;
-		this.parent = parentNode;
+		// Calculating heuristic using the "Manhattan" distance
+		this.heuristic = ((int) (Math.abs(endPos.getX() - mePos.getX()) +
+				Math.abs(endPos.getY() - mePos.getY())))*10;
 	}
 
 	/**
-	 * Refreshes the cost from start for this node.
+	 * Calculates the cost from start for this node.
 	 * @param parentNode Parent node
+	 * @param refresh If true, overwrites the old result only if the new result is better.
+	 * If false, overwrites the old result no matter what.
 	 */
-	public void refreshCost(AStarNode parentNode)
+	public void calculateCostFromStart(AStarNode parentNode, boolean refresh)
 	{
 		Position mePos = this.getPosition();
 		Position parPos = parentNode.getPosition();
 		int distance = calcNodeDistance(mePos, parPos);
 		
 		int newCostFromStart = (int) Math.round(parentNode.getCostFromStart() + distance*node.getCost());
-		if (newCostFromStart < this.costFromStart)
+		if (!refresh || newCostFromStart < this.costFromStart)
 		{
 			this.costFromStart = newCostFromStart;
-			this.totalCost = this.costFromStart + this.heuristic;
 			this.parent = parentNode;
 		}
 	}
@@ -111,7 +106,7 @@ public class AStarNode implements Comparable<AStarNode> {
 	 */
 	public int getTotalCost()
 	{
-		return totalCost;
+		return this.costFromStart + this.heuristic;
 	}
 	
 	/**
@@ -138,6 +133,7 @@ public class AStarNode implements Comparable<AStarNode> {
 		return parent;
 	}
 	
+	// TODO Plankton: Add javadoc
 	public static Comparator<AStarNode> getHeuristicComparator()
 	{
 		return new Comparator<AStarNode>() {

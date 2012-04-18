@@ -43,6 +43,7 @@ public class AStar {
 	 */
 	public AStarPath calculatePath(Position startPos, Position targetPos)
 	{
+		// TODO Plankton: Use threads or something to not "freeze" the game when calculating?
 		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
 		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
 		List<AStarNode> openList = new ArrayList<AStarNode>();
@@ -50,7 +51,35 @@ public class AStar {
 		
 		if (endNode.isObstacle())
 		{
-			// TODO Plankton: Find some faster way to do it.
+			// Use A* "backwards" from the end node to find the closest walkable node.
+			// Probably not the best way of dealing with it, but it will do for now.
+			List<AStarNode> endClosedList = new ArrayList<AStarNode>();
+			List<AStarNode> endOpenList = new ArrayList<AStarNode>();
+			endOpenList.add(endNode);
+			while (endOpenList.size() > 0)
+			{
+				Collections.sort(endOpenList);
+				AStarNode currentNode = endOpenList.get(0);
+				
+				if (!currentNode.isObstacle())
+				{
+					endNode = currentNode;
+					break;
+				}
+				endOpenList.remove(currentNode);
+				endClosedList.add(currentNode);
+				
+				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
+				for (AStarNode node : adjacentNodes)
+				{
+					if (!endOpenList.contains(node) && !endClosedList.contains(node))
+					{
+						endOpenList.add(node);
+						node.calculateCostFromStart(currentNode, false);
+						node.calculateHeuristic(startNode);
+					}
+				}
+			}
 		}
 		
 		// A* algorithm starts here
@@ -85,11 +114,12 @@ public class AStar {
 							{
 								// move to open list and calculate cost
 								openList.add(node);
-								node.calculateCost(currentNode, endNode);
+								node.calculateCostFromStart(currentNode, false);
+								node.calculateHeuristic(endNode);
 							}
 							else // if on open list, check to see if new path is better
 							{
-								node.refreshCost(currentNode);
+								node.calculateCostFromStart(currentNode, true);
 							}
 						}
 					}
@@ -97,12 +127,11 @@ public class AStar {
 			}
 		}
 		
-		// path not found, return empty path
-		return new AStarPath();
-		/*
+		// path not found, return path to the closest node instead.
+		
 		Collections.sort(closedList, AStarNode.getHeuristicComparator());
-		return generatePath(startNode, closedList.get(0));
-		*/
+		return generatePath(startNode, closedList.get(1));
+		// the second element in closedList since the first one is the start node
 	}
 	
 	private AStarPath generatePath(AStarNode startNode, AStarNode endNode)

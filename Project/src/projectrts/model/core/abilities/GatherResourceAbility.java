@@ -10,9 +10,17 @@ import projectrts.model.core.entities.PlayerControlledEntity;
 public class GatherResourceAbility extends AbstractAbility{
 	
 	private PlayerControlledEntity unit;
-	private MineResourceAbility mineResourceAbility = new MineResourceAbility();
-	private DeliverResourceAbility deliverResourceAbility = new DeliverResourceAbility();
+	private AbstractAbility mineResourceAbility;
+	private AbstractAbility deliverResourceAbility;
 	private Position target;
+	
+	static {
+		AbilityFactory.INSTANCE.registerAbility(GatherResourceAbility.class.getSimpleName(), new GatherResourceAbility());
+	}
+	
+	private GatherResourceAbility() {
+		super();
+	}
 	
 	@Override
 	public String getName() {
@@ -26,7 +34,6 @@ public class GatherResourceAbility extends AbstractAbility{
 				mineResourceAbility.update(tpf);
 				deliverResourceAbility.update(tpf);
 				if(mineResourceAbility.isFinished()){
-					deliverResourceAbility.setResourceCarriedAmount(mineResourceAbility.getResourceCarriedAmount());
 					mineResourceAbility.setActive(false);
 					mineResourceAbility.setFinished(false);
 					deliverResourceAbility.useAbility(unit, target);
@@ -48,6 +55,14 @@ public class GatherResourceAbility extends AbstractAbility{
 		setActive(true);
 		setFinished(false);
 		mineResourceAbility.useAbility(unit, target);
+	}
+
+	@Override
+	public AbstractAbility createAbility() {
+		GatherResourceAbility newAbility = new GatherResourceAbility();
+		newAbility.mineResourceAbility = AbilityFactory.INSTANCE.createAbility(MineResourceAbility.class.getSimpleName());
+		newAbility.deliverResourceAbility = AbilityFactory.INSTANCE.createAbility(DeliverResourceAbility.class.getSimpleName());
+		return newAbility;
 	}
 
 }

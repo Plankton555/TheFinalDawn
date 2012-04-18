@@ -1,5 +1,6 @@
 package projectrts.model.core.abilities;
 
+import projectrts.model.core.P;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.model.core.entities.Resource;
@@ -12,8 +13,18 @@ import projectrts.model.core.utils.ModelUtils;
 public class MineResourceAbility extends AbstractAbility{
 	private Resource targetResource;
 	private PlayerControlledEntity unit;
-	private MoveAbility moveAbility = new MoveAbility();
+	private AbstractAbility moveAbility;
 	private int resourceCarriedAmount;
+	private final float recoveryTime = 0.3f;
+	private float miningCooldown = 0;
+	
+	static {
+		AbilityFactory.INSTANCE.registerAbility(MineResourceAbility.class.getSimpleName(), new MineResourceAbility());
+	}
+	
+	private MineResourceAbility() {
+		super();
+	}
 	
 	@Override
 	public String getName() {
@@ -26,9 +37,18 @@ public class MineResourceAbility extends AbstractAbility{
 			
 			if(ModelUtils.INSTANCE.getDistance(unit.getPosition(),targetResource.getPosition() )<1){
 				//If in range of resource
+				//Check cooldown and mine resource or reduce cooldown as appropriate.
+				if (miningCooldown <= 0) { 
+					resourceCarriedAmount += targetResource.mine();
+					miningCooldown = recoveryTime;
+				} else {
+					miningCooldown -= tpf; 
+				}
 				
-				resourceCarriedAmount = targetResource.mine();
-				setFinished(true);
+				if(resourceCarriedAmount >= P.INSTANCE.getWorkerCarryAmount()) {
+					setFinished(true);
+				}
+				
 			}else{
 				// Not in range
 				
@@ -55,8 +75,11 @@ public class MineResourceAbility extends AbstractAbility{
 		setFinished(false);
 	}
 	
-	public int getResourceCarriedAmount(){
-		return resourceCarriedAmount;
+	@Override
+	public AbstractAbility createAbility() {
+		MineResourceAbility newAbility = new MineResourceAbility();
+		newAbility.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
+		return newAbility;
 	}
 
 }

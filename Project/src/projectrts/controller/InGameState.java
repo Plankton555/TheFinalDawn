@@ -1,15 +1,16 @@
 package projectrts.controller;
 
 
+import projectrts.global.constants.Constants;
+import projectrts.model.core.IGame;
+import projectrts.model.core.P;
+import projectrts.view.GameView;
+
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.math.Vector3f;
-import projectrts.global.constants.*;
-import projectrts.model.core.IGame;
-import projectrts.model.core.P;
-import projectrts.view.GameView;
 
 /**
  * The in-game state that controls everything inside the game.
@@ -21,7 +22,7 @@ public class InGameState extends AbstractAppState {
  
     private SimpleApplication app;
     private IGame game;
-    private InputControl input;
+    private InputController input;
     private GameView view;
     private GUIControl guiControl;
     
@@ -45,11 +46,12 @@ public class InGameState extends AbstractAppState {
         this.app = (SimpleApplication)app;          // cast to a more specific class
       // init stuff that is independent of whether state is PAUSED or RUNNING // modify scene graph...
       view = new GameView(this.app, game);
-      input = new InputControl(this.app, game, view);
+      input = new InputController(this.app, game, view);
       guiControl = new GUIControl(app, input); 
+
       initializeCamera();
       // Initialize view last, after model and controller, since its initialization is dependent on the other's.
-      view.initializeView();
+      view.initialize();
    }
  
     /**

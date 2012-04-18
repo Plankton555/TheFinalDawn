@@ -2,7 +2,21 @@ package projectrts.model.core;
 
 import java.util.List;
 
-import projectrts.model.core.entities.*;
+import projectrts.model.core.abilities.AttackAbility;
+import projectrts.model.core.abilities.BuildTowerAbility;
+import projectrts.model.core.abilities.DeliverResourceAbility;
+import projectrts.model.core.abilities.GatherResourceAbility;
+import projectrts.model.core.abilities.MineResourceAbility;
+import projectrts.model.core.abilities.MoveAbility;
+import projectrts.model.core.abilities.OffensiveSpellAbility;
+import projectrts.model.core.abilities.TrainWorkerAbility;
+import projectrts.model.core.entities.Headquarter;
+import projectrts.model.core.entities.IEntity;
+import projectrts.model.core.entities.IPlayerControlledEntity;
+import projectrts.model.core.entities.Resource;
+import projectrts.model.core.entities.Unit;
+import projectrts.model.core.entities.Warrior;
+import projectrts.model.core.entities.Worker;
 import projectrts.model.core.pathfinding.AStar;
 import projectrts.model.core.pathfinding.World;
 
@@ -21,11 +35,22 @@ public class GameModel implements IGame {
 	static {
 		try
 		{
-			Class.forName(BasicUnit.class.getName());
+			Class.forName(Warrior.class.getName());
 			Class.forName(Unit.class.getName());
 			Class.forName(Worker.class.getName());
 			Class.forName(Resource.class.getName());
 			Class.forName(Headquarter.class.getName());
+			
+			// Initialize the ability classes.
+			Class.forName(AttackAbility.class.getName());
+			Class.forName(BuildTowerAbility.class.getName());
+			Class.forName(DeliverResourceAbility.class.getName());
+			Class.forName(GatherResourceAbility.class.getName());
+			Class.forName(MineResourceAbility.class.getName());
+			Class.forName(MoveAbility.class.getName());
+			Class.forName(OffensiveSpellAbility.class.getName());
+			Class.forName(TrainWorkerAbility.class.getName());
+						
 		}
 		catch (ClassNotFoundException any)
 		{
@@ -35,7 +60,8 @@ public class GameModel implements IGame {
 		
 	public GameModel() {
 		AStar.initialize(world);
-		entityManager.addNewPCE("Unit", humanPlayer, new Position(50, 50));
+		entityManager.addNewPCE(Unit.class.getSimpleName(), humanPlayer, new Position(50, 50));
+		entityManager.addNewPCE(Unit.class.getSimpleName(), aiPlayer, new Position(50, 51));
 	}
 	
 	@Override
@@ -51,5 +77,9 @@ public class GameModel implements IGame {
 	@Override
 	public List<IEntity> getAllEntities() {
 		return entityManager.getAllEntities();
+	}
+	
+	public List<IPlayerControlledEntity> getEntitiesOfPlayer() {
+		return entityManager.getEntitiesOfPlayer(humanPlayer);
 	}
 }

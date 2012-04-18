@@ -17,6 +17,14 @@ public class TrainWorkerAbility extends AbstractAbility{
 	private int buidlCost = 50; //TODO Jakob: Decide buidlCost and maybe set as a constant
 	private Position spawnPos;
 	
+	static {
+		AbilityFactory.INSTANCE.registerAbility(TrainWorkerAbility.class.getSimpleName(), new TrainWorkerAbility());
+	}
+	
+	private TrainWorkerAbility() {
+		super();
+	}
+	
 	@Override
 	public String getName() {
 		return "TrainWorker";
@@ -44,6 +52,11 @@ public class TrainWorkerAbility extends AbstractAbility{
 				structure.getPosition().getX()+structure.getSize()); //TODO Jakob: Decide spawnPos, Rally points?
 		setActive(true);
 		setFinished(false);
+	}
+
+	@Override
+	public AbstractAbility createAbility() {
+		return new TrainWorkerAbility();
 	}
 
 }

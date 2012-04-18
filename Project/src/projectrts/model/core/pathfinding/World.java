@@ -1,6 +1,7 @@
 package projectrts.model.core.pathfinding;
 
 import projectrts.model.core.Position;
+import projectrts.model.core.utils.ModelUtils;
 
 /**
  * The class containing the "world"
@@ -10,6 +11,9 @@ import projectrts.model.core.Position;
 public class World {
 	private Node[][] nodes;
 	
+	private int width;
+	private int height;
+	
 	/**
 	 * Creates a new world with specified height and width.
 	 * @param height Height.
@@ -17,12 +21,14 @@ public class World {
 	 */
 	public World(int height, int width) {
 		initNodes(height, width);
-		setTestOccupation();
+		//setTestOccupation();
 	}
 	
 	private void initNodes(int height, int width)
 	{
 		nodes = new Node[height][width];
+		this.width = width;
+		this.height = height;
 		
 		// Creates a matrix of nodes with the upper left at position (0.5, 0.5)
 		// and the lower right at position (width+0.5, height+0.5)
@@ -79,9 +85,11 @@ public class World {
 	 */
 	public Node getNodeAt(Position p)
 	{
-		// TODO Plankton: Make sure that the position is legal.
 		int x = (int)p.getX();
 		int y = (int)p.getY();
+		
+		x = (int)ModelUtils.INSTANCE.clamp(x, 0, width-1);
+		y = (int)ModelUtils.INSTANCE.clamp(y, 0, height-1);
 		return nodes[y][x];
 	}
 	

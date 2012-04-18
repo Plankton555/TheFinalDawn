@@ -14,7 +14,7 @@ public enum TextureManager {
 	INSTANCE;
 	private HashMap<String, Texture> textures = new HashMap<String, Texture>();
 	
-	
+	// TODO Jakob: Add javadoc
 	public void initializeTextures(SimpleApplication app){
 		AssetManager assetManager = app.getAssetManager();
 

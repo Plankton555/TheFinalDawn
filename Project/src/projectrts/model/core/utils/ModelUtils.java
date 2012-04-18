@@ -3,6 +3,7 @@ package projectrts.model.core.utils;
 import java.util.List;
 
 import projectrts.model.core.EntityManager;
+import projectrts.model.core.IPlayer;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.IEntity;
 import projectrts.model.core.entities.NonPlayerControlledEntity;
@@ -23,16 +24,14 @@ public enum ModelUtils {
 	 * @return the distance between the points
 	 */
 	public double getDistance(Position p1, Position p2){
-		// TODO Plankton: change this method?
 		double dx = p1.getX() - p2.getX();
 		double dy = p1.getY() - p2.getY();
 		
 		return Math.sqrt(dx*dx+dy*dy);
 	}
 	
-	
-	//TODO Anyone: Should this method be in EntityManager?
-	public PlayerControlledEntity getPlayerControlledEntityAtPosition(Position pos){
+	//TODO Markus: Should this method be in EntityManager?
+	public PlayerControlledEntity getPCEAtPosition(Position pos){
 		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
 		for(IEntity entity: entities){
 			if(entity instanceof PlayerControlledEntity){
@@ -51,6 +50,22 @@ public enum ModelUtils {
 		}
 		return null;
 		
+	}
+	
+	/**
+	 * If there exists a PCE that the passed player owns at the passed position
+	 * it is returned, otherwise this method returns null.
+	 * @param pos The position to check.
+	 * @param player The hopeful owner.
+	 * @return A PCE if there is one on the position that the player owns, otherwise null.
+	 */
+	public PlayerControlledEntity getPCEAtPosition(Position pos, IPlayer player) {
+		if(getPCEAtPosition(pos) != null) {
+			if( getPCEAtPosition(pos).getOwner().equals(player)) {
+				return getPCEAtPosition(pos);
+			}
+		}
+		return null;
 	}
 	
 	//TODO Anyone: Extraxt common code from getPlayerControlledEntityAtPosition and this method
@@ -74,7 +89,20 @@ public enum ModelUtils {
 		return null;
 	}
 	
+	// TODO Anyone: Add javadoc
 	public boolean isWithin(double p, double low, double high){
 		return (p>=low && p<=high);
+	}
+	
+	/**
+	 * Restricts a value to be within a specified range.
+	 * @param value The value to clamp.
+	 * @param min The minimum value. If value is less than min, min will be returned.
+	 * @param max The maximum value. If value is greater than max, max will be returned.
+	 * @return If value > max, max will be returned. If value < min, min will be returned.
+	 * If min <= value >= max, value will be returned.
+	 */
+	public double clamp(double value, double min, double max) {
+		return (value > max ? max : (value < min ? min : value));
 	}
 }

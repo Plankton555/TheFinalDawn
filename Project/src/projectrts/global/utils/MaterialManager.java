@@ -15,6 +15,7 @@ public enum MaterialManager {
 	INSTANCE;
 	private HashMap<String, Material> materials = new HashMap<String, Material>();
 	
+	// TODO Jakob: Add javadoc
 	public void initializeMaterial(SimpleApplication app){
 		AssetManager assetManager = app.getAssetManager();
 		materials.put("Terrain", new Material(assetManager,"Common/MatDefs/Terrain/Terrain.j3md"));

@@ -3,7 +3,7 @@ package projectrts.model.core.abilities;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.PlayerControlledEntity;
 
-
+// TODO Afton: ADD JAVADOC
 public abstract class AbstractAbility implements IAbility {
 	private boolean isFinished = false;
 	private boolean isActive = false;
@@ -68,6 +68,7 @@ public abstract class AbstractAbility implements IAbility {
 	
 	public abstract void useAbility(PlayerControlledEntity caster, Position target);
 	
+	public abstract AbstractAbility createAbility();
 	
 
 }

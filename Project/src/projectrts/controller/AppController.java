@@ -11,6 +11,18 @@ import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.core.GameModel;
 import projectrts.model.core.IGame;
+import projectrts.model.core.abilities.AttackAbility;
+import projectrts.model.core.abilities.BuildTowerAbility;
+import projectrts.model.core.abilities.DeliverResourceAbility;
+import projectrts.model.core.abilities.GatherResourceAbility;
+import projectrts.model.core.abilities.MineResourceAbility;
+import projectrts.model.core.abilities.MoveAbility;
+import projectrts.model.core.abilities.OffensiveSpellAbility;
+import projectrts.model.core.abilities.TrainWorkerAbility;
+import projectrts.view.controls.MoveControl;
+import projectrts.view.controls.SelectControl;
+import projectrts.view.spatials.SelectSpatial;
+import projectrts.view.spatials.UnitSpatial;
 
 /**
  * The top-level controller.
@@ -22,6 +34,26 @@ import projectrts.model.core.IGame;
  */
 public class AppController extends SimpleApplication{
 
+	static{
+		try
+		{
+			// Initialize the control classes.
+			Class.forName(MoveControl.class.getName());
+			Class.forName(SelectControl.class.getName());
+			
+			// Initialize the spatial classes.
+			Class.forName(UnitSpatial.class.getName());
+			Class.forName(SelectSpatial.class.getName());
+			
+			
+			// TODO Markus: should entities be here as well or should abilities be in GameModel?
+		}
+		catch (ClassNotFoundException any)
+		{
+			any.printStackTrace();
+		}
+	}
+	
     @Override
     public void simpleInitApp() {
     	this.cam.setParallelProjection(true);
@@ -44,6 +76,6 @@ public class AppController extends SimpleApplication{
 
     @Override
     public void simpleRender(RenderManager rm) {
-        //TODO  Markus: add render code
+        //TODO Markus: add render code
     }
 }

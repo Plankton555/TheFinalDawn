@@ -33,20 +33,21 @@ import de.lessvoid.nifty.screen.Screen;
  * @author Markus Ekström
  *
  */
-public class InputControl {
+public class InputController {
 
 	// Before the mouse is moved it has the position (0, 0), causing the camera to move in that direction.
 	// mouseActivated suppresses the camera until set to true (which is done when the mouse is first moved).
 	private boolean mouseActivated = false; 
 	private SimpleApplication app;
+
 	private IGame game; // The model
 	private GameView view; 
 	private GUIControl guiControl;
 	
 	
-	public InputControl(SimpleApplication app, IGame model, GameView view) {
+	public InputController(SimpleApplication app, IGame game, GameView view) {
 		this.app = app;
-		this.game = model;
+		this.game = game;
 		this.view = view;
 		initializeKeys();
 	}

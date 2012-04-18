@@ -1,4 +1,5 @@
-package projectrts.controller.controls;
+
+package projectrts.view.controls;
 
 import projectrts.global.utils.Utils;
 import projectrts.model.core.Position;
@@ -8,7 +9,6 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
 //TODO Markus: Check if MoveControl could be used instead of this class.
 /**
@@ -21,7 +21,11 @@ import com.jme3.scene.control.Control;
 public class SelectControl extends AbstractControl{
 	private IEntity entity;
 	
-	public SelectControl(IEntity entity) {
+	static {
+		ControlFactory.INSTANCE.registerControl("SelectControl", new SelectControl(null));
+	}
+	
+	private SelectControl(IEntity entity) {
 		super();
 		this.entity = entity;
 	}
@@ -52,5 +56,10 @@ public class SelectControl extends AbstractControl{
 				spatial.move(moveVector); // Move the spatial according to the movement vector.
 			}		
 		}
+	}
+
+	@Override
+	public AbstractControl createControl(IEntity entity) {
+		return new SelectControl(entity);
 	}
 }

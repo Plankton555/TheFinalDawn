@@ -17,17 +17,21 @@ import projectrts.model.core.utils.ModelUtils;
 public class MoveAbility extends AbstractAbility {
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
-	
+	// TODO Plankton: Change nodes occupation when moving.
 	private AStar aStar;
 	private AStarPath path;
 	private float pathRefreshInterval = 1; // refreshes path every second
 	private float timeSincePathRefresh = pathRefreshInterval;
 	
+	static {
+		AbilityFactory.INSTANCE.registerAbility(MoveAbility.class.getSimpleName(), new MoveAbility());
+	}
+	
 	/**
 	 * Creates a new instance of this ability.
 	 */
-	public MoveAbility(){
-		this.aStar = new AStar();
+	private MoveAbility(){
+		
 	}
 	
 	@Override
@@ -43,7 +47,6 @@ public class MoveAbility extends AbstractAbility {
 		// Want to refresh path as soon as a click is made
 		this.timeSincePathRefresh = pathRefreshInterval;
 		
-		//TODO Afton: Are these needed?
 		setActive(true);
 		setFinished(false);
 	}
@@ -55,6 +58,9 @@ public class MoveAbility extends AbstractAbility {
 			entity.setPosition(determineNextStep(tpf, entity, targetPosition));
 			if (entity.getPosition().equals(targetPosition))
 			{
+				// TODO Plankton: This will probably never happen since A* goes to the position of
+				// the closest node of targetPosition, and not targetPosition itself. Maybe use
+				// the closest node's position instead?..
 				setFinished(true);
 			}
 			
@@ -108,45 +114,11 @@ public class MoveAbility extends AbstractAbility {
 		}
 		return outputPos;
 	}
-
-	// TODO Anyone: Remove old determinePath() when no longer needed
-	/*
-	private Position determinePath(Position target, float tpf){
-		// Extremely simple path algorithm
-		double stepSize = P.INSTANCE.getUnitLength()*tpf;
-		Position myPos = entity.getPosition();
-		double newX = 0;
-		double newY = 0;
-		
-		// For x axis
-		if (Math.abs(myPos.getX() - target.getX()) < stepSize)
-		{
-			newX = target.getX();
-		}
-		else if (myPos.getX() < target.getX())
-		{
-			newX = myPos.getX()+stepSize;
-		}
-		else// if (myPos.getX() > target.getX())
-		{
-			newX = myPos.getX()-stepSize;
-		}
-		
-		// For y axis
-		if (Math.abs(myPos.getY() - target.getY()) < stepSize)
-		{
-			newY = target.getY();
-		}
-		else if (myPos.getY() < target.getY())
-		{
-			newY = myPos.getY()+stepSize;
-		}
-		else// if (myPos.getY() > target.getY())
-		{
-			newY = myPos.getY()-stepSize;
-		}
-		
-		return new Position(newX, newY);
+	
+	@Override
+	public AbstractAbility createAbility() {
+		MoveAbility newAbility = new MoveAbility();
+		newAbility.aStar = new AStar();
+		return newAbility;
 	}
-	*/
 }
