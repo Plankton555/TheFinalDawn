@@ -18,7 +18,7 @@ import projectrts.model.core.utils.ModelUtils;
 public class MoveAbility extends AbstractAbility {
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
-	// TODO Plankton: Change nodes occupation when moving.
+	
 	private AStar aStar;
 	private AStarPath path;
 	private float pathRefreshInterval = 1; // refreshes path every second
@@ -78,7 +78,7 @@ public class MoveAbility extends AbstractAbility {
 	private Position determineNextStep(float tpf, PlayerControlledEntity entity, Position targetPos)
 	{
 		// TODO Plankton: entity.speed, add here
-		double stepLength = P.INSTANCE.getUnitLength()*tpf;
+		double stepLength = P.INSTANCE.getUnitLength()*tpf*entity.getSpeed();
 		
 		if (timeSincePathRefresh >= pathRefreshInterval)
 		{

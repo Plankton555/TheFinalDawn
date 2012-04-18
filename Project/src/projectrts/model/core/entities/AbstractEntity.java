@@ -17,6 +17,7 @@ public abstract class AbstractEntity implements IEntity {
 	private String name;
 	private int entityID;
 	private float size;
+	private float speed;
 	private Node occupiedNode;
 	
 	protected AbstractEntity() {
@@ -37,6 +38,9 @@ public abstract class AbstractEntity implements IEntity {
 	protected void setSize(float size){
 		this.size=size;
 	}
+	protected void setSpeed(float speed){
+		this.speed=speed;
+	}
 	protected void setName(String name) {
 		this.name = name;
 	}
@@ -44,6 +48,11 @@ public abstract class AbstractEntity implements IEntity {
 	@Override
 	public float getSize() {
 		return size;
+	}
+	
+	@Override
+	public float getSpeed() {
+		return speed;
 	}
 
 	@Override
