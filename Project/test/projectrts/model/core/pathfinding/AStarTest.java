@@ -17,7 +17,8 @@ public class AStarTest {
 			assertTrue(true);
 		}
 		
-		World world = new World(5, 5);
+		World world = World.getInstance();
+		world.initializeWorld(5, 5);
 		AStar.initialize(world);
 		astar = new AStar();
 		assertTrue(astar != null);

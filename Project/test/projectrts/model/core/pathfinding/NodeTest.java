@@ -33,10 +33,10 @@ public class NodeTest {
 	@Test
 	public void testOccupied() {
 		Node node = new Node(1, 5);
-		node.setOccupied(true);
-		assertTrue(node.isOccupied());
-		node.setOccupied(false);
-		assertTrue(!node.isOccupied());
+		node.setOccupied(1);
+		assertTrue(node.isOccupied(2));
+		node.setOccupied(0);
+		assertTrue(!node.isOccupied(2));
 	}
 
 	@Test
