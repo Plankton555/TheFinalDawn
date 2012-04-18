@@ -46,6 +46,8 @@ public class Unit extends PlayerControlledEntity {
 		abilities.add(AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName()));
 		abilities.add(AbilityFactory.INSTANCE.createAbility(OffensiveSpellAbility.class.getSimpleName()));
 		abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
+		this.setMaxHealth(100);
+		this.setCurrentHealth(this.getMaxHealth());
 	}
 	
 
@@ -75,15 +77,16 @@ public class Unit extends PlayerControlledEntity {
 		// TODO Afton: Change Unit.getSightRange() later
 		return 10;
 	}
-
+	
+	@Override
+	public int getDamage() {
+		return 10;
+	}
 
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		return new Unit(owner, pos);
 	}
 
-	@Override
-	public int getDamage() {
-		return 10;
-	}
+
 }

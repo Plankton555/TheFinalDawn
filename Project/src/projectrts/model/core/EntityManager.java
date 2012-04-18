@@ -128,9 +128,17 @@ public class EntityManager {
 	/**
 	 * @return New entity ID.
 	 */
-	public int requestNewEntityID()
-	{
+	public int requestNewEntityID() {
 		idCounter++;
 		return idCounter;
+	}
+
+	public void removeEntity(AbstractEntity entity) {
+		for(int i = 0; i < allEntities.size(); i++) {
+			if(allEntities.get(i).equals(entity)) {
+				allEntities.remove(i);
+				break;
+			}
+		}	
 	}
 }

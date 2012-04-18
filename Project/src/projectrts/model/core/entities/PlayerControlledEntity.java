@@ -3,6 +3,7 @@ package projectrts.model.core.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import projectrts.model.core.EntityManager;
 import projectrts.model.core.IPlayer;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
@@ -68,9 +69,11 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		currentHealth += amount;
 		if(currentHealth <= 0){
 			currentHealth = 0;
+			EntityManager.getInstance().removeEntity(this);
+		} else if (currentHealth > maxHealth) {
+			currentHealth = maxHealth;
 		}
-		System.out.println(getName()+" "+currentHealth);
-			//TODO Markus: Set dead? Send event?
+			
 	}
 
 	/**
@@ -91,7 +94,14 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	
 	public abstract int getDamage();
 	
-
+	public void setMaxHealth(int newMaxHealth) {
+		this.maxHealth = newMaxHealth;
+	}
+	
+	public void setCurrentHealth(int newCurrentHealth) {
+		this.currentHealth = newCurrentHealth;
+	}
+	
 	@Override
 	public void update(float tpf) {
 		for(AbstractAbility ability: abilities){
