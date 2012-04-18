@@ -1,12 +1,12 @@
 package projectrts.view.spatials;
 
-import java.util.List;
-
+import projectrts.global.utils.MaterialManager;
 import projectrts.model.core.entities.IEntity;
-import projectrts.view.controls.AbstractControl;
 import projectrts.view.controls.ControlFactory;
+import projectrts.view.controls.MoveControl;
 
 import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
 import com.jme3.scene.shape.Box;
 /**
  * 
@@ -14,15 +14,16 @@ import com.jme3.scene.shape.Box;
  *
  */
 public class UnitSpatial extends AbstractSpatial {
+	private Material material;
 	
 	static {
-		SpatialFactory.INSTANCE.registerSpatial("UnitSpatial", new UnitSpatial("UnitSpatialCreator", new Box()));
+		SpatialFactory.INSTANCE.registerSpatial(UnitSpatial.class.getSimpleName(), new UnitSpatial("UnitSpatialCreator", new Box()));
 	}
 	
 	private UnitSpatial(String name, Box box) {
 		super(name, box);
 	}
-
+	
 	/**
 	 * Creates and returns a new spatial using the parameters provided.
 	 * @param name The name of the new spatial.
@@ -31,12 +32,13 @@ public class UnitSpatial extends AbstractSpatial {
 	 * @param controlList A list of the controls the spatial will use.
 	 */
 	@Override
-	public AbstractSpatial createSpatial(String name, Material material, Box box, IEntity entity) {
+	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
+		material = MaterialManager.INSTANCE.getMaterial("Unshaded");
+		material.setColor("Color", ColorRGBA.Pink);
+		
 		UnitSpatial newSpatial = new UnitSpatial(name, box);
 		newSpatial.setMaterial(material);
-		newSpatial.addControl(ControlFactory.INSTANCE.createControl("MoveControl", entity));
-		
+		newSpatial.addControl(ControlFactory.INSTANCE.createControl(MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}
-	
 }

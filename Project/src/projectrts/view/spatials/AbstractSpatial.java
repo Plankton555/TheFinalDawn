@@ -2,7 +2,6 @@ package projectrts.view.spatials;
 
 import projectrts.model.core.entities.IEntity;
 
-import com.jme3.material.Material;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
 /**
@@ -17,5 +16,5 @@ public abstract class AbstractSpatial extends Geometry{
 	}
 	
 	// TODO Markus: Add javadoc
-	public abstract AbstractSpatial createSpatial(String name, Material material, Box box, IEntity entity);
+	public abstract AbstractSpatial createSpatial(String name, Box box, IEntity entity);
 }

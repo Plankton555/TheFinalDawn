@@ -20,14 +20,14 @@ public class Player implements IPlayer {
 	 * Constructs a player
 	 */
 	public Player(){
-		resources=0; //TODO Anyone: Decide starting amount of resources
+		resources=P.INSTANCE.getResourceStarterAmount();
 	}
 	
 	@Override
 	public void select(Position pos) {
-		//TODO Anyone: Add support for selection of multiple units and enemy units
+		//TODO Anyone: Add support for selection of multiple units and enemy units.
 		selectedEntities.clear();
-		PlayerControlledEntity entity = ModelUtils.INSTANCE.getPlayerControlledEntityAtPosition(pos);
+		PlayerControlledEntity entity = ModelUtils.INSTANCE.getPCEAtPosition(pos, this);
 		if(entity!=null){ //No entity is at that position
 			selectedEntities.add(entity);
 			if(entity.getName().equals("Worker")){

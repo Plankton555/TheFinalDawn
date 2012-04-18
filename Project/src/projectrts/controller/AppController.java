@@ -3,10 +3,6 @@ package projectrts.controller;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.jme3.app.SimpleApplication;
-import com.jme3.renderer.RenderManager;
-
-import projectrts.controller.InGameState;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.core.GameModel;
@@ -15,6 +11,9 @@ import projectrts.view.controls.MoveControl;
 import projectrts.view.controls.SelectControl;
 import projectrts.view.spatials.SelectSpatial;
 import projectrts.view.spatials.UnitSpatial;
+
+import com.jme3.app.SimpleApplication;
+import com.jme3.renderer.RenderManager;
 
 /**
  * The top-level controller.

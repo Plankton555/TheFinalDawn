@@ -4,6 +4,7 @@ import projectrts.model.core.EntityFactory;
 import projectrts.model.core.MicroAI;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
+import projectrts.model.core.abilities.AbilityFactory;
 import projectrts.model.core.abilities.AttackAbility;
 import projectrts.model.core.abilities.MoveAbility;
 import projectrts.model.core.abilities.OffensiveSpellAbility;
@@ -42,9 +43,11 @@ public class Unit extends PlayerControlledEntity {
 		super(owner, spawnPos);
 		this.microAI = new MicroAI(this);
 		this.stance = Stance.IDLE;
-		abilities.add(new AttackAbility());
-		abilities.add(new OffensiveSpellAbility());
-		abilities.add(new MoveAbility());
+		abilities.add(AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName()));
+		abilities.add(AbilityFactory.INSTANCE.createAbility(OffensiveSpellAbility.class.getSimpleName()));
+		abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
+		this.setMaxHealth(100);
+		this.setCurrentHealth(this.getMaxHealth());
 	}
 	
 
@@ -52,6 +55,13 @@ public class Unit extends PlayerControlledEntity {
 	public float getSize() {
 		// Change Unit.getSize() later
 		return 1;
+		
+	}
+	
+	@Override
+	public float getSpeed() {
+		// Change Unit.getSpeed() later
+		return 3;
 		
 	}
 	
@@ -67,10 +77,16 @@ public class Unit extends PlayerControlledEntity {
 		// TODO Afton: Change Unit.getSightRange() later
 		return 10;
 	}
-
+	
+	@Override
+	public int getDamage() {
+		return 10;
+	}
 
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		return new Unit(owner, pos);
 	}
+
+
 }

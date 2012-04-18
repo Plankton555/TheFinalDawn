@@ -1,17 +1,24 @@
 package projectrts.model.core.entities;
 
+import projectrts.model.core.EntityManager;
 import projectrts.model.core.Position;
+import projectrts.model.core.pathfinding.Node;
+import projectrts.model.core.pathfinding.World;
 
 /**
  * Abstract class for the common parts of the different entities
- * @author Filip Brynfors, Modified by Markus Ekström, Jakob Svensson
+ * @author Filip Brynfors, Modified by Markus Ekström, Jakob Svensson, Bjorn Persson Mattsson
  *
  */
 public abstract class AbstractEntity implements IEntity {
 
-	protected Position position;
+	private Position position;
+
 	private String name;
+	private int entityID;
 	private float size;
+	private float speed;
+	private Node occupiedNode;
 	
 	protected AbstractEntity() {
 	}
@@ -22,12 +29,17 @@ public abstract class AbstractEntity implements IEntity {
 	 * @param owner The owner of the unit
 	 */
 	protected AbstractEntity(Position spawnPos){
-		this.position = new Position(spawnPos);
+		this.entityID = EntityManager.getInstance().requestNewEntityID();
+		this.occupiedNode = World.getInstance().getNodeAt(spawnPos);
+		this.setPosition(spawnPos);
 		
 	}
 	
 	protected void setSize(float size){
 		this.size=size;
+	}
+	protected void setSpeed(float speed){
+		this.speed=speed;
 	}
 	protected void setName(String name) {
 		this.name = name;
@@ -36,6 +48,11 @@ public abstract class AbstractEntity implements IEntity {
 	@Override
 	public float getSize() {
 		return size;
+	}
+	
+	@Override
+	public float getSpeed() {
+		return speed;
 	}
 
 	@Override
@@ -48,12 +65,26 @@ public abstract class AbstractEntity implements IEntity {
 		return position;
 	}
 	
+	public int getEntityID()
+	{
+		return entityID;
+	}
+	
 	/**
 	 * Sets the position of the entity
 	 * @param pos the new position
 	 */
 	public void setPosition(Position pos){
 		position = pos.clone();
+		enterNewNode(World.getInstance().getNodeAt(pos));
+	}
+
+	private void enterNewNode(Node newNode)
+	{
+		// TODO Plankton: Add support for sizes here
+		occupiedNode.setOccupied(0);
+		newNode.setOccupied(entityID);
+		occupiedNode = newNode;
 	}
 	
 	/**

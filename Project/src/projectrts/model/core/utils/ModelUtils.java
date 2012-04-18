@@ -3,6 +3,7 @@ package projectrts.model.core.utils;
 import java.util.List;
 
 import projectrts.model.core.EntityManager;
+import projectrts.model.core.IPlayer;
 import projectrts.model.core.Position;
 import projectrts.model.core.entities.IEntity;
 import projectrts.model.core.entities.NonPlayerControlledEntity;
@@ -29,9 +30,8 @@ public enum ModelUtils {
 		return Math.sqrt(dx*dx+dy*dy);
 	}
 	
-	
 	//TODO Markus: Should this method be in EntityManager?
-	public PlayerControlledEntity getPlayerControlledEntityAtPosition(Position pos){
+	public PlayerControlledEntity getPCEAtPosition(Position pos){
 		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
 		for(IEntity entity: entities){
 			if(entity instanceof PlayerControlledEntity){
@@ -52,7 +52,23 @@ public enum ModelUtils {
 		
 	}
 	
-	//TODO Anyone: Extract common code from getPlayerControlledEntityAtPosition and this method
+	/**
+	 * If there exists a PCE that the passed player owns at the passed position
+	 * it is returned, otherwise this method returns null.
+	 * @param pos The position to check.
+	 * @param player The hopeful owner.
+	 * @return A PCE if there is one on the position that the player owns, otherwise null.
+	 */
+	public PlayerControlledEntity getPCEAtPosition(Position pos, IPlayer player) {
+		if(getPCEAtPosition(pos) != null) {
+			if( getPCEAtPosition(pos).getOwner().equals(player)) {
+				return getPCEAtPosition(pos);
+			}
+		}
+		return null;
+	}
+	
+	//TODO Anyone: Extraxt common code from getPlayerControlledEntityAtPosition and this method
 	public NonPlayerControlledEntity getNonPlayerControlledEntity (Position pos){
 		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
 		for(IEntity entity: entities){

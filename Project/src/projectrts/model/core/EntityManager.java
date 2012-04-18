@@ -19,7 +19,11 @@ public class EntityManager {
 	private static EntityManager instance = new EntityManager();
 	
 	private List<AbstractEntity> allEntities = new ArrayList<AbstractEntity>();
+
 	private List<AbstractEntity> entitiesQueue = new ArrayList<AbstractEntity>();
+
+	private int idCounter = 0;
+
 	
 	/**
 	 * @return The instance of this class.
@@ -131,8 +135,27 @@ public class EntityManager {
 		addEntityToQueue(EntityFactory.INSTANCE.createPCE(pce, owner, pos));
 	}
 	
+
 	private void addEntityToQueue(AbstractEntity e){
 		entitiesQueue.add(e);
 	}
 	
+
+	/**
+	 * @return New entity ID.
+	 */
+	public int requestNewEntityID() {
+		idCounter++;
+		return idCounter;
+	}
+
+	public void removeEntity(AbstractEntity entity) {
+		for(int i = 0; i < allEntities.size(); i++) {
+			if(allEntities.get(i).equals(entity)) {
+				allEntities.remove(i);
+				break;
+			}
+		}	
+	}
+
 }

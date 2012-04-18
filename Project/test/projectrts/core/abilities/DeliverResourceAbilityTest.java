@@ -8,6 +8,7 @@ import projectrts.model.core.EntityManager;
 import projectrts.model.core.GameModel;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
+import projectrts.model.core.abilities.AbilityFactory;
 import projectrts.model.core.abilities.DeliverResourceAbility;
 import projectrts.model.core.entities.Headquarter;
 import projectrts.model.core.entities.Worker;
@@ -22,20 +23,23 @@ public class DeliverResourceAbilityTest {
 	@Test
 	public void test() {
 		new GameModel();
-		DeliverResourceAbility ab = new DeliverResourceAbility();
+		DeliverResourceAbility ab = (DeliverResourceAbility)AbilityFactory.INSTANCE.createAbility(DeliverResourceAbility.class.getSimpleName());
 		Player player = new Player();
 		EntityManager.getInstance().addNewPCE("Worker", player,new Position(1f,1f));
 		EntityManager.getInstance().addNewPCE("Headquarter", player,new Position(5f,5f));
-		Worker worker = (Worker) ModelUtils.INSTANCE.getPlayerControlledEntityAtPosition(new Position(1f, 1f));
+		EntityManager.getInstance().addNewNPCE("Resource", new Position(0f, 0f));
+		EntityManager.getInstance().update(1);
+		Worker worker = (Worker) ModelUtils.INSTANCE.getPCEAtPosition(new Position(1f, 1f));
 		
 		ab.useAbility(worker, new Position(0, 0));
-		ab.setResourceCarriedAmount(10);
+		
 		int counter = 0;
-		while(player.getResource()!=10){
+		while(!ab.isFinished()){
 			
 			ab.update(1);
 			counter++;
 			assertTrue(counter < 1000);	
+			System.out.println(player.getResource());
 		}
 	}
 

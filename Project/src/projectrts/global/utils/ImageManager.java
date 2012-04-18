@@ -1,0 +1,41 @@
+package projectrts.global.utils;
+
+import java.util.HashMap;
+
+import projectrts.model.core.abilities.AttackAbility;
+import projectrts.model.core.abilities.MoveAbility;
+import projectrts.model.core.abilities.OffensiveSpellAbility;
+
+import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.render.NiftyImage;
+import de.lessvoid.nifty.render.NiftyRenderEngine;
+
+/**
+ * Handles import of icons for abilities
+ * @author Filip Brynfors
+ *
+ */
+
+
+public enum ImageManager {
+	INSTANCE;
+	private HashMap<String, NiftyImage> images = new HashMap<String, NiftyImage>();
+	
+
+	public void initializeImages(Nifty nifty){
+		NiftyRenderEngine engine = nifty.getRenderEngine();
+
+		images.put(MoveAbility.class.getSimpleName(), engine.createImage("assets/gui/MoveAbility.bmp", true));
+		images.put(AttackAbility.class.getSimpleName(), engine.createImage("/assets/gui/AttackAbility.bmp", false));
+		images.put(OffensiveSpellAbility.class.getSimpleName(), engine.createImage("/assets/gui/OffensiveSpellAbility.bmp", false));
+	}
+	
+	
+	
+	public NiftyImage getImage(String name){
+		return images.get(name);
+	}
+
+
+}
+

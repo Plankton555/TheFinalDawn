@@ -17,7 +17,6 @@ public interface IPlayer {
 	 */
 	public void select(Position p);
 	
-	
 	/**
 	 * @return A list of selected entities.
 	 */

@@ -9,17 +9,30 @@ import projectrts.model.core.utils.ModelUtils;
  *
  */
 public class World {
+	
+	private static World instance;
 	private Node[][] nodes;
+	private World()
+	{
+	}
+	public static World getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new World();
+		}
+		return instance;
+	}
 	
 	private int width;
 	private int height;
 	
 	/**
-	 * Creates a new world with specified height and width.
+	 * Initializes the world with specified height and width.
 	 * @param height Height.
 	 * @param width Width.
 	 */
-	public World(int height, int width) {
+	public void initializeWorld(int height, int width) {
 		initNodes(height, width);
 		//setTestOccupation();
 	}
@@ -98,7 +111,7 @@ public class World {
 		for (int i=40; i<60; i++)
 		{
 			// Creates a "wall" (currently invisible) from pos (40,40) to (60,40)
-			nodes[40][i].setOccupied(true);
+			nodes[40][i].setOccupied(-1);
 		}
 	}
 }

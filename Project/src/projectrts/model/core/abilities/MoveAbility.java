@@ -7,6 +7,8 @@ import projectrts.model.core.Position;
 import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.model.core.pathfinding.AStar;
 import projectrts.model.core.pathfinding.AStarPath;
+import projectrts.model.core.pathfinding.Node;
+import projectrts.model.core.pathfinding.World;
 import projectrts.model.core.utils.ModelUtils;
 
 /**
@@ -17,17 +19,21 @@ import projectrts.model.core.utils.ModelUtils;
 public class MoveAbility extends AbstractAbility {
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
-	// TODO Plankton: Change nodes occupation when moving.
+	
 	private AStar aStar;
 	private AStarPath path;
-	private float pathRefreshInterval = 1; // refreshes path every second
+	private float pathRefreshInterval = 0.1f; // refreshes path every second
 	private float timeSincePathRefresh = pathRefreshInterval;
+	
+	static {
+		AbilityFactory.INSTANCE.registerAbility(MoveAbility.class.getSimpleName(), new MoveAbility());
+	}
 	
 	/**
 	 * Creates a new instance of this ability.
 	 */
-	public MoveAbility(){
-		this.aStar = new AStar();
+	private MoveAbility(){
+		
 	}
 	
 	@Override
@@ -50,13 +56,13 @@ public class MoveAbility extends AbstractAbility {
 	@Override
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
-			
 			entity.setPosition(determineNextStep(tpf, entity, targetPosition));
-			if (entity.getPosition().equals(targetPosition))
+			//if (entity.getPosition().equals(nodeAtTarget.getPosition()))
+			// TODO Plankton: Solve this shit!
+			if (ModelUtils.INSTANCE.getDistance(entity.getPosition(),
+					targetPosition) < 0.6*P.INSTANCE.getUnitLength())
 			{
-				// TODO Plankton: This will probably never happen since A* goes to the position of
-				// the closest node of targetPosition, and not targetPosition itself. Maybe use
-				// the closest node's position instead?..
+				System.out.println(entity.getEntityID() + " är nu framme");
 				setFinished(true);
 			}
 			
@@ -72,11 +78,11 @@ public class MoveAbility extends AbstractAbility {
 	 */
 	private Position determineNextStep(float tpf, PlayerControlledEntity entity, Position targetPos)
 	{
-		double stepLength = P.INSTANCE.getUnitLength()*tpf;
+		double stepLength = P.INSTANCE.getUnitLength()*tpf*entity.getSpeed();
 		
 		if (timeSincePathRefresh >= pathRefreshInterval)
 		{
-			path = aStar.calculatePath(entity.getPosition(), targetPos);
+			path = aStar.calculatePath(entity.getPosition(), targetPos, entity.getEntityID());
 			timeSincePathRefresh = 0;
 		}
 		else
@@ -109,5 +115,12 @@ public class MoveAbility extends AbstractAbility {
 			}
 		}
 		return outputPos;
+	}
+	
+	@Override
+	public AbstractAbility createAbility() {
+		MoveAbility newAbility = new MoveAbility();
+		newAbility.aStar = new AStar();
+		return newAbility;
 	}
 }

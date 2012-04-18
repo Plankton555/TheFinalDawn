@@ -3,6 +3,7 @@ package projectrts.model.core.entities;
 import projectrts.model.core.EntityFactory;
 import projectrts.model.core.Player;
 import projectrts.model.core.Position;
+import projectrts.model.core.abilities.AbilityFactory;
 import projectrts.model.core.abilities.AttackAbility;
 import projectrts.model.core.abilities.GatherResourceAbility;
 import projectrts.model.core.abilities.MoveAbility;
@@ -14,11 +15,11 @@ import projectrts.model.core.abilities.MoveAbility;
  */
 public class Worker extends PlayerControlledEntity{
 	
-	private static String name = "Worker";
 	private static float size = 1f;
+	private static float speed = 5;
 
 	static {
-		EntityFactory.INSTANCE.registerPCE(name, new Worker());
+		EntityFactory.INSTANCE.registerPCE(Worker.class.getSimpleName(), new Worker());
 	}
 	
 	private Worker() {
@@ -26,15 +27,26 @@ public class Worker extends PlayerControlledEntity{
 	
 	private Worker(Player owner, Position spawnPos) {
 		super(owner, spawnPos);
-		this.abilities.add(new AttackAbility());
-		this.abilities.add(new GatherResourceAbility());
-		abilities.add(new MoveAbility());
-		setName(name);
+		this.abilities.add(AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName()));
+		this.abilities.add(AbilityFactory.INSTANCE.createAbility(GatherResourceAbility.class.getSimpleName()));
+		abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
+		setName(Worker.class.getSimpleName());
 		setSize(size);
+		setSpeed(speed);
 	}
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		return new Worker(owner, pos);
+	}
+
+	@Override
+	public float getSightRange() {
+		return 5;
+	}
+
+	@Override
+	public int getDamage() {
+		return 5;
 	}
 
 }
