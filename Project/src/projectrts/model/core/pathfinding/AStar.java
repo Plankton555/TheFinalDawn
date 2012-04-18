@@ -39,10 +39,10 @@ public class AStar {
 	 * Calculates a path using the A* algorithm.
 	 * @param startPos Start position.
 	 * @param targetPos End position.
-	 * @paran occupiedHash Hash code of occupying object.
+	 * @paran occupyingEntityID ID of occupying entity.
 	 * @return An AStarPath from startPos to targetPos.
 	 */
-	public AStarPath calculatePath(Position startPos, Position targetPos, Integer occupiedHash)
+	public AStarPath calculatePath(Position startPos, Position targetPos, int occupyingEntityID)
 	{
 		// TODO Plankton: Use threads or something to not "freeze" the game when calculating?
 		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
@@ -50,7 +50,7 @@ public class AStar {
 		List<AStarNode> openList = new ArrayList<AStarNode>();
 		List<AStarNode> closedList = new ArrayList<AStarNode>();
 		
-		if (endNode.isObstacle(occupiedHash))
+		if (endNode.isObstacle(occupyingEntityID))
 		{
 			// Use A* "backwards" from the end node to find the closest walkable node.
 			// Probably not the best way of dealing with it, but it will do for now.
@@ -62,7 +62,7 @@ public class AStar {
 				Collections.sort(endOpenList);
 				AStarNode currentNode = endOpenList.get(0);
 				
-				if (!currentNode.isObstacle(occupiedHash))
+				if (!currentNode.isObstacle(occupyingEntityID))
 				{
 					endNode = currentNode;
 					break;
@@ -107,7 +107,7 @@ public class AStar {
 				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
 				for (AStarNode node : adjacentNodes)
 				{
-					if (!node.isObstacle(occupiedHash)) // if not an obstacle
+					if (!node.isObstacle(occupyingEntityID)) // if not an obstacle
 					{
 						if (!closedList.contains(node)) // and not on closed list
 						{

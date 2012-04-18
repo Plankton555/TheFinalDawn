@@ -1,5 +1,6 @@
 package projectrts.model.core.entities;
 
+import projectrts.model.core.EntityManager;
 import projectrts.model.core.Position;
 import projectrts.model.core.pathfinding.Node;
 import projectrts.model.core.pathfinding.World;
@@ -14,6 +15,7 @@ public abstract class AbstractEntity implements IEntity {
 	private Position position;
 
 	private String name;
+	private int entityID;
 	private float size;
 	private Node occupiedNode;
 	
@@ -26,6 +28,7 @@ public abstract class AbstractEntity implements IEntity {
 	 * @param owner The owner of the unit
 	 */
 	protected AbstractEntity(Position spawnPos){
+		this.entityID = EntityManager.getInstance().requestNewEntityID();
 		this.occupiedNode = World.getInstance().getNodeAt(spawnPos);
 		this.setPosition(spawnPos);
 		
@@ -53,6 +56,11 @@ public abstract class AbstractEntity implements IEntity {
 		return position;
 	}
 	
+	public int getEntityID()
+	{
+		return entityID;
+	}
+	
 	/**
 	 * Sets the position of the entity
 	 * @param pos the new position
@@ -65,8 +73,8 @@ public abstract class AbstractEntity implements IEntity {
 	private void enterNewNode(Node newNode)
 	{
 		// TODO Plankton: Add support for sizes here
-		occupiedNode.setOccupied(null);
-		newNode.setOccupied(this.hashCode());
+		occupiedNode.setOccupied(0);
+		newNode.setOccupied(entityID);
 		occupiedNode = newNode;
 	}
 	

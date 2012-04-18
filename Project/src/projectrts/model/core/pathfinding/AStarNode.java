@@ -185,10 +185,10 @@ public class AStarNode implements Comparable<AStarNode> {
 	}
 
 	/**
-	 * @param Hash code of occupying object.
+	 * @param occupyingEntityID ID of occupying entity.
 	 * @return true if this node is unwalkable, otherwise false.
 	 */
-	public boolean isObstacle(Integer occupiedHash) {
-		return node.isOccupied(occupiedHash);
+	public boolean isObstacle(int occupyingEntityID) {
+		return node.isOccupied(occupyingEntityID);
 	}
 }
