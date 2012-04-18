@@ -35,7 +35,7 @@ public class OffensiveSpellAbility extends AbstractAbility {
 
 	public void useAbility(PlayerControlledEntity attacker, Position pos){
 		this.attacker = attacker;
-		target = ModelUtils.INSTANCE.getPlayerControlledEntityAtPosition(pos);
+		target = ModelUtils.INSTANCE.getPCEAtPosition(pos);
 	}
 
 	@Override

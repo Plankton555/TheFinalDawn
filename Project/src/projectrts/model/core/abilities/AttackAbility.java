@@ -31,7 +31,7 @@ public class AttackAbility extends AbstractAbility {
 	@Override
 	public void useAbility(PlayerControlledEntity attacker, Position pos){
 		this.attacker = attacker;
-		target = ModelUtils.INSTANCE.getPlayerControlledEntityAtPosition(pos);
+		target = ModelUtils.INSTANCE.getPCEAtPosition(pos);
 		setActive(true);
 		setFinished(false);
 		

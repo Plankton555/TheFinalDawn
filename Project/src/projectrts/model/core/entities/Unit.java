@@ -6,7 +6,6 @@ import projectrts.model.core.Player;
 import projectrts.model.core.Position;
 import projectrts.model.core.abilities.AbilityFactory;
 import projectrts.model.core.abilities.AttackAbility;
-import projectrts.model.core.abilities.BuildTowerAbility;
 import projectrts.model.core.abilities.MoveAbility;
 import projectrts.model.core.abilities.OffensiveSpellAbility;
 

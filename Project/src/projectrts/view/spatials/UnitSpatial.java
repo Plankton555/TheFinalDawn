@@ -1,9 +1,6 @@
 package projectrts.view.spatials;
 
-import java.util.List;
-
 import projectrts.model.core.entities.IEntity;
-import projectrts.view.controls.AbstractControl;
 import projectrts.view.controls.ControlFactory;
 import projectrts.view.controls.MoveControl;
 

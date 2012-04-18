@@ -1,11 +1,8 @@
 package projectrts.view.spatials;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import projectrts.model.core.entities.IEntity;
-import projectrts.view.controls.AbstractControl;
 
 import com.jme3.material.Material;
 import com.jme3.scene.shape.Box;

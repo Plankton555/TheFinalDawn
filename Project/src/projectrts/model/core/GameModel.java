@@ -2,7 +2,13 @@ package projectrts.model.core;
 
 import java.util.List;
 
-import projectrts.model.core.entities.*;
+import projectrts.model.core.entities.Headquarter;
+import projectrts.model.core.entities.IEntity;
+import projectrts.model.core.entities.IPlayerControlledEntity;
+import projectrts.model.core.entities.Resource;
+import projectrts.model.core.entities.Unit;
+import projectrts.model.core.entities.Warrior;
+import projectrts.model.core.entities.Worker;
 import projectrts.model.core.pathfinding.AStar;
 import projectrts.model.core.pathfinding.World;
 
@@ -35,7 +41,8 @@ public class GameModel implements IGame {
 		
 	public GameModel() {
 		AStar.initialize(world);
-		entityManager.addNewPCE("Unit", humanPlayer, new Position(50, 50));
+		entityManager.addNewPCE(Unit.class.getSimpleName(), humanPlayer, new Position(50, 50));
+		entityManager.addNewPCE(Unit.class.getSimpleName(), aiPlayer, new Position(50, 51));
 	}
 	
 	@Override
@@ -51,5 +58,9 @@ public class GameModel implements IGame {
 	@Override
 	public List<IEntity> getAllEntities() {
 		return entityManager.getAllEntities();
+	}
+	
+	public List<IPlayerControlledEntity> getEntitiesOfPlayer() {
+		return entityManager.getEntitiesOfPlayer(humanPlayer);
 	}
 }

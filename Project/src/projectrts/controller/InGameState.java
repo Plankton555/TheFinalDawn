@@ -1,15 +1,10 @@
 package projectrts.controller;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import projectrts.global.constants.Constants;
 import projectrts.model.core.IGame;
 import projectrts.model.core.P;
 import projectrts.view.GameView;
-import projectrts.view.controls.AbstractControl;
-import projectrts.view.controls.ControlFactory;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
