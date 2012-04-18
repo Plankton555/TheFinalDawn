@@ -110,7 +110,6 @@ public class MoveAbility extends AbstractAbility {
 			else //if (distanceToNextNode <= stepLength)
 			{
 				stepLength -= distanceToNextNode;
-				System.out.println("Här nu");
 				outputPos = nextNodePos.clone();
 				path.removeNodeFromPath();
 			}
