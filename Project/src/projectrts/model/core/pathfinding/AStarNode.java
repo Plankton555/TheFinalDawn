@@ -133,7 +133,10 @@ public class AStarNode implements Comparable<AStarNode> {
 		return parent;
 	}
 	
-	// TODO Plankton: Add javadoc
+	/**
+	 * Returns a comparator that uses the heuristic instead of the total cost.
+	 * @return Heuristic comparator.
+	 */
 	public static Comparator<AStarNode> getHeuristicComparator()
 	{
 		return new Comparator<AStarNode>() {
