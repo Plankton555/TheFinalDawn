@@ -63,7 +63,6 @@ public abstract class AbstractEntity implements IEntity {
 
 	private void enterNewNode(Node newNode)
 	{
-		System.out.println("Entering node: " + newNode.getPosition());
 		// TODO Plankton: Add support for sizes here
 		occupiedNode.setOccupied(false);
 		newNode.setOccupied(true);
