@@ -206,8 +206,22 @@ public class InputControl {
     };
     
     
+    /**
+     * Sets the GUI Control
+     * @param guiControl
+     */
     public void setGUIControl(GUIControl guiControl){
     	this.guiControl = guiControl;
+    }
+    
+    
+    /**
+     * Selects an ability
+     * @param ability the ability to become selected
+     */
+    public void selectAbility(IAbility ability){
+    	//TODO: Afton Add code to handle ability clicks
+    	System.out.println(ability.getName());
     }
     
     

@@ -6,7 +6,6 @@ import projectrts.global.utils.ImageManager;
 import projectrts.model.core.abilities.IAbility;
 import projectrts.model.core.entities.IEntity;
 import projectrts.model.core.entities.IPlayerControlledEntity;
-import projectrts.view.GameView;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
@@ -35,6 +34,8 @@ public class GUIControl implements ScreenController {
 	private ScreenController sc;
 	private int i;
 	private SimpleApplication app;
+	
+	private List<IAbility> abilities; 
 
 	
 	public GUIControl(Application app, InputControl input) {
@@ -152,7 +153,7 @@ public class GUIControl implements ScreenController {
     	Screen screen = nifty.getScreen("Screen_ID");
     	
     	boolean oneIsSelected = selectedEntities.size()==1;
-    	List<IAbility> abilities = null;
+    	abilities = null;
     
     	
     	if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
@@ -199,7 +200,20 @@ public class GUIControl implements ScreenController {
 	}
 	
 	public void buttonClicked(String nr) {
-		System.out.println("BUTTON "+ nr + " IS CLICKED");
+		try {
+			
+			int iNr = Integer.parseInt(nr);
+			
+			if(iNr-1<abilities.size()){
+				input.selectAbility(abilities.get(iNr-1));
+			}
+			
+			
+		} catch (NumberFormatException e){
+			
+		}
+		
+		
 	}
 
 }
