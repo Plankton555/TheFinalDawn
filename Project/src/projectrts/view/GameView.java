@@ -48,8 +48,6 @@ public class GameView{
     private Material matTerrain;
     private TerrainQuad terrain;
     private float mod = Constants.INSTANCE.getModelToWorld(); // The modifier value for converting lengths between model and world.
-    private Nifty nifty;
-    private int i;
 	
 	public GameView(SimpleApplication app, IGame model) {
 		this.app = app;
@@ -62,7 +60,6 @@ public class GameView{
 	public void initializeView() {
 		initializeWorld();
 		initializeEntities();
-		initializeGUI();
 		this.app.getRootNode().attachChild(selected);
 	}
 	
@@ -159,156 +156,6 @@ public class GameView{
     	this.app.getRootNode().attachChild(entities);
     }
     
-
-	private void initializeGUI() {
-		NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
-	            app.getAssetManager(), app.getInputManager(), app.getAudioRenderer(), app.getGuiViewPort());
-	    nifty = niftyDisplay.getNifty();
-	    app.getGuiViewPort().addProcessor(niftyDisplay);
-	    app.getFlyByCamera().setDragToRotate(true);
-	 
-	    nifty.loadStyleFile("nifty-default-styles.xml");
-	    nifty.loadControlFile("nifty-default-controls.xml");
-	 
-	    ImageManager.INSTANCE.initializeImages(nifty);
-	    
-	    // <screen>
-	    nifty.addScreen("Screen_ID", new ScreenBuilder("GUI Screen"){{
-	        controller(new GUIControl()); // Screen properties       
-	 
-	        // <layer>
-	        layer(new LayerBuilder("Layer_ID") {{
-	            childLayoutVertical(); // layer properties, add more...
-
-	            
-	            
-	            panel(new PanelBuilder("panel_main") {{
-	                childLayoutVertical();
-	                backgroundColor("#0000");
-	                height("80%");
-
-	                // <!-- spacer -->
-	            }});
-	            
-	 
-	            // <panel>
-	            panel(new PanelBuilder("Panel_GUI") {{
-	               childLayoutHorizontal(); // panel properties, add more...  
-	               backgroundColor("#f00f"); 
-		           height("20%");
-		           visibleToMouse(true);
-		           
-		           
-	               panel(new PanelBuilder("Panel_Main"){{
-	            	   width("60%");
-	            	   childLayoutVertical();
-	            	   
-	               }});
-		           
-	               panel(new PanelBuilder("Panel_Abilities"){{
-	            	   width("40%");
-	            	   childLayoutVertical();
-	    
-	 
-	            	   //First row with buttons
-		               panel(new PanelBuilder("Panel_Abilities_Row1"){{
-		            	   height("50%");
-		            	   childLayoutHorizontal();
-		            	   
-		            	   for(i = 1; i<=4; i++){
-			                // GUI elements
-			                control(new ButtonBuilder("Button_Ability_" + i){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                    interactOnClick("buttonClicked("+i+")");
-			                }});
-			                
-		            	   }
-			 /*
-			                control(new ButtonBuilder("Button_Ability_2"){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                    interactOnClick("buttonClicked(2)");
-			                }});
-			                
-			                control(new ButtonBuilder("Button_Ability_3"){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                }});
-			 
-			                control(new ButtonBuilder("Button_Ability_4"){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                }});  
-			             */   
-		               }});    
-		               
-		               
-		               
-		               //Second row with buttons
-		               panel(new PanelBuilder("Panel_Abilities_Row2"){{
-		            	   height("50%");
-		            	   childLayoutHorizontal();
-			                
-			                control(new ButtonBuilder("Button_Ability_5"){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                }});  
-			                
-			                control(new ButtonBuilder("Button_Ability_6"){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                }});  
-			                
-			                control(new ButtonBuilder("Button_Ability_7"){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                }});  
-			                
-			                control(new ButtonBuilder("Button_Ability_8"){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                }});  
-	                
-		               }});
-	               }});
-	 
-	            }});
-	            // </panel>
-	          }});
-	        // </layer>
-	      }}.build(nifty));
-	    // </screen>
-	 
-	    nifty.gotoScreen("Screen_ID"); // start the screen
-
-		
-	}
-	
-    
-	/**
-	 * Returns the nifty object for the GUI
-	 * @return the nifty
-	 */
-	public Nifty getNifty(){
-		return nifty;
-	}
 	
     public void update(float tpf) {
     }

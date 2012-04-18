@@ -41,7 +41,7 @@ public class InputControl {
 	private SimpleApplication app;
 	private IGame game; // The model
 	private GameView view; 
-	
+	private GUIControl guiControl;
 	
 	
 	public InputControl(SimpleApplication app, IGame model, GameView view) {
@@ -175,7 +175,10 @@ public class InputControl {
 	    			game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    			List<IEntity> selectedEntities = game.getPlayer().getSelectedEntities();
 	    			view.drawSelected(selectedEntities);
-	    			updateAbilities(selectedEntities);
+	    			if(guiControl!=null){
+	    				guiControl.updateAbilities(selectedEntities);
+	    			}
+	    			
 	    			
 	    		}
 	    		if (name.equals("mouseRightButton") && keyPressed) {
@@ -202,36 +205,10 @@ public class InputControl {
 	    }
     };
     
-    private void updateAbilities(List<IEntity> selectedEntities){
-    	Screen screen = view.getNifty().getScreen("Screen_ID");
-    	
-    	boolean oneIsSelected = selectedEntities.size()==1;
-    	List<IAbility> abilities = null;
     
-    	
-    	if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
-    		IPlayerControlledEntity pce = (IPlayerControlledEntity) selectedEntities.get(0);
-    		abilities = pce.getAbilities();
-    	}
-    	
-    	//Loops through every button and sets its attributes
-    	for(int i = 0; i<8; i++){
-    		Element button = screen.findElementByName("Button_Ability_" + (i+1));
-  
-    		if(button != null){
-    			
-		    	if(abilities != null && i<abilities.size()){
-		    		IAbility ability = abilities.get(i);
-		    		//button.setVisibleToMouseEvents(true);
-		    		
-		    		button.getRenderer(ImageRenderer.class).setImage(ImageManager.INSTANCE.getImage(ability.getName()));
-		    		button.setVisible(true);
-		    		
-		    	} else {
-		    		button.setVisible(false);
-		    	}
-    		}
-
-    	}
+    public void setGUIControl(GUIControl guiControl){
+    	this.guiControl = guiControl;
     }
+    
+    
 }
