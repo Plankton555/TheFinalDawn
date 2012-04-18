@@ -26,7 +26,7 @@ import de.lessvoid.nifty.screen.ScreenController;
  * @author Filip Brynfors
  *
  */
-public class GUIController implements ScreenController {
+public class InputGUIController implements ScreenController {
 	private Nifty nifty;
 	private Screen screen;
 	
@@ -34,10 +34,11 @@ public class GUIController implements ScreenController {
 	private ScreenController sc;
 	private int i;
 	private SimpleApplication app;
+	
 	private List<IAbility> abilities; 
 
 	
-	public GUIController(Application app, InputController input) {
+	public InputGUIController(Application app, InputController input) {
 		sc = this;
 		this.app = (SimpleApplication) app;
 		initializeGUI();
@@ -170,7 +171,7 @@ public class GUIController implements ScreenController {
 		    		IAbility ability = abilities.get(i);
 		    		//button.setVisibleToMouseEvents(true);
 		    		
-		    		button.getRenderer(ImageRenderer.class).setImage(ImageManager.INSTANCE.getImage(ability.getClass().getSimpleName()));
+		    		button.getRenderer(ImageRenderer.class).setImage(ImageManager.INSTANCE.getImage(ability.getName()));
 		    		button.setVisible(true);
 		    		
 		    	} else {
@@ -211,5 +212,8 @@ public class GUIController implements ScreenController {
 		} catch (NumberFormatException e){
 			
 		}
+		
+		
 	}
+
 }
