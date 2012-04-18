@@ -38,7 +38,7 @@ public class MineResourceAbility extends AbstractAbility{
 			if(ModelUtils.INSTANCE.getDistance(unit.getPosition(),targetResource.getPosition() )<1){
 				//If in range of resource
 				//Check cooldown and mine resource or reduce cooldown as appropriate.
-				if (miningCooldown == 0) { 
+				if (miningCooldown <= 0) { 
 					resourceCarriedAmount += targetResource.mine();
 					miningCooldown = recoveryTime;
 				} else {

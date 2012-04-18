@@ -2,6 +2,14 @@ package projectrts.model.core;
 
 import java.util.List;
 
+import projectrts.model.core.abilities.AttackAbility;
+import projectrts.model.core.abilities.BuildTowerAbility;
+import projectrts.model.core.abilities.DeliverResourceAbility;
+import projectrts.model.core.abilities.GatherResourceAbility;
+import projectrts.model.core.abilities.MineResourceAbility;
+import projectrts.model.core.abilities.MoveAbility;
+import projectrts.model.core.abilities.OffensiveSpellAbility;
+import projectrts.model.core.abilities.TrainWorkerAbility;
 import projectrts.model.core.entities.Headquarter;
 import projectrts.model.core.entities.IEntity;
 import projectrts.model.core.entities.IPlayerControlledEntity;
@@ -32,6 +40,17 @@ public class GameModel implements IGame {
 			Class.forName(Worker.class.getName());
 			Class.forName(Resource.class.getName());
 			Class.forName(Headquarter.class.getName());
+			
+			// Initialize the ability classes.
+			Class.forName(AttackAbility.class.getName());
+			Class.forName(BuildTowerAbility.class.getName());
+			Class.forName(DeliverResourceAbility.class.getName());
+			Class.forName(GatherResourceAbility.class.getName());
+			Class.forName(MineResourceAbility.class.getName());
+			Class.forName(MoveAbility.class.getName());
+			Class.forName(OffensiveSpellAbility.class.getName());
+			Class.forName(TrainWorkerAbility.class.getName());
+						
 		}
 		catch (ClassNotFoundException any)
 		{

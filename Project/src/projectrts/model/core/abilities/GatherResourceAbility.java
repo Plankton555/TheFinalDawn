@@ -62,7 +62,7 @@ public class GatherResourceAbility extends AbstractAbility{
 		GatherResourceAbility newAbility = new GatherResourceAbility();
 		newAbility.mineResourceAbility = AbilityFactory.INSTANCE.createAbility(MineResourceAbility.class.getSimpleName());
 		newAbility.deliverResourceAbility = AbilityFactory.INSTANCE.createAbility(DeliverResourceAbility.class.getSimpleName());
-		return new GatherResourceAbility();
+		return newAbility;
 	}
 
 }

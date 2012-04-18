@@ -45,15 +45,6 @@ public class AppController extends SimpleApplication{
 			Class.forName(UnitSpatial.class.getName());
 			Class.forName(SelectSpatial.class.getName());
 			
-			// Initialize the ability classes.
-			Class.forName(AttackAbility.class.getName());
-			Class.forName(BuildTowerAbility.class.getName());
-			Class.forName(DeliverResourceAbility.class.getName());
-			Class.forName(GatherResourceAbility.class.getName());
-			Class.forName(MineResourceAbility.class.getName());
-			Class.forName(MoveAbility.class.getName());
-			Class.forName(OffensiveSpellAbility.class.getName());
-			Class.forName(TrainWorkerAbility.class.getName());
 			
 			// TODO Markus: should entities be here as well or should abilities be in GameModel?
 		}
