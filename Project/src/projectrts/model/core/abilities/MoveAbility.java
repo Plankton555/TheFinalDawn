@@ -81,7 +81,7 @@ public class MoveAbility extends AbstractAbility {
 		
 		if (timeSincePathRefresh >= pathRefreshInterval)
 		{
-			path = aStar.calculatePath(entity.getPosition(), targetPos);
+			path = aStar.calculatePath(entity.getPosition(), targetPos, entity.hashCode());
 			timeSincePathRefresh = 0;
 		}
 		else

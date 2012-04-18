@@ -13,7 +13,7 @@ import projectrts.model.core.Position;
 public class Node {
 
 	private Position position;
-	private boolean occupied = false;
+	private Integer occupiedHash = null;
 	//private int distanceToObstacle = 10; // needed for different entity sizes
 	private float cost = 1;
 	private List<Node> neighbours = new ArrayList<Node>();
@@ -45,16 +45,17 @@ public class Node {
 	}
 	
 	/**
+	 * @param occupiedHash Hash code of occupying object.
 	 * @return Is occupied
 	 */
-	public boolean isOccupied() {
-		return occupied;
+	public boolean isOccupied(Integer occupiedHash) {
+		return (!(this.occupiedHash == occupiedHash || this.occupiedHash == null));
 	}
 	/**
-	 * @param occupied Node occupied
+	 * @param occupiedHash Hash code of occupying object. Set the node unoccupied by providing null as parameter.
 	 */
-	public void setOccupied(boolean occupied) {
-		this.occupied = occupied;
+	public void setOccupied(Integer occupiedHash) {
+		this.occupiedHash = occupiedHash;
 	}
 	
 	/**
