@@ -26,7 +26,7 @@ import com.jme3.math.Vector3f;
 
 /**
  * A class for handling all input.
- * @author Markus Ekström
+ * @author Markus Ekström Modifed by Jakob Svensson
  *
  */
 public class InputController {
@@ -214,6 +214,9 @@ public class InputController {
     					game.getPlayer().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
     	    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
     				}
+    			}else{
+    				game.getPlayer().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
+	    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
     			}
     			
     		}

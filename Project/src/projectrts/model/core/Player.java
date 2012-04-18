@@ -30,9 +30,6 @@ public class Player implements IPlayer {
 		PlayerControlledEntity entity = ModelUtils.INSTANCE.getPCEAtPosition(pos, this);
 		if(entity!=null){ //No entity is at that position
 			selectedEntities.add(entity);
-			if(entity.getName().equals("Worker")){
-				entity.doAbility("GatherResource", new Position(40, 50));
-			}
 			if(entity.getName().equals("Headquarter")){
 				entity.doAbility("TrainWorker", new Position(40, 50));
 			}

@@ -9,8 +9,7 @@ import projectrts.model.core.GameModel;
 import projectrts.model.core.IGame;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.controls.SelectControl;
-import projectrts.view.spatials.SelectSpatial;
-import projectrts.view.spatials.UnitSpatial;
+import projectrts.view.spatials.*;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.renderer.RenderManager;
@@ -20,7 +19,7 @@ import com.jme3.renderer.RenderManager;
  * 
  * Is the connection to jMonkeyEngine (extends SimpleApplication)
  * and handles top-level stuff like swapping AppStates.
- * @author Markus Ekström
+ * @author Markus Ekström Modifed by Jakob Svensson 
  *
  */
 public class AppController extends SimpleApplication{
@@ -34,6 +33,9 @@ public class AppController extends SimpleApplication{
 			
 			// Initialize the spatial classes.
 			Class.forName(UnitSpatial.class.getName());
+			Class.forName(WorkerSpatial.class.getName());
+			Class.forName(HeadquarterSpatial.class.getName());
+			Class.forName(ResourceSpatial.class.getName());
 			Class.forName(SelectSpatial.class.getName());
 		}
 		catch (ClassNotFoundException any)
