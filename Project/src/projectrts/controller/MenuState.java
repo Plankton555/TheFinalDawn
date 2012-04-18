@@ -15,6 +15,8 @@ public class MenuState extends AbstractAppState {
     	this.app.getInputManager().setCursorVisible(true);
     	this.app.getInputManager().clearMappings();
     	
+    	
+    	MenuGUIController menuGuiController = new MenuGUIController(app);
     }
 
 }
