@@ -3,7 +3,6 @@ package projectrts.controller;
 import java.util.List;
 
 import projectrts.global.constants.Constants;
-import projectrts.global.utils.ImageManager;
 import projectrts.global.utils.Utils;
 import projectrts.model.core.EntityManager;
 import projectrts.model.core.IGame;
@@ -11,7 +10,6 @@ import projectrts.model.core.P;
 import projectrts.model.core.Position;
 import projectrts.model.core.abilities.IAbility;
 import projectrts.model.core.entities.IEntity;
-import projectrts.model.core.entities.IPlayerControlledEntity;
 import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.view.GameView;
 
@@ -25,10 +23,6 @@ import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
-
-import de.lessvoid.nifty.elements.Element;
-import de.lessvoid.nifty.elements.render.ImageRenderer;
-import de.lessvoid.nifty.screen.Screen;
 
 /**
  * A class for handling all input.
@@ -201,10 +195,6 @@ public class InputController {
     	private void handleLeftClick(){
     		game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 			view.drawSelected(game.getPlayer().getSelectedEntities());
-			if(guiControl!=null){
-				guiControl.updateAbilities(game.getPlayer().getSelectedEntities());
-			}
-			
     	}
     	
     	private void handleRightClick(){
@@ -238,7 +228,7 @@ public class InputController {
     	
     	private IEntity getEntityAtPosition(Position pos){
     		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
-    		for(IEntity entity: entities){	
+    		for(IEntity entity: entities){
 				float unitSize = entity.getSize();
 				Position unitPos = entity.getPosition();
 				
@@ -249,43 +239,10 @@ public class InputController {
 					return entity;
 					
 				}
+			
     		}
     		return null;
-        }
-        
-        private void updateAbilities(List<IEntity> selectedEntities){
-        	Screen screen = view.getNifty().getScreen("Screen_ID");
-    	
-    	
-        	boolean oneIsSelected = selectedEntities.size()==1;
-        	List<IAbility> abilities = null;
-        
-        	
-        	if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
-        		IPlayerControlledEntity pce = (IPlayerControlledEntity) selectedEntities.get(0);
-        		abilities = pce.getAbilities();
-        	}
-        	
-        	//Loops through every button and sets its attributes
-        	for(int i = 0; i<8; i++){
-        		Element button = screen.findElementByName("Button_Ability_" + (i+1));
-      
-        		if(button != null){
-        			
-    		    	if(abilities != null && i<abilities.size()){
-    		    		IAbility ability = abilities.get(i);
-    		    		//button.setVisibleToMouseEvents(true);
-    		    		
-    		    		button.getRenderer(ImageRenderer.class).setImage(ImageManager.INSTANCE.getImage(ability.getName()));
-    		    		button.setVisible(true);
-    		    		
-    		    	} else {
-    		    		button.setVisible(false);
-    		    	}
-
-        		}
-        	}
-        }
+    	}
     };
     
     /**
