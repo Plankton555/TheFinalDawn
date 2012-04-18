@@ -35,6 +35,7 @@ public class GameModel implements IGame {
 	static {
 		try
 		{
+			// Initialize the entity classes.
 			Class.forName(Warrior.class.getName());
 			Class.forName(Unit.class.getName());
 			Class.forName(Worker.class.getName());

@@ -3,26 +3,17 @@ package projectrts.controller;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.jme3.app.SimpleApplication;
-import com.jme3.renderer.RenderManager;
-
-import projectrts.controller.InGameState;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.core.GameModel;
 import projectrts.model.core.IGame;
-import projectrts.model.core.abilities.AttackAbility;
-import projectrts.model.core.abilities.BuildTowerAbility;
-import projectrts.model.core.abilities.DeliverResourceAbility;
-import projectrts.model.core.abilities.GatherResourceAbility;
-import projectrts.model.core.abilities.MineResourceAbility;
-import projectrts.model.core.abilities.MoveAbility;
-import projectrts.model.core.abilities.OffensiveSpellAbility;
-import projectrts.model.core.abilities.TrainWorkerAbility;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.controls.SelectControl;
 import projectrts.view.spatials.SelectSpatial;
 import projectrts.view.spatials.UnitSpatial;
+
+import com.jme3.app.SimpleApplication;
+import com.jme3.renderer.RenderManager;
 
 /**
  * The top-level controller.
@@ -44,9 +35,6 @@ public class AppController extends SimpleApplication{
 			// Initialize the spatial classes.
 			Class.forName(UnitSpatial.class.getName());
 			Class.forName(SelectSpatial.class.getName());
-			
-			
-			// TODO Markus: should entities be here as well or should abilities be in GameModel?
 		}
 		catch (ClassNotFoundException any)
 		{
@@ -66,7 +54,7 @@ public class AppController extends SimpleApplication{
         //inGameState.setEnabled(false);
         
         // Set logger level
-        Logger.getLogger("").setLevel(Level.SEVERE);
+        Logger.getLogger("").setLevel(Level.FINE);
     }
 
     @Override
