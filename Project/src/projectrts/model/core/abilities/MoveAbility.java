@@ -97,7 +97,7 @@ public class MoveAbility extends AbstractAbility {
 			{
 				break;
 			}
-			Position nextNodePos = path.getNextNodePosition();
+			Position nextNodePos = path.getNextPosition();
 			double distanceToNextNode = ModelUtils.INSTANCE.getDistance(outputPos, nextNodePos);
 			
 			if (distanceToNextNode > stepLength)
