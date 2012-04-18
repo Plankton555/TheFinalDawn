@@ -6,10 +6,7 @@ import projectrts.global.utils.ImageManager;
 import projectrts.model.core.abilities.IAbility;
 import projectrts.model.core.entities.IEntity;
 import projectrts.model.core.entities.IPlayerControlledEntity;
-<<<<<<< HEAD
-=======
 import projectrts.view.GameView;
->>>>>>> Refacored the GUI to be located in the GUI Controller
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
@@ -38,11 +35,7 @@ public class GUIControl implements ScreenController {
 	private ScreenController sc;
 	private int i;
 	private SimpleApplication app;
-<<<<<<< HEAD
-	
 	private List<IAbility> abilities; 
-=======
->>>>>>> Refacored the GUI to be located in the GUI Controller
 
 	
 	public GUIControl(Application app, InputController input) {
@@ -155,48 +148,12 @@ public class GUIControl implements ScreenController {
 
 		
 	}
-<<<<<<< HEAD
 	
 	public void updateAbilities(List<IEntity> selectedEntities){
     	Screen screen = nifty.getScreen("Screen_ID");
     	
     	boolean oneIsSelected = selectedEntities.size()==1;
     	abilities = null;
-    
-    	
-    	if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
-    		IPlayerControlledEntity pce = (IPlayerControlledEntity) selectedEntities.get(0);
-    		abilities = pce.getAbilities();
-    	}
-    	
-    	//Loops through every button and sets its attributes
-    	for(int i = 0; i<8; i++){
-    		Element button = screen.findElementByName("Button_Ability_" + (i+1));
-  
-    		if(button != null){
-    			
-		    	if(abilities != null && i<abilities.size()){
-		    		IAbility ability = abilities.get(i);
-		    		//button.setVisibleToMouseEvents(true);
-		    		
-		    		button.getRenderer(ImageRenderer.class).setImage(ImageManager.INSTANCE.getImage(ability.getName()));
-		    		button.setVisible(true);
-		    		
-		    	} else {
-		    		button.setVisible(false);
-		    	}
-    		}
-
-    	}
-    }
-=======
->>>>>>> Refacored the GUI to be located in the GUI Controller
-	
-	public void updateAbilities(List<IEntity> selectedEntities){
-    	Screen screen = nifty.getScreen("Screen_ID");
-    	
-    	boolean oneIsSelected = selectedEntities.size()==1;
-    	List<IAbility> abilities = null;
     
     	
     	if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
