@@ -18,6 +18,10 @@ public interface IEntity{
 	 */
 	public float getSize();
 	
+	/**
+	 * @return The max speed of the entity.
+	 */
+	public float getSpeed();
 	
 	/**
 	 * @return The name of the entity

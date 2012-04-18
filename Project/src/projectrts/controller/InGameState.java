@@ -24,6 +24,7 @@ public class InGameState extends AbstractAppState {
     private IGame game;
     private InputController input;
     private GameView view;
+    private GUIControl guiControl;
     
     public InGameState(IGame game) {
         super();
@@ -46,6 +47,8 @@ public class InGameState extends AbstractAppState {
       // init stuff that is independent of whether state is PAUSED or RUNNING // modify scene graph...
       view = new GameView(this.app, game);
       input = new InputController(this.app, game, view);
+      guiControl = new GUIControl(app, input); 
+
       initializeCamera();
       // Initialize view last, after model and controller, since its initialization is dependent on the other's.
       view.initialize();

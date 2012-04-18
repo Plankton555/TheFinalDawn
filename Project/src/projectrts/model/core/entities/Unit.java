@@ -56,6 +56,13 @@ public class Unit extends PlayerControlledEntity {
 		
 	}
 	
+	@Override
+	public float getSpeed() {
+		// Change Unit.getSpeed() later
+		return 3;
+		
+	}
+	
 
 	@Override
 	public String getName() {

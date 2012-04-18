@@ -157,10 +157,10 @@ public class AStarNodeTest {
 		Node node = new Node(p);
 		AStarNode aNode = new AStarNode(node);
 		
-		node.setOccupied(true);
-		assertTrue(aNode.isObstacle());
-		node.setOccupied(false);
-		assertTrue(!aNode.isObstacle());
+		node.setOccupied(1);
+		assertTrue(aNode.isObstacle(2));
+		node.setOccupied(0);
+		assertTrue(!aNode.isObstacle(2));
 	}
 
 }

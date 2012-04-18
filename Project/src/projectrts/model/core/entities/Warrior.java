@@ -40,7 +40,6 @@ public class Warrior extends PlayerControlledEntity{
 
 	@Override
 	public int getDamage() {
-		// TODO Auto-generated method stub
 		return 20;
 	}
 

@@ -2,7 +2,10 @@ package projectrts.controller;
 
 import java.util.List;
 
+
 import projectrts.global.constants.*;
+import projectrts.global.utils.ImageManager;
+
 import projectrts.global.utils.Utils;
 import projectrts.model.core.EntityManager;
 import projectrts.model.core.IGame;
@@ -12,6 +15,10 @@ import projectrts.model.core.abilities.GatherResourceAbility;
 import projectrts.model.core.entities.IEntity;
 import projectrts.model.core.entities.NonPlayerControlledEntity;
 import projectrts.model.core.entities.PlayerControlledEntity;
+
+import projectrts.model.core.abilities.IAbility;
+import projectrts.model.core.entities.IEntity;
+import projectrts.model.core.entities.IPlayerControlledEntity;
 import projectrts.view.GameView;
 import sun.security.jca.GetInstance.Instance;
 
@@ -26,6 +33,11 @@ import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 
+import de.lessvoid.nifty.elements.Element;
+import de.lessvoid.nifty.elements.render.ImageRenderer;
+import de.lessvoid.nifty.render.NiftyImage;
+import de.lessvoid.nifty.screen.Screen;
+
 /**
  * A class for handling all input.
  * @author Markus Ekström
@@ -37,8 +49,10 @@ public class InputController {
 	// mouseActivated suppresses the camera until set to true (which is done when the mouse is first moved).
 	private boolean mouseActivated = false; 
 	private SimpleApplication app;
-	private IGame game; // The model 
-	private GameView view;
+
+	private IGame game; // The model
+	private GameView view; 
+	private GUIControl guiControl;
 	
 	
 	public InputController(SimpleApplication app, IGame game, GameView view) {
@@ -197,6 +211,10 @@ public class InputController {
     	private void handleLeftClick(){
     		game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 			view.drawSelected(game.getPlayer().getSelectedEntities());
+			if(guiControl!=null){
+				guiControl.updateAbilities(game.getPlayer().getSelectedEntities());
+			}
+			
     	}
     	
     	private void handleRightClick(){
@@ -247,4 +265,25 @@ public class InputController {
     		return null;
     	}
     };
+    
+    
+    /**
+     * Sets the GUI Control
+     * @param guiControl
+     */
+    public void setGUIControl(GUIControl guiControl){
+    	this.guiControl = guiControl;
+    }
+    
+    
+    /**
+     * Selects an ability
+     * @param ability the ability to become selected
+     */
+    public void selectAbility(IAbility ability){
+    	//TODO Afton: Add code to handle ability clicks
+    	System.out.println(ability.getName());
+    }
+    
+    
 }

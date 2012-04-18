@@ -1,6 +1,7 @@
 package projectrts.view;
 
 import java.util.List;
+
 import projectrts.global.constants.Constants;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
@@ -8,6 +9,7 @@ import projectrts.model.core.IGame;
 import projectrts.model.core.entities.IEntity;
 import projectrts.view.spatials.AbstractSpatial;
 import projectrts.view.spatials.SpatialFactory;
+
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;

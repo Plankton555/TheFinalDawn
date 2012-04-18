@@ -19,6 +19,7 @@ public class EntityManager {
 	private static EntityManager instance = new EntityManager();
 	
 	private List<AbstractEntity> allEntities = new ArrayList<AbstractEntity>();
+	private int idCounter = 0;
 	
 	/**
 	 * @return The instance of this class.
@@ -122,5 +123,14 @@ public class EntityManager {
 	 */
 	public void addNewPCE(String pce, Player owner, Position pos) {
 		allEntities.add(EntityFactory.INSTANCE.createPCE(pce, owner, pos));
+	}
+	
+	/**
+	 * @return New entity ID.
+	 */
+	public int requestNewEntityID()
+	{
+		idCounter++;
+		return idCounter;
 	}
 }

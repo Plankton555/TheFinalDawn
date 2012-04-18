@@ -16,6 +16,7 @@ import projectrts.model.core.abilities.MoveAbility;
 public class Worker extends PlayerControlledEntity{
 	
 	private static float size = 1f;
+	private static float speed = 5;
 
 	static {
 		EntityFactory.INSTANCE.registerPCE(Worker.class.getSimpleName(), new Worker());
@@ -31,6 +32,7 @@ public class Worker extends PlayerControlledEntity{
 		abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
 		setName(Worker.class.getSimpleName());
 		setSize(size);
+		setSpeed(speed);
 	}
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
