@@ -6,7 +6,6 @@ import projectrts.global.utils.ImageManager;
 import projectrts.model.core.abilities.IAbility;
 import projectrts.model.core.entities.IEntity;
 import projectrts.model.core.entities.IPlayerControlledEntity;
-import projectrts.view.GameView;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
@@ -171,7 +170,7 @@ public class GUIControl implements ScreenController {
 		    		IAbility ability = abilities.get(i);
 		    		//button.setVisibleToMouseEvents(true);
 		    		
-		    		button.getRenderer(ImageRenderer.class).setImage(ImageManager.INSTANCE.getImage(ability.getName()));
+		    		button.getRenderer(ImageRenderer.class).setImage(ImageManager.INSTANCE.getImage(ability.getClass().getSimpleName()));
 		    		button.setVisible(true);
 		    		
 		    	} else {

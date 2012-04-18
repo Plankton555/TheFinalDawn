@@ -195,6 +195,7 @@ public class InputController {
     	private void handleLeftClick(){
     		game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 			view.drawSelected(game.getPlayer().getSelectedEntities());
+			guiControl.updateAbilities(game.getPlayer().getSelectedEntities());
     	}
     	
     	private void handleRightClick(){

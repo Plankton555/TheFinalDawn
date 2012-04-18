@@ -3,9 +3,7 @@ package projectrts.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import projectrts.controller.GUIControl;
 import projectrts.global.constants.Constants;
-import projectrts.global.utils.ImageManager;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.core.IGame;
@@ -17,7 +15,6 @@ import projectrts.view.spatials.SpatialFactory;
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
-import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
@@ -28,19 +25,12 @@ import com.jme3.terrain.heightmap.ImageBasedHeightMap;
 import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.WrapMode;
 
-import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.builder.LayerBuilder;
-import de.lessvoid.nifty.builder.PanelBuilder;
-import de.lessvoid.nifty.builder.ScreenBuilder;
-import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
-
 /**
  * The in-game view, creating and managing the scene.
  * @author Markus Ekström
  *
  */
 public class GameView{
-	private Nifty nifty;
 	private int i;
 	private SimpleApplication app;
 	private IGame game;
@@ -196,156 +186,7 @@ public class GameView{
     		entities.attachChild(entitySpatial);
     	}
     }
-    
-	private void initializeGUI() {
-		NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
-	            app.getAssetManager(), app.getInputManager(), app.getAudioRenderer(), app.getGuiViewPort());
-	    nifty = niftyDisplay.getNifty();
-	    app.getGuiViewPort().addProcessor(niftyDisplay);
-	    app.getFlyByCamera().setDragToRotate(true);
-	 
-	    nifty.loadStyleFile("nifty-default-styles.xml");
-	    nifty.loadControlFile("nifty-default-controls.xml");
-	 
-	    ImageManager.INSTANCE.initializeImages(nifty);
-	    
-	    // <screen>
-	    nifty.addScreen("Screen_ID", new ScreenBuilder("GUI Screen"){{
-	        controller(new GUIControl(app, null)); // Screen properties       
-	 
-	        // <layer>
-	        layer(new LayerBuilder("Layer_ID") {{
-	            childLayoutVertical(); // layer properties, add more...
-
-	            
-	            
-	            panel(new PanelBuilder("panel_main") {{
-	                childLayoutVertical();
-	                backgroundColor("#0000");
-	                height("80%");
-
-	                // <!-- spacer -->
-	            }});
-	            
-	 
-	            // <panel>
-	            panel(new PanelBuilder("Panel_GUI") {{
-	               childLayoutHorizontal(); // panel properties, add more...  
-	               backgroundColor("#f00f"); 
-		           height("20%");
-		           visibleToMouse(false);
-		           
-		           
-	               panel(new PanelBuilder("Panel_Main"){{
-	            	   width("60%");
-	            	   childLayoutVertical();
-	            	   
-	               }});
-		           
-	               panel(new PanelBuilder("Panel_Abilities"){{
-	            	   width("40%");
-	            	   childLayoutVertical();
-	    
-	 
-	            	   //First row with buttons
-		               panel(new PanelBuilder("Panel_Abilities_Row1"){{
-		            	   height("50%");
-		            	   childLayoutHorizontal();
-		            	   
-		            	   for(i = 1; i<=4; i++){
-			                // GUI elements
-			                control(new ButtonBuilder("Button_Ability_" + i){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                    interactOnClick("buttonClicked("+i+")");
-			                }});
-			                
-		            	   }
-			 /*
-			                control(new ButtonBuilder("Button_Ability_2"){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                    interactOnClick("buttonClicked(2)");
-			                }});
-			                
-			                control(new ButtonBuilder("Button_Ability_3"){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                }});
-			 
-			                control(new ButtonBuilder("Button_Ability_4"){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                }});  
-			             */   
-		               }});    
-		               
-		               
-		               
-		               //Second row with buttons
-		               panel(new PanelBuilder("Panel_Abilities_Row2"){{
-		            	   height("50%");
-		            	   childLayoutHorizontal();
-			                
-			                control(new ButtonBuilder("Button_Ability_5"){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                }});  
-			                
-			                control(new ButtonBuilder("Button_Ability_6"){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                }});  
-			                
-			                control(new ButtonBuilder("Button_Ability_7"){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                }});  
-			                
-			                control(new ButtonBuilder("Button_Ability_8"){{
-			                    width("25%");
-			                    height("100%");
-			                    visible(false);
-			                    focusable(false);
-			                }});  
-	                
-		               }});
-	               }});
-	 
-	            }});
-	            // </panel>
-	          }});
-	        // </layer>
-	      }}.build(nifty));
-	    // </screen>
-	 
-	    nifty.gotoScreen("Screen_ID"); // start the screen
-
-		
-	}
-	
-	/**
-	 * Returns the nifty object for the GUI
-	 * @return the nifty
-	 */
-	public Nifty getNifty(){
-		return nifty;
-	}
-    
+ 
     /**
      * Draws the selected graphics for all entities in the passed list.
      * @param selectedEntities A list of selected entities.
