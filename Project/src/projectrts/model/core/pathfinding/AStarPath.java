@@ -31,7 +31,7 @@ public class AStarPath {
 	}
 	
 	/**
-	 * Removed the next node in the path from it.
+	 * Removes the next node in the path from it.
 	 */
 	public void removeNodeFromPath()
 	{
