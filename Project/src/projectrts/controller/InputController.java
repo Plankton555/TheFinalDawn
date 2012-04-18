@@ -42,9 +42,14 @@ public class InputController {
 	// mouseActivated suppresses the camera until set to true (which is done when the mouse is first moved).
 	private boolean mouseActivated = false; 
 	private SimpleApplication app;
+<<<<<<< HEAD
 
 	private IGame game; // The model
 	private GameView view; 
+=======
+	private IGame game; // The model 
+	private GameView view;
+>>>>>>> Refacored the GUI to be located in the GUI Controller
 	private GUIControl guiControl;
 	
 	public InputController(SimpleApplication app, IGame game, GameView view) {
@@ -175,7 +180,18 @@ public class InputController {
     		
 	    	if(app.getStateManager().getState(InGameState.class).isEnabled()) {
 	    		if (name.equals("mouseLeftButton") && keyPressed) {
+<<<<<<< HEAD
 	    			handleLeftClick();
+=======
+	    			game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+	    			List<IEntity> selectedEntities = game.getPlayer().getSelectedEntities();
+	    			view.drawSelected(selectedEntities);
+	    			if(guiControl!=null){
+	    				guiControl.updateAbilities(selectedEntities);
+	    			}
+	    			
+	    			
+>>>>>>> Refacored the GUI to be located in the GUI Controller
 	    		}
 	    		if (name.equals("mouseRightButton") && keyPressed) {
 	    			handleRightClick();
@@ -199,6 +215,7 @@ public class InputController {
 	            mouseActivated = true;
 	    	}	
 	    }
+<<<<<<< HEAD
     	
     	private void handleLeftClick(){
     		game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
@@ -306,5 +323,14 @@ public class InputController {
     public void selectAbility(IAbility ability){
     	//TODO Afton: Add code to handle ability clicks
     	System.out.println(ability.getName());
+=======
+    };
+    
+    
+    public void setGUIControl(GUIControl guiControl){
+    	this.guiControl = guiControl;
+>>>>>>> Refacored the GUI to be located in the GUI Controller
     }
+    
+    
 }

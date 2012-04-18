@@ -39,6 +39,8 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
  *
  */
 public class GameView{
+	private Nifty nifty;
+	private int i;
 	private SimpleApplication app;
 	private IGame game;
     private Node entities = new Node("entities"); // The node for all entities
@@ -47,8 +49,6 @@ public class GameView{
     private Material matTerrain;
     private TerrainQuad terrain;
     private float mod = Constants.INSTANCE.getModelToWorld(); // The modifier value for converting lengths between model and world.
-    private Nifty nifty;
-    private int i;
 	
 	public GameView(SimpleApplication app, IGame game) {
 		this.app = app;
@@ -63,7 +63,6 @@ public class GameView{
 	public void initialize() {
 		initializeWorld();
 		initializeEntities();
-		initializeGUI();
 		this.app.getRootNode().attachChild(selected);
 	}
 	
@@ -196,7 +195,7 @@ public class GameView{
     		entities.attachChild(entitySpatial);
     	}
     }
-    	
+    
 	private void initializeGUI() {
 		NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
 	            app.getAssetManager(), app.getInputManager(), app.getAudioRenderer(), app.getGuiViewPort());
