@@ -37,7 +37,7 @@ public class InputController {
 	private SimpleApplication app;
 	private IGame game; // The model
 	private GameView view; 
-	private GUIControl guiControl;
+	private GUIController guiController;
 	
 	public InputController(SimpleApplication app, IGame game, GameView view) {
 		this.app = app;
@@ -195,7 +195,7 @@ public class InputController {
     	private void handleLeftClick(){
     		game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 			view.drawSelected(game.getPlayer().getSelectedEntities());
-			guiControl.updateAbilities(game.getPlayer().getSelectedEntities());
+			guiController.updateAbilities(game.getPlayer().getSelectedEntities());
     	}
     	
     	private void handleRightClick(){
@@ -250,8 +250,8 @@ public class InputController {
      * Sets the GUI Control
      * @param guiControl
      */
-    public void setGUIControl(GUIControl guiControl){
-    	this.guiControl = guiControl;
+    public void setGUIControl(GUIController guiControl){
+    	this.guiController = guiControl;
     }
     
     
