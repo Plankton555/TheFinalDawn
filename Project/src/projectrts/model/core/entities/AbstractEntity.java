@@ -1,17 +1,19 @@
 package projectrts.model.core.entities;
 
 import projectrts.model.core.Position;
+import projectrts.model.core.pathfinding.Node;
 
 /**
  * Abstract class for the common parts of the different entities
- * @author Filip Brynfors, Modified by Markus Ekström, Jakob Svensson
+ * @author Filip Brynfors, Modified by Markus Ekström, Jakob Svensson, Bjorn Persson Mattsson
  *
  */
 public abstract class AbstractEntity implements IEntity {
 
-	protected Position position;
+	private Position position;
 	private String name;
 	private float size;
+	private Node occupiedNode;
 	
 	protected AbstractEntity() {
 	}
@@ -22,7 +24,7 @@ public abstract class AbstractEntity implements IEntity {
 	 * @param owner The owner of the unit
 	 */
 	protected AbstractEntity(Position spawnPos){
-		this.position = new Position(spawnPos);
+		this.setPosition(spawnPos);
 		
 	}
 	
@@ -54,6 +56,16 @@ public abstract class AbstractEntity implements IEntity {
 	 */
 	public void setPosition(Position pos){
 		position = pos.clone();
+		enterNewNode(aStar.getWorld().getNodeAt(pos));
+	}
+
+	private void enterNewNode(Node newNode)
+	{
+		System.out.println("Entering node: " + newNode.getPosition());
+		// TODO Plankton: Add support for sizes here
+		occupiedNode.setOccupied(false);
+		newNode.setOccupied(true);
+		occupiedNode = newNode;
 	}
 	
 	/**

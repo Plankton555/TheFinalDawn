@@ -147,12 +147,4 @@ public class AStar {
 		
 		return path;
 	}
-	
-	/**
-	 * @return The world.
-	 */
-	public World getWorld()
-	{
-		return AStar.world;
-	}
 }

@@ -19,7 +19,6 @@ public class MoveAbility extends AbstractAbility {
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
 	// TODO Plankton: Change nodes occupation when moving.
-	private Node lastNode;
 	private AStar aStar;
 	private AStarPath path;
 	private float pathRefreshInterval = 1; // refreshes path every second
@@ -44,8 +43,6 @@ public class MoveAbility extends AbstractAbility {
 	@Override
 	public void useAbility(PlayerControlledEntity entity, Position pos){
 		this.entity = entity;
-		this.lastNode = aStar.getWorld().getNodeAt(entity.getPosition());
-		enterNewNode(this.lastNode);
 		this.targetPosition = pos;
 		
 		// Want to refresh path as soon as a click is made
@@ -53,15 +50,6 @@ public class MoveAbility extends AbstractAbility {
 		
 		setActive(true);
 		setFinished(false);
-	}
-
-	private void enterNewNode(Node newNode)
-	{
-		System.out.println("Entering node: " + newNode.getPosition());
-		// TODO Plankton: Add support for sizes here
-		lastNode.setOccupied(false);
-		newNode.setOccupied(true);
-		lastNode = newNode;
 	}
 
 	@Override
@@ -75,11 +63,6 @@ public class MoveAbility extends AbstractAbility {
 				// the closest node of targetPosition, and not targetPosition itself. Maybe use
 				// the closest node's position instead?..
 				setFinished(true);
-			}
-			Node currentNode = aStar.getWorld().getNodeAt(entity.getPosition());
-			if (!currentNode.equals(lastNode))
-			{
-				enterNewNode(currentNode);
 			}
 			
 		}
