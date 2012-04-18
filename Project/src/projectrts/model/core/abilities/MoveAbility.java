@@ -59,10 +59,9 @@ public class MoveAbility extends AbstractAbility {
 			entity.setPosition(determineNextStep(tpf, entity, targetPosition));
 			//if (entity.getPosition().equals(nodeAtTarget.getPosition()))
 			// TODO Plankton: Solve this shit!
-			if (ModelUtils.INSTANCE.getDistance(entity.getPosition(),
-					targetPosition) < 0.6*P.INSTANCE.getUnitLength())
+			if (path.nrOfNodesLeft() == 0)
 			{
-				System.out.println(entity.getEntityID() + " är nu framme");
+				System.out.println(entity.getEntityID() + " är nu framme vid " + entity.getPosition());
 				setFinished(true);
 			}
 			
@@ -98,19 +97,21 @@ public class MoveAbility extends AbstractAbility {
 			{
 				break;
 			}
-			Position nextNode = path.getNextNodePosition();
-			double distanceToNextNode = ModelUtils.INSTANCE.getDistance(outputPos, nextNode);
+			Position nextNodePos = path.getNextNodePosition();
+			double distanceToNextNode = ModelUtils.INSTANCE.getDistance(outputPos, nextNodePos);
 			
 			if (distanceToNextNode > stepLength)
 			{
-				Vector2d direction = Position.getVectorBetween(outputPos, nextNode);
+				Vector2d direction = Position.getVectorBetween(outputPos, nextNodePos);
+				direction.normalize();
 				outputPos = outputPos.add(stepLength, direction);
 				stepLength = 0;
 			}
 			else //if (distanceToNextNode <= stepLength)
 			{
 				stepLength -= distanceToNextNode;
-				outputPos = nextNode;
+				System.out.println("Här nu");
+				outputPos = nextNodePos.clone();
 				path.removeNodeFromPath();
 			}
 		}
