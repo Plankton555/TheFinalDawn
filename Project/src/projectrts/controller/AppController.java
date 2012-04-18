@@ -49,11 +49,18 @@ public class AppController extends SimpleApplication{
     	this.cam.setParallelProjection(true);
     	TextureManager.INSTANCE.initializeTextures(this);
     	MaterialManager.INSTANCE.initializeMaterial(this);
-        IGame game = new GameModel();
+        /*
+    	IGame game = new GameModel();
         InGameState inGameState = new InGameState(game);
         this.stateManager.attach(inGameState);
         inGameState.setEnabled(true);
+        */
         //inGameState.setEnabled(false);
+        
+    	MenuState menuState = new MenuState();
+    	this.stateManager.attach(menuState);
+    	menuState.setEnabled(true);
+        
         
         // Set logger level
         Logger.getLogger("").setLevel(Level.SEVERE);
