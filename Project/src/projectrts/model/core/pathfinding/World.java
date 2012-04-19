@@ -114,4 +114,15 @@ public class World {
 			nodes[40][i].setOccupied(-1);
 		}
 	}
+	
+	/**
+	 * Sets the nodes around nodeInCenter as occupied by entityID.
+	 * @param nodeInCenter The node in center of the occupied nodes.
+	 * @param entitySize The size around the center node that will be occupied.
+	 * @param entityID ID of the entity that occupies.
+	 */
+	public void setNodesOccupied(Node nodeInCenter, float entitySize, int entityID) {
+		// TODO Plankton: Implement this!!!
+		
+	}
 }
