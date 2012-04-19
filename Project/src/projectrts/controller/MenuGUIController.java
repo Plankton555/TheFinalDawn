@@ -114,7 +114,7 @@ public class MenuGUIController implements ScreenController {
 	
 	
 	public void buttonExitClicked(){
-		
+		app.stop();
 	}
 	
 

@@ -73,6 +73,7 @@ public class InputController {
      * @param tpf
      */
     private void updateCamera(float tpf) {
+
     	if(mouseActivated) {
 	    	Vector3f loc = app.getCamera().getLocation();
 	    	Vector2f mLoc = app.getInputManager().getCursorPosition();
@@ -117,8 +118,8 @@ public class InputController {
     	this.app.getInputManager().addMapping("mouseRightButton", new MouseButtonTrigger(MouseInput.BUTTON_RIGHT));
     	
     	// Add the names to the action/analog listener.	
-    	this.app.getInputManager().addListener(analogListener, new String[]{"cameraRightKey", "cameraLeftKey", "cameraUpKey", "cameraDownKey"});
-    	this.app.getInputManager().addListener(actionListener, new String[]{"cameraRightMouse", "cameraLeftMouse", "cameraUpMouse", "cameraDownMouse", 
+    	this.app.getInputManager().addListener(analogListener, new String[]{"cameraRightMouse", "cameraLeftMouse", "cameraUpMouse", "cameraDownMouse","cameraRightKey", "cameraLeftKey", "cameraUpKey", "cameraDownKey"});
+    	this.app.getInputManager().addListener(actionListener, new String[]{ 
     																		"mouseLeftButton", "mouseRightButton"});
     	//Debug control mapping
     	this.app.getInputManager().addMapping("exit",  new KeyTrigger(KeyInput.KEY_ESCAPE));
@@ -152,6 +153,21 @@ public class InputController {
 	            if (name.equals("cameraDownKey") && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.INSTANCE.getModelToWorld()) {
 	            	app.getCamera().setLocation(loc.add(new Vector3f(0, -value*Constants.INSTANCE.getCameraSpeed(), 0)));
 	            }
+	            
+	            
+		    	// Bypass the fact that the cursor position is (0, 0) before it is moved,
+		    	// which causes the camera to move towards that location would this not be in place.
+		    	if ((!mouseActivated && name.equals("cameraRightMouse") ||
+					    	name.equals("cameraLeftMouse") ||
+					    	name.equals("cameraUpMouse") ||
+					    	name.equals("cameraDownMouse"))) {
+			    	mouseActivated = true;
+			    	app.getInputManager().deleteMapping("cameraRightMouse");
+			    	app.getInputManager().deleteMapping("cameraLeftMouse");
+			    	app.getInputManager().deleteMapping("cameraUpMouse");
+			    	app.getInputManager().deleteMapping("cameraDownMouse");
+		    	}
+		    	
           	} else {
 	        	  System.out.println("Press P to unpause.");
           	}
@@ -185,14 +201,7 @@ public class InputController {
 	    		
 	    	}
 	    	
-	    	// Bypass the fact that the cursor position is (0, 0) before it is moved,
-	    	// which causes the camera to move towards that location would this not be in place.
-	    	if ((!mouseActivated && name.equals("cameraRightMouse") ||
-	    			name.equals("cameraLeftMouse") ||
-	    			name.equals("cameraUpMouse") ||
-	    			name.equals("cameraDownMouse"))) {
-	            mouseActivated = true;
-	    	}	
+
 	    }
     	
     	private void handleLeftClick(){
