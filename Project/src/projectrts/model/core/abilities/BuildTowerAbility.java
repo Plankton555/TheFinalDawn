@@ -31,6 +31,7 @@ public class BuildTowerAbility extends AbstractAbility {
 	@Override
 	public void useAbility(PlayerControlledEntity builder, Position pos){
 		Player owner = (Player) builder.getOwner();
+		// TODO Afton: Dead store to struct in BuildTowerAbility.useAbility(PlayerControlledEntity, Position)
 		Structure struct = new Structure(pos, owner);
 		EntityManager.getInstance().addNewPCE("Structure", owner, pos);
 		
