@@ -83,10 +83,12 @@ public abstract class AbstractEntity implements IEntity {
 
 	private void enterNewNode(Node newNode)
 	{
-		// TODO Plankton: Add support for sizes here
-		occupiedNode.setOccupied(0);
-		newNode.setOccupied(entityID);
-		occupiedNode = newNode;
+		if (!occupiedNode.equals(newNode))
+		{
+			world.setNodesOccupied(occupiedNode, getSize(), 0);
+			world.setNodesOccupied(newNode, getSize(), getEntityID());
+			occupiedNode = newNode;
+		}
 	}
 	
 	/**
