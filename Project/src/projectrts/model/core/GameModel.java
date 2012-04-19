@@ -62,9 +62,17 @@ public class GameModel implements IGame {
 	public GameModel() {
 		world.initializeWorld(P.INSTANCE.getWorldHeight(), P.INSTANCE.getWorldWidth());
 		AStar.initialize(world);
-		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(40.5, 51.5));
-		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(50.5, 50.5));
-		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(50.5, 41.5));
+		entityManager.addNewPCE(Unit.class.getSimpleName(), humanPlayer, new Position(50, 50));
+		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(55, 55));
+		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(56, 55));
+		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(60.5, 60.5));
+		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(34.5, 50.5));
+		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 50.5));
+		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 52.5));
+		
+
+
+
 	}
 	
 	@Override
