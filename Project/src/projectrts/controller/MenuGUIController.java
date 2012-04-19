@@ -56,71 +56,45 @@ public class MenuGUIController implements ScreenController {
 	 
 	        // <layer>
 	        layer(new LayerBuilder("Layer_ID") {{
-	            childLayoutVertical(); // layer properties, add more...
+	            childLayoutCenter(); // layer properties, add more...
 
 	            
 	            
-	            panel(new PanelBuilder("panel_main") {{
-	                childLayoutVertical();
-	                backgroundColor("#0000");
-	                height("80%");
 
-	                // <!-- spacer -->
-	            }});
 	            
 	 
 	            // <panel>
 	            panel(new PanelBuilder("Panel_GUI") {{
-	               childLayoutHorizontal(); // panel properties, add more...  
-	               backgroundColor("#f00f"); 
-		           height("20%");
-		           visibleToMouse(true);
-		           
-		           
-	               panel(new PanelBuilder("Panel_Main"){{
-	            	   width("60%");
-	            	   childLayoutVertical();
-	            	   
-	               }});
-		           
-	               panel(new PanelBuilder("Panel_Abilities"){{
-	            	   width("40%");
-	            	   childLayoutVertical();
-	    
-	 
-	            	   //First row with buttons
-		               panel(new PanelBuilder("Panel_Abilities_Row1"){{
-		            	   height("50%");
-		            	   childLayoutHorizontal();
-		            	   
+	               childLayoutVertical();            
+	               valignCenter();
 
-				                // GUI elements
-				                control(new ButtonBuilder("Button_Ability_" + 1){{
-				                    width("25%");
-				                    height("100%");
-				                    visible(false);
-				                    focusable(false);
-				                    interactOnClick("buttonClicked()");
-				                }});
-			                
-		            	   
-		
-		               
-		               
-		           
-	                
-		               }});
-	               }});
-	 
-	            }});
+		                // GUI elements
+		                control(new ButtonBuilder("Button_Start", "Start Game"){{
+		                	alignCenter();
+		                    interactOnClick("buttonStartClicked()");
+		                }});   
+		                control(new ButtonBuilder("Button_Exit", "Exit Game"){{
+		                	alignCenter();
+			                interactOnClick("buttonExitClicked()");
+			            }}); 
+		                
+	              }});
 	            // </panel>
 	          }});
 	        // </layer>
 	      }}.build(nifty));
 	    // </screen>
 	 
-	    nifty.gotoScreen("Screen_ID"); // start the screen
+	    nifty.gotoScreen("Screen_Start"); // start the screen
 
+		
+	}
+	
+	public void buttonExitClicked(){
+		
+	}
+	
+	public void buttonStartClicked(){
 		
 	}
 
