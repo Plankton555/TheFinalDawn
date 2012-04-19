@@ -20,6 +20,7 @@ public class MoveAbility extends AbstractAbility {
 	
 	private AStar aStar;
 	private AStarPath path;
+	// TODO Plankton: Fix update path thingie
 	private float pathRefreshInterval = 1; // refreshes path every second
 	private float timeSincePathRefresh = pathRefreshInterval;
 	
