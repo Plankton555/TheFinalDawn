@@ -49,7 +49,6 @@ public class DeliverResourceAbility extends AbstractAbility{
 				System.out.println("delivered");
 			}else{
 				// Not in range
-				System.out.println("Not in range");
 				if(!moveAbility.isActive()){
 					moveAbility.useAbility(unit, depositStructure.getPosition());
 				}
