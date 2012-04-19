@@ -7,8 +7,6 @@ import projectrts.model.core.Position;
 import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.model.core.pathfinding.AStar;
 import projectrts.model.core.pathfinding.AStarPath;
-import projectrts.model.core.pathfinding.Node;
-import projectrts.model.core.pathfinding.World;
 import projectrts.model.core.utils.ModelUtils;
 
 /**
@@ -22,7 +20,7 @@ public class MoveAbility extends AbstractAbility {
 	
 	private AStar aStar;
 	private AStarPath path;
-	private float pathRefreshInterval = 0.1f; // refreshes path every second
+	private float pathRefreshInterval = 1; // refreshes path every second
 	private float timeSincePathRefresh = pathRefreshInterval;
 	
 	static {
@@ -57,12 +55,8 @@ public class MoveAbility extends AbstractAbility {
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			entity.setPosition(determineNextStep(tpf, entity, targetPosition));
-			//if (entity.getPosition().equals(nodeAtTarget.getPosition()))
-			// TODO Plankton: Solve this shit!
-			if (ModelUtils.INSTANCE.getDistance(entity.getPosition(),
-					targetPosition) < 0.6*P.INSTANCE.getUnitLength())
+			if (path.nrOfNodesLeft() == 0)
 			{
-				System.out.println(entity.getEntityID() + " är nu framme");
 				setFinished(true);
 			}
 			
@@ -98,19 +92,20 @@ public class MoveAbility extends AbstractAbility {
 			{
 				break;
 			}
-			Position nextNode = path.getNextNodePosition();
-			double distanceToNextNode = ModelUtils.INSTANCE.getDistance(outputPos, nextNode);
+			Position nextNodePos = path.getNextPosition();
+			double distanceToNextNode = ModelUtils.INSTANCE.getDistance(outputPos, nextNodePos);
 			
 			if (distanceToNextNode > stepLength)
 			{
-				Vector2d direction = Position.getVectorBetween(outputPos, nextNode);
+				Vector2d direction = Position.getVectorBetween(outputPos, nextNodePos);
+				direction.normalize();
 				outputPos = outputPos.add(stepLength, direction);
 				stepLength = 0;
 			}
 			else //if (distanceToNextNode <= stepLength)
 			{
 				stepLength -= distanceToNextNode;
-				outputPos = nextNode;
+				outputPos = nextNodePos.clone();
 				path.removeNodeFromPath();
 			}
 		}
