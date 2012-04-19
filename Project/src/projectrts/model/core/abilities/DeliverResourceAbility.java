@@ -46,7 +46,6 @@ public class DeliverResourceAbility extends AbstractAbility{
 				Player player = (Player)unit.getOwner();
 				player.modifyResource(P.INSTANCE.getWorkerCarryAmount());
 				setFinished(true);
-				System.out.println("delivered");
 			}else{
 				// Not in range
 				if(!moveAbility.isActive()){

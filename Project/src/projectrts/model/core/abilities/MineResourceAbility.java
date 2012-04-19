@@ -47,7 +47,6 @@ public class MineResourceAbility extends AbstractAbility{
 				
 				if(resourceCarriedAmount >= P.INSTANCE.getWorkerCarryAmount()) {
 					setFinished(true);
-					System.out.println("mined");
 				}
 				
 			}else{

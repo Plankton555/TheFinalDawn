@@ -39,7 +39,7 @@ public class TrainWorkerAbility extends AbstractAbility{
 			}else{
 				buildTime-=tpf;
 			}
-			System.out.println(buildTime);
+
 		}
 	}
 

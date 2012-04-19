@@ -45,8 +45,6 @@ public class EntityManager {
 		}
 		for (AbstractEntity e : entitiesQueue){
 			allEntities.add(e);
-			System.out.println("Added entity");
-			System.out.println(getAllEntities());
 		}
 		entitiesQueue.clear();
 	}
