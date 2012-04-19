@@ -57,11 +57,8 @@ public class MoveAbility extends AbstractAbility {
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			entity.setPosition(determineNextStep(tpf, entity, targetPosition));
-			//if (entity.getPosition().equals(nodeAtTarget.getPosition()))
-			// TODO Plankton: Solve this shit!
 			if (path.nrOfNodesLeft() == 0)
 			{
-				System.out.println(entity.getEntityID() + " är nu framme vid " + entity.getPosition());
 				setFinished(true);
 			}
 			
