@@ -4,9 +4,9 @@
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>10</x>
+      <x>20</x>
       <y>60</y>
-      <w>440</w>
+      <w>290</w>
       <h>300</h>
     </coordinates>
     <panel_attributes>controller
@@ -19,7 +19,7 @@ fg=blue</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>80</x>
+      <x>30</x>
       <y>90</y>
       <w>100</w>
       <h>50</h>
@@ -31,92 +31,104 @@ fg=blue</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>60</x>
-      <y>110</y>
-      <w>90</w>
-      <h>90</h>
+      <x>100</x>
+      <y>90</y>
+      <w>100</w>
+      <h>50</h>
     </coordinates>
-    <panel_attributes>lt=&gt;
-m2=1</panel_attributes>
-    <additional_attributes>70;30;30;70</additional_attributes>
+    <panel_attributes>lt=&gt;.</panel_attributes>
+    <additional_attributes>30;30;80;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>20</x>
-      <y>180</y>
-      <w>260</w>
-      <h>60</h>
+      <x>180</x>
+      <y>90</y>
+      <w>120</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>IngameState
---
-+setEnabled(boolean enabled):void</panel_attributes>
+--</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>30</x>
-      <y>210</y>
-      <w>80</w>
-      <h>90</h>
+      <x>210</x>
+      <y>110</y>
+      <w>50</w>
+      <h>180</h>
     </coordinates>
-    <panel_attributes>lt=&gt;
-m2=1</panel_attributes>
-    <additional_attributes>30;30;60;70</additional_attributes>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>30;30;30;160</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>20</x>
-      <y>280</y>
-      <w>260</w>
+      <x>180</x>
+      <y>270</y>
+      <w>120</w>
       <h>60</h>
     </coordinates>
-    <panel_attributes>InputControl
---
-+update(float tpf, boolean enabled):void</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Package</type>
-    <coordinates>
-      <x>290</x>
-      <y>90</y>
-      <w>150</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>controller
---
-
-bg=white
-fg=blue</panel_attributes>
+    <panel_attributes>InputController
+--</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>300</x>
-      <y>120</y>
+      <x>30</x>
+      <y>190</y>
       <w>130</w>
       <h>50</h>
     </coordinates>
-    <panel_attributes>MoveControl
+    <panel_attributes>GUIController
 --
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <type>com.umlet.element.Class</type>
+    <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>300</x>
-      <y>180</y>
-      <w>130</w>
-      <h>50</h>
+      <x>230</x>
+      <y>110</y>
+      <w>50</w>
+      <h>180</h>
     </coordinates>
-    <panel_attributes>SelectControl
---
-</panel_attributes>
-    <additional_attributes/>
+    <panel_attributes>lt=&lt;&lt;&lt;&gt;.</panel_attributes>
+    <additional_attributes>30;30;30;160</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>40</x>
+      <y>210</y>
+      <w>160</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&gt;.</panel_attributes>
+    <additional_attributes>30;30;140;110</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>90</x>
+      <y>110</y>
+      <w>120</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&gt;.</panel_attributes>
+    <additional_attributes>100;30;30;80</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>70</x>
+      <y>210</y>
+      <w>130</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&gt;.</panel_attributes>
+    <additional_attributes>110;90;30;30</additional_attributes>
   </element>
 </diagram>
