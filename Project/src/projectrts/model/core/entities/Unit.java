@@ -46,7 +46,7 @@ public class Unit extends PlayerControlledEntity {
 		abilities.add(AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName()));
 		abilities.add(AbilityFactory.INSTANCE.createAbility(OffensiveSpellAbility.class.getSimpleName()));
 		abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
-		this.setMaxHealth(100);
+		this.setMaxHealth(20);
 		this.setCurrentHealth(this.getMaxHealth());
 	}
 	

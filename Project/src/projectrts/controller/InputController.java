@@ -263,7 +263,7 @@ public class InputController {
      * @param ability the ability to become selected
      */
     public void selectAbility(IAbility ability){
-    	//TODO: Afton Add code to handle ability clicks
+    	//TODO Afton: Add code to handle ability clicks
     	System.out.println(ability.getName());
     }
     

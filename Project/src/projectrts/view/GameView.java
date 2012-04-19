@@ -17,6 +17,7 @@ import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.Spatial.CullHint;
 import com.jme3.scene.shape.Box;
 import com.jme3.terrain.geomipmap.TerrainLodControl;
 import com.jme3.terrain.geomipmap.TerrainQuad;
@@ -143,27 +144,26 @@ public class GameView{
     private void updateEntities(float tpf) {
     	List<IEntity> newEntities = checkForNewEntities();
     	integrateNewEntities(newEntities);
+    	removeDeadEntities();
     }
     
     private List<IEntity> checkForNewEntities() {
     	List<IEntity> newEntities = new ArrayList<IEntity>();
     	
-    	if(entities.getChildren().size() != game.getAllEntities().size()) {
+    	if(entities.getChildren().size() < game.getAllEntities().size()) {
 	    	boolean add = false;
 	    	
 	    	// For every entity, check if the spatial's entity has the same position.
 	    	// If not, the entity is new.
-	    	// TODO anyone: implement equals for entities and use that here instead.
 	    	for(IEntity entity : game.getAllEntities()) {
 	    		add = true;
 	    		for(Spatial spatial : entities.getChildren()) {
-	    			if(entity.getPosition().getX() == spatial.getControl(MoveControl.class).getEntityPos().getX()
-	    					&& entity.getPosition().getY() == spatial.getControl(MoveControl.class).getEntityPos().getY()) {
+	    			if(entity.getPosition().equals(spatial.getControl(MoveControl.class).getEntityPos())) {
 	    				add = false;
 	    			}
 	    		}
 	    		
-	    		if(add == true) {
+	    		if(add) {
 	    			newEntities.add(entity); 
     			}
 	    	}
@@ -189,6 +189,25 @@ public class GameView{
     		System.out.println("fixar spatials");
     	}
 
+    }
+    
+    private void removeDeadEntities() {
+    	if(entities.getChildren().size() > game.getAllEntities().size()) {
+    		
+    		for(Spatial spatial : entities.getChildren()) {
+    			boolean remove = true;
+    			for(IEntity entity : game.getAllEntities()) {
+    				if(spatial.getControl(MoveControl.class).getEntityPos().equals(entity.getPosition())) {
+    					remove = false;
+    				}
+    			}
+    			
+    			if(remove) {
+    				spatial.setCullHint(CullHint.Always);
+    				spatial.removeFromParent();
+    			}
+    		}
+    	}
     }
  
     /**
