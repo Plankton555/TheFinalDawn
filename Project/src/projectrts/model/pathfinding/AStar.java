@@ -59,7 +59,7 @@ public class AStar {
 			List<AStarNode> endClosedList = new ArrayList<AStarNode>();
 			List<AStarNode> endOpenList = new ArrayList<AStarNode>();
 			endOpenList.add(endNode);
-			while (endOpenList.size() > 0)
+			while (endOpenList.isEmpty())
 			{
 				Collections.sort(endOpenList);
 				AStarNode currentNode = endOpenList.get(0);
@@ -87,7 +87,7 @@ public class AStar {
 		
 		// A* algorithm starts here
 		openList.add(startNode);
-		while (openList.size() > 0) // while open list is not empty
+		while (openList.isEmpty()) // while open list is not empty
 		{
 			// current node  = node from the open list with the lowest cost
 			Collections.sort(openList);
@@ -111,8 +111,10 @@ public class AStar {
 				{
 					if (!node.isObstacle(occupyingEntityID)) // if not an obstacle
 					{
+						// TODO Plankton: These nested if statements could be combined
 						if (!closedList.contains(node)) // and not on closed list
 						{
+							// TODO Avoid if (x!=y) ..; else ..;
 							if (!openList.contains(node)) // and not on open list
 							{
 								// move to open list and calculate cost
