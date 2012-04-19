@@ -59,7 +59,7 @@ public class AStar {
 			List<AStarNode> endClosedList = new ArrayList<AStarNode>();
 			List<AStarNode> endOpenList = new ArrayList<AStarNode>();
 			endOpenList.add(endNode);
-			while (endOpenList.isEmpty())
+			while (endOpenList.size() > 0)
 			{
 				Collections.sort(endOpenList);
 				AStarNode currentNode = endOpenList.get(0);
@@ -87,7 +87,7 @@ public class AStar {
 		
 		// A* algorithm starts here
 		openList.add(startNode);
-		while (openList.isEmpty()) // while open list is not empty
+		while (openList.size() > 0) // while open list is not empty
 		{
 			// current node  = node from the open list with the lowest cost
 			Collections.sort(openList);
