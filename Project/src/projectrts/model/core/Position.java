@@ -7,7 +7,7 @@ import javax.vecmath.Vector2d;
  * @author Bjorn Persson Mattsson
  *
  */
-public class Position {
+public class Position implements Cloneable {
 
 	private Vector2d coord;
 	
