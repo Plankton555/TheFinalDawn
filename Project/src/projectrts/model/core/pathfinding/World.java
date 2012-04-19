@@ -8,14 +8,14 @@ import projectrts.model.core.utils.ModelUtils;
  * @author Bjorn Persson Mattsson
  *
  */
-public class World {
+public final class World {
 	
 	private static World instance;
 	private Node[][] nodes;
 	private World()
 	{
 	}
-	public static World getInstance()
+	public synchronized static World getInstance()
 	{
 		if (instance == null)
 		{
