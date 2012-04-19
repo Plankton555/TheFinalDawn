@@ -2,7 +2,7 @@ package projectrts.view.controls;
 
 import java.util.HashMap;
 
-import projectrts.model.core.entities.IEntity;
+import projectrts.model.entities.IEntity;
 
 // TODO Markus: ADD JAVADOC
 public enum ControlFactory {INSTANCE;

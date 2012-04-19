@@ -5,8 +5,8 @@ import java.util.logging.Logger;
 
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
-import projectrts.model.core.GameModel;
-import projectrts.model.core.IGame;
+import projectrts.model.GameModel;
+import projectrts.model.IGame;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.controls.SelectControl;
 import projectrts.view.spatials.*;

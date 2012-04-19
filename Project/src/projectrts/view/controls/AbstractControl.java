@@ -1,6 +1,6 @@
 package projectrts.view.controls;
 
-import projectrts.model.core.entities.IEntity;
+import projectrts.model.entities.IEntity;
 /**
  * 
  * @author Markus Ekström

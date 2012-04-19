@@ -2,9 +2,9 @@ package projectrts.global.utils;
 
 import java.util.HashMap;
 
-import projectrts.model.core.abilities.AttackAbility;
-import projectrts.model.core.abilities.MoveAbility;
-import projectrts.model.core.abilities.OffensiveSpellAbility;
+import projectrts.model.entities.abilities.AttackAbility;
+import projectrts.model.entities.abilities.MoveAbility;
+import projectrts.model.entities.abilities.OffensiveSpellAbility;
 
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.render.NiftyImage;

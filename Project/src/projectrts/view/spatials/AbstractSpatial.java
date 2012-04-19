@@ -1,6 +1,6 @@
 package projectrts.view.spatials;
 
-import projectrts.model.core.entities.IEntity;
+import projectrts.model.entities.IEntity;
 
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;

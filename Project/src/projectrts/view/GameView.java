@@ -6,8 +6,8 @@ import java.util.List;
 import projectrts.global.constants.Constants;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
-import projectrts.model.core.IGame;
-import projectrts.model.core.entities.IEntity;
+import projectrts.model.IGame;
+import projectrts.model.entities.IEntity;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.spatials.AbstractSpatial;
 import projectrts.view.spatials.SpatialFactory;
@@ -126,7 +126,7 @@ public class GameView{
     
     private void initializeEntities() {
 
-    	integrateNewEntities(game.getAllEntities());
+    	integrateNewEntities(game.getEntityManager().getAllEntities());
     	
     	//Attach the entities node to the root node, connecting it to the world.
     	this.app.getRootNode().attachChild(entities);
@@ -150,12 +150,12 @@ public class GameView{
     private List<IEntity> checkForNewEntities() {
     	List<IEntity> newEntities = new ArrayList<IEntity>();
     	
-    	if(entities.getChildren().size() < game.getAllEntities().size()) {
+    	if(entities.getChildren().size() < game.getEntityManager().getAllEntities().size()) {
 	    	boolean add = false;
 	    	
 	    	// For every entity, check if the spatial's entity has the same position.
 	    	// If not, the entity is new.
-	    	for(IEntity entity : game.getAllEntities()) {
+	    	for(IEntity entity : game.getEntityManager().getAllEntities()) {
 	    		add = true;
 	    		for(Spatial spatial : entities.getChildren()) {
 	    			if(entity.getPosition().equals(spatial.getControl(MoveControl.class).getEntityPos())) {
@@ -186,17 +186,16 @@ public class GameView{
     				newEntities.get(i).getClass().getSimpleName(), entityShapes[i], newEntities.get(i));
     		// Attach spatial to the entities node.
     		entities.attachChild(entitySpatial);
-    		System.out.println("fixar spatials");
     	}
 
     }
     
     private void removeDeadEntities() {
-    	if(entities.getChildren().size() > game.getAllEntities().size()) {
+    	if(entities.getChildren().size() > game.getEntityManager().getAllEntities().size()) {
     		
     		for(Spatial spatial : entities.getChildren()) {
     			boolean remove = true;
-    			for(IEntity entity : game.getAllEntities()) {
+    			for(IEntity entity : game.getEntityManager().getAllEntities()) {
     				if(spatial.getControl(MoveControl.class).getEntityPos().equals(entity.getPosition())) {
     					remove = false;
     				}

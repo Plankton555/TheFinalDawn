@@ -2,7 +2,7 @@ package projectrts.view.spatials;
 
 import java.util.HashMap;
 
-import projectrts.model.core.entities.IEntity;
+import projectrts.model.entities.IEntity;
 
 import com.jme3.scene.shape.Box;
 /**

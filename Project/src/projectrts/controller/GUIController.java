@@ -3,9 +3,9 @@ package projectrts.controller;
 import java.util.List;
 
 import projectrts.global.utils.ImageManager;
-import projectrts.model.core.abilities.IAbility;
-import projectrts.model.core.entities.IEntity;
-import projectrts.model.core.entities.IPlayerControlledEntity;
+import projectrts.model.entities.IAbility;
+import projectrts.model.entities.IEntity;
+import projectrts.model.entities.IPlayerControlledEntity;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;

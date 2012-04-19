@@ -4,13 +4,13 @@ import java.util.List;
 
 import projectrts.global.constants.Constants;
 import projectrts.global.utils.Utils;
-import projectrts.model.core.EntityManager;
-import projectrts.model.core.IGame;
-import projectrts.model.core.P;
-import projectrts.model.core.Position;
-import projectrts.model.core.abilities.IAbility;
-import projectrts.model.core.entities.IEntity;
-import projectrts.model.core.entities.PlayerControlledEntity;
+import projectrts.model.IGame;
+import projectrts.model.constants.P;
+import projectrts.model.entities.EntityManager;
+import projectrts.model.entities.IAbility;
+import projectrts.model.entities.IEntity;
+import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.utils.Position;
 import projectrts.view.GameView;
 
 import com.jme3.app.SimpleApplication;
@@ -193,9 +193,9 @@ public class InputController {
 	    }
     	
     	private void handleLeftClick(){
-    		game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
-			view.drawSelected(game.getPlayer().getSelectedEntities());
-			guiController.updateAbilities(game.getPlayer().getSelectedEntities());
+    		game.getEntityManager().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)), game.getPlayer());
+			view.drawSelected(game.getEntityManager().getSelectedEntities());
+			guiController.updateAbilities(game.getEntityManager().getSelectedEntities());
     	}
     	
     	private void handleRightClick(){
@@ -204,24 +204,24 @@ public class InputController {
     		IEntity e = getEntityAtPosition(click);
     		if(e!=null){
     			if(e.getName().equals("Resource")){
-    				game.getPlayer().useAbilitySelected("GatherResource", click);
+    				game.getEntityManager().useAbilitySelected("GatherResource", click);
     				
     			}else if(e instanceof PlayerControlledEntity){
     				PlayerControlledEntity pce = (PlayerControlledEntity) e;
     				if(!pce.getOwner().equals(game.getPlayer())){
-    					game.getPlayer().useAbilitySelected("Attack", pce.getPosition());
+    					game.getEntityManager().useAbilitySelected("Attack", pce.getPosition());
     				}else{
-    					game.getPlayer().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
+    					game.getEntityManager().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
     	    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
     				}
     			}else{
-    				game.getPlayer().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
+    				game.getEntityManager().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
 	    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
     			}
     			
     		}
     		else{
-    			game.getPlayer().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
+    			game.getEntityManager().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
     					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
     		}
     	}

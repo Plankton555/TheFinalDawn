@@ -2,8 +2,8 @@ package projectrts.controller;
 
 
 import projectrts.global.constants.Constants;
-import projectrts.model.core.IGame;
-import projectrts.model.core.P;
+import projectrts.model.IGame;
+import projectrts.model.constants.P;
 import projectrts.view.GameView;
 
 import com.jme3.app.Application;
