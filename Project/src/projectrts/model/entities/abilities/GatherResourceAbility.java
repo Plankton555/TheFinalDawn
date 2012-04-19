@@ -55,7 +55,9 @@ public class GatherResourceAbility extends AbstractAbility{
 		this.target = target;
 		setActive(true);
 		setFinished(false);
-		mineResourceAbility.useAbility(unit, target);
+		if(!deliverResourceAbility.isActive()){
+			mineResourceAbility.useAbility(unit, target);
+		}
 	}
 
 	@Override
