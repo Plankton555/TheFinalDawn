@@ -18,6 +18,7 @@ import de.lessvoid.nifty.builder.ScreenBuilder;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
+import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 
@@ -170,7 +171,12 @@ public class InputGUIController implements ScreenController {
 		    		IAbility ability = abilities.get(i);
 		    		//button.setVisibleToMouseEvents(true);
 		    		
-		    		button.getRenderer(ImageRenderer.class).setImage(ImageManager.INSTANCE.getImage(ability.getName()));
+		    		NiftyImage image = ImageManager.INSTANCE.getImage(ability.getName());
+		    		if(image==null){
+		    			image = ImageManager.INSTANCE.getImage("NoImage");
+		    		}
+		    		
+		    		button.getRenderer(ImageRenderer.class).setImage(image);
 		    		button.setVisible(true);
 		    		
 		    	} else {

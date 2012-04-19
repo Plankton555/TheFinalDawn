@@ -25,9 +25,11 @@ public enum ImageManager {
 	public void initializeImages(Nifty nifty){
 		NiftyRenderEngine engine = nifty.getRenderEngine();
 
+
 		images.put(MoveAbility.class.getSimpleName(), engine.createImage("assets/gui/MoveAbility.bmp", true));
 		images.put(AttackAbility.class.getSimpleName(), engine.createImage("/assets/gui/AttackAbility.bmp", false));
 		images.put(OffensiveSpellAbility.class.getSimpleName(), engine.createImage("/assets/gui/OffensiveSpellAbility.bmp", false));
+		images.put("NoImage", engine.createImage("/assets/gui/NoImage.bmp", false));
 	}
 	
 	
