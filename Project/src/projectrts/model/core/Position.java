@@ -7,7 +7,7 @@ import javax.vecmath.Vector2d;
  * @author Bjorn Persson Mattsson
  *
  */
-public class Position implements Cloneable {
+public class Position {
 
 	private Vector2d coord;
 	
@@ -16,7 +16,7 @@ public class Position implements Cloneable {
 	 * @param x X component.
 	 * @param y Y component.
 	 */
-	public Position(double x, double y)
+	public Position(final double x, final double y)
 	{
 		this.coord = new Vector2d(x, y);
 	}
@@ -25,16 +25,15 @@ public class Position implements Cloneable {
 	 * Creates a new position from another position.
 	 * @param otherPos Other position
 	 */
-	public Position(Position otherPos)
+	public Position(final Position otherPos)
 	{
 		this(otherPos.getX(), otherPos.getY());
 	}
 	
 	/**
-	 * @return Returns a clone of this position.
+	 * @return Returns a copy of this position.
 	 */
-	@Override
-	public Position clone()
+	public Position copy()
 	{
 		return new Position(this.getX(), this.getY());
 	}

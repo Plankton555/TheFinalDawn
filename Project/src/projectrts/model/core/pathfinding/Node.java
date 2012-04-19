@@ -41,7 +41,7 @@ public class Node {
 	 */
 	public Position getPosition()
 	{
-		return this.position.clone();
+		return this.position.copy();
 	}
 	
 	/**

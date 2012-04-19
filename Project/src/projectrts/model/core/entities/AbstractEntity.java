@@ -77,7 +77,7 @@ public abstract class AbstractEntity implements IEntity {
 	 * @param pos the new position
 	 */
 	public void setPosition(Position pos){
-		position = pos.clone();
+		position = pos.copy();
 		enterNewNode(world.getNodeAt(pos));
 	}
 
