@@ -13,7 +13,7 @@ import projectrts.model.utils.Position;
  */
 public class AStarNode implements Comparable<AStarNode> {
 	
-	private Node node;
+	private final Node node;
 	private int costFromStart;
 	private int heuristic;
 	private AStarNode parent;
