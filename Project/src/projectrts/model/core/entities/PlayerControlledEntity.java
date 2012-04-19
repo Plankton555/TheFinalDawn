@@ -83,6 +83,9 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	 */
 	public void doAbility(String ability, Position pos) {
 		for(AbstractAbility ownAbility: abilities){
+			ownAbility.setActive(false); //Make sure that only one ability can be active at once
+		}
+		for(AbstractAbility ownAbility: abilities){
 			if(ability.equals(ownAbility.getName())){
 				ownAbility.useAbility(this, pos);
 			}

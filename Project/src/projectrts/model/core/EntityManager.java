@@ -19,7 +19,11 @@ public class EntityManager {
 	private static EntityManager instance = new EntityManager();
 	
 	private List<AbstractEntity> allEntities = new ArrayList<AbstractEntity>();
+
+	private List<AbstractEntity> entitiesQueue = new ArrayList<AbstractEntity>();
+
 	private int idCounter = 0;
+
 	
 	/**
 	 * @return The instance of this class.
@@ -34,11 +38,17 @@ public class EntityManager {
 	 * @param tpf
 	 */
 	public void update(float tpf)
-	{
+	{	
 		for (AbstractEntity e : allEntities)
 		{
 			e.update(tpf);
 		}
+		for (AbstractEntity e : entitiesQueue){
+			allEntities.add(e);
+			System.out.println("Added entity");
+			System.out.println(getAllEntities());
+		}
+		entitiesQueue.clear();
 	}
 	
 	/**
@@ -111,7 +121,7 @@ public class EntityManager {
 	 */
 	public void addNewNPCE(String npce, Position pos)
 	{
-		allEntities.add(EntityFactory.INSTANCE.createNPCE(npce, pos));
+		addEntityToQueue(EntityFactory.INSTANCE.createNPCE(npce, pos));
 	}
 	
 	/**
@@ -122,9 +132,15 @@ public class EntityManager {
 	 * @param pos The position of the entity.
 	 */
 	public void addNewPCE(String pce, Player owner, Position pos) {
-		allEntities.add(EntityFactory.INSTANCE.createPCE(pce, owner, pos));
+		addEntityToQueue(EntityFactory.INSTANCE.createPCE(pce, owner, pos));
 	}
 	
+
+	private void addEntityToQueue(AbstractEntity e){
+		entitiesQueue.add(e);
+	}
+	
+
 	/**
 	 * @return New entity ID.
 	 */
@@ -141,4 +157,5 @@ public class EntityManager {
 			}
 		}	
 	}
+
 }

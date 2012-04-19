@@ -29,6 +29,7 @@ public class MineResourceAbilityTest {
 		Player player = new Player();
 		EntityManager.getInstance().addNewPCE("Worker", player,new Position(1f,1f));
 		EntityManager.getInstance().addNewNPCE("Resource", new Position(5f, 5f));
+		EntityManager.getInstance().update(1);
 		Worker worker = (Worker) ModelUtils.INSTANCE.getPCEAtPosition(new Position(1f, 1f));
 		Resource res = (Resource)ModelUtils.INSTANCE.getNonPlayerControlledEntity(new Position(5f,5f));
 		

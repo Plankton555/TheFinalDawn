@@ -41,6 +41,7 @@ public class GameView{
     private Material matTerrain;
     private TerrainQuad terrain;
     private float mod = Constants.INSTANCE.getModelToWorld(); // The modifier value for converting lengths between model and world.
+    private List<IEntity> entitiesList;
 	
 	public GameView(SimpleApplication app, IGame game) {
 		this.app = app;
@@ -124,6 +125,7 @@ public class GameView{
     }
     
     private void initializeEntities() {
+
     	integrateNewEntities(game.getAllEntities());
     	
     	//Attach the entities node to the root node, connecting it to the world.
@@ -184,7 +186,9 @@ public class GameView{
     				newEntities.get(i).getClass().getSimpleName(), entityShapes[i], newEntities.get(i));
     		// Attach spatial to the entities node.
     		entities.attachChild(entitySpatial);
+    		System.out.println("fixar spatials");
     	}
+
     }
     
     private void removeDeadEntities() {

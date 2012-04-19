@@ -27,6 +27,8 @@ public class DeliverResourceAbilityTest {
 		Player player = new Player();
 		EntityManager.getInstance().addNewPCE("Worker", player,new Position(1f,1f));
 		EntityManager.getInstance().addNewPCE("Headquarter", player,new Position(5f,5f));
+		EntityManager.getInstance().addNewNPCE("Resource", new Position(0f, 0f));
+		EntityManager.getInstance().update(1);
 		Worker worker = (Worker) ModelUtils.INSTANCE.getPCEAtPosition(new Position(1f, 1f));
 		
 		ab.useAbility(worker, new Position(0, 0));
@@ -37,6 +39,7 @@ public class DeliverResourceAbilityTest {
 			ab.update(1);
 			counter++;
 			assertTrue(counter < 1000);	
+			System.out.println(player.getResource());
 		}
 	}
 
