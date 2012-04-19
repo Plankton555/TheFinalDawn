@@ -3,13 +3,14 @@ package projectrts.controller;
 import java.util.List;
 
 import projectrts.global.constants.Constants;
-import projectrts.global.utils.ImageManager;
 import projectrts.global.utils.Utils;
+import projectrts.model.core.EntityManager;
 import projectrts.model.core.IGame;
 import projectrts.model.core.P;
+import projectrts.model.core.Position;
 import projectrts.model.core.abilities.IAbility;
 import projectrts.model.core.entities.IEntity;
-import projectrts.model.core.entities.IPlayerControlledEntity;
+import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.view.GameView;
 
 import com.jme3.app.SimpleApplication;
@@ -23,11 +24,6 @@ import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 
-import de.lessvoid.nifty.elements.Element;
-import de.lessvoid.nifty.elements.render.ImageRenderer;
-import de.lessvoid.nifty.render.NiftyImage;
-import de.lessvoid.nifty.screen.Screen;
-
 /**
  * A class for handling all input.
  * @author Markus Ekström
@@ -39,11 +35,9 @@ public class InputController {
 	// mouseActivated suppresses the camera until set to true (which is done when the mouse is first moved).
 	private boolean mouseActivated = false; 
 	private SimpleApplication app;
-
 	private IGame game; // The model
 	private GameView view; 
-	private GUIControl guiControl;
-	
+	private GUIController guiController;
 	
 	public InputController(SimpleApplication app, IGame game, GameView view) {
 		this.app = app;
@@ -173,17 +167,10 @@ public class InputController {
     		
 	    	if(app.getStateManager().getState(InGameState.class).isEnabled()) {
 	    		if (name.equals("mouseLeftButton") && keyPressed) {
-	    			game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
-	    			List<IEntity> selectedEntities = game.getPlayer().getSelectedEntities();
-	    			view.drawSelected(selectedEntities);
-	    			if(guiControl!=null){
-	    				guiControl.updateAbilities(selectedEntities);
-	    			}
-	    			
-	    			
+	    			handleLeftClick();
 	    		}
 	    		if (name.equals("mouseRightButton") && keyPressed) {
-	    			game.getPlayer().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+	    			handleRightClick();
 	    		}
 	    		
 	    		//Debugging
@@ -204,15 +191,67 @@ public class InputController {
 	            mouseActivated = true;
 	    	}	
 	    }
+    	
+    	private void handleLeftClick(){
+    		game.getPlayer().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+			view.drawSelected(game.getPlayer().getSelectedEntities());
+			guiController.updateAbilities(game.getPlayer().getSelectedEntities());
+    	}
+    	
+    	private void handleRightClick(){
+    		Position click = Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(
+    				app.getInputManager().getCursorPosition(), 0));
+    		IEntity e = getEntityAtPosition(click);
+    		if(e!=null){
+    			if(e.getName().equals("Resource")){
+    				game.getPlayer().useAbilitySelected("GatherResource", click);
+    				
+    			}else if(e instanceof PlayerControlledEntity){
+    				PlayerControlledEntity pce = (PlayerControlledEntity) e;
+    				if(!pce.getOwner().equals(game.getPlayer())){
+    					game.getPlayer().useAbilitySelected("Attack", pce.getPosition());
+    				}else{
+    					game.getPlayer().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
+    	    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+    				}
+    			}
+    			
+    		}
+    		else{
+    			game.getPlayer().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
+    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+    		}
+    	}
+    	
+    	private boolean isWithin(double p, double low, double high){
+    		return (p>=low && p<=high);
+    	}
+    	
+    	private IEntity getEntityAtPosition(Position pos){
+    		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
+    		for(IEntity entity: entities){
+				float unitSize = entity.getSize();
+				Position unitPos = entity.getPosition();
+				
+				//If the point is within the area of the unit
+				if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
+						&& isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
+					
+					return entity;
+					
+				}
+			
+    		}
+    		return null;
+    	}
     };
-    
     
     /**
      * Sets the GUI Control
      * @param guiControl
      */
-    public void setGUIControl(GUIControl guiControl){
-    	this.guiControl = guiControl;
+    public void setGUIControl(GUIController guiControl){
+    	this.guiController = guiControl;
     }
     
     

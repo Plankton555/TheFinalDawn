@@ -10,5 +10,4 @@ public abstract class AbstractControl extends com.jme3.scene.control.AbstractCon
 	
 	// TODO Markus: Add javadoc
 	public abstract AbstractControl createControl(IEntity entity);
-
 }

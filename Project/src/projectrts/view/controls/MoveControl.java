@@ -60,4 +60,8 @@ public class MoveControl extends AbstractControl{
 	public AbstractControl createControl(IEntity entity) {
 		return new MoveControl(entity);
 	}
+	
+	public Position getEntityPos() {
+		return entity.getPosition();
+	}
 }

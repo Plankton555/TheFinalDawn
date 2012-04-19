@@ -1,5 +1,6 @@
 package projectrts.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import projectrts.global.constants.Constants;
@@ -7,14 +8,16 @@ import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.core.IGame;
 import projectrts.model.core.entities.IEntity;
+import projectrts.view.controls.MoveControl;
 import projectrts.view.spatials.AbstractSpatial;
 import projectrts.view.spatials.SpatialFactory;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
+import com.jme3.scene.Spatial.CullHint;
 import com.jme3.scene.shape.Box;
 import com.jme3.terrain.geomipmap.TerrainLodControl;
 import com.jme3.terrain.geomipmap.TerrainQuad;
@@ -29,6 +32,7 @@ import com.jme3.texture.Texture.WrapMode;
  *
  */
 public class GameView{
+	private int i;
 	private SimpleApplication app;
 	private IGame game;
     private Node entities = new Node("entities"); // The node for all entities
@@ -120,32 +124,88 @@ public class GameView{
     }
     
     private void initializeEntities() {
-    	List<IEntity> entitiesList = game.getAllEntities();
-    	Box[] entityShapes = new Box[entitiesList.size()];
-    	Material entityMaterial = MaterialManager.INSTANCE.getMaterial("Unshaded");
-    	entityMaterial.setColor("Color", ColorRGBA.Pink);
+    	integrateNewEntities(game.getAllEntities());
     	
-    	float mod = Constants.INSTANCE.getModelToWorld();
-    	
-    	for(int i = 0; i < entitiesList.size(); i++) {
-    		// Create shape.
-    		// The location of the entity is initialized to (0, 0, 0) but is then instantly translated to the correct place by moveControl.
-    		// Gets the size from the model and converts it to world size.
-    		entityShapes[i] = new Box(new Vector3f(0, 0, 0),  
-    									(entitiesList.get(i).getSize() * mod)/2, (entitiesList.get(i).getSize() * mod)/2, 0); 
-    		// Create spatial.
-    		AbstractSpatial entitySpatial = SpatialFactory.INSTANCE.createSpatial("UnitSpatial", "unit" + i, entityMaterial, entityShapes[i], entitiesList.get(i));
-    		// Attach spatial to the entities node.
-    		entities.attachChild(entitySpatial);
-    	}
     	//Attach the entities node to the root node, connecting it to the world.
     	this.app.getRootNode().attachChild(entities);
     }
     
-    // TODO Markus: Is this method doing anything?
+    /**
+     * Updates the view.
+     * @param tpf The time passed since the last frame.
+     */
     public void update(float tpf) {
+    	updateEntities(tpf);
     }
     
+    
+    private void updateEntities(float tpf) {
+    	List<IEntity> newEntities = checkForNewEntities();
+    	integrateNewEntities(newEntities);
+    	removeDeadEntities();
+    }
+    
+    private List<IEntity> checkForNewEntities() {
+    	List<IEntity> newEntities = new ArrayList<IEntity>();
+    	
+    	if(entities.getChildren().size() < game.getAllEntities().size()) {
+	    	boolean add = false;
+	    	
+	    	// For every entity, check if the spatial's entity has the same position.
+	    	// If not, the entity is new.
+	    	for(IEntity entity : game.getAllEntities()) {
+	    		add = true;
+	    		for(Spatial spatial : entities.getChildren()) {
+	    			if(entity.getPosition().equals(spatial.getControl(MoveControl.class).getEntityPos())) {
+	    				add = false;
+	    			}
+	    		}
+	    		
+	    		if(add) {
+	    			newEntities.add(entity); 
+    			}
+	    	}
+    	}
+    	
+		return newEntities;
+    }
+    
+    private void integrateNewEntities(List<IEntity> newEntities) {
+    	Box[] entityShapes = new Box[newEntities.size()];
+    	
+    	for(int i = 0; i < newEntities.size(); i++) {
+    		// Create shape.
+    		// The location of the entity is initialized to (0, 0, 0) but is then instantly translated to the correct place by moveControl.
+    		// Gets the size from the model and converts it to world size.
+    		entityShapes[i] = new Box(new Vector3f(0, 0, 0),  
+    									(newEntities.get(i).getSize() * mod)/2, (newEntities.get(i).getSize() * mod)/2, 0); 
+    		// Create spatial.
+    		AbstractSpatial entitySpatial = SpatialFactory.INSTANCE.createSpatial(newEntities.get(i).getClass().getSimpleName() + "Spatial",
+    				newEntities.get(i).getClass().getSimpleName(), entityShapes[i], newEntities.get(i));
+    		// Attach spatial to the entities node.
+    		entities.attachChild(entitySpatial);
+    	}
+    }
+    
+    private void removeDeadEntities() {
+    	if(entities.getChildren().size() > game.getAllEntities().size()) {
+    		
+    		for(Spatial spatial : entities.getChildren()) {
+    			boolean remove = true;
+    			for(IEntity entity : game.getAllEntities()) {
+    				if(spatial.getControl(MoveControl.class).getEntityPos().equals(entity.getPosition())) {
+    					remove = false;
+    				}
+    			}
+    			
+    			if(remove) {
+    				spatial.setCullHint(CullHint.Always);
+    				spatial.removeFromParent();
+    			}
+    		}
+    	}
+    }
+ 
     /**
      * Draws the selected graphics for all entities in the passed list.
      * @param selectedEntities A list of selected entities.
@@ -154,16 +214,13 @@ public class GameView{
     public void drawSelected(List<IEntity> selectedEntities) {
     	// Remove all previously selected graphics
     	selected.detachAllChildren();
-    	// Create the material for the spatials.
-    	Material circleMaterial = MaterialManager.INSTANCE.getMaterial("Unshaded");
-    	circleMaterial.setColor("Color", ColorRGBA.Green);
     	
     	for(int i = 0; i < selectedEntities.size(); i++) {
 	    	// Sets the location of the spatial to (0, 0, -1) to make sure it's behind the entities that use (x, y, 0).
 	    	// The control will instantly translate it to the correct location.
 	    	Box circle = new Box(new Vector3f(0, 0, -1), 
 	    			(selectedEntities.get(i).getSize() + 0.3f)/2 * mod, (selectedEntities.get(i).getSize() + 0.3f)/2 * mod, 0);
-	    	AbstractSpatial circleSpatial = SpatialFactory.INSTANCE.createSpatial("SelectSpatial", selectedEntities.get(i).getName(), circleMaterial, circle, selectedEntities.get(i));	
+	    	AbstractSpatial circleSpatial = SpatialFactory.INSTANCE.createSpatial("SelectSpatial", selectedEntities.get(i).getName(), circle, selectedEntities.get(i));	
 	    	// Attach spatial to the selected node, connecting it to the world.
 	    	selected.attachChild(circleSpatial);
     	}

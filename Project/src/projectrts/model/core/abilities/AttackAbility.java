@@ -55,19 +55,21 @@ public class AttackAbility extends AbstractAbility {
 				moveAbility.update(tpf);
 				if(moveAbility.isFinished()){
 					moveAbility.setActive(false);
-					moveAbility.setFinished(false);
+					moveAbility.setFinished(true);
 				}
+				
 				
 			} else {
 				//In range
 				if(getRemainingCooldown()<=0){
 					
-					target.adjustHealth(attacker.getDamage());
-					
+					target.adjustHealth(-attacker.getDamage());
 					this.setAbilityUsed();
-					
-					this.setActive(false);
-					this.setFinished(true);
+			
+					if(target.getCurrentHealth() == 0) {
+						this.setActive(false);
+						this.setFinished(true);
+					}
 					
 				}
 			}
