@@ -16,6 +16,7 @@ public abstract class AbstractEntity implements IEntity {
 
 	private String name;
 	private int entityID;
+	private World world;
 	private float size;
 	private float speed;
 	private Node occupiedNode;
@@ -30,7 +31,8 @@ public abstract class AbstractEntity implements IEntity {
 	 */
 	protected AbstractEntity(Position spawnPos){
 		this.entityID = EntityManager.getInstance().requestNewEntityID();
-		this.occupiedNode = World.getInstance().getNodeAt(spawnPos);
+		this.world = World.getInstance();
+		this.occupiedNode = world.getNodeAt(spawnPos);
 		this.setPosition(spawnPos);
 		
 	}
@@ -76,7 +78,7 @@ public abstract class AbstractEntity implements IEntity {
 	 */
 	public void setPosition(Position pos){
 		position = pos.clone();
-		enterNewNode(World.getInstance().getNodeAt(pos));
+		enterNewNode(world.getNodeAt(pos));
 	}
 
 	private void enterNewNode(Node newNode)
