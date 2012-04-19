@@ -1,6 +1,7 @@
 package projectrts.controller;
 
-import projectrts.global.utils.ImageManager;
+import projectrts.model.core.GameModel;
+import projectrts.model.core.IGame;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
@@ -17,6 +18,7 @@ import de.lessvoid.nifty.screen.ScreenController;
 public class MenuGUIController implements ScreenController {
 	private SimpleApplication app;
 	private ScreenController sc;
+	private Nifty nifty;
 	
 	public MenuGUIController(Application app){
 		this.app = (SimpleApplication) app;
@@ -43,7 +45,7 @@ public class MenuGUIController implements ScreenController {
 	private void initializeGUI() {
 		NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
 	            app.getAssetManager(), app.getInputManager(), app.getAudioRenderer(), app.getGuiViewPort());
-	    Nifty nifty = niftyDisplay.getNifty();
+	    nifty = niftyDisplay.getNifty();
 	    app.getGuiViewPort().addProcessor(niftyDisplay);
 	    app.getFlyByCamera().setDragToRotate(true);
 	 
@@ -51,17 +53,21 @@ public class MenuGUIController implements ScreenController {
 	    nifty.loadControlFile("nifty-default-controls.xml");
 	    
 	    // <screen>
-	    nifty.addScreen("Screen_Start", new ScreenBuilder("GUI Start Screen"){{
+	    nifty.addScreen("Empty", new ScreenBuilder("Empty"){{
+	    	layer(new LayerBuilder("Layer_ID") {{
+	    		childLayoutCenter();
+
+	    		
+	    	}});
+	    	
+	    }}.build(nifty));
+	    
+	    nifty.addScreen("Screen_StartMenu", new ScreenBuilder("GUI Start Menu"){{
 	        controller(sc); // Screen properties       
 	 
 	        // <layer>
 	        layer(new LayerBuilder("Layer_ID") {{
 	            childLayoutCenter(); // layer properties, add more...
-
-	            
-	            
-
-	            
 	 
 	            // <panel>
 	            panel(new PanelBuilder("Panel_GUI") {{
@@ -85,17 +91,32 @@ public class MenuGUIController implements ScreenController {
 	      }}.build(nifty));
 	    // </screen>
 	 
-	    nifty.gotoScreen("Screen_Start"); // start the screen
+	   
+	    nifty.gotoScreen("Screen_StartMenu"); // start the screen
+	    
+	    
 
 		
 	}
+
+	
+	public void buttonStartClicked(){
+		
+		nifty.gotoScreen("Empty");
+		
+	   	IGame game = new GameModel();
+        InGameState inGameState = new InGameState(game);
+        app.getStateManager().attach(inGameState);
+        
+        inGameState.setEnabled(true);      
+     
+	}
+	
 	
 	public void buttonExitClicked(){
 		
 	}
 	
-	public void buttonStartClicked(){
-		
-	}
+
 
 }

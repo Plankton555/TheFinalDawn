@@ -145,7 +145,6 @@ public class InputGUIController implements ScreenController {
 	    // </screen>
 	 
 	    nifty.gotoScreen("Screen_ID"); // start the screen
-
 		
 	}
 	
