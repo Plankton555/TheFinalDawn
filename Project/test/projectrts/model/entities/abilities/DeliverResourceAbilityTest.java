@@ -1,4 +1,4 @@
-package projectrts.core.abilities;
+package projectrts.model.entities.abilities;
 
 import static org.junit.Assert.assertTrue;
 

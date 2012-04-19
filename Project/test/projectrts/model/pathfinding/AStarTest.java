@@ -1,4 +1,4 @@
-package projectrts.model.core.pathfinding;
+package projectrts.model.pathfinding;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
