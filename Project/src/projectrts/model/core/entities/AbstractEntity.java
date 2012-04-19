@@ -32,7 +32,7 @@ public abstract class AbstractEntity implements IEntity {
 	protected AbstractEntity(Position spawnPos){
 		this.entityID = EntityManager.getInstance().requestNewEntityID();
 		this.world = World.getInstance();
-		this.occupiedNode = world.getNodeAt(spawnPos);
+		//this.occupiedNode = world.getNodeAt(spawnPos);
 		this.setPosition(spawnPos);
 		
 	}
@@ -83,6 +83,12 @@ public abstract class AbstractEntity implements IEntity {
 
 	private void enterNewNode(Node newNode)
 	{
+		// TODO Plankton: Can this be done better?
+		if (occupiedNode == null)
+		{
+			world.setNodesOccupied(newNode, getSize(), getEntityID());
+			occupiedNode = newNode;
+		}
 		if (!occupiedNode.equals(newNode))
 		{
 			world.setNodesOccupied(occupiedNode, getSize(), 0);
