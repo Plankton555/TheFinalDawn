@@ -33,12 +33,14 @@ public abstract class AbstractEntity implements IEntity {
 		this.entityID = EntityManager.getInstance().requestNewEntityID();
 		this.world = World.getInstance();
 		//this.occupiedNode = world.getNodeAt(spawnPos);
-		this.setPosition(spawnPos);
+		//this.setPosition(spawnPos);
+		this.position = spawnPos.copy();
 		
 	}
 	
 	protected void setSize(float size){
 		this.size=size;
+		this.setPosition(getPosition());
 	}
 	protected void setSpeed(float speed){
 		this.speed=speed;

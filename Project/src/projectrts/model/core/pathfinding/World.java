@@ -122,7 +122,20 @@ public final class World {
 	 * @param entityID ID of the entity that occupies.
 	 */
 	public void setNodesOccupied(Node nodeInCenter, float entitySize, int entityID) {
-		// TODO Plankton: Add support for sizes here
-		nodeInCenter.setOccupied(entityID);
+		// TODO Plankton: Check for out of bounds (if close to border)
+		// TODO Plankton: Find some other way to do this...
+		int offset = (int) (entitySize/2);
+		int centerX = (int) nodeInCenter.getPosition().getX();
+		int centerY = (int) nodeInCenter.getPosition().getY();
+		
+		for (int i=centerY-offset; i<=centerY+offset; i++)
+		{
+			for (int j=centerX-offset; j<=centerX+offset; j++)
+			{
+				nodes[i][j].setOccupied(entityID);
+				System.out.println(entityID + " occupies " + nodes[i][j].getPosition());
+			}
+		}
+		//nodeInCenter.setOccupied(entityID);
 	}
 }
