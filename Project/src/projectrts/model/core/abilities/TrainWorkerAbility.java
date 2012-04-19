@@ -49,7 +49,7 @@ public class TrainWorkerAbility extends AbstractAbility{
 		Player owner = (Player)structure.getOwner();
 		owner.modifyResource(-buildCost); //TODO Jakob: Check if player has enough resources
 		spawnPos = new Position(structure.getPosition().getX()+structure.getSize(),
-				structure.getPosition().getX()+structure.getSize()); //TODO Jakob: Decide spawnPos, Rally points?
+				structure.getPosition().getY()+structure.getSize()); //TODO Jakob: Decide spawnPos, Rally points?
 		setActive(true);
 		setFinished(false);
 	}

@@ -35,7 +35,7 @@ public class MineResourceAbility extends AbstractAbility{
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			
-			if(ModelUtils.INSTANCE.getDistance(unit.getPosition(),targetResource.getPosition() )<1){
+			if(ModelUtils.INSTANCE.getDistance(unit.getPosition(),targetResource.getPosition() )<1.5*targetResource.getSize()){
 				//If in range of resource
 				//Check cooldown and mine resource or reduce cooldown as appropriate.
 				if (miningCooldown <= 0) { 
