@@ -136,7 +136,6 @@ fg=blue</panel_attributes>
       <h>50</h>
     </coordinates>
     <panel_attributes>SpatialFactory
-[singleton]
 --</panel_attributes>
     <additional_attributes/>
   </element>
