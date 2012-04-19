@@ -171,7 +171,7 @@ public class InputGUIController implements ScreenController {
 		    		IAbility ability = abilities.get(i);
 		    		//button.setVisibleToMouseEvents(true);
 		    		
-		    		NiftyImage image = ImageManager.INSTANCE.getImage(ability.getName());
+		    		NiftyImage image = ImageManager.INSTANCE.getImage(ability.getClass().getSimpleName());
 		    		if(image==null){
 		    			image = ImageManager.INSTANCE.getImage("NoImage");
 		    		}
