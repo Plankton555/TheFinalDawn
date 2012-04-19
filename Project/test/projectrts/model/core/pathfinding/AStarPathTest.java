@@ -1,10 +1,11 @@
 package projectrts.model.core.pathfinding;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import projectrts.model.core.Position;
+import projectrts.model.pathfinding.AStarPath;
+import projectrts.model.utils.Position;
 
 public class AStarPathTest {
 

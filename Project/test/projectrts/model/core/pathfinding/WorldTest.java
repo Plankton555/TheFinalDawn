@@ -1,6 +1,6 @@
 package projectrts.model.core.pathfinding;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +10,9 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import projectrts.model.core.Position;
+import projectrts.model.pathfinding.Node;
+import projectrts.model.pathfinding.World;
+import projectrts.model.utils.Position;
 
 public class WorldTest {
 
