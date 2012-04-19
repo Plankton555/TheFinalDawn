@@ -7,8 +7,6 @@ import projectrts.model.core.Position;
 import projectrts.model.core.entities.PlayerControlledEntity;
 import projectrts.model.core.pathfinding.AStar;
 import projectrts.model.core.pathfinding.AStarPath;
-import projectrts.model.core.pathfinding.Node;
-import projectrts.model.core.pathfinding.World;
 import projectrts.model.core.utils.ModelUtils;
 
 /**
