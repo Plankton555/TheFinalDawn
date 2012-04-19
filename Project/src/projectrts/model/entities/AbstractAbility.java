@@ -2,17 +2,28 @@ package projectrts.model.entities;
 
 import projectrts.model.utils.Position;
 
-// TODO Afton: ADD JAVADOC
+/**
+ * An absract class for the common  attributes of the different abilities
+ * @author Filip Brynfors
+ *
+ */
 public abstract class AbstractAbility implements IAbility {
 	private boolean isFinished = false;
 	private boolean isActive = false;
 	private float cooldown;
 	private float remainingCooldown = 0;
 	
+	/**
+	 * Creates a new abstract ability
+	 * @param cooldown the cooldown of the ability
+	 */
 	public AbstractAbility(float cooldown){
 		this.cooldown = cooldown;
 	}
 	
+	/**
+	 * Creates a new abstract abilith with 0 sec cd
+	 */
 	public AbstractAbility(){
 		this.cooldown = 0;
 	}
@@ -32,7 +43,10 @@ public abstract class AbstractAbility implements IAbility {
 	 */
 	public abstract void update(float tpf);
 	
-	
+	/**
+	 * Updates the remaining cooldown of the ability
+	 * @param tpf the time that cd will be reduced by
+	 */
 	protected void updateCooldown(float tpf){
 		if(remainingCooldown < tpf){
 			remainingCooldown = 0;
@@ -41,18 +55,35 @@ public abstract class AbstractAbility implements IAbility {
 		}
 	}
 	
+	/**
+	 * Returns whether the ability is finnished or not
+	 * @return true if finnished, false otherwise
+	 */
 	public boolean isFinished(){
 		return isFinished;
 	}
 	
+	/**
+	 * Returns whether the ability is active or not
+	 * @return true if active, false otherwise
+	 */
 	public boolean isActive(){
 		return isActive;
 	}
 	
+	/**
+	 * Sets the ability to become active or not
+	 * @param b
+	 */
 	public void setActive(boolean b){
 		isActive = b;
 	}
 	
+		
+	/**
+	 * Sets the ability to become finnished or not
+	 * @param b
+	 */
 	public void setFinished(boolean b){
 		isFinished = b;
 	}
@@ -65,8 +96,17 @@ public abstract class AbstractAbility implements IAbility {
 	}
 	
 	
+	/**
+	 * Use the ability at the specified target
+	 * @param caster the caster of the ability
+	 * @param target the position where the ability should be cast at
+	 */
 	public abstract void useAbility(PlayerControlledEntity caster, Position target);
 	
+	/**
+	 * Creates a new ability
+	 * @return the new ability
+	 */
 	public abstract AbstractAbility createAbility();
 	
 
