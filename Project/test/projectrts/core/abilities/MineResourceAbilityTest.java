@@ -1,19 +1,18 @@
 package projectrts.core.abilities;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import projectrts.model.core.EntityFactory;
-import projectrts.model.core.EntityManager;
-import projectrts.model.core.GameModel;
-import projectrts.model.core.Player;
-import projectrts.model.core.Position;
-import projectrts.model.core.abilities.AbilityFactory;
-import projectrts.model.core.abilities.MineResourceAbility;
-import projectrts.model.core.entities.Resource;
-import projectrts.model.core.entities.Worker;
-import projectrts.model.core.utils.ModelUtils;
+import projectrts.model.GameModel;
+import projectrts.model.entities.EntityManager;
+import projectrts.model.entities.abilities.AbilityFactory;
+import projectrts.model.entities.abilities.MineResourceAbility;
+import projectrts.model.entities.misc.Resource;
+import projectrts.model.entities.units.Worker;
+import projectrts.model.player.Player;
+import projectrts.model.utils.ModelUtils;
+import projectrts.model.utils.Position;
 /**
  * Test for MineResourceAbility
  * @author Jakob Svensson
@@ -30,8 +29,8 @@ public class MineResourceAbilityTest {
 		EntityManager.getInstance().addNewPCE("Worker", player,new Position(1f,1f));
 		EntityManager.getInstance().addNewNPCE("Resource", new Position(5f, 5f));
 		EntityManager.getInstance().update(1);
-		Worker worker = (Worker) ModelUtils.INSTANCE.getPCEAtPosition(new Position(1f, 1f));
-		Resource res = (Resource)ModelUtils.INSTANCE.getNonPlayerControlledEntity(new Position(5f,5f));
+		Worker worker = (Worker)  EntityManager.getInstance().getPCEAtPosition(new Position(1f, 1f));
+		Resource res = (Resource) EntityManager.getInstance().getNonPlayerControlledEntity(new Position(5f,5f));
 		
 		ab.useAbility(worker, res.getPosition());
 		int counter = 0;

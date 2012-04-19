@@ -1,18 +1,17 @@
 package projectrts.core.abilities;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import projectrts.model.core.EntityManager;
-import projectrts.model.core.GameModel;
-import projectrts.model.core.Player;
-import projectrts.model.core.Position;
-import projectrts.model.core.abilities.AbilityFactory;
-import projectrts.model.core.abilities.DeliverResourceAbility;
-import projectrts.model.core.entities.Headquarter;
-import projectrts.model.core.entities.Worker;
-import projectrts.model.core.utils.ModelUtils;
+import projectrts.model.GameModel;
+import projectrts.model.entities.EntityManager;
+import projectrts.model.entities.abilities.AbilityFactory;
+import projectrts.model.entities.abilities.DeliverResourceAbility;
+import projectrts.model.entities.units.Worker;
+import projectrts.model.player.Player;
+import projectrts.model.utils.ModelUtils;
+import projectrts.model.utils.Position;
 /**
  * Test for DeliverResourceAbility
  * @author Jakob Svensson
@@ -29,7 +28,7 @@ public class DeliverResourceAbilityTest {
 		EntityManager.getInstance().addNewPCE("Headquarter", player,new Position(5f,5f));
 		EntityManager.getInstance().addNewNPCE("Resource", new Position(0f, 0f));
 		EntityManager.getInstance().update(1);
-		Worker worker = (Worker) ModelUtils.INSTANCE.getPCEAtPosition(new Position(1f, 1f));
+		Worker worker = (Worker)  EntityManager.getInstance().getPCEAtPosition(new Position(1f, 1f));
 		
 		ab.useAbility(worker, new Position(0, 0));
 		
@@ -39,7 +38,6 @@ public class DeliverResourceAbilityTest {
 			ab.update(1);
 			counter++;
 			assertTrue(counter < 1000);	
-			System.out.println(player.getResource());
 		}
 	}
 
