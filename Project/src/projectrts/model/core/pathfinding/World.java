@@ -122,7 +122,7 @@ public class World {
 	 * @param entityID ID of the entity that occupies.
 	 */
 	public void setNodesOccupied(Node nodeInCenter, float entitySize, int entityID) {
-		// TODO Plankton: Implement this!!!
-		
+		// TODO Plankton: Add support for sizes here
+		nodeInCenter.setOccupied(entityID);
 	}
 }
