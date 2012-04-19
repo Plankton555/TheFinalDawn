@@ -15,6 +15,7 @@ public abstract class AbstractEntity implements IEntity {
 
 	private String name;
 	private int entityID;
+	private World world;
 	private float size;
 	private float speed;
 	private Node occupiedNode;
@@ -29,13 +30,16 @@ public abstract class AbstractEntity implements IEntity {
 	 */
 	protected AbstractEntity(Position spawnPos){
 		this.entityID = EntityManager.getInstance().requestNewEntityID();
-		this.occupiedNode = World.getInstance().getNodeAt(spawnPos);
-		this.setPosition(spawnPos);
+		this.world = World.getInstance();
+		//this.occupiedNode = world.getNodeAt(spawnPos);
+		//this.setPosition(spawnPos);
+		this.position = spawnPos.copy();
 		
 	}
 	
 	protected void setSize(float size){
 		this.size=size;
+		this.setPosition(getPosition());
 	}
 	protected void setSpeed(float speed){
 		this.speed=speed;
@@ -74,16 +78,24 @@ public abstract class AbstractEntity implements IEntity {
 	 * @param pos the new position
 	 */
 	public void setPosition(Position pos){
-		position = pos.clone();
-		enterNewNode(World.getInstance().getNodeAt(pos));
+		position = pos.copy();
+		enterNewNode(world.getNodeAt(pos));
 	}
 
 	private void enterNewNode(Node newNode)
 	{
-		// TODO Plankton: Add support for sizes here
-		occupiedNode.setOccupied(0);
-		newNode.setOccupied(entityID);
-		occupiedNode = newNode;
+		// TODO Plankton: Can this be done better?
+		if (occupiedNode == null)
+		{
+			world.setNodesOccupied(newNode, getSize(), getEntityID());
+			occupiedNode = newNode;
+		}
+		if (!occupiedNode.equals(newNode))
+		{
+			world.setNodesOccupied(occupiedNode, getSize(), 0);
+			world.setNodesOccupied(newNode, getSize(), getEntityID());
+			occupiedNode = newNode;
+		}
 	}
 	
 	/**

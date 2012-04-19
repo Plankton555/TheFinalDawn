@@ -33,8 +33,7 @@ public class Position {
 	/**
 	 * @return Returns a clone of this position.
 	 */
-	@Override
-	public Position clone()
+	public Position copy()
 	{
 		return new Position(this.getX(), this.getY());
 	}
