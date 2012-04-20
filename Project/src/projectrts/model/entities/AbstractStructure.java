@@ -6,17 +6,13 @@ import projectrts.model.utils.Position;
 public abstract class AbstractStructure extends PlayerControlledEntity{
 	protected boolean deposit = false;
 	
-	
-	protected AbstractStructure() {
-	}
-	
 	/**
-	 * Spawns a structure.
-	 * @param spawnPos
-	 * @param owner
+	 * When subclassing, invoke this to initialize the entity.
+	 * @param owner The owner of the entity.
+	 * @param spawnPos The initial position of the entity.
 	 */
-	protected AbstractStructure(Player owner, Position spawnPos) {
-		super(owner, spawnPos);
+	protected void initialize(Player owner, Position spawnPos) {
+		super.initialize(owner, spawnPos);
 	}
 	
 	public boolean isDeposit() {

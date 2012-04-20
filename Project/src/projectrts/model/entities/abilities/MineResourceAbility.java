@@ -24,8 +24,11 @@ public class MineResourceAbility extends AbstractAbility{
 		AbilityFactory.INSTANCE.registerAbility(MineResourceAbility.class.getSimpleName(), new MineResourceAbility());
 	}
 	
-	private MineResourceAbility() {
-		super();
+	/**
+	 * When subclassing, invoke this to initialize the ability.
+	 */
+	protected void initialize() {
+		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
 	}
 	
 	@Override
@@ -81,7 +84,7 @@ public class MineResourceAbility extends AbstractAbility{
 	@Override
 	public AbstractAbility createAbility() {
 		MineResourceAbility newAbility = new MineResourceAbility();
-		newAbility.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
+		newAbility.initialize();
 		return newAbility;
 	}
 

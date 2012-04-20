@@ -21,17 +21,22 @@ public interface IPlayerControlledEntity extends IEntity{
 	public float getSightRange();
 	
 	/**
-	 * @return The list of available abilities of the entity
+	 * @return The list of available abilities of the entity.
 	 */
 	public List<IAbility> getAbilities();
 	
 	/**
-	 * @return The health of the entity
+	 * @return The health of the entity.
 	 */
 	public int getCurrentHealth();
 	
 	/**
-	 * @return The maximum health of the entity
+	 * @return The maximum health of the entity.
 	 */
 	public int getMaxHealth();
+	
+	/**
+	 * @return The damage of the entity.
+	 */
+	public int getDamage();
 }

@@ -29,10 +29,10 @@ public class MoveAbility extends AbstractAbility {
 	}
 	
 	/**
-	 * Creates a new instance of this ability.
+	 * When subclassing, invoke this to initialize the ability.
 	 */
-	private MoveAbility(){
-		
+	protected void initialize() {
+		this.aStar = new AStar();
 	}
 	
 	@Override
@@ -116,7 +116,7 @@ public class MoveAbility extends AbstractAbility {
 	@Override
 	public AbstractAbility createAbility() {
 		MoveAbility newAbility = new MoveAbility();
-		newAbility.aStar = new AStar();
+		newAbility.initialize();
 		return newAbility;
 	}
 }

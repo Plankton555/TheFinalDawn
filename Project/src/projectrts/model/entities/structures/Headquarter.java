@@ -19,12 +19,10 @@ public class Headquarter extends AbstractStructure{
 	static {
 		EntityFactory.INSTANCE.registerPCE(Headquarter.class.getSimpleName(), new Headquarter());
 	}
+
 	
-	private Headquarter(){
-	}
-	
-	private Headquarter(Player owner, Position spawnPos){
-		super(owner, spawnPos);
+	protected void initialize(Player owner, Position spawnPos) {
+		super.initialize(owner, spawnPos);
 		this.abilities.add(AbilityFactory.INSTANCE.createAbility(TrainWorkerAbility.class.getSimpleName()));
 		setName(Headquarter.class.getSimpleName());
 		setSize(size);
@@ -33,17 +31,13 @@ public class Headquarter extends AbstractStructure{
 	
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
-		return new Headquarter(owner, pos);
+		Headquarter newHQ = new Headquarter();
+		newHQ.initialize(owner, pos);
+		return newHQ;
 	}
 
 	@Override
 	public float getSightRange() {
 		return 5;
 	}
-
-	@Override
-	public int getDamage() {
-		return 0;
-	}
-
 }

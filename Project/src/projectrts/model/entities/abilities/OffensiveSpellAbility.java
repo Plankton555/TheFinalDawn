@@ -25,8 +25,12 @@ public class OffensiveSpellAbility extends AbstractAbility {
 		AbilityFactory.INSTANCE.registerAbility(OffensiveSpellAbility.class.getSimpleName(), new OffensiveSpellAbility());
 	}
 	
-	private OffensiveSpellAbility() {
-		super(5);
+	/**
+	 * When subclassing, invoke this to initialize the ability.
+	 */
+	protected void initialize() {
+		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
+		this.setCooldown(5);
 	}
 
 	@Override
@@ -78,7 +82,7 @@ public class OffensiveSpellAbility extends AbstractAbility {
 	@Override
 	public AbstractAbility createAbility() {
 		OffensiveSpellAbility newAbility = new OffensiveSpellAbility();
-		newAbility.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
+		newAbility.initialize();
 		return newAbility;
 	}
 }

@@ -21,8 +21,11 @@ public class TrainWorkerAbility extends AbstractAbility{
 		AbilityFactory.INSTANCE.registerAbility(TrainWorkerAbility.class.getSimpleName(), new TrainWorkerAbility());
 	}
 	
-	private TrainWorkerAbility() {
-		super();
+	/**
+	 * When subclassing, invoke this to initialize the ability.
+	 */
+	protected void initialize() {
+		this.setCooldown(0.5f);
 	}
 	
 	@Override
@@ -57,7 +60,9 @@ public class TrainWorkerAbility extends AbstractAbility{
 
 	@Override
 	public AbstractAbility createAbility() {
-		return new TrainWorkerAbility();
+		TrainWorkerAbility newAbility = new TrainWorkerAbility();
+		newAbility.initialize();
+		return newAbility;
 	}
 
 }

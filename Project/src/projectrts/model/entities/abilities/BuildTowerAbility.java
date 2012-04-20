@@ -18,9 +18,12 @@ public class BuildTowerAbility extends AbstractAbility {
 	static {
 		AbilityFactory.INSTANCE.registerAbility(BuildTowerAbility.class.getSimpleName(), new BuildTowerAbility());
 	}
-	
-	private BuildTowerAbility(){
-		super(0.1f);
+
+	/**
+	 * When subclassing, invoke this to initialize the ability.
+	 */
+	protected void initialize() {
+		this.setCooldown(0.5f);
 	}
 	
 	@Override
@@ -46,6 +49,8 @@ public class BuildTowerAbility extends AbstractAbility {
 
 	@Override
 	public AbstractAbility createAbility() {
-		return new BuildTowerAbility();
+		BuildTowerAbility newAbility = new BuildTowerAbility();
+		newAbility.initialize();
+		return newAbility;
 	}
 }

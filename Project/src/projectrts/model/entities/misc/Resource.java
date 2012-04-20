@@ -16,12 +16,8 @@ public class Resource extends NonPlayerControlledEntity{
 		EntityFactory.INSTANCE.registerNPCE(Resource.class.getSimpleName(), new Resource());
 	}
 	
-	public Resource(){
-		
-	}
-	
-	public Resource(Position spawnPos) {
-		super(spawnPos);
+	protected void initialize(Position spawnPos) {
+		super.initialize(spawnPos);
 		setName(Resource.class.getSimpleName());
 		setSize(size);
 	}
@@ -34,7 +30,9 @@ public class Resource extends NonPlayerControlledEntity{
 
 	@Override
 	public NonPlayerControlledEntity createNPCE(Position pos) {
-		return new Resource(pos);
+		Resource newResource = new Resource();
+			newResource.initialize(pos);
+		return newResource;
 	}
 	
 	// TODO Jakob: Add javadoc

@@ -12,22 +12,11 @@ public abstract class AbstractAbility implements IAbility {
 	private boolean isActive = false;
 	private float cooldown;
 	private float remainingCooldown = 0;
-	
-	/**
-	 * Creates a new abstract ability
-	 * @param cooldown the cooldown of the ability
-	 */
-	public AbstractAbility(float cooldown){
+
+	public void setCooldown(float cooldown) {
 		this.cooldown = cooldown;
 	}
 	
-	/**
-	 * Creates a new abstract abilith with 0 sec cd
-	 */
-	public AbstractAbility(){
-		this.cooldown = 0;
-	}
-
 	@Override
 	public float getCooldown() {
 		return cooldown;

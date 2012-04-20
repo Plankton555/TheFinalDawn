@@ -20,22 +20,17 @@ public abstract class AbstractEntity implements IEntity {
 	private float size;
 	private float speed;
 	private Node occupiedNode;
-	
-	protected AbstractEntity() {
-	}
-	
+
 	/**
-	 * Spawns a entity at the provided position.
-	 * @param spawnPos Spawn position
-	 * @param owner The owner of the unit
+	 * When subclassing, invoke this to initialize the entity.
+	 * @param spawnPos The initial position of the entity.
 	 */
-	protected AbstractEntity(Position spawnPos){
+	protected void initialize(Position spawnPos) {
 		this.entityID = EntityManager.getInstance().requestNewEntityID();
 		this.world = World.getInstance();
 		//this.occupiedNode = world.getNodeAt(spawnPos);
 		//this.setPosition(spawnPos);
 		this.position = spawnPos.copy();
-		
 	}
 	
 	protected void setSize(float size){

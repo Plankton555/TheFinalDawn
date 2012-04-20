@@ -8,13 +8,12 @@ import projectrts.model.utils.Position;
  */
 public abstract class NonPlayerControlledEntity extends AbstractEntity {
 	
-	
-	protected NonPlayerControlledEntity(){
-		
-	}
-	
-	protected NonPlayerControlledEntity(Position spawnPos) {
-		super(spawnPos);
+	/**
+	 * When subclassing, invoke this to initialize the entity.
+	 * @param spawnPos The initial position of the entity.
+	 */
+	protected void initialize(Position spawnPos) {
+		super.initialize(spawnPos);
 	}
 
 	/**

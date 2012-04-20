@@ -5,7 +5,6 @@ import java.util.HashMap;
 import projectrts.model.entities.abilities.AttackAbility;
 import projectrts.model.entities.abilities.MoveAbility;
 import projectrts.model.entities.abilities.OffensiveSpellAbility;
-
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.render.NiftyRenderEngine;

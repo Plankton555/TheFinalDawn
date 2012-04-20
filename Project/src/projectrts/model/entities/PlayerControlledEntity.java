@@ -20,17 +20,15 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	private int maxHealth;
 	private float sightRange;
 	private Player owner;
-	
-	protected PlayerControlledEntity() {
-	}
+	private int damage;
 	
 	/**
-	 * Spawns an entity
-	 * @param spawnPos
-	 * @param owner
+	 * When subclassing, invoke this to initialize the entity.
+	 * @param owner The owner of the entity.
+	 * @param spawnPos The initial position of the entity.
 	 */
-	protected PlayerControlledEntity(Player owner, Position spawnPos) {
-		super(spawnPos);
+	protected void initialize(Player owner, Position spawnPos) {
+		super.initialize(spawnPos);
 		this.owner = owner;
 	}
 	
@@ -96,7 +94,13 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		return sightRange;
 	}
 	
-	public abstract int getDamage();
+	public int getDamage() {
+		return damage;
+	}
+	
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
 	
 	public void setMaxHealth(int newMaxHealth) {
 		this.maxHealth = newMaxHealth;

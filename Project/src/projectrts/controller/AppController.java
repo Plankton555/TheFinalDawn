@@ -5,11 +5,13 @@ import java.util.logging.Logger;
 
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
-import projectrts.model.GameModel;
-import projectrts.model.IGame;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.controls.SelectControl;
-import projectrts.view.spatials.*;
+import projectrts.view.spatials.HeadquarterSpatial;
+import projectrts.view.spatials.ResourceSpatial;
+import projectrts.view.spatials.SelectSpatial;
+import projectrts.view.spatials.WarriorSpatial;
+import projectrts.view.spatials.WorkerSpatial;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.renderer.RenderManager;
@@ -32,7 +34,7 @@ public class AppController extends SimpleApplication{
 			Class.forName(SelectControl.class.getName());
 			
 			// Initialize the spatial classes.
-			Class.forName(UnitSpatial.class.getName());
+			Class.forName(WarriorSpatial.class.getName());
 			Class.forName(WorkerSpatial.class.getName());
 			Class.forName(HeadquarterSpatial.class.getName());
 			Class.forName(ResourceSpatial.class.getName());

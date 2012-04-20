@@ -1,8 +1,5 @@
 package projectrts.model;
 
-import java.util.List;
-
-import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IEntityManager;
 import projectrts.model.player.IPlayer;
 

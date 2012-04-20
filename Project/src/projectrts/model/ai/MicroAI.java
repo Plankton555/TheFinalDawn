@@ -1,6 +1,6 @@
 package projectrts.model.ai;
 
-import projectrts.model.entities.units.Unit;
+import projectrts.model.entities.PlayerControlledEntity;
 
 
 /**
@@ -11,13 +11,13 @@ import projectrts.model.entities.units.Unit;
 public class MicroAI {
 
 	// TODO Markus: Implement MicroAI (if it's going to be used)
-	private Unit myUnit;
+	private PlayerControlledEntity myPCE;
 	
 	/**
 	 * Creates a micro AI for the provided unit.
 	 * @param unit The unit
 	 */
-	public MicroAI(Unit unit) {
-		this.myUnit = unit;
+	public MicroAI(PlayerControlledEntity pce) {
+		this.myPCE = pce;
 	}
 }

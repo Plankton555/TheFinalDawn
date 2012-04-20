@@ -19,8 +19,12 @@ public class GatherResourceAbility extends AbstractAbility{
 		AbilityFactory.INSTANCE.registerAbility(GatherResourceAbility.class.getSimpleName(), new GatherResourceAbility());
 	}
 	
-	private GatherResourceAbility() {
-		super();
+	/**
+	 * When subclassing, invoke this to initialize the ability.
+	 */
+	protected void initialize() {
+		this.mineResourceAbility = AbilityFactory.INSTANCE.createAbility(MineResourceAbility.class.getSimpleName());
+		this.deliverResourceAbility = AbilityFactory.INSTANCE.createAbility(DeliverResourceAbility.class.getSimpleName());
 	}
 	
 	@Override
@@ -63,8 +67,7 @@ public class GatherResourceAbility extends AbstractAbility{
 	@Override
 	public AbstractAbility createAbility() {
 		GatherResourceAbility newAbility = new GatherResourceAbility();
-		newAbility.mineResourceAbility = AbilityFactory.INSTANCE.createAbility(MineResourceAbility.class.getSimpleName());
-		newAbility.deliverResourceAbility = AbilityFactory.INSTANCE.createAbility(DeliverResourceAbility.class.getSimpleName());
+		newAbility.initialize();
 		return newAbility;
 	}
 

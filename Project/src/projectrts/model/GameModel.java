@@ -1,12 +1,8 @@
 package projectrts.model;
 
-import java.util.List;
-
 import projectrts.model.constants.P;
 import projectrts.model.entities.EntityManager;
-import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IEntityManager;
-import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.abilities.AttackAbility;
 import projectrts.model.entities.abilities.BuildTowerAbility;
 import projectrts.model.entities.abilities.DeliverResourceAbility;
@@ -17,7 +13,6 @@ import projectrts.model.entities.abilities.OffensiveSpellAbility;
 import projectrts.model.entities.abilities.TrainWorkerAbility;
 import projectrts.model.entities.misc.Resource;
 import projectrts.model.entities.structures.Headquarter;
-import projectrts.model.entities.units.Unit;
 import projectrts.model.entities.units.Warrior;
 import projectrts.model.entities.units.Worker;
 import projectrts.model.pathfinding.AStar;
@@ -43,7 +38,6 @@ public class GameModel implements IGame {
 		{
 			// Initialize the entity classes.
 			Class.forName(Warrior.class.getName());
-			Class.forName(Unit.class.getName());
 			Class.forName(Worker.class.getName());
 			Class.forName(Resource.class.getName());
 			Class.forName(Headquarter.class.getName());
@@ -68,14 +62,14 @@ public class GameModel implements IGame {
 	public GameModel() {
 		world.initializeWorld(P.INSTANCE.getWorldHeight(), P.INSTANCE.getWorldWidth());
 		AStar.initialize(world);
-		entityManager.addNewPCE(Unit.class.getSimpleName(), humanPlayer, new Position(50, 50));
+		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(50, 50));
 		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(55, 55));
 		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(56, 55));
 		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(60.5, 60.5));
 		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(34.5, 50.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 50.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 52.5));
-		entityManager.addNewPCE(Unit.class.getSimpleName(), aiPlayer, new Position(52, 52));
+		entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(52, 52));
 		
 
 
