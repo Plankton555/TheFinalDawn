@@ -11,11 +11,21 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 
+/**
+ * A class that handles the GUI of the menu
+ * @author Filip Brynfors
+ *
+ */
 public class MenuGUIController implements ScreenController {
 	private SimpleApplication app;
 	private ScreenController sc;
 	private Nifty nifty;
 	
+	/**
+	 * Creates a new GUI controller
+	 * @param app the simpleApplication
+	 * @param nifty the Nifty GUI object
+	 */
 	public MenuGUIController(Application app, Nifty nifty){
 		this.app = (SimpleApplication) app;
 		this.sc = this;
@@ -72,14 +82,18 @@ public class MenuGUIController implements ScreenController {
 	    nifty.gotoScreen("Screen_StartMenu"); // start the screen	
 	}
 
-	
+	/**
+	 * Used when the start Game button is clicked
+	 */
 	public void buttonStartClicked(){
 
         app.getStateManager().getState(InGameState.class).setEnabled(true);  
      
 	}
 	
-	
+	/**
+	 * Used when the Exit button is clicked
+	 */
 	public void buttonExitClicked(){
 		app.stop();
 	}

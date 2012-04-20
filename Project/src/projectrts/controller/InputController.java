@@ -266,7 +266,6 @@ public class InputController {
      * Sets the GUI Control
      * @param guiControl
      */
-
     public void setGUIControl(InputGUIController guiControl){
     	this.guiControl = guiControl;
     }

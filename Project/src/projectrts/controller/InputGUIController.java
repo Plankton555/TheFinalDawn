@@ -38,7 +38,12 @@ public class InputGUIController implements ScreenController {
 	
 	private List<IAbility> abilities; 
 
-	
+	/**
+	 * Creates a new inputGUIController
+	 * @param app the application
+	 * @param input the inputController
+	 * @param nifty the nifty
+	 */
 	public InputGUIController(Application app, InputController input, Nifty nifty) {
 		sc = this;
 		this.app = (SimpleApplication) app;
@@ -58,8 +63,6 @@ public class InputGUIController implements ScreenController {
 	        // <layer>
 	        layer(new LayerBuilder("Layer_ID") {{
 	            childLayoutVertical(); // layer properties, add more...
-
-	            
 	            
 	            panel(new PanelBuilder("panel_main") {{
 	                childLayoutVertical();
@@ -69,14 +72,12 @@ public class InputGUIController implements ScreenController {
 	                // <!-- spacer -->
 	            }});
 	            
-	 
 	            // <panel>
 	            panel(new PanelBuilder("Panel_GUI") {{
 	               childLayoutHorizontal(); // panel properties, add more...  
 	               backgroundColor("#f00f"); 
 		           height("20%");
 		           visibleToMouse(true);
-		           
 		           
 	               panel(new PanelBuilder("Panel_Main"){{
 	            	   width("60%");
@@ -88,7 +89,6 @@ public class InputGUIController implements ScreenController {
 	            	   width("40%");
 	            	   childLayoutVertical();
 	    
-	 
 	            	   //First row with buttons
 		               panel(new PanelBuilder("Panel_Abilities_Row1"){{
 		            	   height("50%");
@@ -108,8 +108,7 @@ public class InputGUIController implements ScreenController {
 		
 		               }});    
 		               
-		               
-		               
+		             
 		               //Second row with buttons
 		               panel(new PanelBuilder("Panel_Abilities_Row2"){{
 		            	   height("50%");
@@ -138,11 +137,13 @@ public class InputGUIController implements ScreenController {
 	    // </screen>
 	 
 	    nifty.gotoScreen("Screen_ID"); // start the screen
-		
 	}
 	
+	/**
+	 * Updates the abilities in the GUI
+	 * @param selectedEntities the abilities of the selected Entity
+	 */
 	public void updateAbilities(List<IEntity> selectedEntities){
-    	Screen screen = nifty.getScreen("Screen_ID");
     	
     	boolean oneIsSelected = selectedEntities.size()==1;
     	abilities = null;
@@ -196,6 +197,11 @@ public class InputGUIController implements ScreenController {
 		
 	}
 	
+	
+	/**
+	 * Used when any of the Ability buttons are clicked
+	 * @param nr the ID of the clicked button
+	 */
 	public void buttonClicked(String nr) {
 		try {
 			
@@ -209,7 +215,6 @@ public class InputGUIController implements ScreenController {
 		} catch (NumberFormatException e){
 			
 		}
-		
 		
 	}
 

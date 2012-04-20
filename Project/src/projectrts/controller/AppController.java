@@ -6,8 +6,6 @@ import java.util.logging.Logger;
 import projectrts.global.utils.ImageManager;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
-import projectrts.model.GameModel;
-import projectrts.model.IGame;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.controls.SelectControl;
 import projectrts.view.spatials.HeadquarterSpatial;
@@ -27,7 +25,7 @@ import de.lessvoid.nifty.Nifty;
  * 
  * Is the connection to jMonkeyEngine (extends SimpleApplication)
  * and handles top-level stuff like swapping AppStates.
- * @author Markus Ekström Modifed by Jakob Svensson 
+ * @author Markus Ekström Modifed by Jakob Svensson, Filip Brynfors
  *
  */
 public class AppController extends SimpleApplication{
@@ -71,18 +69,22 @@ public class AppController extends SimpleApplication{
     	ImageManager.INSTANCE.initializeImages(nifty);
 
     	
-        IGame game = new GameModel();
-    	InGameState ingameState = new InGameState(game, nifty);
+        //IGame game = new GameModel();
+    	//InGameState ingameState = new InGameState(game, nifty);
     	MenuState menuState = new MenuState(nifty);
     	
     	this.stateManager.attach(menuState);
-    	this.stateManager.attach(ingameState);
-    	
+       	//this.stateManager.attach(ingameState);
+
+       //	ingameState.setEnabled(false);
     	menuState.setEnabled(true);
         
         
         // Set logger level
         Logger.getLogger("").setLevel(Level.SEVERE);
+        
+        
+        
     }
 
     @Override
