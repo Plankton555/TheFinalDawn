@@ -8,6 +8,7 @@ import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.pathfinding.AStar;
 import projectrts.model.pathfinding.AStarNode;
 import projectrts.model.pathfinding.AStarPath;
+import projectrts.model.pathfinding.World;
 import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
 
@@ -20,6 +21,7 @@ public class MoveAbility extends AbstractAbility {
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
 	
+	private World world;
 	private AStar aStar;
 	private AStarPath path;
 	private boolean pathRefresh = true;
@@ -33,6 +35,7 @@ public class MoveAbility extends AbstractAbility {
 	 */
 	protected void initialize() {
 		this.aStar = new AStar();
+		this.world = World.getInstance();
 	}
 	
 	@Override
@@ -104,6 +107,14 @@ public class MoveAbility extends AbstractAbility {
 				stepLength -= distanceToNextNode;
 				outputPos = nextNode.getPosition().copy();
 				path = aStar.calculatePath(outputPos, targetPos, entity.getEntityID());
+				
+				if (path.nrOfNodesLeft() > 1)
+				{
+					world.setNodesOccupied(nextNode.getNode(),
+							entity.getSize(), 0);
+					world.setNodesOccupied(path.getNextNode().getNode(),
+							entity.getSize(), entity.getEntityID());
+				}
 			}
 		}
 		return outputPos;
