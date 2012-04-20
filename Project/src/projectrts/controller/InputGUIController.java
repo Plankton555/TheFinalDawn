@@ -39,23 +39,18 @@ public class InputGUIController implements ScreenController {
 	private List<IAbility> abilities; 
 
 	
-	public InputGUIController(Application app, InputController input) {
+	public InputGUIController(Application app, InputController input, Nifty nifty) {
 		sc = this;
 		this.app = (SimpleApplication) app;
-		initializeGUI();
 		this.input = input;
+		this.nifty = nifty;
+		
+		initializeGUI();
 		input.setGUIControl(this);
 	}
 	
 	private void initializeGUI() {
-		NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
-	            app.getAssetManager(), app.getInputManager(), app.getAudioRenderer(), app.getGuiViewPort());
-	    nifty = niftyDisplay.getNifty();
-	    app.getGuiViewPort().addProcessor(niftyDisplay);
-	    app.getFlyByCamera().setDragToRotate(true);
-	 
-	    nifty.loadStyleFile("nifty-default-styles.xml");
-	    nifty.loadControlFile("nifty-default-controls.xml");
+
 	 
 	    ImageManager.INSTANCE.initializeImages(nifty);
 	    

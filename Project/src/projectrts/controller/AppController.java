@@ -9,10 +9,17 @@ import projectrts.model.GameModel;
 import projectrts.model.IGame;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.controls.SelectControl;
-import projectrts.view.spatials.*;
+import projectrts.view.spatials.HeadquarterSpatial;
+import projectrts.view.spatials.ResourceSpatial;
+import projectrts.view.spatials.SelectSpatial;
+import projectrts.view.spatials.UnitSpatial;
+import projectrts.view.spatials.WorkerSpatial;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.RenderManager;
+
+import de.lessvoid.nifty.Nifty;
 
 /**
  * The top-level controller.
@@ -46,6 +53,17 @@ public class AppController extends SimpleApplication{
 	
     @Override
     public void simpleInitApp() {
+		NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
+	            getAssetManager(), getInputManager(), getAudioRenderer(), getGuiViewPort());
+	    Nifty nifty = niftyDisplay.getNifty();
+	    
+	    getGuiViewPort().addProcessor(niftyDisplay);
+	    //app.getFlyByCamera().setDragToRotate(true);
+	 
+	    nifty.loadStyleFile("nifty-default-styles.xml");
+	    nifty.loadControlFile("nifty-default-controls.xml");
+	    
+    	
     	this.cam.setParallelProjection(true);
     	TextureManager.INSTANCE.initializeTextures(this);
     	MaterialManager.INSTANCE.initializeMaterial(this);
@@ -56,9 +74,14 @@ public class AppController extends SimpleApplication{
         inGameState.setEnabled(true);
         */
         //inGameState.setEnabled(false);
-        
-    	MenuState menuState = new MenuState();
+    	
+        IGame game = new GameModel();
+    	InGameState ingameState = new InGameState(game, nifty);
+    	MenuState menuState = new MenuState(nifty);
+    	
     	this.stateManager.attach(menuState);
+    	this.stateManager.attach(ingameState);
+    	
     	menuState.setEnabled(true);
         
         
