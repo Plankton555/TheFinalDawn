@@ -3,6 +3,7 @@ package projectrts.controller;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import projectrts.global.utils.ImageManager;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.GameModel;
@@ -58,7 +59,7 @@ public class AppController extends SimpleApplication{
 	    Nifty nifty = niftyDisplay.getNifty();
 	    
 	    getGuiViewPort().addProcessor(niftyDisplay);
-	    //app.getFlyByCamera().setDragToRotate(true);
+
 	 
 	    nifty.loadStyleFile("nifty-default-styles.xml");
 	    nifty.loadControlFile("nifty-default-controls.xml");
@@ -67,13 +68,8 @@ public class AppController extends SimpleApplication{
     	this.cam.setParallelProjection(true);
     	TextureManager.INSTANCE.initializeTextures(this);
     	MaterialManager.INSTANCE.initializeMaterial(this);
-        /*
-    	IGame game = new GameModel();
-        InGameState inGameState = new InGameState(game);
-        this.stateManager.attach(inGameState);
-        inGameState.setEnabled(true);
-        */
-        //inGameState.setEnabled(false);
+    	ImageManager.INSTANCE.initializeImages(nifty);
+
     	
         IGame game = new GameModel();
     	InGameState ingameState = new InGameState(game, nifty);

@@ -50,9 +50,6 @@ public class InputGUIController implements ScreenController {
 	}
 	
 	private void initializeGUI() {
-
-	 
-	    ImageManager.INSTANCE.initializeImages(nifty);
 	    
 	    // <screen>
 	    nifty.addScreen("Screen_ID", new ScreenBuilder("GUI Screen"){{

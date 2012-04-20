@@ -38,7 +38,6 @@ public class MenuGUIController implements ScreenController {
 		
 	}
 	
-	
 	private void initializeGUI() {    
 
 	    nifty.addScreen("Screen_StartMenu", new ScreenBuilder("GUI Start Menu"){{
@@ -69,13 +68,8 @@ public class MenuGUIController implements ScreenController {
 	        // </layer>
 	      }}.build(nifty));
 	    // </screen>
-	 
-	   
-	    nifty.gotoScreen("Screen_StartMenu"); // start the screen
 	    
-	    
-
-		
+	    nifty.gotoScreen("Screen_StartMenu"); // start the screen	
 	}
 
 	
