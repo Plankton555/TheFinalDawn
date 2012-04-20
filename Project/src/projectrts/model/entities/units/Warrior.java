@@ -19,6 +19,7 @@ public class Warrior extends AbstractUnit{
 	private static final float speed = 4f;
 	private static final float sightRange = 5f;
 	private static final int damage = 20;
+	private static final int maxHealth = 100;
 	
 	
 	static {
@@ -31,7 +32,7 @@ public class Warrior extends AbstractUnit{
 		this.abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
 		setName(Warrior.class.getSimpleName());
 		setSightRange(sightRange);
-		this.setMaxHealth(20);
+		this.setMaxHealth(maxHealth);
 		this.setCurrentHealth(this.getMaxHealth());
 		this.setSize(size);
 		this.setSpeed(speed);
