@@ -13,8 +13,8 @@ import projectrts.model.utils.Position;
  */
 public class TrainWorkerAbility extends AbstractAbility{
 	private PlayerControlledEntity structure;
-	private float buildTime = 5; //TODO Jakob: Decide buidlTime and maybe set as a constant
-	private int buildCost = 50; //TODO Jakob: Decide buidlCost and maybe set as a constant
+	private static float buildTime = 5; 
+	private static int buildCost = 50; 
 	private Position spawnPos;
 	
 	static {
@@ -51,11 +51,13 @@ public class TrainWorkerAbility extends AbstractAbility{
 	public void useAbility(PlayerControlledEntity caster, Position target) {
 		structure = caster;
 		Player owner = (Player)structure.getOwner();
-		owner.modifyResource(-buildCost); //TODO Jakob: Check if player has enough resources
-		spawnPos = new Position(structure.getPosition().getX()+structure.getSize(),
-				structure.getPosition().getY()+structure.getSize()); //TODO Jakob: Decide spawnPos, Rally points?
-		setActive(true);
-		setFinished(false);
+		if(owner.getResources()>=buildCost){//TODO Jakob: Notify view somehow when not enough resources
+			owner.modifyResource(-buildCost); 
+			spawnPos = new Position(structure.getPosition().getX()+structure.getSize(),
+					structure.getPosition().getY()+structure.getSize()); //TODO Plankton: Decide spawnPos
+			setActive(true);
+			setFinished(false);
+		}
 	}
 
 	@Override

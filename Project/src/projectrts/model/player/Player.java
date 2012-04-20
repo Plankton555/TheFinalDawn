@@ -19,8 +19,11 @@ public class Player implements IPlayer {
 	
 
 	
-	// TODO Jakob: ADD JAVADOC
-	public int getResource(){
+	/**
+	 * Returns the players current amount of resources
+	 * @return The amount of resources
+	 */
+	public int getResources(){
 		return resources; 
 	}
 	
