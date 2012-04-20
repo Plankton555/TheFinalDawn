@@ -95,7 +95,7 @@ public class AStar {
 			
 			if (currentNode.equals(endNode))
 			{
-				return generatePath(startPos, startNode, currentNode);
+				return generatePath(startNode, currentNode);
 			}
 			else
 			{
@@ -135,18 +135,18 @@ public class AStar {
 		// path not found, return path to the closest node instead.
 		
 		Collections.sort(closedList, AStarNode.getHeuristicComparator());
-		return generatePath(startPos, startNode, closedList.get(1));
+		return generatePath(startNode, closedList.get(1));
 		// the second element in closedList since the first one is the start node
 	}
 	
-	private AStarPath generatePath(Position myPos, AStarNode startNode, AStarNode endNode)
+	private AStarPath generatePath(AStarNode startNode, AStarNode endNode)
 	{
 		AStarPath path = new AStarPath();
 		AStarNode nextNode = endNode;
 		
 		while (!nextNode.equals(startNode))
 		{
-			path.addPosToPath(nextNode.getPosition());
+			path.addNodeToPath(nextNode);
 			nextNode = nextNode.getParent();
 		}
 		

@@ -11,23 +11,23 @@ import projectrts.model.utils.Position;
  */
 public class AStarPath {
 	
-	private Stack<Position> nodeStack = new Stack<Position>();
+	private Stack<AStarNode> nodeStack = new Stack<AStarNode>();
 	
 	/**
 	 * Adds a node to the path.
-	 * @param position The position that will be added.
+	 * @param node The node that will be added.
 	 */
-	public void addPosToPath(Position position)
+	public void addNodeToPath(AStarNode node)
 	{
-		nodeStack.push(position);
+		nodeStack.push(node);
 	}
 	
 	/**
-	 * @return Next position in the path (stack).
+	 * @return Position of the next node in the path (stack).
 	 */
-	public Position getNextPosition()
+	public Position getNextNodePosition()
 	{
-		return nodeStack.peek();
+		return nodeStack.peek().getPosition();
 	}
 	
 	/**
