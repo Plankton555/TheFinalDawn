@@ -149,7 +149,7 @@ public class AStar {
 			path.addPosToPath(nextNode.getPosition());
 			nextNode = nextNode.getParent();
 		}
-		path.addPosToPath(myPos);
+		//path.addPosToPath(myPos);
 		
 		return path;
 	}

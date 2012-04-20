@@ -23,6 +23,7 @@ public class MoveAbility extends AbstractAbility {
 	private AStarPath path;
 	private float pathRefreshInterval = 1; // refreshes path every second
 	private float timeSincePathRefresh = pathRefreshInterval;
+	private boolean pathRefresh = true;
 	
 	static {
 		AbilityFactory.INSTANCE.registerAbility(MoveAbility.class.getSimpleName(), new MoveAbility());
@@ -46,7 +47,7 @@ public class MoveAbility extends AbstractAbility {
 		this.targetPosition = pos;
 		
 		// Want to refresh path as soon as a click is made
-		this.timeSincePathRefresh = pathRefreshInterval;
+		this.pathRefresh = true;
 		
 		setActive(true);
 		setFinished(false);
@@ -75,15 +76,19 @@ public class MoveAbility extends AbstractAbility {
 	{
 		double stepLength = P.INSTANCE.getUnitLength()*tpf*entity.getSpeed();
 		
-		if (timeSincePathRefresh >= pathRefreshInterval)
+		//if (timeSincePathRefresh >= pathRefreshInterval)
+		if (path == null || path.nrOfNodesLeft() < 1 || pathRefresh )
 		{
+			pathRefresh = false;
 			path = aStar.calculatePath(entity.getPosition(), targetPos, entity.getEntityID());
 			timeSincePathRefresh = 0;
 		}
+		/*
 		else
 		{
 			timeSincePathRefresh += tpf;
 		}
+		*/
 		
 		Position outputPos = entity.getPosition();
 		
@@ -108,6 +113,8 @@ public class MoveAbility extends AbstractAbility {
 				stepLength -= distanceToNextNode;
 				outputPos = nextNodePos.copy();
 				path.removeNodeFromPath();
+				path = aStar.calculatePath(entity.getPosition(), targetPos, entity.getEntityID());
+				timeSincePathRefresh = 0;
 			}
 		}
 		return outputPos;
