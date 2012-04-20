@@ -35,15 +35,11 @@ public class Worker extends AbstractUnit{
 		setName(Worker.class.getSimpleName());
 		setSize(size);
 		setSpeed(speed);
+		setSightRange(5);
 	}
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		return new Worker(owner, pos);
-	}
-
-	@Override
-	public float getSightRange() {
-		return 5;
 	}
 
 	@Override

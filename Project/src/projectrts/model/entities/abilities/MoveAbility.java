@@ -73,7 +73,7 @@ public class MoveAbility extends AbstractAbility {
 	 */
 	private Position determineNextStep(float tpf, PlayerControlledEntity entity, Position targetPos)
 	{
-		double stepLength = P.INSTANCE.getUnitLength()*tpf*entity.getSpeed();
+		double stepLength = tpf*entity.getSpeed();
 		
 		if (timeSincePathRefresh >= pathRefreshInterval)
 		{

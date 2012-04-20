@@ -3,6 +3,7 @@ package projectrts.model.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import projectrts.model.constants.P;
 import projectrts.model.player.IPlayer;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
@@ -17,6 +18,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	protected List<AbstractAbility> abilities = new ArrayList<AbstractAbility>();
 	private int currentHealth;
 	private int maxHealth;
+	private float sightRange;
 	private Player owner;
 	
 	protected PlayerControlledEntity() {
@@ -90,12 +92,18 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	}
 	
 	@Override
-	public abstract float getSightRange();
+	public float getSightRange(){
+		return sightRange;
+	}
 	
 	public abstract int getDamage();
 	
 	public void setMaxHealth(int newMaxHealth) {
 		this.maxHealth = newMaxHealth;
+	}
+	
+	protected void setSightRange(float sightRange){
+		this.sightRange = sightRange*P.INSTANCE.getUnitLength();
 	}
 	
 	public void setCurrentHealth(int newCurrentHealth) {

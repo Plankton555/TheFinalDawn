@@ -28,16 +28,12 @@ public class Warrior extends AbstractUnit{
 		this.abilities.add(AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName()));
 		this.abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
 		setName(Warrior.class.getSimpleName());
+		setSightRange(5);
 	}
 
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		return new Warrior(owner, pos);
-	}
-
-	@Override
-	public float getSightRange() {
-		return 5;
 	}
 
 	@Override

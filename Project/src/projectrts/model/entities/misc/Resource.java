@@ -11,7 +11,7 @@ import projectrts.model.utils.Position;
  */
 public class Resource extends NonPlayerControlledEntity{
 	
-	private static float size = 1f;
+	private static float size = 1;
 	static {
 		EntityFactory.INSTANCE.registerNPCE(Resource.class.getSimpleName(), new Resource());
 	}

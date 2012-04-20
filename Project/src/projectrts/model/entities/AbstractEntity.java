@@ -1,5 +1,6 @@
 package projectrts.model.entities;
 
+import projectrts.model.constants.P;
 import projectrts.model.pathfinding.Node;
 import projectrts.model.pathfinding.World;
 import projectrts.model.utils.Position;
@@ -38,11 +39,11 @@ public abstract class AbstractEntity implements IEntity {
 	}
 	
 	protected void setSize(float size){
-		this.size=size;
+		this.size=size*P.INSTANCE.getUnitLength();
 		this.setPosition(getPosition());
 	}
 	protected void setSpeed(float speed){
-		this.speed=speed;
+		this.speed=speed*P.INSTANCE.getUnitLength();
 	}
 	protected void setName(String name) {
 		this.name = name;
