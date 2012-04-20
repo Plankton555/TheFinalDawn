@@ -62,7 +62,7 @@ public class MineResourceAbility extends AbstractAbility{
 				moveAbility.update(tpf);
 				if(moveAbility.isFinished()){
 					moveAbility.setActive(false);
-					moveAbility.setFinished(false);
+					//moveAbility.setFinished(false);
 				}
 			}
 		}
