@@ -20,6 +20,7 @@ public class Worker extends AbstractUnit{
 	private static final float size = 1f;
 	private static final float speed = 5;
 	private static final int damage = 5;
+	private static final float sightRange = 5;
 
 	static {
 		EntityFactory.INSTANCE.registerPCE(Worker.class.getSimpleName(), new Worker());
@@ -33,7 +34,7 @@ public class Worker extends AbstractUnit{
 		setName(Worker.class.getSimpleName());
 		setSize(size);
 		setSpeed(speed);
-		setSightRange(5);
+		setSightRange(sightRange);
 		this.setDamage(damage);
 	}
 	

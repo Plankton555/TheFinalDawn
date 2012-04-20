@@ -17,6 +17,7 @@ import projectrts.model.utils.Position;
 public class Warrior extends AbstractUnit{
 	private static final float size = 1f;
 	private static final float speed = 4f;
+	private static final float sightRange = 5f;
 	private static final int damage = 20;
 	
 	
@@ -29,7 +30,7 @@ public class Warrior extends AbstractUnit{
 		this.abilities.add(AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName()));
 		this.abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
 		setName(Warrior.class.getSimpleName());
-		setSightRange(5);
+		setSightRange(sightRange);
 		this.setMaxHealth(20);
 		this.setCurrentHealth(this.getMaxHealth());
 		this.setSize(size);
