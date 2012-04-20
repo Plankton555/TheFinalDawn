@@ -8,8 +8,8 @@ import projectrts.model.utils.Position;
  *
  */
 public abstract class AbstractAbility implements IAbility {
-	private boolean isFinished = false;
-	private boolean isActive = false;
+	private boolean finished = false;
+	private boolean active = false;
 	private float cooldown;
 	private float remainingCooldown = 0;
 
@@ -49,7 +49,7 @@ public abstract class AbstractAbility implements IAbility {
 	 * @return true if finnished, false otherwise
 	 */
 	public boolean isFinished(){
-		return isFinished;
+		return finished;
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public abstract class AbstractAbility implements IAbility {
 	 * @return true if active, false otherwise
 	 */
 	public boolean isActive(){
-		return isActive;
+		return active;
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public abstract class AbstractAbility implements IAbility {
 	 * @param b
 	 */
 	public void setActive(boolean b){
-		isActive = b;
+		active = b;
 	}
 	
 		
@@ -74,7 +74,11 @@ public abstract class AbstractAbility implements IAbility {
 	 * @param b
 	 */
 	public void setFinished(boolean b){
-		isFinished = b;
+		finished = b;
+		if (finished)
+		{
+			active = false;
+		}
 	}
 	
 	/**
