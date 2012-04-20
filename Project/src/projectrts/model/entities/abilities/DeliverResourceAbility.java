@@ -44,11 +44,11 @@ public class DeliverResourceAbility extends AbstractAbility{
 			
 			if(ModelUtils.INSTANCE.getDistance(unit.getPosition(),depositStructure.getPosition() )<1.5*depositStructure.getSize()){
 				//If in range of deposit structure
+				moveAbility.setFinished(true);
 				
 				Player player = (Player)unit.getOwner();
 				player.modifyResource(P.INSTANCE.getWorkerCarryAmount());
 				setFinished(true);
-				System.out.println("delivered");
 			}else{
 				// Not in range
 				if(!moveAbility.isActive()){
@@ -56,10 +56,6 @@ public class DeliverResourceAbility extends AbstractAbility{
 				}
 				
 				moveAbility.update(tpf);
-				if(moveAbility.isFinished()){
-					moveAbility.setActive(false);
-					moveAbility.setFinished(false);
-				}
 			}
 		}
 		

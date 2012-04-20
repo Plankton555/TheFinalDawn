@@ -133,7 +133,7 @@ public final class World {
 			for (int j=centerX-offset; j<=centerX+offset; j++)
 			{
 				nodes[i][j].setOccupied(entityID);
-				System.out.println(entityID + " occupies " + nodes[i][j].getPosition());
+				//System.out.println(entityID + " occupies " + nodes[i][j].getPosition());
 			}
 		}
 		//nodeInCenter.setOccupied(entityID);

@@ -40,6 +40,7 @@ public class MineResourceAbility extends AbstractAbility{
 			if(ModelUtils.INSTANCE.getDistance(unit.getPosition(),targetResource.getPosition() )<1.5*targetResource.getSize()){
 				//If in range of resource
 				//Check cooldown and mine resource or reduce cooldown as appropriate.
+				moveAbility.setFinished(true);
 				if (miningCooldown <= 0) { 
 					resourceCarriedAmount += targetResource.mine();
 					miningCooldown = recoveryTime;
@@ -49,7 +50,6 @@ public class MineResourceAbility extends AbstractAbility{
 				
 				if(resourceCarriedAmount >= P.INSTANCE.getWorkerCarryAmount()) {
 					setFinished(true);
-					System.out.println("mined");
 				}
 				
 			}else{
@@ -60,10 +60,6 @@ public class MineResourceAbility extends AbstractAbility{
 				}
 				
 				moveAbility.update(tpf);
-				if(moveAbility.isFinished()){
-					moveAbility.setActive(false);
-					//moveAbility.setFinished(false);
-				}
 			}
 		}
 		
