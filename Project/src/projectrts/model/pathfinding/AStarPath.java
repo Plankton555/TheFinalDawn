@@ -25,9 +25,9 @@ public class AStarPath {
 	/**
 	 * @return Position of the next node in the path (stack).
 	 */
-	public Position getNextNodePosition()
+	public AStarNode getNextNode()
 	{
-		return nodeStack.peek().getPosition();
+		return nodeStack.peek();
 	}
 	
 	/**

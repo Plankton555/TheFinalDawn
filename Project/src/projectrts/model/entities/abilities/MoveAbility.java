@@ -6,6 +6,7 @@ import projectrts.model.constants.P;
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.pathfinding.AStar;
+import projectrts.model.pathfinding.AStarNode;
 import projectrts.model.pathfinding.AStarPath;
 import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
@@ -88,12 +89,12 @@ public class MoveAbility extends AbstractAbility {
 			{
 				break;
 			}
-			Position nextNodePos = path.getNextNodePosition();
-			double distanceToNextNode = ModelUtils.INSTANCE.getDistance(outputPos, nextNodePos);
+			AStarNode nextNode = path.getNextNode();
+			double distanceToNextNode = ModelUtils.INSTANCE.getDistance(outputPos, nextNode.getPosition());
 			
 			if (distanceToNextNode > stepLength)
 			{
-				Vector2d direction = Position.getVectorBetween(outputPos, nextNodePos);
+				Vector2d direction = Position.getVectorBetween(outputPos, nextNode.getPosition());
 				direction.normalize();
 				outputPos = outputPos.add(stepLength, direction);
 				stepLength = 0;
@@ -101,8 +102,8 @@ public class MoveAbility extends AbstractAbility {
 			else //if (distanceToNextNode <= stepLength)
 			{
 				stepLength -= distanceToNextNode;
-				outputPos = nextNodePos.copy();
-				path = aStar.calculatePath(entity.getPosition(), targetPos, entity.getEntityID());
+				outputPos = nextNode.getPosition().copy();
+				path = aStar.calculatePath(outputPos, targetPos, entity.getEntityID());
 			}
 		}
 		return outputPos;
