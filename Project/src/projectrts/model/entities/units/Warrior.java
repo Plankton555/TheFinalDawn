@@ -31,7 +31,7 @@ public class Warrior extends AbstractUnit{
 		this.abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
 		setName(Warrior.class.getSimpleName());
 		setSightRange(sightRange);
-		this.setMaxHealth(20);
+		this.setMaxHealth(100);
 		this.setCurrentHealth(this.getMaxHealth());
 		this.setSize(size);
 		this.setSpeed(speed);

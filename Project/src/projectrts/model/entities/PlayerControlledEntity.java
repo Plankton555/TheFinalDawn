@@ -1,5 +1,7 @@
 package projectrts.model.entities;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	private float sightRange;
 	private Player owner;
 	private int damage;
+	private PropertyChangeSupport pcs;
 	
 	/**
 	 * When subclassing, invoke this to initialize the entity.
@@ -30,6 +33,11 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(spawnPos);
 		this.owner = owner;
+		this.pcs = new PropertyChangeSupport(this);
+	}
+	
+	public void addListener(PropertyChangeListener pcl) {
+		pcs.addPropertyChangeListener(pcl);
 	}
 	
 	
@@ -71,6 +79,14 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 			currentHealth = maxHealth;
 		}
 			
+	}
+	
+	public void dealDamageTo(int damage) {
+		currentHealth -= damage;
+		if(currentHealth <= 0){
+			currentHealth = 0;
+			pcs.firePropertyChange("dead", 1, 0);
+		}
 	}
 
 	/**
