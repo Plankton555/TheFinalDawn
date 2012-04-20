@@ -115,7 +115,7 @@ public class AStar {
 						// TODO Plankton: These nested if statements could be combined
 						if (!closedList.contains(node)) // and not on closed list
 						{
-							// TODO Avoid if (x!=y) ..; else ..;
+							// TODO Plankton: Avoid if (x!=y) ..; else ..;
 							if (!openList.contains(node)) // and not on open list
 							{
 								// move to open list and calculate cost
