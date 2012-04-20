@@ -20,16 +20,19 @@ public class MenuGUIController implements ScreenController {
 	private SimpleApplication app;
 	private ScreenController sc;
 	private Nifty nifty;
+	private AppController appController;
 	
 	/**
 	 * Creates a new GUI controller
 	 * @param app the simpleApplication
 	 * @param nifty the Nifty GUI object
+	 * @param observer 
 	 */
-	public MenuGUIController(Application app, Nifty nifty){
+	public MenuGUIController(Application app, Nifty nifty, AppController appController){
 		this.app = (SimpleApplication) app;
 		this.sc = this;
 		this.nifty = nifty;
+		this.appController = appController;
 		initializeGUI();
 	}
 	
@@ -86,9 +89,11 @@ public class MenuGUIController implements ScreenController {
 	 * Used when the start Game button is clicked
 	 */
 	public void buttonStartClicked(){
-
-        app.getStateManager().getState(InGameState.class).setEnabled(true);  
-     
+		MenuState state = app.getStateManager().getState(MenuState.class);
+		state.setEnabled(false);
+		app.getStateManager().detach(state);
+		
+		appController.startIngameState();
 	}
 	
 	/**

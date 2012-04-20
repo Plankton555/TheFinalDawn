@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 import projectrts.global.utils.ImageManager;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
+import projectrts.model.GameModel;
+import projectrts.model.IGame;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.controls.SelectControl;
 import projectrts.view.spatials.HeadquarterSpatial;
@@ -15,6 +17,7 @@ import projectrts.view.spatials.UnitSpatial;
 import projectrts.view.spatials.WorkerSpatial;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.app.state.AppState;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.RenderManager;
 
@@ -29,6 +32,7 @@ import de.lessvoid.nifty.Nifty;
  *
  */
 public class AppController extends SimpleApplication{
+	private Nifty nifty;
 
 	static{
 		try
@@ -52,15 +56,17 @@ public class AppController extends SimpleApplication{
 	
     @Override
     public void simpleInitApp() {
+    	
 		NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
 	            getAssetManager(), getInputManager(), getAudioRenderer(), getGuiViewPort());
-	    Nifty nifty = niftyDisplay.getNifty();
+	    nifty = niftyDisplay.getNifty();
 	    
 	    getGuiViewPort().addProcessor(niftyDisplay);
 
 	 
 	    nifty.loadStyleFile("nifty-default-styles.xml");
 	    nifty.loadControlFile("nifty-default-controls.xml");
+	    
 	    
     	
     	this.cam.setParallelProjection(true);
@@ -69,22 +75,17 @@ public class AppController extends SimpleApplication{
     	ImageManager.INSTANCE.initializeImages(nifty);
 
     	
-        //IGame game = new GameModel();
-    	//InGameState ingameState = new InGameState(game, nifty);
-    	MenuState menuState = new MenuState(nifty);
+    	//TODO: Afton, Should not send itself as parameter. Too strong connections
+    	MenuState menuState = new MenuState(nifty, this);
     	
-    	this.stateManager.attach(menuState);
-       	//this.stateManager.attach(ingameState);
-
-       //	ingameState.setEnabled(false);
     	menuState.setEnabled(true);
-        
+              	
+       	this.stateManager.attach(menuState);
+       	
         
         // Set logger level
         Logger.getLogger("").setLevel(Level.SEVERE);
-        
-        
-        
+         
     }
 
     @Override
@@ -96,4 +97,13 @@ public class AppController extends SimpleApplication{
     public void simpleRender(RenderManager rm) {
         //TODO Markus: add render code
     }
+    
+    public void startIngameState(){
+    	System.out.println("EHEHEH");
+        IGame game = new GameModel();
+    	InGameState ingameState = new InGameState(game, nifty);
+    	this.stateManager.attach(ingameState);
+    	ingameState.setEnabled(true);
+    }
+    
 }

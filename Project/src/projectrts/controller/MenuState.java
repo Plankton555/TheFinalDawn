@@ -8,12 +8,14 @@ import com.jme3.app.state.AppStateManager;
 import de.lessvoid.nifty.Nifty;
 
 public class MenuState extends AbstractAppState {
-	SimpleApplication app;
-	Nifty nifty;
+	private SimpleApplication app;
+	private Nifty nifty;
+	private AppController appController;
 	
 	
-    public MenuState(Nifty nifty) {
+    public MenuState(Nifty nifty, AppController appController) {
 		this.nifty = nifty;
+		this.appController = appController;
 	}
 
 
@@ -24,7 +26,7 @@ public class MenuState extends AbstractAppState {
     	this.app.getInputManager().clearMappings();
     	
     	
-    	MenuGUIController menuGuiController = new MenuGUIController(app, nifty);
+    	MenuGUIController menuGuiController = new MenuGUIController(app, nifty, appController);
     }
 
 }
