@@ -7,6 +7,7 @@ import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.controls.SelectControl;
+import projectrts.view.spatials.BarracksSpatial;
 import projectrts.view.spatials.HeadquarterSpatial;
 import projectrts.view.spatials.ResourceSpatial;
 import projectrts.view.spatials.SelectSpatial;
@@ -37,6 +38,7 @@ public class AppController extends SimpleApplication{
 			Class.forName(WarriorSpatial.class.getName());
 			Class.forName(WorkerSpatial.class.getName());
 			Class.forName(HeadquarterSpatial.class.getName());
+			Class.forName(BarracksSpatial.class.getName());
 			Class.forName(ResourceSpatial.class.getName());
 			Class.forName(SelectSpatial.class.getName());
 		}

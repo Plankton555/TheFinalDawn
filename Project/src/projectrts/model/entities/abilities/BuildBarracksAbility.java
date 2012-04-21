@@ -3,24 +3,25 @@ package projectrts.model.entities.abilities;
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.structures.Barracks;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
 
 /**
- * A class that trains a unit
+ * An ability for building Barracks
  * @author Jakob Svensson
  *
  */
-public class TrainWorkerAbility extends AbstractAbility{
-	private PlayerControlledEntity structure;
-	private static float buildTime = 5; 
-	private static int buildCost = 50; 
-	private static float cooldown = .5f;
+public class BuildBarracksAbility extends AbstractAbility{
+	private PlayerControlledEntity builder;
+	private static float buildTime = 10; 
+	private static int buildCost = 200; 
+	private static float cooldown = 0.5f;
+	private Position buildPos;
 	private float buildTimeLeft;
-	private Position spawnPos;
 	
 	static {
-		AbilityFactory.INSTANCE.registerAbility(TrainWorkerAbility.class.getSimpleName(), new TrainWorkerAbility());
+		AbilityFactory.INSTANCE.registerAbility(BuildBarracksAbility.class.getSimpleName(), new BuildBarracksAbility());
 	}
 	
 	/**
@@ -32,14 +33,14 @@ public class TrainWorkerAbility extends AbstractAbility{
 	
 	@Override
 	public String getName() {
-		return "TrainWorker";
+		return BuildBarracksAbility.class.getSimpleName();
 	}
 
 	@Override
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			if(buildTimeLeft<=0){
-				EntityManager.getInstance().addNewPCE("Worker", (Player)structure.getOwner(),spawnPos);
+				EntityManager.getInstance().addNewPCE(Barracks.class.getSimpleName(), (Player)builder.getOwner(),buildPos);
 				setFinished(true);
 				buildTimeLeft =buildTime;
 			}else{
@@ -51,12 +52,11 @@ public class TrainWorkerAbility extends AbstractAbility{
 
 	@Override
 	public void useAbility(PlayerControlledEntity caster, Position target) {
-		structure = caster;
-		Player owner = (Player)structure.getOwner();
+		builder = caster;
+		Player owner = (Player)builder.getOwner();
 		if(owner.getResources()>=buildCost){//TODO Jakob: Notify view somehow when not enough resources
 			owner.modifyResource(-buildCost); 
-			spawnPos = new Position(structure.getPosition().getX()+structure.getSize(),
-					structure.getPosition().getY()+structure.getSize()); //TODO Plankton: Decide spawnPos
+			buildPos = target;
 			setActive(true);
 			setFinished(false);
 			buildTimeLeft=buildTime;
@@ -65,7 +65,7 @@ public class TrainWorkerAbility extends AbstractAbility{
 
 	@Override
 	public AbstractAbility createAbility() {
-		TrainWorkerAbility newAbility = new TrainWorkerAbility();
+		BuildBarracksAbility newAbility = new BuildBarracksAbility();
 		newAbility.initialize();
 		return newAbility;
 	}

@@ -233,9 +233,6 @@ public class EntityManager implements IEntityManager, PropertyChangeListener{
 		PlayerControlledEntity entity = getPCEAtPosition(pos, owner);
 		if(entity!=null){ //No entity is at that position
 			selectedEntities.add(entity);
-			if(entity.getName().equals("Headquarter")){
-				entity.doAbility("TrainWorker", new Position(40, 50));
-			}
 		}
 	}
 	

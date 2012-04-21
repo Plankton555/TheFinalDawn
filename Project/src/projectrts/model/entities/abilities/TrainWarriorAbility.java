@@ -3,24 +3,25 @@ package projectrts.model.entities.abilities;
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.units.Warrior;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
-
+//TODO Jakob: Maybe extract common code with trainWorkerAbility to a abstract class
 /**
- * A class that trains a unit
+ * A class that trains a Warrior
  * @author Jakob Svensson
  *
  */
-public class TrainWorkerAbility extends AbstractAbility{
+public class TrainWarriorAbility extends AbstractAbility{
 	private PlayerControlledEntity structure;
-	private static float buildTime = 5; 
-	private static int buildCost = 50; 
-	private static float cooldown = .5f;
-	private float buildTimeLeft;
+	private static float buildTime = 7; 
+	private static int buildCost = 100; 
+	private static float cooldown = 0.5f;
 	private Position spawnPos;
+	private float buildTimeLeft;
 	
 	static {
-		AbilityFactory.INSTANCE.registerAbility(TrainWorkerAbility.class.getSimpleName(), new TrainWorkerAbility());
+		AbilityFactory.INSTANCE.registerAbility(TrainWarriorAbility.class.getSimpleName(), new TrainWarriorAbility());
 	}
 	
 	/**
@@ -32,14 +33,14 @@ public class TrainWorkerAbility extends AbstractAbility{
 	
 	@Override
 	public String getName() {
-		return "TrainWorker";
+		return TrainWarriorAbility.class.getSimpleName();
 	}
 
 	@Override
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			if(buildTimeLeft<=0){
-				EntityManager.getInstance().addNewPCE("Worker", (Player)structure.getOwner(),spawnPos);
+				EntityManager.getInstance().addNewPCE(Warrior.class.getSimpleName(), (Player)structure.getOwner(),spawnPos);
 				setFinished(true);
 				buildTimeLeft =buildTime;
 			}else{
@@ -65,7 +66,7 @@ public class TrainWorkerAbility extends AbstractAbility{
 
 	@Override
 	public AbstractAbility createAbility() {
-		TrainWorkerAbility newAbility = new TrainWorkerAbility();
+		TrainWarriorAbility newAbility = new TrainWarriorAbility();
 		newAbility.initialize();
 		return newAbility;
 	}

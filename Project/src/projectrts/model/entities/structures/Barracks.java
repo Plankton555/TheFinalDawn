@@ -4,39 +4,38 @@ import projectrts.model.entities.AbstractStructure;
 import projectrts.model.entities.EntityFactory;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.abilities.AbilityFactory;
-import projectrts.model.entities.abilities.TrainWorkerAbility;
+import projectrts.model.entities.abilities.TrainWarriorAbility;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
+
 /**
- * A building for creating workers and deposit resources
+ * A building for training warriors 
  * @author Jakob Svensson
  *
  */
-public class Headquarter extends AbstractStructure{
+public class Barracks extends AbstractStructure{
 	
-	private static float size = 2;
-	private static final float sightRange = 5;
+private static float size = 2;
+private static final float sightRange = 5;
 	
 	static {
-		EntityFactory.INSTANCE.registerPCE(Headquarter.class.getSimpleName(), new Headquarter());
+		EntityFactory.INSTANCE.registerPCE(Barracks.class.getSimpleName(), new Barracks());
 	}
-
 	
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
-		this.abilities.add(AbilityFactory.INSTANCE.createAbility(TrainWorkerAbility.class.getSimpleName()));
-		setName(Headquarter.class.getSimpleName());
+		this.abilities.add(AbilityFactory.INSTANCE.createAbility(TrainWarriorAbility.class.getSimpleName()));
+		setName(Barracks.class.getSimpleName());
 		setSize(size);
 		setSightRange(sightRange);
-		deposit = true;
+		deposit = false;
 	}
 	
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
-		Headquarter newHQ = new Headquarter();
-		newHQ.initialize(owner, pos);
-		return newHQ;
+		Barracks newBarracks = new Barracks();
+		newBarracks.initialize(owner, pos);
+		return newBarracks;
 	}
 
-	
 }

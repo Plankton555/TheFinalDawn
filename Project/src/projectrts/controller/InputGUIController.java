@@ -24,7 +24,7 @@ import de.lessvoid.nifty.screen.ScreenController;
 
 /**
  * A controller class that handles input from the gui
- * @author Filip Brynfors
+ * @author Filip Brynfors Modified by Jakob Svensson
  *
  */
 public class InputGUIController implements ScreenController {
@@ -37,6 +37,7 @@ public class InputGUIController implements ScreenController {
 	private SimpleApplication app;
 	
 	private List<IAbility> abilities; 
+	private IPlayerControlledEntity selectedPce;
 
 	
 	public InputGUIController(Application app, InputController input) {
@@ -157,8 +158,8 @@ public class InputGUIController implements ScreenController {
     
     	
     	if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
-    		IPlayerControlledEntity pce = (IPlayerControlledEntity) selectedEntities.get(0);
-    		abilities = pce.getAbilities();
+    		selectedPce = (IPlayerControlledEntity) selectedEntities.get(0);
+    		abilities = selectedPce.getAbilities();
     	}
     	
     	//Loops through every button and sets its attributes
@@ -210,7 +211,7 @@ public class InputGUIController implements ScreenController {
 			int iNr = Integer.parseInt(nr);
 			
 			if(iNr-1<abilities.size()){
-				input.selectAbility(abilities.get(iNr-1));
+				input.selectAbility(abilities.get(iNr-1), selectedPce);
 			}
 			
 			
