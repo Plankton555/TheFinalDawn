@@ -9,6 +9,7 @@ import projectrts.model.constants.P;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IAbility;
 import projectrts.model.entities.IEntity;
+import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.utils.Position;
 import projectrts.view.GameView;
@@ -275,8 +276,10 @@ public class InputController {
      * Selects an ability
      * @param ability the ability to become selected
      */
-    public void selectAbility(IAbility ability){
+    public void selectAbility(IAbility ability, IPlayerControlledEntity e){
     	//TODO Afton: Add code to handle ability clicks
+    	PlayerControlledEntity pce = (PlayerControlledEntity)e;
+    	pce.doAbility(ability.getName(), pce.getPosition());
     	System.out.println(ability.getName());
     }
     

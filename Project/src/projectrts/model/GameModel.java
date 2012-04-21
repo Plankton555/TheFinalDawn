@@ -9,8 +9,10 @@ import projectrts.model.entities.abilities.GatherResourceAbility;
 import projectrts.model.entities.abilities.MineResourceAbility;
 import projectrts.model.entities.abilities.MoveAbility;
 import projectrts.model.entities.abilities.OffensiveSpellAbility;
+import projectrts.model.entities.abilities.TrainWarriorAbility;
 import projectrts.model.entities.abilities.TrainWorkerAbility;
 import projectrts.model.entities.misc.Resource;
+import projectrts.model.entities.structures.Barracks;
 import projectrts.model.entities.structures.Headquarter;
 import projectrts.model.entities.units.Warrior;
 import projectrts.model.entities.units.Worker;
@@ -43,6 +45,7 @@ public class GameModel implements IGame {
 			Class.forName(Worker.class.getName());
 			Class.forName(Resource.class.getName());
 			Class.forName(Headquarter.class.getName());
+			Class.forName(Barracks.class.getName());
 			
 			// Initialize the ability classes.
 			Class.forName(AttackAbility.class.getName());
@@ -52,6 +55,7 @@ public class GameModel implements IGame {
 			Class.forName(MoveAbility.class.getName());
 			Class.forName(OffensiveSpellAbility.class.getName());
 			Class.forName(TrainWorkerAbility.class.getName());
+			Class.forName(TrainWarriorAbility.class.getName());
 						
 		}
 		catch (ClassNotFoundException any)
@@ -68,6 +72,7 @@ public class GameModel implements IGame {
 		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(56.5, 55.5));
 		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(60.5, 60.5));
 		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(34.5, 50.5));
+		entityManager.addNewPCE(Barracks.class.getSimpleName(), humanPlayer, new Position(38.5, 56.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 50.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 52.5));
 		entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(52.5, 52.5));
