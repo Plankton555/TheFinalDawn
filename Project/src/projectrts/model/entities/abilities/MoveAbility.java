@@ -82,6 +82,7 @@ public class MoveAbility extends AbstractAbility {
 		{
 			pathRefresh = false;
 			path = aStar.calculatePath(entity.getPosition(), targetPos, entity.getEntityID());
+			world.setNodesOccupied(world.getNodeAt(entity.getPosition()), entity.getSize(), 0);
 		}
 		
 		Position outputPos = entity.getPosition();
