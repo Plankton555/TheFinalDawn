@@ -108,7 +108,7 @@ public class MoveAbility extends AbstractAbility {
 				outputPos = nextNode.getPosition().copy();
 				path = aStar.calculatePath(outputPos, targetPos, entity.getEntityID());
 				
-				if (path.nrOfNodesLeft() > 1)
+				if (path.nrOfNodesLeft() > 0)
 				{
 					world.setNodesOccupied(nextNode.getNode(),
 							entity.getSize(), 0);
