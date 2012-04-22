@@ -13,6 +13,7 @@ import projectrts.model.utils.Position;
  */
 public class AStar {
 
+	private static AStar instance;
 	private static World world;
 	/**
 	 * Initializes the A* class
@@ -24,10 +25,19 @@ public class AStar {
 	}
 	
 	/**
-	 * Creates a new A* instance. AStar must have been initialized,
+	 * @return Singleton A* instance.AStar must have been initialized,
 	 * otherwise an IllegalStateException will be thrown.
 	 */
-	public AStar()
+	public static AStar getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new AStar();
+		}
+		return instance;
+	}
+	
+	private AStar()
 	{
 		if (world == null)
 		{

@@ -34,7 +34,7 @@ public class MoveAbility extends AbstractAbility {
 	 * When subclassing, invoke this to initialize the ability.
 	 */
 	protected void initialize() {
-		this.aStar = new AStar();
+		this.aStar = AStar.getInstance();
 		this.world = World.getInstance();
 	}
 	
