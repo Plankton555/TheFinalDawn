@@ -30,6 +30,8 @@ public class GameModel implements IGame {
 	private World world = World.getInstance();
 	private EntityManager entityManager = EntityManager.getInstance();
 	private Player humanPlayer = new Player();
+	// Depending on who gets to it first:
+	// TODO Markus: Implement some sort of AI
 	// TODO Plankton: Implement some sort of AI
 	private Player aiPlayer = new Player();
 	
