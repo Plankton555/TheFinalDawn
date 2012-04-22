@@ -114,7 +114,7 @@ public class AStar {
 	{
 		// TODO Plankton: Add support for different heuristic priorities
 		// TODO Plankton: Take entity size into account when calculating path
-		// TODO Plankton: Use threads or something to not "freeze" the game when calculating?
+		// Plankton: Use threads or something to not "freeze" the game when calculating?
 		// TODO Plankton: FIX DEBUG FOR NODES FFS!!!
 		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
 		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
@@ -152,23 +152,18 @@ public class AStar {
 				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
 				for (AStarNode node : adjacentNodes)
 				{
-					if (!node.isObstacle(occupyingEntityID)) // if not an obstacle
-					{
-						// TODO Plankton: These nested if statements could be combined
-						if (!closedList.contains(node)) // and not on closed list
+					if (!node.isObstacle(occupyingEntityID) && !closedList.contains(node))
+					{ // if not an obstacle and not on closed list
+						if (openList.contains(node)) // if on open list, check to see if new path is better
 						{
-							// TODO Plankton: Avoid if (x!=y) ..; else ..;
-							if (!openList.contains(node)) // and not on open list
-							{
-								// move to open list and calculate cost
-								openList.add(node);
-								node.calculateCostFromStart(currentNode, false);
-								node.calculateHeuristic(endNode);
-							}
-							else // if on open list, check to see if new path is better
-							{
-								node.calculateCostFromStart(currentNode, true);
-							}
+							node.calculateCostFromStart(currentNode, true);
+						}
+						else  // if not on open list
+						{
+							// move to open list and calculate cost
+							openList.add(node);
+							node.calculateCostFromStart(currentNode, false);
+							node.calculateHeuristic(endNode);
 						}
 					}
 				}
