@@ -84,7 +84,7 @@ public abstract class AbstractEntity implements IEntity {
 	/*
 	private void enterNewNode(Node newNode)
 	{
-		// TODO Plankton: Can this be done better?
+		// Plankton: Can this be done better?
 		if (occupiedNode == null)
 		{
 			world.setNodesOccupied(newNode, getSize(), getEntityID());
