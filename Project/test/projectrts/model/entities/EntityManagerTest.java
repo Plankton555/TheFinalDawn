@@ -39,6 +39,8 @@ public class EntityManagerTest {
 		assertTrue(EntityManager.getInstance().getSelectedEntities().size() == 0);
 		
 	}
+	
+	// TODO Plankton: Test the methods that are written by Plankton
 
 	
 	

@@ -3,7 +3,7 @@ package projectrts.model.entities;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
 
-
+//TODO Afton: ADD JAVADOC!!
 public abstract class AbstractUnit extends PlayerControlledEntity{
 
 	/**

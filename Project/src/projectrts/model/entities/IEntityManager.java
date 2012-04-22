@@ -5,6 +5,7 @@ import java.util.List;
 import projectrts.model.player.IPlayer;
 import projectrts.model.utils.Position;
 
+//TODO Markus: ADD JAVADOC!!
 public interface IEntityManager {
 	
 	public List<IEntity> getAllEntities();

@@ -1,5 +1,6 @@
 package projectrts.controller;
 
+// TODO Afton(?): ADD JAVADOC!!
 import projectrts.model.GameModel;
 import projectrts.model.IGame;
 

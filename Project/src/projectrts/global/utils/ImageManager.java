@@ -21,6 +21,7 @@ public enum ImageManager {
 	private HashMap<String, NiftyImage> images = new HashMap<String, NiftyImage>();
 	
 
+	// TODO Afton: Add javadoc
 	public void initializeImages(Nifty nifty){
 		NiftyRenderEngine engine = nifty.getRenderEngine();
 
