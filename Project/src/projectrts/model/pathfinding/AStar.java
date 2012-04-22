@@ -46,10 +46,68 @@ public class AStar {
 	}
 	
 	/**
+	 * Returns the closest node that is not occupied.
+	 * @param startingPos The position that is the starting point for the calculation.
+	 * @param towards The position that this method "strives towards". Use null if you just want to
+	 * search around the starting point in no particular direction.
+	 * @param occupyingEntityID The entity ID of the unit which occupation is to be ignored.
+	 * Use 0 to only search for completely unoccupied nodes.
+	 * @return The AStarNode which is the closest unoccupied node according to the premises.
+	 * N.B.: If no such node is found, null will be returned.
+	 */
+	public AStarNode getClosestUnoccupiedNode(Position startingPos, Position towards, int occupyingEntityID)
+	{
+		// Use A* "backwards" to find the closest walkable node.
+		AStarNode targetNode = new AStarNode(world.getNodeAt(startingPos));
+		AStarNode towardsNode;
+		if (towards != null)
+		{
+			towardsNode = new AStarNode(world.getNodeAt(towards));
+		}
+		else
+		{
+			towardsNode = null;
+		}
+		List<AStarNode> closedList = new ArrayList<AStarNode>();
+		List<AStarNode> openList = new ArrayList<AStarNode>();
+		
+		openList.add(targetNode);
+		while (openList.size() > 0)
+		{
+			Collections.sort(openList);
+			AStarNode currentNode = openList.get(0);
+			
+			if (!currentNode.isObstacle(occupyingEntityID))
+			{
+				return currentNode;
+			}
+			openList.remove(currentNode);
+			closedList.add(currentNode);
+			
+			List<AStarNode> adjacentNodes = currentNode.getNeighbours();
+			for (AStarNode node : adjacentNodes)
+			{
+				if (!openList.contains(node) && !closedList.contains(node))
+				{
+					openList.add(node);
+					node.calculateCostFromStart(currentNode, false);
+					if (towardsNode != null)
+					{
+						node.calculateHeuristic(towardsNode);
+					}
+				}
+			}
+		}
+		
+		// Nothing could be found
+		return null;
+	}
+	
+	/**
 	 * Calculates a path using the A* algorithm.
 	 * @param startPos Start position.
 	 * @param targetPos End position.
-	 * @paran occupyingEntityID ID of occupying entity.
+	 * @param occupyingEntityID ID of occupying entity.
 	 * @return An AStarPath from startPos to targetPos.
 	 */
 	public AStarPath calculatePath(Position startPos, Position targetPos, int occupyingEntityID)
@@ -67,33 +125,7 @@ public class AStar {
 		{
 			// Use A* "backwards" from the end node to find the closest walkable node.
 			// Probably not the best way of dealing with it, but it will do for now.
-			List<AStarNode> endClosedList = new ArrayList<AStarNode>();
-			List<AStarNode> endOpenList = new ArrayList<AStarNode>();
-			endOpenList.add(endNode);
-			while (endOpenList.size() > 0)
-			{
-				Collections.sort(endOpenList);
-				AStarNode currentNode = endOpenList.get(0);
-				
-				if (!currentNode.isObstacle(occupyingEntityID))
-				{
-					endNode = currentNode;
-					break;
-				}
-				endOpenList.remove(currentNode);
-				endClosedList.add(currentNode);
-				
-				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
-				for (AStarNode node : adjacentNodes)
-				{
-					if (!endOpenList.contains(node) && !endClosedList.contains(node))
-					{
-						endOpenList.add(node);
-						node.calculateCostFromStart(currentNode, false);
-						node.calculateHeuristic(startNode);
-					}
-				}
-			}
+			endNode = getClosestUnoccupiedNode(targetPos, startPos, occupyingEntityID);
 		}
 		
 		// A* algorithm starts here
