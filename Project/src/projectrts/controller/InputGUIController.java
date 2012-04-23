@@ -9,7 +9,6 @@ import projectrts.model.entities.IPlayerControlledEntity;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
-import com.jme3.niftygui.NiftyJmeDisplay;
 
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.builder.LayerBuilder;
@@ -19,7 +18,7 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.render.NiftyImage;
-import de.lessvoid.nifty.screen.Screen;
+		import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 
 /**
@@ -75,8 +74,6 @@ public class InputGUIController implements ScreenController {
 	            // <panel>
 	            panel(new PanelBuilder("Panel_GUI") {{
 	               childLayoutHorizontal(); // panel properties, add more...  
-	               backgroundImage("assets/gui/sten.png"); 
-	               imageMode("repeat:0,0,512,512");
 		           visibleToMouse(true);
 		           
 	               panel(new PanelBuilder("Panel_Main"){{
@@ -135,6 +132,11 @@ public class InputGUIController implements ScreenController {
 	        // </layer>
 	      }}.build(nifty));
 	    // </screen>
+	    
+	    
+	    Element element = nifty.getScreen("Screen_ID").findElementByName("Panel_GUI");
+	    NiftyImage image = ImageManager.INSTANCE.getImage("GUIBackground");
+	    element.getRenderer(ImageRenderer.class).setImage(image);
 	 
 	    nifty.gotoScreen("Screen_ID"); // start the screen
 	}
