@@ -14,7 +14,7 @@ import com.jme3.scene.shape.Box;
  * @author Bjorn Persson Mattsson
  *
  */
-public class DebugNodeSpatial extends AbstractSpatial {
+public class DebugNodeSpatial extends AbstractSpatial implements ISpatial {
 private Material material;
 	
 	static {
@@ -25,21 +25,13 @@ private Material material;
 		super(name, box);
 	}
 
-	/**
-	 * Creates and returns a new spatial using the parameters provided.
-	 * @param name The name of the new spatial.
-	 * @param material The material of the new spatial.
-	 * @param box The shape of the new spatial.
-	 * @param controlList A list of the controls the spatial will use.
-	 */
 	@Override
-	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
+	public AbstractSpatial createSpatial(String name, Box box) {
 		material = MaterialManager.INSTANCE.getMaterial("Unshaded");
-		material.setColor("Color", ColorRGBA.Black);
+		material.setColor("Color", ColorRGBA.Green);
 		
 		DebugNodeSpatial newSpatial = new DebugNodeSpatial(name, box);
 		newSpatial.setMaterial(material);
-		newSpatial.addControl(ControlFactory.INSTANCE.createControl(MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}
 

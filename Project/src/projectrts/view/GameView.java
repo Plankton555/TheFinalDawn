@@ -194,13 +194,15 @@ public class GameView{
     		for (int j=0; j<nodes[i].length; j++)
     		{
     			nodeShapes[i][j] = new Box(
-    					new Vector3f(0, 0, 0),
+    					new Vector3f((float)nodes[i][j].getPosition().getX()*mod,
+    							-(float)nodes[i][j].getPosition().getY()*mod,
+    							1),
     					(0.1f * mod)/2,
     					(0.1f * mod)/2,
     					0);
     			
-    			AbstractSpatial nodeSpatial = SpatialFactory.INSTANCE.createSpatial(nodes[i][j].getClass().getSimpleName() + "Spatial",
-    					nodes[i][j].getClass().getSimpleName(), nodeShapes[i][j], nodes[i][j]);
+    			AbstractSpatial nodeSpatial = SpatialFactory.INSTANCE.createSpatial("DebugNodeSpatial",
+    					nodes[i][j].getClass().getSimpleName(), nodeShapes[i][j]);
     			debug.attachChild(nodeSpatial);
     		}
     	}
@@ -217,7 +219,7 @@ public class GameView{
     		entityShapes[i] = new Box(new Vector3f(0, 0, 0),  
     									(newEntities.get(i).getSize() * mod)/2, (newEntities.get(i).getSize() * mod)/2, 0); 
     		// Create spatial.
-    		AbstractSpatial entitySpatial = SpatialFactory.INSTANCE.createSpatial(newEntities.get(i).getClass().getSimpleName() + "Spatial",
+    		AbstractSpatial entitySpatial = SpatialFactory.INSTANCE.createEntitySpatial(newEntities.get(i).getClass().getSimpleName() + "Spatial",
     				newEntities.get(i).getClass().getSimpleName(), entityShapes[i], newEntities.get(i));
     		// Attach spatial to the entities node.
     		entities.attachChild(entitySpatial);
@@ -258,7 +260,7 @@ public class GameView{
 	    	// The control will instantly translate it to the correct location.
 	    	Box circle = new Box(new Vector3f(0, 0, -1), 
 	    			(selectedEntities.get(i).getSize() + 0.3f)/2 * mod, (selectedEntities.get(i).getSize() + 0.3f)/2 * mod, 0);
-	    	AbstractSpatial circleSpatial = SpatialFactory.INSTANCE.createSpatial("SelectSpatial", selectedEntities.get(i).getName(), circle, selectedEntities.get(i));	
+	    	AbstractSpatial circleSpatial = SpatialFactory.INSTANCE.createEntitySpatial("SelectSpatial", selectedEntities.get(i).getName(), circle, selectedEntities.get(i));	
 	    	// Attach spatial to the selected node, connecting it to the world.
 	    	selected.attachChild(circleSpatial);
     	}

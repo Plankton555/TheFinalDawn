@@ -19,7 +19,12 @@ public enum SpatialFactory {INSTANCE;
 	}
 
 	// TODO Markus: Add javadoc
-	public AbstractSpatial createSpatial(String spatialType, String name, Box box, IEntity entity) {
-		return spatialMap.get(spatialType).createSpatial(name, box, entity);
+	public AbstractSpatial createEntitySpatial(String spatialType, String name, Box box, IEntity entity) {
+		return ((IEntitySpatial)spatialMap.get(spatialType)).createSpatial(name, box, entity);
+	}
+	
+	// TODO Plankton: Add javadoc
+	public AbstractSpatial createSpatial(String spatialType, String name, Box box) {
+		return ((ISpatial)spatialMap.get(spatialType)).createSpatial(name, box);
 	}
 }

@@ -13,7 +13,7 @@ import com.jme3.scene.shape.Box;
  * @author Markus Ekström
  *
  */
-public class WarriorSpatial extends AbstractSpatial {
+public class WarriorSpatial extends AbstractSpatial implements IEntitySpatial {
 	private Material material;
 	
 	static {

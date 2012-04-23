@@ -14,7 +14,7 @@ import com.jme3.scene.shape.Box;
  * @author Jakob Svensson
  *
  */
-public class HeadquarterSpatial extends AbstractSpatial{
+public class HeadquarterSpatial extends AbstractSpatial implements IEntitySpatial{
 	private Material material;
 	
 	static {
