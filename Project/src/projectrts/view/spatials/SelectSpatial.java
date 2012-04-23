@@ -35,7 +35,7 @@ public class SelectSpatial extends AbstractSpatial implements IEntitySpatial{
 		
 		SelectSpatial newSpatial = new SelectSpatial(name, box);
 		newSpatial.setMaterial(material);
-		newSpatial.addControl(ControlFactory.INSTANCE.createControl(SelectControl.class.getSimpleName(), entity));
+		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(SelectControl.class.getSimpleName(), entity));
 		
 		return newSpatial;
 	}

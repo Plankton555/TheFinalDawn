@@ -38,7 +38,7 @@ public class WarriorSpatial extends AbstractSpatial implements IEntitySpatial {
 		
 		WarriorSpatial newSpatial = new WarriorSpatial(name, box);
 		newSpatial.setMaterial(material);
-		newSpatial.addControl(ControlFactory.INSTANCE.createControl(MoveControl.class.getSimpleName(), entity));
+		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}
 }

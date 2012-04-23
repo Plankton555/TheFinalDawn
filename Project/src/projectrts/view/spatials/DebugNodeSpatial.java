@@ -2,6 +2,7 @@ package projectrts.view.spatials;
 
 import projectrts.global.utils.MaterialManager;
 import projectrts.model.entities.IEntity;
+import projectrts.model.pathfinding.INode;
 import projectrts.view.controls.ControlFactory;
 import projectrts.view.controls.MoveControl;
 
@@ -26,7 +27,7 @@ private Material material;
 	}
 
 	@Override
-	public AbstractSpatial createSpatial(String name, Box box) {
+	public AbstractSpatial createSpatial(String name, Box box, INode node) {
 		material = MaterialManager.INSTANCE.getMaterial("Unshaded");
 		material.setColor("Color", ColorRGBA.Green);
 		

@@ -1,5 +1,7 @@
 package projectrts.view.controls;
 
+import com.jme3.scene.control.AbstractControl;
+
 import projectrts.model.entities.IEntity;
 /**
  * 
@@ -7,8 +9,8 @@ import projectrts.model.entities.IEntity;
  *
  */
 // TODO Markus: Class names shouldn't shadow simple name of superclass
-public abstract class AbstractControl extends com.jme3.scene.control.AbstractControl{
+public interface IEntityControl {
 	
 	// TODO Markus: Add javadoc
-	public abstract AbstractControl createControl(IEntity entity);
+	public AbstractControl createControl(IEntity entity);
 }

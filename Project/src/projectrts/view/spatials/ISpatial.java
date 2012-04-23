@@ -1,5 +1,7 @@
 package projectrts.view.spatials;
 
+import projectrts.model.pathfinding.INode;
+
 import com.jme3.scene.shape.Box;
 
 /**
@@ -10,5 +12,5 @@ import com.jme3.scene.shape.Box;
 public interface ISpatial {
 
 	// TODO Plankton: Add javadoc
-	public AbstractSpatial createSpatial(String name, Box box);
+	public AbstractSpatial createSpatial(String name, Box box, INode node);
 }

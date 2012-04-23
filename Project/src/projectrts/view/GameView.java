@@ -202,7 +202,7 @@ public class GameView{
     					0);
     			
     			AbstractSpatial nodeSpatial = SpatialFactory.INSTANCE.createSpatial("DebugNodeSpatial",
-    					nodes[i][j].getClass().getSimpleName(), nodeShapes[i][j]);
+    					nodes[i][j].getClass().getSimpleName(), nodeShapes[i][j], nodes[i][j]);
     			debug.attachChild(nodeSpatial);
     		}
     	}

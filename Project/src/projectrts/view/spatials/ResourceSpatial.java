@@ -40,7 +40,7 @@ public class ResourceSpatial extends AbstractSpatial implements IEntitySpatial{
 		ResourceSpatial newSpatial = new ResourceSpatial(name, box);
 		newSpatial.setMaterial(material);
 		// TODO Jakob: Should a resource really have a MoveControl?...
-		newSpatial.addControl(ControlFactory.INSTANCE.createControl(MoveControl.class.getSimpleName(), entity));
+		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}
 
