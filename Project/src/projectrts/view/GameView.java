@@ -55,10 +55,11 @@ public class GameView{
 	 */
 	public void initialize() {
 		initializeWorld();
+		initializeDebugNodes();
 		initializeEntities();
 		this.app.getRootNode().attachChild(selected);
 	}
-	
+
 	/**
 	 * Based on Jmonkey terrain example code
 	 * http://jmonkeyengine.org/wiki/doku.php/jme3:beginner:hello_terrain
@@ -123,6 +124,11 @@ public class GameView{
         
         
     }
+	
+	private void initializeDebugNodes() {
+		// TODO Plankton: Implement
+		
+	}
     
     private void initializeEntities() {
 
