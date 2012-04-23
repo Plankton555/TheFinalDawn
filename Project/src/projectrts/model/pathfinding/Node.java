@@ -10,7 +10,7 @@ import projectrts.model.utils.Position;
  * @author Bjorn Persson Mattsson
  *
  */
-public class Node {
+public class Node implements INode {
 
 	private Position position;
 	private int occupyingEntityID = 0;
@@ -42,6 +42,12 @@ public class Node {
 	public Position getPosition()
 	{
 		return this.position.copy();
+	}
+	
+
+	@Override
+	public boolean isOccupied() {
+		return isOccupied(0);
 	}
 	
 	/**
