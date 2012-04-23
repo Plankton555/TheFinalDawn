@@ -124,6 +124,7 @@ public final class World {
 	public void setNodesOccupied(Node nodeInCenter, float entitySize, int entityID) {
 		// TODO Plankton: Check for out of bounds (if close to border)
 		// TODO Plankton: Find some other way to do this...
+		// TODO Plankton: Write a method that takes a position and size and returns the nodes concerned
 		int offset = (int) (entitySize/2);
 		int centerX = (int) nodeInCenter.getPosition().getX();
 		int centerY = (int) nodeInCenter.getPosition().getY();

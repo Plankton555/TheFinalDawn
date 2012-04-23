@@ -10,7 +10,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.scene.shape.Box;
 
 // TODO Markus: ADD JAVADOC
-public class SelectSpatial extends AbstractSpatial{
+public class SelectSpatial extends AbstractSpatial implements IEntitySpatial{
 	private Material material;
 	
 	static {
@@ -35,7 +35,7 @@ public class SelectSpatial extends AbstractSpatial{
 		
 		SelectSpatial newSpatial = new SelectSpatial(name, box);
 		newSpatial.setMaterial(material);
-		newSpatial.addControl(ControlFactory.INSTANCE.createControl(SelectControl.class.getSimpleName(), entity));
+		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(SelectControl.class.getSimpleName(), entity));
 		
 		return newSpatial;
 	}
