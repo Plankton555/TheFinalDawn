@@ -1,5 +1,7 @@
 package projectrts.view;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +33,7 @@ import com.jme3.texture.Texture.WrapMode;
  * @author Markus Ekström
  *
  */
-public class GameView{
-	private int i;
+public class GameView implements PropertyChangeListener{
 	private SimpleApplication app;
 	private IGame game;
     private Node entities = new Node("entities"); // The node for all entities
@@ -41,11 +42,11 @@ public class GameView{
     private Material matTerrain;
     private TerrainQuad terrain;
     private float mod = Constants.INSTANCE.getModelToWorld(); // The modifier value for converting lengths between model and world.
-    private List<IEntity> entitiesList;
 	
 	public GameView(SimpleApplication app, IGame game) {
 		this.app = app;
 		this.game = game;
+		game.getEntityManager().addListener(this);
 	}
 	
 	/**
@@ -137,76 +138,34 @@ public class GameView{
      * @param tpf The time passed since the last frame.
      */
     public void update(float tpf) {
-    	updateEntities(tpf);
-    }
-    
-    
-    private void updateEntities(float tpf) {
-    	List<IEntity> newEntities = checkForNewEntities();
-    	integrateNewEntities(newEntities);
-    	removeDeadEntities();
-    }
-    
-    private List<IEntity> checkForNewEntities() {
-    	List<IEntity> newEntities = new ArrayList<IEntity>();
-    	
-    	if(entities.getChildren().size() < game.getEntityManager().getAllEntities().size()) {
-	    	boolean add = false;
-	    	
-	    	// For every entity, check if the spatial's entity has the same position.
-	    	// If not, the entity is new.
-	    	for(IEntity entity : game.getEntityManager().getAllEntities()) {
-	    		add = true;
-	    		for(Spatial spatial : entities.getChildren()) {
-	    			if(entity.getPosition().equals(spatial.getControl(MoveControl.class).getEntityPos())) {
-	    				add = false;
-	    			}
-	    		}
-	    		
-	    		if(add) {
-	    			newEntities.add(entity); 
-    			}
-	    	}
-    	}
-    	
-		return newEntities;
     }
     
     private void integrateNewEntities(List<IEntity> newEntities) {
-    	Box[] entityShapes = new Box[newEntities.size()];
-    	
     	for(int i = 0; i < newEntities.size(); i++) {
-    		// Create shape.
-    		// The location of the entity is initialized to (0, 0, 0) but is then instantly translated to the correct place by moveControl.
-    		// Gets the size from the model and converts it to world size.
-    		entityShapes[i] = new Box(new Vector3f(0, 0, 0),  
-    									(newEntities.get(i).getSize() * mod)/2, (newEntities.get(i).getSize() * mod)/2, 0); 
-    		// Create spatial.
-    		AbstractSpatial entitySpatial = SpatialFactory.INSTANCE.createSpatial(newEntities.get(i).getClass().getSimpleName() + "Spatial",
-    				newEntities.get(i).getClass().getSimpleName(), entityShapes[i], newEntities.get(i));
-    		// Attach spatial to the entities node.
-    		entities.attachChild(entitySpatial);
+    		integrateNewEntity(newEntities.get(i));
     	}
-
     }
     
-    private void removeDeadEntities() {
-    	if(entities.getChildren().size() > game.getEntityManager().getAllEntities().size()) {
-    		
-    		for(Spatial spatial : entities.getChildren()) {
-    			boolean remove = true;
-    			for(IEntity entity : game.getEntityManager().getAllEntities()) {
-    				if(spatial.getControl(MoveControl.class).getEntityPos().equals(entity.getPosition())) {
-    					remove = false;
-    				}
-    			}
-    			
-    			if(remove) {
-    				spatial.setCullHint(CullHint.Always);
-    				spatial.removeFromParent();
-    			}
-    		}
-    	}
+    private void integrateNewEntity(IEntity newEntity) {
+    	// Create shape.
+		// The location of the entity is initialized to (0, 0, 0) but is then instantly translated to the correct place by moveControl.
+		// Gets the size from the model and converts it to world size.
+		Box shape = new Box(new Vector3f(0, 0, 0),  
+									(newEntity.getSize() * mod)/2, (newEntity.getSize() * mod)/2, 0); 
+		// Create spatial.
+		AbstractSpatial entitySpatial = SpatialFactory.INSTANCE.createSpatial(newEntity.getClass().getSimpleName() + "Spatial",
+				newEntity.getClass().getSimpleName(), shape, newEntity);
+		// Attach spatial to the entities node.
+		entities.attachChild(entitySpatial);
+    }
+    
+    private void removeDeadEntity(IEntity entity) {
+    	for(Spatial spatial : entities.getChildren()) {
+    		if(spatial.getControl(MoveControl.class).getEntityPos().equals(entity.getPosition())) {
+    			spatial.setCullHint(CullHint.Always);
+				spatial.removeFromParent();
+			}
+		}
     }
  
     /**
@@ -228,4 +187,19 @@ public class GameView{
 	    	selected.attachChild(circleSpatial);
     	}
     }
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if(evt.getPropertyName().equals("entityCreated")) {
+			if(evt.getNewValue() instanceof IEntity) {
+				integrateNewEntity((IEntity)evt.getNewValue());
+			}
+		} else if (evt.getPropertyName().equals("entityRemoved")) {
+			if(evt.getOldValue() instanceof IEntity) {
+				removeDeadEntity((IEntity)evt.getOldValue());
+			}
+		}
+		
+	}
+    
 }

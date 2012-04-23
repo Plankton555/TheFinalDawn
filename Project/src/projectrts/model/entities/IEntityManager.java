@@ -1,5 +1,6 @@
 package projectrts.model.entities;
 
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import projectrts.model.player.IPlayer;
@@ -17,6 +18,8 @@ public interface IEntityManager {
 	public void useAbilitySelected(String ability, Position p);
 	
 	public List<IEntity> getSelectedEntities();
+	
+	public void addListener(PropertyChangeListener pcl);
 	
 	
 }

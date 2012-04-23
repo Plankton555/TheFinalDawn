@@ -18,7 +18,7 @@ public class Warrior extends AbstractUnit{
 	private static final float size = 1f;
 	private static final float speed = 4f;
 	private static final float sightRange = 5f;
-	private static final int damage = 20;
+	private static final int damage = 50;
 	private static final int maxHealth = 100;
 	
 	
