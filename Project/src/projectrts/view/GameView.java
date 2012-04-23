@@ -8,6 +8,7 @@ import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.IGame;
 import projectrts.model.entities.IEntity;
+import projectrts.model.pathfinding.INode;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.spatials.AbstractSpatial;
 import projectrts.view.spatials.SpatialFactory;
@@ -37,6 +38,7 @@ public class GameView{
 	private IGame game;
     private Node entities = new Node("entities"); // The node for all entities
     private Node selected = new Node("selected"); // The node for the selected graphics
+    private Node debug = new Node("debug"); // The node for the debugging graphics
     private Node terrainNode = new Node("terrain"); // The node for all terrain
     private Material matTerrain;
     private TerrainQuad terrain;
@@ -55,7 +57,7 @@ public class GameView{
 	 */
 	public void initialize() {
 		initializeWorld();
-		initializeDebugNodes();
+		initializeDebug();
 		initializeEntities();
 		this.app.getRootNode().attachChild(selected);
 	}
@@ -125,12 +127,16 @@ public class GameView{
         
     }
 	
-	private void initializeDebugNodes() {
-		// TODO Plankton: Implement
+	private void initializeDebug() {
+		if (Constants.INSTANCE.isDebugNodes())
+		{
+			integrateNodes(game.getNodes());
+		}
 		
+		this.app.getRootNode().attachChild(debug);
 	}
-    
-    private void initializeEntities() {
+
+	private void initializeEntities() {
 
     	integrateNewEntities(game.getEntityManager().getAllEntities());
     	
@@ -177,6 +183,29 @@ public class GameView{
     	
 		return newEntities;
     }
+    
+    private void integrateNodes(INode[][] nodes) {
+		// TODO Plankton: Implement
+    	Box[][] nodeShapes = new Box[nodes.length][];
+    	
+    	for (int i=0; i<nodes.length; i++)
+    	{
+    		nodeShapes[i] = new Box[nodes[i].length];
+    		for (int j=0; j<nodes[i].length; j++)
+    		{
+    			nodeShapes[i][j] = new Box(
+    					new Vector3f(0, 0, 0),
+    					(0.1f * mod)/2,
+    					(0.1f * mod)/2,
+    					0);
+    			
+    			AbstractSpatial nodeSpatial = SpatialFactory.INSTANCE.createSpatial(nodes[i][j].getClass().getSimpleName() + "Spatial",
+    					nodes[i][j].getClass().getSimpleName(), nodeShapes[i][j], nodes[i][j]);
+    			debug.attachChild(nodeSpatial);
+    		}
+    	}
+		
+	}
     
     private void integrateNewEntities(List<IEntity> newEntities) {
     	Box[] entityShapes = new Box[newEntities.size()];
