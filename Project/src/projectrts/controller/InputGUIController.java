@@ -75,8 +75,8 @@ public class InputGUIController implements ScreenController {
 	            // <panel>
 	            panel(new PanelBuilder("Panel_GUI") {{
 	               childLayoutHorizontal(); // panel properties, add more...  
-	               backgroundColor("#f00f"); 
-		           height("20%");
+	               backgroundImage("assets/gui/sten.png"); 
+	               imageMode("repeat:0,0,512,512");
 		           visibleToMouse(true);
 		           
 	               panel(new PanelBuilder("Panel_Main"){{
