@@ -6,7 +6,9 @@ import java.util.logging.Logger;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.view.controls.MoveControl;
+import projectrts.view.controls.NodeControl;
 import projectrts.view.controls.SelectControl;
+import projectrts.view.spatials.DebugNodeSpatial;
 import projectrts.view.spatials.HeadquarterSpatial;
 import projectrts.view.spatials.ResourceSpatial;
 import projectrts.view.spatials.SelectSpatial;
@@ -32,6 +34,7 @@ public class AppController extends SimpleApplication{
 			// Initialize the control classes.
 			Class.forName(MoveControl.class.getName());
 			Class.forName(SelectControl.class.getName());
+			Class.forName(NodeControl.class.getName());
 			
 			// Initialize the spatial classes.
 			Class.forName(WarriorSpatial.class.getName());
@@ -39,6 +42,7 @@ public class AppController extends SimpleApplication{
 			Class.forName(HeadquarterSpatial.class.getName());
 			Class.forName(ResourceSpatial.class.getName());
 			Class.forName(SelectSpatial.class.getName());
+			Class.forName(DebugNodeSpatial.class.getName());
 		}
 		catch (ClassNotFoundException any)
 		{

@@ -9,6 +9,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
 //TODO Markus: Check if MoveControl could be used instead of this class.
 /**
@@ -18,7 +19,7 @@ import com.jme3.scene.control.Control;
  * @author Markus Ekström
  *
  */
-public class SelectControl extends AbstractControl{
+public class SelectControl extends AbstractControl implements IEntityControl{
 	private IEntity entity;
 	
 	static {

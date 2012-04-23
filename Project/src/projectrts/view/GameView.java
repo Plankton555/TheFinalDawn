@@ -10,6 +10,7 @@ import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.IGame;
 import projectrts.model.entities.IEntity;
+import projectrts.model.pathfinding.INode;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.spatials.AbstractSpatial;
 import projectrts.view.spatials.SpatialFactory;
@@ -38,6 +39,7 @@ public class GameView implements PropertyChangeListener{
 	private IGame game;
     private Node entities = new Node("entities"); // The node for all entities
     private Node selected = new Node("selected"); // The node for the selected graphics
+    private Node debug = new Node("debug"); // The node for the debugging graphics
     private Node terrainNode = new Node("terrain"); // The node for all terrain
     private Material matTerrain;
     private TerrainQuad terrain;
@@ -56,10 +58,11 @@ public class GameView implements PropertyChangeListener{
 	 */
 	public void initialize() {
 		initializeWorld();
+		initializeDebug();
 		initializeEntities();
 		this.app.getRootNode().attachChild(selected);
 	}
-	
+
 	/**
 	 * Based on Jmonkey terrain example code
 	 * http://jmonkeyengine.org/wiki/doku.php/jme3:beginner:hello_terrain
@@ -124,8 +127,17 @@ public class GameView implements PropertyChangeListener{
         
         
     }
-    
-    private void initializeEntities() {
+	
+	private void initializeDebug() {
+		if (Constants.INSTANCE.isDebugNodes())
+		{
+			integrateNodes(game.getNodes());
+		}
+		
+		this.app.getRootNode().attachChild(debug);
+	}
+
+	private void initializeEntities() {
 
     	integrateNewEntities(game.getEntityManager().getAllEntities());
     	
@@ -140,6 +152,31 @@ public class GameView implements PropertyChangeListener{
     public void update(float tpf) {
     }
     
+    private void integrateNodes(INode[][] nodes) {
+		// TODO Plankton: Implement
+    	Box[][] nodeShapes = new Box[nodes.length][];
+    	
+    	for (int i=0; i<nodes.length; i++)
+    	{
+    		nodeShapes[i] = new Box[nodes[i].length];
+    		for (int j=0; j<nodes[i].length; j++)
+    		{
+    			nodeShapes[i][j] = new Box(
+    					new Vector3f((float)nodes[i][j].getPosition().getX()*mod,
+    							-(float)nodes[i][j].getPosition().getY()*mod,
+    							1),
+    					(0.1f * mod)/2,
+    					(0.1f * mod)/2,
+    					0);
+    			
+    			AbstractSpatial nodeSpatial = SpatialFactory.INSTANCE.createSpatial("DebugNodeSpatial",
+    					nodes[i][j].getClass().getSimpleName(), nodeShapes[i][j], nodes[i][j]);
+    			debug.attachChild(nodeSpatial);
+    		}
+    	}
+		
+	}
+    
     private void integrateNewEntities(List<IEntity> newEntities) {
     	for(int i = 0; i < newEntities.size(); i++) {
     		integrateNewEntity(newEntities.get(i));
@@ -153,7 +190,7 @@ public class GameView implements PropertyChangeListener{
 		Box shape = new Box(new Vector3f(0, 0, 0),  
 									(newEntity.getSize() * mod)/2, (newEntity.getSize() * mod)/2, 0); 
 		// Create spatial.
-		AbstractSpatial entitySpatial = SpatialFactory.INSTANCE.createSpatial(newEntity.getClass().getSimpleName() + "Spatial",
+		AbstractSpatial entitySpatial = SpatialFactory.INSTANCE.createEntitySpatial(newEntity.getClass().getSimpleName() + "Spatial",
 				newEntity.getClass().getSimpleName(), shape, newEntity);
 		// Attach spatial to the entities node.
 		entities.attachChild(entitySpatial);
@@ -182,7 +219,7 @@ public class GameView implements PropertyChangeListener{
 	    	// The control will instantly translate it to the correct location.
 	    	Box circle = new Box(new Vector3f(0, 0, -1), 
 	    			(selectedEntities.get(i).getSize() + 0.3f)/2 * mod, (selectedEntities.get(i).getSize() + 0.3f)/2 * mod, 0);
-	    	AbstractSpatial circleSpatial = SpatialFactory.INSTANCE.createSpatial("SelectSpatial", selectedEntities.get(i).getName(), circle, selectedEntities.get(i));	
+	    	AbstractSpatial circleSpatial = SpatialFactory.INSTANCE.createEntitySpatial("SelectSpatial", selectedEntities.get(i).getName(), circle, selectedEntities.get(i));	
 	    	// Attach spatial to the selected node, connecting it to the world.
 	    	selected.attachChild(circleSpatial);
     	}

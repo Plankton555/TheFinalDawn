@@ -3,6 +3,7 @@ package projectrts.view.spatials;
 import java.util.HashMap;
 
 import projectrts.model.entities.IEntity;
+import projectrts.model.pathfinding.INode;
 
 import com.jme3.scene.shape.Box;
 /**
@@ -19,7 +20,12 @@ public enum SpatialFactory {INSTANCE;
 	}
 
 	// TODO Markus: Add javadoc
-	public AbstractSpatial createSpatial(String spatialType, String name, Box box, IEntity entity) {
-		return spatialMap.get(spatialType).createSpatial(name, box, entity);
+	public AbstractSpatial createEntitySpatial(String spatialType, String name, Box box, IEntity entity) {
+		return ((IEntitySpatial)spatialMap.get(spatialType)).createSpatial(name, box, entity);
+	}
+	
+	// TODO Plankton: Add javadoc
+	public AbstractSpatial createSpatial(String spatialType, String name, Box box, INode node) {
+		return ((INodeSpatial)spatialMap.get(spatialType)).createSpatial(name, box, node);
 	}
 }

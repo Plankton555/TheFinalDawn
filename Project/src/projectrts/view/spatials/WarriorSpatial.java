@@ -13,7 +13,7 @@ import com.jme3.scene.shape.Box;
  * @author Markus Ekström
  *
  */
-public class WarriorSpatial extends AbstractSpatial {
+public class WarriorSpatial extends AbstractSpatial implements IEntitySpatial {
 	private Material material;
 	
 	static {
@@ -38,7 +38,7 @@ public class WarriorSpatial extends AbstractSpatial {
 		
 		WarriorSpatial newSpatial = new WarriorSpatial(name, box);
 		newSpatial.setMaterial(material);
-		newSpatial.addControl(ControlFactory.INSTANCE.createControl(MoveControl.class.getSimpleName(), entity));
+		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}
 }
