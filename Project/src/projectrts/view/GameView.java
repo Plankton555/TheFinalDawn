@@ -169,7 +169,7 @@ public class GameView implements PropertyChangeListener{
     					(0.1f * mod)/2,
     					0);
     			
-    			AbstractSpatial nodeSpatial = SpatialFactory.INSTANCE.createSpatial("DebugNodeSpatial",
+    			AbstractSpatial nodeSpatial = SpatialFactory.INSTANCE.createNodeSpatial("DebugNodeSpatial",
     					nodes[i][j].getClass().getSimpleName(), nodeShapes[i][j], nodes[i][j]);
     			debug.attachChild(nodeSpatial);
     		}
