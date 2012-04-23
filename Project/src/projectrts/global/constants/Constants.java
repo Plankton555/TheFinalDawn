@@ -12,7 +12,7 @@ public enum Constants {INSTANCE;
 	 */
 	public boolean isDebugNodes()
 	{
-		return true;
+		return false;
 	}
 	
 	/**
