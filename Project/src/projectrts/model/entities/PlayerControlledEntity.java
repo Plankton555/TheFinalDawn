@@ -65,27 +65,11 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		return maxHealth;
 	}
 	
-	/**
-	 * Adjusts the current health by the provided amount. Insert a negative number to
-	 * deal damage to the unit and a positive number to heal it.
-	 * @param amount The amout the hp is adjusted by.
-	 */
-	public void adjustHealth(int amount){
-		currentHealth += amount;
-		if(currentHealth <= 0){
-			currentHealth = 0;
-			EntityManager.getInstance().removeEntity(this);
-		} else if (currentHealth > maxHealth) {
-			currentHealth = maxHealth;
-		}
-			
-	}
-	
 	public void dealDamageTo(int damage) {
 		currentHealth -= damage;
 		if(currentHealth <= 0){
 			currentHealth = 0;
-			pcs.firePropertyChange("dead", 1, 0);
+			EntityManager.getInstance().removeEntity(this);
 		}
 	}
 

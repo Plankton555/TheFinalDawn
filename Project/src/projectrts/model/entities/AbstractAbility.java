@@ -3,7 +3,7 @@ package projectrts.model.entities;
 import projectrts.model.utils.Position;
 
 /**
- * An absract class for the common  attributes of the different abilities
+ * An abstract class for the common  attributes of the different abilities
  * @author Filip Brynfors
  *
  */

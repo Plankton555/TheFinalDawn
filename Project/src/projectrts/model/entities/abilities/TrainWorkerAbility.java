@@ -3,6 +3,8 @@ package projectrts.model.entities.abilities;
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.pathfinding.AStar;
+import projectrts.model.pathfinding.World;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
 
@@ -55,8 +57,7 @@ public class TrainWorkerAbility extends AbstractAbility{
 		Player owner = (Player)structure.getOwner();
 		if(owner.getResources()>=buildCost){//TODO Jakob: Notify view somehow when not enough resources
 			owner.modifyResource(-buildCost); 
-			spawnPos = new Position(structure.getPosition().getX()+structure.getSize(),
-					structure.getPosition().getY()+structure.getSize()); //TODO Plankton: Decide spawnPos
+			spawnPos = AStar.getInstance().getClosestUnoccupiedNode(structure.getPosition(), null, 0).getPosition();
 			setActive(true);
 			setFinished(false);
 			buildTimeLeft=buildTime;

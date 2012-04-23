@@ -13,6 +13,7 @@ import projectrts.model.utils.Position;
  */
 public class AStar {
 
+	private static AStar instance;
 	private static World world;
 	/**
 	 * Initializes the A* class
@@ -24,10 +25,19 @@ public class AStar {
 	}
 	
 	/**
-	 * Creates a new A* instance. AStar must have been initialized,
+	 * @return Singleton A* instance.AStar must have been initialized,
 	 * otherwise an IllegalStateException will be thrown.
 	 */
-	public AStar()
+	public static AStar getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new AStar();
+		}
+		return instance;
+	}
+	
+	private AStar()
 	{
 		if (world == null)
 		{
@@ -36,17 +46,76 @@ public class AStar {
 	}
 	
 	/**
+	 * Returns the closest node that is not occupied.
+	 * @param startingPos The position that is the starting point for the calculation.
+	 * @param towards The position that this method "strives towards". Use null if you just want to
+	 * search around the starting point in no particular direction.
+	 * @param occupyingEntityID The entity ID of the unit which occupation is to be ignored.
+	 * Use 0 to only search for completely unoccupied nodes.
+	 * @return The AStarNode which is the closest unoccupied node according to the premises.
+	 * N.B.: If no such node is found, null will be returned.
+	 */
+	public AStarNode getClosestUnoccupiedNode(Position startingPos, Position towards, int occupyingEntityID)
+	{
+		// Use A* "backwards" to find the closest walkable node.
+		AStarNode targetNode = new AStarNode(world.getNodeAt(startingPos));
+		AStarNode towardsNode;
+		if (towards != null)
+		{
+			towardsNode = new AStarNode(world.getNodeAt(towards));
+		}
+		else
+		{
+			towardsNode = null;
+		}
+		List<AStarNode> closedList = new ArrayList<AStarNode>();
+		List<AStarNode> openList = new ArrayList<AStarNode>();
+		
+		openList.add(targetNode);
+		while (openList.size() > 0)
+		{
+			Collections.sort(openList);
+			AStarNode currentNode = openList.get(0);
+			
+			if (!currentNode.isObstacle(occupyingEntityID))
+			{
+				return currentNode;
+			}
+			openList.remove(currentNode);
+			closedList.add(currentNode);
+			
+			List<AStarNode> adjacentNodes = currentNode.getNeighbours();
+			for (AStarNode node : adjacentNodes)
+			{
+				if (!openList.contains(node) && !closedList.contains(node))
+				{
+					openList.add(node);
+					node.calculateCostFromStart(currentNode, false);
+					if (towardsNode != null)
+					{
+						node.calculateHeuristic(towardsNode);
+					}
+				}
+			}
+		}
+		
+		// Nothing could be found
+		return null;
+	}
+	
+	/**
 	 * Calculates a path using the A* algorithm.
 	 * @param startPos Start position.
 	 * @param targetPos End position.
-	 * @paran occupyingEntityID ID of occupying entity.
+	 * @param occupyingEntityID ID of occupying entity.
 	 * @return An AStarPath from startPos to targetPos.
 	 */
 	public AStarPath calculatePath(Position startPos, Position targetPos, int occupyingEntityID)
 	{
 		// TODO Plankton: Add support for different heuristic priorities
 		// TODO Plankton: Take entity size into account when calculating path
-		// TODO Plankton: Use threads or something to not "freeze" the game when calculating?
+		// Plankton: Use threads or something to not "freeze" the game when calculating?
+		// TODO Plankton: FIX DEBUG FOR NODES FFS!!!
 		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
 		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
 		List<AStarNode> openList = new ArrayList<AStarNode>();
@@ -56,33 +125,7 @@ public class AStar {
 		{
 			// Use A* "backwards" from the end node to find the closest walkable node.
 			// Probably not the best way of dealing with it, but it will do for now.
-			List<AStarNode> endClosedList = new ArrayList<AStarNode>();
-			List<AStarNode> endOpenList = new ArrayList<AStarNode>();
-			endOpenList.add(endNode);
-			while (endOpenList.size() > 0)
-			{
-				Collections.sort(endOpenList);
-				AStarNode currentNode = endOpenList.get(0);
-				
-				if (!currentNode.isObstacle(occupyingEntityID))
-				{
-					endNode = currentNode;
-					break;
-				}
-				endOpenList.remove(currentNode);
-				endClosedList.add(currentNode);
-				
-				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
-				for (AStarNode node : adjacentNodes)
-				{
-					if (!endOpenList.contains(node) && !endClosedList.contains(node))
-					{
-						endOpenList.add(node);
-						node.calculateCostFromStart(currentNode, false);
-						node.calculateHeuristic(startNode);
-					}
-				}
-			}
+			endNode = getClosestUnoccupiedNode(targetPos, startPos, occupyingEntityID);
 		}
 		
 		// A* algorithm starts here
@@ -95,7 +138,7 @@ public class AStar {
 			
 			if (currentNode.equals(endNode))
 			{
-				return generatePath(startPos, startNode, currentNode);
+				return generatePath(startNode, currentNode);
 			}
 			else
 			{
@@ -109,23 +152,18 @@ public class AStar {
 				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
 				for (AStarNode node : adjacentNodes)
 				{
-					if (!node.isObstacle(occupyingEntityID)) // if not an obstacle
-					{
-						// TODO Plankton: These nested if statements could be combined
-						if (!closedList.contains(node)) // and not on closed list
+					if (!node.isObstacle(occupyingEntityID) && !closedList.contains(node))
+					{ // if not an obstacle and not on closed list
+						if (openList.contains(node)) // if on open list, check to see if new path is better
 						{
-							// TODO Avoid if (x!=y) ..; else ..;
-							if (!openList.contains(node)) // and not on open list
-							{
-								// move to open list and calculate cost
-								openList.add(node);
-								node.calculateCostFromStart(currentNode, false);
-								node.calculateHeuristic(endNode);
-							}
-							else // if on open list, check to see if new path is better
-							{
-								node.calculateCostFromStart(currentNode, true);
-							}
+							node.calculateCostFromStart(currentNode, true);
+						}
+						else  // if not on open list
+						{
+							// move to open list and calculate cost
+							openList.add(node);
+							node.calculateCostFromStart(currentNode, false);
+							node.calculateHeuristic(endNode);
 						}
 					}
 				}
@@ -135,18 +173,18 @@ public class AStar {
 		// path not found, return path to the closest node instead.
 		
 		Collections.sort(closedList, AStarNode.getHeuristicComparator());
-		return generatePath(startPos, startNode, closedList.get(1));
+		return generatePath(startNode, closedList.get(1));
 		// the second element in closedList since the first one is the start node
 	}
 	
-	private AStarPath generatePath(Position myPos, AStarNode startNode, AStarNode endNode)
+	private AStarPath generatePath(AStarNode startNode, AStarNode endNode)
 	{
 		AStarPath path = new AStarPath();
 		AStarNode nextNode = endNode;
 		
 		while (!nextNode.equals(startNode))
 		{
-			path.addPosToPath(nextNode.getPosition());
+			path.addNodeToPath(nextNode);
 			nextNode = nextNode.getParent();
 		}
 		

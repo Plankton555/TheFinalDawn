@@ -87,7 +87,7 @@ public final class World {
 	 */
 	public Node[][] getNodes()
 	{
-		// TODO Plankton: Return a shallow copy?
+		// TODO Plankton: Return a shallow copy
 		return nodes;
 	}
 	

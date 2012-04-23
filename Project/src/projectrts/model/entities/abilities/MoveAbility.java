@@ -6,7 +6,9 @@ import projectrts.model.constants.P;
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.pathfinding.AStar;
+import projectrts.model.pathfinding.AStarNode;
 import projectrts.model.pathfinding.AStarPath;
+import projectrts.model.pathfinding.World;
 import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
 
@@ -19,6 +21,7 @@ public class MoveAbility extends AbstractAbility {
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
 	
+	private World world;
 	private AStar aStar;
 	private AStarPath path;
 	private boolean pathRefresh = true;
@@ -31,7 +34,8 @@ public class MoveAbility extends AbstractAbility {
 	 * When subclassing, invoke this to initialize the ability.
 	 */
 	protected void initialize() {
-		this.aStar = new AStar();
+		this.aStar = AStar.getInstance();
+		this.world = World.getInstance();
 	}
 	
 	@Override
@@ -78,6 +82,7 @@ public class MoveAbility extends AbstractAbility {
 		{
 			pathRefresh = false;
 			path = aStar.calculatePath(entity.getPosition(), targetPos, entity.getEntityID());
+			world.setNodesOccupied(world.getNodeAt(entity.getPosition()), entity.getSize(), 0);
 		}
 		
 		Position outputPos = entity.getPosition();
@@ -88,12 +93,12 @@ public class MoveAbility extends AbstractAbility {
 			{
 				break;
 			}
-			Position nextNodePos = path.getNextPosition();
-			double distanceToNextNode = ModelUtils.INSTANCE.getDistance(outputPos, nextNodePos);
+			AStarNode nextNode = path.getNextNode();
+			double distanceToNextNode = ModelUtils.INSTANCE.getDistance(outputPos, nextNode.getPosition());
 			
 			if (distanceToNextNode > stepLength)
 			{
-				Vector2d direction = Position.getVectorBetween(outputPos, nextNodePos);
+				Vector2d direction = Position.getVectorBetween(outputPos, nextNode.getPosition());
 				direction.normalize();
 				outputPos = outputPos.add(stepLength, direction);
 				stepLength = 0;
@@ -101,8 +106,16 @@ public class MoveAbility extends AbstractAbility {
 			else //if (distanceToNextNode <= stepLength)
 			{
 				stepLength -= distanceToNextNode;
-				outputPos = nextNodePos.copy();
-				path = aStar.calculatePath(entity.getPosition(), targetPos, entity.getEntityID());
+				outputPos = nextNode.getPosition().copy();
+				path = aStar.calculatePath(outputPos, targetPos, entity.getEntityID());
+				
+				if (path.nrOfNodesLeft() > 0)
+				{
+					world.setNodesOccupied(nextNode.getNode(),
+							entity.getSize(), 0);
+					world.setNodesOccupied(path.getNextNode().getNode(),
+							entity.getSize(), entity.getEntityID());
+				}
 			}
 		}
 		return outputPos;

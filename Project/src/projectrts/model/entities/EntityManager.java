@@ -1,7 +1,7 @@
 package projectrts.model.entities;
 
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,19 +17,15 @@ import projectrts.model.utils.Position;
  * @author Bjorn Persson Mattsson, Modified by Markus Ekström
  *
  */
-public class EntityManager implements IEntityManager, PropertyChangeListener{
+public class EntityManager implements IEntityManager{
 
 	private static EntityManager instance = new EntityManager();
-	
 	private List<AbstractEntity> allEntities = new ArrayList<AbstractEntity>();
-
 	private List<AbstractEntity> entitiesAddQueue = new ArrayList<AbstractEntity>();
-	
 	private List<AbstractEntity> entitiesRemoveQueue = new ArrayList<AbstractEntity>();
-	
 	private List<PlayerControlledEntity> selectedEntities = new ArrayList<PlayerControlledEntity>();
-
 	private int idCounter = 0;
+	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
 	
 	/**
@@ -53,6 +49,8 @@ public class EntityManager implements IEntityManager, PropertyChangeListener{
 		
 		for (AbstractEntity e : entitiesAddQueue){
 			allEntities.add(e);
+			pcs.firePropertyChange("entityCreated", null, e);
+			
 			
 		}
 		
@@ -60,6 +58,7 @@ public class EntityManager implements IEntityManager, PropertyChangeListener{
 			for (int i = 0; i < allEntities.size(); i++) {
 				if (e.equals(allEntities.get(i))) {
 					allEntities.remove(i);
+					pcs.firePropertyChange("entityRemoved", e, null);
 				}
 			}
 		}
@@ -150,7 +149,6 @@ public class EntityManager implements IEntityManager, PropertyChangeListener{
 	 */
 	public void addNewPCE(String pce, Player owner, Position pos) {
 		PlayerControlledEntity newPCE = EntityFactory.INSTANCE.createPCE(pce, owner, pos);
-		newPCE.addListener(this);
 		entitiesAddQueue.add(newPCE);
 	}
 	
@@ -253,11 +251,8 @@ public class EntityManager implements IEntityManager, PropertyChangeListener{
 		}
 		return entities;
 	}
-
-	@Override
-	public void propertyChange(PropertyChangeEvent evt) {
-		
-		
+	
+	public void addListener(PropertyChangeListener pcl) {
+		pcs.addPropertyChangeListener(pcl);
 	}
-
 }

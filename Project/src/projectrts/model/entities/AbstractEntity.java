@@ -19,7 +19,6 @@ public abstract class AbstractEntity implements IEntity {
 	private World world;
 	private float size;
 	private float speed;
-	private Node occupiedNode;
 
 	/**
 	 * When subclassing, invoke this to initialize the entity.
@@ -27,15 +26,15 @@ public abstract class AbstractEntity implements IEntity {
 	 */
 	protected void initialize(Position spawnPos) {
 		this.entityID = EntityManager.getInstance().requestNewEntityID();
+		
 		this.world = World.getInstance();
-		//this.occupiedNode = world.getNodeAt(spawnPos);
-		//this.setPosition(spawnPos);
+
 		this.position = spawnPos.copy();
 	}
 	
 	protected void setSize(float size){
 		this.size=size*P.INSTANCE.getUnitLength();
-		this.setPosition(getPosition());
+		occupyNodes(world.getNodeAt(this.getPosition()));
 	}
 	protected void setSpeed(float speed){
 		this.speed=speed*P.INSTANCE.getUnitLength();
@@ -75,12 +74,17 @@ public abstract class AbstractEntity implements IEntity {
 	 */
 	public void setPosition(Position pos){
 		position = pos.copy();
-		enterNewNode(world.getNodeAt(pos));
+	}
+	
+	private void occupyNodes(Node newNode)
+	{
+		world.setNodesOccupied(newNode, getSize(), getEntityID());
 	}
 
+	/*
 	private void enterNewNode(Node newNode)
 	{
-		// TODO Plankton: Can this be done better?
+		// Plankton: Can this be done better?
 		if (occupiedNode == null)
 		{
 			world.setNodesOccupied(newNode, getSize(), getEntityID());
@@ -93,6 +97,7 @@ public abstract class AbstractEntity implements IEntity {
 			occupiedNode = newNode;
 		}
 	}
+	*/
 	
 	/**
 	 * Updates the unit.

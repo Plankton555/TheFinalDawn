@@ -15,7 +15,7 @@ public class AStarTest {
 		AStar astar;
 		
 		try {
-			astar = new AStar();
+			astar = AStar.getInstance();
 			assertTrue(false);
 		} catch (IllegalStateException e) {
 			assertTrue(true);
@@ -24,9 +24,10 @@ public class AStarTest {
 		World world = World.getInstance();
 		world.initializeWorld(5, 5);
 		AStar.initialize(world);
-		astar = new AStar();
+		astar = AStar.getInstance();
 		assertTrue(astar != null);
 	}
+	// TODO Plankton: Test getClosestUnoccupiedNode()!
 
 	@Test
 	public void testCalculatePath() {
