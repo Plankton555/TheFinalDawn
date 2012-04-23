@@ -26,6 +26,6 @@ public enum SpatialFactory {INSTANCE;
 	
 	// TODO Plankton: Add javadoc
 	public AbstractSpatial createSpatial(String spatialType, String name, Box box, INode node) {
-		return ((ISpatial)spatialMap.get(spatialType)).createSpatial(name, box, node);
+		return ((INodeSpatial)spatialMap.get(spatialType)).createSpatial(name, box, node);
 	}
 }

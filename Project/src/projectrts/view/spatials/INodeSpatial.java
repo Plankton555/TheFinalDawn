@@ -9,7 +9,7 @@ import com.jme3.scene.shape.Box;
  * @author Bjorn Persson Mattsson
  *
  */
-public interface ISpatial {
+public interface INodeSpatial {
 
 	// TODO Plankton: Add javadoc
 	public AbstractSpatial createSpatial(String name, Box box, INode node);

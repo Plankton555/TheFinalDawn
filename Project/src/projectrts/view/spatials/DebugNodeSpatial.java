@@ -1,10 +1,9 @@
 package projectrts.view.spatials;
 
 import projectrts.global.utils.MaterialManager;
-import projectrts.model.entities.IEntity;
 import projectrts.model.pathfinding.INode;
 import projectrts.view.controls.ControlFactory;
-import projectrts.view.controls.MoveControl;
+import projectrts.view.controls.NodeControl;
 
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -15,7 +14,7 @@ import com.jme3.scene.shape.Box;
  * @author Bjorn Persson Mattsson
  *
  */
-public class DebugNodeSpatial extends AbstractSpatial implements ISpatial {
+public class DebugNodeSpatial extends AbstractSpatial implements INodeSpatial {
 private Material material;
 	
 	static {
@@ -33,6 +32,7 @@ private Material material;
 		
 		DebugNodeSpatial newSpatial = new DebugNodeSpatial(name, box);
 		newSpatial.setMaterial(material);
+		newSpatial.addControl(ControlFactory.INSTANCE.createNodeControl(NodeControl.class.getSimpleName(), node));
 		return newSpatial;
 	}
 
