@@ -34,7 +34,6 @@ public final class World {
 	 */
 	public void initializeWorld(int height, int width) {
 		initNodes(height, width);
-		//setTestOccupation();
 	}
 	
 	private void initNodes(int height, int width)
@@ -87,7 +86,7 @@ public final class World {
 	 */
 	public Node[][] getNodes()
 	{
-		// TODO Plankton: Return a shallow copy
+		// TODO Plankton: !Return a shallow copy
 		return nodes;
 	}
 	
@@ -106,15 +105,6 @@ public final class World {
 		return nodes[y][x];
 	}
 	
-	private void setTestOccupation()
-	{
-		for (int i=40; i<60; i++)
-		{
-			// Creates a "wall" (currently invisible) from pos (40,40) to (60,40)
-			nodes[40][i].setOccupied(-1);
-		}
-	}
-	
 	/**
 	 * Sets the nodes around nodeInCenter as occupied by entityID.
 	 * @param nodeInCenter The node in center of the occupied nodes.
@@ -122,9 +112,9 @@ public final class World {
 	 * @param entityID ID of the entity that occupies.
 	 */
 	public void setNodesOccupied(Node nodeInCenter, float entitySize, int entityID) {
-		// TODO Plankton: Check for out of bounds (if close to border)
+		// TODO Plankton: !!!Check for out of bounds (if close to border)
 		// TODO Plankton: Find some other way to do this...
-		// TODO Plankton: Write a method that takes a position and size and returns the nodes concerned
+		// TODO Plankton: !!!!Write a method that takes a position and size and returns the nodes concerned
 		int offset = (int) (entitySize/2);
 		int centerX = (int) nodeInCenter.getPosition().getX();
 		int centerY = (int) nodeInCenter.getPosition().getY();

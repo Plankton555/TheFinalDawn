@@ -10,6 +10,10 @@ import projectrts.model.pathfinding.INode;
  */
 public interface INodeControl {
 
-	// TODO Plankton: Add javadoc
+	/**
+	 * Creates a NodeControl for the provided node.
+	 * @param node Node.
+	 * @return AbstractControl that is the NodeControl.
+	 */
 	public AbstractControl createControl(INode node);
 }

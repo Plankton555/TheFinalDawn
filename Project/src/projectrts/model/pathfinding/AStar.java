@@ -112,10 +112,9 @@ public class AStar {
 	 */
 	public AStarPath calculatePath(Position startPos, Position targetPos, int occupyingEntityID)
 	{
-		// TODO Plankton: Add support for different heuristic priorities
-		// TODO Plankton: Take entity size into account when calculating path
+		// TODO Plankton: !!Add support for different heuristic priorities
+		// TODO Plankton: !!!Take entity size into account when calculating path
 		// Plankton: Use threads or something to not "freeze" the game when calculating?
-		// TODO Plankton: FIX DEBUG FOR NODES FFS!!!
 		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
 		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
 		List<AStarNode> openList = new ArrayList<AStarNode>();

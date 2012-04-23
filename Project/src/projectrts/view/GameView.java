@@ -152,8 +152,8 @@ public class GameView implements PropertyChangeListener{
     public void update(float tpf) {
     }
     
-    private void integrateNodes(INode[][] nodes) {
-		// TODO Plankton: Implement
+    private void integrateNodes(INode[][] nodes)
+    {
     	Box[][] nodeShapes = new Box[nodes.length][];
     	
     	for (int i=0; i<nodes.length; i++)
