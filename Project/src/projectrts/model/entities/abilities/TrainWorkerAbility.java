@@ -8,7 +8,7 @@ import projectrts.model.entities.units.Worker;
  * @author Jakob Svensson
  *
  */
-public class TrainWorkerAbility extends AbstractTrainUnitAbility{
+public class TrainWorkerAbility extends AbstractCreationAbility{
 	private static float buildTime = 5; 
 	private static int buildCost = 50; 
 	private static float cooldown = .5f;
