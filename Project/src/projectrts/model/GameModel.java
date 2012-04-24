@@ -4,6 +4,7 @@ import projectrts.model.constants.P;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IEntityManager;
 import projectrts.model.entities.abilities.AttackAbility;
+import projectrts.model.entities.abilities.BuildBarracksAbility;
 import projectrts.model.entities.abilities.DeliverResourceAbility;
 import projectrts.model.entities.abilities.GatherResourceAbility;
 import projectrts.model.entities.abilities.MineResourceAbility;
@@ -49,6 +50,7 @@ public class GameModel implements IGame {
 			
 			// Initialize the ability classes.
 			Class.forName(AttackAbility.class.getName());
+			Class.forName(BuildBarracksAbility.class.getName());	
 			Class.forName(DeliverResourceAbility.class.getName());
 			Class.forName(GatherResourceAbility.class.getName());
 			Class.forName(MineResourceAbility.class.getName());

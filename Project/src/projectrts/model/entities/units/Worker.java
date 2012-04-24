@@ -5,6 +5,7 @@ import projectrts.model.entities.EntityFactory;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.abilities.AbilityFactory;
 import projectrts.model.entities.abilities.AttackAbility;
+import projectrts.model.entities.abilities.BuildBarracksAbility;
 import projectrts.model.entities.abilities.GatherResourceAbility;
 import projectrts.model.entities.abilities.MoveAbility;
 import projectrts.model.player.Player;
@@ -29,9 +30,12 @@ public class Worker extends AbstractUnit{
 	
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
-		this.abilities.add(AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName(), this));
-		this.abilities.add(AbilityFactory.INSTANCE.createAbility(GatherResourceAbility.class.getSimpleName(), this));
-		abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), this));
+
+		this.abilities.add(AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName()));
+		this.abilities.add(AbilityFactory.INSTANCE.createAbility(GatherResourceAbility.class.getSimpleName()));
+		this.abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
+		this.abilities.add(AbilityFactory.INSTANCE.createAbility(BuildBarracksAbility.class.getSimpleName()));
+
 		setName(Worker.class.getSimpleName());
 		setSize(size);
 		setSpeed(speed);

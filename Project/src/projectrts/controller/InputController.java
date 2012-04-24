@@ -38,6 +38,9 @@ public class InputController {
 	private SimpleApplication app;
 	private IGame game; // The model
 	private GameView view; 
+	private boolean choosingPosition=false;
+	private IAbility currentAbility;
+	private PlayerControlledEntity selectedEntity;
 
 	private InputGUIController guiControl;
 	
@@ -206,10 +209,16 @@ public class InputController {
 	    }
     	
     	private void handleLeftClick(){
-    		game.getEntityManager().select(Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)), game.getPlayer());
-			view.drawSelected(game.getEntityManager().getSelectedEntities());
-			guiControl.updateAbilities(game.getEntityManager().getSelectedEntities());
-
+    		Position pos = Utils.INSTANCE.convertWorldToModel(
+    				app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
+    		if(choosingPosition){
+    			selectedEntity.doAbility(currentAbility.getName(), pos);
+    			choosingPosition=false;
+    		}else{
+	    		game.getEntityManager().select(pos, game.getPlayer());
+				view.drawSelected(game.getEntityManager().getSelectedEntities());
+				guiControl.updateAbilities(game.getEntityManager().getSelectedEntities());
+    		}
     	}
     	
     	private void handleRightClick(){
@@ -279,8 +288,15 @@ public class InputController {
     public void selectAbility(IAbility ability, IPlayerControlledEntity e){
     	//TODO Afton: Add code to handle ability clicks
     	PlayerControlledEntity pce = (PlayerControlledEntity)e;
-    	pce.doAbility(ability.getName(), pce.getPosition());
+//    	pce.doAbility(ability.getName(), pce.getPosition());
+    	currentAbility=ability;
+    	selectedEntity= pce;
+    	choosingPosition=true;
     	System.out.println(ability.getName());
+    }
+    
+    public void drawNodesAroundCursor(){
+    	
     }
     
     
