@@ -43,6 +43,6 @@ public enum P {INSTANCE;
 	 * @return An int representing starter amount of resources for players.
 	 */
 	public int getResourceStarterAmount() {
-		return 100;
+		return 1000;
 	}
 }
