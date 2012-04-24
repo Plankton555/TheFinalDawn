@@ -8,6 +8,7 @@ import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.pathfinding.AStar;
 import projectrts.model.pathfinding.AStarNode;
 import projectrts.model.pathfinding.AStarPath;
+import projectrts.model.pathfinding.Node;
 import projectrts.model.pathfinding.World;
 import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
@@ -81,8 +82,12 @@ public class MoveAbility extends AbstractAbility {
 		if (path == null || path.nrOfNodesLeft() < 1 || pathRefresh )
 		{
 			pathRefresh = false;
+			refreshPath(entity.getPosition(), targetPos, world.getNodeAt(entity.getPosition()),
+					entity.getEntityID(), entity.getSize());
+			/*
 			path = aStar.calculatePath(entity.getPosition(), targetPos, entity.getEntityID());
 			world.setNodesOccupied(world.getNodeAt(entity.getPosition()), entity.getSize(), 0);
+			*/
 		}
 		
 		Position outputPos = entity.getPosition();
@@ -107,6 +112,9 @@ public class MoveAbility extends AbstractAbility {
 			{
 				stepLength -= distanceToNextNode;
 				outputPos = nextNode.getPosition().copy();
+				refreshPath(outputPos, targetPos, nextNode.getNode(),
+						entity.getEntityID(), entity.getSize());
+				/*
 				path = aStar.calculatePath(outputPos, targetPos, entity.getEntityID());
 				
 				if (path.nrOfNodesLeft() > 0)
@@ -116,9 +124,23 @@ public class MoveAbility extends AbstractAbility {
 					world.setNodesOccupied(path.getNextNode().getNode(),
 							entity.getSize(), entity.getEntityID());
 				}
+				*/
 			}
 		}
 		return outputPos;
+	}
+	
+	private void refreshPath(Position herePos, Position targetPos, Node hereNode,
+			int entityID, float entitySize)
+	{
+		path = aStar.calculatePath(herePos, targetPos, entityID);
+		if (path.nrOfNodesLeft() > 0)
+		{
+			world.setNodesOccupied(hereNode,
+					entitySize, 0);
+			world.setNodesOccupied(path.getNextNode().getNode(),
+					entitySize, entityID);
+		}
 	}
 	
 	@Override
