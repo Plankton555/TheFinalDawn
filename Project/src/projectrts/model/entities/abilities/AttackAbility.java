@@ -12,7 +12,7 @@ import projectrts.model.utils.Position;
  *
  */
 public class AttackAbility extends AbstractAbility {
-	private PlayerControlledEntity attacker;
+	private PlayerControlledEntity entity;
 	private PlayerControlledEntity target;
 	
 	private AbstractAbility moveAbility;
@@ -25,6 +25,7 @@ public class AttackAbility extends AbstractAbility {
 	 * When subclassing, invoke this to initialize the ability.
 	 */
 	protected void initialize(PlayerControlledEntity entity) {
+		this.entity = entity;
 		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), entity);
 		this.setCooldown(0.5f);
 	}
@@ -35,8 +36,7 @@ public class AttackAbility extends AbstractAbility {
 	}
 	
 	@Override
-	public void useAbility(PlayerControlledEntity attacker, Position pos){
-		this.attacker = attacker;
+	public void useAbility(Position pos){
 		target = EntityManager.getInstance().getPCEAtPosition(pos);
 		setActive(true);
 		setFinished(false);
@@ -51,11 +51,11 @@ public class AttackAbility extends AbstractAbility {
 		if(isActive() && !isFinished()){
 			
 			//attacker.getRange();
-			if(ModelUtils.INSTANCE.getDistance(attacker.getPosition(), target.getPosition())>1){
+			if(ModelUtils.INSTANCE.getDistance(entity.getPosition(), target.getPosition())>1){
 				//Out of range
 				
 				if(!moveAbility.isActive()){
-					moveAbility.useAbility(attacker, target.getPosition());
+					moveAbility.useAbility(target.getPosition());
 				}
 				
 				moveAbility.update(tpf);
@@ -69,7 +69,7 @@ public class AttackAbility extends AbstractAbility {
 				//In range
 				if(getRemainingCooldown()<=0){
 					
-					target.dealDamageTo(attacker.getDamage());
+					target.dealDamageTo(entity.getDamage());
 					this.setAbilityUsed();
 			
 					if(target.getCurrentHealth() == 0) {

@@ -29,6 +29,7 @@ public class OffensiveSpellAbility extends AbstractAbility {
 	 * When subclassing, invoke this to initialize the ability.
 	 */
 	protected void initialize(PlayerControlledEntity entity) {
+		this.attacker = entity;
 		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), entity);
 		this.setCooldown(5);
 	}
@@ -39,8 +40,7 @@ public class OffensiveSpellAbility extends AbstractAbility {
 	}
 	
 
-	public void useAbility(PlayerControlledEntity attacker, Position pos){
-		this.attacker = attacker;
+	public void useAbility(Position pos){
 		target = EntityManager.getInstance().getPCEAtPosition(pos);
 	}
 
@@ -55,7 +55,7 @@ public class OffensiveSpellAbility extends AbstractAbility {
 				//Out of range
 				
 				if(!moveAbility.isActive()){
-					moveAbility.useAbility(attacker, target.getPosition());
+					moveAbility.useAbility(target.getPosition());
 				}
 				
 				moveAbility.update(tpf);

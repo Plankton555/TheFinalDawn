@@ -27,6 +27,7 @@ public class TrainWorkerAbility extends AbstractAbility{
 	 * When subclassing, invoke this to initialize the ability.
 	 */
 	protected void initialize(PlayerControlledEntity entity) {
+		structure = entity;
 		this.setCooldown(0.5f);
 	}
 	
@@ -50,8 +51,7 @@ public class TrainWorkerAbility extends AbstractAbility{
 	}
 
 	@Override
-	public void useAbility(PlayerControlledEntity caster, Position target) {
-		structure = caster;
+	public void useAbility(Position target) {
 		Player owner = (Player)structure.getOwner();
 		if(owner.getResources()>=buildCost){//TODO Jakob: Notify view somehow when not enough resources
 			owner.modifyResource(-buildCost); 

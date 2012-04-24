@@ -30,6 +30,7 @@ public class DeliverResourceAbility extends AbstractAbility{
 	 * When subclassing, invoke this to initialize the ability.
 	 */
 	protected void initialize(PlayerControlledEntity entity) {
+		this.unit=entity;
 		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), entity);
 	}
 	
@@ -54,7 +55,7 @@ public class DeliverResourceAbility extends AbstractAbility{
 			}else{
 				// Not in range
 				if(!moveAbility.isActive()){
-					moveAbility.useAbility(unit, depositStructure.getPosition());
+					moveAbility.useAbility(depositStructure.getPosition());
 				}
 				
 				moveAbility.update(tpf);
@@ -64,8 +65,7 @@ public class DeliverResourceAbility extends AbstractAbility{
 	}
 
 	@Override
-	public void useAbility(PlayerControlledEntity caster, Position target) {
-		this.unit=caster;
+	public void useAbility(Position target) {
 		setActive(true);
 		setFinished(false);
 		

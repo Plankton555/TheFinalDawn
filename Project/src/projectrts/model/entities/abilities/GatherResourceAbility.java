@@ -23,6 +23,7 @@ public class GatherResourceAbility extends AbstractAbility{
 	 * When subclassing, invoke this to initialize the ability.
 	 */
 	protected void initialize(PlayerControlledEntity entity) {
+		this.unit =  entity;
 		this.mineResourceAbility = AbilityFactory.INSTANCE.createAbility(MineResourceAbility.class.getSimpleName(), entity);
 		this.deliverResourceAbility = AbilityFactory.INSTANCE.createAbility(DeliverResourceAbility.class.getSimpleName(), entity);
 	}
@@ -41,12 +42,12 @@ public class GatherResourceAbility extends AbstractAbility{
 				if(mineResourceAbility.isFinished()){
 					mineResourceAbility.setActive(false);
 					mineResourceAbility.setFinished(false);
-					deliverResourceAbility.useAbility(unit, target);
+					deliverResourceAbility.useAbility(target);
 				}
 				if(deliverResourceAbility.isFinished()){
 					deliverResourceAbility.setActive(false);
 					deliverResourceAbility.setFinished(false);
-					mineResourceAbility.useAbility(unit, target);
+					mineResourceAbility.useAbility(target);
 				}
 			
 		}
@@ -54,13 +55,12 @@ public class GatherResourceAbility extends AbstractAbility{
 	}
 
 	@Override
-	public void useAbility(PlayerControlledEntity caster, Position target) {
-		this.unit =  caster;
+	public void useAbility(Position target) {
 		this.target = target;
 		setActive(true);
 		setFinished(false);
 		if(!deliverResourceAbility.isActive()){
-			mineResourceAbility.useAbility(unit, target);
+			mineResourceAbility.useAbility(target);
 		}
 	}
 

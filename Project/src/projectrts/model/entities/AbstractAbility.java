@@ -91,10 +91,9 @@ public abstract class AbstractAbility implements IAbility {
 	
 	/**
 	 * Use the ability at the specified target
-	 * @param caster the caster of the ability
 	 * @param target the position where the ability should be cast at
 	 */
-	public abstract void useAbility(PlayerControlledEntity caster, Position target);
+	public abstract void useAbility(Position target);
 	
 	/**
 	 * Creates a new ability

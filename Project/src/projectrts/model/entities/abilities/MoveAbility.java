@@ -35,6 +35,7 @@ public class MoveAbility extends AbstractAbility {
 	 * When subclassing, invoke this to initialize the ability.
 	 */
 	protected void initialize(PlayerControlledEntity entity) {
+		this.entity = entity;
 		this.aStar = AStar.getInstance();
 		this.world = World.getInstance();
 	}
@@ -45,8 +46,7 @@ public class MoveAbility extends AbstractAbility {
 	}
 	
 	@Override
-	public void useAbility(PlayerControlledEntity entity, Position pos){
-		this.entity = entity;
+	public void useAbility(Position pos){
 		this.targetPosition = pos;
 		
 		// Want to refresh path as soon as a click is made
