@@ -102,7 +102,6 @@ public class AppController extends SimpleApplication{
     }
     
     public void startIngameState(){
-    	System.out.println("EHEHEH");
         IGame game = new GameModel();
     	InGameState ingameState = new InGameState(game, nifty);
     	this.stateManager.attach(ingameState);
