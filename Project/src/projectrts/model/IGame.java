@@ -1,9 +1,7 @@
 package projectrts.model;
 
-import java.util.List;
-
-import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IEntityManager;
+import projectrts.model.pathfinding.INode;
 import projectrts.model.player.IPlayer;
 
 /**
@@ -28,4 +26,9 @@ public interface IGame {
 	 * @return The entity manager.
 	 */
 	public IEntityManager getEntityManager();
+	
+	/**
+	 * @return The matrix of nodes.
+	 */
+	public INode[][] getNodes();
 }

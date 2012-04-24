@@ -8,6 +8,7 @@ import projectrts.model.utils.Position;
  *
  */
 public interface IEntity{
+	
 	/**
 	 * @return The position of the entity.
 	 */

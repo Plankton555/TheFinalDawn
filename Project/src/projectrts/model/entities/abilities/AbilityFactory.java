@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import projectrts.model.entities.AbstractAbility;
 
+//TODO Markus(?): ADD JAVADOC!!
 public enum AbilityFactory {INSTANCE;
 
 private HashMap<String, AbstractAbility> abilityMap = new HashMap<String, AbstractAbility>();

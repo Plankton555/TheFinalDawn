@@ -14,7 +14,7 @@ import com.jme3.scene.shape.Box;
  * @author Jakob Svensson
  *
  */
-public class ResourceSpatial extends AbstractSpatial{
+public class ResourceSpatial extends AbstractSpatial implements IEntitySpatial{
 	private Material material;
 	
 	static {
@@ -39,7 +39,8 @@ public class ResourceSpatial extends AbstractSpatial{
 		
 		ResourceSpatial newSpatial = new ResourceSpatial(name, box);
 		newSpatial.setMaterial(material);
-		newSpatial.addControl(ControlFactory.INSTANCE.createControl(MoveControl.class.getSimpleName(), entity));
+		// TODO Jakob: Should a resource really have a MoveControl?...
+		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}
 

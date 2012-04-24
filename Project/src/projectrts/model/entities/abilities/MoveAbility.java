@@ -6,7 +6,9 @@ import projectrts.model.constants.P;
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.pathfinding.AStar;
+import projectrts.model.pathfinding.AStarNode;
 import projectrts.model.pathfinding.AStarPath;
+import projectrts.model.pathfinding.World;
 import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
 
@@ -19,20 +21,21 @@ public class MoveAbility extends AbstractAbility {
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
 	
+	private World world;
 	private AStar aStar;
 	private AStarPath path;
-	private float pathRefreshInterval = 1; // refreshes path every second
-	private float timeSincePathRefresh = pathRefreshInterval;
+	private boolean pathRefresh = true;
 	
 	static {
 		AbilityFactory.INSTANCE.registerAbility(MoveAbility.class.getSimpleName(), new MoveAbility());
 	}
 	
 	/**
-	 * Creates a new instance of this ability.
+	 * When subclassing, invoke this to initialize the ability.
 	 */
-	private MoveAbility(){
-		
+	protected void initialize() {
+		this.aStar = AStar.getInstance();
+		this.world = World.getInstance();
 	}
 	
 	@Override
@@ -46,7 +49,7 @@ public class MoveAbility extends AbstractAbility {
 		this.targetPosition = pos;
 		
 		// Want to refresh path as soon as a click is made
-		this.timeSincePathRefresh = pathRefreshInterval;
+		this.pathRefresh = true;
 		
 		setActive(true);
 		setFinished(false);
@@ -73,16 +76,13 @@ public class MoveAbility extends AbstractAbility {
 	 */
 	private Position determineNextStep(float tpf, PlayerControlledEntity entity, Position targetPos)
 	{
-		double stepLength = P.INSTANCE.getUnitLength()*tpf*entity.getSpeed();
+		double stepLength = tpf*entity.getSpeed();
 		
-		if (timeSincePathRefresh >= pathRefreshInterval)
+		if (path == null || path.nrOfNodesLeft() < 1 || pathRefresh )
 		{
+			pathRefresh = false;
 			path = aStar.calculatePath(entity.getPosition(), targetPos, entity.getEntityID());
-			timeSincePathRefresh = 0;
-		}
-		else
-		{
-			timeSincePathRefresh += tpf;
+			world.setNodesOccupied(world.getNodeAt(entity.getPosition()), entity.getSize(), 0);
 		}
 		
 		Position outputPos = entity.getPosition();
@@ -93,12 +93,12 @@ public class MoveAbility extends AbstractAbility {
 			{
 				break;
 			}
-			Position nextNodePos = path.getNextPosition();
-			double distanceToNextNode = ModelUtils.INSTANCE.getDistance(outputPos, nextNodePos);
+			AStarNode nextNode = path.getNextNode();
+			double distanceToNextNode = ModelUtils.INSTANCE.getDistance(outputPos, nextNode.getPosition());
 			
 			if (distanceToNextNode > stepLength)
 			{
-				Vector2d direction = Position.getVectorBetween(outputPos, nextNodePos);
+				Vector2d direction = Position.getVectorBetween(outputPos, nextNode.getPosition());
 				direction.normalize();
 				outputPos = outputPos.add(stepLength, direction);
 				stepLength = 0;
@@ -106,8 +106,16 @@ public class MoveAbility extends AbstractAbility {
 			else //if (distanceToNextNode <= stepLength)
 			{
 				stepLength -= distanceToNextNode;
-				outputPos = nextNodePos.copy();
-				path.removeNodeFromPath();
+				outputPos = nextNode.getPosition().copy();
+				path = aStar.calculatePath(outputPos, targetPos, entity.getEntityID());
+				
+				if (path.nrOfNodesLeft() > 0)
+				{
+					world.setNodesOccupied(nextNode.getNode(),
+							entity.getSize(), 0);
+					world.setNodesOccupied(path.getNextNode().getNode(),
+							entity.getSize(), entity.getEntityID());
+				}
 			}
 		}
 		return outputPos;
@@ -116,7 +124,7 @@ public class MoveAbility extends AbstractAbility {
 	@Override
 	public AbstractAbility createAbility() {
 		MoveAbility newAbility = new MoveAbility();
-		newAbility.aStar = new AStar();
+		newAbility.initialize();
 		return newAbility;
 	}
 }

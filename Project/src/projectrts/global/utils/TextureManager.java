@@ -14,7 +14,10 @@ public enum TextureManager {
 	INSTANCE;
 	private HashMap<String, Texture> textures = new HashMap<String, Texture>();
 	
-	// TODO Jakob: Add javadoc
+	/**
+	 * Initializes the textures
+	 * @param app The SimpleApplication
+	 */
 	public void initializeTextures(SimpleApplication app){
 		AssetManager assetManager = app.getAssetManager();
 
@@ -38,6 +41,11 @@ public enum TextureManager {
 	    textures.put("HeightMap", heightMapImage);
 	}
 	
+	/**
+	 * Returns a texture with a specified name
+	 * @param name The name of the texture
+	 * @return The texture with the name
+	 */
 	public Texture getTexture(String name){
 		
 			return textures.get(name);

@@ -21,8 +21,12 @@ public class AttackAbility extends AbstractAbility {
 		AbilityFactory.INSTANCE.registerAbility(AttackAbility.class.getSimpleName(), new AttackAbility());
 	}
 	
-	private AttackAbility(){
-		super(1);
+	/**
+	 * When subclassing, invoke this to initialize the ability.
+	 */
+	protected void initialize() {
+		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
+		this.setCooldown(0.5f);
 	}
 	
 	@Override
@@ -65,7 +69,7 @@ public class AttackAbility extends AbstractAbility {
 				//In range
 				if(getRemainingCooldown()<=0){
 					
-					target.adjustHealth(-attacker.getDamage());
+					target.dealDamageTo(attacker.getDamage());
 					this.setAbilityUsed();
 			
 					if(target.getCurrentHealth() == 0) {
@@ -81,7 +85,7 @@ public class AttackAbility extends AbstractAbility {
 	@Override
 	public AbstractAbility createAbility() {
 		AttackAbility newAbility = new AttackAbility();
-		newAbility.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
+		newAbility.initialize();
 		return newAbility;
 	}
 

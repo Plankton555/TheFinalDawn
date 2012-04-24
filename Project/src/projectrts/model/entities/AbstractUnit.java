@@ -3,18 +3,15 @@ package projectrts.model.entities;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
 
+//TODO Afton: ADD JAVADOC!!
 public abstract class AbstractUnit extends PlayerControlledEntity{
 
-	
-	protected AbstractUnit() {
-	}
-	
 	/**
-	 * Spawns a unit
-	 * @param spawnPos
-	 * @param owner
+	 * When subclassing, invoke this to initialize the entity.
+	 * @param owner The owner of the entity.
+	 * @param spawnPos The initial position of the entity.
 	 */
-	protected AbstractUnit(Player owner, Position spawnPos) {
-		super(owner, spawnPos);
+	protected void initialize(Player owner, Position spawnPos) {
+		super.initialize(owner, spawnPos);
 	}
 }

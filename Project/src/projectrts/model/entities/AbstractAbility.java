@@ -3,31 +3,20 @@ package projectrts.model.entities;
 import projectrts.model.utils.Position;
 
 /**
- * An absract class for the common  attributes of the different abilities
+ * An abstract class for the common  attributes of the different abilities
  * @author Filip Brynfors
  *
  */
 public abstract class AbstractAbility implements IAbility {
-	private boolean isFinished = false;
-	private boolean isActive = false;
+	private boolean finished = false;
+	private boolean active = false;
 	private float cooldown;
 	private float remainingCooldown = 0;
-	
-	/**
-	 * Creates a new abstract ability
-	 * @param cooldown the cooldown of the ability
-	 */
-	public AbstractAbility(float cooldown){
+
+	public void setCooldown(float cooldown) {
 		this.cooldown = cooldown;
 	}
 	
-	/**
-	 * Creates a new abstract abilith with 0 sec cd
-	 */
-	public AbstractAbility(){
-		this.cooldown = 0;
-	}
-
 	@Override
 	public float getCooldown() {
 		return cooldown;
@@ -60,7 +49,7 @@ public abstract class AbstractAbility implements IAbility {
 	 * @return true if finnished, false otherwise
 	 */
 	public boolean isFinished(){
-		return isFinished;
+		return finished;
 	}
 	
 	/**
@@ -68,7 +57,7 @@ public abstract class AbstractAbility implements IAbility {
 	 * @return true if active, false otherwise
 	 */
 	public boolean isActive(){
-		return isActive;
+		return active;
 	}
 	
 	/**
@@ -76,7 +65,7 @@ public abstract class AbstractAbility implements IAbility {
 	 * @param b
 	 */
 	public void setActive(boolean b){
-		isActive = b;
+		active = b;
 	}
 	
 		
@@ -85,7 +74,11 @@ public abstract class AbstractAbility implements IAbility {
 	 * @param b
 	 */
 	public void setFinished(boolean b){
-		isFinished = b;
+		finished = b;
+		if (finished)
+		{
+			active = false;
+		}
 	}
 	
 	/**

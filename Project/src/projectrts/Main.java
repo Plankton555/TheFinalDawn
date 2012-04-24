@@ -2,7 +2,7 @@ package projectrts;
 
 
 
-import projectrts.controller.*;
+import projectrts.controller.AppController;
 
 /**
  * The entry point of the application.

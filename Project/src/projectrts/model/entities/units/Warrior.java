@@ -15,34 +15,35 @@ import projectrts.model.utils.Position;
  *
  */
 public class Warrior extends AbstractUnit{
+	private static final float size = 1f;
+	private static final float speed = 4f;
+	private static final float sightRange = 5f;
+	private static final int damage = 50;
+	private static final int maxHealth = 100;
+	
 	
 	static {
 		EntityFactory.INSTANCE.registerPCE(Warrior.class.getSimpleName(), new Warrior());
 	}
 	
-	private Warrior() {
-	}
-	
-	private Warrior(Player owner, Position spawnPos) {
-		super(owner, spawnPos);
+	protected void initialize(Player owner, Position spawnPos) {
+		super.initialize(owner, spawnPos);
 		this.abilities.add(AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName()));
 		this.abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
 		setName(Warrior.class.getSimpleName());
+		setSightRange(sightRange);
+		this.setMaxHealth(maxHealth);
+		this.setCurrentHealth(this.getMaxHealth());
+		this.setSize(size);
+		this.setSpeed(speed);
+		this.setDamage(damage);
 	}
 
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
-		return new Warrior(owner, pos);
-	}
-
-	@Override
-	public float getSightRange() {
-		return 5;
-	}
-
-	@Override
-	public int getDamage() {
-		return 20;
+		Warrior newWarrior = new Warrior();
+		newWarrior.initialize(owner, pos);
+		return newWarrior;
 	}
 
 }

@@ -15,7 +15,7 @@ public class AStarTest {
 		AStar astar;
 		
 		try {
-			astar = new AStar();
+			astar = AStar.getInstance();
 			assertTrue(false);
 		} catch (IllegalStateException e) {
 			assertTrue(true);
@@ -24,14 +24,9 @@ public class AStarTest {
 		World world = World.getInstance();
 		world.initializeWorld(5, 5);
 		AStar.initialize(world);
-		astar = new AStar();
+		astar = AStar.getInstance();
 		assertTrue(astar != null);
 	}
-
-	@Test
-	public void testCalculatePath() {
-		// TODO Plankton: No clue on how to test this in a good way...
-		fail("Not yet implemented");
-	}
+	// TODO Plankton: !Test getClosestUnoccupiedNode()!
 
 }

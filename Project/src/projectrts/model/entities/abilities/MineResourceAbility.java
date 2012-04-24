@@ -24,8 +24,11 @@ public class MineResourceAbility extends AbstractAbility{
 		AbilityFactory.INSTANCE.registerAbility(MineResourceAbility.class.getSimpleName(), new MineResourceAbility());
 	}
 	
-	private MineResourceAbility() {
-		super();
+	/**
+	 * When subclassing, invoke this to initialize the ability.
+	 */
+	protected void initialize() {
+		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
 	}
 	
 	@Override
@@ -40,6 +43,7 @@ public class MineResourceAbility extends AbstractAbility{
 			if(ModelUtils.INSTANCE.getDistance(unit.getPosition(),targetResource.getPosition() )<1.5*targetResource.getSize()){
 				//If in range of resource
 				//Check cooldown and mine resource or reduce cooldown as appropriate.
+				moveAbility.setFinished(true);
 				if (miningCooldown <= 0) { 
 					resourceCarriedAmount += targetResource.mine();
 					miningCooldown = recoveryTime;
@@ -49,7 +53,6 @@ public class MineResourceAbility extends AbstractAbility{
 				
 				if(resourceCarriedAmount >= P.INSTANCE.getWorkerCarryAmount()) {
 					setFinished(true);
-					System.out.println("mined");
 				}
 				
 			}else{
@@ -60,10 +63,6 @@ public class MineResourceAbility extends AbstractAbility{
 				}
 				
 				moveAbility.update(tpf);
-				if(moveAbility.isFinished()){
-					moveAbility.setActive(false);
-					moveAbility.setFinished(false);
-				}
 			}
 		}
 		
@@ -81,7 +80,7 @@ public class MineResourceAbility extends AbstractAbility{
 	@Override
 	public AbstractAbility createAbility() {
 		MineResourceAbility newAbility = new MineResourceAbility();
-		newAbility.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
+		newAbility.initialize();
 		return newAbility;
 	}
 

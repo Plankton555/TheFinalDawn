@@ -1,7 +1,7 @@
 package projectrts.model.entities;
 
 /**
- * Inteface for abilities
+ * Interface for abilities
  * @author Filip Brynfors
  *
  */

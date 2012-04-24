@@ -8,7 +8,6 @@ import projectrts.model.entities.AbstractStructure;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.entities.structures.Headquarter;
 import projectrts.model.player.Player;
 import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
@@ -27,8 +26,11 @@ public class DeliverResourceAbility extends AbstractAbility{
 		AbilityFactory.INSTANCE.registerAbility(DeliverResourceAbility.class.getSimpleName(), new DeliverResourceAbility());
 	}
 	
-	private DeliverResourceAbility() {
-		super();
+	/**
+	 * When subclassing, invoke this to initialize the ability.
+	 */
+	protected void initialize() {
+		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
 	}
 	
 	@Override
@@ -44,11 +46,11 @@ public class DeliverResourceAbility extends AbstractAbility{
 			
 			if(ModelUtils.INSTANCE.getDistance(unit.getPosition(),depositStructure.getPosition() )<1.5*depositStructure.getSize()){
 				//If in range of deposit structure
+				moveAbility.setFinished(true);
 				
 				Player player = (Player)unit.getOwner();
 				player.modifyResource(P.INSTANCE.getWorkerCarryAmount());
 				setFinished(true);
-				System.out.println("delivered");
 			}else{
 				// Not in range
 				if(!moveAbility.isActive()){
@@ -56,10 +58,6 @@ public class DeliverResourceAbility extends AbstractAbility{
 				}
 				
 				moveAbility.update(tpf);
-				if(moveAbility.isFinished()){
-					moveAbility.setActive(false);
-					moveAbility.setFinished(false);
-				}
 			}
 		}
 		
@@ -98,7 +96,7 @@ public class DeliverResourceAbility extends AbstractAbility{
 	@Override
 	public AbstractAbility createAbility() {
 		DeliverResourceAbility newAbility = new DeliverResourceAbility();
-		newAbility.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
+		newAbility.initialize();
 		return newAbility;
 		
 	}

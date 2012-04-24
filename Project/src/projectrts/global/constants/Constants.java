@@ -8,6 +8,14 @@ package projectrts.global.constants;
 public enum Constants {INSTANCE;
 
 	/**
+	 * @return true if the nodes should be rendered for debugging, otherwise false.
+	 */
+	public boolean isDebugNodes()
+	{
+		return true;
+	}
+	
+	/**
 	 * Returns the camera speed.
 	 * @return A float representing the camera speed.
 	 */

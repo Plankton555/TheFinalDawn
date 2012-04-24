@@ -1,5 +1,7 @@
 package projectrts.model.entities;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,17 +17,15 @@ import projectrts.model.utils.Position;
  * @author Bjorn Persson Mattsson, Modified by Markus Ekström
  *
  */
-public class EntityManager implements IEntityManager {
+public class EntityManager implements IEntityManager{
 
 	private static EntityManager instance = new EntityManager();
-	
 	private List<AbstractEntity> allEntities = new ArrayList<AbstractEntity>();
-
-	private List<AbstractEntity> entitiesQueue = new ArrayList<AbstractEntity>();
-	
+	private List<AbstractEntity> entitiesAddQueue = new ArrayList<AbstractEntity>();
+	private List<AbstractEntity> entitiesRemoveQueue = new ArrayList<AbstractEntity>();
 	private List<PlayerControlledEntity> selectedEntities = new ArrayList<PlayerControlledEntity>();
-
 	private int idCounter = 0;
+	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
 	
 	/**
@@ -46,11 +46,23 @@ public class EntityManager implements IEntityManager {
 		{
 			e.update(tpf);
 		}
-		for (AbstractEntity e : entitiesQueue){
+		
+		for (AbstractEntity e : entitiesAddQueue){
 			allEntities.add(e);
+			pcs.firePropertyChange("entityCreated", null, e);
+			
 			
 		}
-		entitiesQueue.clear();
+		
+		for (AbstractEntity e : entitiesRemoveQueue) {
+			for (int i = 0; i < allEntities.size(); i++) {
+				if (e.equals(allEntities.get(i))) {
+					allEntities.remove(i);
+					pcs.firePropertyChange("entityRemoved", e, null);
+				}
+			}
+		}
+		entitiesAddQueue.clear();
 	}
 	
 	/**
@@ -124,7 +136,8 @@ public class EntityManager implements IEntityManager {
 	 */
 	public void addNewNPCE(String npce, Position pos)
 	{
-		addEntityToQueue(EntityFactory.INSTANCE.createNPCE(npce, pos));
+		NonPlayerControlledEntity newNPCE = EntityFactory.INSTANCE.createNPCE(npce, pos);
+		entitiesAddQueue.add(newNPCE);
 	}
 	
 	/**
@@ -135,12 +148,8 @@ public class EntityManager implements IEntityManager {
 	 * @param pos The position of the entity.
 	 */
 	public void addNewPCE(String pce, Player owner, Position pos) {
-		addEntityToQueue(EntityFactory.INSTANCE.createPCE(pce, owner, pos));
-	}
-	
-
-	private void addEntityToQueue(AbstractEntity e){
-		entitiesQueue.add(e);
+		PlayerControlledEntity newPCE = EntityFactory.INSTANCE.createPCE(pce, owner, pos);
+		entitiesAddQueue.add(newPCE);
 	}
 	
 
@@ -153,7 +162,7 @@ public class EntityManager implements IEntityManager {
 	}
 
 	public void removeEntity(AbstractEntity entity) {
-		entitiesQueue.remove(entity);
+		entitiesRemoveQueue.add(entity);
 	}
 	
 	// TODO Markus: Possible duplicated code
@@ -260,5 +269,8 @@ public class EntityManager implements IEntityManager {
 		}
 		return entities;
 	}
-
+	
+	public void addListener(PropertyChangeListener pcl) {
+		pcs.addPropertyChangeListener(pcl);
+	}
 }

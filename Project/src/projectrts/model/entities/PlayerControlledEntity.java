@@ -1,8 +1,11 @@
 package projectrts.model.entities;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
+import projectrts.model.constants.P;
 import projectrts.model.player.IPlayer;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
@@ -17,19 +20,24 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	protected List<AbstractAbility> abilities = new ArrayList<AbstractAbility>();
 	private int currentHealth;
 	private int maxHealth;
+	private float sightRange;
 	private Player owner;
-	
-	protected PlayerControlledEntity() {
-	}
+	private int damage;
+	private PropertyChangeSupport pcs;
 	
 	/**
-	 * Spawns an entity
-	 * @param spawnPos
-	 * @param owner
+	 * When subclassing, invoke this to initialize the entity.
+	 * @param owner The owner of the entity.
+	 * @param spawnPos The initial position of the entity.
 	 */
-	protected PlayerControlledEntity(Player owner, Position spawnPos) {
-		super(spawnPos);
+	protected void initialize(Player owner, Position spawnPos) {
+		super.initialize(spawnPos);
 		this.owner = owner;
+		this.pcs = new PropertyChangeSupport(this);
+	}
+	
+	public void addListener(PropertyChangeListener pcl) {
+		pcs.addPropertyChangeListener(pcl);
 	}
 	
 	
@@ -57,20 +65,12 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		return maxHealth;
 	}
 	
-	/**
-	 * Adjusts the current health by the provided amount. Insert a negative number to
-	 * deal damage to the unit and a positive number to heal it.
-	 * @param amount The amout the hp is adjusted by.
-	 */
-	public void adjustHealth(int amount){
-		currentHealth += amount;
+	public void dealDamageTo(int damage) {
+		currentHealth -= damage;
 		if(currentHealth <= 0){
 			currentHealth = 0;
 			EntityManager.getInstance().removeEntity(this);
-		} else if (currentHealth > maxHealth) {
-			currentHealth = maxHealth;
 		}
-			
 	}
 
 	/**
@@ -90,12 +90,24 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	}
 	
 	@Override
-	public abstract float getSightRange();
+	public float getSightRange(){
+		return sightRange;
+	}
 	
-	public abstract int getDamage();
+	public int getDamage() {
+		return damage;
+	}
+	
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
 	
 	public void setMaxHealth(int newMaxHealth) {
 		this.maxHealth = newMaxHealth;
+	}
+	
+	protected void setSightRange(float sightRange){
+		this.sightRange = sightRange*P.INSTANCE.getUnitLength();
 	}
 	
 	public void setCurrentHealth(int newCurrentHealth) {

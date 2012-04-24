@@ -17,38 +17,33 @@ import projectrts.model.utils.Position;
  */
 public class Worker extends AbstractUnit{
 	
-	private static float size = 1f;
-	private static float speed = 5;
+	private static final float size = 1f;
+	private static final float speed = 5;
+	private static final int damage = 5;
+	private static final float sightRange = 5;
+	private static final int maxHealth = 50;
 
 	static {
 		EntityFactory.INSTANCE.registerPCE(Worker.class.getSimpleName(), new Worker());
 	}
 	
-	private Worker() {
-	}
-	
-	private Worker(Player owner, Position spawnPos) {
-		super(owner, spawnPos);
+	protected void initialize(Player owner, Position spawnPos) {
+		super.initialize(owner, spawnPos);
 		this.abilities.add(AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName()));
 		this.abilities.add(AbilityFactory.INSTANCE.createAbility(GatherResourceAbility.class.getSimpleName()));
 		abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName()));
 		setName(Worker.class.getSimpleName());
 		setSize(size);
 		setSpeed(speed);
+		setMaxHealth(maxHealth);
+		setSightRange(sightRange);
+		this.setDamage(damage);
 	}
+	
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
-		return new Worker(owner, pos);
+		Worker newWorker = new Worker();
+		newWorker.initialize(owner, pos);
+		return newWorker;
 	}
-
-	@Override
-	public float getSightRange() {
-		return 5;
-	}
-
-	@Override
-	public int getDamage() {
-		return 5;
-	}
-
 }

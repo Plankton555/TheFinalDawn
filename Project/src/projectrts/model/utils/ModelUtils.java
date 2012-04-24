@@ -1,12 +1,5 @@
 package projectrts.model.utils;
 
-import java.util.List;
-
-import projectrts.model.entities.EntityManager;
-import projectrts.model.entities.IEntity;
-import projectrts.model.entities.NonPlayerControlledEntity;
-import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.player.IPlayer;
 
 /**
  * Utility class

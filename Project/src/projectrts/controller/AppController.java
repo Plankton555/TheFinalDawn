@@ -9,15 +9,16 @@ import projectrts.global.utils.TextureManager;
 import projectrts.model.GameModel;
 import projectrts.model.IGame;
 import projectrts.view.controls.MoveControl;
+import projectrts.view.controls.NodeControl;
 import projectrts.view.controls.SelectControl;
+import projectrts.view.spatials.DebugNodeSpatial;
 import projectrts.view.spatials.HeadquarterSpatial;
 import projectrts.view.spatials.ResourceSpatial;
 import projectrts.view.spatials.SelectSpatial;
-import projectrts.view.spatials.UnitSpatial;
+import projectrts.view.spatials.WarriorSpatial;
 import projectrts.view.spatials.WorkerSpatial;
 
 import com.jme3.app.SimpleApplication;
-import com.jme3.app.state.AppState;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.RenderManager;
 
@@ -40,13 +41,15 @@ public class AppController extends SimpleApplication{
 			// Initialize the control classes.
 			Class.forName(MoveControl.class.getName());
 			Class.forName(SelectControl.class.getName());
+			Class.forName(NodeControl.class.getName());
 			
 			// Initialize the spatial classes.
-			Class.forName(UnitSpatial.class.getName());
+			Class.forName(WarriorSpatial.class.getName());
 			Class.forName(WorkerSpatial.class.getName());
 			Class.forName(HeadquarterSpatial.class.getName());
 			Class.forName(ResourceSpatial.class.getName());
 			Class.forName(SelectSpatial.class.getName());
+			Class.forName(DebugNodeSpatial.class.getName());
 		}
 		catch (ClassNotFoundException any)
 		{

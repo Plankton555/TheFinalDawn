@@ -1,5 +1,7 @@
 package projectrts.view;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.IGame;
 import projectrts.model.entities.IEntity;
+import projectrts.model.pathfinding.INode;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.spatials.AbstractSpatial;
 import projectrts.view.spatials.SpatialFactory;
@@ -31,21 +34,21 @@ import com.jme3.texture.Texture.WrapMode;
  * @author Markus Ekström
  *
  */
-public class GameView{
-	private int i;
+public class GameView implements PropertyChangeListener{
 	private SimpleApplication app;
 	private IGame game;
     private Node entities = new Node("entities"); // The node for all entities
     private Node selected = new Node("selected"); // The node for the selected graphics
+    private Node debug = new Node("debug"); // The node for the debugging graphics
     private Node terrainNode = new Node("terrain"); // The node for all terrain
     private Material matTerrain;
     private TerrainQuad terrain;
     private float mod = Constants.INSTANCE.getModelToWorld(); // The modifier value for converting lengths between model and world.
-    private List<IEntity> entitiesList;
 	
 	public GameView(SimpleApplication app, IGame game) {
 		this.app = app;
 		this.game = game;
+		game.getEntityManager().addListener(this);
 	}
 	
 	/**
@@ -55,10 +58,11 @@ public class GameView{
 	 */
 	public void initialize() {
 		initializeWorld();
+		initializeDebug();
 		initializeEntities();
 		this.app.getRootNode().attachChild(selected);
 	}
-	
+
 	/**
 	 * Based on Jmonkey terrain example code
 	 * http://jmonkeyengine.org/wiki/doku.php/jme3:beginner:hello_terrain
@@ -123,8 +127,17 @@ public class GameView{
         
         
     }
-    
-    private void initializeEntities() {
+	
+	private void initializeDebug() {
+		if (Constants.INSTANCE.isDebugNodes())
+		{
+			integrateNodes(game.getNodes());
+		}
+		
+		this.app.getRootNode().attachChild(debug);
+	}
+
+	private void initializeEntities() {
 
     	integrateNewEntities(game.getEntityManager().getAllEntities());
     	
@@ -137,76 +150,59 @@ public class GameView{
      * @param tpf The time passed since the last frame.
      */
     public void update(float tpf) {
-    	updateEntities(tpf);
     }
     
-    
-    private void updateEntities(float tpf) {
-    	List<IEntity> newEntities = checkForNewEntities();
-    	integrateNewEntities(newEntities);
-    	removeDeadEntities();
-    }
-    
-    private List<IEntity> checkForNewEntities() {
-    	List<IEntity> newEntities = new ArrayList<IEntity>();
+    private void integrateNodes(INode[][] nodes)
+    {
+    	Box[][] nodeShapes = new Box[nodes.length][];
     	
-    	if(entities.getChildren().size() < game.getEntityManager().getAllEntities().size()) {
-	    	boolean add = false;
-	    	
-	    	// For every entity, check if the spatial's entity has the same position.
-	    	// If not, the entity is new.
-	    	for(IEntity entity : game.getEntityManager().getAllEntities()) {
-	    		add = true;
-	    		for(Spatial spatial : entities.getChildren()) {
-	    			if(entity.getPosition().equals(spatial.getControl(MoveControl.class).getEntityPos())) {
-	    				add = false;
-	    			}
-	    		}
-	    		
-	    		if(add) {
-	    			newEntities.add(entity); 
-    			}
-	    	}
-    	}
-    	
-		return newEntities;
-    }
-    
-    private void integrateNewEntities(List<IEntity> newEntities) {
-    	Box[] entityShapes = new Box[newEntities.size()];
-    	
-    	for(int i = 0; i < newEntities.size(); i++) {
-    		// Create shape.
-    		// The location of the entity is initialized to (0, 0, 0) but is then instantly translated to the correct place by moveControl.
-    		// Gets the size from the model and converts it to world size.
-    		entityShapes[i] = new Box(new Vector3f(0, 0, 0),  
-    									(newEntities.get(i).getSize() * mod)/2, (newEntities.get(i).getSize() * mod)/2, 0); 
-    		// Create spatial.
-    		AbstractSpatial entitySpatial = SpatialFactory.INSTANCE.createSpatial(newEntities.get(i).getClass().getSimpleName() + "Spatial",
-    				newEntities.get(i).getClass().getSimpleName(), entityShapes[i], newEntities.get(i));
-    		// Attach spatial to the entities node.
-    		entities.attachChild(entitySpatial);
-    	}
-
-    }
-    
-    private void removeDeadEntities() {
-    	if(entities.getChildren().size() > game.getEntityManager().getAllEntities().size()) {
-    		
-    		for(Spatial spatial : entities.getChildren()) {
-    			boolean remove = true;
-    			for(IEntity entity : game.getEntityManager().getAllEntities()) {
-    				if(spatial.getControl(MoveControl.class).getEntityPos().equals(entity.getPosition())) {
-    					remove = false;
-    				}
-    			}
+    	for (int i=0; i<nodes.length; i++)
+    	{
+    		nodeShapes[i] = new Box[nodes[i].length];
+    		for (int j=0; j<nodes[i].length; j++)
+    		{
+    			nodeShapes[i][j] = new Box(
+    					new Vector3f((float)nodes[i][j].getPosition().getX()*mod,
+    							-(float)nodes[i][j].getPosition().getY()*mod,
+    							1),
+    					(0.1f * mod)/2,
+    					(0.1f * mod)/2,
+    					0);
     			
-    			if(remove) {
-    				spatial.setCullHint(CullHint.Always);
-    				spatial.removeFromParent();
-    			}
+    			AbstractSpatial nodeSpatial = SpatialFactory.INSTANCE.createNodeSpatial("DebugNodeSpatial",
+    					nodes[i][j].getClass().getSimpleName(), nodeShapes[i][j], nodes[i][j]);
+    			debug.attachChild(nodeSpatial);
     		}
     	}
+		
+	}
+    
+    private void integrateNewEntities(List<IEntity> newEntities) {
+    	for(int i = 0; i < newEntities.size(); i++) {
+    		integrateNewEntity(newEntities.get(i));
+    	}
+    }
+    
+    private void integrateNewEntity(IEntity newEntity) {
+    	// Create shape.
+		// The location of the entity is initialized to (0, 0, 0) but is then instantly translated to the correct place by moveControl.
+		// Gets the size from the model and converts it to world size.
+		Box shape = new Box(new Vector3f(0, 0, 0),  
+									(newEntity.getSize() * mod)/2, (newEntity.getSize() * mod)/2, 0); 
+		// Create spatial.
+		AbstractSpatial entitySpatial = SpatialFactory.INSTANCE.createEntitySpatial(newEntity.getClass().getSimpleName() + "Spatial",
+				newEntity.getClass().getSimpleName(), shape, newEntity);
+		// Attach spatial to the entities node.
+		entities.attachChild(entitySpatial);
+    }
+    
+    private void removeDeadEntity(IEntity entity) {
+    	for(Spatial spatial : entities.getChildren()) {
+    		if(spatial.getControl(MoveControl.class).getEntityPos().equals(entity.getPosition())) {
+    			spatial.setCullHint(CullHint.Always);
+				spatial.removeFromParent();
+			}
+		}
     }
  
     /**
@@ -223,9 +219,24 @@ public class GameView{
 	    	// The control will instantly translate it to the correct location.
 	    	Box circle = new Box(new Vector3f(0, 0, -1), 
 	    			(selectedEntities.get(i).getSize() + 0.3f)/2 * mod, (selectedEntities.get(i).getSize() + 0.3f)/2 * mod, 0);
-	    	AbstractSpatial circleSpatial = SpatialFactory.INSTANCE.createSpatial("SelectSpatial", selectedEntities.get(i).getName(), circle, selectedEntities.get(i));	
+	    	AbstractSpatial circleSpatial = SpatialFactory.INSTANCE.createEntitySpatial("SelectSpatial", selectedEntities.get(i).getName(), circle, selectedEntities.get(i));	
 	    	// Attach spatial to the selected node, connecting it to the world.
 	    	selected.attachChild(circleSpatial);
     	}
     }
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if(evt.getPropertyName().equals("entityCreated")) {
+			if(evt.getNewValue() instanceof IEntity) {
+				integrateNewEntity((IEntity)evt.getNewValue());
+			}
+		} else if (evt.getPropertyName().equals("entityRemoved")) {
+			if(evt.getOldValue() instanceof IEntity) {
+				removeDeadEntity((IEntity)evt.getOldValue());
+			}
+		}
+		
+	}
+    
 }

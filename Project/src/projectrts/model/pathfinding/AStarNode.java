@@ -191,4 +191,12 @@ public class AStarNode implements Comparable<AStarNode> {
 	public boolean isObstacle(int occupyingEntityID) {
 		return node.isOccupied(occupyingEntityID);
 	}
+	
+	/**
+	 * @return The "real" node (Node).
+	 */
+	public Node getNode()
+	{
+		return node;
+	}
 }

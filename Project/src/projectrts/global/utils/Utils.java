@@ -1,9 +1,9 @@
 package projectrts.global.utils;
 
-import com.jme3.math.Vector3f;
-
 import projectrts.global.constants.Constants;
 import projectrts.model.utils.Position;
+
+import com.jme3.math.Vector3f;
 
 /**
  * A singleton containing utility methods for use by the controllers and the world.

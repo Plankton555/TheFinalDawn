@@ -11,17 +11,17 @@ import projectrts.model.utils.Position;
  */
 public class Resource extends NonPlayerControlledEntity{
 	
-	private static float size = 1f;
+	private static float size = 1;
+	private static int mine = 4;
 	static {
 		EntityFactory.INSTANCE.registerNPCE(Resource.class.getSimpleName(), new Resource());
 	}
 	
-	public Resource(){
-		
-	}
-	
-	public Resource(Position spawnPos) {
-		super(spawnPos);
+	/**
+	 * Initializes the resource
+	 */
+	protected void initialize(Position spawnPos) {
+		super.initialize(spawnPos);
 		setName(Resource.class.getSimpleName());
 		setSize(size);
 	}
@@ -31,15 +31,21 @@ public class Resource extends NonPlayerControlledEntity{
 		// Do nothing yet
 		
 	}
-
+	
 	@Override
 	public NonPlayerControlledEntity createNPCE(Position pos) {
-		return new Resource(pos);
+		Resource newResource = new Resource();
+			newResource.initialize(pos);
+		return newResource;
 	}
 	
-	// TODO Jakob: Add javadoc
+	
+	/**
+	 * Returns the the amount of resources the Resource gives each mine.
+	 * @return the amount of resources 
+	 */
 	public int mine(){
-		return 4;
+		return mine;
 	}
 
 }

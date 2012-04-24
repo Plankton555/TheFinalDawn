@@ -3,6 +3,8 @@ package projectrts.model.entities.abilities;
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.pathfinding.AStar;
+import projectrts.model.pathfinding.World;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
 
@@ -13,16 +15,19 @@ import projectrts.model.utils.Position;
  */
 public class TrainWorkerAbility extends AbstractAbility{
 	private PlayerControlledEntity structure;
-	private float buildTime = 5; //TODO Jakob: Decide buidlTime and maybe set as a constant
-	private int buildCost = 50; //TODO Jakob: Decide buidlCost and maybe set as a constant
+	private static float buildTime = 5; 
+	private static int buildCost = 50; 
 	private Position spawnPos;
 	
 	static {
 		AbilityFactory.INSTANCE.registerAbility(TrainWorkerAbility.class.getSimpleName(), new TrainWorkerAbility());
 	}
 	
-	private TrainWorkerAbility() {
-		super();
+	/**
+	 * When subclassing, invoke this to initialize the ability.
+	 */
+	protected void initialize() {
+		this.setCooldown(0.5f);
 	}
 	
 	@Override
@@ -48,16 +53,19 @@ public class TrainWorkerAbility extends AbstractAbility{
 	public void useAbility(PlayerControlledEntity caster, Position target) {
 		structure = caster;
 		Player owner = (Player)structure.getOwner();
-		owner.modifyResource(-buildCost); //TODO Jakob: Check if player has enough resources
-		spawnPos = new Position(structure.getPosition().getX()+structure.getSize(),
-				structure.getPosition().getY()+structure.getSize()); //TODO Jakob: Decide spawnPos, Rally points?
-		setActive(true);
-		setFinished(false);
+		if(owner.getResources()>=buildCost){//TODO Jakob: Notify view somehow when not enough resources
+			owner.modifyResource(-buildCost); 
+			spawnPos = AStar.getInstance().getClosestUnoccupiedNode(structure.getPosition(), null, 0).getPosition();
+			setActive(true);
+			setFinished(false);
+		}
 	}
 
 	@Override
 	public AbstractAbility createAbility() {
-		return new TrainWorkerAbility();
+		TrainWorkerAbility newAbility = new TrainWorkerAbility();
+		newAbility.initialize();
+		return newAbility;
 	}
 
 }
