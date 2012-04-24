@@ -8,7 +8,7 @@ import projectrts.model.entities.structures.Barracks;
  * @author Jakob Svensson
  *
  */
-public class BuildBarracksAbility extends AbstractTrainUnitAbility{
+public class BuildBarracksAbility extends AbstractCreationAbility{
 	private static float buildTime = 10; 
 	private static int buildCost = 200; 
 	private static float cooldown = 0.5f;

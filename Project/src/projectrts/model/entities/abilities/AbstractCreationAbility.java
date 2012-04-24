@@ -12,7 +12,7 @@ import projectrts.model.utils.Position;
  * @author Jakob Svensson
  *
  */
-public abstract class AbstractTrainUnitAbility extends AbstractAbility{
+public abstract class AbstractCreationAbility extends AbstractAbility{
 	private PlayerControlledEntity structure;
 	private float buildTime; 
 	private int buildCost; 
