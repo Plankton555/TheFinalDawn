@@ -34,7 +34,7 @@ public class MoveAbility extends AbstractAbility {
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize() {
+	protected void initialize(PlayerControlledEntity entity) {
 		this.aStar = AStar.getInstance();
 		this.world = World.getInstance();
 	}
@@ -144,9 +144,9 @@ public class MoveAbility extends AbstractAbility {
 	}
 	
 	@Override
-	public AbstractAbility createAbility() {
+	public AbstractAbility createAbility(PlayerControlledEntity entity) {
 		MoveAbility newAbility = new MoveAbility();
-		newAbility.initialize();
+		newAbility.initialize(entity);
 		return newAbility;
 	}
 }

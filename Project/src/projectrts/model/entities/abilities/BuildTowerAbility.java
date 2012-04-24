@@ -22,7 +22,7 @@ public class BuildTowerAbility extends AbstractAbility {
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize() {
+	protected void initialize(PlayerControlledEntity entity) {
 		this.setCooldown(0.5f);
 	}
 	
@@ -48,9 +48,9 @@ public class BuildTowerAbility extends AbstractAbility {
 	}
 
 	@Override
-	public AbstractAbility createAbility() {
+	public AbstractAbility createAbility(PlayerControlledEntity entity) {
 		BuildTowerAbility newAbility = new BuildTowerAbility();
-		newAbility.initialize();
+		newAbility.initialize(entity);
 		return newAbility;
 	}
 }

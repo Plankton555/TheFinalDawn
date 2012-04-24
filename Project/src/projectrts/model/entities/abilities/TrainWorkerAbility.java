@@ -26,7 +26,7 @@ public class TrainWorkerAbility extends AbstractAbility{
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize() {
+	protected void initialize(PlayerControlledEntity entity) {
 		this.setCooldown(0.5f);
 	}
 	
@@ -62,9 +62,9 @@ public class TrainWorkerAbility extends AbstractAbility{
 	}
 
 	@Override
-	public AbstractAbility createAbility() {
+	public AbstractAbility createAbility(PlayerControlledEntity entity) {
 		TrainWorkerAbility newAbility = new TrainWorkerAbility();
-		newAbility.initialize();
+		newAbility.initialize(entity);
 		return newAbility;
 	}
 

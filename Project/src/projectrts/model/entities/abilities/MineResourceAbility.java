@@ -27,8 +27,8 @@ public class MineResourceAbility extends AbstractAbility{
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize() {
-		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
+	protected void initialize(PlayerControlledEntity entity) {
+		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), entity);
 	}
 	
 	@Override
@@ -78,9 +78,9 @@ public class MineResourceAbility extends AbstractAbility{
 	}
 	
 	@Override
-	public AbstractAbility createAbility() {
+	public AbstractAbility createAbility(PlayerControlledEntity entity) {
 		MineResourceAbility newAbility = new MineResourceAbility();
-		newAbility.initialize();
+		newAbility.initialize(entity);
 		return newAbility;
 	}
 

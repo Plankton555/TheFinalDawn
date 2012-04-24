@@ -98,9 +98,10 @@ public abstract class AbstractAbility implements IAbility {
 	
 	/**
 	 * Creates a new ability
+	 * @param entity The PlayerControlledEntity that is connected to this ability.
 	 * @return the new ability
 	 */
-	public abstract AbstractAbility createAbility();
+	public abstract AbstractAbility createAbility(PlayerControlledEntity entity);
 	
 
 }

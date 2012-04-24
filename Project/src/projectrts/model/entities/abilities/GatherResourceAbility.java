@@ -22,9 +22,9 @@ public class GatherResourceAbility extends AbstractAbility{
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize() {
-		this.mineResourceAbility = AbilityFactory.INSTANCE.createAbility(MineResourceAbility.class.getSimpleName());
-		this.deliverResourceAbility = AbilityFactory.INSTANCE.createAbility(DeliverResourceAbility.class.getSimpleName());
+	protected void initialize(PlayerControlledEntity entity) {
+		this.mineResourceAbility = AbilityFactory.INSTANCE.createAbility(MineResourceAbility.class.getSimpleName(), entity);
+		this.deliverResourceAbility = AbilityFactory.INSTANCE.createAbility(DeliverResourceAbility.class.getSimpleName(), entity);
 	}
 	
 	@Override
@@ -65,9 +65,9 @@ public class GatherResourceAbility extends AbstractAbility{
 	}
 
 	@Override
-	public AbstractAbility createAbility() {
+	public AbstractAbility createAbility(PlayerControlledEntity entity) {
 		GatherResourceAbility newAbility = new GatherResourceAbility();
-		newAbility.initialize();
+		newAbility.initialize(entity);
 		return newAbility;
 	}
 
