@@ -8,6 +8,7 @@ import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.pathfinding.AStar;
 import projectrts.model.pathfinding.AStarNode;
 import projectrts.model.pathfinding.AStarPath;
+import projectrts.model.pathfinding.Node;
 import projectrts.model.pathfinding.World;
 import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
@@ -33,7 +34,8 @@ public class MoveAbility extends AbstractAbility {
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize() {
+	protected void initialize(PlayerControlledEntity entity) {
+		this.entity = entity;
 		this.aStar = AStar.getInstance();
 		this.world = World.getInstance();
 	}
@@ -44,8 +46,7 @@ public class MoveAbility extends AbstractAbility {
 	}
 	
 	@Override
-	public void useAbility(PlayerControlledEntity entity, Position pos){
-		this.entity = entity;
+	public void useAbility(Position pos){
 		this.targetPosition = pos;
 		
 		// Want to refresh path as soon as a click is made
@@ -81,8 +82,12 @@ public class MoveAbility extends AbstractAbility {
 		if (path == null || path.nrOfNodesLeft() < 1 || pathRefresh )
 		{
 			pathRefresh = false;
+			refreshPath(entity.getPosition(), targetPos, world.getNodeAt(entity.getPosition()),
+					entity.getEntityID(), entity.getSize());
+			/*
 			path = aStar.calculatePath(entity.getPosition(), targetPos, entity.getEntityID());
 			world.setNodesOccupied(world.getNodeAt(entity.getPosition()), entity.getSize(), 0);
+			*/
 		}
 		
 		Position outputPos = entity.getPosition();
@@ -107,6 +112,9 @@ public class MoveAbility extends AbstractAbility {
 			{
 				stepLength -= distanceToNextNode;
 				outputPos = nextNode.getPosition().copy();
+				refreshPath(outputPos, targetPos, nextNode.getNode(),
+						entity.getEntityID(), entity.getSize());
+				/*
 				path = aStar.calculatePath(outputPos, targetPos, entity.getEntityID());
 				
 				if (path.nrOfNodesLeft() > 0)
@@ -116,15 +124,29 @@ public class MoveAbility extends AbstractAbility {
 					world.setNodesOccupied(path.getNextNode().getNode(),
 							entity.getSize(), entity.getEntityID());
 				}
+				*/
 			}
 		}
 		return outputPos;
 	}
 	
+	private void refreshPath(Position herePos, Position targetPos, Node hereNode,
+			int entityID, float entitySize)
+	{
+		path = aStar.calculatePath(herePos, targetPos, entityID);
+		if (path.nrOfNodesLeft() > 0)
+		{
+			world.setNodesOccupied(hereNode,
+					entitySize, 0);
+			world.setNodesOccupied(path.getNextNode().getNode(),
+					entitySize, entityID);
+		}
+	}
+	
 	@Override
-	public AbstractAbility createAbility() {
+	public AbstractAbility createAbility(PlayerControlledEntity entity) {
 		MoveAbility newAbility = new MoveAbility();
-		newAbility.initialize();
+		newAbility.initialize(entity);
 		return newAbility;
 	}
 }

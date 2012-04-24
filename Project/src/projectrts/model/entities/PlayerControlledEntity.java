@@ -84,7 +84,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		}
 		for(AbstractAbility ownAbility: abilities){
 			if(ability.equals(ownAbility.getName())){
-				ownAbility.useAbility(this, pos);
+				ownAbility.useAbility(pos);
 			}
 		}
 	}
