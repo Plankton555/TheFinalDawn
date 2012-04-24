@@ -1,5 +1,8 @@
 package projectrts.model.pathfinding;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
 
@@ -114,19 +117,34 @@ public final class World {
 	public void setNodesOccupied(Node nodeInCenter, float entitySize, int entityID) {
 		// TODO Plankton: !!!Check for out of bounds (if close to border)
 		// TODO Plankton: Find some other way to do this...
-		// TODO Plankton: !!!!Write a method that takes a position and size and returns the nodes concerned
-		int offset = (int) (entitySize/2);
-		int centerX = (int) nodeInCenter.getPosition().getX();
-		int centerY = (int) nodeInCenter.getPosition().getY();
+		List<Node> changingNodes = getNodesAt(nodeInCenter.getPosition(), entitySize);
+		for (Node n : changingNodes)
+		{
+			n.setOccupied(entityID);
+		}
+	}
+	
+	/**
+	 * Returns the nodes that would be covered by an object at
+	 * the provided position with the provided size.
+	 * @param centerPos Center position.
+	 * @param size Size.
+	 * @return All nodes that would be covered.
+	 */
+	public List<Node> getNodesAt(Position centerPos, float size)
+	{
+		List<Node> output = new ArrayList<Node>();
+		int offset = (int) (size/2);
+		int centerX = (int) centerPos.getX();
+		int centerY = (int) centerPos.getY();
 		
 		for (int i=centerY-offset; i<=centerY+offset; i++)
 		{
 			for (int j=centerX-offset; j<=centerX+offset; j++)
 			{
-				nodes[i][j].setOccupied(entityID);
-				//System.out.println(entityID + " occupies " + nodes[i][j].getPosition());
+				output.add(nodes[i][j]);
 			}
 		}
-		//nodeInCenter.setOccupied(entityID);
+		return output;
 	}
 }
