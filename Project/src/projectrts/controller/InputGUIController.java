@@ -7,10 +7,12 @@ import projectrts.model.entities.IAbility;
 import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
 import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.builder.EffectBuilder;
 import de.lessvoid.nifty.builder.LayerBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.ScreenBuilder;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
+import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.render.NiftyImage;
@@ -70,10 +72,12 @@ public class InputGUIController implements ScreenController {
 	    	        visibleToMouse(true);
 	    	           
 	                panel(new PanelBuilder("Panel_Main"){{
-	             	   width("60%");
+	             	   width("40%");
 	             	   childLayoutVertical();
 	                }});
-	    	           
+	                
+	                
+	                panel(createMiddlePanel()); 
 	                
 	                panel(createAbilityPanel());
 	                
@@ -90,6 +94,31 @@ public class InputGUIController implements ScreenController {
 	    element.getRenderer(ImageRenderer.class).setImage(image);
 	 
 	    nifty.gotoScreen("Screen_ID"); // start the screen
+	}
+	
+	//Creates the panel that shows current hp
+	private PanelBuilder createMiddlePanel(){
+		PanelBuilder builder = new PanelBuilder("Panel_SelectedInfo"){{
+			height("20%");
+			childLayoutVertical();
+			
+			panel(new PanelBuilder("Filler") {{
+				height("10px");
+				
+			}});
+			
+			control(new LabelBuilder("Label_Name"){{
+				text("Test Text");
+				
+				//TODO: Afton, fix text size
+				/*
+				onActiveEffect(new EffectBuilder("textSize") {{
+					effectParameter("maxSize", "10px");
+				}});
+				*/
+			}});
+		}};
+		return builder;
 	}
 	
 	//Creates the panel for the ability buttons
