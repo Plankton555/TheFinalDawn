@@ -239,8 +239,8 @@ public class GameView implements PropertyChangeListener{
 					new Vector3f((float)node.getPosition().getX()*mod,
 							-(float)node.getPosition().getY()*mod,
 							1),
-					(0.1f * mod)/2,
-					(0.1f * mod)/2,
+					(1f * mod)/2,
+					(1f * mod)/2,
 					0);
 
     		AbstractSpatial nodeSpatial = SpatialFactory.INSTANCE.createNodeSpatial("DebugNodeSpatial",

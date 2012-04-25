@@ -5,6 +5,7 @@ import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IBuildStructureAbility;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.structures.Barracks;
+import projectrts.model.pathfinding.World;
 import projectrts.model.player.Player;
 import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
@@ -22,7 +23,7 @@ public class BuildBarracksAbility extends AbstractAbility implements IBuildStruc
 	private Position buildPos;
 	private float buildTimeLeft;
 	private AbstractAbility moveAbility;
-	private float size = 2; //TODO: Sync with Barracks class
+	private float size = 3; //TODO: Sync with Barracks class
 
 	static {
 		AbilityFactory.INSTANCE.registerAbility(BuildBarracksAbility.class.getSimpleName(), new BuildBarracksAbility());
@@ -47,6 +48,7 @@ public class BuildBarracksAbility extends AbstractAbility implements IBuildStruc
 		if(isActive() && !isFinished()){
 			if(ModelUtils.INSTANCE.getDistance(builder.getPosition(),buildPos)<3){
 				//If in range of buildingPosition
+				moveAbility.setFinished(true);
 				if(buildTimeLeft<=0){
 					EntityManager.getInstance().addNewPCE(Barracks.class.getSimpleName(), (Player)builder.getOwner(),buildPos);
 					setFinished(true);
@@ -54,7 +56,6 @@ public class BuildBarracksAbility extends AbstractAbility implements IBuildStruc
 				}else{
 					buildTimeLeft-=tpf;
 				}
-				System.out.println(buildTimeLeft);
 			}else{
 				// Not in range
 				
@@ -76,6 +77,8 @@ public class BuildBarracksAbility extends AbstractAbility implements IBuildStruc
 			setActive(true);
 			setFinished(false);
 			buildTimeLeft=buildTime;
+			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(target)//TODO: Set unoccupied if ability is aborted
+					, getSizeOfBuilding(), EntityManager.getInstance().requestNewEntityID());
 		}
 	}
 

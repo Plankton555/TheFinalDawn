@@ -1,6 +1,7 @@
 package projectrts.model.entities.abilities;
 
 import projectrts.model.entities.AbstractAbility;
+import projectrts.model.entities.ITargetAbility;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.utils.Position;
 /**
@@ -8,7 +9,7 @@ import projectrts.model.utils.Position;
  * @author Jakob Svensson
  *
  */
-public class GatherResourceAbility extends AbstractAbility{
+public class GatherResourceAbility extends AbstractAbility implements ITargetAbility{
 	
 	private PlayerControlledEntity unit;
 	private AbstractAbility mineResourceAbility;

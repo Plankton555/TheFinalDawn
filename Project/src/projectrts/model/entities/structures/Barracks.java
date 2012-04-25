@@ -15,7 +15,7 @@ import projectrts.model.utils.Position;
  */
 public class Barracks extends AbstractStructure{
 	
-private static float size = 2;
+private static float size = 3;
 private static final float sightRange = 5;
 private static int maxHealth = 1000;
 	

@@ -3,6 +3,7 @@ package projectrts.model.entities.abilities;
 import javax.vecmath.Vector2d;
 
 import projectrts.model.entities.AbstractAbility;
+import projectrts.model.entities.ITargetAbility;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.pathfinding.AStar;
 import projectrts.model.pathfinding.AStarNode;
@@ -17,7 +18,7 @@ import projectrts.model.utils.Position;
  * @author Filip Brynfors, modified by Bjorn Persson Mattsson
  *
  */
-public class MoveAbility extends AbstractAbility {
+public class MoveAbility extends AbstractAbility implements ITargetAbility{
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
 	

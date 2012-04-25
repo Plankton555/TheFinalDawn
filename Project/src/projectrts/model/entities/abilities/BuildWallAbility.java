@@ -18,7 +18,7 @@ import projectrts.model.utils.Position;
 public class BuildWallAbility extends AbstractAbility implements IBuildStructureAbility{
 	private PlayerControlledEntity builder;
 	private static float buildTime = 1; 
-	private static int buildCost = 100; 
+	private static int buildCost = 50; 
 	private static float cooldown = 0.5f;
 	private Position buildPos;
 	private float buildTimeLeft;
@@ -48,6 +48,7 @@ public class BuildWallAbility extends AbstractAbility implements IBuildStructure
 		if(isActive() && !isFinished()){
 			if(ModelUtils.INSTANCE.getDistance(builder.getPosition(),buildPos)<1.5){
 				//If in range of buildingPosition
+				moveAbility.setFinished(true);
 				if(buildTimeLeft<=0){
 					EntityManager.getInstance().addNewPCE(Wall.class.getSimpleName(), (Player)builder.getOwner(),buildPos);
 					setFinished(true);
@@ -55,7 +56,6 @@ public class BuildWallAbility extends AbstractAbility implements IBuildStructure
 				}else{
 					buildTimeLeft-=tpf;
 				}
-				System.out.println(buildTimeLeft);
 			}else{
 				// Not in range
 				
@@ -77,6 +77,7 @@ public class BuildWallAbility extends AbstractAbility implements IBuildStructure
 			setActive(true);
 			setFinished(false);
 			buildTimeLeft=buildTime;
+			System.out.println("Using ability");
 		}
 	}
 
