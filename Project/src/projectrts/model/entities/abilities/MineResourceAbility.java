@@ -27,9 +27,9 @@ public class MineResourceAbility extends AbstractAbility implements IMovableAbil
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity) {
+	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		this.unit = entity;
-		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), entity);
+		this.moveAbility = moveAbility;
 	}
 	
 	@Override
@@ -79,9 +79,8 @@ public class MineResourceAbility extends AbstractAbility implements IMovableAbil
 	
 	@Override
 	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
-		// TODO Plankton: Fix move
 		MineResourceAbility newAbility = new MineResourceAbility();
-		newAbility.initialize(entity);
+		newAbility.initialize(entity, moveAbility);
 		return newAbility;
 	}
 

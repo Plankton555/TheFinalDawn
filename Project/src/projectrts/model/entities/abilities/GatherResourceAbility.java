@@ -24,8 +24,8 @@ public class GatherResourceAbility extends AbstractAbility implements IMovableAb
 	 */
 	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		this.unit =  entity;
-		this.mineResourceAbility = AbilityFactory.INSTANCE.createAbility(MineResourceAbility.class.getSimpleName(), entity);
-		this.deliverResourceAbility = AbilityFactory.INSTANCE.createAbility(DeliverResourceAbility.class.getSimpleName(), entity);
+		this.mineResourceAbility = AbilityFactory.INSTANCE.createMAbility(MineResourceAbility.class.getSimpleName(), entity, moveAbility);
+		this.deliverResourceAbility = AbilityFactory.INSTANCE.createMAbility(DeliverResourceAbility.class.getSimpleName(), entity, moveAbility);
 	}
 	
 	@Override
@@ -66,7 +66,6 @@ public class GatherResourceAbility extends AbstractAbility implements IMovableAb
 
 	@Override
 	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
-		// Plankton: fix move
 		GatherResourceAbility newAbility = new GatherResourceAbility();
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;

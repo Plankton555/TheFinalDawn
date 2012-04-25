@@ -30,10 +30,11 @@ public class Worker extends AbstractUnit{
 	
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
-		this.abilities.add(AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName(),this));
-		this.abilities.add(AbilityFactory.INSTANCE.createAbility(GatherResourceAbility.class.getSimpleName(),this));
-		this.abilities.add(AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(),this));
-		this.abilities.add(AbilityFactory.INSTANCE.createAbility(BuildBarracksAbility.class.getSimpleName(),this));
+		MoveAbility moveAbility = (MoveAbility) AbilityFactory.INSTANCE.createAbility(AttackAbility.class.getSimpleName(),this);
+		this.abilities.add(moveAbility);
+		this.abilities.add(AbilityFactory.INSTANCE.createMAbility(GatherResourceAbility.class.getSimpleName(),this, moveAbility));
+		this.abilities.add(AbilityFactory.INSTANCE.createMAbility(MoveAbility.class.getSimpleName(),this, moveAbility));
+		this.abilities.add(AbilityFactory.INSTANCE.createMAbility(BuildBarracksAbility.class.getSimpleName(),this, moveAbility));
 		setName(Worker.class.getSimpleName());
 		setSize(size);
 		setSpeed(speed);

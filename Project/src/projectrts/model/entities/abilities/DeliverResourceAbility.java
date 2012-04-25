@@ -29,9 +29,9 @@ public class DeliverResourceAbility extends AbstractAbility implements IMovableA
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity) {
+	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		this.unit=entity;
-		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), entity);
+		this.moveAbility = moveAbility;
 	}
 	
 	@Override
@@ -95,9 +95,8 @@ public class DeliverResourceAbility extends AbstractAbility implements IMovableA
 
 	@Override
 	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
-		// TODO Plankton: Fix move
 		DeliverResourceAbility newAbility = new DeliverResourceAbility();
-		newAbility.initialize(entity);
+		newAbility.initialize(entity, moveAbility);
 		return newAbility;
 		
 	}

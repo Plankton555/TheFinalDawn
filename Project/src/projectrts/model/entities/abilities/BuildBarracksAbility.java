@@ -29,10 +29,10 @@ public class BuildBarracksAbility extends AbstractAbility implements IMovableAbi
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity) {
+	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		builder = entity;
 		this.setCooldown(cooldown);
-		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), entity);
+		this.moveAbility = moveAbility;
 	}
 
 	@Override
@@ -80,9 +80,8 @@ public class BuildBarracksAbility extends AbstractAbility implements IMovableAbi
 	@Override
 
 	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
-		// TODO Plankton: Fix move
 		BuildBarracksAbility newAbility = new BuildBarracksAbility();
-		newAbility.initialize(entity);
+		newAbility.initialize(entity, moveAbility);
 		return newAbility;
 	}
 

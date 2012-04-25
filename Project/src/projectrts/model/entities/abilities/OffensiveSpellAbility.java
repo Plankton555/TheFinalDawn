@@ -28,9 +28,9 @@ public class OffensiveSpellAbility extends AbstractAbility implements IMovableAb
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity) {
+	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		this.attacker = entity;
-		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), entity);
+		this.moveAbility = moveAbility;
 		this.setCooldown(5);
 	}
 
@@ -81,9 +81,8 @@ public class OffensiveSpellAbility extends AbstractAbility implements IMovableAb
 
 	@Override
 	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
-		// TODO Plankton: Fix move
 		OffensiveSpellAbility newAbility = new OffensiveSpellAbility();
-		newAbility.initialize(entity);
+		newAbility.initialize(entity, moveAbility);
 		return newAbility;
 	}
 }
