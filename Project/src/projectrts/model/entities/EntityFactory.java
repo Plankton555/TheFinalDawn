@@ -59,7 +59,7 @@ public enum EntityFactory {INSTANCE;
 	 * @return An instance of the desired entity.
 	 */
 	public NonPlayerControlledEntity createNPCE(String npceType, Position pos) {
-		if(pceMap.get(npceType) == null) {
+		if(npceMap.get(npceType) == null) {
 			return null;
 		}
 		return npceMap.get(npceType).createNPCE(pos);

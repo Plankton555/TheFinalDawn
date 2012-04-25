@@ -13,20 +13,20 @@ import projectrts.model.utils.Position;
  *
  */
 public abstract class AbstractCreationAbility extends AbstractAbility{
-	private PlayerControlledEntity structure;
+
 	private float buildTime; 
 	private int buildCost; 
-	private String entityName;
 	private float buildTimeLeft;
 	private Position spawnPos;
-	
+	private PlayerControlledEntity entity;
+	private String entityToTrain;	
 	
 	@Override
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			if(buildTimeLeft<=0){
-				spawnPos = AStar.getInstance().getClosestUnoccupiedNode(structure.getPosition(), null, 0).getPosition();
-				EntityManager.getInstance().addNewPCE(entityName, (Player)structure.getOwner(),spawnPos);
+				spawnPos = AStar.getInstance().getClosestUnoccupiedNode(entity.getPosition(), null, 0).getPosition();
+				EntityManager.getInstance().addNewPCE(entityToTrain, (Player)entity.getOwner(),spawnPos);
 				setFinished(true);
 				buildTimeLeft =buildTime;
 			}else{
@@ -36,10 +36,11 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 	}
 
 	@Override
-	public void useAbility(PlayerControlledEntity caster, Position target) {
+
+	public void useAbility(Position target) {
 		if(!isActive()){//TODO Jakob: Notify view that ability is already in use(or maybe set in queue?)
-			structure = caster;
-			Player owner = (Player)structure.getOwner();
+			
+			Player owner = (Player)entity.getOwner();
 			if(owner.getResources()>=buildCost){//TODO Jakob: Notify view somehow when not enough resources
 				owner.modifyResource(-buildCost); 
 				setActive(true);
@@ -56,9 +57,13 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 	protected void setBuildCost(int buildCost) {
 		this.buildCost = buildCost;
 	}
-
-	protected void setEntityName(String entityName) {
-		this.entityName = entityName;
+	
+	protected void setEntityToTrain(String name){
+		this.entityToTrain=name;
+	}
+	
+	protected void setEntity(PlayerControlledEntity entity){
+		this.entity = entity;
 	}
 
 

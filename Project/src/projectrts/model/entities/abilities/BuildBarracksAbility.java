@@ -2,7 +2,6 @@ package projectrts.model.entities.abilities;
 
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.EntityManager;
-import projectrts.model.entities.IAbility;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.structures.Barracks;
 import projectrts.model.player.Player;
@@ -30,9 +29,10 @@ public class BuildBarracksAbility extends AbstractAbility{
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize() {
+	protected void initialize(PlayerControlledEntity entity) {
+		builder = entity;
 		this.setCooldown(cooldown);
-		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
+		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), entity);
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class BuildBarracksAbility extends AbstractAbility{
 				// Not in range
 				
 				if(!moveAbility.isActive()){
-					moveAbility.useAbility(builder, buildPos);
+					moveAbility.useAbility(buildPos);
 				}
 				
 				moveAbility.update(tpf);
@@ -66,8 +66,7 @@ public class BuildBarracksAbility extends AbstractAbility{
 	}
 
 	@Override
-	public void useAbility(PlayerControlledEntity caster, Position target) {
-		builder = caster;
+	public void useAbility(Position target) {
 		Player owner = (Player)builder.getOwner();
 		if(owner.getResources()>=buildCost){//TODO Jakob: Notify view somehow when not enough resources
 			owner.modifyResource(-buildCost); 
@@ -79,9 +78,10 @@ public class BuildBarracksAbility extends AbstractAbility{
 	}
 
 	@Override
-	public AbstractAbility createAbility() {
+
+	public AbstractAbility createAbility(PlayerControlledEntity entity) {
 		BuildBarracksAbility newAbility = new BuildBarracksAbility();
-		newAbility.initialize();
+		newAbility.initialize(entity);
 		return newAbility;
 	}
 

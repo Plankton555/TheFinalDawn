@@ -24,7 +24,7 @@ private static final float sightRange = 5;
 	
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
-		this.abilities.add(AbilityFactory.INSTANCE.createAbility(TrainWarriorAbility.class.getSimpleName()));
+		this.abilities.add(AbilityFactory.INSTANCE.createAbility(TrainWarriorAbility.class.getSimpleName(),this));
 		setName(Barracks.class.getSimpleName());
 		setSize(size);
 		setSightRange(sightRange);
