@@ -2,7 +2,6 @@ package projectrts.model.entities.abilities;
 
 import javax.vecmath.Vector2d;
 
-import projectrts.model.constants.P;
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.pathfinding.AStar;
@@ -23,6 +22,7 @@ public class MoveAbility extends AbstractAbility {
 	private Position targetPosition;
 	
 	private World world;
+	private Node occupiedNode;
 	private AStar aStar;
 	private AStarPath path;
 	private boolean pathRefresh = true;
@@ -38,6 +38,7 @@ public class MoveAbility extends AbstractAbility {
 		this.entity = entity;
 		this.aStar = AStar.getInstance();
 		this.world = World.getInstance();
+		this.occupiedNode = world.getNodeAt(entity.getPosition());
 	}
 	
 	@Override
@@ -82,7 +83,8 @@ public class MoveAbility extends AbstractAbility {
 		if (path == null || path.nrOfNodesLeft() < 1 || pathRefresh )
 		{
 			pathRefresh = false;
-			refreshPath(entity.getPosition(), targetPos, world.getNodeAt(entity.getPosition()),
+			refreshPath(occupiedNode.getPosition(), targetPos,
+					occupiedNode,
 					entity.getEntityID(), entity.getSize());
 			/*
 			path = aStar.calculatePath(entity.getPosition(), targetPos, entity.getEntityID());
@@ -138,7 +140,8 @@ public class MoveAbility extends AbstractAbility {
 		{
 			world.setNodesOccupied(hereNode,
 					entitySize, 0);
-			world.setNodesOccupied(path.getNextNode().getNode(),
+			this.occupiedNode = path.getNextNode().getNode();
+			world.setNodesOccupied(this.occupiedNode,
 					entitySize, entityID);
 		}
 	}
