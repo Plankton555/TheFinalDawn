@@ -6,11 +6,6 @@ import projectrts.global.utils.ImageManager;
 import projectrts.model.entities.IAbility;
 import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
-
-import com.jme3.app.Application;
-import com.jme3.app.SimpleApplication;
-import com.jme3.niftygui.NiftyJmeDisplay;
-
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.builder.LayerBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
@@ -33,32 +28,26 @@ public class InputGUIController implements ScreenController {
 	
 	private InputController input;
 	private ScreenController sc;
-	private int i;
-	private SimpleApplication app;
 	
 	private List<IAbility> abilities; 
 	private IPlayerControlledEntity selectedPce;
 
-	
-	public InputGUIController(Application app, InputController input) {
+	/**
+	 * Creates a new inputGUIController
+	 * @param app the application
+	 * @param input the inputController
+	 * @param nifty the nifty
+	 */
+	public InputGUIController(InputController input, Nifty nifty) {
 		sc = this;
-		this.app = (SimpleApplication) app;
-		initializeGUI();
 		this.input = input;
+		this.nifty = nifty;
+		
+		initializeGUI();
 		input.setGUIControl(this);
 	}
 	
 	private void initializeGUI() {
-		NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
-	            app.getAssetManager(), app.getInputManager(), app.getAudioRenderer(), app.getGuiViewPort());
-	    nifty = niftyDisplay.getNifty();
-	    app.getGuiViewPort().addProcessor(niftyDisplay);
-	    app.getFlyByCamera().setDragToRotate(true);
-	 
-	    nifty.loadStyleFile("nifty-default-styles.xml");
-	    nifty.loadControlFile("nifty-default-controls.xml");
-	 
-	    ImageManager.INSTANCE.initializeImages(nifty);
 	    
 	    // <screen>
 	    nifty.addScreen("Screen_ID", new ScreenBuilder("GUI Screen"){{
@@ -67,8 +56,6 @@ public class InputGUIController implements ScreenController {
 	        // <layer>
 	        layer(new LayerBuilder("Layer_ID") {{
 	            childLayoutVertical(); // layer properties, add more...
-
-	            
 	            
 	            panel(new PanelBuilder("panel_main") {{
 	                childLayoutVertical();
@@ -78,80 +65,86 @@ public class InputGUIController implements ScreenController {
 	                // <!-- spacer -->
 	            }});
 	            
-	 
 	            // <panel>
 	            panel(new PanelBuilder("Panel_GUI") {{
-	               childLayoutHorizontal(); // panel properties, add more...  
-	               backgroundColor("#f00f"); 
-		           height("20%");
-		           visibleToMouse(true);
-		           
-		           
-	               panel(new PanelBuilder("Panel_Main"){{
-	            	   width("60%");
-	            	   childLayoutVertical();
-	            	   
-	               }});
-		           
-	               panel(new PanelBuilder("Panel_Abilities"){{
-	            	   width("40%");
-	            	   childLayoutVertical();
-	    
-	 
-	            	   //First row with buttons
-		               panel(new PanelBuilder("Panel_Abilities_Row1"){{
-		            	   height("50%");
-		            	   childLayoutHorizontal();
-		            	   
-		            	   for(i = 1; i<=4; i++){
-				                // GUI elements
-				                control(new ButtonBuilder("Button_Ability_" + i){{
-				                    width("25%");
-				                    height("100%");
-				                    visible(false);
-				                    focusable(false);
-				                    interactOnClick("buttonClicked("+i+")");
-				                }});
-			                
-		            	   }
-		
-		               }});    
-		               
-		               
-		               
-		               //Second row with buttons
-		               panel(new PanelBuilder("Panel_Abilities_Row2"){{
-		            	   height("50%");
-		            	   childLayoutHorizontal();
-			                
-		            	   for(i = 5; i<=8; i++){
-				                // GUI elements
-				                control(new ButtonBuilder("Button_Ability_" + i){{
-				                    width("25%");
-				                    height("100%");
-				                    visible(false);
-				                    focusable(false);
-				                    interactOnClick("buttonClicked("+i+")");
-				                }});
-			                
-		            	   }
+	                childLayoutHorizontal(); // panel properties, add more...  
+	    	        visibleToMouse(true);
+	    	           
+	                panel(new PanelBuilder("Panel_Main"){{
+	             	   width("60%");
+	             	   childLayoutVertical();
+	                }});
+	    	           
 	                
-		               }});
-	               }});
-	 
+	                panel(createAbilityPanel());
+	                
 	            }});
 	            // </panel>
 	          }});
 	        // </layer>
 	      }}.build(nifty));
 	    // </screen>
+	    
+	    
+	    Element element = nifty.getScreen("Screen_ID").findElementByName("Panel_GUI");
+	    NiftyImage image = ImageManager.INSTANCE.getImage("GUIBackground");
+	    element.getRenderer(ImageRenderer.class).setImage(image);
 	 
 	    nifty.gotoScreen("Screen_ID"); // start the screen
+	}
+	
+	//Creates the panel for the ability buttons
+	private PanelBuilder createAbilityPanel(){
+		PanelBuilder builder = new PanelBuilder("Panel_Abilities"){{
+			width("40%");
+         	childLayoutVertical();
+ 
+         	   		//First row with buttons
+         	panel(new PanelBuilder("Panel_Abilities_Row1"){{
+         		height("50%");
+         		childLayoutHorizontal();
+        	   
+         		for(int i = 1; i<=4; i++){
+         			// GUI elements
+         			control(createAbilityButton(i));
+         		}
+           }});    
+           
+         
+           //Second row with buttons
+           panel(new PanelBuilder("Panel_Abilities_Row2"){{
+        	   height("50%");
+        	   childLayoutHorizontal();
+                
+        	   for(int i = 5; i<=8; i++){
+	                // GUI elements
+	                control(createAbilityButton(i));
+        	   }
+     
+           }});
+		}};
+		return builder;
 		
 	}
 	
+	//Creates an abilityButton
+	private ButtonBuilder createAbilityButton(final int i){
+		ButtonBuilder builder = new ButtonBuilder("Button_Ability_" + i){{
+	        width("25%");
+	        height("100%");
+	        visible(false);
+	        focusable(false);
+	        interactOnClick("buttonClicked("+i+")");
+	    }};
+		return builder;
+		
+	}
+	
+	/**
+	 * Updates the abilities in the GUI
+	 * @param selectedEntities the abilities of the selected Entity
+	 */
 	public void updateAbilities(List<IEntity> selectedEntities){
-    	Screen screen = nifty.getScreen("Screen_ID");
     	
     	boolean oneIsSelected = selectedEntities.size()==1;
     	abilities = null;
@@ -205,6 +198,11 @@ public class InputGUIController implements ScreenController {
 		
 	}
 	
+	
+	/**
+	 * Used when any of the Ability buttons are clicked
+	 * @param nr the ID of the clicked button
+	 */
 	public void buttonClicked(String nr) {
 		try {
 			
@@ -218,7 +216,6 @@ public class InputGUIController implements ScreenController {
 		} catch (NumberFormatException e){
 			
 		}
-		
 		
 	}
 

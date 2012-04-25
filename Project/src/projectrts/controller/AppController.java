@@ -3,8 +3,11 @@ package projectrts.controller;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import projectrts.global.utils.ImageManager;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
+import projectrts.model.GameModel;
+import projectrts.model.IGame;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.controls.NodeControl;
 import projectrts.view.controls.SelectControl;
@@ -17,17 +20,21 @@ import projectrts.view.spatials.WarriorSpatial;
 import projectrts.view.spatials.WorkerSpatial;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.RenderManager;
+
+import de.lessvoid.nifty.Nifty;
 
 /**
  * The top-level controller.
  * 
  * Is the connection to jMonkeyEngine (extends SimpleApplication)
  * and handles top-level stuff like swapping AppStates.
- * @author Markus Ekström Modifed by Jakob Svensson 
+ * @author Markus Ekström Modifed by Jakob Svensson, Filip Brynfors
  *
  */
 public class AppController extends SimpleApplication{
+	private Nifty nifty;
 
 	static{
 		try
@@ -54,24 +61,36 @@ public class AppController extends SimpleApplication{
 	
     @Override
     public void simpleInitApp() {
+    	
+		NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
+	            getAssetManager(), getInputManager(), getAudioRenderer(), getGuiViewPort());
+	    nifty = niftyDisplay.getNifty();
+	    
+	    getGuiViewPort().addProcessor(niftyDisplay);
+
+	 
+	    nifty.loadStyleFile("nifty-default-styles.xml");
+	    nifty.loadControlFile("nifty-default-controls.xml");
+	    
+	    
+    	
     	this.cam.setParallelProjection(true);
     	TextureManager.INSTANCE.initializeTextures(this);
     	MaterialManager.INSTANCE.initializeMaterial(this);
-        /*
-    	IGame game = new GameModel();
-        InGameState inGameState = new InGameState(game);
-        this.stateManager.attach(inGameState);
-        inGameState.setEnabled(true);
-        */
-        //inGameState.setEnabled(false);
-        
-    	MenuState menuState = new MenuState();
-    	this.stateManager.attach(menuState);
+    	ImageManager.INSTANCE.initializeImages(nifty);
+
+    	
+    	//TODO: Afton, Should not send itself as parameter. Too strong connections
+    	MenuState menuState = new MenuState(nifty, this);
+    	
     	menuState.setEnabled(true);
-        
+              	
+       	this.stateManager.attach(menuState);
+       	
         
         // Set logger level
         Logger.getLogger("").setLevel(Level.SEVERE);
+         
     }
 
     @Override
@@ -83,4 +102,12 @@ public class AppController extends SimpleApplication{
     public void simpleRender(RenderManager rm) {
         //TODO Markus: add render code
     }
+    
+    public void startIngameState(){
+        IGame game = new GameModel();
+    	InGameState ingameState = new InGameState(game, nifty);
+    	this.stateManager.attach(ingameState);
+    	ingameState.setEnabled(true);
+    }
+    
 }

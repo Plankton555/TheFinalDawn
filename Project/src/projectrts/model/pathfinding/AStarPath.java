@@ -46,5 +46,5 @@ public class AStarPath {
 		return nodeStack.size();
 	}
 	
-	// TODO Plankton: Create a method for adding two paths into one. Could be useful... maybe.
+	// Plankton: Create a method for adding two paths into one. Could be useful... maybe.
 }

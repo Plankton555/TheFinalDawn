@@ -12,6 +12,8 @@ import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.math.Vector3f;
 
+import de.lessvoid.nifty.Nifty;
+
 /**
  * The in-game state that controls everything inside the game.
  * @author Markus Ekström
@@ -25,10 +27,12 @@ public class InGameState extends AbstractAppState {
     private InputController input;
     private GameView view;
     private InputGUIController guiControl;
+    private Nifty nifty;
     
-    public InGameState(IGame game) {
+    public InGameState(IGame game, Nifty nifty) {
         super();
         this.game = game;
+        this.nifty = nifty;
     }
     
     /**
@@ -48,7 +52,7 @@ public class InGameState extends AbstractAppState {
       view = new GameView(this.app, game);
       input = new InputController(this.app, game, view);
 
-      guiControl = new InputGUIController(app, input); 
+      guiControl = new InputGUIController(input, nifty); 
 
       initializeCamera();
       // Initialize view last, after model and controller, since its initialization is dependent on the other's.

@@ -1,12 +1,7 @@
 package projectrts.controller;
 
-// TODO Afton(?): ADD JAVADOC!!
-import projectrts.model.GameModel;
-import projectrts.model.IGame;
-
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
-import com.jme3.niftygui.NiftyJmeDisplay;
 
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.builder.LayerBuilder;
@@ -16,14 +11,28 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 
+/**
+ * A class that handles the GUI of the menu
+ * @author Filip Brynfors
+ *
+ */
 public class MenuGUIController implements ScreenController {
 	private SimpleApplication app;
 	private ScreenController sc;
 	private Nifty nifty;
+	private AppController appController;
 	
-	public MenuGUIController(Application app){
+	/**
+	 * Creates a new GUI controller
+	 * @param app the simpleApplication
+	 * @param nifty the Nifty GUI object
+	 * @param observer 
+	 */
+	public MenuGUIController(Application app, Nifty nifty, AppController appController){
 		this.app = (SimpleApplication) app;
 		this.sc = this;
+		this.nifty = nifty;
+		this.appController = appController;
 		initializeGUI();
 	}
 	
@@ -42,27 +51,8 @@ public class MenuGUIController implements ScreenController {
 		
 	}
 	
-	
-	private void initializeGUI() {
-		NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
-	            app.getAssetManager(), app.getInputManager(), app.getAudioRenderer(), app.getGuiViewPort());
-	    nifty = niftyDisplay.getNifty();
-	    app.getGuiViewPort().addProcessor(niftyDisplay);
-	    app.getFlyByCamera().setDragToRotate(true);
-	 
-	    nifty.loadStyleFile("nifty-default-styles.xml");
-	    nifty.loadControlFile("nifty-default-controls.xml");
-	    
-	    // <screen>
-	    nifty.addScreen("Empty", new ScreenBuilder("Empty"){{
-	    	layer(new LayerBuilder("Layer_ID") {{
-	    		childLayoutCenter();
+	private void initializeGUI() {    
 
-	    		
-	    	}});
-	    	
-	    }}.build(nifty));
-	    
 	    nifty.addScreen("Screen_StartMenu", new ScreenBuilder("GUI Start Menu"){{
 	        controller(sc); // Screen properties       
 	 
@@ -91,29 +81,24 @@ public class MenuGUIController implements ScreenController {
 	        // </layer>
 	      }}.build(nifty));
 	    // </screen>
-	 
-	   
-	    nifty.gotoScreen("Screen_StartMenu"); // start the screen
 	    
-	    
-
-		
+	    nifty.gotoScreen("Screen_StartMenu"); // start the screen	
 	}
 
-	
+	/**
+	 * Used when the start Game button is clicked
+	 */
 	public void buttonStartClicked(){
+		MenuState state = app.getStateManager().getState(MenuState.class);
+		state.setEnabled(false);
+		app.getStateManager().detach(state);
 		
-		nifty.gotoScreen("Empty");
-		
-	   	IGame game = new GameModel();
-        InGameState inGameState = new InGameState(game);
-        app.getStateManager().attach(inGameState);
-        
-        inGameState.setEnabled(true);      
-     
+		appController.startIngameState();
 	}
 	
-	
+	/**
+	 * Used when the Exit button is clicked
+	 */
 	public void buttonExitClicked(){
 		app.stop();
 	}

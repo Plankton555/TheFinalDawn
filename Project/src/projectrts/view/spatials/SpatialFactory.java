@@ -24,7 +24,14 @@ public enum SpatialFactory {INSTANCE;
 		return ((IEntitySpatial)spatialMap.get(spatialType)).createSpatial(name, box, entity);
 	}
 	
-	// TODO Plankton: Add javadoc
+	/**
+	 * Creates a new NodeSpatial.
+	 * @param spatialType Spatial type
+	 * @param name Name
+	 * @param box Box
+	 * @param node Node
+	 * @return The new NodeSpatial
+	 */
 	public AbstractSpatial createNodeSpatial(String spatialType, String name, Box box, INode node) {
 		return ((INodeSpatial)spatialMap.get(spatialType)).createSpatial(name, box, node);
 	}

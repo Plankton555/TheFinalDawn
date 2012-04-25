@@ -225,6 +225,13 @@ public class EntityManager implements IEntityManager{
 	}
 	
 	// TODO Markus: add support for ai selecting
+	
+
+	/**
+	 * Selected entities at the specified position
+	 * @param pos the position where entities should be selected
+	 * @param owner the player that selected the entities
+	 */
 	public void select(Position pos, IPlayer owner) {
 		//TODO Anyone: Add support for selection of multiple units and enemy units.
 		selectedEntities.clear();
@@ -234,7 +241,11 @@ public class EntityManager implements IEntityManager{
 		}
 	}
 	
-
+	/**
+	 * Uses the abilities of the seleced entities
+	 * @param ability the ability to be used
+	 * @param p the position to use the ability at
+	 */
 	public void useAbilitySelected(String ability, Position p){
 		for(IEntity entity: selectedEntities){
 			if(entity instanceof PlayerControlledEntity){
@@ -244,6 +255,10 @@ public class EntityManager implements IEntityManager{
 		}
 	}
 	
+	/**
+	 * Returns the selected entities
+	 * @return A list with the selected entities
+	 */
 	public List<IEntity> getSelectedEntities() {
 		List<IEntity> entities = new ArrayList<IEntity>();
 		for(IEntity entity: selectedEntities){

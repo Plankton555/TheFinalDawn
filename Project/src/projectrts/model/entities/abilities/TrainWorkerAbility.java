@@ -1,6 +1,7 @@
 package projectrts.model.entities.abilities;
 
 import projectrts.model.entities.AbstractAbility;
+import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.units.Worker;
 
 /**
@@ -20,11 +21,12 @@ public class TrainWorkerAbility extends AbstractCreationAbility{
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize() {
+protected void initialize(PlayerControlledEntity entity) {
 		this.setCooldown(cooldown);
 		this.setBuildCost(buildCost);
 		this.setBuildTime(buildTime);
-		this.setEntityName(Worker.class.getSimpleName());
+		this.setEntity(entity);
+		this.setEntityToTrain(Worker.class.getSimpleName());
 	}
 	
 	@Override
@@ -32,11 +34,10 @@ public class TrainWorkerAbility extends AbstractCreationAbility{
 		return "TrainWorker";
 	}
 
-
 	@Override
-	public AbstractAbility createAbility() {
+	public AbstractAbility createAbility(PlayerControlledEntity entity) {
 		TrainWorkerAbility newAbility = new TrainWorkerAbility();
-		newAbility.initialize();
+		newAbility.initialize(entity);
 		return newAbility;
 	}
 

@@ -20,12 +20,12 @@ public class TrainWorkerAbilityTest {
 	public void test() {
 		new GameModel();
 		Player player = new Player();
-		TrainWorkerAbility ab = (TrainWorkerAbility)AbilityFactory.INSTANCE.createAbility(TrainWorkerAbility.class.getSimpleName());
 		EntityManager.getInstance().addNewPCE("Headquarter", player,new Position(10f,10f));
 		EntityManager.getInstance().update(1);
 		Headquarter hq = (Headquarter)  EntityManager.getInstance().getPCEAtPosition(new Position(10f, 10f));
+		TrainWorkerAbility ab = (TrainWorkerAbility)AbilityFactory.INSTANCE.createAbility(TrainWorkerAbility.class.getSimpleName(),hq);
 		
-		ab.useAbility(hq, new Position(1,1));
+		ab.useAbility(new Position(1,1));
 		int counter = 0;
 		while(ab.isFinished()){
 			ab.update(1);

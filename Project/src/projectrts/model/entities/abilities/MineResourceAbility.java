@@ -27,8 +27,9 @@ public class MineResourceAbility extends AbstractAbility{
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize() {
-		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName());
+	protected void initialize(PlayerControlledEntity entity) {
+		this.unit = entity;
+		this.moveAbility = AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), entity);
 	}
 	
 	@Override
@@ -59,7 +60,7 @@ public class MineResourceAbility extends AbstractAbility{
 				// Not in range
 				
 				if(!moveAbility.isActive()){
-					moveAbility.useAbility(unit, targetResource.getPosition());
+					moveAbility.useAbility(targetResource.getPosition());
 				}
 				
 				moveAbility.update(tpf);
@@ -69,8 +70,7 @@ public class MineResourceAbility extends AbstractAbility{
 	}
 
 	@Override
-	public void useAbility(PlayerControlledEntity entity, Position target) {
-		this.unit = entity;
+	public void useAbility(Position target) {
 		this.targetResource = (Resource) EntityManager.getInstance().getNonPlayerControlledEntity(target);
 		resourceCarriedAmount = 0;
 		setActive(true);
@@ -78,9 +78,9 @@ public class MineResourceAbility extends AbstractAbility{
 	}
 	
 	@Override
-	public AbstractAbility createAbility() {
+	public AbstractAbility createAbility(PlayerControlledEntity entity) {
 		MineResourceAbility newAbility = new MineResourceAbility();
-		newAbility.initialize();
+		newAbility.initialize(entity);
 		return newAbility;
 	}
 

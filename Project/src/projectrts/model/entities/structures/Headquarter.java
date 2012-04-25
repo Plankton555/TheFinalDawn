@@ -24,7 +24,7 @@ public class Headquarter extends AbstractStructure{
 	
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
-		this.abilities.add(AbilityFactory.INSTANCE.createAbility(TrainWorkerAbility.class.getSimpleName()));
+		this.abilities.add(AbilityFactory.INSTANCE.createAbility(TrainWorkerAbility.class.getSimpleName(), this));
 		setName(Headquarter.class.getSimpleName());
 		setSize(size);
 		setSightRange(sightRange);

@@ -7,12 +7,9 @@ import org.junit.Test;
 import projectrts.model.GameModel;
 import projectrts.model.constants.P;
 import projectrts.model.entities.EntityManager;
-import projectrts.model.entities.abilities.AbilityFactory;
-import projectrts.model.entities.abilities.GatherResourceAbility;
 import projectrts.model.entities.misc.Resource;
 import projectrts.model.entities.units.Worker;
 import projectrts.model.player.Player;
-import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
 /**
  * Test for GatherResourceAbility
@@ -24,7 +21,7 @@ public class GatherResourceAbilityTest {
 	@Test
 	public void test() {
 		new GameModel();
-		GatherResourceAbility ab = (GatherResourceAbility) AbilityFactory.INSTANCE.createAbility(GatherResourceAbility.class.getSimpleName());
+		
 		Player player = new Player();
 		EntityManager.getInstance().addNewPCE("Worker", player,new Position(1f,1f));
 		EntityManager.getInstance().addNewPCE("Headquarter", player,new Position(10f,10f));
@@ -33,8 +30,8 @@ public class GatherResourceAbilityTest {
 		EntityManager.getInstance().update(1);
 		Worker worker = (Worker) EntityManager.getInstance().getPCEAtPosition(new Position(1f, 1f));
 		Resource res = (Resource) EntityManager.getInstance().getNonPlayerControlledEntity(new Position(0f,0f));
-		
-		ab.useAbility(worker, res.getPosition());
+		GatherResourceAbility ab = (GatherResourceAbility) AbilityFactory.INSTANCE.createAbility(GatherResourceAbility.class.getSimpleName(),worker);
+		ab.useAbility(res.getPosition());
 		int counter = 0;
 
 		while(player.getResources()!=P.INSTANCE.getWorkerCarryAmount()+P.INSTANCE.getResourceStarterAmount()){

@@ -1,6 +1,7 @@
 package projectrts.model.entities.abilities;
 
 import projectrts.model.entities.AbstractAbility;
+import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.units.Warrior;
 //TODO Jakob: Maybe extract common code with trainWorkerAbility to a abstract class
 /**
@@ -20,11 +21,12 @@ public class TrainWarriorAbility extends AbstractCreationAbility{
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize() {
+	protected void initialize(PlayerControlledEntity entity) {
 		this.setCooldown(cooldown);
 		this.setBuildCost(buildCost);
 		this.setBuildTime(buildTime);
-		this.setEntityName(Warrior.class.getSimpleName());
+		this.setEntity(entity);
+		this.setEntityToTrain(Warrior.class.getSimpleName());
 	}
 	
 	@Override
@@ -34,9 +36,9 @@ public class TrainWarriorAbility extends AbstractCreationAbility{
 
 	
 	@Override
-	public AbstractAbility createAbility() {
+	public AbstractAbility createAbility(PlayerControlledEntity entity) {
 		TrainWarriorAbility newAbility = new TrainWarriorAbility();
-		newAbility.initialize();
+		newAbility.initialize(entity);
 		return newAbility;
 	}
 

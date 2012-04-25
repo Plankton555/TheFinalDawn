@@ -11,6 +11,12 @@ import com.jme3.scene.shape.Box;
  */
 public interface INodeSpatial {
 
-	// TODO Plankton: Add javadoc
+	/**
+	 * Creates and returns a new NodeSpatial using the parameters provided.
+	 * @param name Name
+	 * @param box Box
+	 * @param node Node
+	 * @return The new NodeSpatial.
+	 */
 	public AbstractSpatial createSpatial(String name, Box box, INode node);
 }

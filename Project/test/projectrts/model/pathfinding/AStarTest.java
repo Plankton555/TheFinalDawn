@@ -27,12 +27,6 @@ public class AStarTest {
 		astar = AStar.getInstance();
 		assertTrue(astar != null);
 	}
-	// TODO Plankton: Test getClosestUnoccupiedNode()!
-
-	@Test
-	public void testCalculatePath() {
-		// TODO Plankton: No clue on how to test this in a good way...
-		fail("Not yet implemented");
-	}
+	// TODO Plankton: !Test getClosestUnoccupiedNode()!
 
 }

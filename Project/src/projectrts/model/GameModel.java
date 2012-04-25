@@ -5,7 +5,6 @@ import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IEntityManager;
 import projectrts.model.entities.abilities.AttackAbility;
 import projectrts.model.entities.abilities.BuildBarracksAbility;
-import projectrts.model.entities.abilities.BuildTowerAbility;
 import projectrts.model.entities.abilities.DeliverResourceAbility;
 import projectrts.model.entities.abilities.GatherResourceAbility;
 import projectrts.model.entities.abilities.MineResourceAbility;
@@ -51,8 +50,6 @@ public class GameModel implements IGame {
 			
 			// Initialize the ability classes.
 			Class.forName(AttackAbility.class.getName());
-			Class.forName(BuildTowerAbility.class.getName());
-			Class.forName(BuildBarracksAbility.class.getName());			
 			Class.forName(DeliverResourceAbility.class.getName());
 			Class.forName(GatherResourceAbility.class.getName());
 			Class.forName(MineResourceAbility.class.getName());
@@ -60,6 +57,7 @@ public class GameModel implements IGame {
 			Class.forName(OffensiveSpellAbility.class.getName());
 			Class.forName(TrainWorkerAbility.class.getName());
 			Class.forName(TrainWarriorAbility.class.getName());
+			Class.forName(BuildBarracksAbility.class.getName());
 						
 		}
 		catch (ClassNotFoundException any)

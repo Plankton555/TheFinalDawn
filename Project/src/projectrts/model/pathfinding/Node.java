@@ -69,7 +69,7 @@ public class Node implements INode {
 	 */
 	public void updateDistanceToObstacle()
 	{
-		// TODO Plankton: Implement Node.updateDistanceToObstacle()
+		// TODO Plankton: !Implement Node.updateDistanceToObstacle()
 	}
 	
 	/**
