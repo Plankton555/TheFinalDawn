@@ -31,4 +31,9 @@ public interface IGame {
 	 * @return The matrix of nodes.
 	 */
 	public INode[][] getNodes();
+	
+	/**
+	 * @return The current game time.
+	 */
+	public float getGameTime();
 }

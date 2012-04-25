@@ -39,6 +39,7 @@ public class GameModel implements IGame {
 	// TODO Markus: Implement some sort of AI
 	// TODO Plankton: Implement some sort of AI
 	private Player aiPlayer = new Player();
+	private float gameTime = 0;
 	
 	static {
 		try
@@ -90,6 +91,7 @@ public class GameModel implements IGame {
 	@Override
 	public void update(float tpf) {
 		entityManager.update(tpf);
+		gameTime +=tpf;
 	}
 
 	@Override
@@ -105,5 +107,10 @@ public class GameModel implements IGame {
 	@Override
 	public INode[][] getNodes() {
 		return world.getNodes();
+	}
+
+	@Override
+	public float getGameTime() {
+		return gameTime;
 	}
 }
