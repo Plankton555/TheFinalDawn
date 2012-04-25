@@ -148,7 +148,8 @@ public class InputGUIController implements ScreenController {
 				//height("50px");
 				width("100%");
 				color("#00FF");
-				//TODO Afton: fix text size
+
+				//TODO: Afton, fix text size
 				/*
 				onActiveEffect(new EffectBuilder("textSize") {{
 					//effectParameter("", "10px");
