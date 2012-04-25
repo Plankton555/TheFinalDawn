@@ -39,6 +39,8 @@ public class InputGUIController implements ScreenController {
 	private Element labelName;
 	private Element labelInfo;
 	private Element labelInfoValues;
+	
+	private Element panelInfo;
 
 
 	/**
@@ -103,14 +105,11 @@ public class InputGUIController implements ScreenController {
 	    
 	    
 		labelName = screen.findElementByName("Label_Name");
-		labelName.getRenderer(TextRenderer.class).setColor(new Color("#F00F"));
-		
 		labelInfo = screen.findElementByName("Label_Info");
-		labelInfo.getRenderer(TextRenderer.class).setColor(new Color("#0F0F"));
-		
 		labelInfoValues = screen.findElementByName("Label_InfoValues");
-		labelInfoValues.getRenderer(TextRenderer.class).setColor(new Color("#0F0F"));
+		panelInfo = screen.findElementByName("Panel_SelectedInfo");
 		
+		panelInfo.setVisible(false);
 		
 		
 	    nifty.gotoScreen("Screen_ID"); // start the screen
@@ -148,7 +147,7 @@ public class InputGUIController implements ScreenController {
 			control(new LabelBuilder("Label_Name"){{
 				//height("50px");
 				width("100%");
-				
+				color("#00FF");
 				//TODO: Afton, fix text size
 				/*
 				onActiveEffect(new EffectBuilder("textSize") {{
@@ -167,6 +166,8 @@ public class InputGUIController implements ScreenController {
 					height("100%");
 					textHAlignLeft();
 					textVAlignTop();
+					color("#0F0F");
+					
 				}});
 				
 				control(new LabelBuilder("Label_InfoValues"){{
@@ -174,6 +175,7 @@ public class InputGUIController implements ScreenController {
 					height("100%");
 					textHAlignLeft();
 					textVAlignTop();
+					color("#0F0F");
 				}});
 				
 			}});
@@ -264,11 +266,9 @@ public class InputGUIController implements ScreenController {
     		labelInfo.getRenderer(TextRenderer.class).setText(infoBuilder.toString());
     		
 
-    		
+    		panelInfo.setVisible(true);
     	} else {
-    		labelName.getRenderer(TextRenderer.class).setText("");
-    		labelInfo.getRenderer(TextRenderer.class).setText("");
-    		labelInfoValues.getRenderer(TextRenderer.class).setText("");
+    		panelInfo.setVisible(false);
     	}
     	
     	//Loops through every button and sets its attributes
