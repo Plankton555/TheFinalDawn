@@ -16,7 +16,7 @@ import projectrts.model.utils.Position;
  * @author Jakob Svensson
  *
  */
-public class DeliverResourceAbility extends AbstractAbility{
+public class DeliverResourceAbility extends AbstractAbility implements IMovableAbility {
 	
 	private PlayerControlledEntity unit;
 	private AbstractStructure depositStructure;
@@ -94,7 +94,8 @@ public class DeliverResourceAbility extends AbstractAbility{
 	}
 
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity) {
+	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
+		// TODO Plankton: Fix move
 		DeliverResourceAbility newAbility = new DeliverResourceAbility();
 		newAbility.initialize(entity);
 		return newAbility;

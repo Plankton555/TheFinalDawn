@@ -17,7 +17,7 @@ import projectrts.model.utils.Position;
  * @author Filip Brynfors, modified by Bjorn Persson Mattsson
  *
  */
-public class MoveAbility extends AbstractAbility {
+public class MoveAbility extends AbstractAbility implements INonMovableAbility {
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
 	

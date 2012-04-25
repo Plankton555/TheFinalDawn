@@ -12,7 +12,7 @@ import projectrts.model.utils.Position;
  * @author Filip Brynfors
  *
  */
-public class OffensiveSpellAbility extends AbstractAbility {
+public class OffensiveSpellAbility extends AbstractAbility implements IMovableAbility {
 	private int abilityRange = 50;
 	private int damage = 90;
 	
@@ -80,7 +80,8 @@ public class OffensiveSpellAbility extends AbstractAbility {
 	}
 
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity) {
+	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
+		// TODO Plankton: Fix move
 		OffensiveSpellAbility newAbility = new OffensiveSpellAbility();
 		newAbility.initialize(entity);
 		return newAbility;

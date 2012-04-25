@@ -8,7 +8,7 @@ import projectrts.model.utils.Position;
  * @author Jakob Svensson
  *
  */
-public class GatherResourceAbility extends AbstractAbility{
+public class GatherResourceAbility extends AbstractAbility implements IMovableAbility{
 	
 	private PlayerControlledEntity unit;
 	private AbstractAbility mineResourceAbility;
@@ -22,7 +22,7 @@ public class GatherResourceAbility extends AbstractAbility{
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity) {
+	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		this.unit =  entity;
 		this.mineResourceAbility = AbilityFactory.INSTANCE.createAbility(MineResourceAbility.class.getSimpleName(), entity);
 		this.deliverResourceAbility = AbilityFactory.INSTANCE.createAbility(DeliverResourceAbility.class.getSimpleName(), entity);
@@ -65,9 +65,10 @@ public class GatherResourceAbility extends AbstractAbility{
 	}
 
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity) {
+	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
+		// Plankton: fix move
 		GatherResourceAbility newAbility = new GatherResourceAbility();
-		newAbility.initialize(entity);
+		newAbility.initialize(entity, moveAbility);
 		return newAbility;
 	}
 

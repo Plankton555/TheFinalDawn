@@ -12,7 +12,7 @@ import projectrts.model.utils.Position;
  * @author Jakob Svensson
  *
  */
-public class MineResourceAbility extends AbstractAbility{
+public class MineResourceAbility extends AbstractAbility implements IMovableAbility {
 	private Resource targetResource;
 	private PlayerControlledEntity unit;
 	private AbstractAbility moveAbility;
@@ -78,7 +78,8 @@ public class MineResourceAbility extends AbstractAbility{
 	}
 	
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity) {
+	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
+		// TODO Plankton: Fix move
 		MineResourceAbility newAbility = new MineResourceAbility();
 		newAbility.initialize(entity);
 		return newAbility;

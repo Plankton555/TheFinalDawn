@@ -9,7 +9,7 @@ import projectrts.model.entities.units.Warrior;
  * @author Jakob Svensson
  *
  */
-public class TrainWarriorAbility extends AbstractCreationAbility{
+public class TrainWarriorAbility extends AbstractCreationAbility implements INonMovableAbility {
 	private static float buildTime = 7; 
 	private static int buildCost = 100; 
 	private static float cooldown = 0.5f;

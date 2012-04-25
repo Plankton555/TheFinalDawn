@@ -11,7 +11,7 @@ import projectrts.model.utils.Position;
  * @author Filip Brynfors
  *
  */
-public class AttackAbility extends AbstractAbility {
+public class AttackAbility extends AbstractAbility implements IMovableAbility {
 	private PlayerControlledEntity entity;
 	private PlayerControlledEntity target;
 	
@@ -83,7 +83,8 @@ public class AttackAbility extends AbstractAbility {
 	}
 
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity) {
+	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
+		// TODO Plankton: fix move
 		AttackAbility newAbility = new AttackAbility();
 		newAbility.initialize(entity);
 		return newAbility;

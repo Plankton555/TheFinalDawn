@@ -13,7 +13,7 @@ import projectrts.model.utils.Position;
  * @author Jakob Svensson
  *
  */
-public class BuildBarracksAbility extends AbstractAbility{
+public class BuildBarracksAbility extends AbstractAbility implements IMovableAbility {
 	private PlayerControlledEntity builder;
 	private static float buildTime = 1; 
 	private static int buildCost = 200; 
@@ -79,7 +79,8 @@ public class BuildBarracksAbility extends AbstractAbility{
 
 	@Override
 
-	public AbstractAbility createAbility(PlayerControlledEntity entity) {
+	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
+		// TODO Plankton: Fix move
 		BuildBarracksAbility newAbility = new BuildBarracksAbility();
 		newAbility.initialize(entity);
 		return newAbility;
