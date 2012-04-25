@@ -18,6 +18,7 @@ import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
+import de.lessvoid.nifty.tools.Color;
 
 /**
  * A controller class that handles input from the gui
@@ -30,10 +31,9 @@ public class InputGUIController implements ScreenController {
 	
 	private InputController input;
 	private ScreenController sc;
-	
-	private List<IAbility> abilities; 
 
 	private IPlayerControlledEntity selectedPce;
+	List<IAbility> abilities;
 
 	private Element labelName;
 	private Element labelInfo;
@@ -110,7 +110,6 @@ public class InputGUIController implements ScreenController {
 		
 		panelInfo.setVisible(false);
 		
-		
 	    nifty.gotoScreen("Screen_ID"); // start the screen
 	}
 	
@@ -121,7 +120,8 @@ public class InputGUIController implements ScreenController {
 			childLayoutVertical();
 			backgroundColor("#000F");
 			
-			//TODO Afton: Remove or use this testing code
+			//TODO: Afton: Remove or use this testing code
+
 			/*
 			panel(new PanelBuilder("Filler") {{
 				height("10px");
@@ -142,6 +142,7 @@ public class InputGUIController implements ScreenController {
 				valignCenter();
 			}});
 			*/
+			
 			
 			control(new LabelBuilder("Label_Name"){{
 				//height("50px");
@@ -179,6 +180,7 @@ public class InputGUIController implements ScreenController {
 				
 			}});
 			
+
 
 		}};
 		return builder;
@@ -238,7 +240,6 @@ public class InputGUIController implements ScreenController {
 	public void updateAbilities(List<IEntity> selectedEntities){
     	
     	boolean oneIsSelected = selectedEntities.size()==1;
-    	abilities = null;
     
     	
     	if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
@@ -248,6 +249,7 @@ public class InputGUIController implements ScreenController {
     		//Update the Info about the unit in the GUI
 
     		labelName.getRenderer(TextRenderer.class).setText(selectedPce.getName());
+
     		
     		StringBuilder infoValuesBuilder = new StringBuilder();
     		StringBuilder infoBuilder = new StringBuilder();
@@ -260,14 +262,15 @@ public class InputGUIController implements ScreenController {
     		infoValuesBuilder.append("\n" + selectedPce.getSpeed());
     		infoBuilder.append("\nRange:");
     		infoValuesBuilder.append("\n" + selectedPce.getSightRange());
+
     		
     		labelInfoValues.getRenderer(TextRenderer.class).setText(infoValuesBuilder.toString());
     		labelInfo.getRenderer(TextRenderer.class).setText(infoBuilder.toString());
     		
-
     		panelInfo.setVisible(true);
     	} else {
     		panelInfo.setVisible(false);
+
     	}
     	
     	//Loops through every button and sets its attributes
@@ -320,7 +323,7 @@ public class InputGUIController implements ScreenController {
 	 */
 	public void buttonClicked(String nr) {
 		try {
-			
+
 			int iNr = Integer.parseInt(nr);
 			
 			if(iNr-1<abilities.size()){
