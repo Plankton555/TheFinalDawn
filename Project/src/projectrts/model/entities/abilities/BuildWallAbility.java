@@ -5,6 +5,7 @@ import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IBuildStructureAbility;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.structures.Wall;
+import projectrts.model.pathfinding.World;
 import projectrts.model.player.Player;
 import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
@@ -76,8 +77,9 @@ public class BuildWallAbility extends AbstractAbility implements IBuildStructure
 			buildPos = target;
 			setActive(true);
 			setFinished(false);
-			buildTimeLeft=buildTime;
-			System.out.println("Using ability");
+			buildTimeLeft=buildTime;			
+			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(target)//TODO: Set unoccupied if ability is aborted
+					, getSizeOfBuilding(), EntityManager.getInstance().requestNewEntityID());
 		}
 	}
 
