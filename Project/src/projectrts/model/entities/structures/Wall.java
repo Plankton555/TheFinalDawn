@@ -3,30 +3,27 @@ package projectrts.model.entities.structures;
 import projectrts.model.entities.AbstractStructure;
 import projectrts.model.entities.EntityFactory;
 import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.entities.abilities.AbilityFactory;
-import projectrts.model.entities.abilities.TrainWarriorAbility;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
 
 /**
- * A building for training warriors 
+ * A building for blocking spaces 
  * @author Jakob Svensson
  *
  */
-public class Barracks extends AbstractStructure{
+public class Wall extends AbstractStructure{
 	
-private static float size = 2;
+private static float size = 1;
 private static final float sightRange = 5;
-private static int maxHealth = 1000;
+private static int maxHealth = 500;
 	
 	static {
-		EntityFactory.INSTANCE.registerPCE(Barracks.class.getSimpleName(), new Barracks());
+		EntityFactory.INSTANCE.registerPCE(Wall.class.getSimpleName(), new Wall());
 	}
 	
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
-		this.abilities.add(AbilityFactory.INSTANCE.createAbility(TrainWarriorAbility.class.getSimpleName(),this));
-		this.setName(Barracks.class.getSimpleName());
+		this.setName(Wall.class.getSimpleName());
 		this.setSize(size);
 		this.setSightRange(sightRange);
 		this.setMaxHealth(maxHealth);		
@@ -35,7 +32,7 @@ private static int maxHealth = 1000;
 	
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
-		Barracks newBarracks = new Barracks();
+		Wall newBarracks = new Wall();
 		newBarracks.initialize(owner, pos);
 		return newBarracks;
 	}

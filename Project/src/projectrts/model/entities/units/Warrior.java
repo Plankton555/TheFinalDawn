@@ -33,7 +33,6 @@ public class Warrior extends AbstractUnit{
 		setName(Warrior.class.getSimpleName());
 		setSightRange(sightRange);
 		this.setMaxHealth(maxHealth);
-		this.setCurrentHealth(this.getMaxHealth());
 		this.setSize(size);
 		this.setSpeed(speed);
 		this.setDamage(damage);

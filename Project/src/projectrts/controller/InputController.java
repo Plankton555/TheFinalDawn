@@ -8,9 +8,11 @@ import projectrts.model.IGame;
 import projectrts.model.constants.P;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IAbility;
+import projectrts.model.entities.IBuildStructureAbility;
 import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.pathfinding.World;
 import projectrts.model.utils.Position;
 import projectrts.view.GameView;
 
@@ -41,6 +43,7 @@ public class InputController {
 	private boolean choosingPosition=false;
 	private IAbility currentAbility;
 	private PlayerControlledEntity selectedEntity;
+	private float buildingSize;
 
 	private InputGUIController guiControl;
 	
@@ -63,6 +66,12 @@ public class InputController {
         if(app.getStateManager().getState(InGameState.class).isEnabled()){
           // do the following while game is RUNNING // modify scene graph...
         	updateCamera(tpf);
+        	if(choosingPosition){
+        		Position pos = Utils.INSTANCE.convertWorldToModel(
+        				app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
+        		view.drawNodes(World.getInstance().getNodesAt(pos,buildingSize));
+        		System.out.println(buildingSize);
+        	}
         } else {
           // do the following while game is PAUSED, e.g. play an idle animation.
           //...        
@@ -211,9 +220,15 @@ public class InputController {
     	private void handleLeftClick(){
     		Position pos = Utils.INSTANCE.convertWorldToModel(
     				app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
-    		if(choosingPosition){
-    			selectedEntity.doAbility(currentAbility.getName(), pos);
-    			choosingPosition=false;
+    		if(choosingPosition){    			
+    			if(!World.getInstance().isAnyNodeOccupied(
+    					World.getInstance().getNodesAt(pos, buildingSize))){
+    				
+	    			selectedEntity.doAbility(currentAbility.getName(), 
+	    					World.getInstance().getNodeAt(pos).getPosition());
+	    			choosingPosition=false;
+	    			view.clearNodes();
+    			}
     		}else{
 	    		game.getEntityManager().select(pos, game.getPlayer());
 				view.drawSelected(game.getEntityManager().getSelectedEntities());
@@ -286,12 +301,16 @@ public class InputController {
      * @param ability the ability to become selected
      */
     public void selectAbility(IAbility ability, IPlayerControlledEntity e){
-    	//TODO Afton: Add code to handle ability clicks
     	PlayerControlledEntity pce = (PlayerControlledEntity)e;
-//    	pce.doAbility(ability.getName(), pce.getPosition());
     	currentAbility=ability;
     	selectedEntity= pce;
-    	choosingPosition=true;
+    	if(currentAbility instanceof IBuildStructureAbility){
+    		choosingPosition=true;
+    		IBuildStructureAbility ab = (IBuildStructureAbility)ability;
+    		buildingSize = ab.getSizeOfBuilding();
+    	}else{
+    		pce.doAbility(currentAbility.getName(), pce.getPosition());
+    	}
     	System.out.println(ability.getName());
     }
     

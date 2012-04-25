@@ -147,4 +147,13 @@ public final class World {
 		}
 		return output;
 	}
+	
+	public boolean isAnyNodeOccupied(List<Node> nodes){
+		for(Node node: nodes){
+			if(node.isOccupied()){
+				return true;
+			}
+		}
+		return false;
+	}
 }

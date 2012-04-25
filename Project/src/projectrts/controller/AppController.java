@@ -16,6 +16,7 @@ import projectrts.view.spatials.DebugNodeSpatial;
 import projectrts.view.spatials.HeadquarterSpatial;
 import projectrts.view.spatials.ResourceSpatial;
 import projectrts.view.spatials.SelectSpatial;
+import projectrts.view.spatials.WallSpatial;
 import projectrts.view.spatials.WarriorSpatial;
 import projectrts.view.spatials.WorkerSpatial;
 
@@ -51,6 +52,7 @@ public class AppController extends SimpleApplication{
 			Class.forName(ResourceSpatial.class.getName());
 			Class.forName(SelectSpatial.class.getName());
 			Class.forName(DebugNodeSpatial.class.getName());
+			Class.forName(WallSpatial.class.getName());
 		}
 		catch (ClassNotFoundException any)
 		{
