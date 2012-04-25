@@ -7,32 +7,55 @@ import projectrts.model.pathfinding.INode;
 
 import com.jme3.scene.shape.Box;
 /**
- * 
+ * A factory for spatials.
  * @author Markus Ekström
  *
  */
 public enum SpatialFactory {INSTANCE;
 	
 	private HashMap<String, AbstractSpatial> spatialMap = new HashMap<String, AbstractSpatial>();
-
+	
+	/**
+	 * Registers a spatial in the factory. Registering a spatial enables
+	 * creation of that spatial through createSpatial methods.
+	 * @param spatialType The class name of the spatial (use class.getSimpleName()).
+	 * @param spatial An instance of the spatial you want to register.
+	 */
 	public void registerSpatial(String spatialType, AbstractSpatial spatial) {
 		spatialMap.put(spatialType, spatial);
 	}
 
-	// TODO Markus: Add javadoc
+	/**
+	 * Creates a EntitySpatial according to specifications. If the spatial' class hasn't been
+	 * registered then it returns null.
+	 * @param spatialType The class name of the desired spatial (use class.getSimpleName()).
+	 * @param name The name of the desired spatial.
+	 * @param box The shape of the desired spatial.
+	 * @param entity The entity the desired spatial represents.
+	 * @return An instance of the desired spatial.
+	 */
 	public AbstractSpatial createEntitySpatial(String spatialType, String name, Box box, IEntity entity) {
+		if(spatialMap.get(spatialType) == null) {
+			return null;
+		}
+		
 		return ((IEntitySpatial)spatialMap.get(spatialType)).createSpatial(name, box, entity);
 	}
 	
 	/**
-	 * Creates a new NodeSpatial.
-	 * @param spatialType Spatial type
-	 * @param name Name
-	 * @param box Box
-	 * @param node Node
-	 * @return The new NodeSpatial
+	 * Creates a NodeSpatial according to specifications. If the spatial's class hasn't been
+	 * registered then it returns null.
+	 * @param spatialType The class name of the desired spatial (use class.getSimpleName()).
+	 * @param name The name of the desired spatial.
+	 * @param box The shape of the desired spatial.
+	 * @param node The shape of the desired spatial.
+	 * @return An instance of the desired spatial.
 	 */
 	public AbstractSpatial createNodeSpatial(String spatialType, String name, Box box, INode node) {
+		if(spatialMap.get(spatialType) == null) {
+			return null;
+		}
+		
 		return ((INodeSpatial)spatialMap.get(spatialType)).createSpatial(name, box, node);
 	}
 }

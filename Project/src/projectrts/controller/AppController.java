@@ -90,16 +90,6 @@ public class AppController extends SimpleApplication{
         Logger.getLogger("").setLevel(Level.SEVERE);
          
     }
-
-    @Override
-    public void simpleUpdate(float tpf) {
-        //TODO Markus: add update code
-    }
-
-    @Override
-    public void simpleRender(RenderManager rm) {
-        //TODO Markus: add render code
-    }
     
     public void startIngameState(){
         IGame game = new GameModel();
@@ -107,5 +97,4 @@ public class AppController extends SimpleApplication{
     	this.stateManager.attach(ingameState);
     	ingameState.setEnabled(true);
     }
-    
 }

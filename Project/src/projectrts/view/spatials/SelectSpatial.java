@@ -9,7 +9,11 @@ import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.shape.Box;
 
-// TODO Markus: ADD JAVADOC
+/**
+ * A spatial for the selection effects.
+ * @author Markus Ekström
+ *
+ */
 public class SelectSpatial extends AbstractSpatial implements IEntitySpatial{
 	private Material material;
 	

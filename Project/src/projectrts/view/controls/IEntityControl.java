@@ -4,13 +4,16 @@ import com.jme3.scene.control.AbstractControl;
 
 import projectrts.model.entities.IEntity;
 /**
- * 
+ * An interface for the custom controls.
  * @author Markus Ekström
  *
  */
-// TODO Markus: Class names shouldn't shadow simple name of superclass
 public interface IEntityControl {
 	
-	// TODO Markus: Add javadoc
+	/**
+	 * Creates a control of the same class and returns it as an AbstractControl.
+	 * @param entity The entity the control should control.
+	 * @return A new instance of the control.
+	 */
 	public AbstractControl createControl(IEntity entity);
 }
