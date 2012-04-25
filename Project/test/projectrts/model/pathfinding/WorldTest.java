@@ -20,6 +20,7 @@ public class WorldTest {
 	private static int width;
 	private static int height;
 	private Position p;
+	// TODO Plankton: Update tests
 	
 	@BeforeClass
 	public static void beforeClass()

@@ -15,6 +15,7 @@ public final class World {
 	
 	private static World instance;
 	private Node[][] nodes;
+	private float distBetweenNodes = 1;
 	private World()
 	{
 	}
@@ -115,8 +116,6 @@ public final class World {
 	 * @param entityID ID of the entity that occupies.
 	 */
 	public void setNodesOccupied(Node nodeInCenter, float entitySize, int entityID) {
-		// TODO Plankton: !!!Check for out of bounds (if close to border)
-		// TODO Plankton: Find some other way to do this...
 		List<Node> changingNodes = getNodesAt(nodeInCenter.getPosition(), entitySize);
 		for (Node n : changingNodes)
 		{
@@ -133,6 +132,8 @@ public final class World {
 	 */
 	public List<Node> getNodesAt(Position centerPos, float size)
 	{
+		// TODO Plankton: !!!Check for out of bounds (if close to border)
+		// Maybe find some other way to do this...
 		List<Node> output = new ArrayList<Node>();
 		int offset = (int) (size/2);
 		int centerX = (int) centerPos.getX();
@@ -140,9 +141,15 @@ public final class World {
 		
 		for (int i=centerY-offset; i<=centerY+offset; i++)
 		{
-			for (int j=centerX-offset; j<=centerX+offset; j++)
+			if (ModelUtils.INSTANCE.isWithin(i, 0, width))
 			{
-				output.add(nodes[i][j]);
+				for (int j=centerX-offset; j<=centerX+offset; j++)
+				{
+					if (ModelUtils.INSTANCE.isWithin(j, 0, height))
+					{
+						output.add(nodes[i][j]);
+					}
+				}
 			}
 		}
 		return output;
