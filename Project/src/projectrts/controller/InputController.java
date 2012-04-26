@@ -13,6 +13,7 @@ import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.ITargetAbility;
 import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.abilities.AttackAbility;
 import projectrts.model.entities.abilities.GatherResourceAbility;
 import projectrts.model.entities.misc.Resource;
 import projectrts.model.pathfinding.World;
@@ -235,6 +236,13 @@ public class InputController {
     		}else if(choosingTarget){
     			if(currentAbility instanceof GatherResourceAbility){
     				if(EntityManager.getInstance().getNonPlayerControlledEntity(pos) instanceof Resource){
+    					selectedEntity.doAbility(currentAbility.getName(), pos);
+    					choosingTarget=false;
+    				}else{
+    					//TODO Jakob: Notify gui that target is invalid
+    				}
+    			}else if(currentAbility instanceof AttackAbility){
+    				if(EntityManager.getInstance().getPCEAtPosition(pos)!=null){
     					selectedEntity.doAbility(currentAbility.getName(), pos);
     					choosingTarget=false;
     				}else{
