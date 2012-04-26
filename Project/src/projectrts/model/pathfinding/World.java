@@ -104,8 +104,8 @@ public final class World {
 		int x = (int)p.getX();
 		int y = (int)p.getY();
 		
-		x = (int)ModelUtils.INSTANCE.clamp(x, 0, width-1);
-		y = (int)ModelUtils.INSTANCE.clamp(y, 0, height-1);
+		x = (int)ModelUtils.clamp(x, 0, width-1);
+		y = (int)ModelUtils.clamp(y, 0, height-1);
 		return nodes[y][x];
 	}
 	
@@ -141,11 +141,11 @@ public final class World {
 		
 		for (int i=centerY-offset; i<=centerY+offset; i++)
 		{
-			if (ModelUtils.INSTANCE.isWithin(i, 0, width))
+			if (ModelUtils.isWithin(i, 0, width))
 			{
 				for (int j=centerX-offset; j<=centerX+offset; j++)
 				{
-					if (ModelUtils.INSTANCE.isWithin(j, 0, height))
+					if (ModelUtils.isWithin(j, 0, height))
 					{
 						output.add(nodes[i][j]);
 					}

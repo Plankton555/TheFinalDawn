@@ -6,13 +6,10 @@ package projectrts.model.utils;
  * @author Filip Brynfors. Modified by Jakob Svensson & Bjorn Persson Mattsson
  *
  */
-public enum ModelUtils {
-	INSTANCE;
-	
-	
+public class ModelUtils {
 	
 	// TODO Anyone: Add javadoc
-	public boolean isWithin(double p, double low, double high){
+	public static boolean isWithin(double p, double low, double high){
 		return (p>=low && p<=high);
 	}
 	
@@ -24,7 +21,7 @@ public enum ModelUtils {
 	 * @return If value > max, max will be returned. If value < min, min will be returned.
 	 * If min <= value >= max, value will be returned.
 	 */
-	public double clamp(double value, double min, double max) {
+	public static double clamp(double value, double min, double max) {
 		return (value > max ? max : (value < min ? min : value));
 	}
 }
