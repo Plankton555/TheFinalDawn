@@ -71,33 +71,40 @@ public class GameGUIView {
 		
     	this.selectedPce = selectedPce;
     	updateSelectedInfo();
-    	List<IAbility> abilities = selectedPce.getAbilities();
+    	updateAbilities();
     	
-    	//Loops through every button and sets its attributes
-    	for(int i = 0; i<8; i++){
-    		Element button = screen.findElementByName("Button_Ability_" + (i+1));
-  
-    		if(button != null){
-    			
-		    	if(abilities != null && i<abilities.size()){
-		    		IAbility ability = abilities.get(i);
-		    		//button.setVisibleToMouseEvents(true);
-		    		
-		    		NiftyImage image = ImageManager.INSTANCE.getImage(ability.getClass().getSimpleName());
-		    		if(image==null){
-		    			image = ImageManager.INSTANCE.getImage("NoImage");
-		    		}
-		    		
-		    		button.getRenderer(ImageRenderer.class).setImage(image);
-		    		button.setVisible(true);
-		    		
-		    	} else {
-		    		button.setVisible(false);
-		    	}
-    		}
-
-    	}
     }
+	
+	private void updateAbilities(){
+		if(selectedPce!=null){
+	    	List<IAbility> abilities = selectedPce.getAbilities();
+	    	
+	    	//Loops through every button and sets its attributes
+	    	for(int i = 0; i<8; i++){
+	    		Element button = screen.findElementByName("Button_Ability_" + (i+1));
+	  
+	    		if(button != null){
+	    			
+			    	if(abilities != null && i<abilities.size()){
+			    		IAbility ability = abilities.get(i);
+			    		//button.setVisibleToMouseEvents(true);
+			    		
+			    		NiftyImage image = ImageManager.INSTANCE.getImage(ability.getClass().getSimpleName());
+			    		if(image==null){
+			    			image = ImageManager.INSTANCE.getImage("NoImage");
+			    		}
+			    		
+			    		button.getRenderer(ImageRenderer.class).setImage(image);
+			    		button.setVisible(true);
+			    		
+			    	} else {
+			    		button.setVisible(false);
+			    	}
+	    		}
+	
+	    	}
+		}
+	}
 	
 	private void updateSelectedInfo(){
     	if(selectedPce!=null){
