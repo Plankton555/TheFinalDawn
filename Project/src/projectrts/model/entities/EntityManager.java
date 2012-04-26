@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.vecmath.Vector2d;
 
+import projectrts.model.ai.MicroAI;
 import projectrts.model.player.IPlayer;
 import projectrts.model.player.Player;
 import projectrts.model.utils.ModelUtils;
@@ -24,6 +25,7 @@ public class EntityManager implements IEntityManager{
 	private List<AbstractEntity> entitiesAddQueue = new ArrayList<AbstractEntity>();
 	private List<AbstractEntity> entitiesRemoveQueue = new ArrayList<AbstractEntity>();
 	private List<PlayerControlledEntity> selectedEntities = new ArrayList<PlayerControlledEntity>();
+	private List<MicroAI> microAIs = new ArrayList<MicroAI>();
 	private int idCounter = 0;
 	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -42,6 +44,10 @@ public class EntityManager implements IEntityManager{
 	 */
 	public void update(float tpf)
 	{	
+		for (MicroAI mAI : microAIs) {
+			mAI.update(tpf);
+		}
+		
 		for (AbstractEntity e : allEntities)
 		{
 			e.update(tpf);
@@ -55,6 +61,11 @@ public class EntityManager implements IEntityManager{
 		}
 		
 		for (AbstractEntity e : entitiesRemoveQueue) {
+			for(int i = 0; i < microAIs.size(); i++) {
+				if(microAIs.get(i).getEntity().equals(e)) {
+					microAIs.remove(i);
+				}
+			}
 			for (int i = 0; i < allEntities.size(); i++) {
 				if (e.equals(allEntities.get(i))) {
 					allEntities.remove(i);
@@ -63,6 +74,7 @@ public class EntityManager implements IEntityManager{
 			}
 		}
 		entitiesAddQueue.clear();
+		entitiesRemoveQueue.clear();
 	}
 	
 	/**
@@ -149,6 +161,7 @@ public class EntityManager implements IEntityManager{
 	 */
 	public void addNewPCE(String pce, Player owner, Position pos) {
 		PlayerControlledEntity newPCE = EntityFactory.INSTANCE.createPCE(pce, owner, pos);
+		microAIs.add(new MicroAI(newPCE));
 		entitiesAddQueue.add(newPCE);
 	}
 	
@@ -265,6 +278,40 @@ public class EntityManager implements IEntityManager{
 			entities.add(entity);
 		}
 		return entities;
+	}
+	
+	public boolean isSelected(PlayerControlledEntity entity) {
+		boolean ans = false;
+		
+		for(PlayerControlledEntity sEntity : selectedEntities) {
+			if(entity.equals(sEntity)) {
+				ans = true;
+			}
+		}
+		
+		return ans;
+	}
+	
+	public PlayerControlledEntity getClosestEnemy(PlayerControlledEntity pce) {
+		List<AbstractEntity> nearbyEntities= getNearbyEntities(pce);
+		PlayerControlledEntity closestPCE = null;
+		
+		for(AbstractEntity entity : nearbyEntities) {
+			if(entity instanceof PlayerControlledEntity) {
+				PlayerControlledEntity otherPCE = (PlayerControlledEntity)entity;
+				if(closestPCE != null) {
+					if(Position.getDistance(pce.getPosition(), entity.getPosition())
+							< Position.getDistance(pce.getPosition(), closestPCE.getPosition()) 
+							&& pce.getOwner() != otherPCE.getOwner()) {
+						closestPCE = (PlayerControlledEntity)entity;
+					}
+				} else if (pce.getOwner() != otherPCE.getOwner()){
+					closestPCE = (PlayerControlledEntity)entity;
+				}
+			}
+		}
+		
+		return closestPCE;
 	}
 	
 	public void addListener(PropertyChangeListener pcl) {

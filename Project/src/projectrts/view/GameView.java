@@ -205,8 +205,7 @@ public class GameView implements PropertyChangeListener{
     
     private void removeDeadEntity(IEntity entity) {
     	for(Spatial spatial : entities.getChildren()) {
-    		if(spatial.getControl(MoveControl.class).getEntityPos().equals(entity.getPosition())) {
-    			spatial.setCullHint(CullHint.Always);
+    		if(spatial.getControl(MoveControl.class).getEntity().equals(entity)) {
 				spatial.removeFromParent();
 			}
 		}

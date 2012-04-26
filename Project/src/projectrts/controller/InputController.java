@@ -15,6 +15,7 @@ import projectrts.model.entities.ITargetAbility;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.abilities.AttackAbility;
 import projectrts.model.entities.abilities.GatherResourceAbility;
+import projectrts.model.entities.abilities.MoveAbility;
 import projectrts.model.entities.misc.Resource;
 import projectrts.model.pathfinding.World;
 import projectrts.model.utils.Position;
@@ -269,25 +270,25 @@ public class InputController {
     	    	choosingTarget=false;
     		}else{
 	    		if(e!=null){
-	    			if(e.getName().equals("Resource")){
-	    				game.getEntityManager().useAbilitySelected("GatherResource", click);
+	    			if(e.getName().equals(Resource.class.getSimpleName())){
+	    				game.getEntityManager().useAbilitySelected(GatherResourceAbility.class.getSimpleName(), click);
 	    				
 	    			}else if(e instanceof PlayerControlledEntity){
 	    				PlayerControlledEntity pce = (PlayerControlledEntity) e;
 	    				if(!pce.getOwner().equals(game.getPlayer())){
-	    					game.getEntityManager().useAbilitySelected("Attack", pce.getPosition());
+	    					game.getEntityManager().useAbilitySelected(AttackAbility.class.getSimpleName(), pce.getPosition());
 	    				}else{
-	    					game.getEntityManager().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
+	    					game.getEntityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.INSTANCE.convertWorldToModel(
 	    	    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    				}
 	    			}else{
-	    				game.getEntityManager().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
+	    				game.getEntityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.INSTANCE.convertWorldToModel(
 		    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    			}
 	    			
 	    		}
 	    		else{
-	    			game.getEntityManager().useAbilitySelected("Move",Utils.INSTANCE.convertWorldToModel(
+	    			game.getEntityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.INSTANCE.convertWorldToModel(
 	    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    		}
     		}

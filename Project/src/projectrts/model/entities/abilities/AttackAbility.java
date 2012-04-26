@@ -50,7 +50,6 @@ public class AttackAbility extends AbstractAbility implements IMovableAbility, I
 		
 		
 		if(isActive() && !isFinished()){
-			
 			//attacker.getRange();
 			if(Position.getDistance(entity.getPosition(), target.getPosition())>1){
 				//Out of range

@@ -29,8 +29,8 @@ public class Warrior extends AbstractUnit{
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		MoveAbility moveAbility = (MoveAbility) AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(),this);
-		this.abilities.add(moveAbility);
 		this.abilities.add(AbilityFactory.INSTANCE.createMAbility(AttackAbility.class.getSimpleName(), this, moveAbility));
+		this.abilities.add(moveAbility);
 		setName(Warrior.class.getSimpleName());
 		setSightRange(sightRange);
 		this.setMaxHealth(maxHealth);

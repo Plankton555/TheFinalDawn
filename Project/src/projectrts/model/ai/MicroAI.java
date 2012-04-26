@@ -1,6 +1,8 @@
 package projectrts.model.ai;
 
+import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.abilities.AttackAbility;
 
 
 /**
@@ -9,15 +11,32 @@ import projectrts.model.entities.PlayerControlledEntity;
  *
  */
 public class MicroAI {
-
-	// TODO Markus: Implement MicroAI (if it's going to be used)
 	private PlayerControlledEntity myPCE;
+	private PlayerControlledEntity target;
 	
 	/**
 	 * Creates a micro AI for the provided unit.
+	 * @param pce The entity the ai will control.
 	 * @param unit The unit
 	 */
 	public MicroAI(PlayerControlledEntity pce) {
 		this.myPCE = pce;
+	}
+	
+	public void update(float tpf) {
+		if(!myPCE.isDead()) {
+			if(!EntityManager.getInstance().isSelected(myPCE)) {
+				if(EntityManager.getInstance().getClosestEnemy(myPCE) != null) {
+					if(!EntityManager.getInstance().getClosestEnemy(myPCE).equals(target)) {
+						target = EntityManager.getInstance().getClosestEnemy(myPCE);
+						myPCE.doAbility(AttackAbility.class.getSimpleName(), EntityManager.getInstance().getClosestEnemy(myPCE).getPosition());
+					}
+				}
+			}
+		}
+	}
+	
+	public PlayerControlledEntity getEntity() {
+		return myPCE;
 	}
 }

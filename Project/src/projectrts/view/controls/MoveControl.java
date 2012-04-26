@@ -62,7 +62,7 @@ public class MoveControl extends AbstractControl implements IEntityControl{
 		return new MoveControl(entity);
 	}
 	
-	public Position getEntityPos() {
-		return entity.getPosition();
+	public IEntity getEntity() {
+		return entity;
 	}
 }

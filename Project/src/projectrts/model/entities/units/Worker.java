@@ -33,12 +33,11 @@ public class Worker extends AbstractUnit{
 		super.initialize(owner, spawnPos);
 
 		MoveAbility moveAbility = (MoveAbility) AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(),this);
-		this.abilities.add(moveAbility);
 		this.abilities.add(AbilityFactory.INSTANCE.createMAbility(AttackAbility.class.getSimpleName(),this, moveAbility));
 		this.abilities.add(AbilityFactory.INSTANCE.createMAbility(GatherResourceAbility.class.getSimpleName(),this, moveAbility));
 		this.abilities.add(AbilityFactory.INSTANCE.createMAbility(BuildBarracksAbility.class.getSimpleName(),this, moveAbility));
 		this.abilities.add(AbilityFactory.INSTANCE.createMAbility(BuildWallAbility.class.getSimpleName(),this, moveAbility));
-		
+		this.abilities.add(moveAbility);
 		setName(Worker.class.getSimpleName());
 		setSize(size);
 		setSpeed(speed);
