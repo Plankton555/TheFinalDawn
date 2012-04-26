@@ -13,6 +13,11 @@ import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.screen.Screen;
 
+/**
+ * A view class for the GUI
+ * @author Filip Brynfors
+ *
+ */
 public class GameGUIView {
 	private Nifty nifty;
 	private Screen screen;
@@ -28,12 +33,20 @@ public class GameGUIView {
 	private IPlayerControlledEntity selectedPce;
 	
 	
-	
+	/**
+	 * Creates a new view
+	 * @param nifty the nifty GUI object
+	 * @param game the model of the game
+	 */
 	public GameGUIView(Nifty nifty, IGame game){
 		this.nifty = nifty;
 		this.game = game;
 	}
 	
+	
+	/**
+	 * Initializes the view
+	 */
 	public void initialize(){
 		screen = nifty.getScreen("Screen_Game");
 		labelName = screen.findElementByName("Label_Name");
@@ -87,7 +100,6 @@ public class GameGUIView {
 	    			
 			    	if(abilities != null && i<abilities.size()){
 			    		IAbility ability = abilities.get(i);
-			    		//button.setVisibleToMouseEvents(true);
 			    		
 			    		NiftyImage image = ImageManager.INSTANCE.getImage(ability.getClass().getSimpleName());
 			    		if(image==null){
