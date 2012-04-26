@@ -41,10 +41,13 @@ public class Position {
 	@Override
 	public int hashCode() {
 		final int prime = 29; // Default generated hashcode
-		long result = 1;
-		result = prime * result + Double.doubleToLongBits(coord.x);
-		result = prime * result + Double.doubleToLongBits(coord.y);
-		return (int)result;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(coord.x);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(coord.y);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
 	}
 
 	@Override
