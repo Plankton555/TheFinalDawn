@@ -141,11 +141,11 @@ public final class World {
 		
 		for (int i=centerY-offset; i<=centerY+offset; i++)
 		{
-			if (ModelUtils.isWithin(i, 0, width))
+			if (ModelUtils.isWithin(i, 0, width-1))
 			{
 				for (int j=centerX-offset; j<=centerX+offset; j++)
 				{
-					if (ModelUtils.isWithin(j, 0, height))
+					if (ModelUtils.isWithin(j, 0, height-1))
 					{
 						output.add(nodes[i][j]);
 					}
