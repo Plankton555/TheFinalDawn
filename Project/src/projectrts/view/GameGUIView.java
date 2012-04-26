@@ -52,6 +52,14 @@ public class GameGUIView {
      * @param tpf The time passed since the last frame.
      */
     public void update(float tpf) {
+    	int sec = (int)game.getGameTime();
+    	
+    	String output="Time: ";
+    	if(sec/60>0){
+    		output+=sec/60+":";
+    	}
+    	output += sec%60;
+    	labelTime.getRenderer(TextRenderer.class).setText(output);
     }
     
     /**
