@@ -101,6 +101,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 			ability.setFinished(true);
 		}
 		dead = true;
+		// TODO Plankton: !!!!Unoccupy nodes
 	}
 	
 	@Override
