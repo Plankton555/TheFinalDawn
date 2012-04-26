@@ -37,12 +37,4 @@ public enum P {INSTANCE;
 	public int getWorkerCarryAmount() {
 		return 12;
 	}
-
-	/**
-	 * A getter for the starter amount of resources.
-	 * @return An int representing starter amount of resources for players.
-	 */
-	public int getResourceStarterAmount() {
-		return 2000;
-	}
 }

@@ -34,7 +34,7 @@ public class GatherResourceAbilityTest {
 		ab.useAbility(res.getPosition());
 		int counter = 0;
 
-		while(player.getResources()!=P.INSTANCE.getWorkerCarryAmount()+P.INSTANCE.getResourceStarterAmount()){
+		while(player.getResources()!=P.INSTANCE.getWorkerCarryAmount()+Player.RESOURCE_START_AMOUNT){
 			ab.update(1);
 			counter++;
 			assertTrue(counter < 1000);	
