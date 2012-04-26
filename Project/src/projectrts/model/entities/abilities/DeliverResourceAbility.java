@@ -9,7 +9,6 @@ import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.player.Player;
-import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
 /**
  * An ability for delivering a resource at a deposit structure
@@ -80,6 +79,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IMovableA
 					if(depositStructure == null) {
 						depositStructure = struct;
 					}else{
+						System.out.println(e.getPosition());
 						if(Position.getDistance(unit.getPosition(), e.getPosition())
 							<Position.getDistance(unit.getPosition(), depositStructure.getPosition())){
 							//If e is closer to unit than saved depositStructure

@@ -6,11 +6,8 @@ import org.junit.Test;
 
 import projectrts.model.GameModel;
 import projectrts.model.entities.EntityManager;
-import projectrts.model.entities.abilities.AbilityFactory;
-import projectrts.model.entities.abilities.DeliverResourceAbility;
 import projectrts.model.entities.units.Worker;
 import projectrts.model.player.Player;
-import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
 /**
  * Test for DeliverResourceAbility
@@ -29,13 +26,15 @@ public class DeliverResourceAbilityTest {
 		EntityManager.getInstance().addNewNPCE("Resource", new Position(0f, 0f));
 		EntityManager.getInstance().update(1);
 		Worker worker = (Worker)  EntityManager.getInstance().getPCEAtPosition(new Position(1f, 1f));
-		DeliverResourceAbility ab = (DeliverResourceAbility)AbilityFactory.INSTANCE.createAbility(DeliverResourceAbility.class.getSimpleName(),worker);
+		MoveAbility move = new MoveAbility();
+		move.initialize(worker);
+		DeliverResourceAbility ab = (DeliverResourceAbility)AbilityFactory.INSTANCE.createMAbility(DeliverResourceAbility.class.getSimpleName(),worker, move);
 		
 		ab.useAbility(new Position(0, 0));
 		
 		int counter = 0;
 		while(!ab.isFinished()){
-			
+			move.update(1);
 			ab.update(1);
 			counter++;
 			assertTrue(counter < 1000);	

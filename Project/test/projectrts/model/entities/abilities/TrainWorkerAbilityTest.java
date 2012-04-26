@@ -27,7 +27,7 @@ public class TrainWorkerAbilityTest {
 	
 		ab.useAbility(new Position(1,1));
 		int counter = 0;
-		while(ab.isFinished()){
+		while(!ab.isFinished()){
 			ab.update(1);
 			counter++;
 			assertTrue(counter < 1000);	

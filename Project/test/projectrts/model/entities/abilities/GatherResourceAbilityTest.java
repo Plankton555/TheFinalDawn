@@ -23,19 +23,26 @@ public class GatherResourceAbilityTest {
 		new GameModel();
 		
 		Player player = new Player();
-		EntityManager.getInstance().addNewPCE("Worker", player,new Position(1f,1f));
-		EntityManager.getInstance().addNewPCE("Headquarter", player,new Position(10f,10f));
-		EntityManager.getInstance().addNewPCE("Headquarter", player,new Position(20f,20f));
-		EntityManager.getInstance().addNewNPCE("Resource", new Position(0f, 0f));
+		EntityManager.getInstance().addNewPCE("Worker", player,new Position(2.5f,15.5f));
+		EntityManager.getInstance().addNewPCE("Headquarter", player,new Position(40.5f,15.5));
+		EntityManager.getInstance().addNewPCE("Barracks", player,new Position(40.5f,15.5));
+		EntityManager.getInstance().addNewNPCE("Resource", new Position(15.5f, 15.5f));
 		EntityManager.getInstance().update(1);
-		Worker worker = (Worker) EntityManager.getInstance().getPCEAtPosition(new Position(1f, 1f));
-		Resource res = (Resource) EntityManager.getInstance().getNonPlayerControlledEntity(new Position(0f,0f));
-		GatherResourceAbility ab = (GatherResourceAbility) AbilityFactory.INSTANCE.createAbility(GatherResourceAbility.class.getSimpleName(),worker);
+		Worker worker = (Worker) EntityManager.getInstance().getPCEAtPosition(new Position(2.5f, 15.5f));
+		Resource res = (Resource) EntityManager.getInstance().getNonPlayerControlledEntity(new Position(15.5f,15.5f));
+		MoveAbility move = new MoveAbility();
+		move.initialize(worker);
+		GatherResourceAbility ab = (GatherResourceAbility) AbilityFactory.INSTANCE.createMAbility(GatherResourceAbility.class.getSimpleName(),worker, move);
 		ab.useAbility(res.getPosition());
 		int counter = 0;
 
-		while(player.getResources()!=P.INSTANCE.getWorkerCarryAmount()+Player.RESOURCE_START_AMOUNT){
-			ab.update(1);
+		while(player.getResources()!=P.INSTANCE.getWorkerCarryAmount()*2+Player.RESOURCE_START_AMOUNT){
+			ab.update(.5f);
+			move.update(.5f);
+			if(counter==12){
+				EntityManager.getInstance().addNewPCE("Headquarter", player,new Position(8.5f,15.5));
+				EntityManager.getInstance().update(1);
+			}
 			counter++;
 			assertTrue(counter < 1000);	
 		}

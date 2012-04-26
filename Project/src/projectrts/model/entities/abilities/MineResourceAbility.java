@@ -5,7 +5,6 @@ import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.misc.Resource;
-import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
 /**
  * An ability for moving to a resource and mine from it
@@ -58,7 +57,6 @@ public class MineResourceAbility extends AbstractAbility implements IMovableAbil
 				
 			}else{
 				// Not in range
-				
 				if(!moveAbility.isActive()){
 					moveAbility.useAbility(targetResource.getPosition());
 				}
