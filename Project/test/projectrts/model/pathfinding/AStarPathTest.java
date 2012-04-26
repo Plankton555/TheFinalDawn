@@ -21,13 +21,13 @@ public class AStarPathTest {
 		
 		assertTrue(path.nrOfNodesLeft() == 0);
 		path.addNodeToPath(aNode1);
-		assertTrue(path.getNextNode().equals(p1));
+		assertTrue(path.getNextNode().getPosition().equals(p1));
 		assertTrue(path.nrOfNodesLeft() == 1);
 		path.addNodeToPath(aNode2);
-		assertTrue(path.getNextNode().equals(p2));
+		assertTrue(path.getNextNode().getPosition().equals(p2));
 		assertTrue(path.nrOfNodesLeft() == 2);
 		path.removeNodeFromPath();
-		assertTrue(path.getNextNode().equals(p1));
+		assertTrue(path.getNextNode().getPosition().equals(p1));
 		assertTrue(path.nrOfNodesLeft() == 1);
 	}
 }
