@@ -33,11 +33,11 @@ public abstract class AbstractEntity implements IEntity {
 	}
 	
 	protected void setSize(float size){
-		this.size=size*P.INSTANCE.getUnitLength();
+		this.size=size*P.getUnitLength();
 		occupyNodes(world.getNodeAt(this.getPosition()));
 	}
 	protected void setSpeed(float speed){
-		this.speed=speed*P.INSTANCE.getUnitLength();
+		this.speed=speed*P.getUnitLength();
 	}
 	protected void setName(String name) {
 		this.name = name;

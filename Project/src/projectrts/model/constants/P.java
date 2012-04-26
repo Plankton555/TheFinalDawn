@@ -5,12 +5,12 @@ package projectrts.model.constants;
  * @author Markus Ekström
  *
  */
-public enum P {INSTANCE;
+public class P {
 	/**
 	 * A getter for the width of the world.
 	 * @return An int representing the width of the world.
 	 */
-	public int getWorldWidth() {
+	public static int getWorldWidth() {
 		return 100;
 	}
 	
@@ -18,7 +18,7 @@ public enum P {INSTANCE;
 	 * A getter for the height of the world. 
 	 * @return An integer representing the height of the world.
 	 */
-	public int getWorldHeight() {
+	public static int getWorldHeight() {
 		return 100;
 	}
 	
@@ -26,7 +26,7 @@ public enum P {INSTANCE;
 	 * A getter for the base length of the game.
 	 * @return A float representing the base length.
 	 */
-	public float getUnitLength() {
+	public static float getUnitLength() {
 		return 1;
 	}
 	
@@ -34,7 +34,7 @@ public enum P {INSTANCE;
 	 * A getter for the worker carry amount.
 	 * @return An int representing the max carry amount of workers. 
 	 */
-	public int getWorkerCarryAmount() {
+	public static int getWorkerCarryAmount() {
 		return 12;
 	}
 }

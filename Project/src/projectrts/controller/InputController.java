@@ -96,13 +96,13 @@ public class InputController {
 	    	Vector3f loc = app.getCamera().getLocation();
 	    	Vector2f mLoc = app.getInputManager().getCursorPosition();
 	    	float margin = Constants.getCameraMoveMargin();
-	    	if(mLoc.x >= app.getCamera().getWidth() - margin && loc.x <= P.INSTANCE.getWorldWidth() * Constants.getModelToWorld()) {
+	    	if(mLoc.x >= app.getCamera().getWidth() - margin && loc.x <= P.getWorldWidth() * Constants.getModelToWorld()) {
 	    		app.getCamera().setLocation(loc.add(tpf * Constants.getCameraSpeed(), 0, 0));
 	    	}
 	    	if(mLoc.x <= margin && loc.x >= 0) {
 	    		app.getCamera().setLocation(loc.add(tpf * -Constants.getCameraSpeed(), 0, 0));
 	    	}
-	    	if(mLoc.y <= margin && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.getModelToWorld()) {
+	    	if(mLoc.y <= margin && loc.y >= -P.getWorldHeight() * Constants.getModelToWorld()) {
 	    		app.getCamera().setLocation(loc.add(0, tpf * -Constants.getCameraSpeed(), 0));
 	    	}
 	    	if(mLoc.y >= app.getCamera().getHeight() - margin && loc.y <= 0) {
@@ -159,7 +159,7 @@ public class InputController {
 	    	if (app.getStateManager().getState(InGameState.class).isEnabled()) {
 	    		Vector3f loc = app.getCamera().getLocation();
 	    		
-	            if (name.equals("cameraRightKey") && loc.x <= P.INSTANCE.getWorldWidth() * Constants.getModelToWorld()) {
+	            if (name.equals("cameraRightKey") && loc.x <= P.getWorldWidth() * Constants.getModelToWorld()) {
 	            	app.getCamera().setLocation(loc.add(new Vector3f(value*Constants.getCameraSpeed(), 0, 0)));
 	            }
 	            if (name.equals("cameraLeftKey") && loc.x >= 0) {
@@ -168,7 +168,7 @@ public class InputController {
 	            if (name.equals("cameraUpKey") && loc.y <= 0) {
 	            	app.getCamera().setLocation(loc.add(new Vector3f(0, value*Constants.getCameraSpeed(), 0)));
 	            }
-	            if (name.equals("cameraDownKey") && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.getModelToWorld()) {
+	            if (name.equals("cameraDownKey") && loc.y >= -P.getWorldHeight() * Constants.getModelToWorld()) {
 	            	app.getCamera().setLocation(loc.add(new Vector3f(0, -value*Constants.getCameraSpeed(), 0)));
 	            }
 	            

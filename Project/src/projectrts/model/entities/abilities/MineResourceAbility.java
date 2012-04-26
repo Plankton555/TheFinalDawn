@@ -51,7 +51,7 @@ public class MineResourceAbility extends AbstractAbility implements IMovableAbil
 					miningCooldown -= tpf; 
 				}
 				
-				if(resourceCarriedAmount >= P.INSTANCE.getWorkerCarryAmount()) {
+				if(resourceCarriedAmount >= P.getWorkerCarryAmount()) {
 					setFinished(true);
 				}
 				

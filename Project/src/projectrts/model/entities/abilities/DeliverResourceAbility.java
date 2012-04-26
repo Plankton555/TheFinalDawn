@@ -49,7 +49,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IMovableA
 				moveAbility.setFinished(true);
 				
 				Player player = (Player)unit.getOwner();
-				player.modifyResource(P.INSTANCE.getWorkerCarryAmount());
+				player.modifyResource(P.getWorkerCarryAmount());
 				setFinished(true);
 			}else{
 				// Not in range

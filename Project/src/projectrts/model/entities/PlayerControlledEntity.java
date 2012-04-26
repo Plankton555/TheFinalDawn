@@ -122,7 +122,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	}
 	
 	protected void setSightRange(float sightRange){
-		this.sightRange = sightRange*P.INSTANCE.getUnitLength();
+		this.sightRange = sightRange*P.getUnitLength();
 	}
 	
 	public void setCurrentHealth(int newCurrentHealth) {
