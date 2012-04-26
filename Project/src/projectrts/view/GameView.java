@@ -2,7 +2,6 @@ package projectrts.view;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import projectrts.global.constants.Constants;
@@ -41,6 +40,7 @@ public class GameView implements PropertyChangeListener{
     private Node selected = new Node("selected"); // The node for the selected graphics
     private Node debug = new Node("debug"); // The node for the debugging graphics
     private Node terrainNode = new Node("terrain"); // The node for all terrain
+    private Node mouseEffects = new Node("mouseEffects"); // The node for mouseEffects
     private Material matTerrain;
     private TerrainQuad terrain;
     private float mod = Constants.INSTANCE.getModelToWorld(); // The modifier value for converting lengths between model and world.
@@ -60,6 +60,7 @@ public class GameView implements PropertyChangeListener{
 		initializeWorld();
 		initializeDebug();
 		initializeEntities();
+		initializeMouseEffects();
 		this.app.getRootNode().attachChild(selected);
 	}
 
@@ -144,6 +145,12 @@ public class GameView implements PropertyChangeListener{
     	//Attach the entities node to the root node, connecting it to the world.
     	this.app.getRootNode().attachChild(entities);
     }
+	
+	private void initializeMouseEffects() {
+
+    	//Attach the entities node to the root node, connecting it to the world.
+    	this.app.getRootNode().attachChild(mouseEffects);
+    }
     
     /**
      * Updates the view.
@@ -223,6 +230,27 @@ public class GameView implements PropertyChangeListener{
 	    	// Attach spatial to the selected node, connecting it to the world.
 	    	selected.attachChild(circleSpatial);
     	}
+    }
+    
+    public void drawNodes(List<projectrts.model.pathfinding.Node> coveredNodes){
+    	clearNodes();
+    	for(projectrts.model.pathfinding.Node node: coveredNodes){
+    		Box nodeBox = new Box(
+					new Vector3f((float)node.getPosition().getX()*mod,
+							-(float)node.getPosition().getY()*mod,
+							1),
+					(1f * mod)/2,
+					(1f * mod)/2,
+					0);
+
+    		AbstractSpatial nodeSpatial = SpatialFactory.INSTANCE.createNodeSpatial("DebugNodeSpatial",
+					node.getClass().getSimpleName(), nodeBox, node);
+    		mouseEffects.attachChild(nodeSpatial);
+    	}
+    }
+    
+    public void clearNodes(){
+    	mouseEffects.detachAllChildren();
     }
 
 	@Override

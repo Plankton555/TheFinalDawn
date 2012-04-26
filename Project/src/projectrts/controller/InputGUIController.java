@@ -7,7 +7,6 @@ import projectrts.model.entities.IAbility;
 import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
 import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.builder.EffectBuilder;
 import de.lessvoid.nifty.builder.LayerBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.ScreenBuilder;
@@ -15,9 +14,11 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
+import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
+import de.lessvoid.nifty.tools.Color;
 
 /**
  * A controller class that handles input from the gui
@@ -32,7 +33,15 @@ public class InputGUIController implements ScreenController {
 	private ScreenController sc;
 	
 	private List<IAbility> abilities; 
+
 	private IPlayerControlledEntity selectedPce;
+
+	private Element labelName;
+	private Element labelInfo;
+	private Element labelInfoValues;
+	
+	private Element panelInfo;
+
 
 	/**
 	 * Creates a new inputGUIController
@@ -89,35 +98,89 @@ public class InputGUIController implements ScreenController {
 	      }}.build(nifty));
 	    // </screen>
 	    
-	    
-	    Element element = nifty.getScreen("Screen_ID").findElementByName("Panel_GUI");
+	    Screen screen = nifty.getScreen("Screen_ID");
+	    Element guiPanel = screen.findElementByName("Panel_GUI");
 	    NiftyImage image = ImageManager.INSTANCE.getImage("GUIBackground");
-	    element.getRenderer(ImageRenderer.class).setImage(image);
-	 
+	    guiPanel.getRenderer(ImageRenderer.class).setImage(image);
+	    
+	    
+		labelName = screen.findElementByName("Label_Name");
+		labelInfo = screen.findElementByName("Label_Info");
+		labelInfoValues = screen.findElementByName("Label_InfoValues");
+		panelInfo = screen.findElementByName("Panel_SelectedInfo");
+		
+		panelInfo.setVisible(false);
+		
+		
 	    nifty.gotoScreen("Screen_ID"); // start the screen
 	}
 	
 	//Creates the panel that shows current hp
 	private PanelBuilder createMiddlePanel(){
 		PanelBuilder builder = new PanelBuilder("Panel_SelectedInfo"){{
-			height("20%");
+			width("20%");
 			childLayoutVertical();
+			backgroundColor("#000F");
 			
+			//TODO: Afton: Remove or use this testing code
+			/*
 			panel(new PanelBuilder("Filler") {{
 				height("10px");
 				
 			}});
 			
-			control(new LabelBuilder("Label_Name"){{
-				text("Test Text");
+    		
+    		//labelName.getRenderer(TextRenderer.class).setTextMinHeight(new SizeValue("40px"));
+    		//labelName.getRenderer(TextRenderer.class).setTextLineHeight(new SizeValue("40px"));
+    		//labelName.getRenderer(TextRenderer.class)
+			
+			text(new TextBuilder() {{
+				font("aurulent-sans-16.fnt");
+				color("#f00f");
+				text("Hello World!");
 				
+				alignCenter();
+				valignCenter();
+			}});
+			*/
+			
+			control(new LabelBuilder("Label_Name"){{
+				//height("50px");
+				width("100%");
+				color("#00FF");
 				//TODO: Afton, fix text size
 				/*
 				onActiveEffect(new EffectBuilder("textSize") {{
-					effectParameter("maxSize", "10px");
+					//effectParameter("", "10px");
 				}});
 				*/
+				
 			}});
+			
+
+			panel(new PanelBuilder("Panel_Info"){{
+				childLayoutHorizontal();
+				
+				control(new LabelBuilder("Label_Info"){{
+					width("30%");
+					height("100%");
+					textHAlignLeft();
+					textVAlignTop();
+					color("#0F0F");
+					
+				}});
+				
+				control(new LabelBuilder("Label_InfoValues"){{
+					width("100%");
+					height("100%");
+					textHAlignLeft();
+					textVAlignTop();
+					color("#0F0F");
+				}});
+				
+			}});
+			
+
 		}};
 		return builder;
 	}
@@ -182,6 +245,30 @@ public class InputGUIController implements ScreenController {
     	if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
     		selectedPce = (IPlayerControlledEntity) selectedEntities.get(0);
     		abilities = selectedPce.getAbilities();
+    		
+    		//Update the Info about the unit in the GUI
+
+    		labelName.getRenderer(TextRenderer.class).setText(selectedPce.getName());
+    		
+    		StringBuilder infoValuesBuilder = new StringBuilder();
+    		StringBuilder infoBuilder = new StringBuilder();
+    		
+    		infoBuilder.append("HP:");
+    		infoValuesBuilder.append(selectedPce.getCurrentHealth()+"/"+selectedPce.getMaxHealth()+" ("+100*selectedPce.getCurrentHealth()/selectedPce.getMaxHealth()+"%)");
+    		infoBuilder.append("\nDmg:");
+    		infoValuesBuilder.append("\n"+	selectedPce.getDamage());
+    		infoBuilder.append("\nSpeed:");
+    		infoValuesBuilder.append("\n" + selectedPce.getSpeed());
+    		infoBuilder.append("\nRange:");
+    		infoValuesBuilder.append("\n" + selectedPce.getSightRange());
+    		
+    		labelInfoValues.getRenderer(TextRenderer.class).setText(infoValuesBuilder.toString());
+    		labelInfo.getRenderer(TextRenderer.class).setText(infoBuilder.toString());
+    		
+
+    		panelInfo.setVisible(true);
+    	} else {
+    		panelInfo.setVisible(false);
     	}
     	
     	//Loops through every button and sets its attributes

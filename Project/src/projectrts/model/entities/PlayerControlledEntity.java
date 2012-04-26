@@ -104,6 +104,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	
 	public void setMaxHealth(int newMaxHealth) {
 		this.maxHealth = newMaxHealth;
+		this.currentHealth = newMaxHealth;
 	}
 	
 	protected void setSightRange(float sightRange){

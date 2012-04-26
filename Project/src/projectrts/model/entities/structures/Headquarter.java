@@ -16,6 +16,7 @@ public class Headquarter extends AbstractStructure{
 	
 	private static float size = 2;
 	private static final float sightRange = 5;
+	private static int maxHealth = 2000;
 	
 	static {
 		EntityFactory.INSTANCE.registerPCE(Headquarter.class.getSimpleName(), new Headquarter());
@@ -25,9 +26,10 @@ public class Headquarter extends AbstractStructure{
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		this.abilities.add(AbilityFactory.INSTANCE.createAbility(TrainWorkerAbility.class.getSimpleName(), this));
-		setName(Headquarter.class.getSimpleName());
-		setSize(size);
-		setSightRange(sightRange);
+		this.setName(Headquarter.class.getSimpleName());
+		this.setSize(size);
+		this.setSightRange(sightRange);
+		this.setMaxHealth(maxHealth);
 		deposit = true;
 	}
 	

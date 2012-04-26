@@ -5,6 +5,7 @@ import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IEntityManager;
 import projectrts.model.entities.abilities.AttackAbility;
 import projectrts.model.entities.abilities.BuildBarracksAbility;
+import projectrts.model.entities.abilities.BuildWallAbility;
 import projectrts.model.entities.abilities.DeliverResourceAbility;
 import projectrts.model.entities.abilities.GatherResourceAbility;
 import projectrts.model.entities.abilities.MineResourceAbility;
@@ -15,6 +16,7 @@ import projectrts.model.entities.abilities.TrainWorkerAbility;
 import projectrts.model.entities.misc.Resource;
 import projectrts.model.entities.structures.Barracks;
 import projectrts.model.entities.structures.Headquarter;
+import projectrts.model.entities.structures.Wall;
 import projectrts.model.entities.units.Warrior;
 import projectrts.model.entities.units.Worker;
 import projectrts.model.pathfinding.AStar;
@@ -37,6 +39,7 @@ public class GameModel implements IGame {
 	// TODO Markus: Implement some sort of AI
 	// TODO Plankton: Implement some sort of AI
 	private Player aiPlayer = new Player();
+	private float gameTime = 0;
 	
 	static {
 		try
@@ -47,10 +50,12 @@ public class GameModel implements IGame {
 			Class.forName(Resource.class.getName());
 			Class.forName(Headquarter.class.getName());
 			Class.forName(Barracks.class.getName());
+			Class.forName(Wall.class.getName());
 			
 			// Initialize the ability classes.
 			Class.forName(AttackAbility.class.getName());
-			Class.forName(BuildBarracksAbility.class.getName());	
+			Class.forName(BuildBarracksAbility.class.getName());
+			Class.forName(BuildWallAbility.class.getName());	
 			Class.forName(DeliverResourceAbility.class.getName());
 			Class.forName(GatherResourceAbility.class.getName());
 			Class.forName(MineResourceAbility.class.getName());
@@ -86,6 +91,7 @@ public class GameModel implements IGame {
 	@Override
 	public void update(float tpf) {
 		entityManager.update(tpf);
+		gameTime +=tpf;
 	}
 
 	@Override
@@ -101,5 +107,10 @@ public class GameModel implements IGame {
 	@Override
 	public INode[][] getNodes() {
 		return world.getNodes();
+	}
+
+	@Override
+	public float getGameTime() {
+		return gameTime;
 	}
 }
