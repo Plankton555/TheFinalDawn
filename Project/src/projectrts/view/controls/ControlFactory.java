@@ -2,10 +2,10 @@ package projectrts.view.controls;
 
 import java.util.HashMap;
 
-import com.jme3.scene.control.AbstractControl;
-
 import projectrts.model.entities.IEntity;
 import projectrts.model.pathfinding.INode;
+
+import com.jme3.scene.control.AbstractControl;
 
 /**
  * A factory for custom controls.

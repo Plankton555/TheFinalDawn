@@ -1,8 +1,8 @@
 package projectrts.view.controls;
 
-import com.jme3.scene.control.AbstractControl;
-
 import projectrts.model.entities.IEntity;
+
+import com.jme3.scene.control.AbstractControl;
 /**
  * An interface for the custom controls.
  * @author Markus Ekström
