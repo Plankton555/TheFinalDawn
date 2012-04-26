@@ -14,7 +14,7 @@ import projectrts.model.entities.structures.Wall;
 public class BuildWallAbility extends AbstractConstructAbility implements IMovableAbility, IBuildStructureAbility{
 	private static float buildTime = 1; 
 	private static int buildCost = 50; 
-	private float size = 1; //TODO: Sync with Barracks class
+	private float size = 1; //TODO Jakob: Sync with Barracks class
 
 	static {
 		AbilityFactory.INSTANCE.registerAbility(BuildWallAbility.class.getSimpleName(), new BuildWallAbility());

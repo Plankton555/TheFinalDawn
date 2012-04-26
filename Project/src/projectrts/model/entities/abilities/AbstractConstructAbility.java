@@ -74,7 +74,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IMovabl
 			setActive(true);
 			setFinished(false);
 			buildTimeLeft=buildTime;
-			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(target)//TODO: Set unoccupied if ability is aborted
+			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(target)//TODO Jakob: Set unoccupied if ability is aborted
 					, getSizeOfBuilding(), EntityManager.getInstance().requestNewEntityID());
 		}
 	}

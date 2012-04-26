@@ -132,7 +132,6 @@ public final class World {
 	 */
 	public List<Node> getNodesAt(Position centerPos, float size)
 	{
-		// TODO Plankton: !!!Check for out of bounds (if close to border)
 		// Maybe find some other way to do this...
 		List<Node> output = new ArrayList<Node>();
 		int offset = (int) (size/2);

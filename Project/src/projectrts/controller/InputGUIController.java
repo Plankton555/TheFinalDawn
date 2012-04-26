@@ -131,7 +131,7 @@ public class InputGUIController implements ScreenController {
 			childLayoutVertical();
 			backgroundColor("#000F");
 			
-			//TODO: Afton: Remove or use this testing code
+			//TODO Afton: Remove or use this testing code
 
 			/*
 			panel(new PanelBuilder("Filler") {{
@@ -160,7 +160,7 @@ public class InputGUIController implements ScreenController {
 				width("100%");
 				color("#00FF");
 
-				//TODO: Afton, fix text size
+				//TODO Afton: fix text size
 				/*
 				onActiveEffect(new EffectBuilder("textSize") {{
 					//effectParameter("", "10px");

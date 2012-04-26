@@ -13,7 +13,7 @@ import projectrts.model.entities.structures.Barracks;
 public class BuildBarracksAbility extends AbstractConstructAbility implements IMovableAbility, IBuildStructureAbility {
 	private static float buildTime = 1; 
 	private static int buildCost = 200; 
-	private float size = 3; //TODO: Sync with Barracks class
+	private float size = 3; //TODO Jakob: Sync with Barracks class
 
 
 	static {
