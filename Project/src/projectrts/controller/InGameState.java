@@ -52,7 +52,7 @@ public class InGameState extends AbstractAppState {
         this.app = (SimpleApplication)app;          // cast to a more specific class
       // init stuff that is independent of whether state is PAUSED or RUNNING // modify scene graph...
       view = new GameView(this.app, game);
-      guiView = new GameGUIView(nifty);
+      guiView = new GameGUIView(nifty, game);
       
       input = new InputController(this.app, game, view);
       guiControl = new InputGUIController(input, nifty, guiView); 
@@ -103,6 +103,7 @@ public class InGameState extends AbstractAppState {
     	  input.update(tpf);
     	  game.update(tpf);
     	  view.update(tpf);
+    	  guiView.update(tpf);
       } else {
         // do the following while game is PAUSED, e.g. play an idle animation.
         //...        

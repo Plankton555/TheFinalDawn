@@ -7,4 +7,9 @@ package projectrts.model.player;
  *
  */
 public interface IPlayer {
+	/**
+	 * Returns the players current amount of resources
+	 * @return The amount of resources
+	 */
+	public int getResources();
 }

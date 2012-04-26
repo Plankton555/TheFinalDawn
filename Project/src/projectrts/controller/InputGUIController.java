@@ -74,10 +74,7 @@ public class InputGUIController implements ScreenController {
 	                childLayoutHorizontal(); // panel properties, add more...  
 	    	        visibleToMouse(true);
 	    	           
-	                panel(new PanelBuilder("Panel_Main"){{
-	             	   width("40%");
-	             	   childLayoutVertical();
-	                }});
+	                panel(createLeftPanel());
 	                
 	                
 	                panel(createMiddlePanel()); 
@@ -102,6 +99,32 @@ public class InputGUIController implements ScreenController {
 		
 	    nifty.gotoScreen("Screen_Game"); // start the screen
 
+	}
+	
+	//Creates the panel that shows the player info
+	private PanelBuilder createLeftPanel(){
+		PanelBuilder builder = new PanelBuilder("Panel_PlayerInfo"){{
+			width("40%");
+			childLayoutVertical();
+			
+			control(new LabelBuilder("Label_Time"){{
+				width("100%");
+				textHAlignLeft();
+				textVAlignTop();
+				color("#0F0F");
+				
+			}});
+			
+			control(new LabelBuilder("Label_PlayerInfo"){{
+				width("100%");
+				textHAlignLeft();
+				textVAlignTop();
+				color("#0F0F");
+				
+			}});
+			
+		}};
+		return builder;
 	}
 	
 	//Creates the panel that shows current hp
@@ -237,7 +260,7 @@ public class InputGUIController implements ScreenController {
     		selectedPce = (IPlayerControlledEntity) selectedEntities.get(0);
     		abilities = selectedPce.getAbilities();
     	}
-    	guiView.updateAbilities(selectedPce);
+    	guiView.updateSelected(selectedPce);
     }
 
 	@Override

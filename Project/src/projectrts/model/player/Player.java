@@ -19,10 +19,7 @@ public class Player implements IPlayer {
 	
 
 	
-	/**
-	 * Returns the players current amount of resources
-	 * @return The amount of resources
-	 */
+	@Override
 	public int getResources(){
 		return resources; 
 	}
