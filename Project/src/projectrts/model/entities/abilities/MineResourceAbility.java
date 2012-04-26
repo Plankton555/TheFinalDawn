@@ -62,8 +62,6 @@ public class MineResourceAbility extends AbstractAbility implements IMovableAbil
 				if(!moveAbility.isActive()){
 					moveAbility.useAbility(targetResource.getPosition());
 				}
-				
-				moveAbility.update(tpf);
 			}
 		}
 		

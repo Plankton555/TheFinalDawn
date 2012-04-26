@@ -78,7 +78,7 @@ public class GameModel implements IGame {
 		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(55.5, 55.5));
 		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(56.5, 55.5));
 		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(60.5, 60.5));
-		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(34.5, 50.5));
+		//entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(34.5, 50.5));
 		entityManager.addNewPCE(Barracks.class.getSimpleName(), humanPlayer, new Position(38.5, 56.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 50.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 52.5));

@@ -63,8 +63,6 @@ public class BuildWallAbility extends AbstractAbility implements IMovableAbility
 				if(!moveAbility.isActive()){
 					moveAbility.useAbility(buildPos);
 				}
-				
-				moveAbility.update(tpf);
 			}
 		}
 	}

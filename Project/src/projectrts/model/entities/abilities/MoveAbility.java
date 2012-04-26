@@ -153,4 +153,9 @@ public class MoveAbility extends AbstractAbility implements INonMovableAbility, 
 		newAbility.initialize(entity);
 		return newAbility;
 	}
+	
+	public void updateTarget(Position newTarget)
+	{
+		this.targetPosition = newTarget.copy();
+	}
 }

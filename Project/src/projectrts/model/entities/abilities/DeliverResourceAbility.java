@@ -57,8 +57,6 @@ public class DeliverResourceAbility extends AbstractAbility implements IMovableA
 				if(!moveAbility.isActive()){
 					moveAbility.useAbility(depositStructure.getPosition());
 				}
-				
-				moveAbility.update(tpf);
 			}
 		}
 		

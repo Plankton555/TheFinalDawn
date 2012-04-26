@@ -82,7 +82,7 @@ public abstract class AbstractAbility implements IAbility {
 	}
 	
 	/**
-	 * Updates sets the remaining cooldown to be the max cooldown
+	 * Sets the remaining cooldown to be the max cooldown
 	 */
 	protected void setAbilityUsed(){
 		remainingCooldown = cooldown;

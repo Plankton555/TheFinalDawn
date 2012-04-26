@@ -37,7 +37,7 @@ public class Worker extends AbstractUnit{
 		this.abilities.add(AbilityFactory.INSTANCE.createMAbility(AttackAbility.class.getSimpleName(),this, moveAbility));
 		this.abilities.add(AbilityFactory.INSTANCE.createMAbility(GatherResourceAbility.class.getSimpleName(),this, moveAbility));
 		this.abilities.add(AbilityFactory.INSTANCE.createMAbility(BuildBarracksAbility.class.getSimpleName(),this, moveAbility));
-		this.abilities.add(AbilityFactory.INSTANCE.createAbility(BuildWallAbility.class.getSimpleName(),this));
+		this.abilities.add(AbilityFactory.INSTANCE.createMAbility(BuildWallAbility.class.getSimpleName(),this, moveAbility));
 		
 		setName(Worker.class.getSimpleName());
 		setSize(size);

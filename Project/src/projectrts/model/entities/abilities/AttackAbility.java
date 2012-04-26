@@ -16,7 +16,7 @@ public class AttackAbility extends AbstractAbility implements IMovableAbility, I
 	private PlayerControlledEntity entity;
 	private PlayerControlledEntity target;
 	
-	private AbstractAbility moveAbility;
+	private MoveAbility moveAbility;
 	
 	static {
 		AbilityFactory.INSTANCE.registerAbility(AttackAbility.class.getSimpleName(), new AttackAbility());
@@ -58,8 +58,11 @@ public class AttackAbility extends AbstractAbility implements IMovableAbility, I
 				if(!moveAbility.isActive()){
 					moveAbility.useAbility(target.getPosition());
 				}
+				else
+				{
+					moveAbility.updateTarget(target.getPosition());
+				}
 				
-				moveAbility.update(tpf);
 				if(moveAbility.isFinished()){
 					moveAbility.setActive(false);
 					moveAbility.setFinished(true);
@@ -74,7 +77,6 @@ public class AttackAbility extends AbstractAbility implements IMovableAbility, I
 					this.setAbilityUsed();
 			
 					if(target.getCurrentHealth() == 0) {
-						this.setActive(false);
 						this.setFinished(true);
 					}
 					

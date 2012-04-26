@@ -11,7 +11,6 @@ import projectrts.model.utils.Position;
  */
 public class GatherResourceAbility extends AbstractAbility implements IMovableAbility, ITargetAbility{
 	
-	private PlayerControlledEntity unit;
 	private AbstractAbility mineResourceAbility;
 	private AbstractAbility deliverResourceAbility;
 	private Position target;
@@ -24,7 +23,6 @@ public class GatherResourceAbility extends AbstractAbility implements IMovableAb
 	 * When subclassing, invoke this to initialize the ability.
 	 */
 	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
-		this.unit =  entity;
 		this.mineResourceAbility = AbilityFactory.INSTANCE.createMAbility(MineResourceAbility.class.getSimpleName(), entity, moveAbility);
 		this.deliverResourceAbility = AbilityFactory.INSTANCE.createMAbility(DeliverResourceAbility.class.getSimpleName(), entity, moveAbility);
 	}

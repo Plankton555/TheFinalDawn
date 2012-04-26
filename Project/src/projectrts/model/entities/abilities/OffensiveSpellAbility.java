@@ -58,7 +58,6 @@ public class OffensiveSpellAbility extends AbstractAbility implements IMovableAb
 					moveAbility.useAbility(target.getPosition());
 				}
 				
-				moveAbility.update(tpf);
 				if(moveAbility.isFinished()){
 					moveAbility.setActive(true);
 					moveAbility.setFinished(false);

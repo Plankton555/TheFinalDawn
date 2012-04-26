@@ -62,8 +62,6 @@ public class BuildBarracksAbility extends AbstractAbility implements IMovableAbi
 				if(!moveAbility.isActive()){
 					moveAbility.useAbility(buildPos);
 				}
-				
-				moveAbility.update(tpf);
 			}
 		}
 	}
