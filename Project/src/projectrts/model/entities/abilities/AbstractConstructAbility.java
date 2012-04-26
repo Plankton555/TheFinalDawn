@@ -45,7 +45,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IMovabl
 	@Override
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
-			if(Position.getDistance(entity.getPosition(),buildPos)<3){
+			if(Position.getDistance(entity.getPosition(),buildPos)<size*1.5){
 				//If in range of buildingPosition
 				moveAbility.setFinished(true);
 				if(buildTimeLeft<=0){
@@ -90,6 +90,10 @@ public class AbstractConstructAbility extends AbstractAbility implements IMovabl
 	@Override
 	public float getSizeOfBuilding() {
 		return size;
+	}
+	
+	protected void setSizeOfBuilding(float size){
+		this.size=size;
 	}
 	
 	protected void setBuildTime(float buildTime) {

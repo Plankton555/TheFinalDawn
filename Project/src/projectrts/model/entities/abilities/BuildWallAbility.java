@@ -28,6 +28,7 @@ public class BuildWallAbility extends AbstractConstructAbility implements IMovab
 		this.setBuildCost(buildCost);
 		this.setBuildTime(buildTime);
 		this.setEntityToTrain(Wall.class.getSimpleName());
+		this.setSizeOfBuilding(size);
 	}
 
 	@Override
@@ -42,9 +43,5 @@ public class BuildWallAbility extends AbstractConstructAbility implements IMovab
 		return newAbility;
 	}
 
-	@Override
-	public float getSizeOfBuilding() {
-		return size;
-	}
-
+	
 }

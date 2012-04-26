@@ -27,7 +27,8 @@ public class BuildBarracksAbility extends AbstractConstructAbility implements IM
 		super.initialize(entity, moveAbility);
 		this.setBuildCost(buildCost);
 		this.setBuildTime(buildTime);
-		setEntityToTrain(Barracks.class.getSimpleName());
+		this.setEntityToTrain(Barracks.class.getSimpleName());
+		this.setSizeOfBuilding(size);
 	}
 
 	@Override
@@ -42,11 +43,6 @@ public class BuildBarracksAbility extends AbstractConstructAbility implements IM
 		BuildBarracksAbility newAbility = new BuildBarracksAbility();
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;
-	}
-
-	@Override
-	public float getSizeOfBuilding() {
-		return size;
 	}
 
 }
