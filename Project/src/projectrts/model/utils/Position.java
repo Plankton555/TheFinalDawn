@@ -115,4 +115,17 @@ public class Position {
 				endPos.getY()-startPos.getY());
 		return result;
 	}
+	
+	/**
+	 * Gets the distance between two positions
+	 * @param p1 the first point
+	 * @param p2 the second point
+	 * @return the distance between the points
+	 */
+	public static double getDistance(Position p1, Position p2){
+		double dx = p1.getX() - p2.getX();
+		double dy = p1.getY() - p2.getY();
+		
+		return Math.sqrt(dx*dx+dy*dy);
+	}
 }

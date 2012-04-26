@@ -45,7 +45,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IMovableA
 			
 			findDepositStructure();
 			
-			if(ModelUtils.INSTANCE.getDistance(unit.getPosition(),depositStructure.getPosition() )<1.5*depositStructure.getSize()){
+			if(Position.getDistance(unit.getPosition(),depositStructure.getPosition() )<1.5*depositStructure.getSize()){
 				//If in range of deposit structure
 				moveAbility.setFinished(true);
 				
@@ -80,8 +80,8 @@ public class DeliverResourceAbility extends AbstractAbility implements IMovableA
 					if(depositStructure == null) {
 						depositStructure = struct;
 					}else{
-						if(ModelUtils.INSTANCE.getDistance(unit.getPosition(), e.getPosition())
-							<ModelUtils.INSTANCE.getDistance(unit.getPosition(), depositStructure.getPosition())){
+						if(Position.getDistance(unit.getPosition(), e.getPosition())
+							<Position.getDistance(unit.getPosition(), depositStructure.getPosition())){
 							//If e is closer to unit than saved depositStructure
 							depositStructure = struct;
 						}

@@ -47,7 +47,7 @@ public class BuildWallAbility extends AbstractAbility implements IMovableAbility
 	@Override
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
-			if(ModelUtils.INSTANCE.getDistance(builder.getPosition(),buildPos)<1.5){
+			if(Position.getDistance(builder.getPosition(),buildPos)<1.5){
 				//If in range of buildingPosition
 				moveAbility.setFinished(true);
 				if(buildTimeLeft<=0){

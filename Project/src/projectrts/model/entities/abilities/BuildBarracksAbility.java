@@ -46,7 +46,7 @@ public class BuildBarracksAbility extends AbstractAbility implements IMovableAbi
 	@Override
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
-			if(ModelUtils.INSTANCE.getDistance(builder.getPosition(),buildPos)<3){
+			if(Position.getDistance(builder.getPosition(),buildPos)<3){
 				//If in range of buildingPosition
 				moveAbility.setFinished(true);
 				if(buildTimeLeft<=0){

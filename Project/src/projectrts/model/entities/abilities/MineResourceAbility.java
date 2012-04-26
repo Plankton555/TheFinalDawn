@@ -41,7 +41,7 @@ public class MineResourceAbility extends AbstractAbility implements IMovableAbil
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			
-			if(ModelUtils.INSTANCE.getDistance(unit.getPosition(),targetResource.getPosition() )<1.5*targetResource.getSize()){
+			if(Position.getDistance(unit.getPosition(),targetResource.getPosition() )<1.5*targetResource.getSize()){
 				//If in range of resource
 				//Check cooldown and mine resource or reduce cooldown as appropriate.
 				moveAbility.setFinished(true);
