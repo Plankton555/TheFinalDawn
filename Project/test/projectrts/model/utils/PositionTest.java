@@ -7,6 +7,11 @@ import javax.vecmath.Vector2d;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/**
+ * 
+ * @author Bjorn Persson Mattsson
+ *
+ */
 public class PositionTest {
 
 	private static double d1;

@@ -8,9 +8,15 @@ package projectrts.model.utils;
  */
 public class ModelUtils {
 	
-	// TODO Anyone: Add javadoc
-	public static boolean isWithin(double p, double low, double high){
-		return (p>=low && p<=high);
+	/**
+	 * Determines whether a number is in a certain interval or not.
+	 * @param value The value to be examined.
+	 * @param low Lower limit.
+	 * @param high Higher limit.
+	 * @return true if the number is in the interval, otherwise false.
+	 */
+	public static boolean isWithin(double value, double low, double high){
+		return (value>=low && value<=high);
 	}
 	
 	/**
