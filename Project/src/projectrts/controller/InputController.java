@@ -343,7 +343,7 @@ public class InputController {
     	}else if(currentAbility instanceof ITargetAbility){
     		choosingTarget=true;
     	}else{
-    		pce.doAbility(currentAbility.getName(), pce.getPosition());
+    		pce.doAbility(currentAbility.getClass().getSimpleName(), pce.getPosition());
     	}
     	System.out.println(ability.getName());
     }
