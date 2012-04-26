@@ -229,7 +229,7 @@ public class InputController {
     			if(!World.getInstance().isAnyNodeOccupied(
     					World.getInstance().getNodesAt(pos, buildingSize))){
     				
-	    			selectedEntity.doAbility(currentAbility.getName(), 
+	    			selectedEntity.doAbility(currentAbility.getClass().getSimpleName(), 
 	    					World.getInstance().getNodeAt(pos).getPosition());
 	    			choosingPosition=false;
 	    			view.clearNodes();
@@ -237,20 +237,20 @@ public class InputController {
     		}else if(choosingTarget){
     			if(currentAbility instanceof GatherResourceAbility){
     				if(EntityManager.getInstance().getNonPlayerControlledEntity(pos) instanceof Resource){
-    					selectedEntity.doAbility(currentAbility.getName(), pos);
+    					selectedEntity.doAbility(currentAbility.getClass().getSimpleName(), pos);
     					choosingTarget=false;
     				}else{
     					//TODO Jakob: Notify gui that target is invalid
     				}
     			}else if(currentAbility instanceof AttackAbility){
     				if(EntityManager.getInstance().getPCEAtPosition(pos)!=null){
-    					selectedEntity.doAbility(currentAbility.getName(), pos);
+    					selectedEntity.doAbility(currentAbility.getClass().getSimpleName(), pos);
     					choosingTarget=false;
     				}else{
     					//TODO Jakob: Notify gui that target is invalid
     				}
     			}else{
-    				selectedEntity.doAbility(currentAbility.getName(), pos);
+    				selectedEntity.doAbility(currentAbility.getClass().getSimpleName(), pos);
     				choosingTarget=false;
     			}
     		}else{

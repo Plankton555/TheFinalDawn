@@ -73,6 +73,8 @@ public class GameGUIView {
     	}
     	output += sec%60;
     	labelTime.getRenderer(TextRenderer.class).setText(output);
+    	
+    	updateSelectedInfo();
     }
     
     /**
