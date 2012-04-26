@@ -6,6 +6,7 @@ import projectrts.global.utils.ImageManager;
 import projectrts.model.entities.IAbility;
 import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
+import projectrts.view.GameGUIView;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.builder.LayerBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
@@ -14,11 +15,9 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
-import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
-import de.lessvoid.nifty.tools.Color;
 
 /**
  * A controller class that handles input from the gui
@@ -28,19 +27,13 @@ import de.lessvoid.nifty.tools.Color;
 public class InputGUIController implements ScreenController {
 	private Nifty nifty;
 	private Screen screen;
+	private GameGUIView guiView;
+	private ScreenController sc;
 	
 	private InputController input;
-	private ScreenController sc;
-
+	
 	private IPlayerControlledEntity selectedPce;
 	List<IAbility> abilities;
-
-	private Element labelName;
-	private Element labelInfo;
-	private Element labelInfoValues;
-	
-	private Element panelInfo;
-
 
 	/**
 	 * Creates a new inputGUIController
@@ -48,10 +41,11 @@ public class InputGUIController implements ScreenController {
 	 * @param input the inputController
 	 * @param nifty the nifty
 	 */
-	public InputGUIController(InputController input, Nifty nifty) {
+	public InputGUIController(InputController input, Nifty nifty, GameGUIView guiView) {
 		sc = this;
 		this.input = input;
 		this.nifty = nifty;
+		this.guiView = guiView;
 		
 		initializeGUI();
 		input.setGUIControl(this);
@@ -60,7 +54,7 @@ public class InputGUIController implements ScreenController {
 	private void initializeGUI() {
 	    
 	    // <screen>
-	    nifty.addScreen("Screen_ID", new ScreenBuilder("GUI Screen"){{
+	    nifty.addScreen("Screen_Game", new ScreenBuilder("GUI Screen"){{
 	        controller(sc); // Screen properties       
 	 
 	        // <layer>
@@ -97,20 +91,17 @@ public class InputGUIController implements ScreenController {
 	      }}.build(nifty));
 	    // </screen>
 	    
-	    Screen screen = nifty.getScreen("Screen_ID");
+	    Screen screen = nifty.getScreen("Screen_Game");
 	    Element guiPanel = screen.findElementByName("Panel_GUI");
 	    NiftyImage image = ImageManager.INSTANCE.getImage("GUIBackground");
 	    guiPanel.getRenderer(ImageRenderer.class).setImage(image);
 	    
-	    
-		labelName = screen.findElementByName("Label_Name");
-		labelInfo = screen.findElementByName("Label_Info");
-		labelInfoValues = screen.findElementByName("Label_InfoValues");
-		panelInfo = screen.findElementByName("Panel_SelectedInfo");
+		Element panelInfo = screen.findElementByName("Panel_SelectedInfo");
 		
 		panelInfo.setVisible(false);
 		
-	    nifty.gotoScreen("Screen_ID"); // start the screen
+	    nifty.gotoScreen("Screen_Game"); // start the screen
+
 	}
 	
 	//Creates the panel that shows current hp
@@ -239,65 +230,14 @@ public class InputGUIController implements ScreenController {
 	 * @param selectedEntities the abilities of the selected Entity
 	 */
 	public void updateAbilities(List<IEntity> selectedEntities){
-    	
-    	boolean oneIsSelected = selectedEntities.size()==1;
-    
+    	boolean oneIsSelected = selectedEntities.size()==1;    
     	
     	if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
+    		//Update the abilities
     		selectedPce = (IPlayerControlledEntity) selectedEntities.get(0);
     		abilities = selectedPce.getAbilities();
-    		
-    		//Update the Info about the unit in the GUI
-
-    		labelName.getRenderer(TextRenderer.class).setText(selectedPce.getName());
-
-    		
-    		StringBuilder infoValuesBuilder = new StringBuilder();
-    		StringBuilder infoBuilder = new StringBuilder();
-    		
-    		infoBuilder.append("HP:");
-    		infoValuesBuilder.append(selectedPce.getCurrentHealth()+"/"+selectedPce.getMaxHealth()+" ("+100*selectedPce.getCurrentHealth()/selectedPce.getMaxHealth()+"%)");
-    		infoBuilder.append("\nDmg:");
-    		infoValuesBuilder.append("\n"+	selectedPce.getDamage());
-    		infoBuilder.append("\nSpeed:");
-    		infoValuesBuilder.append("\n" + selectedPce.getSpeed());
-    		infoBuilder.append("\nRange:");
-    		infoValuesBuilder.append("\n" + selectedPce.getSightRange());
-
-    		
-    		labelInfoValues.getRenderer(TextRenderer.class).setText(infoValuesBuilder.toString());
-    		labelInfo.getRenderer(TextRenderer.class).setText(infoBuilder.toString());
-    		
-    		panelInfo.setVisible(true);
-    	} else {
-    		panelInfo.setVisible(false);
-
     	}
-    	
-    	//Loops through every button and sets its attributes
-    	for(int i = 0; i<8; i++){
-    		Element button = screen.findElementByName("Button_Ability_" + (i+1));
-  
-    		if(button != null){
-    			
-		    	if(abilities != null && i<abilities.size()){
-		    		IAbility ability = abilities.get(i);
-		    		//button.setVisibleToMouseEvents(true);
-		    		
-		    		NiftyImage image = ImageManager.INSTANCE.getImage(ability.getClass().getSimpleName());
-		    		if(image==null){
-		    			image = ImageManager.INSTANCE.getImage("NoImage");
-		    		}
-		    		
-		    		button.getRenderer(ImageRenderer.class).setImage(image);
-		    		button.setVisible(true);
-		    		
-		    	} else {
-		    		button.setVisible(false);
-		    	}
-    		}
-
-    	}
+    	guiView.updateAbilities(selectedPce);
     }
 
 	@Override
@@ -327,6 +267,7 @@ public class InputGUIController implements ScreenController {
 
 			int iNr = Integer.parseInt(nr);
 			
+			List<IAbility> abilities = selectedPce.getAbilities();
 			if(iNr-1<abilities.size()){
 				input.selectAbility(abilities.get(iNr-1), selectedPce);
 			}

@@ -4,6 +4,7 @@ package projectrts.controller;
 import projectrts.global.constants.Constants;
 import projectrts.model.IGame;
 import projectrts.model.constants.P;
+import projectrts.view.GameGUIView;
 import projectrts.view.GameView;
 
 import com.jme3.app.Application;
@@ -26,6 +27,7 @@ public class InGameState extends AbstractAppState {
     private IGame game;
     private InputController input;
     private GameView view;
+    private GameGUIView guiView;
     private InputGUIController guiControl;
     private Nifty nifty;
     
@@ -50,13 +52,15 @@ public class InGameState extends AbstractAppState {
         this.app = (SimpleApplication)app;          // cast to a more specific class
       // init stuff that is independent of whether state is PAUSED or RUNNING // modify scene graph...
       view = new GameView(this.app, game);
+      guiView = new GameGUIView(nifty);
+      
       input = new InputController(this.app, game, view);
-
-      guiControl = new InputGUIController(input, nifty); 
+      guiControl = new InputGUIController(input, nifty, guiView); 
 
       initializeCamera();
       // Initialize view last, after model and controller, since its initialization is dependent on the other's.
       view.initialize();
+      guiView.initialize();
    }
  
     /**
