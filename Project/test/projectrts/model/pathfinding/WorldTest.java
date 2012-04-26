@@ -96,6 +96,24 @@ public class WorldTest {
 		Collections.sort(allNodes, comparatorDistance);
 		assertTrue(allNodes.get(0) == node);
 	}
+	
+	@Test
+	public void testSetNodesOccupied()
+	{
+		// TODO Plankton: !!IMPLEMENT!
+	}
+	
+	@Test
+	public void testGetNodesAt()
+	{
+		// TODO Plankton: !!IMPLEMENT!
+	}
+	
+	@Test
+	public void testIsAnyNodeOccupied()
+	{
+		// TODO Plankton: !!IMPLEMENT!
+	}
 
 	/*
 	public void testCorrectNeighbours()

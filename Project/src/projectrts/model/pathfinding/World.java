@@ -155,9 +155,12 @@ public final class World {
 		return output;
 	}
 	
+	// TODO Plankton: !Add javadoc
 	public boolean isAnyNodeOccupied(List<Node> nodes){
-		for(Node node: nodes){
-			if(node.isOccupied()){
+		for(Node node: nodes)
+		{
+			if(node.isOccupied())
+			{
 				return true;
 			}
 		}
