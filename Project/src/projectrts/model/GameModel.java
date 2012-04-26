@@ -37,7 +37,6 @@ public class GameModel implements IGame {
 	private Player humanPlayer = new Player();
 	// Depending on who gets to it first:
 	// TODO Markus: Implement some sort of AI
-	// TODO Plankton: Implement some sort of AI
 	private Player aiPlayer = new Player();
 	private float gameTime = 0;
 	
