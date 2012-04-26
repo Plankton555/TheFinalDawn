@@ -1,5 +1,7 @@
 package projectrts.controller;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,8 +35,10 @@ import de.lessvoid.nifty.Nifty;
  * @author Markus Ekström Modifed by Jakob Svensson, Filip Brynfors
  *
  */
-public class AppController extends SimpleApplication{
+public class AppController extends SimpleApplication implements PropertyChangeListener{
 	private Nifty nifty;
+	private MenuState menuState;
+	private InGameState ingameState;
 
 	static{
 		try
@@ -82,10 +86,10 @@ public class AppController extends SimpleApplication{
 
     	
     	//TODO Afton: Should not send itself as parameter. Too strong connections
-    	MenuState menuState = new MenuState(nifty, this);
-    	
+    	menuState = new MenuState(nifty);    	
     	menuState.setEnabled(true);
-              	
+    	menuState.addListener(this);
+    	
        	this.stateManager.attach(menuState);
        	
         
@@ -94,10 +98,19 @@ public class AppController extends SimpleApplication{
          
     }
     
-    public void startIngameState(){
+    private void startIngameState(){
         IGame game = new GameModel();
-    	InGameState ingameState = new InGameState(game, nifty);
+    	ingameState = new InGameState(game, nifty);
     	this.stateManager.attach(ingameState);
     	ingameState.setEnabled(true);
     }
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if(evt.getPropertyName().equals("Start")){
+			menuState.setEnabled(false);
+			getStateManager().detach(menuState);
+			startIngameState();
+		}
+	}
 }

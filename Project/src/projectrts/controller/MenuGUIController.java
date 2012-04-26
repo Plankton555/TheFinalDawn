@@ -1,5 +1,8 @@
 package projectrts.controller;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 
@@ -18,9 +21,8 @@ import de.lessvoid.nifty.screen.ScreenController;
  */
 public class MenuGUIController implements ScreenController {
 	private SimpleApplication app;
-	private ScreenController sc;
 	private Nifty nifty;
-	private AppController appController;
+	private PropertyChangeSupport pcs;
 	
 	/**
 	 * Creates a new GUI controller
@@ -28,11 +30,10 @@ public class MenuGUIController implements ScreenController {
 	 * @param nifty the Nifty GUI object
 	 * @param observer 
 	 */
-	public MenuGUIController(Application app, Nifty nifty, AppController appController){
+	public MenuGUIController(Application app, Nifty nifty){
 		this.app = (SimpleApplication) app;
-		this.sc = this;
 		this.nifty = nifty;
-		this.appController = appController;
+		pcs = new PropertyChangeSupport(this);
 		initializeGUI();
 	}
 	
@@ -54,7 +55,7 @@ public class MenuGUIController implements ScreenController {
 	private void initializeGUI() {    
 
 	    nifty.addScreen("Screen_StartMenu", new ScreenBuilder("GUI Start Menu"){{
-	        controller(sc); // Screen properties       
+	        controller(MenuGUIController.this); // Screen properties       
 	 
 	        // <layer>
 	        layer(new LayerBuilder("Layer_ID") {{
@@ -88,12 +89,8 @@ public class MenuGUIController implements ScreenController {
 	/**
 	 * Used when the start Game button is clicked
 	 */
-	public void buttonStartClicked(){
-		MenuState state = app.getStateManager().getState(MenuState.class);
-		state.setEnabled(false);
-		app.getStateManager().detach(state);
-		
-		appController.startIngameState();
+	public void buttonStartClicked(){		
+		pcs.firePropertyChange("Start", null, null);
 	}
 	
 	/**
@@ -103,6 +100,8 @@ public class MenuGUIController implements ScreenController {
 		app.stop();
 	}
 	
-
+	public void addListener(PropertyChangeListener pcl) {
+		pcs.addPropertyChangeListener(pcl);
+	}
 
 }
