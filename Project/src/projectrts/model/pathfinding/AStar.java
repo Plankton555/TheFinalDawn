@@ -23,6 +23,8 @@ public class AStar {
 	{
 		AStar.world = world;
 	}
+	// TODO Plankton: No need to be singleton (if not in thread)?
+	// TODO Plankton: AStar communicate with world interface?
 	
 	/**
 	 * @return Singleton A* instance.AStar must have been initialized,
