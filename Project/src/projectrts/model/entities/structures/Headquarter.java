@@ -15,6 +15,7 @@ import projectrts.model.utils.Position;
 public class Headquarter extends AbstractStructure{
 	
 	private static float size = 2;
+	// TODO Jakob: PMD error, "Variables that are final and static should be all in caps"
 	private static final float sightRange = 5;
 	private static int maxHealth = 2000;
 	

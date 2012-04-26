@@ -19,6 +19,7 @@ import projectrts.model.utils.Position;
  */
 public class Worker extends AbstractUnit{
 	
+	// TODO Jakob: PMD error, "Variables that are final and static should be all in caps"
 	private static final float size = 1f;
 	private static final float speed = 5;
 	private static final int damage = 5;

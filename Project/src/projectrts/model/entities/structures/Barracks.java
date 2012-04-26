@@ -15,9 +15,10 @@ import projectrts.model.utils.Position;
  */
 public class Barracks extends AbstractStructure{
 	
-private static float size = 3;
-private static final float sightRange = 5;
-private static int maxHealth = 1000;
+	private static float size = 3;
+	//TODO Jakob: PMD error, "Variables that are final and static should be all in caps"
+	private static final float sightRange = 5;
+	private static int maxHealth = 1000;
 	
 	static {
 		EntityFactory.INSTANCE.registerPCE(Barracks.class.getSimpleName(), new Barracks());

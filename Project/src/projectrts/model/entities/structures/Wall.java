@@ -13,9 +13,10 @@ import projectrts.model.utils.Position;
  */
 public class Wall extends AbstractStructure{
 	
-private static float size = 1;
-private static final float sightRange = 5;
-private static int maxHealth = 500;
+	private static float size = 1;
+	// TODO Jakob: PMD error, "Variables that are final and static should be all in caps"
+	private static final float sightRange = 5;
+	private static int maxHealth = 500;
 	
 	static {
 		EntityFactory.INSTANCE.registerPCE(Wall.class.getSimpleName(), new Wall());

@@ -15,6 +15,8 @@ import projectrts.model.utils.Position;
  *
  */
 public class Warrior extends AbstractUnit{
+	
+	// TODO Jakob: PMD error, "Variables that are final and static should be all in caps"
 	private static final float size = 1f;
 	private static final float speed = 4f;
 	private static final float sightRange = 5f;

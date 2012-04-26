@@ -11,6 +11,8 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
 
+// TODO Anyone: ADD JAVADOC
+//TODO Jakob: PMD error, "A class which only has private constructors should be final"
 public class NodeControl extends AbstractControl implements INodeControl {
 
 	private INode node;

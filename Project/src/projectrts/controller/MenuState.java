@@ -33,7 +33,7 @@ public class MenuState extends AbstractAppState {
     	this.app.getInputManager().setCursorVisible(true);
     	this.app.getInputManager().clearMappings();
     	
-    	
+    	// TODO Afton: Dead store
     	MenuGUIController menuGuiController = new MenuGUIController(app, nifty, appController);
     }
 

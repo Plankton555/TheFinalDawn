@@ -17,6 +17,7 @@ import com.jme3.scene.control.Control;
  * @author Markus Ekström
  *
  */
+//TODO Jakob: PMD error, "A class which only has private constructors should be final"
 public class MoveControl extends AbstractControl implements IEntityControl{
 	private IEntity entity;
 	

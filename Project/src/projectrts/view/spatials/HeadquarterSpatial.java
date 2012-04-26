@@ -14,6 +14,7 @@ import com.jme3.scene.shape.Box;
  * @author Jakob Svensson
  *
  */
+//TODO Jakob: PMD error, "A class which only has private constructors should be final"
 public class HeadquarterSpatial extends AbstractSpatial implements IEntitySpatial{
 	private Material material;
 	
