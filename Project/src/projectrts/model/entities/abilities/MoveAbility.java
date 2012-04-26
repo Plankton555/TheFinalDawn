@@ -102,7 +102,7 @@ public class MoveAbility extends AbstractAbility implements INonMovableAbility, 
 				break;
 			}
 			AStarNode nextNode = path.getNextNode();
-			double distanceToNextNode = ModelUtils.INSTANCE.getDistance(outputPos, nextNode.getPosition());
+			double distanceToNextNode = Position.getDistance(outputPos, nextNode.getPosition());
 			
 			if (distanceToNextNode > stepLength)
 			{

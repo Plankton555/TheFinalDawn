@@ -2,8 +2,6 @@ package projectrts.model.pathfinding;
 
 import java.util.Stack;
 
-import projectrts.model.utils.Position;
-
 /**
  * A class representing an A* movement path. This class uses a stack for storing the nodes.
  * @author Bjorn Persson Mattsson

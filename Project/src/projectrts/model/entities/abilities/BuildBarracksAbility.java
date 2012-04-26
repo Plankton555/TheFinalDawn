@@ -15,6 +15,7 @@ public class BuildBarracksAbility extends AbstractConstructAbility implements IM
 	private static int buildCost = 200; 
 	private float size = 3; //TODO: Sync with Barracks class
 
+
 	static {
 		AbilityFactory.INSTANCE.registerAbility(BuildBarracksAbility.class.getSimpleName(), new BuildBarracksAbility());
 	}
@@ -34,7 +35,7 @@ public class BuildBarracksAbility extends AbstractConstructAbility implements IM
 		return BuildBarracksAbility.class.getSimpleName();
 	}
 
-	
+
 	@Override
 
 	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {

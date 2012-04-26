@@ -51,7 +51,7 @@ public class OffensiveSpellAbility extends AbstractAbility implements IMovableAb
 			if(isActive() && !isFinished()){
 			
 			//attacker.getRange();
-			if(ModelUtils.INSTANCE.getDistance(attacker.getPosition(), target.getPosition())>abilityRange){
+			if(Position.getDistance(attacker.getPosition(), target.getPosition())>abilityRange){
 				//Out of range
 				
 				if(!moveAbility.isActive()){

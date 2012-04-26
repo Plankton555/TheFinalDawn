@@ -175,8 +175,8 @@ public class EntityManager implements IEntityManager{
 				Position unitPos = entity.getPosition();
 				
 				//If the point is within the area of the unit
-				if(ModelUtils.INSTANCE.isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
-						&& ModelUtils.INSTANCE.isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
+				if(ModelUtils.isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
+						&& ModelUtils.isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
 					PlayerControlledEntity pcEntity  = (PlayerControlledEntity) entity; 
 					return pcEntity;
 					
@@ -213,8 +213,8 @@ public class EntityManager implements IEntityManager{
 				Position unitPos = entity.getPosition();
 				
 				//If the point is within the area of the unit
-				if(ModelUtils.INSTANCE.isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
-						&& ModelUtils.INSTANCE.isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
+				if(ModelUtils.isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
+						&& ModelUtils.isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
 					NonPlayerControlledEntity npcEntity  = (NonPlayerControlledEntity) entity; 
 					return npcEntity;
 					

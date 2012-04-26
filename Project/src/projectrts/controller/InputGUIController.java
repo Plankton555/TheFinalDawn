@@ -18,7 +18,6 @@ import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
-import de.lessvoid.nifty.tools.Color;
 
 /**
  * A controller class that handles input from the gui
@@ -122,7 +121,7 @@ public class InputGUIController implements ScreenController {
 			childLayoutVertical();
 			backgroundColor("#000F");
 			
-			//TODO: Afton: Remove or use this testing code
+			//TODO Afton: Remove or use this testing code
 			/*
 			panel(new PanelBuilder("Filler") {{
 				height("10px");
@@ -148,7 +147,7 @@ public class InputGUIController implements ScreenController {
 				//height("50px");
 				width("100%");
 				color("#00FF");
-				//TODO: Afton, fix text size
+				//TODO Afton: fix text size
 				/*
 				onActiveEffect(new EffectBuilder("textSize") {{
 					//effectParameter("", "10px");

@@ -1,8 +1,8 @@
 package projectrts.view.controls;
 
-import com.jme3.scene.control.AbstractControl;
-
 import projectrts.model.pathfinding.INode;
+
+import com.jme3.scene.control.AbstractControl;
 /**
  * 
  * @author Bjorn Persson Mattsson

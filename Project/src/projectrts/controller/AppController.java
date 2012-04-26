@@ -81,7 +81,7 @@ public class AppController extends SimpleApplication{
     	ImageManager.INSTANCE.initializeImages(nifty);
 
     	
-    	//TODO: Afton, Should not send itself as parameter. Too strong connections
+    	//TODO Afton: Should not send itself as parameter. Too strong connections
     	MenuState menuState = new MenuState(nifty, this);
     	
     	menuState.setEnabled(true);
