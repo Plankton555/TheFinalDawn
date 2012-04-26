@@ -1,16 +1,16 @@
 package projectrts.global.constants;
 
 /**
- * A singleton containing constants for use by the controllers and the world.
+ * A class containing constants for use by the controllers and the world.
  * @author Markus Ekström
  *
  */
-public enum Constants {INSTANCE;
+public class Constants {
 
 	/**
 	 * @return true if the nodes should be rendered for debugging, otherwise false.
 	 */
-	public boolean isDebugNodes()
+	public static boolean isDebugNodes()
 	{
 		return false;
 	}
@@ -19,7 +19,7 @@ public enum Constants {INSTANCE;
 	 * Returns the camera speed.
 	 * @return A float representing the camera speed.
 	 */
-	public float getCameraSpeed() {
+	public static float getCameraSpeed() {
 		return 1f;
 	}
 	
@@ -30,7 +30,7 @@ public enum Constants {INSTANCE;
 	 * Divide with it to go from world --> model.
 	 * @return The modifier in the form of a float.
 	 */
-	public float getModelToWorld() {
+	public static float getModelToWorld() {
 		return 0.05f;
 	}
 	
@@ -38,7 +38,7 @@ public enum Constants {INSTANCE;
 	 * Returns the margin from the sides the mouse cursor has to move the camera.
 	 * @return The margin in the form of a float.
 	 */
-	public float getCameraMoveMargin() {
+	public static float getCameraMoveMargin() {
 		return 5;
 	}
 }

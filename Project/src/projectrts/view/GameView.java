@@ -43,7 +43,7 @@ public class GameView implements PropertyChangeListener{
     private Node mouseEffects = new Node("mouseEffects"); // The node for mouseEffects
     private Material matTerrain;
     private TerrainQuad terrain;
-    private float mod = Constants.INSTANCE.getModelToWorld(); // The modifier value for converting lengths between model and world.
+    private float mod = Constants.getModelToWorld(); // The modifier value for converting lengths between model and world.
 	
 	public GameView(SimpleApplication app, IGame game) {
 		this.app = app;
@@ -130,7 +130,7 @@ public class GameView implements PropertyChangeListener{
     }
 	
 	private void initializeDebug() {
-		if (Constants.INSTANCE.isDebugNodes())
+		if (Constants.isDebugNodes())
 		{
 			integrateNodes(game.getNodes());
 		}

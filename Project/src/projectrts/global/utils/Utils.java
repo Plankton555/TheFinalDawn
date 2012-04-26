@@ -6,20 +6,20 @@ import projectrts.model.utils.Position;
 import com.jme3.math.Vector3f;
 
 /**
- * A singleton containing utility methods for use by the controllers and the world.
+ * A class containing utility methods for use by the controllers and the world.
  * @author Markus Ekström
  *
  */
-public enum Utils {INSTANCE;
+public class Utils {
 
 	/**
 	 * Converts a Vector3f position from the world into a Position position in model.
 	 * @param worldLoc The world position.
 	 * @return The model position in the form of a Position.
 	 */
-	public Position convertWorldToModel(Vector3f worldLoc) {
-		float x = worldLoc.x / Constants.INSTANCE.getModelToWorld();
-		float y = -worldLoc.y / Constants.INSTANCE.getModelToWorld();
+	public static Position convertWorldToModel(Vector3f worldLoc) {
+		float x = worldLoc.x / Constants.getModelToWorld();
+		float y = -worldLoc.y / Constants.getModelToWorld();
 		return new Position(x, y);
 	}
 	
@@ -28,9 +28,9 @@ public enum Utils {INSTANCE;
 	 * @param modelLoc The model position.
 	 * @return The world position in the form of a Vector3f.
 	 */
-	public Vector3f convertModelToWorld(Position modelLoc) {
-		float x = (float) (modelLoc.getX() * Constants.INSTANCE.getModelToWorld());
-		float y = (float) (-modelLoc.getY() * Constants.INSTANCE.getModelToWorld());
+	public static Vector3f convertModelToWorld(Position modelLoc) {
+		float x = (float) (modelLoc.getX() * Constants.getModelToWorld());
+		float y = (float) (-modelLoc.getY() * Constants.getModelToWorld());
 		return new Vector3f(x, y, 0);
 	}
 }

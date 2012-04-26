@@ -114,7 +114,7 @@ public class InGameState extends AbstractAppState {
      * Initializes the camera to the center of the playable world.
      */
     private void initializeCamera() {
-    	app.getCamera().setLocation(app.getCamera().getLocation().add(new Vector3f((P.INSTANCE.getWorldWidth() / 2) * Constants.INSTANCE.getModelToWorld(),
-    			-(P.INSTANCE.getWorldHeight() / 2) * Constants.INSTANCE.getModelToWorld(), 0)));
+    	app.getCamera().setLocation(app.getCamera().getLocation().add(new Vector3f((P.INSTANCE.getWorldWidth() / 2) * Constants.getModelToWorld(),
+    			-(P.INSTANCE.getWorldHeight() / 2) * Constants.getModelToWorld(), 0)));
     }
 }

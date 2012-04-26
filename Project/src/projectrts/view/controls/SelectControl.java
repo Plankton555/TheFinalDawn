@@ -51,7 +51,7 @@ public class SelectControl extends AbstractControl implements IEntityControl{
 	protected void controlUpdate(float arg0) {
 		if(this.enabled && spatial != null) {
 			Position pos = entity.getPosition(); // Gets the position from it's associated entity. 
-			Vector3f worldPos = Utils.INSTANCE.convertModelToWorld(pos); // Converts it to world position.
+			Vector3f worldPos = Utils.convertModelToWorld(pos); // Converts it to world position.
 			Vector3f moveVector = worldPos.subtract(spatial.getWorldTranslation()); // Subtracts the current position from the desired to get a movement vector.
 			if(!moveVector.equals(Vector3f.ZERO)) { // If the spatial needs to be moved.
 				spatial.move(moveVector); // Move the spatial according to the movement vector.

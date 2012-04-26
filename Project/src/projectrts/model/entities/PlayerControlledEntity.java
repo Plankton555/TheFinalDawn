@@ -99,7 +99,6 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	private void setDead() {
 		for(AbstractAbility ability: abilities){
 			ability.setFinished(true);
-			ability.setActive(false);
 		}
 		dead = true;
 	}

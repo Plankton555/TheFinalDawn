@@ -73,7 +73,7 @@ public class InputController {
           // do the following while game is RUNNING // modify scene graph...
         	updateCamera(tpf);
         	if(choosingPosition){
-        		Position pos = Utils.INSTANCE.convertWorldToModel(
+        		Position pos = Utils.convertWorldToModel(
         				app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
         		view.drawNodes(World.getInstance().getNodesAt(pos,buildingSize));
         	}
@@ -95,18 +95,18 @@ public class InputController {
     	if(mouseActivated) {
 	    	Vector3f loc = app.getCamera().getLocation();
 	    	Vector2f mLoc = app.getInputManager().getCursorPosition();
-	    	float margin = Constants.INSTANCE.getCameraMoveMargin();
-	    	if(mLoc.x >= app.getCamera().getWidth() - margin && loc.x <= P.INSTANCE.getWorldWidth() * Constants.INSTANCE.getModelToWorld()) {
-	    		app.getCamera().setLocation(loc.add(tpf * Constants.INSTANCE.getCameraSpeed(), 0, 0));
+	    	float margin = Constants.getCameraMoveMargin();
+	    	if(mLoc.x >= app.getCamera().getWidth() - margin && loc.x <= P.INSTANCE.getWorldWidth() * Constants.getModelToWorld()) {
+	    		app.getCamera().setLocation(loc.add(tpf * Constants.getCameraSpeed(), 0, 0));
 	    	}
 	    	if(mLoc.x <= margin && loc.x >= 0) {
-	    		app.getCamera().setLocation(loc.add(tpf * -Constants.INSTANCE.getCameraSpeed(), 0, 0));
+	    		app.getCamera().setLocation(loc.add(tpf * -Constants.getCameraSpeed(), 0, 0));
 	    	}
-	    	if(mLoc.y <= margin && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.INSTANCE.getModelToWorld()) {
-	    		app.getCamera().setLocation(loc.add(0, tpf * -Constants.INSTANCE.getCameraSpeed(), 0));
+	    	if(mLoc.y <= margin && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.getModelToWorld()) {
+	    		app.getCamera().setLocation(loc.add(0, tpf * -Constants.getCameraSpeed(), 0));
 	    	}
 	    	if(mLoc.y >= app.getCamera().getHeight() - margin && loc.y <= 0) {
-	    		app.getCamera().setLocation(loc.add(0, tpf * Constants.INSTANCE.getCameraSpeed(), 0));
+	    		app.getCamera().setLocation(loc.add(0, tpf * Constants.getCameraSpeed(), 0));
 	    	}
     	}
     }
@@ -159,17 +159,17 @@ public class InputController {
 	    	if (app.getStateManager().getState(InGameState.class).isEnabled()) {
 	    		Vector3f loc = app.getCamera().getLocation();
 	    		
-	            if (name.equals("cameraRightKey") && loc.x <= P.INSTANCE.getWorldWidth() * Constants.INSTANCE.getModelToWorld()) {
-	            	app.getCamera().setLocation(loc.add(new Vector3f(value*Constants.INSTANCE.getCameraSpeed(), 0, 0)));
+	            if (name.equals("cameraRightKey") && loc.x <= P.INSTANCE.getWorldWidth() * Constants.getModelToWorld()) {
+	            	app.getCamera().setLocation(loc.add(new Vector3f(value*Constants.getCameraSpeed(), 0, 0)));
 	            }
 	            if (name.equals("cameraLeftKey") && loc.x >= 0) {
-	            	app.getCamera().setLocation(loc.add(new Vector3f(-value*Constants.INSTANCE.getCameraSpeed(), 0, 0)));
+	            	app.getCamera().setLocation(loc.add(new Vector3f(-value*Constants.getCameraSpeed(), 0, 0)));
 	            }
 	            if (name.equals("cameraUpKey") && loc.y <= 0) {
-	            	app.getCamera().setLocation(loc.add(new Vector3f(0, value*Constants.INSTANCE.getCameraSpeed(), 0)));
+	            	app.getCamera().setLocation(loc.add(new Vector3f(0, value*Constants.getCameraSpeed(), 0)));
 	            }
-	            if (name.equals("cameraDownKey") && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.INSTANCE.getModelToWorld()) {
-	            	app.getCamera().setLocation(loc.add(new Vector3f(0, -value*Constants.INSTANCE.getCameraSpeed(), 0)));
+	            if (name.equals("cameraDownKey") && loc.y >= -P.INSTANCE.getWorldHeight() * Constants.getModelToWorld()) {
+	            	app.getCamera().setLocation(loc.add(new Vector3f(0, -value*Constants.getCameraSpeed(), 0)));
 	            }
 	            
 	            
@@ -223,7 +223,7 @@ public class InputController {
 	    }
     	
     	private void handleLeftClick(){
-    		Position pos = Utils.INSTANCE.convertWorldToModel(
+    		Position pos = Utils.convertWorldToModel(
     				app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
     		if(choosingPosition){    			
     			if(!World.getInstance().isAnyNodeOccupied(
@@ -261,7 +261,7 @@ public class InputController {
     	}
     	
     	private void handleRightClick(){
-    		Position click = Utils.INSTANCE.convertWorldToModel(app.getCamera().getWorldCoordinates(
+    		Position click = Utils.convertWorldToModel(app.getCamera().getWorldCoordinates(
     				app.getInputManager().getCursorPosition(), 0));
     		IEntity e = getEntityAtPosition(click);
     		if(choosingPosition||choosingTarget){
@@ -278,17 +278,17 @@ public class InputController {
 	    				if(!pce.getOwner().equals(game.getPlayer())){
 	    					game.getEntityManager().useAbilitySelected(AttackAbility.class.getSimpleName(), pce.getPosition());
 	    				}else{
-	    					game.getEntityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.INSTANCE.convertWorldToModel(
+	    					game.getEntityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
 	    	    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    				}
 	    			}else{
-	    				game.getEntityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.INSTANCE.convertWorldToModel(
+	    				game.getEntityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
 		    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    			}
 	    			
 	    		}
 	    		else{
-	    			game.getEntityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.INSTANCE.convertWorldToModel(
+	    			game.getEntityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
 	    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    		}
     		}
