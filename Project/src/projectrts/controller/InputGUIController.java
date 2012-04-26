@@ -28,12 +28,10 @@ public class InputGUIController implements ScreenController {
 	private Nifty nifty;
 	private Screen screen;
 	private GameGUIView guiView;
-	private ScreenController sc;
 	
 	private InputController input;
 	
 	private IPlayerControlledEntity selectedPce;
-	List<IAbility> abilities;
 
 	/**
 	 * Creates a new inputGUIController
@@ -42,7 +40,6 @@ public class InputGUIController implements ScreenController {
 	 * @param nifty the nifty
 	 */
 	public InputGUIController(InputController input, Nifty nifty, GameGUIView guiView) {
-		sc = this;
 		this.input = input;
 		this.nifty = nifty;
 		this.guiView = guiView;
@@ -55,7 +52,7 @@ public class InputGUIController implements ScreenController {
 	    
 	    // <screen>
 	    nifty.addScreen("Screen_Game", new ScreenBuilder("GUI Screen"){{
-	        controller(sc); // Screen properties       
+	        controller(InputGUIController.this); // Screen properties       
 	 
 	        // <layer>
 	        layer(new LayerBuilder("Layer_ID") {{
@@ -256,9 +253,7 @@ public class InputGUIController implements ScreenController {
     	boolean oneIsSelected = selectedEntities.size()==1;    
     	
     	if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
-    		//Update the abilities
     		selectedPce = (IPlayerControlledEntity) selectedEntities.get(0);
-    		abilities = selectedPce.getAbilities();
     	}
     	guiView.updateSelected(selectedPce);
     }

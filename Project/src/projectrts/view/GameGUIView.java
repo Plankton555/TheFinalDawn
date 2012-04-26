@@ -71,7 +71,7 @@ public class GameGUIView {
 		
     	this.selectedPce = selectedPce;
     	updateSelectedInfo();
-    	List<IAbility> abilities = null;
+    	List<IAbility> abilities = selectedPce.getAbilities();
     	
     	//Loops through every button and sets its attributes
     	for(int i = 0; i<8; i++){
