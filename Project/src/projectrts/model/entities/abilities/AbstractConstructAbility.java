@@ -6,7 +6,6 @@ import projectrts.model.entities.IBuildStructureAbility;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.pathfinding.World;
 import projectrts.model.player.Player;
-import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
 
 /**
@@ -46,7 +45,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IMovabl
 	@Override
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
-			if(ModelUtils.INSTANCE.getDistance(entity.getPosition(),buildPos)<3){
+			if(Position.getDistance(entity.getPosition(),buildPos)<3){
 				//If in range of buildingPosition
 				moveAbility.setFinished(true);
 				if(buildTimeLeft<=0){
