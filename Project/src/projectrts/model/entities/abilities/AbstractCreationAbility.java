@@ -17,9 +17,16 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 	private float buildTime; 
 	private int buildCost; 
 	private float buildTimeLeft;
+	private static float cooldown = 0.5f;
 	private Position spawnPos;
 	private PlayerControlledEntity entity;
 	private String entityToTrain;	
+	
+	
+	protected void initialize(PlayerControlledEntity entity) {
+		this.entity=entity;
+		this.setCooldown(cooldown);
+	}
 	
 	@Override
 	public void update(float tpf) {
@@ -62,9 +69,4 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 		this.entityToTrain=name;
 	}
 	
-	protected void setEntity(PlayerControlledEntity entity){
-		this.entity = entity;
-	}
-
-
 }

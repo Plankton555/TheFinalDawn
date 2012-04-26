@@ -12,7 +12,6 @@ import projectrts.model.entities.units.Warrior;
 public class TrainWarriorAbility extends AbstractCreationAbility implements INonMovableAbility {
 	private static float buildTime = 7; 
 	private static int buildCost = 100; 
-	private static float cooldown = 0.5f;
 	
 	static {
 		AbilityFactory.INSTANCE.registerAbility(TrainWarriorAbility.class.getSimpleName(), new TrainWarriorAbility());
@@ -22,10 +21,9 @@ public class TrainWarriorAbility extends AbstractCreationAbility implements INon
 	 * When subclassing, invoke this to initialize the ability.
 	 */
 	protected void initialize(PlayerControlledEntity entity) {
-		this.setCooldown(cooldown);
+		super.initialize(entity);
 		this.setBuildCost(buildCost);
 		this.setBuildTime(buildTime);
-		this.setEntity(entity);
 		this.setEntityToTrain(Warrior.class.getSimpleName());
 	}
 	
