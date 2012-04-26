@@ -23,7 +23,7 @@ public class BuildBarracksAbility extends AbstractAbility implements IMovableAbi
 	private Position buildPos;
 	private float buildTimeLeft;
 	private AbstractAbility moveAbility;
-	private float size = 3; //TODO: Sync with Barracks class
+	private float size = 3; //TODO Jakob: Sync with Barracks class
 
 	static {
 		AbilityFactory.INSTANCE.registerAbility(BuildBarracksAbility.class.getSimpleName(), new BuildBarracksAbility());
@@ -75,7 +75,7 @@ public class BuildBarracksAbility extends AbstractAbility implements IMovableAbi
 			setActive(true);
 			setFinished(false);
 			buildTimeLeft=buildTime;
-			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(target)//TODO: Set unoccupied if ability is aborted
+			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(target)//TODO Jakob: Set unoccupied if ability is aborted
 					, getSizeOfBuilding(), EntityManager.getInstance().requestNewEntityID());
 		}
 	}

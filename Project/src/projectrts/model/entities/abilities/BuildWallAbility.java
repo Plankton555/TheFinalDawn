@@ -24,7 +24,7 @@ public class BuildWallAbility extends AbstractAbility implements IMovableAbility
 	private Position buildPos;
 	private float buildTimeLeft;
 	private AbstractAbility moveAbility;
-	private float size = 1; //TODO: Sync with Barracks class
+	private float size = 1; //TODO Jakob: Sync with Barracks class
 
 	static {
 		AbilityFactory.INSTANCE.registerAbility(BuildWallAbility.class.getSimpleName(), new BuildWallAbility());
@@ -76,7 +76,7 @@ public class BuildWallAbility extends AbstractAbility implements IMovableAbility
 			setActive(true);
 			setFinished(false);
 			buildTimeLeft=buildTime;			
-			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(target)//TODO: Set unoccupied if ability is aborted
+			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(target)//TODO Jakob: Set unoccupied if ability is aborted
 					, getSizeOfBuilding(), EntityManager.getInstance().requestNewEntityID());
 		}
 	}
