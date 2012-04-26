@@ -12,40 +12,8 @@ import projectrts.model.utils.Position;
  *
  */
 public class AStar {
-
-	private static AStar instance;
-	private static World world;
-	/**
-	 * Initializes the A* class
-	 * @param world Game world
-	 */
-	public static void initialize(World world)
-	{
-		AStar.world = world;
-	}
-	// TODO Plankton: !!No need to be singleton (if not in thread)?
 	// TODO Plankton: !!AStar communicate with world interface?
 	
-	/**
-	 * @return Singleton A* instance.AStar must have been initialized,
-	 * otherwise an IllegalStateException will be thrown.
-	 */
-	public static AStar getInstance()
-	{
-		if (instance == null)
-		{
-			instance = new AStar();
-		}
-		return instance;
-	}
-	
-	private AStar()
-	{
-		if (world == null)
-		{
-			throw new IllegalStateException("You must initialize the AStar class before you can use it");
-		}
-	}
 	
 	/**
 	 * Returns the closest node that is not occupied.
@@ -57,8 +25,9 @@ public class AStar {
 	 * @return The AStarNode which is the closest unoccupied node according to the premises.
 	 * N.B.: If no such node is found, null will be returned.
 	 */
-	public AStarNode getClosestUnoccupiedNode(Position startingPos, Position towards, int occupyingEntityID)
+	public static AStarNode getClosestUnoccupiedNode(Position startingPos, Position towards, int occupyingEntityID)
 	{
+		World world = World.getInstance();
 		// Use A* "backwards" to find the closest walkable node.
 		AStarNode targetNode = new AStarNode(world.getNodeAt(startingPos));
 		AStarNode towardsNode;
@@ -112,8 +81,9 @@ public class AStar {
 	 * @param occupyingEntityID ID of occupying entity.
 	 * @return An AStarPath from startPos to targetPos.
 	 */
-	public AStarPath calculatePath(Position startPos, Position targetPos, int occupyingEntityID)
+	public static AStarPath calculatePath(Position startPos, Position targetPos, int occupyingEntityID)
 	{
+		World world = World.getInstance();
 		// TODO Plankton: !!Add support for different heuristic priorities
 		// TODO Plankton: !!!Take entity size into account when calculating path
 		// Plankton: Use threads or something to not "freeze" the game when calculating?
@@ -178,7 +148,7 @@ public class AStar {
 		// the second element in closedList since the first one is the start node
 	}
 	
-	private AStarPath generatePath(AStarNode startNode, AStarNode endNode)
+	private static AStarPath generatePath(AStarNode startNode, AStarNode endNode)
 	{
 		AStarPath path = new AStarPath();
 		AStarNode nextNode = endNode;

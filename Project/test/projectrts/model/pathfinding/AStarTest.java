@@ -10,23 +10,7 @@ import projectrts.model.pathfinding.World;
 
 public class AStarTest {
 
-	@Test
-	public void testInitialize() {
-		AStar astar;
-		
-		try {
-			astar = AStar.getInstance();
-			assertTrue(false);
-		} catch (IllegalStateException e) {
-			assertTrue(true);
-		}
-		
-		World world = World.getInstance();
-		world.initializeWorld(5, 5);
-		AStar.initialize(world);
-		astar = AStar.getInstance();
-		assertTrue(astar != null);
-	}
+	
 	// TODO Plankton: !Test getClosestUnoccupiedNode()!
 
 }

@@ -24,7 +24,6 @@ public class MoveAbility extends AbstractAbility implements INonMovableAbility, 
 	
 	private World world;
 	private Node occupiedNode;
-	private AStar aStar;
 	private AStarPath path;
 	private boolean pathRefresh = true;
 	
@@ -37,7 +36,6 @@ public class MoveAbility extends AbstractAbility implements INonMovableAbility, 
 	 */
 	protected void initialize(PlayerControlledEntity entity) {
 		this.entity = entity;
-		this.aStar = AStar.getInstance();
 		this.world = World.getInstance();
 		this.occupiedNode = world.getNodeAt(entity.getPosition());
 	}
@@ -136,7 +134,7 @@ public class MoveAbility extends AbstractAbility implements INonMovableAbility, 
 	private void refreshPath(Position herePos, Position targetPos, Node hereNode,
 			int entityID, float entitySize)
 	{
-		path = aStar.calculatePath(herePos, targetPos, entityID);
+		path = AStar.calculatePath(herePos, targetPos, entityID);
 		if (path.nrOfNodesLeft() > 0)
 		{
 			world.setNodesOccupied(hereNode,
