@@ -3,6 +3,7 @@ package projectrts.model.entities.abilities;
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.units.Worker;
 import projectrts.model.pathfinding.AStar;
 import projectrts.model.pathfinding.World;
 import projectrts.model.player.Player;
@@ -39,7 +40,7 @@ public class TrainWorkerAbility extends AbstractAbility{
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			if(buildTime<=0){
-				EntityManager.getInstance().addNewPCE("Worker", (Player)structure.getOwner(),spawnPos);
+				EntityManager.getInstance().addNewPCE(Worker.class.getSimpleName(), (Player)structure.getOwner(),spawnPos);
 				setFinished(true);
 				buildTime =5;
 			}else{

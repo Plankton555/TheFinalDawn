@@ -1,6 +1,8 @@
 package projectrts.model.ai;
 
+import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.abilities.AttackAbility;
 
 
 /**
@@ -9,8 +11,6 @@ import projectrts.model.entities.PlayerControlledEntity;
  *
  */
 public class MicroAI {
-
-	// TODO Markus: Implement MicroAI (if it's going to be used)
 	private PlayerControlledEntity myPCE;
 	
 	/**
@@ -19,5 +19,17 @@ public class MicroAI {
 	 */
 	public MicroAI(PlayerControlledEntity pce) {
 		this.myPCE = pce;
+	}
+	
+	public void update(float tpf) {
+		if(!EntityManager.getInstance().isSelected(myPCE)) {
+			if(EntityManager.getInstance().getClosestEnemy(myPCE) != null) {
+				myPCE.doAbility(AttackAbility.class.getSimpleName(), EntityManager.getInstance().getClosestEnemy(myPCE).getPosition());
+			}
+		}
+	}
+	
+	public PlayerControlledEntity getEntity() {
+		return myPCE;
 	}
 }

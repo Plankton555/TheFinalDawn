@@ -24,6 +24,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	private Player owner;
 	private int damage;
 	private PropertyChangeSupport pcs;
+	private boolean dead = false;
 	
 	/**
 	 * When subclassing, invoke this to initialize the entity.
@@ -69,6 +70,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		currentHealth -= damage;
 		if(currentHealth <= 0){
 			currentHealth = 0;
+			setDead();
 			EntityManager.getInstance().removeEntity(this);
 		}
 	}
@@ -83,9 +85,16 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 			ownAbility.setActive(false); //Make sure that only one ability can be active at once
 		}
 		for(AbstractAbility ownAbility: abilities){
-			if(ability.equals(ownAbility.getName())){
+			if(ability.equals(ownAbility.getClass().getSimpleName())){
 				ownAbility.useAbility(this, pos);
 			}
+		}
+	}
+	
+	public void setDead() {
+		for(AbstractAbility ability: abilities){
+			ability.setFinished(true);
+			ability.setActive(false);
 		}
 	}
 	
@@ -116,8 +125,10 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	
 	@Override
 	public void update(float tpf) {
-		for(AbstractAbility ability: abilities){
-			ability.update(tpf);
+		if(!dead) {
+			for(AbstractAbility ability: abilities){
+				ability.update(tpf);
+			}
 		}
 	}
 
