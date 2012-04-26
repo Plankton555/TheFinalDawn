@@ -1,6 +1,9 @@
 package projectrts.controller;
 
-// TODO Afton(?): ADD JAVADOC!!
+/**
+ * The menu state that controls the menu before the game starts
+ * @author Filip Brynfors
+ */
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
@@ -13,7 +16,11 @@ public class MenuState extends AbstractAppState {
 	private Nifty nifty;
 	private AppController appController;
 	
-	
+	/**
+	 * Creates a new MenuState
+	 * @param nifty the nifty GUI object
+	 * @param appController the appController
+	 */
     public MenuState(Nifty nifty, AppController appController) {
 		this.nifty = nifty;
 		this.appController = appController;

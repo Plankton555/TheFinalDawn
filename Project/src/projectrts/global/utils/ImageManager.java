@@ -12,18 +12,19 @@ import de.lessvoid.nifty.render.image.ImageModeFactory;
 import de.lessvoid.nifty.render.image.ImageModeHelper;
 
 /**
- * Handles import of icons for abilities
+ * Handles the images that are needed for the GUI
  * @author Filip Brynfors
  *
  */
-
-
 public enum ImageManager {
 	INSTANCE;
 	private HashMap<String, NiftyImage> images = new HashMap<String, NiftyImage>();
 	
 
-	// TODO Afton: Add javadoc
+	/**
+	 * Initializes the images that are needed for the GUI
+	 * @param nifty
+	 */
 	public void initializeImages(Nifty nifty){
 		NiftyRenderEngine engine = nifty.getRenderEngine();
 
@@ -43,7 +44,11 @@ public enum ImageManager {
 	}
 	
 	
-	
+	/**
+	 * Gets the image with the given name
+	 * @param name the name of the image
+	 * @return the image
+	 */
 	public NiftyImage getImage(String name){
 		return images.get(name);
 	}

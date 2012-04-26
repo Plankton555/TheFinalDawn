@@ -3,7 +3,11 @@ package projectrts.model.entities;
 
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
-//TODO Afton: ADD JAVADOC!!
+/**
+ * An abstract class for structures
+ * @author Jakob Svensson
+ *
+ */
 public abstract class AbstractStructure extends PlayerControlledEntity{
 	protected boolean deposit = false;
 	
@@ -16,6 +20,10 @@ public abstract class AbstractStructure extends PlayerControlledEntity{
 		super.initialize(owner, spawnPos);
 	}
 	
+	/**
+	 * Returns whether the structure is a drop-off point for resources or not
+	 * @return true if the structure is able for deposits, false otherwise
+	 */
 	public boolean isDeposit() {
 		return deposit;
 	}
