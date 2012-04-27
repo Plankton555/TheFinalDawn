@@ -23,6 +23,7 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	
 	private World world;
 	private Node occupiedNode;
+
 	private AStarPath path;
 	private boolean pathRefresh = true;
 	
@@ -154,5 +155,12 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	public void updateTarget(Position newTarget)
 	{
 		this.targetPosition = newTarget.copy();
+	}
+	
+	/**
+	 * @return the occupiedNode
+	 */
+	public Node getOccupiedNode() {
+		return occupiedNode;
 	}
 }

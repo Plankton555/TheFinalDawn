@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import projectrts.model.constants.P;
+import projectrts.model.entities.abilities.MoveAbility;
+import projectrts.model.pathfinding.Node;
+import projectrts.model.pathfinding.World;
 import projectrts.model.player.IPlayer;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
@@ -97,11 +100,18 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	}
 	
 	private void setDead() {
+		Node occupiedNode = World.getInstance().getNodeAt(getPosition());
 		for(AbstractAbility ability: abilities){
 			ability.setFinished(true);
+			if (ability instanceof MoveAbility)
+			{
+				MoveAbility mAbility = (MoveAbility) ability;
+				occupiedNode = mAbility.getOccupiedNode();
+			}
 		}
 		dead = true;
-		// TODO Plankton: !!!!Unoccupy nodes
+		
+		World.getInstance().setNodesOccupied(occupiedNode, getSize(), 0);
 	}
 	
 	@Override
