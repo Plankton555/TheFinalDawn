@@ -15,7 +15,7 @@ import projectrts.model.utils.Position;
  * @author Jakob Svensson
  *
  */
-public class DeliverResourceAbility extends AbstractAbility implements IMovableAbility {
+public class DeliverResourceAbility extends AbstractAbility implements IUsingMoveAbility {
 	
 	private PlayerControlledEntity unit;
 	private AbstractStructure depositStructure;

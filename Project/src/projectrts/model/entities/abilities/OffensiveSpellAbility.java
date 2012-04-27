@@ -12,7 +12,7 @@ import projectrts.model.utils.Position;
  * @author Filip Brynfors
  *
  */
-public class OffensiveSpellAbility extends AbstractAbility implements IMovableAbility {
+public class OffensiveSpellAbility extends AbstractAbility implements IUsingMoveAbility {
 	private int abilityRange = 50;
 	private int damage = 90;
 	

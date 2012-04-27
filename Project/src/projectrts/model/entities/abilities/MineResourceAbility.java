@@ -11,7 +11,7 @@ import projectrts.model.utils.Position;
  * @author Jakob Svensson
  *
  */
-public class MineResourceAbility extends AbstractAbility implements IMovableAbility {
+public class MineResourceAbility extends AbstractAbility implements IUsingMoveAbility {
 	private Resource targetResource;
 	private PlayerControlledEntity unit;
 	private AbstractAbility moveAbility;

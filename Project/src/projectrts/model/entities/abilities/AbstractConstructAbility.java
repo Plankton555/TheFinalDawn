@@ -13,7 +13,7 @@ import projectrts.model.utils.Position;
  * @author Jakob Svensson
  *
  */
-public class AbstractConstructAbility extends AbstractAbility implements IMovableAbility, IBuildStructureAbility {
+public class AbstractConstructAbility extends AbstractAbility implements IUsingMoveAbility, IBuildStructureAbility {
 	private PlayerControlledEntity entity;
 	private float buildTime; 
 	private int buildCost; 

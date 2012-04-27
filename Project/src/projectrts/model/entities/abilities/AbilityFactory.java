@@ -16,9 +16,9 @@ public enum AbilityFactory {INSTANCE;
 	
 	public AbstractAbility createAbility(String abilityType, PlayerControlledEntity entity) {
 		AbstractAbility ability = abilityMap.get(abilityType);
-		if (ability != null && ability instanceof INonMovableAbility)
+		if (ability != null && ability instanceof INotUsingMoveAbility)
 		{
-			INonMovableAbility nMovableAbility = (INonMovableAbility) ability;
+			INotUsingMoveAbility nMovableAbility = (INotUsingMoveAbility) ability;
 			return nMovableAbility.createAbility(entity);
 		}
 		else
@@ -30,9 +30,9 @@ public enum AbilityFactory {INSTANCE;
 	
 	public AbstractAbility createMAbility(String abilityType, PlayerControlledEntity entity, MoveAbility moveAbility) {
 		AbstractAbility ability = abilityMap.get(abilityType);
-		if (ability != null && ability instanceof IMovableAbility)
+		if (ability != null && ability instanceof IUsingMoveAbility)
 		{
-			IMovableAbility movableAbility = (IMovableAbility) ability;
+			IUsingMoveAbility movableAbility = (IUsingMoveAbility) ability;
 			return movableAbility.createAbility(entity, moveAbility);
 		}
 		else

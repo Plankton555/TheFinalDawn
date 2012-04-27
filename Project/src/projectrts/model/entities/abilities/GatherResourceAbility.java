@@ -9,7 +9,7 @@ import projectrts.model.utils.Position;
  * @author Jakob Svensson
  *
  */
-public class GatherResourceAbility extends AbstractAbility implements IMovableAbility, ITargetAbility{
+public class GatherResourceAbility extends AbstractAbility implements IUsingMoveAbility, ITargetAbility{
 	
 	private AbstractAbility mineResourceAbility;
 	private AbstractAbility deliverResourceAbility;

@@ -12,7 +12,7 @@ import projectrts.model.utils.Position;
  * @author Filip Brynfors
  *
  */
-public class AttackAbility extends AbstractAbility implements IMovableAbility, ITargetAbility {
+public class AttackAbility extends AbstractAbility implements IUsingMoveAbility, ITargetAbility {
 	private PlayerControlledEntity entity;
 	private PlayerControlledEntity target;
 	

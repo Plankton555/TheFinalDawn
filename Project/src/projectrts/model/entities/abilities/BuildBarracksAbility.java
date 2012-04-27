@@ -10,7 +10,7 @@ import projectrts.model.entities.structures.Barracks;
  * @author Jakob Svensson
  *
  */
-public class BuildBarracksAbility extends AbstractConstructAbility implements IMovableAbility, IBuildStructureAbility {
+public class BuildBarracksAbility extends AbstractConstructAbility implements IUsingMoveAbility, IBuildStructureAbility {
 	private static float buildTime = 1; 
 	private static int buildCost = 200; 
 	private float size = 3; //TODO Jakob: Sync with Barracks class

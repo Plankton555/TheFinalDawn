@@ -11,7 +11,7 @@ import projectrts.model.entities.structures.Wall;
  * @author Jakob Svensson
  *
  */
-public class BuildWallAbility extends AbstractConstructAbility implements IMovableAbility, IBuildStructureAbility{
+public class BuildWallAbility extends AbstractConstructAbility implements IUsingMoveAbility, IBuildStructureAbility{
 	private static float buildTime = 1; 
 	private static int buildCost = 50; 
 	private float size = 1; //TODO Jakob: Sync with Barracks class

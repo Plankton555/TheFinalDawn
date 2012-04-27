@@ -3,7 +3,7 @@ package projectrts.model.entities.abilities;
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.PlayerControlledEntity;
 
-public interface IMovableAbility {
+public interface IUsingMoveAbility {
 
 	/**
 	 * Creates a new ability.
