@@ -1,6 +1,7 @@
 package projectrts.model.entities.abilities;
 
 import projectrts.model.entities.AbstractAbility;
+import projectrts.model.entities.AbstractEntity;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.ITargetAbility;
 import projectrts.model.entities.PlayerControlledEntity;
@@ -16,6 +17,7 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 	private PlayerControlledEntity target;
 	
 	private MoveAbility moveAbility;
+	private double range = 1;
 	
 	static {
 		AbilityFactory.INSTANCE.registerAbility(AttackAbility.class.getSimpleName(), new AttackAbility());
@@ -50,25 +52,7 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 		
 		if(isActive() && !isFinished()){
 			//attacker.getRange();
-			// TODO Plankton: !!!Fix this...
-			if(Position.getDistance(entity.getPosition(), target.getPosition())>1.5){
-				//Out of range
-				
-				if(!moveAbility.isActive()){
-					moveAbility.useAbility(target.getPosition());
-				}
-				else
-				{
-					moveAbility.updateTarget(target.getPosition());
-				}
-				
-				if(moveAbility.isFinished()){
-					moveAbility.setActive(false);
-					moveAbility.setFinished(true);
-				}
-				
-				
-			} else {
+			if(inRange(target)){
 				//In range
 				if(getRemainingCooldown()<=0){
 					
@@ -78,7 +62,16 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 					if(target.getCurrentHealth() == 0) {
 						this.setFinished(true);
 					}
-					
+				}
+			} else {
+				//Out of range
+				
+				if(!moveAbility.isActive()){
+					moveAbility.useAbility(target.getPosition());
+				}
+				else
+				{
+					moveAbility.updateTarget(target.getPosition());
 				}
 			}
 		}
@@ -91,4 +84,8 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 		return newAbility;
 	}
 
+	private boolean inRange(AbstractEntity target)
+	{
+		return (Position.getDistance(entity.getPosition(), target.getPosition()) < range + (target.getSize()/2)*1.5);
+	}
 }

@@ -114,6 +114,23 @@ public class WorldTest {
 	{
 		// TODO Plankton: !!IMPLEMENT!
 	}
+	
+	@Test
+	public void testIsAdjecentTo()
+	{
+		Node node1 = new Node(0,0);
+		Node node2 = new Node(1,0);
+		Node node3 = new Node(2,0);
+		Node node4 = new Node(3,0);
+		List<Node> nodes = new ArrayList<Node>();
+		nodes.add(node2);
+		nodes.add(node3);
+		nodes.add(node4);
+		
+		assertTrue(!World.isAdjecentTo(node1, nodes));
+		node1.addNeighbour(node4);
+		assertTrue(World.isAdjecentTo(node1, nodes));
+	}
 
 	/*
 	public void testCorrectNeighbours()

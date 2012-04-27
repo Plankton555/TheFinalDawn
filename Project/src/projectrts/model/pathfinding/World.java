@@ -154,7 +154,7 @@ public final class World {
 		return output;
 	}
 	
-	// TODO Plankton: !Add javadoc
+	// TODO Plankton: !Add javadoc (move to Node?)
 	public boolean isAnyNodeOccupied(List<Node> nodes){
 		for(Node node: nodes)
 		{
@@ -163,6 +163,21 @@ public final class World {
 				return true;
 			}
 		}
+		return false;
+	}
+	
+	// TODO Plankton: !Add javadoc (move to Node?)
+	public static boolean isAdjecentTo(Node node, List<Node> nodes)
+	{
+		List<Node> adjacentNodes = node.getNeighbours();
+		for (Node adjNode : adjacentNodes)
+		{
+			if (nodes.contains(adjNode))
+			{
+				return true;
+			}
+		}
+		
 		return false;
 	}
 }

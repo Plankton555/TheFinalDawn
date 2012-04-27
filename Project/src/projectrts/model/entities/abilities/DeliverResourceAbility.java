@@ -4,6 +4,7 @@ import java.util.List;
 
 import projectrts.model.constants.P;
 import projectrts.model.entities.AbstractAbility;
+import projectrts.model.entities.AbstractEntity;
 import projectrts.model.entities.AbstractStructure;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IPlayerControlledEntity;
@@ -17,9 +18,10 @@ import projectrts.model.utils.Position;
  */
 public class DeliverResourceAbility extends AbstractAbility implements IUsingMoveAbility {
 	
-	private PlayerControlledEntity unit;
+	private PlayerControlledEntity entity;
 	private AbstractStructure depositStructure;
 	private AbstractAbility moveAbility;
+	private double range = 1;
 	
 	static {
 		AbilityFactory.INSTANCE.registerAbility(DeliverResourceAbility.class.getSimpleName(), new DeliverResourceAbility());
@@ -29,7 +31,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 	 * When subclassing, invoke this to initialize the ability.
 	 */
 	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
-		this.unit=entity;
+		this.entity=entity;
 		this.moveAbility = moveAbility;
 	}
 	
@@ -44,11 +46,12 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 			
 			findDepositStructure();
 			
-			if(Position.getDistance(unit.getPosition(),depositStructure.getPosition() )<1.5*depositStructure.getSize()){
+			//if(Position.getDistance(entity.getPosition(),depositStructure.getPosition() )<1.5*depositStructure.getSize()){
+			if(inRange(depositStructure)){
 				//If in range of deposit structure
 				moveAbility.setFinished(true);
 				
-				Player player = (Player)unit.getOwner();
+				Player player = (Player)entity.getOwner();
 				player.modifyResource(P.getWorkerCarryAmount());
 				setFinished(true);
 			}else{
@@ -70,7 +73,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 	
 	private void findDepositStructure(){
 		List<IPlayerControlledEntity> entities = 
-				EntityManager.getInstance().getEntitiesOfPlayer(unit.getOwner());
+				EntityManager.getInstance().getEntitiesOfPlayer(entity.getOwner());
 		
 		for(IPlayerControlledEntity e: entities){
 			if(e instanceof AbstractStructure){
@@ -80,8 +83,8 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 						depositStructure = struct;
 					}else{
 						//System.out.println(e.getPosition());
-						if(Position.getDistance(unit.getPosition(), e.getPosition())
-							<Position.getDistance(unit.getPosition(), depositStructure.getPosition())){
+						if(Position.getDistance(entity.getPosition(), e.getPosition())
+							<Position.getDistance(entity.getPosition(), depositStructure.getPosition())){
 							//If e is closer to unit than saved depositStructure
 							depositStructure = struct;
 						}
@@ -99,4 +102,9 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 		
 	}
 
+	private boolean inRange(AbstractEntity target)
+	{
+		// TODO Plankton: !!!Problem here, because Headquarter has size 2, but takes up space for size 3...
+		return (Position.getDistance(entity.getPosition(), target.getPosition()) < range  + (target.getSize()/2)*1.5);
+	}
 }
