@@ -105,6 +105,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 	private boolean inRange(AbstractEntity target)
 	{
 		// TODO Plankton: !!!Problem here, because Headquarter has size 2, but takes up space for size 3...
-		return (Position.getDistance(entity.getPosition(), target.getPosition()) < range  + (target.getSize()/2)*1.5);
+		return (Position.getDistance(entity.getPosition(), target.getPosition()) < range  + target.getSize()*1.5);
+		//return (Position.getDistance(entity.getPosition(), target.getPosition()) < range  + (target.getSize()/2)*1.5);
 	}
 }
