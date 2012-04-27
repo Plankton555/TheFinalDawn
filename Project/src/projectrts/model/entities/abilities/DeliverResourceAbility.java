@@ -79,7 +79,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IMovableA
 					if(depositStructure == null) {
 						depositStructure = struct;
 					}else{
-						System.out.println(e.getPosition());
+						//System.out.println(e.getPosition());
 						if(Position.getDistance(unit.getPosition(), e.getPosition())
 							<Position.getDistance(unit.getPosition(), depositStructure.getPosition())){
 							//If e is closer to unit than saved depositStructure
