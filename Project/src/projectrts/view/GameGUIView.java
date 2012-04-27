@@ -1,5 +1,7 @@
 package projectrts.view;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import projectrts.global.utils.ImageManager;
@@ -18,7 +20,7 @@ import de.lessvoid.nifty.screen.Screen;
  * @author Filip Brynfors
  *
  */
-public class GameGUIView {
+public class GameGUIView implements PropertyChangeListener {
 	private Nifty nifty;
 	private Screen screen;
 	private IGame game;
@@ -41,6 +43,8 @@ public class GameGUIView {
 	public GameGUIView(Nifty nifty, IGame game){
 		this.nifty = nifty;
 		this.game = game;
+		
+		game.getPlayer().addListener(this);
 	}
 	
 	
@@ -56,7 +60,7 @@ public class GameGUIView {
 		labelPlayerInfo = screen.findElementByName("Label_PlayerInfo");
 		panelInfo = screen.findElementByName("Panel_SelectedInfo");
 		
-		labelPlayerInfo.getRenderer(TextRenderer.class).setText("Resources: "+game.getPlayer().getResources());
+		updatePlayerInfo();
 	}
 	
 	
@@ -82,12 +86,9 @@ public class GameGUIView {
 	 * @param selectedEntities the abilities of the selected Entity
 	 */
 	public void updateSelected(IPlayerControlledEntity selectedPce){
-    	
-		
     	this.selectedPce = selectedPce;
     	updateSelectedInfo();
     	updateAbilities();
-    	
     }
 	
 	private void updateAbilities(){
@@ -144,5 +145,18 @@ public class GameGUIView {
     	} else {
     		panelInfo.setVisible(false);
     	}
+	}
+	
+	private void updatePlayerInfo(){
+		labelPlayerInfo.getRenderer(TextRenderer.class).setText("Resources: "+game.getPlayer().getResources());
+	}
+
+
+	@Override
+	public void propertyChange(PropertyChangeEvent pce) {
+		if("ResourceChange".equals(pce.getPropertyName())){
+			updatePlayerInfo();
+		}
+		
 	}
 }

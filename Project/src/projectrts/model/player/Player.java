@@ -1,6 +1,7 @@
 package projectrts.model.player;
 
-import projectrts.model.constants.P;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 /**
  * Player class for handling all of one players units.
@@ -9,12 +10,14 @@ import projectrts.model.constants.P;
 public class Player implements IPlayer {
 	public static final int RESOURCE_START_AMOUNT = 2000;
 	private int resources;
+	private PropertyChangeSupport pcs;
 	
 	/**
 	 * Constructs a player
 	 */
 	public Player(){
 		resources=RESOURCE_START_AMOUNT;
+		pcs = new PropertyChangeSupport(this);
 	}
 	
 
@@ -30,6 +33,15 @@ public class Player implements IPlayer {
 	 */
 	public void modifyResource(int amount){
 		resources+=amount;
+		pcs.firePropertyChange("ResourceChange", resources-amount, resources);
+	}
+
+
+
+	@Override
+	public void addListener(PropertyChangeListener pcl) {
+		pcs.addPropertyChangeListener(pcl);
+		
 	}
 	
 }

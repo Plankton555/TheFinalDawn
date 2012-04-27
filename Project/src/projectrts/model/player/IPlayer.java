@@ -1,5 +1,7 @@
 package projectrts.model.player;
 
+import java.beans.PropertyChangeListener;
+
 
 /**
  * 
@@ -12,4 +14,10 @@ public interface IPlayer {
 	 * @return The amount of resources
 	 */
 	public int getResources();
+	
+	/**
+	 * Adds a listener for the player
+	 * @param pcl the listener
+	 */
+	public void addListener(PropertyChangeListener pcl);
 }
