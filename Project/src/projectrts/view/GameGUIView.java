@@ -31,8 +31,14 @@ public class GameGUIView implements PropertyChangeListener {
 	private Element labelTime;
 	private Element labelPlayerInfo;
 	private Element panelInfo;
+	private Element labelMessage;
 	
 	private IPlayerControlledEntity selectedPce;
+	
+	private boolean activeMessage = false;
+	private float messageTimer = 0;
+	private final float MESSAGE_MAX_TIME = 3;
+	private String message = ""; 
 	
 	
 	/**
@@ -59,6 +65,7 @@ public class GameGUIView implements PropertyChangeListener {
 		labelTime = screen.findElementByName("Label_Time");
 		labelPlayerInfo = screen.findElementByName("Label_PlayerInfo");
 		panelInfo = screen.findElementByName("Panel_SelectedInfo");
+		labelMessage = screen.findElementByName("Label_Message");
 		
 		updatePlayerInfo();
 	}
@@ -69,16 +76,10 @@ public class GameGUIView implements PropertyChangeListener {
      * @param tpf The time passed since the last frame.
      */
     public void update(float tpf) {
-    	int sec = (int)game.getGameTime();
-    	
-    	String output="Time: ";
-    	if(sec/60>0){
-    		output+=sec/60+":";
-    	}
-    	output += sec%60;
-    	labelTime.getRenderer(TextRenderer.class).setText(output);
-    	
+
+    	updateTime();
     	updateSelectedInfo();
+    	updateMessage(tpf);
     }
     
     /**
@@ -90,6 +91,29 @@ public class GameGUIView implements PropertyChangeListener {
     	updateSelectedInfo();
     	updateAbilities();
     }
+	
+	private void updateTime(){
+    	int sec = (int)game.getGameTime();
+    	
+    	String output="Time: ";
+    	if(sec/60>0){
+    		output+=sec/60+":";
+    	}
+    	output += sec%60;
+    	labelTime.getRenderer(TextRenderer.class).setText(output);
+	}
+	
+	private void updateMessage(float tpf){
+		if(activeMessage){
+			messageTimer+=tpf;
+			if(messageTimer >= MESSAGE_MAX_TIME){
+				activeMessage = false;
+				messageTimer = 0;
+				labelMessage.setVisible(false);
+			}
+			
+		}
+	}
 	
 	private void updateAbilities(){
 		if(selectedPce!=null){
@@ -156,6 +180,11 @@ public class GameGUIView implements PropertyChangeListener {
 	public void propertyChange(PropertyChangeEvent pce) {
 		if("ResourceChange".equals(pce.getPropertyName())){
 			updatePlayerInfo();
+		} else if ("ShowMessage".equals(pce.getPropertyName())){
+			message = pce.getNewValue().toString();
+			labelMessage.getRenderer(TextRenderer.class).setText(message);
+			activeMessage = true;
+			labelMessage.setVisible(true);
 		}
 		
 	}

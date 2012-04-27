@@ -82,6 +82,12 @@ public class InputGUIController implements ScreenController {
 	            // </panel>
 	          }});
 	        // </layer>
+	          layer(new LayerBuilder("Layer_Message"){{
+	        	  childLayoutCenter();
+	        	  
+	        	  panel(createMessagePanel());
+	        	
+	          }});
 	      }}.build(nifty));
 	    // </screen>
 	    
@@ -91,8 +97,9 @@ public class InputGUIController implements ScreenController {
 	    guiPanel.getRenderer(ImageRenderer.class).setImage(image);
 	    
 		Element panelInfo = screen.findElementByName("Panel_SelectedInfo");
-		
 		panelInfo.setVisible(false);
+		Element labelMessage = screen.findElementByName("Label_Message");
+		labelMessage.setVisible(false);
 		
 	    nifty.gotoScreen("Screen_Game"); // start the screen
 
@@ -243,6 +250,21 @@ public class InputGUIController implements ScreenController {
 	    }};
 		return builder;
 		
+	}
+	
+	private PanelBuilder createMessagePanel(){
+		PanelBuilder builder = new PanelBuilder("Panel_Message"){{
+			childLayoutCenter();
+			
+			control(new LabelBuilder("Label_Message"){{
+				width("100%");
+				height("100%");
+				color("#F00F");
+				
+			}});
+		}};
+		
+		return builder;
 	}
 	
 	/**
