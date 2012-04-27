@@ -3,7 +3,6 @@ package projectrts.model.entities.abilities;
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
 
 

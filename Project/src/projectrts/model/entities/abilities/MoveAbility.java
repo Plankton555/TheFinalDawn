@@ -10,7 +10,6 @@ import projectrts.model.pathfinding.AStarNode;
 import projectrts.model.pathfinding.AStarPath;
 import projectrts.model.pathfinding.Node;
 import projectrts.model.pathfinding.World;
-import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
 
 /**
