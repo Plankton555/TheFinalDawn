@@ -13,6 +13,7 @@ import projectrts.model.utils.Position;
  */
 public final class World {
 	
+	// TODO Plankton: !!!Communicate via INode instead of Node?.. Especially when outside of model
 	private static World instance;
 	private Node[][] nodes;
 	private World()

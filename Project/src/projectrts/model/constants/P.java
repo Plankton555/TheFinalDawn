@@ -6,6 +6,8 @@ package projectrts.model.constants;
  *
  */
 public class P {
+	// TODO Anyone: Change to fields instead of methods?
+	// TODO Anyone: Should we use this class? If not, where do we put all of this stuff?..
 	/**
 	 * A getter for the width of the world.
 	 * @return An int representing the width of the world.

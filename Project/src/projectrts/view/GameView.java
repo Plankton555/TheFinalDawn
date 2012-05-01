@@ -19,7 +19,6 @@ import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.Spatial.CullHint;
 import com.jme3.scene.shape.Box;
 import com.jme3.terrain.geomipmap.TerrainLodControl;
 import com.jme3.terrain.geomipmap.TerrainQuad;
@@ -33,6 +32,7 @@ import com.jme3.texture.Texture.WrapMode;
  * @author Markus Ekström
  *
  */
+// TODO Anyone: This class probably contains too much code...
 public class GameView implements PropertyChangeListener{
 	private SimpleApplication app;
 	private IGame game;
