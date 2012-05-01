@@ -94,13 +94,13 @@ public class AStarNodeTest {
 	@Test
 	public void testCalculateHeuristic() {
 		
-		aNode5.calculateHeuristic(aNode6);
+		aNode5.calculateHeuristic(aNode6, 10);
 		assertTrue(aNode5.getHeuristic() == 40);
-		aNode6.calculateHeuristic(aNode5);
+		aNode6.calculateHeuristic(aNode5, 10);
 		assertTrue(aNode6.getHeuristic() == 40);
-		aNode5.calculateHeuristic(aNode7);
+		aNode5.calculateHeuristic(aNode7, 10);
 		assertTrue(aNode5.getHeuristic() == 60);
-		aNode7.calculateHeuristic(aNode6);
+		aNode7.calculateHeuristic(aNode6, 10);
 		assertTrue(aNode6.getHeuristic() == 40);
 	}
 

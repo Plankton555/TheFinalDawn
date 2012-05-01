@@ -45,14 +45,22 @@ public class AStarNode implements Comparable<AStarNode> {
 	/**
 	 * Calculates the heuristic from this node to the end node.
 	 * @param endNode End node
+	 * @param heuristicModifier Default is 10. A high heuristic modifier results in faster
+	 * A* calculations but a more inaccurate path. A lower modifier results in slower
+	 * calculations but a more accurate and shorter path.
 	 */
-	public void calculateHeuristic(AStarNode endNode)
+	public void calculateHeuristic(AStarNode endNode, int heuristicModifier)
 	{
+		// TODO Plankton: !Use a more accurate way to calculate heuristic? (Count diagonals as 14 and rest as 10)
+		if (heuristicModifier < 1)
+		{
+			heuristicModifier = 1;
+		}
 		Position mePos = this.getPosition();
 		Position endPos = endNode.getPosition();
 		// Calculating heuristic using the "Manhattan" distance
 		this.heuristic = ((int) (Math.abs(endPos.getX() - mePos.getX()) +
-				Math.abs(endPos.getY() - mePos.getY())))*10;
+				Math.abs(endPos.getY() - mePos.getY())))*heuristicModifier;
 	}
 
 	/**

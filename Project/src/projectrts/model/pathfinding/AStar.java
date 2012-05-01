@@ -64,7 +64,7 @@ public class AStar {
 					node.calculateCostFromStart(currentNode, false);
 					if (towardsNode != null)
 					{
-						node.calculateHeuristic(towardsNode);
+						node.calculateHeuristic(towardsNode, 10);
 					}
 				}
 			}
@@ -78,20 +78,22 @@ public class AStar {
 	 * Calculates a path using the A* algorithm.
 	 * @param startPos Start position.
 	 * @param targetPos End position.
+	 * @param heuristicModifier Default is 10. A high heuristic modifier results in faster
+	 * A* calculations but a more inaccurate path. A lower modifier results in slower
+	 * calculations but a more accurate and shorter path.
 	 * @param occupyingEntityID ID of occupying entity.
 	 * @return An AStarPath from startPos to targetPos.
 	 */
-	public static AStarPath calculatePath(Position startPos, Position targetPos, int occupyingEntityID)
+	public static AStarPath calculatePath(Position startPos, Position targetPos, int heuristicModifier, int occupyingEntityID)
 	{
 		World world = World.getInstance();
-		// TODO Plankton: !!Add support for different heuristic priorities
 		// TODO Plankton: !!!Take entity size into account when calculating path
-		// Plankton: Use threads or something to not "freeze" the game when calculating?
+		// TODO Plankton: !Use threads to not slow down the game when using many agents?
 		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
 		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
 		List<AStarNode> openList = new ArrayList<AStarNode>();
 		List<AStarNode> closedList = new ArrayList<AStarNode>();
-		startNode.calculateHeuristic(endNode);
+		startNode.calculateHeuristic(endNode, 10);
 		int searchlimit = Math.max(startNode.getHeuristic(), 50);
 		
 		if (endNode.isObstacle(occupyingEntityID))
@@ -136,7 +138,7 @@ public class AStar {
 							// move to open list and calculate cost
 							openList.add(node);
 							node.calculateCostFromStart(currentNode, false);
-							node.calculateHeuristic(endNode);
+							node.calculateHeuristic(endNode, heuristicModifier);
 						}
 					}
 				}
