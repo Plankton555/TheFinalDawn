@@ -153,8 +153,13 @@ public final class World {
 		return output;
 	}
 	
-	// TODO Plankton: !Add javadoc (move to Node?)
-	public boolean isAnyNodeOccupied(List<Node> nodes){
+	/**
+	 * Determines whether any of the provided nodes are occupied.
+	 * @param nodes The nodes to be examined.
+	 * @return true if any node is occupied, otherwise false.
+	 */
+	public static boolean isAnyNodeOccupied(List<Node> nodes){
+		// TODO Plankton: !Keep this method in World or Node?
 		for(Node node: nodes)
 		{
 			if(node.isOccupied())
@@ -165,9 +170,15 @@ public final class World {
 		return false;
 	}
 	
-	// TODO Plankton: !Add javadoc (move to Node?)
+	/**
+	 * Determines whether the provided node is adjacent to any of the nodes in the provided list.
+	 * @param node The node to be examined.
+	 * @param nodes The list of nodes that will be checked.
+	 * @return true if the node is adjacent to any of the nodes in the list, otherwise false.
+	 */
 	public static boolean isAdjecentTo(Node node, List<Node> nodes)
 	{
+		// TODO Plankton: !Keep this method in World or Node?
 		List<Node> adjacentNodes = node.getNeighbours();
 		for (Node adjNode : adjacentNodes)
 		{

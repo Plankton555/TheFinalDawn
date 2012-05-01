@@ -226,7 +226,7 @@ public class InputController {
     		Position pos = Utils.convertWorldToModel(
     				app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
     		if(choosingPosition){    			
-    			if(!World.getInstance().isAnyNodeOccupied(
+    			if(!World.isAnyNodeOccupied(
     					World.getInstance().getNodesAt(pos, buildingSize))){
     				
 	    			selectedEntity.doAbility(currentAbility.getClass().getSimpleName(), 
