@@ -89,8 +89,15 @@ public final class World {
 	 */
 	public Node[][] getNodes()
 	{
-		// TODO Plankton: !Return a shallow copy
-		return nodes;
+		Node[][] output = new Node[height][width];
+		for (int i = 0; i < height; i++)
+		{
+			for (int j = 0; j < width; j++)
+			{
+				output[i][j] = nodes[i][j];
+			}
+		}
+		return output;
 	}
 	
 	/**
