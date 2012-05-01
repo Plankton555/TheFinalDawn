@@ -15,7 +15,6 @@ public final class World {
 	
 	private static World instance;
 	private Node[][] nodes;
-	private float distBetweenNodes = 1;
 	private World()
 	{
 	}

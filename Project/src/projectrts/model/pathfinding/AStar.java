@@ -91,6 +91,8 @@ public class AStar {
 		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
 		List<AStarNode> openList = new ArrayList<AStarNode>();
 		List<AStarNode> closedList = new ArrayList<AStarNode>();
+		startNode.calculateHeuristic(endNode);
+		int searchlimit = Math.max(startNode.getHeuristic(), 50);
 		
 		if (endNode.isObstacle(occupyingEntityID))
 		{
@@ -139,13 +141,17 @@ public class AStar {
 					}
 				}
 			}
+			// if too many nodes are searched without finding a way, break out of loop.
+			if (closedList.size() > searchlimit)
+			{
+				break;
+			}
 		}
 		
-		// path not found, return path to the closest node instead.
+		// path not found, return path to the node closest to the target instead.
 		
 		Collections.sort(closedList, AStarNode.getHeuristicComparator());
-		return generatePath(startNode, closedList.get(1));
-		// the second element in closedList since the first one is the start node
+		return generatePath(startNode, closedList.get(0));
 	}
 	
 	private static AStarPath generatePath(AStarNode startNode, AStarNode endNode)
