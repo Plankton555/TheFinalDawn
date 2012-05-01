@@ -24,13 +24,11 @@ public class MicroAI {
 	}
 	
 	public void update(float tpf) {
-		if(!myPCE.isDead()) {
-			if(!EntityManager.getInstance().isSelected(myPCE)) {
-				if(EntityManager.getInstance().getClosestEnemy(myPCE) != null) {
-					if(!EntityManager.getInstance().getClosestEnemy(myPCE).equals(target)) {
-						target = EntityManager.getInstance().getClosestEnemy(myPCE);
-						myPCE.doAbility(AttackAbility.class.getSimpleName(), EntityManager.getInstance().getClosestEnemy(myPCE).getPosition());
-					}
+		if(!EntityManager.getInstance().isSelected(myPCE)) {
+			if(EntityManager.getInstance().getClosestEnemy(myPCE) != null) {
+				if(!EntityManager.getInstance().getClosestEnemy(myPCE).equals(target)) {
+					target = EntityManager.getInstance().getClosestEnemy(myPCE);
+					myPCE.doAbility(AttackAbility.class.getSimpleName(), EntityManager.getInstance().getClosestEnemy(myPCE).getPosition());
 				}
 			}
 		}

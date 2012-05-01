@@ -100,6 +100,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	}
 	
 	private void setDead() {
+		dead = true;
 		Node occupiedNode = World.getInstance().getNodeAt(getPosition());
 		for(AbstractAbility ability: abilities){
 			ability.setFinished(true);
@@ -109,8 +110,6 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 				occupiedNode = mAbility.getOccupiedNode();
 			}
 		}
-		dead = true;
-		
 		World.getInstance().setNodesOccupied(occupiedNode, getSize(), 0);
 	}
 	
