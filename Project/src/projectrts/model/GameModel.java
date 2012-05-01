@@ -19,7 +19,6 @@ import projectrts.model.entities.structures.Headquarter;
 import projectrts.model.entities.structures.Wall;
 import projectrts.model.entities.units.Warrior;
 import projectrts.model.entities.units.Worker;
-import projectrts.model.pathfinding.AStar;
 import projectrts.model.pathfinding.INode;
 import projectrts.model.pathfinding.World;
 import projectrts.model.player.IPlayer;

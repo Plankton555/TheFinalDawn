@@ -184,7 +184,7 @@ public final class World {
 	 * @param nodes The list of nodes that will be checked.
 	 * @return true if the node is adjacent to any of the nodes in the list, otherwise false.
 	 */
-	public static boolean isAdjecentTo(Node node, List<Node> nodes)
+	public static boolean isAdjacentTo(Node node, List<Node> nodes)
 	{
 		// TODO Plankton: !Keep this method in World or Node?
 		List<Node> adjacentNodes = node.getNeighbours();

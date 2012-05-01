@@ -127,9 +127,9 @@ public class WorldTest {
 		nodes.add(node3);
 		nodes.add(node4);
 		
-		assertTrue(!World.isAdjecentTo(node1, nodes));
+		assertTrue(!World.isAdjacentTo(node1, nodes));
 		node1.addNeighbour(node4);
-		assertTrue(World.isAdjecentTo(node1, nodes));
+		assertTrue(World.isAdjacentTo(node1, nodes));
 	}
 
 	/*
