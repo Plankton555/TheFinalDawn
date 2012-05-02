@@ -14,6 +14,23 @@ import projectrts.model.utils.Position;
 public class AStar {
 	// TODO Plankton: !!AStar communicate with world interface?
 	
+	private static IWorld world;
+	/**
+	 * Initializes the A* class
+	 * @param world Game world
+	 */
+	public static void initialize(IWorld world)
+	{
+		AStar.world = world;
+	}
+	
+	/**
+	 * @return true if AStar is initialized, otherwise false.
+	 */
+	public static boolean isInitialized()
+	{
+		return (world != null);
+	}
 	
 	/**
 	 * Returns the closest node that is not occupied.
@@ -27,7 +44,7 @@ public class AStar {
 	 */
 	public static AStarNode getClosestUnoccupiedNode(Position startingPos, Position towards, int occupyingEntityID)
 	{
-		World world = World.getInstance();
+		checkInit();
 		// Use A* "backwards" to find the closest walkable node.
 		AStarNode targetNode = new AStarNode(world.getNodeAt(startingPos));
 		AStarNode towardsNode;
@@ -86,8 +103,8 @@ public class AStar {
 	 */
 	public static AStarPath calculatePath(Position startPos, Position targetPos, int heuristicModifier, int occupyingEntityID)
 	{
-		World world = World.getInstance();
-		// TODO Plankton: !!!Take entity size into account when calculating path
+		checkInit();
+		// TODO Plankton: !Take entity size into account when calculating path
 		// TODO Plankton: !Use threads to not slow down the game when using many agents?
 		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
 		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
@@ -169,5 +186,13 @@ public class AStar {
 		}
 		
 		return path;
+	}
+	
+	private static void checkInit()
+	{
+		if (!isInitialized())
+		{
+			throw new IllegalStateException("You must initialize the AStar class before you can use it");
+		}
 	}
 }

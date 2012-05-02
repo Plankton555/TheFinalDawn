@@ -1,7 +1,6 @@
 package projectrts.model;
 
 import projectrts.model.ai.StrategicAI;
-import projectrts.model.constants.P;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IEntityManager;
 import projectrts.model.entities.abilities.AttackAbility;
@@ -20,6 +19,7 @@ import projectrts.model.entities.structures.Headquarter;
 import projectrts.model.entities.structures.Wall;
 import projectrts.model.entities.units.Warrior;
 import projectrts.model.entities.units.Worker;
+import projectrts.model.pathfinding.AStar;
 import projectrts.model.pathfinding.IWorld;
 import projectrts.model.pathfinding.World;
 import projectrts.model.player.IPlayer;
@@ -73,6 +73,8 @@ public class GameModel implements IGame {
 		
 	public GameModel() {
 		world.initializeWorld();
+		AStar.initialize(world);
+		
 		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(52.5, 52.5));
 		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(55.5, 55.5));
 		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(56.5, 55.5));

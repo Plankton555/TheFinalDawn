@@ -23,8 +23,8 @@ public class WorldTest {
 	@BeforeClass
 	public static void beforeClass()
 	{
-		int width = 15;
-		int height = 15;
+		int width = 100;
+		int height = 100;
 		world = World.getInstance();
 		world.initializeWorld();
 		WorldTest.width = width;

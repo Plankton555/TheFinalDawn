@@ -8,8 +8,6 @@ import java.util.List;
 import javax.vecmath.Vector2d;
 
 import projectrts.model.ai.MicroAI;
-import projectrts.model.constants.P;
-import projectrts.model.pathfinding.World;
 import projectrts.model.player.IPlayer;
 import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
@@ -132,11 +130,11 @@ public class EntityManager implements IEntityManager{
 	 * Adds a new player controlled entity to the EntityManager.
 	 * 
 	 * @param pce The class name of the npce as a string, e.g. "Worker".
-	 * @param aiPlayer The player that shall have control over the new entity.
+	 * @param owner The player that shall have control over the new entity.
 	 * @param pos The position of the entity.
 	 */
-	public void addNewPCE(String pce, IPlayer aiPlayer, Position pos) {
-		PlayerControlledEntity newPCE = EntityFactory.INSTANCE.createPCE(pce, aiPlayer, pos);
+	public void addNewPCE(String pce, IPlayer owner, Position pos) {
+		PlayerControlledEntity newPCE = EntityFactory.INSTANCE.createPCE(pce, owner, pos);
 		microAIs.add(new MicroAI(newPCE));
 		entitiesAddQueue.add(newPCE);
 	}

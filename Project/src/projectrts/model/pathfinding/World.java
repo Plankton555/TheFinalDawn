@@ -15,7 +15,6 @@ public final class World implements IWorld {
 	
 	// TODO Plankton: !!!Communicate via INode instead of Node?.. Especially when outside of model
 	private static World instance;
-	private Node[][] nodes;
 	private World()
 	{
 	}
@@ -27,20 +26,6 @@ public final class World implements IWorld {
 		}
 		return instance;
 	}
-	
-	private int width = 100;
-	private int height = 100;
-	
-
-	@Override
-	public int getWorldWidth() {
-		return width;
-	}
-	@Override
-	public int getWorldHeight() {
-		return height;
-	}
-	
 	/**
 	 * Initializes the world with specified height and width.
 	 * @param height Height.
@@ -48,6 +33,20 @@ public final class World implements IWorld {
 	 */
 	public void initializeWorld() {
 		initNodes(height, width);
+	}
+	
+	private Node[][] nodes;
+	
+	private int width = 100;
+	private int height = 100;
+	
+	@Override
+	public int getWorldWidth() {
+		return width;
+	}
+	@Override
+	public int getWorldHeight() {
+		return height;
 	}
 	
 	private void initNodes(int height, int width)

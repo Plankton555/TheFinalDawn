@@ -5,7 +5,6 @@ import java.util.List;
 import projectrts.global.constants.Constants;
 import projectrts.global.utils.Utils;
 import projectrts.model.IGame;
-import projectrts.model.constants.P;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IAbility;
 import projectrts.model.entities.IBuildStructureAbility;
@@ -75,7 +74,7 @@ public class InputController {
         	if(choosingPosition){
         		Position pos = Utils.convertWorldToModel(
         				app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
-        		view.drawNodes(World.getInstance().getNodesAt(pos,buildingSize));
+        		view.drawNodes(game.getWorld().getNodesAt(pos,buildingSize));
         	}
         } else {
           // do the following while game is PAUSED, e.g. play an idle animation.
@@ -227,10 +226,10 @@ public class InputController {
     				app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
     		if(choosingPosition){    			
     			if(!World.isAnyNodeOccupied(
-    					World.getInstance().getNodesAt(pos, buildingSize))){
+    					game.getWorld().getNodesAt(pos, buildingSize))){
     				
 	    			selectedEntity.doAbility(currentAbility.getClass().getSimpleName(), 
-	    					World.getInstance().getNodeAt(pos).getPosition());
+	    					game.getWorld().getNodeAt(pos).getPosition());
 	    			choosingPosition=false;
 	    			view.clearNodes();
     			}

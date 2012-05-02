@@ -3,7 +3,6 @@ package projectrts.controller;
 
 import projectrts.global.constants.Constants;
 import projectrts.model.IGame;
-import projectrts.model.constants.P;
 import projectrts.view.GameGUIView;
 import projectrts.view.GameView;
 

@@ -2,6 +2,7 @@ package projectrts.model.entities;
 
 import projectrts.model.constants.P;
 import projectrts.model.pathfinding.INode;
+import projectrts.model.pathfinding.IWorld;
 import projectrts.model.pathfinding.World;
 import projectrts.model.utils.Position;
 
@@ -16,7 +17,7 @@ public abstract class AbstractEntity implements IEntity {
 
 	private String name;
 	private int entityID;
-	private World world;
+	private IWorld world;
 	private float size;
 	private float speed;
 
@@ -80,24 +81,6 @@ public abstract class AbstractEntity implements IEntity {
 	{
 		world.setNodesOccupied(newNode, getSize(), getEntityID());
 	}
-
-	/*
-	private void enterNewNode(Node newNode)
-	{
-		// Plankton: Can this be done better?
-		if (occupiedNode == null)
-		{
-			world.setNodesOccupied(newNode, getSize(), getEntityID());
-			occupiedNode = newNode;
-		}
-		if (!occupiedNode.equals(newNode))
-		{
-			world.setNodesOccupied(occupiedNode, getSize(), 0);
-			world.setNodesOccupied(newNode, getSize(), getEntityID());
-			occupiedNode = newNode;
-		}
-	}
-	*/
 	
 	/**
 	 * Updates the unit.
