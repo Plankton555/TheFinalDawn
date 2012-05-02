@@ -1,7 +1,7 @@
-package projectrts.model.entities.interfaces;
+package projectrts.model.entities.abilities;
 
 import projectrts.model.entities.AbstractAbility;
-import projectrts.model.entities.abilities.MoveAbility;
+import projectrts.model.entities.IPlayerControlledEntity;
 
 public interface IUsingMoveAbility {
 

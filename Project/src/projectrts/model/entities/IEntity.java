@@ -1,4 +1,4 @@
-package projectrts.model.entities.interfaces;
+package projectrts.model.entities;
 
 import projectrts.model.utils.Position;
 

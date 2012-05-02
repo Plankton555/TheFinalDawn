@@ -8,7 +8,7 @@ import projectrts.global.constants.Constants;
 import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.IGame;
-import projectrts.model.entities.interfaces.IEntity;
+import projectrts.model.entities.IEntity;
 import projectrts.model.pathfinding.INode;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.spatials.AbstractSpatial;

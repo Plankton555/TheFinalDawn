@@ -2,6 +2,7 @@ package projectrts.model;
 
 import projectrts.model.ai.StrategicAI;
 import projectrts.model.entities.EntityManager;
+import projectrts.model.entities.IEntityManager;
 import projectrts.model.entities.abilities.AttackAbility;
 import projectrts.model.entities.abilities.BuildBarracksAbility;
 import projectrts.model.entities.abilities.BuildWallAbility;
@@ -12,7 +13,6 @@ import projectrts.model.entities.abilities.MoveAbility;
 import projectrts.model.entities.abilities.OffensiveSpellAbility;
 import projectrts.model.entities.abilities.TrainWarriorAbility;
 import projectrts.model.entities.abilities.TrainWorkerAbility;
-import projectrts.model.entities.interfaces.IEntityManager;
 import projectrts.model.entities.misc.Resource;
 import projectrts.model.entities.structures.Barracks;
 import projectrts.model.entities.structures.Headquarter;

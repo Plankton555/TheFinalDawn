@@ -4,8 +4,7 @@ import projectrts.model.constants.P;
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.AbstractEntity;
 import projectrts.model.entities.EntityManager;
-import projectrts.model.entities.interfaces.IPlayerControlledEntity;
-import projectrts.model.entities.interfaces.IUsingMoveAbility;
+import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.misc.Resource;
 import projectrts.model.utils.Position;
 /**

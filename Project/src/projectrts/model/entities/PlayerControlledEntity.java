@@ -7,8 +7,6 @@ import java.util.List;
 
 import projectrts.model.constants.P;
 import projectrts.model.entities.abilities.MoveAbility;
-import projectrts.model.entities.interfaces.IAbility;
-import projectrts.model.entities.interfaces.IPlayerControlledEntity;
 import projectrts.model.pathfinding.INode;
 import projectrts.model.pathfinding.World;
 import projectrts.model.player.IPlayer;

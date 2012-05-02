@@ -1,4 +1,4 @@
-package projectrts.model.entities.interfaces;
+package projectrts.model.entities;
 /**
  * An interface for Abilities which build structures
  * @author Jakob Svensson

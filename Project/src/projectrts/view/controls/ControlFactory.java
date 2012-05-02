@@ -2,7 +2,7 @@ package projectrts.view.controls;
 
 import java.util.HashMap;
 
-import projectrts.model.entities.interfaces.IEntity;
+import projectrts.model.entities.IEntity;
 import projectrts.model.pathfinding.INode;
 
 import com.jme3.scene.control.AbstractControl;

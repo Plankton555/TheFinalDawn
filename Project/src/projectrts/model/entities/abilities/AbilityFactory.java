@@ -3,10 +3,8 @@ package projectrts.model.entities.abilities;
 import java.util.HashMap;
 
 import projectrts.model.entities.AbstractAbility;
+import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.entities.interfaces.INotUsingMoveAbility;
-import projectrts.model.entities.interfaces.IPlayerControlledEntity;
-import projectrts.model.entities.interfaces.IUsingMoveAbility;
 
 //TODO Markus: ADD JAVADOC!!
 public enum AbilityFactory {INSTANCE;

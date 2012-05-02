@@ -2,7 +2,7 @@
 package projectrts.view.controls;
 
 import projectrts.global.utils.Utils;
-import projectrts.model.entities.interfaces.IEntity;
+import projectrts.model.entities.IEntity;
 import projectrts.model.utils.Position;
 
 import com.jme3.math.Vector3f;

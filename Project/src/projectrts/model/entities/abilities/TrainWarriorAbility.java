@@ -2,7 +2,6 @@ package projectrts.model.entities.abilities;
 
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.entities.interfaces.INotUsingMoveAbility;
 import projectrts.model.entities.units.Warrior;
 //TODO Jakob: Maybe extract common code with trainWorkerAbility to a abstract class
 /**

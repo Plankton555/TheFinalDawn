@@ -1,4 +1,4 @@
-package projectrts.model.entities.interfaces;
+package projectrts.model.entities.abilities;
 
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.PlayerControlledEntity;

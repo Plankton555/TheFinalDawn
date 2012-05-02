@@ -1,7 +1,6 @@
 package projectrts.model.entities;
 
 import projectrts.model.constants.P;
-import projectrts.model.entities.interfaces.IEntity;
 import projectrts.model.pathfinding.INode;
 import projectrts.model.pathfinding.IWorld;
 import projectrts.model.pathfinding.World;

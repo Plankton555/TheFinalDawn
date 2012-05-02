@@ -1,4 +1,4 @@
-package projectrts.model.entities.interfaces;
+package projectrts.model.entities;
 
 import java.beans.PropertyChangeListener;
 import java.util.List;
