@@ -7,6 +7,7 @@ import java.util.List;
 import projectrts.global.utils.ImageManager;
 import projectrts.model.IGame;
 import projectrts.model.entities.IAbility;
+import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.elements.Element;
@@ -51,6 +52,7 @@ public class GameGUIView implements PropertyChangeListener {
 		this.game = game;
 		
 		game.getPlayer().addListener(this);
+		game.getEntityManager().addListener(this);
 	}
 	
 	
@@ -185,6 +187,12 @@ public class GameGUIView implements PropertyChangeListener {
 			labelMessage.getRenderer(TextRenderer.class).setText(message);
 			activeMessage = true;
 			labelMessage.setVisible(true);
+		}else if (pce.getPropertyName().equals("entityRemoved")) {
+			if(pce.getOldValue() instanceof IEntity) {
+				selectedPce=null;
+				updateSelected(null);
+				
+			}
 		}
 		
 	}

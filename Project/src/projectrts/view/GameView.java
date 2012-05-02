@@ -261,6 +261,7 @@ public class GameView implements PropertyChangeListener{
 		} else if (evt.getPropertyName().equals("entityRemoved")) {
 			if(evt.getOldValue() instanceof IEntity) {
 				removeDeadEntity((IEntity)evt.getOldValue());
+				selected.detachAllChildren();
 			}
 		}
 		
