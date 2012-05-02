@@ -1,4 +1,4 @@
-package projectrts.model.entities;
+package projectrts.model.entities.interfaces;
 
 import java.util.List;
 
@@ -53,4 +53,7 @@ public interface IPlayerControlledEntity extends IEntity{
 	 * @param pos The position the ability is used at if applicable.
 	 */
 	public void doAbility(String ability, Position pos);
+	
+	// TODO Jakob: Add javadoc
+	public void dealDamageTo(int damage);
 }

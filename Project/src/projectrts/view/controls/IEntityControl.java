@@ -1,6 +1,6 @@
 package projectrts.view.controls;
 
-import projectrts.model.entities.IEntity;
+import projectrts.model.entities.interfaces.IEntity;
 
 import com.jme3.scene.control.AbstractControl;
 /**

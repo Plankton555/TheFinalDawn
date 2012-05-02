@@ -3,9 +3,9 @@ package projectrts.controller;
 import java.util.List;
 
 import projectrts.global.utils.ImageManager;
-import projectrts.model.entities.IAbility;
-import projectrts.model.entities.IEntity;
-import projectrts.model.entities.IPlayerControlledEntity;
+import projectrts.model.entities.interfaces.IAbility;
+import projectrts.model.entities.interfaces.IEntity;
+import projectrts.model.entities.interfaces.IPlayerControlledEntity;
 import projectrts.view.GameGUIView;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.builder.LayerBuilder;

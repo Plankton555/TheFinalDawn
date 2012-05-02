@@ -1,6 +1,6 @@
 package projectrts.model;
 
-import projectrts.model.entities.IEntityManager;
+import projectrts.model.entities.interfaces.IEntityManager;
 import projectrts.model.pathfinding.IWorld;
 import projectrts.model.player.IPlayer;
 

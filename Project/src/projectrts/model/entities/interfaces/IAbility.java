@@ -1,4 +1,4 @@
-package projectrts.model.entities;
+package projectrts.model.entities.interfaces;
 
 /**
  * Interface for abilities

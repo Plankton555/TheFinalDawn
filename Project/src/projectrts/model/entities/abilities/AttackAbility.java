@@ -1,10 +1,10 @@
 package projectrts.model.entities.abilities;
 
 import projectrts.model.entities.AbstractAbility;
-import projectrts.model.entities.AbstractEntity;
 import projectrts.model.entities.EntityManager;
-import projectrts.model.entities.ITargetAbility;
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.interfaces.IPlayerControlledEntity;
+import projectrts.model.entities.interfaces.ITargetAbility;
+import projectrts.model.entities.interfaces.IUsingMoveAbility;
 import projectrts.model.utils.Position;
 
 /**
@@ -13,8 +13,8 @@ import projectrts.model.utils.Position;
  *
  */
 public class AttackAbility extends AbstractAbility implements IUsingMoveAbility, ITargetAbility {
-	private PlayerControlledEntity entity;
-	private PlayerControlledEntity target;
+	private IPlayerControlledEntity entity;
+	private IPlayerControlledEntity target;
 	
 	private MoveAbility moveAbility;
 	private double range = 1;
@@ -26,7 +26,7 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
+	protected void initialize(IPlayerControlledEntity entity, MoveAbility moveAbility) {
 		this.entity = entity;
 		this.moveAbility = moveAbility;
 		this.setCooldown(0.5f);
@@ -78,13 +78,13 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 	}
 
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
+	public AbstractAbility createAbility(IPlayerControlledEntity entity, MoveAbility moveAbility) {
 		AttackAbility newAbility = new AttackAbility();
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;
 	}
 
-	private boolean inRange(AbstractEntity target)
+	private boolean inRange(IPlayerControlledEntity target)
 	{
 		return (Position.getDistance(entity.getPosition(), target.getPosition()) < range + (target.getSize()/2)*1.5);
 	}

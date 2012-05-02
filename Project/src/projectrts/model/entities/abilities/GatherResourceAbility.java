@@ -1,8 +1,9 @@
 package projectrts.model.entities.abilities;
 
 import projectrts.model.entities.AbstractAbility;
-import projectrts.model.entities.ITargetAbility;
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.interfaces.IPlayerControlledEntity;
+import projectrts.model.entities.interfaces.ITargetAbility;
+import projectrts.model.entities.interfaces.IUsingMoveAbility;
 import projectrts.model.utils.Position;
 /**
  * An ability for gathering resources
@@ -22,7 +23,7 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
+	protected void initialize(IPlayerControlledEntity entity, MoveAbility moveAbility) {
 		this.mineResourceAbility = AbilityFactory.INSTANCE.createMAbility(MineResourceAbility.class.getSimpleName(), entity, moveAbility);
 		this.deliverResourceAbility = AbilityFactory.INSTANCE.createMAbility(DeliverResourceAbility.class.getSimpleName(), entity, moveAbility);
 	}
@@ -64,7 +65,7 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 	}
 
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
+	public AbstractAbility createAbility(IPlayerControlledEntity entity, MoveAbility moveAbility) {
 		GatherResourceAbility newAbility = new GatherResourceAbility();
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;

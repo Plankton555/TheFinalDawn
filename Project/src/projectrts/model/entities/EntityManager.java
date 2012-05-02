@@ -8,6 +8,9 @@ import java.util.List;
 import javax.vecmath.Vector2d;
 
 import projectrts.model.ai.MicroAI;
+import projectrts.model.entities.interfaces.IEntity;
+import projectrts.model.entities.interfaces.IEntityManager;
+import projectrts.model.entities.interfaces.IPlayerControlledEntity;
 import projectrts.model.player.IPlayer;
 import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;

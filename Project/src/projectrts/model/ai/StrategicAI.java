@@ -3,9 +3,9 @@ package projectrts.model.ai;
 import java.util.List;
 
 import projectrts.model.entities.EntityManager;
-import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.abilities.AttackAbility;
+import projectrts.model.entities.interfaces.IPlayerControlledEntity;
 import projectrts.model.player.IPlayer;
 
 public class StrategicAI {

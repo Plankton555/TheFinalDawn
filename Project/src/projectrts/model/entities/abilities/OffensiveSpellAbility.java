@@ -2,7 +2,8 @@ package projectrts.model.entities.abilities;
 
 import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.EntityManager;
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.interfaces.IPlayerControlledEntity;
+import projectrts.model.entities.interfaces.IUsingMoveAbility;
 import projectrts.model.utils.Position;
 
 
@@ -15,8 +16,8 @@ public class OffensiveSpellAbility extends AbstractAbility implements IUsingMove
 	private int abilityRange = 50;
 	private int damage = 90;
 	
-	private PlayerControlledEntity attacker;
-	private PlayerControlledEntity target;
+	private IPlayerControlledEntity attacker;
+	private IPlayerControlledEntity target;
 	
 	private AbstractAbility moveAbility;
 	
@@ -27,7 +28,7 @@ public class OffensiveSpellAbility extends AbstractAbility implements IUsingMove
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
+	protected void initialize(IPlayerControlledEntity entity, MoveAbility moveAbility) {
 		this.attacker = entity;
 		this.moveAbility = moveAbility;
 		this.setCooldown(5);
@@ -78,7 +79,7 @@ public class OffensiveSpellAbility extends AbstractAbility implements IUsingMove
 	}
 
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
+	public AbstractAbility createAbility(IPlayerControlledEntity entity, MoveAbility moveAbility) {
 		OffensiveSpellAbility newAbility = new OffensiveSpellAbility();
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;

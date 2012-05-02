@@ -1,7 +1,7 @@
-package projectrts.model.entities.abilities;
+package projectrts.model.entities.interfaces;
 
 import projectrts.model.entities.AbstractAbility;
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.abilities.MoveAbility;
 
 public interface IUsingMoveAbility {
 
@@ -11,5 +11,5 @@ public interface IUsingMoveAbility {
 	 * @param moveAbility The MoveAbility that the entity is using.
 	 * @return The new ability.
 	 */
-	public abstract AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility);
+	public abstract AbstractAbility createAbility(IPlayerControlledEntity entity, MoveAbility moveAbility);
 }

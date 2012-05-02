@@ -1,7 +1,7 @@
 package projectrts.view.spatials;
 
 import projectrts.global.utils.MaterialManager;
-import projectrts.model.entities.IEntity;
+import projectrts.model.entities.interfaces.IEntity;
 import projectrts.view.controls.ControlFactory;
 import projectrts.view.controls.SelectControl;
 

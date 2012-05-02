@@ -1,5 +1,6 @@
 package projectrts.model.entities;
 
+import projectrts.model.entities.interfaces.IAbility;
 import projectrts.model.utils.Position;
 
 /**

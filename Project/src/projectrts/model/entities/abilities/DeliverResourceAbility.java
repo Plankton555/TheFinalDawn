@@ -7,8 +7,8 @@ import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.AbstractEntity;
 import projectrts.model.entities.AbstractStructure;
 import projectrts.model.entities.EntityManager;
-import projectrts.model.entities.IPlayerControlledEntity;
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.interfaces.IPlayerControlledEntity;
+import projectrts.model.entities.interfaces.IUsingMoveAbility;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
 /**
@@ -18,7 +18,7 @@ import projectrts.model.utils.Position;
  */
 public class DeliverResourceAbility extends AbstractAbility implements IUsingMoveAbility {
 	
-	private PlayerControlledEntity entity;
+	private IPlayerControlledEntity entity;
 	private AbstractStructure depositStructure;
 	private AbstractAbility moveAbility;
 	private double range = 1;
@@ -30,7 +30,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
+	protected void initialize(IPlayerControlledEntity entity, MoveAbility moveAbility) {
 		this.entity=entity;
 		this.moveAbility = moveAbility;
 	}
@@ -95,7 +95,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 	}
 
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
+	public AbstractAbility createAbility(IPlayerControlledEntity entity, MoveAbility moveAbility) {
 		DeliverResourceAbility newAbility = new DeliverResourceAbility();
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;

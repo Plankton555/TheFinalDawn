@@ -1,8 +1,10 @@
 package projectrts.model.entities.abilities;
 
 import projectrts.model.entities.AbstractAbility;
-import projectrts.model.entities.IBuildStructureAbility;
 import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.interfaces.IBuildStructureAbility;
+import projectrts.model.entities.interfaces.IPlayerControlledEntity;
+import projectrts.model.entities.interfaces.IUsingMoveAbility;
 import projectrts.model.entities.structures.Wall;
 
 //TODO Jakob: Make abstract constructBuilding class
@@ -37,7 +39,7 @@ public class BuildWallAbility extends AbstractConstructAbility implements IUsing
 	}
 
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
+	public AbstractAbility createAbility(IPlayerControlledEntity entity, MoveAbility moveAbility) {
 		BuildWallAbility newAbility = new BuildWallAbility();
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;

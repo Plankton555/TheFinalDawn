@@ -3,8 +3,9 @@ package projectrts.model.entities.abilities;
 import javax.vecmath.Vector2d;
 
 import projectrts.model.entities.AbstractAbility;
-import projectrts.model.entities.ITargetAbility;
 import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.interfaces.INotUsingMoveAbility;
+import projectrts.model.entities.interfaces.ITargetAbility;
 import projectrts.model.pathfinding.AStar;
 import projectrts.model.pathfinding.AStarNode;
 import projectrts.model.pathfinding.AStarPath;
