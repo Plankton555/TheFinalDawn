@@ -254,7 +254,7 @@ public class InputController {
     				choosingTarget=false;
     			}
     		}else{
-	    		game.getEntityManager().select(pos, game.getPlayer());
+	    		game.getEntityManager().select(pos, game.getHumanPlayer());
 				view.drawSelected(game.getEntityManager().getSelectedEntities());
 				guiControl.updateAbilities(game.getEntityManager().getSelectedEntities());
     		}
@@ -275,7 +275,7 @@ public class InputController {
 	    				
 	    			}else if(e instanceof PlayerControlledEntity){
 	    				PlayerControlledEntity pce = (PlayerControlledEntity) e;
-	    				if(!pce.getOwner().equals(game.getPlayer())){
+	    				if(!pce.getOwner().equals(game.getHumanPlayer())){
 	    					game.getEntityManager().useAbilitySelected(AttackAbility.class.getSimpleName(), pce.getPosition());
 	    				}else{
 	    					game.getEntityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(

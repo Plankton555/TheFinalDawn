@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import projectrts.model.pathfinding.AStarPath;
 import projectrts.model.utils.Position;
 
 public class AStarPathTest {

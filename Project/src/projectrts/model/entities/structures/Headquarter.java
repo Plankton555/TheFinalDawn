@@ -5,7 +5,7 @@ import projectrts.model.entities.EntityFactory;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.abilities.AbilityFactory;
 import projectrts.model.entities.abilities.TrainWorkerAbility;
-import projectrts.model.player.Player;
+import projectrts.model.player.IPlayer;
 import projectrts.model.utils.Position;
 /**
  * A building for creating workers and deposit resources
@@ -24,7 +24,7 @@ public class Headquarter extends AbstractStructure{
 	}
 
 	
-	protected void initialize(Player owner, Position spawnPos) {
+	protected void initialize(IPlayer owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		this.abilities.add(AbilityFactory.INSTANCE.createAbility(TrainWorkerAbility.class.getSimpleName(), this));
 		this.setName(Headquarter.class.getSimpleName());
@@ -35,7 +35,7 @@ public class Headquarter extends AbstractStructure{
 	}
 	
 	@Override
-	public PlayerControlledEntity createPCE(Player owner, Position pos) {
+	public PlayerControlledEntity createPCE(IPlayer owner, Position pos) {
 		Headquarter newHQ = new Headquarter();
 		newHQ.initialize(owner, pos);
 		return newHQ;

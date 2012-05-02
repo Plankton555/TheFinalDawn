@@ -93,7 +93,6 @@ public class AStar {
 		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
 		List<AStarNode> openList = new ArrayList<AStarNode>();
 		List<AStarNode> closedList = new ArrayList<AStarNode>();
-		
 		// Sets the search limit to 10 times the approximate distance to the target (or 50 if the distance is short)
 		startNode.calculateHeuristic(endNode, 10);
 		int searchlimit = Math.max(startNode.getHeuristic(), 50);

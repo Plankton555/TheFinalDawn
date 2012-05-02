@@ -10,7 +10,6 @@ import projectrts.model.entities.abilities.MoveAbility;
 import projectrts.model.pathfinding.INode;
 import projectrts.model.pathfinding.World;
 import projectrts.model.player.IPlayer;
-import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
 
 /**
@@ -24,19 +23,22 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	private int currentHealth;
 	private int maxHealth;
 	private float sightRange;
-	private Player owner;
+	private IPlayer owner;
 	private int damage;
 	private PropertyChangeSupport pcs;
 	private boolean dead = false;
+	private State state = State.IDLE;
+	
+	public enum State{IDLE, BUSY};
 	
 	/**
 	 * When subclassing, invoke this to initialize the entity.
-	 * @param owner The owner of the entity.
+	 * @param owner2 The owner of the entity.
 	 * @param spawnPos The initial position of the entity.
 	 */
-	protected void initialize(Player owner, Position spawnPos) {
+	protected void initialize(IPlayer owner2, Position spawnPos) {
 		super.initialize(spawnPos);
-		this.owner = owner;
+		this.owner = owner2;
 		this.pcs = new PropertyChangeSupport(this);
 	}
 	
@@ -142,11 +144,19 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	@Override
 	public void update(float tpf) {
 		if(!dead) {
+			state = State.IDLE;
 			for(AbstractAbility ability: abilities){
 				ability.update(tpf);
+				if(ability.isActive()) {
+					state = State.BUSY;
+				}
 			}
 		}
 	}
+	
+	public State getState() {
+		return this.state;
+	}
 
-	public abstract PlayerControlledEntity createPCE(Player owner, Position pos);
+	public abstract PlayerControlledEntity createPCE(IPlayer aiPlayer, Position pos);
 }

@@ -10,8 +10,6 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import projectrts.model.pathfinding.Node;
-import projectrts.model.pathfinding.World;
 import projectrts.model.utils.Position;
 
 public class WorldTest {

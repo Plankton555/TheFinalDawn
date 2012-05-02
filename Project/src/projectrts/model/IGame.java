@@ -20,7 +20,7 @@ public interface IGame {
 	/**
 	 * @return The human player
 	 */
-	public IPlayer getPlayer();
+	public IPlayer getHumanPlayer();
 	
 	/**
 	 * @return The entity manager.
@@ -36,4 +36,9 @@ public interface IGame {
 	 * @return The current game time.
 	 */
 	public float getGameTime();
+
+	/**
+	 * @return The ai player.
+	 */
+	public IPlayer getAIPlayer();
 }

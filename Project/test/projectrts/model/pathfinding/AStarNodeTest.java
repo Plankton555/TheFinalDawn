@@ -7,8 +7,6 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import projectrts.model.pathfinding.AStarNode;
-import projectrts.model.pathfinding.Node;
 import projectrts.model.utils.Position;
 
 public class AStarNodeTest {

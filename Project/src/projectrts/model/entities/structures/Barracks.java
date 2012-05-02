@@ -5,7 +5,7 @@ import projectrts.model.entities.EntityFactory;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.abilities.AbilityFactory;
 import projectrts.model.entities.abilities.TrainWarriorAbility;
-import projectrts.model.player.Player;
+import projectrts.model.player.IPlayer;
 import projectrts.model.utils.Position;
 
 /**
@@ -24,7 +24,7 @@ public class Barracks extends AbstractStructure{
 		EntityFactory.INSTANCE.registerPCE(Barracks.class.getSimpleName(), new Barracks());
 	}
 	
-	protected void initialize(Player owner, Position spawnPos) {
+	protected void initialize(IPlayer owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		this.abilities.add(AbilityFactory.INSTANCE.createAbility(TrainWarriorAbility.class.getSimpleName(),this));
 		this.setName(Barracks.class.getSimpleName());
@@ -35,7 +35,7 @@ public class Barracks extends AbstractStructure{
 	}
 	
 	@Override
-	public PlayerControlledEntity createPCE(Player owner, Position pos) {
+	public PlayerControlledEntity createPCE(IPlayer owner, Position pos) {
 		Barracks newBarracks = new Barracks();
 		newBarracks.initialize(owner, pos);
 		return newBarracks;

@@ -1,7 +1,7 @@
 package projectrts.model.entities;
 
 
-import projectrts.model.player.Player;
+import projectrts.model.player.IPlayer;
 import projectrts.model.utils.Position;
 /**
  * An abstract class for structures
@@ -16,7 +16,7 @@ public abstract class AbstractStructure extends PlayerControlledEntity{
 	 * @param owner The owner of the entity.
 	 * @param spawnPos The initial position of the entity.
 	 */
-	protected void initialize(Player owner, Position spawnPos) {
+	protected void initialize(IPlayer owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 	}
 	

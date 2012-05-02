@@ -6,7 +6,7 @@ import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.abilities.AbilityFactory;
 import projectrts.model.entities.abilities.AttackAbility;
 import projectrts.model.entities.abilities.MoveAbility;
-import projectrts.model.player.Player;
+import projectrts.model.player.IPlayer;
 import projectrts.model.utils.Position;
 
 /**
@@ -28,7 +28,7 @@ public class Warrior extends AbstractUnit{
 		EntityFactory.INSTANCE.registerPCE(Warrior.class.getSimpleName(), new Warrior());
 	}
 	
-	protected void initialize(Player owner, Position spawnPos) {
+	protected void initialize(IPlayer owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		MoveAbility moveAbility = (MoveAbility) AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(),this);
 		this.abilities.add(AbilityFactory.INSTANCE.createMAbility(AttackAbility.class.getSimpleName(), this, moveAbility));
@@ -42,7 +42,7 @@ public class Warrior extends AbstractUnit{
 	}
 
 	@Override
-	public PlayerControlledEntity createPCE(Player owner, Position pos) {
+	public PlayerControlledEntity createPCE(IPlayer owner, Position pos) {
 		Warrior newWarrior = new Warrior();
 		newWarrior.initialize(owner, pos);
 		return newWarrior;

@@ -1,5 +1,6 @@
 package projectrts.model;
 
+import projectrts.model.ai.StrategicAI;
 import projectrts.model.constants.P;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IEntityManager;
@@ -38,6 +39,7 @@ public class GameModel implements IGame {
 	// TODO Markus: Implement some sort of AI
 	private Player aiPlayer = new Player();
 	private float gameTime = 0;
+	private StrategicAI stratAI = new StrategicAI(aiPlayer);
 	
 	static {
 		try
@@ -71,11 +73,11 @@ public class GameModel implements IGame {
 		
 	public GameModel() {
 		world.initializeWorld();
-		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(32.5, 32.5));
-		//entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(55.5, 55.5));
-		//entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(56.5, 55.5));
+		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(52.5, 52.5));
+		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(55.5, 55.5));
+		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(56.5, 55.5));
 		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(60.5, 60.5));
-		//entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(34.5, 50.5));
+		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(34.5, 50.5));
 		entityManager.addNewPCE(Barracks.class.getSimpleName(), humanPlayer, new Position(38.5, 56.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 50.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 52.5));
@@ -88,12 +90,18 @@ public class GameModel implements IGame {
 	@Override
 	public void update(float tpf) {
 		entityManager.update(tpf);
+		stratAI.update(tpf);
 		gameTime +=tpf;
 	}
 
 	@Override
-	public IPlayer getPlayer() {
+	public IPlayer getHumanPlayer() {
 		return humanPlayer;
+	}
+	
+	@Override
+	public IPlayer getAIPlayer() {
+		return aiPlayer;
 	}
 
 	@Override

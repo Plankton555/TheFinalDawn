@@ -2,7 +2,7 @@ package projectrts.model.entities;
 
 import java.util.HashMap;
 
-import projectrts.model.player.Player;
+import projectrts.model.player.IPlayer;
 import projectrts.model.utils.Position;
 
 /**
@@ -29,16 +29,16 @@ public enum EntityFactory {INSTANCE;
 	 * Creates a PlayerControlledEntity according to specifications. If the entity's class hasn't been
 	 * registered then it returns null.
 	 * @param pceType The class name of the desired entity (use class.getSimpleName()).
-	 * @param owner The owner of the desired entity.
+	 * @param aiPlayer The owner of the desired entity.
 	 * @param pos The position of the desired entity.
 	 * @return An instance of the desired entity.
 	 */
-	public PlayerControlledEntity createPCE(String pceType, Player owner, Position pos) {
+	public PlayerControlledEntity createPCE(String pceType, IPlayer aiPlayer, Position pos) {
 		if(pceMap.get(pceType) == null) {
 			return null;
 		}
 		
-		return pceMap.get(pceType).createPCE(owner, pos);
+		return pceMap.get(pceType).createPCE(aiPlayer, pos);
 	}
 	
 	/**

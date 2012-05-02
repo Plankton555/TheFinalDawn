@@ -52,7 +52,7 @@ public class GameGUIView implements PropertyChangeListener {
 		this.nifty = nifty;
 		this.game = game;
 		
-		game.getPlayer().addListener(this);
+		game.getHumanPlayer().addListener(this);
 		game.getEntityManager().addListener(this);
 	}
 	
@@ -180,7 +180,7 @@ public class GameGUIView implements PropertyChangeListener {
 	}
 	
 	private void updatePlayerInfo(){
-		labelPlayerInfo.getRenderer(TextRenderer.class).setText("Resources: "+game.getPlayer().getResources());
+		labelPlayerInfo.getRenderer(TextRenderer.class).setText("Resources: "+game.getHumanPlayer().getResources());
 	}
 
 

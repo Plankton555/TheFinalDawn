@@ -8,8 +8,9 @@ import java.util.List;
 import javax.vecmath.Vector2d;
 
 import projectrts.model.ai.MicroAI;
+import projectrts.model.constants.P;
+import projectrts.model.pathfinding.World;
 import projectrts.model.player.IPlayer;
-import projectrts.model.player.Player;
 import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
 
@@ -56,6 +57,7 @@ public class EntityManager implements IEntityManager{
 		for (AbstractEntity e : entitiesAddQueue){
 			allEntities.add(e);
 			pcs.firePropertyChange("entityCreated", null, e);
+			System.out.println(e.getName());
 			
 			
 		}
@@ -75,32 +77,6 @@ public class EntityManager implements IEntityManager{
 		}
 		entitiesAddQueue.clear();
 		entitiesRemoveQueue.clear();
-	}
-	
-	/**
-	 * Returns a list of all entities close to the position.
-	 * Returns all entities that can be seen from the circle with center in 'p'
-	 * and the radius 'range'.
-	 * @param entity The entity from which to check.
-	 * @return List of all entities close to position.
-	 */
-	public List<AbstractEntity> getNearbyEntities(IPlayerControlledEntity entity)
-	{
-		// Preliminary method. May need to be changed to optimize.
-		
-		List<AbstractEntity> output = new ArrayList<AbstractEntity>();
-		
-		for (AbstractEntity e : allEntities)
-		{
-			Vector2d distance = new Vector2d(
-					e.getPosition().getX()-entity.getPosition().getX(),
-					e.getPosition().getY()-entity.getPosition().getY());
-			if (distance.length() - (e.getSize()/2) <= entity.getSightRange())
-			{
-				output.add(e);
-			}
-		}
-		return output;
 	}
 	
 	/**
@@ -156,11 +132,11 @@ public class EntityManager implements IEntityManager{
 	 * Adds a new player controlled entity to the EntityManager.
 	 * 
 	 * @param pce The class name of the npce as a string, e.g. "Worker".
-	 * @param owner The player that shall have control over the new entity.
+	 * @param aiPlayer The player that shall have control over the new entity.
 	 * @param pos The position of the entity.
 	 */
-	public void addNewPCE(String pce, Player owner, Position pos) {
-		PlayerControlledEntity newPCE = EntityFactory.INSTANCE.createPCE(pce, owner, pos);
+	public void addNewPCE(String pce, IPlayer aiPlayer, Position pos) {
+		PlayerControlledEntity newPCE = EntityFactory.INSTANCE.createPCE(pce, aiPlayer, pos);
 		microAIs.add(new MicroAI(newPCE));
 		entitiesAddQueue.add(newPCE);
 	}
@@ -292,8 +268,34 @@ public class EntityManager implements IEntityManager{
 		return ans;
 	}
 	
+	/**
+	 * Returns a list of all entities close to the position.
+	 * Returns all entities that can be seen from the circle with center in 'p'
+	 * and the radius 'range'.
+	 * @param entity The entity from which to check.
+	 * @return List of all entities close to position.
+	 */
+	public List<AbstractEntity> getNearbyEntities(IPlayerControlledEntity entity, float range)
+	{
+		// Preliminary method. May need to be changed to optimize.
+		
+		List<AbstractEntity> output = new ArrayList<AbstractEntity>();
+		
+		for (AbstractEntity e : allEntities)
+		{
+			Vector2d distance = new Vector2d(
+					e.getPosition().getX()-entity.getPosition().getX(),
+					e.getPosition().getY()-entity.getPosition().getY());
+			if (distance.length() - (e.getSize()/2) <= range)
+			{
+				output.add(e);
+			}
+		}
+		return output;
+	}
+	
 	public PlayerControlledEntity getClosestEnemy(PlayerControlledEntity pce) {
-		List<AbstractEntity> nearbyEntities= getNearbyEntities(pce);
+		List<AbstractEntity> nearbyEntities= getNearbyEntities(pce, pce.getSightRange());
 		PlayerControlledEntity closestPCE = null;
 		
 		for(AbstractEntity entity : nearbyEntities) {
@@ -314,7 +316,35 @@ public class EntityManager implements IEntityManager{
 		return closestPCE;
 	}
 	
+	public PlayerControlledEntity getClosestEnemyStructure(IPlayerControlledEntity pce) {
+		List<AbstractEntity> nearbyEntities= getNearbyEntities(pce, 
+				(float)Math.sqrt(Math.pow(100, 2)+ Math.pow(100, 2))); //TODO Anyone, should use world height/width
+		PlayerControlledEntity closestEnemyStruct = null;
+		
+		for(AbstractEntity entity : nearbyEntities) {
+			if(entity instanceof PlayerControlledEntity) {
+				PlayerControlledEntity otherPCE = (PlayerControlledEntity)entity;
+				if(otherPCE instanceof AbstractStructure) {
+					if(closestEnemyStruct != null) {
+						if(Position.getDistance(pce.getPosition(), entity.getPosition())
+								< Position.getDistance(pce.getPosition(), closestEnemyStruct.getPosition()) 
+								&& pce.getOwner() != otherPCE.getOwner()) {
+							closestEnemyStruct = (PlayerControlledEntity)entity;
+						}
+					} else if (pce.getOwner() != otherPCE.getOwner()){
+						closestEnemyStruct = (PlayerControlledEntity)entity;
+					}
+				}
+			}
+		}
+		
+		return closestEnemyStruct;
+	}
+	
+	
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 	}
+
+
 }

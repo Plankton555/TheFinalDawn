@@ -60,6 +60,7 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
 			entity.setPosition(determineNextStep(tpf, entity, targetPosition));
+			
 			if (path.nrOfNodesLeft() == 0)
 			{
 				setFinished(true);

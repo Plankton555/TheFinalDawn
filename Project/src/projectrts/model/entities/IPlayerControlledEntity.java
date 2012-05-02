@@ -2,7 +2,9 @@ package projectrts.model.entities;
 
 import java.util.List;
 
+import projectrts.model.entities.PlayerControlledEntity.State;
 import projectrts.model.player.IPlayer;
+import projectrts.model.utils.Position;
 
 /**
  * 
@@ -39,4 +41,16 @@ public interface IPlayerControlledEntity extends IEntity{
 	 * @return The damage of the entity.
 	 */
 	public int getDamage();
+
+	/**
+	 * @return The state of the unit;
+	 */
+	public State getState();
+	
+	/**
+	 * Uses the given ability if it has it, otherwise nothing happens.
+	 * @param ability The ability to use.
+	 * @param pos The position the ability is used at if applicable.
+	 */
+	public void doAbility(String ability, Position pos);
 }

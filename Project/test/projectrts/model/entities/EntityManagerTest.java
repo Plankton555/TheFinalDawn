@@ -5,8 +5,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import projectrts.model.GameModel;
-import projectrts.model.entities.abilities.AbilityFactory;
-import projectrts.model.entities.abilities.GatherResourceAbility;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
 

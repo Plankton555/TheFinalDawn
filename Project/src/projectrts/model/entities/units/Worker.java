@@ -9,7 +9,7 @@ import projectrts.model.entities.abilities.BuildBarracksAbility;
 import projectrts.model.entities.abilities.BuildWallAbility;
 import projectrts.model.entities.abilities.GatherResourceAbility;
 import projectrts.model.entities.abilities.MoveAbility;
-import projectrts.model.player.Player;
+import projectrts.model.player.IPlayer;
 import projectrts.model.utils.Position;
 
 /**
@@ -30,7 +30,7 @@ public class Worker extends AbstractUnit{
 		EntityFactory.INSTANCE.registerPCE(Worker.class.getSimpleName(), new Worker());
 	}
 	
-	protected void initialize(Player owner, Position spawnPos) {
+	protected void initialize(IPlayer owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 
 		MoveAbility moveAbility = (MoveAbility) AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(),this);
@@ -48,7 +48,7 @@ public class Worker extends AbstractUnit{
 	}
 	
 	@Override
-	public PlayerControlledEntity createPCE(Player owner, Position pos) {
+	public PlayerControlledEntity createPCE(IPlayer owner, Position pos) {
 		Worker newWorker = new Worker();
 		newWorker.initialize(owner, pos);
 		return newWorker;

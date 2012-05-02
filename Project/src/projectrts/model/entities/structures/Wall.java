@@ -3,7 +3,7 @@ package projectrts.model.entities.structures;
 import projectrts.model.entities.AbstractStructure;
 import projectrts.model.entities.EntityFactory;
 import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.player.Player;
+import projectrts.model.player.IPlayer;
 import projectrts.model.utils.Position;
 
 /**
@@ -22,7 +22,7 @@ public class Wall extends AbstractStructure{
 		EntityFactory.INSTANCE.registerPCE(Wall.class.getSimpleName(), new Wall());
 	}
 	
-	protected void initialize(Player owner, Position spawnPos) {
+	protected void initialize(IPlayer owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		this.setName(Wall.class.getSimpleName());
 		this.setSize(size);
@@ -32,7 +32,7 @@ public class Wall extends AbstractStructure{
 	}
 	
 	@Override
-	public PlayerControlledEntity createPCE(Player owner, Position pos) {
+	public PlayerControlledEntity createPCE(IPlayer owner, Position pos) {
 		Wall newBarracks = new Wall();
 		newBarracks.initialize(owner, pos);
 		return newBarracks;

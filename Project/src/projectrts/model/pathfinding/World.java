@@ -122,7 +122,6 @@ public final class World implements IWorld {
 	{
 		int x = (int)p.getX();
 		int y = (int)p.getY();
-		
 		x = (int)ModelUtils.clamp(x, 0, width-1);
 		y = (int)ModelUtils.clamp(y, 0, height-1);
 		return nodes[y][x];
