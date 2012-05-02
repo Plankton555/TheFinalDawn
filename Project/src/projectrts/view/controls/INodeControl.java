@@ -1,6 +1,6 @@
 package projectrts.view.controls;
 
-import projectrts.model.pathfinding.INode;
+import projectrts.model.world.INode;
 
 import com.jme3.scene.control.AbstractControl;
 /**

@@ -16,8 +16,8 @@ import projectrts.model.entities.abilities.AttackAbility;
 import projectrts.model.entities.abilities.GatherResourceAbility;
 import projectrts.model.entities.abilities.MoveAbility;
 import projectrts.model.entities.misc.Resource;
-import projectrts.model.pathfinding.World;
 import projectrts.model.utils.Position;
+import projectrts.model.world.World;
 import projectrts.view.GameView;
 
 import com.jme3.app.SimpleApplication;

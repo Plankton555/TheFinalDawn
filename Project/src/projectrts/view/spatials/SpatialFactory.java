@@ -3,7 +3,7 @@ package projectrts.view.spatials;
 import java.util.HashMap;
 
 import projectrts.model.entities.IEntity;
-import projectrts.model.pathfinding.INode;
+import projectrts.model.world.INode;
 
 import com.jme3.scene.shape.Box;
 /**

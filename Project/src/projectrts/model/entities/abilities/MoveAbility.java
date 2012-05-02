@@ -8,9 +8,9 @@ import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.pathfinding.AStar;
 import projectrts.model.pathfinding.AStarNode;
 import projectrts.model.pathfinding.AStarPath;
-import projectrts.model.pathfinding.INode;
-import projectrts.model.pathfinding.World;
 import projectrts.model.utils.Position;
+import projectrts.model.world.INode;
+import projectrts.model.world.World;
 
 /**
  * An ability for moving

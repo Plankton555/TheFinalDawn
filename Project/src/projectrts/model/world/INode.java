@@ -1,4 +1,4 @@
-package projectrts.model.pathfinding;
+package projectrts.model.world;
 
 import java.util.List;
 

@@ -5,12 +5,11 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-import projectrts.model.constants.P;
 import projectrts.model.entities.abilities.MoveAbility;
-import projectrts.model.pathfinding.INode;
-import projectrts.model.pathfinding.World;
 import projectrts.model.player.IPlayer;
 import projectrts.model.utils.Position;
+import projectrts.model.world.INode;
+import projectrts.model.world.World;
 
 /**
  *  Abstract class for the common part of different  player controlled entities
@@ -135,7 +134,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	}
 	
 	protected void setSightRange(float sightRange){
-		this.sightRange = sightRange*P.getUnitLength();
+		this.sightRange = sightRange;
 	}
 	
 	public void setCurrentHealth(int newCurrentHealth) {

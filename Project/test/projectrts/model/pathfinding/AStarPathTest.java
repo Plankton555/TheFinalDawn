@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import projectrts.model.utils.Position;
+import projectrts.model.world.Node;
 
 public class AStarPathTest {
 

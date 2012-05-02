@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import projectrts.model.utils.Position;
+import projectrts.model.world.Node;
 
 public class AStarNodeTest {
 

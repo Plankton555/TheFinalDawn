@@ -4,9 +4,9 @@ import projectrts.model.entities.AbstractAbility;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IBuildStructureAbility;
 import projectrts.model.entities.IPlayerControlledEntity;
-import projectrts.model.pathfinding.World;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
+import projectrts.model.world.World;
 
 /**
  * An ability for building Barracks

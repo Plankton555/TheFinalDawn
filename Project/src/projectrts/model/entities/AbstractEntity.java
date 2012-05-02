@@ -1,10 +1,10 @@
 package projectrts.model.entities;
 
 import projectrts.model.constants.P;
-import projectrts.model.pathfinding.INode;
-import projectrts.model.pathfinding.IWorld;
-import projectrts.model.pathfinding.World;
 import projectrts.model.utils.Position;
+import projectrts.model.world.INode;
+import projectrts.model.world.IWorld;
+import projectrts.model.world.World;
 
 /**
  * Abstract class for the common parts of the different entities
@@ -34,11 +34,11 @@ public abstract class AbstractEntity implements IEntity {
 	}
 	
 	protected void setSize(float size){
-		this.size=size*P.getUnitLength();
+		this.size=size;
 		occupyNodes(world.getNodeAt(this.getPosition()));
 	}
 	protected void setSpeed(float speed){
-		this.speed=speed*P.getUnitLength();
+		this.speed=speed;
 	}
 	protected void setName(String name) {
 		this.name = name;

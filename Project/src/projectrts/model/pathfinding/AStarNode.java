@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import projectrts.model.utils.Position;
+import projectrts.model.world.INode;
 
 /**
  * A node that is specifically configured to work with the A* pathfinding algorithm.

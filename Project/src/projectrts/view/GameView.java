@@ -9,7 +9,6 @@ import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.IGame;
 import projectrts.model.entities.IEntity;
-import projectrts.model.pathfinding.INode;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.spatials.AbstractSpatial;
 import projectrts.view.spatials.SpatialFactory;
@@ -231,9 +230,9 @@ public class GameView implements PropertyChangeListener{
     	}
     }
     
-    public void drawNodes(List<projectrts.model.pathfinding.INode> coveredNodes){
+    public void drawNodes(List<projectrts.model.world.INode> coveredNodes){
     	clearNodes();
-    	for(projectrts.model.pathfinding.INode node: coveredNodes){
+    	for(projectrts.model.world.INode node: coveredNodes){
     		Box nodeBox = new Box(
 					new Vector3f((float)node.getPosition().getX()*mod,
 							-(float)node.getPosition().getY()*mod,

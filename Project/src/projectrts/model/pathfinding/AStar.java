@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import projectrts.model.utils.Position;
+import projectrts.model.world.IWorld;
 
 /**
  * A* pathfinding algorithm.

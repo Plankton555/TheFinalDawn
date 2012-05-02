@@ -1,7 +1,7 @@
 package projectrts.view.spatials;
 
 import projectrts.global.utils.MaterialManager;
-import projectrts.model.pathfinding.INode;
+import projectrts.model.world.INode;
 import projectrts.view.controls.ControlFactory;
 import projectrts.view.controls.NodeControl;
 

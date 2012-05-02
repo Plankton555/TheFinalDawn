@@ -20,11 +20,11 @@ import projectrts.model.entities.structures.Wall;
 import projectrts.model.entities.units.Warrior;
 import projectrts.model.entities.units.Worker;
 import projectrts.model.pathfinding.AStar;
-import projectrts.model.pathfinding.IWorld;
-import projectrts.model.pathfinding.World;
 import projectrts.model.player.IPlayer;
 import projectrts.model.player.Player;
 import projectrts.model.utils.Position;
+import projectrts.model.world.IWorld;
+import projectrts.model.world.World;
 
 /**
  * The main model class of the RTS Game
