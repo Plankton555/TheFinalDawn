@@ -28,7 +28,7 @@ public class WorldTest {
 		int width = 15;
 		int height = 15;
 		world = World.getInstance();
-		world.initializeWorld(height, width);
+		world.initializeWorld();
 		WorldTest.width = width;
 		WorldTest.height = height;
 	}

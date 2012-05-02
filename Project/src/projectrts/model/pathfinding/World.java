@@ -46,7 +46,7 @@ public final class World implements IWorld {
 	 * @param height Height.
 	 * @param width Width.
 	 */
-	public void initializeWorld(int height, int width) {
+	public void initializeWorld() {
 		initNodes(height, width);
 	}
 	

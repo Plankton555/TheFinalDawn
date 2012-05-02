@@ -6,30 +6,14 @@ package projectrts.model.constants;
  *
  */
 public class P {
-	// TODO Anyone: Change to fields instead of methods?
-	// TODO Anyone: Should we use this class? If not, where do we put all of this stuff?..
-	/**
-	 * A getter for the width of the world.
-	 * @return An int representing the width of the world.
-	 */
-	public static int getWorldWidth() {
-		return 100;
-	}
-	
-	/**
-	 * A getter for the height of the world. 
-	 * @return An integer representing the height of the world.
-	 */
-	public static int getWorldHeight() {
-		return 100;
-	}
-	
+	// TODO Anyone: Remove this class when it's empty.
 	/**
 	 * A getter for the base length of the game.
 	 * @return A float representing the base length.
 	 */
 	public static float getUnitLength() {
 		return 1;
+		// TODO Anyone: Will we ever use another value than 1 here?..
 	}
 	
 	/**
@@ -38,5 +22,6 @@ public class P {
 	 */
 	public static int getWorkerCarryAmount() {
 		return 12;
+		// TODO Jakob: Move this parameter.
 	}
 }
