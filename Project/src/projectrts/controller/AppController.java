@@ -87,11 +87,10 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
     	
     	//TODO Afton: Should not send itself as parameter. Too strong connections
     	menuState = new MenuState(nifty);    	
-    	menuState.setEnabled(true);
+    	menuState.setEnabled(false);
     	menuState.addListener(this);
     	
        	this.stateManager.attach(menuState);
-       	
         
         // Set logger level
         Logger.getLogger("").setLevel(Level.SEVERE);

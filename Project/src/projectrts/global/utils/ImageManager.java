@@ -2,13 +2,13 @@ package projectrts.global.utils;
 
 import java.util.HashMap;
 
-import projectrts.model.entities.abilities.AttackAbility;
-import projectrts.model.entities.abilities.BuildWallAbility;
-import projectrts.model.entities.abilities.GatherResourceAbility;
-import projectrts.model.entities.abilities.MoveAbility;
-import projectrts.model.entities.abilities.OffensiveSpellAbility;
-import projectrts.model.entities.abilities.TrainWarriorAbility;
-import projectrts.model.entities.abilities.TrainWorkerAbility;
+import projectrts.model.abilities.AttackAbility;
+import projectrts.model.abilities.BuildWallAbility;
+import projectrts.model.abilities.GatherResourceAbility;
+import projectrts.model.abilities.MoveAbility;
+import projectrts.model.abilities.OffensiveSpellAbility;
+import projectrts.model.abilities.TrainWarriorAbility;
+import projectrts.model.abilities.TrainWorkerAbility;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.render.NiftyRenderEngine;

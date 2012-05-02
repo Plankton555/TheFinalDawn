@@ -15,8 +15,6 @@ public interface IEntityManager {
 	
 	public void select(Position pos, IPlayer owner);
 	
-	public void useAbilitySelected(String ability, Position p);
-	
 	public List<IEntity> getSelectedEntities();
 	
 	public void addListener(PropertyChangeListener pcl);

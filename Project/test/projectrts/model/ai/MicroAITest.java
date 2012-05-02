@@ -9,7 +9,7 @@ import org.junit.Test;
 import projectrts.model.GameModel;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.entities.units.Warrior;
+import projectrts.model.entities.Warrior;
 import projectrts.model.player.IPlayer;
 import projectrts.model.utils.Position;
 

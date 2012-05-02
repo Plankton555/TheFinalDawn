@@ -54,7 +54,7 @@ public class InGameState extends AbstractAppState {
       guiView = new GameGUIView(nifty, game);
       
       input = new InputController(this.app, game, view);
-      guiControl = new InputGUIController(input, nifty, guiView); 
+      guiControl = new InputGUIController(input, nifty, guiView, game.getAbilityManager()); 
 
       initializeCamera();
       // Initialize view last, after model and controller, since its initialization is dependent on the other's.

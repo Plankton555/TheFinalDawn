@@ -11,7 +11,7 @@ import projectrts.model.utils.Position;
  *
  */
 public enum EntityFactory {INSTANCE;
-	
+
 	private HashMap<String, PlayerControlledEntity> pceMap = new HashMap<String, PlayerControlledEntity>();
 	private HashMap<String, NonPlayerControlledEntity> npceMap = new HashMap<String, NonPlayerControlledEntity>();
 

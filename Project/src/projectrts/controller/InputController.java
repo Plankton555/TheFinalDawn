@@ -5,17 +5,17 @@ import java.util.List;
 import projectrts.global.constants.Constants;
 import projectrts.global.utils.Utils;
 import projectrts.model.IGame;
+import projectrts.model.abilities.AttackAbility;
+import projectrts.model.abilities.GatherResourceAbility;
+import projectrts.model.abilities.IAbility;
+import projectrts.model.abilities.IBuildStructureAbility;
+import projectrts.model.abilities.ITargetAbility;
+import projectrts.model.abilities.MoveAbility;
 import projectrts.model.entities.EntityManager;
-import projectrts.model.entities.IAbility;
-import projectrts.model.entities.IBuildStructureAbility;
 import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
-import projectrts.model.entities.ITargetAbility;
 import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.entities.abilities.AttackAbility;
-import projectrts.model.entities.abilities.GatherResourceAbility;
-import projectrts.model.entities.abilities.MoveAbility;
-import projectrts.model.entities.misc.Resource;
+import projectrts.model.entities.Resource;
 import projectrts.model.utils.Position;
 import projectrts.model.world.World;
 import projectrts.view.GameView;
@@ -228,28 +228,31 @@ public class InputController {
     			if(!World.isAnyNodeOccupied(
     					game.getWorld().getNodesAt(pos, buildingSize))){
     				
-	    			selectedEntity.doAbility(currentAbility.getClass().getSimpleName(), 
-	    					game.getWorld().getNodeAt(pos).getPosition());
+    				game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(),
+    						game.getWorld().getNodeAt(pos).getPosition(), selectedEntity);
 	    			choosingPosition=false;
 	    			view.clearNodes();
     			}
     		}else if(choosingTarget){
     			if(currentAbility instanceof GatherResourceAbility){
     				if(EntityManager.getInstance().getNonPlayerControlledEntity(pos) instanceof Resource){
-    					selectedEntity.doAbility(currentAbility.getClass().getSimpleName(), pos);
+    					game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(),
+        						pos, selectedEntity);
     					choosingTarget=false;
     				}else{
     					//TODO Jakob: Notify gui that target is invalid
     				}
     			}else if(currentAbility instanceof AttackAbility){
     				if(EntityManager.getInstance().getPCEAtPosition(pos)!=null){
-    					selectedEntity.doAbility(currentAbility.getClass().getSimpleName(), pos);
+    					game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(),
+        						pos, selectedEntity);
     					choosingTarget=false;
     				}else{
     					//TODO Jakob: Notify gui that target is invalid
     				}
     			}else{
-    				selectedEntity.doAbility(currentAbility.getClass().getSimpleName(), pos);
+    				game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(),
+    						pos, selectedEntity);
     				choosingTarget=false;
     			}
     		}else{
@@ -270,24 +273,24 @@ public class InputController {
     		}else{
 	    		if(e!=null){
 	    			if(e.getName().equals(Resource.class.getSimpleName())){
-	    				game.getEntityManager().useAbilitySelected(GatherResourceAbility.class.getSimpleName(), click);
+	    				game.getAbilityManager().useAbilitySelected(GatherResourceAbility.class.getSimpleName(), click);
 	    				
 	    			}else if(e instanceof PlayerControlledEntity){
 	    				PlayerControlledEntity pce = (PlayerControlledEntity) e;
 	    				if(!pce.getOwner().equals(game.getHumanPlayer())){
-	    					game.getEntityManager().useAbilitySelected(AttackAbility.class.getSimpleName(), pce.getPosition());
+	    					game.getAbilityManager().useAbilitySelected(AttackAbility.class.getSimpleName(), pce.getPosition());
 	    				}else{
-	    					game.getEntityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
+	    					game.getAbilityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
 	    	    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    				}
 	    			}else{
-	    				game.getEntityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
+	    				game.getAbilityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
 		    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    			}
 	    			
 	    		}
 	    		else{
-	    			game.getEntityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
+	    			game.getAbilityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
 	    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
 	    		}
     		}
@@ -342,7 +345,7 @@ public class InputController {
     	}else if(currentAbility instanceof ITargetAbility){
     		choosingTarget=true;
     	}else{
-    		pce.doAbility(currentAbility.getClass().getSimpleName(), pce.getPosition());
+    		game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(), pce.getPosition(), pce);
     	}
     	System.out.println(ability.getName());
     }

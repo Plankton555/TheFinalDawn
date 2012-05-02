@@ -25,6 +25,11 @@ public interface IEntity{
 	public float getSpeed();
 	
 	/**
+	 * @return The entity's ID
+	 */
+	public int getEntityID();
+	
+	/**
 	 * @return The name of the entity
 	 */
 	public String getName();

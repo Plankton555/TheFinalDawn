@@ -1,5 +1,6 @@
 package projectrts.model;
 
+import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.IEntityManager;
 import projectrts.model.player.IPlayer;
 import projectrts.model.world.IWorld;
@@ -26,6 +27,11 @@ public interface IGame {
 	 * @return The entity manager.
 	 */
 	public IEntityManager getEntityManager();
+	
+	/**
+	 * @return The ability manager.
+	 */
+	public IAbilityManager getAbilityManager();
 	
 	/**
 	 * @return The game world.

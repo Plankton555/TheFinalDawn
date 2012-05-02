@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.vecmath.Vector2d;
 
-import projectrts.model.ai.MicroAI;
 import projectrts.model.player.IPlayer;
 import projectrts.model.utils.ModelUtils;
 import projectrts.model.utils.Position;
@@ -24,10 +23,25 @@ public class EntityManager implements IEntityManager{
 	private List<AbstractEntity> entitiesAddQueue = new ArrayList<AbstractEntity>();
 	private List<AbstractEntity> entitiesRemoveQueue = new ArrayList<AbstractEntity>();
 	private List<PlayerControlledEntity> selectedEntities = new ArrayList<PlayerControlledEntity>();
-	private List<MicroAI> microAIs = new ArrayList<MicroAI>();
 	private int idCounter = 0;
 	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-
+	
+	static {
+		try
+		{
+			// Initialize the entity classes.
+			Class.forName(Warrior.class.getName());
+			Class.forName(Worker.class.getName());
+			Class.forName(Resource.class.getName());
+			Class.forName(Headquarter.class.getName());
+			Class.forName(Barracks.class.getName());
+			Class.forName(Wall.class.getName());			
+		}
+		catch (ClassNotFoundException any)
+		{
+			any.printStackTrace();
+		}
+    }
 	
 	/**
 	 * @return The instance of this class.
@@ -43,10 +57,6 @@ public class EntityManager implements IEntityManager{
 	 */
 	public void update(float tpf)
 	{	
-		for (MicroAI mAI : microAIs) {
-			mAI.update(tpf);
-		}
-		
 		for (AbstractEntity e : allEntities)
 		{
 			e.update(tpf);
@@ -55,17 +65,11 @@ public class EntityManager implements IEntityManager{
 		for (AbstractEntity e : entitiesAddQueue){
 			allEntities.add(e);
 			pcs.firePropertyChange("entityCreated", null, e);
-			System.out.println(e.getName());
 			
 			
 		}
 		
 		for (AbstractEntity e : entitiesRemoveQueue) {
-			for(int i = 0; i < microAIs.size(); i++) {
-				if(microAIs.get(i).getEntity().equals(e)) {
-					microAIs.remove(i);
-				}
-			}
 			for (int i = 0; i < allEntities.size(); i++) {
 				if (e.equals(allEntities.get(i))) {
 					allEntities.remove(i);
@@ -135,7 +139,6 @@ public class EntityManager implements IEntityManager{
 	 */
 	public void addNewPCE(String pce, IPlayer owner, Position pos) {
 		PlayerControlledEntity newPCE = EntityFactory.INSTANCE.createPCE(pce, owner, pos);
-		microAIs.add(new MicroAI(newPCE));
 		entitiesAddQueue.add(newPCE);
 	}
 	
@@ -225,20 +228,6 @@ public class EntityManager implements IEntityManager{
 		PlayerControlledEntity entity = getPCEAtPosition(pos, owner);
 		if(entity!=null){ //No entity is at that position
 			selectedEntities.add(entity);
-		}
-	}
-	
-	/**
-	 * Uses the abilities of the seleced entities
-	 * @param ability the ability to be used
-	 * @param p the position to use the ability at
-	 */
-	public void useAbilitySelected(String ability, Position p){
-		for(IEntity entity: selectedEntities){
-			if(entity instanceof PlayerControlledEntity){
-				PlayerControlledEntity unit = (PlayerControlledEntity) entity;
-				unit.doAbility(ability, p);
-			}
 		}
 	}
 	

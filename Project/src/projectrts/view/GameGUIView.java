@@ -6,7 +6,7 @@ import java.util.List;
 
 import projectrts.global.utils.ImageManager;
 import projectrts.model.IGame;
-import projectrts.model.entities.IAbility;
+import projectrts.model.abilities.IAbility;
 import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
 import de.lessvoid.nifty.Nifty;
@@ -122,7 +122,7 @@ public class GameGUIView implements PropertyChangeListener {
 	private void updateAbilities(){
 		if(selectedPce!=null){
 			panelAbilities.setVisible(true);
-	    	List<IAbility> abilities = selectedPce.getAbilities();
+	    	List<IAbility> abilities = game.getAbilityManager().getAbilities(selectedPce);
 	    	
 	    	//Loops through every button and sets its attributes
 	    	for(int i = 0; i<8; i++){

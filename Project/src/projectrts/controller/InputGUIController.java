@@ -3,7 +3,8 @@ package projectrts.controller;
 import java.util.List;
 
 import projectrts.global.utils.ImageManager;
-import projectrts.model.entities.IAbility;
+import projectrts.model.abilities.IAbility;
+import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.view.GameGUIView;
@@ -28,7 +29,7 @@ public class InputGUIController implements ScreenController {
 	private Nifty nifty;
 	private Screen screen;
 	private GameGUIView guiView;
-	
+	private IAbilityManager abilityManager;
 	private InputController input;
 	
 	private IPlayerControlledEntity selectedPce;
@@ -39,10 +40,11 @@ public class InputGUIController implements ScreenController {
 	 * @param input the inputController
 	 * @param nifty the nifty
 	 */
-	public InputGUIController(InputController input, Nifty nifty, GameGUIView guiView) {
+	public InputGUIController(InputController input, Nifty nifty, GameGUIView guiView, IAbilityManager abilityManager) {
 		this.input = input;
 		this.nifty = nifty;
 		this.guiView = guiView;
+		this.abilityManager = abilityManager;
 		
 		initializeGUI();
 		input.setGUIControl(this);
@@ -309,7 +311,7 @@ public class InputGUIController implements ScreenController {
 
 			int iNr = Integer.parseInt(nr);
 			
-			List<IAbility> abilities = selectedPce.getAbilities();
+			List<IAbility> abilities = abilityManager.getAbilities(selectedPce);
 			if(iNr-1<abilities.size()){
 				input.selectAbility(abilities.get(iNr-1), selectedPce);
 			}

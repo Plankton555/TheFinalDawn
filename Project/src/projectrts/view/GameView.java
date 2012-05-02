@@ -9,6 +9,7 @@ import projectrts.global.utils.MaterialManager;
 import projectrts.global.utils.TextureManager;
 import projectrts.model.IGame;
 import projectrts.model.entities.IEntity;
+import projectrts.model.world.INode;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.spatials.AbstractSpatial;
 import projectrts.view.spatials.SpatialFactory;

@@ -2,10 +2,11 @@ package projectrts.model.ai;
 
 import java.util.List;
 
+import projectrts.model.abilities.AttackAbility;
+import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.entities.abilities.AttackAbility;
 import projectrts.model.player.IPlayer;
 
 public class StrategicAI {
@@ -13,9 +14,11 @@ public class StrategicAI {
 	private final float cooldownInterval = 0.5f;
 	private float cooldownRemaining = 0;
 	private IPlayer aiPlayer;
+	private IAbilityManager abilityManager;
 	
-	public StrategicAI(IPlayer aiPlayer) {
+	public StrategicAI(IPlayer aiPlayer, IAbilityManager abilityManager) {
 		this.aiPlayer = aiPlayer;
+		this.abilityManager = abilityManager;
 	}
 	
 	public void update(float tpf) {
@@ -24,8 +27,8 @@ public class StrategicAI {
 			for(IPlayerControlledEntity entity : entities) {
 				if(entity.getState() == PlayerControlledEntity.State.IDLE) {
 					if(EntityManager.getInstance().getClosestEnemyStructure(entity) != null) {
-						entity.doAbility(AttackAbility.class.getSimpleName(), 
-								EntityManager.getInstance().getClosestEnemyStructure(entity).getPosition());
+						abilityManager.doAbility(AttackAbility.class.getSimpleName(), 
+								EntityManager.getInstance().getClosestEnemyStructure(entity).getPosition(), entity);
 					}
 				}
 			}

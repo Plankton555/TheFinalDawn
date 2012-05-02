@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import projectrts.model.GameModel;
 import projectrts.model.entities.EntityManager;
+import projectrts.model.entities.Headquarter;
 import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.entities.structures.Headquarter;
-import projectrts.model.entities.units.Warrior;
+import projectrts.model.entities.Warrior;
 import projectrts.model.player.IPlayer;
 import projectrts.model.utils.Position;
 
@@ -32,15 +32,15 @@ public class StrategicAITest {
 		model = new GameModel();
 		aiPlayer = model.getAIPlayer();
 		humanPlayer = model.getHumanPlayer();
-		EntityManager.getInstance().addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(52.5, 52.5));
-		EntityManager.getInstance().addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(52.5, 62.5));
+		EntityManager.getInstance().addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(1.5, 1.5));
+		EntityManager.getInstance().addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(1.5, 10.5));
 		model.update(1f);
-		enemyWarrior = EntityManager.getInstance().getPCEAtPosition(new Position(52.5, 52.5), aiPlayer);
-		myHQ = EntityManager.getInstance().getPCEAtPosition(new Position(52.5, 62.5), humanPlayer);
-		for(int i = 0; i < 5000; i++) {
+		enemyWarrior = EntityManager.getInstance().getPCEAtPosition(new Position(1.5, 1.5), aiPlayer);
+		myHQ = EntityManager.getInstance().getPCEAtPosition(new Position(1.5, 10.5), humanPlayer);
+		for(int i = 0; i < 500; i++) {
 			model.update(0.5f);
 		}
-		assertTrue(enemyWarrior.getPosition().getX() != 52.5 || enemyWarrior.getPosition().getY() != 52.5);
+		assertTrue(enemyWarrior.getPosition().getX() != 1.5 || enemyWarrior.getPosition().getY() != 1.5);
 		assertTrue(myHQ.isDead());
 
 

@@ -1,6 +1,5 @@
 package projectrts.model.entities;
 
-import projectrts.model.constants.P;
 import projectrts.model.utils.Position;
 import projectrts.model.world.INode;
 import projectrts.model.world.IWorld;
@@ -64,6 +63,7 @@ public abstract class AbstractEntity implements IEntity {
 		return position;
 	}
 	
+	@Override
 	public int getEntityID()
 	{
 		return entityID;
