@@ -8,7 +8,7 @@ import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.pathfinding.AStar;
 import projectrts.model.pathfinding.AStarNode;
 import projectrts.model.pathfinding.AStarPath;
-import projectrts.model.pathfinding.Node;
+import projectrts.model.pathfinding.INode;
 import projectrts.model.pathfinding.World;
 import projectrts.model.utils.Position;
 
@@ -22,7 +22,7 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	private Position targetPosition;
 	
 	private World world;
-	private Node occupiedNode;
+	private INode occupiedNode;
 
 	private AStarPath path;
 	private boolean pathRefresh = true;
@@ -120,7 +120,7 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 		return outputPos;
 	}
 	
-	private void refreshPath(Position herePos, Position targetPos, Node hereNode,
+	private void refreshPath(Position herePos, Position targetPos, INode hereNode,
 			int entityID, float entitySize)
 	{
 		path = AStar.calculatePath(herePos, targetPos, 1, entityID);
@@ -149,7 +149,7 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	/**
 	 * @return the occupiedNode
 	 */
-	public Node getOccupiedNode() {
+	public INode getOccupiedNode() {
 		return occupiedNode;
 	}
 }

@@ -13,7 +13,7 @@ import projectrts.model.utils.Position;
  */
 public class AStarNode implements Comparable<AStarNode> {
 	
-	private final Node node;
+	private final INode node;
 	private int costFromStart;
 	private int heuristic;
 	private AStarNode parent;
@@ -22,7 +22,7 @@ public class AStarNode implements Comparable<AStarNode> {
 	 * Creates a new AStarNode that refers to the provided node.
 	 * @param node Node
 	 */
-	public AStarNode(Node node)
+	public AStarNode(INode node)
 	{
 		this.node = node;
 	}
@@ -33,9 +33,9 @@ public class AStarNode implements Comparable<AStarNode> {
 	public List<AStarNode> getNeighbours()
 	{
 		List<AStarNode> output = new ArrayList<AStarNode>();
-		List<Node> neighbours = node.getNeighbours();
+		List<INode> neighbours = node.getNeighbours();
 		
-		for (Node n : neighbours)
+		for (INode n : neighbours)
 		{
 			output.add(new AStarNode(n));
 		}
@@ -203,7 +203,7 @@ public class AStarNode implements Comparable<AStarNode> {
 	/**
 	 * @return The "real" node (Node).
 	 */
-	public Node getNode()
+	public INode getNode()
 	{
 		return node;
 	}

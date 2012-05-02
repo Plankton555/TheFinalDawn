@@ -35,7 +35,7 @@ public class WorldTest {
 
 	@Test
 	public void testGetNodes() {
-		Node[][] nodes = world.getNodes();
+		INode[][] nodes = world.getNodes();
 		
 		assertTrue(nodes.length == height);
 		for (int i = 0; i < nodes.length; i++)
@@ -51,12 +51,12 @@ public class WorldTest {
 	@Test
 	public void testGetNodeAt() {
 		p = new Position(0, 0);
-		Node node = world.getNodeAt(p);
-		Node[][] nodeMatrix = world.getNodes();
-		List<Node> allNodes = new ArrayList<Node>();
-		Comparator<Node> comparatorDistance = new Comparator<Node>() {
+		INode node = world.getNodeAt(p);
+		INode[][] nodeMatrix = world.getNodes();
+		List<INode> allNodes = new ArrayList<INode>();
+		Comparator<INode> comparatorDistance = new Comparator<INode>() {
 			@Override
-			public int compare(Node o1, Node o2) {
+			public int compare(INode o1, INode o2) {
 				double dist1 = Position.getVectorBetween(p, o1.getPosition()).length();
 				double dist2 = Position.getVectorBetween(p, o2.getPosition()).length();
 				int result = Double.compare(dist1, dist2);
@@ -118,11 +118,11 @@ public class WorldTest {
 	@Test
 	public void testIsAdjecentTo()
 	{
-		Node node1 = new Node(0,0);
-		Node node2 = new Node(1,0);
-		Node node3 = new Node(2,0);
-		Node node4 = new Node(3,0);
-		List<Node> nodes = new ArrayList<Node>();
+		INode node1 = new Node(0,0);
+		INode node2 = new Node(1,0);
+		INode node3 = new Node(2,0);
+		INode node4 = new Node(3,0);
+		List<INode> nodes = new ArrayList<INode>();
 		nodes.add(node2);
 		nodes.add(node3);
 		nodes.add(node4);

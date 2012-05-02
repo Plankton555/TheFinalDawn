@@ -7,7 +7,7 @@ import java.util.List;
 
 import projectrts.model.constants.P;
 import projectrts.model.entities.abilities.MoveAbility;
-import projectrts.model.pathfinding.Node;
+import projectrts.model.pathfinding.INode;
 import projectrts.model.pathfinding.World;
 import projectrts.model.player.IPlayer;
 import projectrts.model.player.Player;
@@ -101,7 +101,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	
 	private void setDead() {
 		dead = true;
-		Node occupiedNode = World.getInstance().getNodeAt(getPosition());
+		INode occupiedNode = World.getInstance().getNodeAt(getPosition());
 		for(AbstractAbility ability: abilities){
 			ability.setFinished(true);
 			if (ability instanceof MoveAbility)

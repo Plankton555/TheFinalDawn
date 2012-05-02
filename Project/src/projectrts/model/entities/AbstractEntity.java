@@ -1,7 +1,7 @@
 package projectrts.model.entities;
 
 import projectrts.model.constants.P;
-import projectrts.model.pathfinding.Node;
+import projectrts.model.pathfinding.INode;
 import projectrts.model.pathfinding.World;
 import projectrts.model.utils.Position;
 
@@ -76,7 +76,7 @@ public abstract class AbstractEntity implements IEntity {
 		position = pos.copy();
 	}
 	
-	private void occupyNodes(Node newNode)
+	private void occupyNodes(INode newNode)
 	{
 		world.setNodesOccupied(newNode, getSize(), getEntityID());
 	}

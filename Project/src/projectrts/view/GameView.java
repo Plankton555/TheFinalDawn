@@ -231,9 +231,9 @@ public class GameView implements PropertyChangeListener{
     	}
     }
     
-    public void drawNodes(List<projectrts.model.pathfinding.Node> coveredNodes){
+    public void drawNodes(List<projectrts.model.pathfinding.INode> coveredNodes){
     	clearNodes();
-    	for(projectrts.model.pathfinding.Node node: coveredNodes){
+    	for(projectrts.model.pathfinding.INode node: coveredNodes){
     		Box nodeBox = new Box(
 					new Vector3f((float)node.getPosition().getX()*mod,
 							-(float)node.getPosition().getY()*mod,

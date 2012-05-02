@@ -16,7 +16,7 @@ public class Node implements INode {
 	private int occupyingEntityID = 0;
 	//private int distanceToObstacle = 10; // needed for different entity sizes
 	private float cost = 1;
-	private List<Node> neighbours = new ArrayList<Node>();
+	private List<INode> neighbours = new ArrayList<INode>();
 	
 	/**
 	 * Creates a new node at the position.
@@ -50,10 +50,7 @@ public class Node implements INode {
 		return isOccupied(0);
 	}
 	
-	/**
-	 * @param occupyingEntityID ID of occupying entity.
-	 * @return Is occupied
-	 */
+	@Override
 	public boolean isOccupied(int occupyingEntityID) {
 		return (!(this.occupyingEntityID == occupyingEntityID || this.occupyingEntityID == 0));
 	}
@@ -72,25 +69,19 @@ public class Node implements INode {
 		// TODO Plankton: !Implement Node.updateDistanceToObstacle()
 	}
 	
-	/**
-	 * Returns a list of all nodes that are neighbours (connected) to this node.
-	 * @return List of the node's neighbours.
-	 */
-	public List<Node> getNeighbours()
+	@Override
+	public List<INode> getNeighbours()
 	{
-		List<Node> output = new ArrayList<Node>();
-		for (Node n : neighbours)
+		List<INode> output = new ArrayList<INode>();
+		for (INode n : neighbours)
 		{
 			output.add(n);
 		}
 		return output;
 	}
 	
-	/**
-	 * Adds a new neighbour (connection) to this node.
-	 * @param node The new neighbour.
-	 */
-	public void addNeighbour(Node node)
+	@Override
+	public void addNeighbour(INode node)
 	{
 		if (!this.equals(node))
 		{
@@ -130,9 +121,7 @@ public class Node implements INode {
 		return true;
 	}
 	
-	/**
-	 * @return Cost
-	 */
+	@Override
 	public float getCost() {
 		return cost;
 	}

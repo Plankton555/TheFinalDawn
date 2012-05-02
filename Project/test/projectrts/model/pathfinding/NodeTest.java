@@ -45,7 +45,7 @@ public class NodeTest {
 		Node node1 = new Node(2, 5);
 		Node node2 = new Node(1, 8);
 		Node node3 = new Node(3, 5);
-		List<Node> nodes = node1.getNeighbours();
+		List<INode> nodes = node1.getNeighbours();
 		assertTrue(nodes.size() == 0);
 		
 		node1.addNeighbour(node2);

@@ -11,7 +11,7 @@ import projectrts.model.utils.Position;
  * @author Bjorn Persson Mattsson
  *
  */
-public final class World {
+public final class World implements IWorld {
 	
 	// TODO Plankton: !!!Communicate via INode instead of Node?.. Especially when outside of model
 	private static World instance;
@@ -28,8 +28,18 @@ public final class World {
 		return instance;
 	}
 	
-	private int width;
-	private int height;
+	private int width = 100;
+	private int height = 100;
+	
+
+	@Override
+	public int getWorldWidth() {
+		return width;
+	}
+	@Override
+	public int getWorldHeight() {
+		return height;
+	}
 	
 	/**
 	 * Initializes the world with specified height and width.
@@ -88,7 +98,8 @@ public final class World {
 	/**
 	 * @return The matrix of all nodes.
 	 */
-	public Node[][] getNodes()
+	@Override
+	public INode[][] getNodes()
 	{
 		Node[][] output = new Node[height][width];
 		for (int i = 0; i < height; i++)
@@ -106,7 +117,8 @@ public final class World {
 	 * @param p Position.
 	 * @return Node at position.
 	 */
-	public Node getNodeAt(Position p)
+	@Override
+	public INode getNodeAt(Position p)
 	{
 		int x = (int)p.getX();
 		int y = (int)p.getY();
@@ -122,9 +134,10 @@ public final class World {
 	 * @param entitySize The size around the center node that will be occupied.
 	 * @param entityID ID of the entity that occupies.
 	 */
-	public void setNodesOccupied(Node nodeInCenter, float entitySize, int entityID) {
-		List<Node> changingNodes = getNodesAt(nodeInCenter.getPosition(), entitySize);
-		for (Node n : changingNodes)
+	@Override
+	public void setNodesOccupied(INode nodeInCenter, float entitySize, int entityID) {
+		List<INode> changingNodes = getNodesAt(nodeInCenter.getPosition(), entitySize);
+		for (INode n : changingNodes)
 		{
 			n.setOccupied(entityID);
 		}
@@ -137,10 +150,11 @@ public final class World {
 	 * @param size Size.
 	 * @return All nodes that would be covered.
 	 */
-	public List<Node> getNodesAt(Position centerPos, float size)
+	@Override
+	public List<INode> getNodesAt(Position centerPos, float size)
 	{
 		// Maybe find some other way to do this...
-		List<Node> output = new ArrayList<Node>();
+		List<INode> output = new ArrayList<INode>();
 		int offset = (int) (size/2);
 		int centerX = (int) centerPos.getX();
 		int centerY = (int) centerPos.getY();
@@ -166,9 +180,9 @@ public final class World {
 	 * @param nodes The nodes to be examined.
 	 * @return true if any node is occupied, otherwise false.
 	 */
-	public static boolean isAnyNodeOccupied(List<Node> nodes){
+	public static boolean isAnyNodeOccupied(List<INode> nodes){
 		// TODO Plankton: !Keep this method in World or Node?
-		for(Node node: nodes)
+		for(INode node: nodes)
 		{
 			if(node.isOccupied())
 			{
@@ -184,11 +198,11 @@ public final class World {
 	 * @param nodes The list of nodes that will be checked.
 	 * @return true if the node is adjacent to any of the nodes in the list, otherwise false.
 	 */
-	public static boolean isAdjacentTo(Node node, List<Node> nodes)
+	public static boolean isAdjacentTo(INode node, List<INode> nodes)
 	{
 		// TODO Plankton: !Keep this method in World or Node?
-		List<Node> adjacentNodes = node.getNeighbours();
-		for (Node adjNode : adjacentNodes)
+		List<INode> adjacentNodes = node.getNeighbours();
+		for (INode adjNode : adjacentNodes)
 		{
 			if (nodes.contains(adjNode))
 			{
