@@ -32,6 +32,7 @@ public class GameGUIView implements PropertyChangeListener {
 	private Element labelTime;
 	private Element labelPlayerInfo;
 	private Element panelInfo;
+	private Element panelAbilities;
 	private Element labelMessage;
 	
 	private IPlayerControlledEntity selectedPce;
@@ -68,6 +69,7 @@ public class GameGUIView implements PropertyChangeListener {
 		labelPlayerInfo = screen.findElementByName("Label_PlayerInfo");
 		panelInfo = screen.findElementByName("Panel_SelectedInfo");
 		labelMessage = screen.findElementByName("Label_Message");
+		panelAbilities = screen.findElementByName("Panel_Abilities");
 		
 		updatePlayerInfo();
 	}
@@ -119,6 +121,7 @@ public class GameGUIView implements PropertyChangeListener {
 	
 	private void updateAbilities(){
 		if(selectedPce!=null){
+			panelAbilities.setVisible(true);
 	    	List<IAbility> abilities = selectedPce.getAbilities();
 	    	
 	    	//Loops through every button and sets its attributes
@@ -144,6 +147,9 @@ public class GameGUIView implements PropertyChangeListener {
 	    		}
 	
 	    	}
+	    	
+		} else {
+			panelAbilities.setVisible(false);
 		}
 	}
 	

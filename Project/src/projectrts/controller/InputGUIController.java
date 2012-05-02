@@ -276,6 +276,8 @@ public class InputGUIController implements ScreenController {
     	
     	if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
     		selectedPce = (IPlayerControlledEntity) selectedEntities.get(0);
+    	} else {
+    		selectedPce = null;
     	}
     	guiView.updateSelected(selectedPce);
     }
