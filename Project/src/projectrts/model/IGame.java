@@ -1,7 +1,7 @@
 package projectrts.model;
 
 import projectrts.model.entities.IEntityManager;
-import projectrts.model.pathfinding.INode;
+import projectrts.model.pathfinding.IWorld;
 import projectrts.model.player.IPlayer;
 
 /**
@@ -28,9 +28,9 @@ public interface IGame {
 	public IEntityManager getEntityManager();
 	
 	/**
-	 * @return The matrix of nodes.
+	 * @return The game world.
 	 */
-	public INode[][] getNodes();
+	public IWorld getWorld();
 	
 	/**
 	 * @return The current game time.

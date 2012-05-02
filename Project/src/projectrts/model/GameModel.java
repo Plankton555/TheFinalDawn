@@ -19,7 +19,7 @@ import projectrts.model.entities.structures.Headquarter;
 import projectrts.model.entities.structures.Wall;
 import projectrts.model.entities.units.Warrior;
 import projectrts.model.entities.units.Worker;
-import projectrts.model.pathfinding.INode;
+import projectrts.model.pathfinding.IWorld;
 import projectrts.model.pathfinding.World;
 import projectrts.model.player.IPlayer;
 import projectrts.model.player.Player;
@@ -102,8 +102,8 @@ public class GameModel implements IGame {
 	}
 
 	@Override
-	public INode[][] getNodes() {
-		return world.getNodes();
+	public IWorld getWorld() {
+		return world;
 	}
 
 	@Override

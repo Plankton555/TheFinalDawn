@@ -132,7 +132,7 @@ public class GameView implements PropertyChangeListener{
 	private void initializeDebug() {
 		if (Constants.isDebugNodes())
 		{
-			integrateNodes(game.getNodes());
+			integrateNodes(game.getWorld().getNodes());
 		}
 		
 		this.app.getRootNode().attachChild(debug);
