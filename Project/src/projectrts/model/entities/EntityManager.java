@@ -73,6 +73,7 @@ public class EntityManager implements IEntityManager{
 			for (int i = 0; i < allEntities.size(); i++) {
 				if (e.equals(allEntities.get(i))) {
 					allEntities.remove(i);
+					selectedEntities.remove(e);
 					pcs.firePropertyChange("entityRemoved", e, null);
 				}
 			}
