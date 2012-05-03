@@ -2,7 +2,6 @@ package projectrts.model.world;
 
 import java.util.List;
 
-import projectrts.model.utils.Position;
 
 public interface INode {
 	

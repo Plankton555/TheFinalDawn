@@ -3,7 +3,6 @@ package projectrts.model.world;
 import java.util.ArrayList;
 import java.util.List;
 
-import projectrts.model.utils.Position;
 
 /**
  * A node with the primary purpose of helping with pathfinding.

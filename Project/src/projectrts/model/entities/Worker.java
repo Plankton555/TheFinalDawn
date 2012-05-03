@@ -1,7 +1,6 @@
 package projectrts.model.entities;
 
-import projectrts.model.player.IPlayer;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 
 /**
  * A worker unit for building and harvesting
@@ -21,7 +20,7 @@ public class Worker extends AbstractUnit{
 		EntityFactory.INSTANCE.registerPCE(Worker.class.getSimpleName(), new Worker());
 	}
 	
-	protected void initialize(IPlayer owner, Position spawnPos) {
+	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		setName(Worker.class.getSimpleName());
 		setSize(size);
@@ -32,7 +31,7 @@ public class Worker extends AbstractUnit{
 	}
 	
 	@Override
-	public PlayerControlledEntity createPCE(IPlayer owner, Position pos) {
+	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		Worker newWorker = new Worker();
 		newWorker.initialize(owner, pos);
 		return newWorker;

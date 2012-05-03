@@ -2,7 +2,7 @@ package projectrts.controller;
 
 import java.util.List;
 
-import projectrts.global.utils.ImageManager;
+import projectrts.io.ImageManager;
 import projectrts.model.abilities.IAbility;
 import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.IEntity;

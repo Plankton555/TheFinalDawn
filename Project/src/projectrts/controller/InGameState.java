@@ -1,8 +1,8 @@
 package projectrts.controller;
 
 
-import projectrts.global.constants.Constants;
 import projectrts.model.IGame;
+import projectrts.model.world.Position;
 import projectrts.view.GameGUIView;
 import projectrts.view.GameView;
 
@@ -29,6 +29,19 @@ public class InGameState extends AbstractAppState {
     private GameGUIView guiView;
     private InputGUIController guiControl;
     private Nifty nifty;
+    
+    public static final float MODEL_TO_WORLD = 0.05f;
+    
+	/**
+	 * Converts a Vector3f position from the world into a Position position in model.
+	 * @param worldLoc The world position.
+	 * @return The model position in the form of a Position.
+	 */
+	public static Position convertWorldToModel(Vector3f worldLoc) {
+		float x = worldLoc.x / InGameState.MODEL_TO_WORLD;
+		float y = -worldLoc.y / InGameState.MODEL_TO_WORLD;
+		return new Position(x, y);
+	}
     
     public InGameState(IGame game, Nifty nifty) {
         super();
@@ -116,7 +129,7 @@ public class InGameState extends AbstractAppState {
     private void initializeCamera() {
     	int worldWidth = game.getWorld().getWorldWidth();
     	int worldHeight = game.getWorld().getWorldHeight();
-    	app.getCamera().setLocation(app.getCamera().getLocation().add(new Vector3f((worldWidth / 2) * Constants.getModelToWorld(),
-    			-(worldHeight / 2) * Constants.getModelToWorld(), 0)));
+    	app.getCamera().setLocation(app.getCamera().getLocation().add(new Vector3f((worldWidth / 2) * MODEL_TO_WORLD,
+    			-(worldHeight / 2) * MODEL_TO_WORLD, 0)));
     }
 }

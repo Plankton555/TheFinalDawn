@@ -1,6 +1,6 @@
 package projectrts.model.entities;
 
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 /**
  * Abstract class for the common part of different non player controlled entities
  * @author Jakob Svensson

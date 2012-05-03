@@ -1,7 +1,6 @@
 package projectrts.model.entities;
 
-import projectrts.model.player.IPlayer;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 
 /**
  * A building for training warriors 
@@ -19,7 +18,7 @@ public class Barracks extends AbstractStructure{
 		EntityFactory.INSTANCE.registerPCE(Barracks.class.getSimpleName(), new Barracks());
 	}
 	
-	protected void initialize(IPlayer owner, Position spawnPos) {
+	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		this.setName(Barracks.class.getSimpleName());
 		this.setSize(size);
@@ -29,7 +28,7 @@ public class Barracks extends AbstractStructure{
 	}
 	
 	@Override
-	public PlayerControlledEntity createPCE(IPlayer owner, Position pos) {
+	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		Barracks newBarracks = new Barracks();
 		newBarracks.initialize(owner, pos);
 		return newBarracks;

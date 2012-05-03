@@ -6,10 +6,10 @@ import org.junit.Test;
 
 import projectrts.model.GameModel;
 import projectrts.model.entities.EntityManager;
+import projectrts.model.entities.Player;
 import projectrts.model.entities.Resource;
 import projectrts.model.entities.Worker;
-import projectrts.model.player.Player;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 /**
  * Test for GatherResourceAbility
  * @author Jakob Svensson

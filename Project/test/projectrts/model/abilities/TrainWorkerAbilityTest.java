@@ -7,8 +7,8 @@ import org.junit.Test;
 import projectrts.model.GameModel;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Headquarter;
-import projectrts.model.player.Player;
-import projectrts.model.utils.Position;
+import projectrts.model.entities.Player;
+import projectrts.model.world.Position;
 /**
  * A test class for testing TrainWorkerAbility
  * @author Jakob Svensson

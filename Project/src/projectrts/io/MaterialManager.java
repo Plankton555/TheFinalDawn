@@ -1,4 +1,4 @@
-package projectrts.global.utils;
+package projectrts.io;
 
 import java.util.HashMap;
 

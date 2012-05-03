@@ -4,7 +4,7 @@ import projectrts.model.entities.AbstractEntity;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.Resource;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 /**
  * An ability for moving to a resource and mine from it
  * @author Jakob Svensson

@@ -4,15 +4,25 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import projectrts.global.constants.Constants;
-import projectrts.global.utils.MaterialManager;
-import projectrts.global.utils.TextureManager;
+import projectrts.controller.InGameState;
+import projectrts.io.MaterialManager;
+import projectrts.io.TextureManager;
 import projectrts.model.IGame;
 import projectrts.model.entities.IEntity;
 import projectrts.model.world.INode;
 import projectrts.view.controls.MoveControl;
+import projectrts.view.controls.NodeControl;
+import projectrts.view.controls.SelectControl;
 import projectrts.view.spatials.AbstractSpatial;
+import projectrts.view.spatials.BarracksSpatial;
+import projectrts.view.spatials.DebugNodeSpatial;
+import projectrts.view.spatials.HeadquarterSpatial;
+import projectrts.view.spatials.ResourceSpatial;
+import projectrts.view.spatials.SelectSpatial;
 import projectrts.view.spatials.SpatialFactory;
+import projectrts.view.spatials.WallSpatial;
+import projectrts.view.spatials.WarriorSpatial;
+import projectrts.view.spatials.WorkerSpatial;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -42,8 +52,34 @@ public class GameView implements PropertyChangeListener{
     private Node mouseEffects = new Node("mouseEffects"); // The node for mouseEffects
     private Material matTerrain;
     private TerrainQuad terrain;
-    private float mod = Constants.getModelToWorld(); // The modifier value for converting lengths between model and world.
+    private float mod = InGameState.MODEL_TO_WORLD; // The modifier value for converting lengths between model and world.
+    
+    private boolean debugNodes = false; //TODO (Won't have time for this but adds it as a TODO nonetheless) add a debug mode.
 	
+	static{
+		try
+		{
+			// Initialize the control classes.
+			Class.forName(MoveControl.class.getName());
+			Class.forName(SelectControl.class.getName());
+			Class.forName(NodeControl.class.getName());
+			
+			// Initialize the spatial classes.
+			Class.forName(WarriorSpatial.class.getName());
+			Class.forName(WorkerSpatial.class.getName());
+			Class.forName(HeadquarterSpatial.class.getName());
+			Class.forName(BarracksSpatial.class.getName());
+			Class.forName(ResourceSpatial.class.getName());
+			Class.forName(SelectSpatial.class.getName());
+			Class.forName(DebugNodeSpatial.class.getName());
+			Class.forName(WallSpatial.class.getName());
+		}
+		catch (ClassNotFoundException any)
+		{
+			any.printStackTrace();
+		}
+	}
+    
 	public GameView(SimpleApplication app, IGame game) {
 		this.app = app;
 		this.game = game;
@@ -129,7 +165,7 @@ public class GameView implements PropertyChangeListener{
     }
 	
 	private void initializeDebug() {
-		if (Constants.isDebugNodes())
+		if (debugNodes)
 		{
 			integrateNodes(game.getWorld().getNodes());
 		}

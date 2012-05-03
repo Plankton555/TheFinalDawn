@@ -1,6 +1,6 @@
 package projectrts.view.spatials;
 
-import projectrts.global.utils.MaterialManager;
+import projectrts.io.MaterialManager;
 import projectrts.model.world.INode;
 import projectrts.view.controls.ControlFactory;
 import projectrts.view.controls.NodeControl;

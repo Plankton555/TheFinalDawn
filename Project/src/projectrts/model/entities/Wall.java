@@ -1,7 +1,6 @@
 package projectrts.model.entities;
 
-import projectrts.model.player.IPlayer;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 
 /**
  * A building for blocking spaces 
@@ -19,7 +18,7 @@ public class Wall extends AbstractStructure{
 		EntityFactory.INSTANCE.registerPCE(Wall.class.getSimpleName(), new Wall());
 	}
 	
-	protected void initialize(IPlayer owner, Position spawnPos) {
+	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		this.setName(Wall.class.getSimpleName());
 		this.setSize(size);
@@ -29,7 +28,7 @@ public class Wall extends AbstractStructure{
 	}
 	
 	@Override
-	public PlayerControlledEntity createPCE(IPlayer owner, Position pos) {
+	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		Wall newBarracks = new Wall();
 		newBarracks.initialize(owner, pos);
 		return newBarracks;

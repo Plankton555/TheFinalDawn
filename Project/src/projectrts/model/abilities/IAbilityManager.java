@@ -3,8 +3,8 @@ package projectrts.model.abilities;
 import java.util.List;
 
 import projectrts.model.entities.IPlayerControlledEntity;
-import projectrts.model.player.IPlayer;
-import projectrts.model.utils.Position;
+import projectrts.model.entities.Player;
+import projectrts.model.world.Position;
 
 public interface IAbilityManager {
 
@@ -24,6 +24,6 @@ public interface IAbilityManager {
 	 * @param p the position to use the ability at
 	 * @param owner Owner of the entities that will do something.
 	 */
-	public abstract void useAbilitySelected(String ability, Position p, IPlayer owner);
+	public abstract void useAbilitySelected(String ability, Position p, Player owner);
 
 }

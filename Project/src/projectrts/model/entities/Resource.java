@@ -1,6 +1,6 @@
 package projectrts.model.entities;
 
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 
 /**
  * A resource to be gathered

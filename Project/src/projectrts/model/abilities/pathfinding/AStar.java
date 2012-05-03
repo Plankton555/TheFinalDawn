@@ -1,11 +1,11 @@
-package projectrts.model.pathfinding;
+package projectrts.model.abilities.pathfinding;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import projectrts.model.utils.Position;
 import projectrts.model.world.IWorld;
+import projectrts.model.world.Position;
 
 /**
  * A* pathfinding algorithm.

@@ -1,9 +1,9 @@
 
 package projectrts.view.controls;
 
-import projectrts.global.utils.Utils;
+import projectrts.controller.InGameState;
 import projectrts.model.entities.IEntity;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
@@ -20,7 +20,7 @@ import com.jme3.scene.control.Control;
  *
  */
 //TODO Jakob: PMD error, "A class which only has private constructors should be final"
-public class SelectControl extends AbstractControl implements IEntityControl{
+public class SelectControl extends AbstractCustomControl implements IEntityControl{
 	private IEntity entity;
 	
 	static {
@@ -52,7 +52,7 @@ public class SelectControl extends AbstractControl implements IEntityControl{
 	protected void controlUpdate(float arg0) {
 		if(this.enabled && spatial != null) {
 			Position pos = entity.getPosition(); // Gets the position from it's associated entity. 
-			Vector3f worldPos = Utils.convertModelToWorld(pos); // Converts it to world position.
+			Vector3f worldPos = this.convertModelToWorld(pos); // Converts it to world position.
 			Vector3f moveVector = worldPos.subtract(spatial.getWorldTranslation()); // Subtracts the current position from the desired to get a movement vector.
 			if(!moveVector.equals(Vector3f.ZERO)) { // If the spatial needs to be moved.
 				spatial.move(moveVector); // Move the spatial according to the movement vector.

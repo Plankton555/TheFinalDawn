@@ -1,6 +1,6 @@
 package projectrts.view.controls;
 
-import projectrts.global.utils.MaterialManager;
+import projectrts.io.MaterialManager;
 import projectrts.model.world.INode;
 
 import com.jme3.material.Material;

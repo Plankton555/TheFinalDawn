@@ -1,7 +1,6 @@
 package projectrts.model.entities;
 
-import projectrts.model.player.IPlayer;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 
 /**
  *  An example of a concrete unit and it's methods.
@@ -22,7 +21,7 @@ public class Warrior extends AbstractUnit{
 		EntityFactory.INSTANCE.registerPCE(Warrior.class.getSimpleName(), new Warrior());
 	}
 	
-	protected void initialize(IPlayer owner, Position spawnPos) {
+	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		setName(Warrior.class.getSimpleName());
 		setSightRange(sightRange);
@@ -33,7 +32,7 @@ public class Warrior extends AbstractUnit{
 	}
 
 	@Override
-	public PlayerControlledEntity createPCE(IPlayer owner, Position pos) {
+	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		Warrior newWarrior = new Warrior();
 		newWarrior.initialize(owner, pos);
 		return newWarrior;

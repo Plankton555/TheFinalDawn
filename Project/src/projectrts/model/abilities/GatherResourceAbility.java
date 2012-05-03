@@ -1,7 +1,7 @@
 package projectrts.model.abilities;
 
 import projectrts.model.entities.IPlayerControlledEntity;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 /**
  * An ability for gathering resources
  * @author Jakob Svensson

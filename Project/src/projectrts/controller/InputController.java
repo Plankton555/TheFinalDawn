@@ -4,8 +4,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
 
-import projectrts.global.constants.Constants;
-import projectrts.global.utils.Utils;
 import projectrts.model.IGame;
 import projectrts.model.abilities.AttackAbility;
 import projectrts.model.abilities.GatherResourceAbility;
@@ -18,8 +16,8 @@ import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.Resource;
-import projectrts.model.utils.Position;
 import projectrts.model.world.Node;
+import projectrts.model.world.Position;
 import projectrts.view.GameView;
 
 import com.jme3.app.SimpleApplication;
@@ -54,6 +52,9 @@ public class InputController{
 	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private InputGUIController guiControl;
 	
+	private static final float CAMERA_SPEED = 1f;
+	private static final float CAMERA_MOVE_MARGIN = 5f;
+	
 
 	
 	public InputController(SimpleApplication app, IGame game, GameView view) {
@@ -74,7 +75,7 @@ public class InputController{
           // do the following while game is RUNNING // modify scene graph...
         	updateCamera(tpf);
         	if(choosingPosition){
-        		Position pos = Utils.convertWorldToModel(
+        		Position pos = InGameState.convertWorldToModel(
         				app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
         		view.drawNodes(game.getWorld().getNodesAt(pos,buildingSize));
         	}
@@ -96,18 +97,18 @@ public class InputController{
     	if(mouseActivated) {
 	    	Vector3f loc = app.getCamera().getLocation();
 	    	Vector2f mLoc = app.getInputManager().getCursorPosition();
-	    	float margin = Constants.getCameraMoveMargin();
-	    	if(mLoc.x >= app.getCamera().getWidth() - margin && loc.x <= game.getWorld().getWorldWidth() * Constants.getModelToWorld()) {
-	    		app.getCamera().setLocation(loc.add(tpf * Constants.getCameraSpeed(), 0, 0));
+	    	float margin = CAMERA_MOVE_MARGIN;
+	    	if(mLoc.x >= app.getCamera().getWidth() - margin && loc.x <= game.getWorld().getWorldWidth() * InGameState.MODEL_TO_WORLD) {
+	    		app.getCamera().setLocation(loc.add(tpf * CAMERA_SPEED, 0, 0));
 	    	}
 	    	if(mLoc.x <= margin && loc.x >= 0) {
-	    		app.getCamera().setLocation(loc.add(tpf * -Constants.getCameraSpeed(), 0, 0));
+	    		app.getCamera().setLocation(loc.add(tpf * -CAMERA_SPEED, 0, 0));
 	    	}
-	    	if(mLoc.y <= margin && loc.y >= -game.getWorld().getWorldHeight() * Constants.getModelToWorld()) {
-	    		app.getCamera().setLocation(loc.add(0, tpf * -Constants.getCameraSpeed(), 0));
+	    	if(mLoc.y <= margin && loc.y >= -game.getWorld().getWorldHeight() * InGameState.MODEL_TO_WORLD) {
+	    		app.getCamera().setLocation(loc.add(0, tpf * -CAMERA_SPEED, 0));
 	    	}
 	    	if(mLoc.y >= app.getCamera().getHeight() - margin && loc.y <= 0) {
-	    		app.getCamera().setLocation(loc.add(0, tpf * Constants.getCameraSpeed(), 0));
+	    		app.getCamera().setLocation(loc.add(0, tpf * CAMERA_SPEED, 0));
 	    	}
     	}
     }
@@ -160,17 +161,17 @@ public class InputController{
 	    	if (app.getStateManager().getState(InGameState.class).isEnabled()) {
 	    		Vector3f loc = app.getCamera().getLocation();
 	    		
-	            if (name.equals("cameraRightKey") && loc.x <= game.getWorld().getWorldWidth() * Constants.getModelToWorld()) {
-	            	app.getCamera().setLocation(loc.add(new Vector3f(value*Constants.getCameraSpeed(), 0, 0)));
+	            if (name.equals("cameraRightKey") && loc.x <= game.getWorld().getWorldWidth() * InGameState.MODEL_TO_WORLD) {
+	            	app.getCamera().setLocation(loc.add(new Vector3f(value*CAMERA_SPEED, 0, 0)));
 	            }
 	            if (name.equals("cameraLeftKey") && loc.x >= 0) {
-	            	app.getCamera().setLocation(loc.add(new Vector3f(-value*Constants.getCameraSpeed(), 0, 0)));
+	            	app.getCamera().setLocation(loc.add(new Vector3f(-value*CAMERA_SPEED, 0, 0)));
 	            }
 	            if (name.equals("cameraUpKey") && loc.y <= 0) {
-	            	app.getCamera().setLocation(loc.add(new Vector3f(0, value*Constants.getCameraSpeed(), 0)));
+	            	app.getCamera().setLocation(loc.add(new Vector3f(0, value*CAMERA_SPEED, 0)));
 	            }
-	            if (name.equals("cameraDownKey") && loc.y >= -game.getWorld().getWorldHeight() * Constants.getModelToWorld()) {
-	            	app.getCamera().setLocation(loc.add(new Vector3f(0, -value*Constants.getCameraSpeed(), 0)));
+	            if (name.equals("cameraDownKey") && loc.y >= -game.getWorld().getWorldHeight() * InGameState.MODEL_TO_WORLD) {
+	            	app.getCamera().setLocation(loc.add(new Vector3f(0, -value*CAMERA_SPEED, 0)));
 	            }
 	            
 	            
@@ -224,7 +225,7 @@ public class InputController{
 	    }
     	
     	private void handleLeftClick(){
-    		Position pos = Utils.convertWorldToModel(
+    		Position pos = InGameState.convertWorldToModel(
     				app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
     		if(choosingPosition){    			
     			if(!Node.isAnyNodeOccupied(
@@ -265,7 +266,7 @@ public class InputController{
     	}
     	
     	private void handleRightClick(){
-    		Position click = Utils.convertWorldToModel(app.getCamera().getWorldCoordinates(
+    		Position click = InGameState.convertWorldToModel(app.getCamera().getWorldCoordinates(
     				app.getInputManager().getCursorPosition(), 0));
     		IEntity e = getEntityAtPosition(click);
     		if(choosingPosition||choosingTarget){
@@ -287,14 +288,14 @@ public class InputController{
 	    							game.getHumanPlayer());
 	    				}else{
 	    					game.getAbilityManager().useAbilitySelected(
-	    							MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
+	    							MoveAbility.class.getSimpleName(),InGameState.convertWorldToModel(
 	    	    					app.getCamera().getWorldCoordinates(
 	    	    							app.getInputManager().getCursorPosition(), 0)),
 	    	    							game.getHumanPlayer());
 	    				}
 	    			}else{
 	    				game.getAbilityManager().useAbilitySelected(
-	    						MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
+	    						MoveAbility.class.getSimpleName(),InGameState.convertWorldToModel(
 		    					app.getCamera().getWorldCoordinates(
 		    							app.getInputManager().getCursorPosition(), 0)),
 		    							game.getHumanPlayer());
@@ -303,7 +304,7 @@ public class InputController{
 	    		}
 	    		else{
 	    			game.getAbilityManager().useAbilitySelected(
-	    					MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
+	    					MoveAbility.class.getSimpleName(),InGameState.convertWorldToModel(
 	    					app.getCamera().getWorldCoordinates(
 	    							app.getInputManager().getCursorPosition(), 0)),
 	    							game.getHumanPlayer());

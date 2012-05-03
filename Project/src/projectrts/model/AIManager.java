@@ -1,4 +1,4 @@
-package projectrts.model.ai;
+package projectrts.model;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -7,15 +7,15 @@ import java.util.List;
 
 import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.EntityManager;
+import projectrts.model.entities.Player;
 import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.player.IPlayer;
 
 public class AIManager implements PropertyChangeListener{
 	private IAbilityManager abilityManager;
 	private StrategicAI stratAI;
 	private List<MicroAI> microAIs = new ArrayList<MicroAI>();
 	
-	public AIManager(IPlayer aiPlayer, IAbilityManager abilityManager) {
+	public AIManager(Player aiPlayer, IAbilityManager abilityManager) {
 		this.abilityManager = abilityManager;
 		stratAI = new StrategicAI(aiPlayer, abilityManager);
 		EntityManager.getInstance().addListener(this);

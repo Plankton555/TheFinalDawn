@@ -1,10 +1,10 @@
 package projectrts.model.abilities;
 
+import projectrts.model.abilities.pathfinding.AStar;
 import projectrts.model.entities.EntityManager;
+import projectrts.model.entities.Player;
 import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.pathfinding.AStar;
-import projectrts.model.player.Player;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 
 /**
  * An abstract class that holds common code for training units

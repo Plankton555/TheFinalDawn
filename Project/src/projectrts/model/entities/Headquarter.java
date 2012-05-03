@@ -1,7 +1,6 @@
 package projectrts.model.entities;
 
-import projectrts.model.player.IPlayer;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 /**
  * A building for creating workers and deposit resources
  * @author Jakob Svensson
@@ -19,7 +18,7 @@ public class Headquarter extends AbstractStructure{
 	}
 
 	
-	protected void initialize(IPlayer owner, Position spawnPos) {
+	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		this.setName(Headquarter.class.getSimpleName());
 		this.setSize(size);
@@ -29,7 +28,7 @@ public class Headquarter extends AbstractStructure{
 	}
 	
 	@Override
-	public PlayerControlledEntity createPCE(IPlayer owner, Position pos) {
+	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		Headquarter newHQ = new Headquarter();
 		newHQ.initialize(owner, pos);
 		return newHQ;

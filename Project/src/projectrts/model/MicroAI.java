@@ -1,4 +1,4 @@
-package projectrts.model.ai;
+package projectrts.model;
 
 import projectrts.model.abilities.AttackAbility;
 import projectrts.model.abilities.IAbilityManager;

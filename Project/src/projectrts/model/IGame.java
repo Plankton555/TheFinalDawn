@@ -2,7 +2,7 @@ package projectrts.model;
 
 import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.IEntityManager;
-import projectrts.model.player.IPlayer;
+import projectrts.model.entities.Player;
 import projectrts.model.world.IWorld;
 
 /**
@@ -21,7 +21,7 @@ public interface IGame {
 	/**
 	 * @return The human player
 	 */
-	public IPlayer getHumanPlayer();
+	public Player getHumanPlayer();
 	
 	/**
 	 * @return The entity manager.
@@ -46,5 +46,5 @@ public interface IGame {
 	/**
 	 * @return The ai player.
 	 */
-	public IPlayer getAIPlayer();
+	public Player getAIPlayer();
 }

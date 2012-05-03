@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import projectrts.model.utils.ModelUtils;
-import projectrts.model.utils.Position;
 
 /**
  * The class containing the "world"

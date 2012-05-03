@@ -2,8 +2,7 @@ package projectrts.model.entities;
 
 import java.util.HashMap;
 
-import projectrts.model.player.IPlayer;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 
 /**
  * A factory for entities.
@@ -33,7 +32,7 @@ public enum EntityFactory {INSTANCE;
 	 * @param pos The position of the desired entity.
 	 * @return An instance of the desired entity.
 	 */
-	public PlayerControlledEntity createPCE(String pceType, IPlayer aiPlayer, Position pos) {
+	public PlayerControlledEntity createPCE(String pceType, Player aiPlayer, Position pos) {
 		if(pceMap.get(pceType) == null) {
 			throw new IllegalStateException("You must register "+ pceType +
 					" before you can use it");

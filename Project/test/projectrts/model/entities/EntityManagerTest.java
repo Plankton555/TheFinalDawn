@@ -5,8 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import projectrts.model.GameModel;
-import projectrts.model.player.Player;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 
 public class EntityManagerTest {
 

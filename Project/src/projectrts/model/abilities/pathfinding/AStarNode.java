@@ -1,11 +1,11 @@
-package projectrts.model.pathfinding;
+package projectrts.model.abilities.pathfinding;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import projectrts.model.utils.Position;
 import projectrts.model.world.INode;
+import projectrts.model.world.Position;
 
 /**
  * A node that is specifically configured to work with the A* pathfinding algorithm.

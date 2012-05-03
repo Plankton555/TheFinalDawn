@@ -6,8 +6,8 @@ import projectrts.model.entities.AbstractEntity;
 import projectrts.model.entities.AbstractStructure;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IPlayerControlledEntity;
-import projectrts.model.player.Player;
-import projectrts.model.utils.Position;
+import projectrts.model.entities.Player;
+import projectrts.model.world.Position;
 /**
  * An ability for delivering a resource at a deposit structure
  * @author Jakob Svensson

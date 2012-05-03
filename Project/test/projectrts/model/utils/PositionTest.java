@@ -7,6 +7,8 @@ import javax.vecmath.Vector2d;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import projectrts.model.world.Position;
+
 /**
  * 
  * @author Bjorn Persson Mattsson

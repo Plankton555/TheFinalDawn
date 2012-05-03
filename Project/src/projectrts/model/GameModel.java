@@ -2,19 +2,16 @@ package projectrts.model;
 
 import projectrts.model.abilities.AbilityManager;
 import projectrts.model.abilities.IAbilityManager;
-import projectrts.model.ai.AIManager;
 import projectrts.model.entities.Barracks;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Headquarter;
 import projectrts.model.entities.IEntityManager;
+import projectrts.model.entities.Player;
 import projectrts.model.entities.Resource;
 import projectrts.model.entities.Warrior;
 import projectrts.model.entities.Worker;
-import projectrts.model.pathfinding.AStar;
-import projectrts.model.player.IPlayer;
-import projectrts.model.player.Player;
-import projectrts.model.utils.Position;
 import projectrts.model.world.IWorld;
+import projectrts.model.world.Position;
 import projectrts.model.world.World;
 
 /**
@@ -33,7 +30,7 @@ public class GameModel implements IGame {
 	
 	public GameModel() {
 		world.initializeWorld();
-		AStar.initialize(world);
+		
 		abilityManager = new AbilityManager();
 		aiManager = new AIManager(aiPlayer, abilityManager);
 		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(52.5, 52.5));
@@ -58,12 +55,12 @@ public class GameModel implements IGame {
 	}
 
 	@Override
-	public IPlayer getHumanPlayer() {
+	public Player getHumanPlayer() {
 		return humanPlayer;
 	}
 	
 	@Override
-	public IPlayer getAIPlayer() {
+	public Player getAIPlayer() {
 		return aiPlayer;
 	}
 

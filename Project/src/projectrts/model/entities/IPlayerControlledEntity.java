@@ -1,7 +1,6 @@
 package projectrts.model.entities;
 
 import projectrts.model.entities.PlayerControlledEntity.State;
-import projectrts.model.player.IPlayer;
 
 /**
  * 
@@ -12,7 +11,7 @@ public interface IPlayerControlledEntity extends IEntity{
 	/**
 	 * @return The owner of the entity.
 	 */
-	public IPlayer getOwner();
+	public Player getOwner();
 	
 	/**
 	 * @return The sight range of the entity.

@@ -10,8 +10,8 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import projectrts.model.utils.Position;
 import projectrts.model.world.INode;
+import projectrts.model.world.Position;
 import projectrts.model.world.World;
 
 public class WorldTest {

@@ -8,15 +8,15 @@ import org.junit.Test;
 
 import projectrts.model.GameModel;
 import projectrts.model.entities.EntityManager;
+import projectrts.model.entities.Player;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.Warrior;
-import projectrts.model.player.IPlayer;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 
 
 public class MicroAITest {
-	private IPlayer aiPlayer;
-	private IPlayer humanPlayer;
+	private Player aiPlayer;
+	private Player humanPlayer;
 	private GameModel model;
 	private PlayerControlledEntity myWarrior;
 	private PlayerControlledEntity enemyWarrior;

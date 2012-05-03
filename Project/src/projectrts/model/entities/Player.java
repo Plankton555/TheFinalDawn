@@ -1,4 +1,4 @@
-package projectrts.model.player;
+package projectrts.model.entities;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -7,7 +7,7 @@ import java.beans.PropertyChangeSupport;
  * Player class for handling all of one players units.
  * @author Björn Persson Mattson, Modified by Filip Brynfors, Jakob Svensson
  */
-public class Player implements IPlayer {
+public class Player {
 	public static final int RESOURCE_START_AMOUNT = 2000;
 	private int resources;
 	private PropertyChangeSupport pcs;
@@ -21,8 +21,6 @@ public class Player implements IPlayer {
 	}
 	
 
-	
-	@Override
 	public int getResources(){
 		return resources; 
 	}
@@ -36,9 +34,6 @@ public class Player implements IPlayer {
 		pcs.firePropertyChange("ResourceChange", resources-amount, resources);
 	}
 
-
-
-	@Override
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 		

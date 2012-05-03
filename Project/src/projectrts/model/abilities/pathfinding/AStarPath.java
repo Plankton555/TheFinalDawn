@@ -1,4 +1,4 @@
-package projectrts.model.pathfinding;
+package projectrts.model.abilities.pathfinding;
 
 import java.util.Stack;
 

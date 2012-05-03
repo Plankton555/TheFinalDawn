@@ -1,6 +1,6 @@
 package projectrts.model.abilities;
 
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 
 /**
  * An abstract class for the common  attributes of the different abilities

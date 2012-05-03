@@ -7,9 +7,8 @@ import java.util.List;
 
 import javax.vecmath.Vector2d;
 
-import projectrts.model.player.IPlayer;
 import projectrts.model.utils.ModelUtils;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 
 /**
  * The singleton entity manager.
@@ -88,7 +87,7 @@ public class EntityManager implements IEntityManager{
 	 * @return A list of all entities of player.
 	 */
 	@Override
-	public List<IPlayerControlledEntity> getEntitiesOfPlayer(IPlayer player)
+	public List<IPlayerControlledEntity> getEntitiesOfPlayer(Player player)
 	{
 		
 		List<IPlayerControlledEntity> output = new ArrayList<IPlayerControlledEntity>();
@@ -135,11 +134,11 @@ public class EntityManager implements IEntityManager{
 	 * Adds a new player controlled entity to the EntityManager.
 	 * 
 	 * @param pce The class name of the npce as a string, e.g. "Worker".
-	 * @param owner The player that shall have control over the new entity.
+	 * @param iPlayer The player that shall have control over the new entity.
 	 * @param pos The position of the entity.
 	 */
-	public void addNewPCE(String pce, IPlayer owner, Position pos) {
-		PlayerControlledEntity newPCE = EntityFactory.INSTANCE.createPCE(pce, owner, pos);
+	public void addNewPCE(String pce, Player iPlayer, Position pos) {
+		PlayerControlledEntity newPCE = EntityFactory.INSTANCE.createPCE(pce, iPlayer, pos);
 		entitiesAddQueue.add(newPCE);
 	}
 	
@@ -185,7 +184,7 @@ public class EntityManager implements IEntityManager{
 	 * @param player The hopeful owner.
 	 * @return A PCE if there is one on the position that the player owns, otherwise null.
 	 */
-	public PlayerControlledEntity getPCEAtPosition(Position pos, IPlayer player) {
+	public PlayerControlledEntity getPCEAtPosition(Position pos, Player player) {
 		if(getPCEAtPosition(pos) != null) {
 			if( getPCEAtPosition(pos).getOwner().equals(player)) {
 				return getPCEAtPosition(pos);
@@ -223,7 +222,7 @@ public class EntityManager implements IEntityManager{
 	 * @param pos the position where entities should be selected
 	 * @param owner the player that selected the entities
 	 */
-	public void select(Position pos, IPlayer owner) {
+	public void select(Position pos, Player owner) {
 		// TODO Anyone: Add support for selection of multiple units.
 		// TODO Plankton: !!!Add support for selection of enemy units.
 		selectedEntities.clear();
@@ -244,7 +243,7 @@ public class EntityManager implements IEntityManager{
 
 	@Override
 	public List<IPlayerControlledEntity> getSelectedEntitiesOfPlayer(
-			IPlayer owner) {
+			Player owner) {
 		List<IPlayerControlledEntity> output = new ArrayList<IPlayerControlledEntity>();
 		for(IEntity entity: selectedEntities){
 			if (entity instanceof IPlayerControlledEntity)

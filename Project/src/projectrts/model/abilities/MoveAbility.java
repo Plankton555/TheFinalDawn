@@ -2,12 +2,12 @@ package projectrts.model.abilities;
 
 import javax.vecmath.Vector2d;
 
+import projectrts.model.abilities.pathfinding.AStar;
+import projectrts.model.abilities.pathfinding.AStarNode;
+import projectrts.model.abilities.pathfinding.AStarPath;
 import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.pathfinding.AStar;
-import projectrts.model.pathfinding.AStarNode;
-import projectrts.model.pathfinding.AStarPath;
-import projectrts.model.utils.Position;
 import projectrts.model.world.INode;
+import projectrts.model.world.Position;
 import projectrts.model.world.World;
 
 /**
@@ -27,6 +27,7 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	
 	static {
 		AbilityFactory.INSTANCE.registerAbility(MoveAbility.class.getSimpleName(), new MoveAbility());
+		AStar.initialize(World.getInstance());
 	}
 	
 	/**

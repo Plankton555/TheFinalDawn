@@ -4,7 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import projectrts.global.utils.ImageManager;
+import projectrts.io.ImageManager;
 import projectrts.model.IGame;
 import projectrts.model.abilities.IAbility;
 import projectrts.model.entities.IEntity;

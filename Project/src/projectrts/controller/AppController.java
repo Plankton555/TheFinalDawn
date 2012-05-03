@@ -5,9 +5,9 @@ import java.beans.PropertyChangeListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import projectrts.global.utils.ImageManager;
-import projectrts.global.utils.MaterialManager;
-import projectrts.global.utils.TextureManager;
+import projectrts.io.ImageManager;
+import projectrts.io.MaterialManager;
+import projectrts.io.TextureManager;
 import projectrts.model.GameModel;
 import projectrts.model.IGame;
 import projectrts.view.controls.MoveControl;
@@ -39,30 +39,6 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
 	private Nifty nifty;
 	private MenuState menuState;
 	private InGameState ingameState;
-
-	static{
-		try
-		{
-			// Initialize the control classes.
-			Class.forName(MoveControl.class.getName());
-			Class.forName(SelectControl.class.getName());
-			Class.forName(NodeControl.class.getName());
-			
-			// Initialize the spatial classes.
-			Class.forName(WarriorSpatial.class.getName());
-			Class.forName(WorkerSpatial.class.getName());
-			Class.forName(HeadquarterSpatial.class.getName());
-			Class.forName(BarracksSpatial.class.getName());
-			Class.forName(ResourceSpatial.class.getName());
-			Class.forName(SelectSpatial.class.getName());
-			Class.forName(DebugNodeSpatial.class.getName());
-			Class.forName(WallSpatial.class.getName());
-		}
-		catch (ClassNotFoundException any)
-		{
-			any.printStackTrace();
-		}
-	}
 	
     @Override
     public void simpleInitApp() {

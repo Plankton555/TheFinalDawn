@@ -3,8 +3,7 @@ package projectrts.model.entities;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import projectrts.model.player.IPlayer;
-import projectrts.model.utils.Position;
+import projectrts.model.world.Position;
 
 /**
  *  Abstract class for the common part of different  player controlled entities
@@ -16,7 +15,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	private int currentHealth;
 	private int maxHealth;
 	private float sightRange;
-	private IPlayer owner;
+	private Player owner;
 	private int damage;
 	private PropertyChangeSupport pcs;
 	private boolean dead = false;
@@ -29,7 +28,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	 * @param owner2 The owner of the entity.
 	 * @param spawnPos The initial position of the entity.
 	 */
-	protected void initialize(IPlayer owner2, Position spawnPos) {
+	protected void initialize(Player owner2, Position spawnPos) {
 		super.initialize(spawnPos);
 		this.owner = owner2;
 		this.pcs = new PropertyChangeSupport(this);
@@ -41,7 +40,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	
 	
 	@Override
-	public IPlayer getOwner() {
+	public Player getOwner() {
 		return owner;
 	}
 	
@@ -111,5 +110,5 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		this.state = state;
 	}
 
-	public abstract PlayerControlledEntity createPCE(IPlayer aiPlayer, Position pos);
+	public abstract PlayerControlledEntity createPCE(Player aiPlayer, Position pos);
 }

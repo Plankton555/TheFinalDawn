@@ -1,8 +1,8 @@
 package projectrts.model.entities;
 
-import projectrts.model.utils.Position;
 import projectrts.model.world.INode;
 import projectrts.model.world.IWorld;
+import projectrts.model.world.Position;
 import projectrts.model.world.World;
 
 /**

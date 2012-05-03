@@ -1,4 +1,4 @@
-package projectrts.model.utils;
+package projectrts.model.world;
 
 import javax.vecmath.Vector2d;
 
