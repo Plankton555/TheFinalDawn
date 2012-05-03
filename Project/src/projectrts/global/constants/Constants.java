@@ -12,7 +12,7 @@ public class Constants {
 	 */
 	public static boolean isDebugNodes()
 	{
-		return true;
+		return false;
 	}
 	
 	/**
