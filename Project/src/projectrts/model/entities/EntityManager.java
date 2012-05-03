@@ -334,6 +334,4 @@ public class EntityManager implements IEntityManager{
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 	}
-
-
 }
