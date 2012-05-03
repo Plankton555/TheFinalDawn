@@ -9,6 +9,7 @@ import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.view.GameGUIView;
 import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.builder.HoverEffectBuilder;
 import de.lessvoid.nifty.builder.LayerBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.ScreenBuilder;
@@ -16,9 +17,11 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
+import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
+import de.lessvoid.nifty.tools.SizeValue;
 
 /**
  * A controller class that handles input from the gui
@@ -90,6 +93,13 @@ public class InputGUIController implements ScreenController {
 	        	  panel(createMessagePanel());
 	        	
 	          }});
+	          
+	          layer(new LayerBuilder("Layer_Tooltip"){{
+	        	  childLayoutAbsolute();
+	        	  panel(createTooltipPanel());
+	          }});
+	          
+	          
 	      }}.build(nifty));
 	    // </screen>
 	    
@@ -249,6 +259,15 @@ public class InputGUIController implements ScreenController {
 	        visible(false);
 	        focusable(false);
 	        interactOnClick("buttonClicked("+i+")");
+	        
+	        onStartHoverEffect(new HoverEffectBuilder("nop"){{
+	        	effectParameter("onStartEffect","buttonMouseEnter("+i+")");
+	        }});
+	        
+	        onEndHoverEffect(new HoverEffectBuilder("nop"){{
+	        	effectParameter("onStartEffect","buttonMouseLeave("+i+")");
+	        }});
+	        
 	    }};
 		return builder;
 		
@@ -266,6 +285,27 @@ public class InputGUIController implements ScreenController {
 			}});
 		}};
 		
+		return builder;
+	}
+	
+	private PanelBuilder createTooltipPanel(){
+		PanelBuilder builder = new PanelBuilder("Panel_Tooltip"){{
+			childLayoutCenter();
+			
+			width("150px");
+			height("20px");
+			backgroundColor("#FFFF");
+			visible(false);
+			
+			control(new LabelBuilder("Label_Tooltip"){{
+				width("100%");
+				height("100%");
+				color("#F00F");
+				text("LOTS OF TEXT HERE");
+				textVAlignTop();
+				
+			}});
+		}};
 		return builder;
 	}
 	
@@ -307,20 +347,46 @@ public class InputGUIController implements ScreenController {
 	 * @param nr the ID of the clicked button
 	 */
 	public void buttonClicked(String nr) {
+		input.selectAbility(getAbility(nr), selectedPce);
+	}
+	
+	/**
+	 * Used when the cursor hovers on the buttons
+	 * @param nr the ID of the button which the cursor is on
+	 */
+	public void buttonMouseEnter(String nr) {
+		Element panelTooltip = screen.findElementByName("Panel_Tooltip");
+		Element labelTooltip = screen.findElementByName("Label_Tooltip");
+		panelTooltip.setVisible(true);
+		//panelTooltip.setConstraintX(new SizeValue("50px"));
+		panelTooltip.setConstraintX(new SizeValue(nifty.getNiftyMouse().getX()-panelTooltip.getWidth()+"px"));
+		panelTooltip.setConstraintY(new SizeValue(nifty.getNiftyMouse().getY()-panelTooltip.getHeight()+"px"));
+		System.out.println(panelTooltip.getHeight());
+		
+		screen.layoutLayers();
+		
+		labelTooltip.getRenderer(TextRenderer.class).setText(getAbility(nr).getName());
+	}
+	
+	public void buttonMouseLeave(String nr) {
+		//System.out.println(nr);
+	}
+
+	private IAbility getAbility(String nr){
+		IAbility ability = null;
 		try {
 
 			int iNr = Integer.parseInt(nr);
 			
 			List<IAbility> abilities = abilityManager.getAbilities(selectedPce);
 			if(iNr-1<abilities.size()){
-				input.selectAbility(abilities.get(iNr-1), selectedPce);
+				ability = abilities.get(iNr-1);
 			}
-			
-			
-		} catch (NumberFormatException e){
+		
+		
+		} catch(NumberFormatException e) {
 			
 		}
-		
+		return ability;
 	}
-
 }
