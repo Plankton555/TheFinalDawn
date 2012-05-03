@@ -17,6 +17,7 @@ import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity.State;
 import projectrts.model.entities.Warrior;
 import projectrts.model.entities.Worker;
+import projectrts.model.player.IPlayer;
 import projectrts.model.utils.Position;
 import projectrts.model.world.INode;
 import projectrts.model.world.World;
@@ -153,7 +154,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	 * @see projectrts.model.abilities.IAbilityManager#useAbilitySelected(java.lang.String, projectrts.model.utils.Position)
 	 */
 	@Override
-	public void useAbilitySelected(String ability, Position p){
+	public void useAbilitySelected(String ability, Position p, IPlayer owner){
 		for(IEntity entity : EntityManager.getInstance().getSelectedEntities()){
 			if(entity instanceof PlayerControlledEntity){
 				PlayerControlledEntity pce = (PlayerControlledEntity) entity;

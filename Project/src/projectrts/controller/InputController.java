@@ -275,25 +275,38 @@ public class InputController{
     		}else{
 	    		if(e!=null){
 	    			if(e.getName().equals(Resource.class.getSimpleName())){
-	    				game.getAbilityManager().useAbilitySelected(GatherResourceAbility.class.getSimpleName(), click);
+	    				game.getAbilityManager().useAbilitySelected(
+	    						GatherResourceAbility.class.getSimpleName(), click,
+	    						game.getHumanPlayer());
 	    				
 	    			}else if(e instanceof PlayerControlledEntity){
 	    				PlayerControlledEntity pce = (PlayerControlledEntity) e;
 	    				if(!pce.getOwner().equals(game.getHumanPlayer())){
-	    					game.getAbilityManager().useAbilitySelected(AttackAbility.class.getSimpleName(), pce.getPosition());
+	    					game.getAbilityManager().useAbilitySelected(
+	    							AttackAbility.class.getSimpleName(), pce.getPosition(),
+	    							game.getHumanPlayer());
 	    				}else{
-	    					game.getAbilityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
-	    	    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+	    					game.getAbilityManager().useAbilitySelected(
+	    							MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
+	    	    					app.getCamera().getWorldCoordinates(
+	    	    							app.getInputManager().getCursorPosition(), 0)),
+	    	    							game.getHumanPlayer());
 	    				}
 	    			}else{
-	    				game.getAbilityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
-		    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+	    				game.getAbilityManager().useAbilitySelected(
+	    						MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
+		    					app.getCamera().getWorldCoordinates(
+		    							app.getInputManager().getCursorPosition(), 0)),
+		    							game.getHumanPlayer());
 	    			}
 	    			
 	    		}
 	    		else{
-	    			game.getAbilityManager().useAbilitySelected(MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
-	    					app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0)));
+	    			game.getAbilityManager().useAbilitySelected(
+	    					MoveAbility.class.getSimpleName(),Utils.convertWorldToModel(
+	    					app.getCamera().getWorldCoordinates(
+	    							app.getInputManager().getCursorPosition(), 0)),
+	    							game.getHumanPlayer());
 	    		}
     		}
     	}
