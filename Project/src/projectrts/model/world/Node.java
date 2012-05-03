@@ -139,7 +139,7 @@ public class Node implements INode {
 	 * @return true if any node is occupied, otherwise false.
 	 */
 	public static boolean isAnyNodeOccupied(List<INode> nodes){
-		// TODO Plankton: !Keep this method in World or Node?
+		// TODO Plankton: !Move this to a NodeHandler of some sort maybe?
 		for(INode node: nodes)
 		{
 			if(node.isOccupied())
@@ -158,7 +158,7 @@ public class Node implements INode {
 	 */
 	public static boolean isAdjacentTo(INode node, List<INode> nodes)
 	{
-		// TODO Plankton: !Keep this method in World or Node?
+		// TODO Plankton: !Make this method not static
 		List<INode> adjacentNodes = node.getNeighbours();
 		for (INode adjNode : adjacentNodes)
 		{
