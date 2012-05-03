@@ -235,7 +235,7 @@ public class InputController {
     			}
     		}else if(choosingTarget){
     			if(currentAbility instanceof GatherResourceAbility){
-    				if(EntityManager.getInstance().getNonPlayerControlledEntity(pos) instanceof Resource){
+    				if(EntityManager.getInstance().getNPCEAtPosition(pos) instanceof Resource){
     					game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(),
         						pos, selectedEntity);
     					choosingTarget=false;

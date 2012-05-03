@@ -27,7 +27,7 @@ public class MineResourceAbilityTest {
 		EntityManager.getInstance().addNewNPCE("Resource", new Position(5f, 5f));
 		EntityManager.getInstance().update(1);
 		Worker worker = (Worker)  EntityManager.getInstance().getPCEAtPosition(new Position(1f, 1f));
-		Resource res = (Resource) EntityManager.getInstance().getNonPlayerControlledEntity(new Position(5f,5f));
+		Resource res = (Resource) EntityManager.getInstance().getNPCEAtPosition(new Position(5f,5f));
 		MineResourceAbility ab = (MineResourceAbility)AbilityFactory.INSTANCE.createAbility(MineResourceAbility.class.getSimpleName(),worker);
 		ab.useAbility(res.getPosition());
 		int counter = 0;

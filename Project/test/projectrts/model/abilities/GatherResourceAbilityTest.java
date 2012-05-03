@@ -28,10 +28,10 @@ public class GatherResourceAbilityTest {
 		EntityManager.getInstance().addNewNPCE("Resource", new Position(15.5f, 15.5f));
 		EntityManager.getInstance().update(1);
 		Worker worker = (Worker) EntityManager.getInstance().getPCEAtPosition(new Position(2.5f, 15.5f));
-		Resource res = (Resource) EntityManager.getInstance().getNonPlayerControlledEntity(new Position(15.5f,15.5f));
+		Resource res = (Resource) EntityManager.getInstance().getNPCEAtPosition(new Position(15.5f,15.5f));
 		MoveAbility move = new MoveAbility();
 		move.initialize(worker);
-		GatherResourceAbility ab = (GatherResourceAbility) AbilityFactory.INSTANCE.createMAbility(GatherResourceAbility.class.getSimpleName(),worker, move);
+		GatherResourceAbility ab = (GatherResourceAbility) AbilityFactory.INSTANCE.createUsingMoveAbility(GatherResourceAbility.class.getSimpleName(),worker, move);
 		ab.useAbility(res.getPosition());
 		int counter = 0;
 

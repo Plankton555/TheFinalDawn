@@ -60,17 +60,17 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		ArrayList<AbstractAbility> workerAbilities = new ArrayList<AbstractAbility>();
 		PlayerControlledEntity worker = EntityFactory.INSTANCE.createPCE(Worker.class.getSimpleName(), null, new Position(-1, -1));
 		MoveAbility workerMove = (MoveAbility) AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), worker);
-		workerAbilities.add(AbilityFactory.INSTANCE.createMAbility(AttackAbility.class.getSimpleName(), worker, workerMove));
-		workerAbilities.add(AbilityFactory.INSTANCE.createMAbility(GatherResourceAbility.class.getSimpleName(), worker, workerMove));
-		workerAbilities.add(AbilityFactory.INSTANCE.createMAbility(BuildBarracksAbility.class.getSimpleName(), worker, workerMove));
-		workerAbilities.add(AbilityFactory.INSTANCE.createMAbility(BuildWallAbility.class.getSimpleName(), worker, workerMove));
+		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(AttackAbility.class.getSimpleName(), worker, workerMove));
+		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(GatherResourceAbility.class.getSimpleName(), worker, workerMove));
+		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(BuildBarracksAbility.class.getSimpleName(), worker, workerMove));
+		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(BuildWallAbility.class.getSimpleName(), worker, workerMove));
 		abilityReferenceMap.put(Worker.class.getSimpleName(), workerAbilities);
 		
 		//Warrior
 		PlayerControlledEntity warrior = EntityFactory.INSTANCE.createPCE(Warrior.class.getSimpleName(), null, new Position(-1, -1));
 		MoveAbility warriorMove = (MoveAbility) AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), worker);
 		ArrayList<AbstractAbility> warriorAbilities = new ArrayList<AbstractAbility>();
-		warriorAbilities.add(AbilityFactory.INSTANCE.createMAbility(AttackAbility.class.getSimpleName(), warrior, warriorMove));
+		warriorAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(AttackAbility.class.getSimpleName(), warrior, warriorMove));
 		abilityReferenceMap.put(Warrior.class.getSimpleName(), warriorAbilities);
 		
 		//Headquarter
@@ -174,7 +174,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 				abilities.add(moveAbility);
 				for(AbstractAbility ability : abilitiesReferenceList) {
 					if(ability instanceof IUsingMoveAbility) {
-						abilities.add(AbilityFactory.INSTANCE.createMAbility(ability.getClass().getSimpleName(), pce, moveAbility));
+						abilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(ability.getClass().getSimpleName(), pce, moveAbility));
 					} else {
 						abilities.add(AbilityFactory.INSTANCE.createAbility(ability.getClass().getSimpleName(), pce));
 					}

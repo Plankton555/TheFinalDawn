@@ -28,7 +28,7 @@ public class DeliverResourceAbilityTest {
 		Worker worker = (Worker)  EntityManager.getInstance().getPCEAtPosition(new Position(1f, 1f));
 		MoveAbility move = new MoveAbility();
 		move.initialize(worker);
-		DeliverResourceAbility ab = (DeliverResourceAbility)AbilityFactory.INSTANCE.createMAbility(DeliverResourceAbility.class.getSimpleName(),worker, move);
+		DeliverResourceAbility ab = (DeliverResourceAbility)AbilityFactory.INSTANCE.createUsingMoveAbility(DeliverResourceAbility.class.getSimpleName(),worker, move);
 		
 		ab.useAbility(new Position(0, 0));
 		

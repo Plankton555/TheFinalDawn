@@ -21,8 +21,8 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 	 * When subclassing, invoke this to initialize the ability.
 	 */
 	protected void initialize(IPlayerControlledEntity entity, MoveAbility moveAbility) {
-		this.mineResourceAbility = AbilityFactory.INSTANCE.createMAbility(MineResourceAbility.class.getSimpleName(), entity, moveAbility);
-		this.deliverResourceAbility = AbilityFactory.INSTANCE.createMAbility(DeliverResourceAbility.class.getSimpleName(), entity, moveAbility);
+		this.mineResourceAbility = AbilityFactory.INSTANCE.createUsingMoveAbility(MineResourceAbility.class.getSimpleName(), entity, moveAbility);
+		this.deliverResourceAbility = AbilityFactory.INSTANCE.createUsingMoveAbility(DeliverResourceAbility.class.getSimpleName(), entity, moveAbility);
 	}
 	
 	@Override

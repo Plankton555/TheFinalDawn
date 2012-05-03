@@ -23,12 +23,12 @@ public enum AbilityFactory {INSTANCE;
 		}
 		else
 		{
-			// TODO Anyone: Throw exception instead of returning null?
+			// TODO Anyone: Throw exception instead of returning null
 			return null;
 		}
 	}
 	
-	public AbstractAbility createMAbility(String abilityType, IPlayerControlledEntity entity, MoveAbility moveAbility) {
+	public AbstractAbility createUsingMoveAbility(String abilityType, IPlayerControlledEntity entity, MoveAbility moveAbility) {
 		AbstractAbility ability = abilityMap.get(abilityType);
 		if (ability != null && ability instanceof IUsingMoveAbility)
 		{
@@ -37,7 +37,7 @@ public enum AbilityFactory {INSTANCE;
 		}
 		else
 		{
-			// TODO Anyone: Throw exception instead of returning null?
+			// TODO Anyone: Throw exception instead of returning null
 			return null;
 		}
 	}

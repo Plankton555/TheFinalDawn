@@ -67,7 +67,7 @@ public class MineResourceAbility extends AbstractAbility implements IUsingMoveAb
 
 	@Override
 	public void useAbility(Position target) {
-		this.targetResource = (Resource) EntityManager.getInstance().getNonPlayerControlledEntity(target);
+		this.targetResource = (Resource) EntityManager.getInstance().getNPCEAtPosition(target);
 		resourceCarriedAmount = 0;
 		setActive(true);
 		setFinished(false);

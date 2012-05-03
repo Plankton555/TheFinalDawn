@@ -11,8 +11,12 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
 
-// TODO Anyone: ADD JAVADOC
 //TODO Jakob: PMD error, "A class which only has private constructors should be final"
+/**
+ * A custom control that handles the debug nodes color change when they are occupied.
+ * @author Bjorn Persson Mattsson
+ *
+ */
 public class NodeControl extends AbstractControl implements INodeControl {
 
 	private INode node;

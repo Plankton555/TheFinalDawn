@@ -193,8 +193,8 @@ public class EntityManager implements IEntityManager{
 		return null;
 	}
 	
-	//TODO Anyone: Extraxt common code from getPlayerControlledEntityAtPosition and this method
-	public NonPlayerControlledEntity getNonPlayerControlledEntity (Position pos){
+	//TODO Markus: Extraxt common code from getPlayerControlledEntityAtPosition and this method
+	public NonPlayerControlledEntity getNPCEAtPosition(Position pos){
 		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
 		for(IEntity entity: entities){
 			if(entity instanceof NonPlayerControlledEntity){
@@ -223,7 +223,8 @@ public class EntityManager implements IEntityManager{
 	 * @param owner the player that selected the entities
 	 */
 	public void select(Position pos, IPlayer owner) {
-		//TODO Anyone: Add support for selection of multiple units and enemy units.
+		// TODO Anyone: Add support for selection of multiple units.
+		// TODO Plankton: !!!Add support for selection of enemy units.
 		selectedEntities.clear();
 		PlayerControlledEntity entity = getPCEAtPosition(pos, owner);
 		if(entity!=null){ //No entity is at that position
@@ -303,9 +304,10 @@ public class EntityManager implements IEntityManager{
 		return closestPCE;
 	}
 	
+	// TODO Markus(?): Add javadoc
 	public PlayerControlledEntity getClosestEnemyStructure(IPlayerControlledEntity pce) {
 		List<AbstractEntity> nearbyEntities= getNearbyEntities(pce, 
-				(float)Math.sqrt(Math.pow(100, 2)+ Math.pow(100, 2))); //TODO Anyone, should use world height/width
+				(float)Math.sqrt(Math.pow(100, 2)+ Math.pow(100, 2))); //TODO Markus: Change this
 		PlayerControlledEntity closestEnemyStruct = null;
 		
 		for(AbstractEntity entity : nearbyEntities) {

@@ -32,7 +32,6 @@ import com.jme3.texture.Texture.WrapMode;
  * @author Markus Ekström
  *
  */
-// TODO Anyone: This class probably contains too much code...
 public class GameView implements PropertyChangeListener{
 	private SimpleApplication app;
 	private IGame game;
