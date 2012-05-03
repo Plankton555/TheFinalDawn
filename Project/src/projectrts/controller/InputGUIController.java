@@ -36,6 +36,7 @@ public class InputGUIController implements ScreenController {
 	private InputController input;
 	
 	private IPlayerControlledEntity selectedPce;
+	private int showingTooltipID = 0;
 
 	/**
 	 * Creates a new inputGUIController
@@ -355,13 +356,19 @@ public class InputGUIController implements ScreenController {
 	 * @param nr the ID of the button which the cursor is on
 	 */
 	public void buttonMouseEnter(String nr) {
+		showingTooltipID = 0;
+		try{
+			showingTooltipID = Integer.parseInt(nr);
+		} catch(NumberFormatException e){
+			
+		}
+
 		Element panelTooltip = screen.findElementByName("Panel_Tooltip");
 		Element labelTooltip = screen.findElementByName("Label_Tooltip");
 		panelTooltip.setVisible(true);
-		//panelTooltip.setConstraintX(new SizeValue("50px"));
+		
 		panelTooltip.setConstraintX(new SizeValue(nifty.getNiftyMouse().getX()-panelTooltip.getWidth()+"px"));
 		panelTooltip.setConstraintY(new SizeValue(nifty.getNiftyMouse().getY()-panelTooltip.getHeight()+"px"));
-		System.out.println(panelTooltip.getHeight());
 		
 		screen.layoutLayers();
 		
@@ -369,7 +376,16 @@ public class InputGUIController implements ScreenController {
 	}
 	
 	public void buttonMouseLeave(String nr) {
-		//System.out.println(nr);
+		int iNr = 0;
+		try{
+			iNr = Integer.parseInt(nr);
+		} catch(NumberFormatException e){
+			
+		}
+		if(iNr == showingTooltipID){
+			Element panelTooltip = screen.findElementByName("Panel_Tooltip");
+			panelTooltip.setVisible(false);
+		}
 	}
 
 	private IAbility getAbility(String nr){
