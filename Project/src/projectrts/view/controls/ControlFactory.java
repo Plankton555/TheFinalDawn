@@ -36,8 +36,8 @@ public enum ControlFactory {INSTANCE;
 	 */
 	public AbstractControl createEntityControl(String controlType, IEntity entity) {
 		if(controlMap.get(controlType) == null) {
-			// TODO Anyone: Throw exception instead of returning null
-			return null;
+			throw new IllegalStateException("You must register "+ controlType +
+					" before you can use it");
 		}
 		
 		return ((IEntityControl)controlMap.get(controlType)).createControl(entity);
@@ -52,8 +52,8 @@ public enum ControlFactory {INSTANCE;
 	 */
 	public AbstractControl createNodeControl(String controlType, INode node) {
 		if(controlMap.get(controlType) == null) {
-			// TODO Anyone: Throw exception instead of returning null
-			return null;
+			throw new IllegalStateException("You must register "+ controlType +
+					" before you can use it");
 		}
 		
 		return ((INodeControl)controlMap.get(controlType)).createControl(node);

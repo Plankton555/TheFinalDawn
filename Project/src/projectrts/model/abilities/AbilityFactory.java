@@ -16,29 +16,33 @@ public enum AbilityFactory {INSTANCE;
 	
 	public AbstractAbility createAbility(String abilityType, PlayerControlledEntity entity) {
 		AbstractAbility ability = abilityMap.get(abilityType);
-		if (ability != null && ability instanceof INotUsingMoveAbility)
+		if (ability == null)
 		{
-			INotUsingMoveAbility nMovableAbility = (INotUsingMoveAbility) ability;
-			return nMovableAbility.createAbility(entity);
+			throw new IllegalStateException("You must register "+ abilityType +
+					" before you can use it");
 		}
-		else
+		else if (!(ability instanceof INotUsingMoveAbility))
 		{
-			// TODO Anyone: Throw exception instead of returning null
-			return null;
+			throw new IllegalStateException(abilityType +
+					" does not implement " + INotUsingMoveAbility.class.getSimpleName());
 		}
+		INotUsingMoveAbility nMovableAbility = (INotUsingMoveAbility) ability;
+		return nMovableAbility.createAbility(entity);
 	}
 	
 	public AbstractAbility createUsingMoveAbility(String abilityType, IPlayerControlledEntity entity, MoveAbility moveAbility) {
 		AbstractAbility ability = abilityMap.get(abilityType);
-		if (ability != null && ability instanceof IUsingMoveAbility)
+		if (ability == null)
 		{
-			IUsingMoveAbility movableAbility = (IUsingMoveAbility) ability;
-			return movableAbility.createAbility(entity, moveAbility);
+			throw new IllegalStateException("You must register "+ abilityType +
+					" before you can use it");
 		}
-		else
+		else if (!(ability instanceof IUsingMoveAbility))
 		{
-			// TODO Anyone: Throw exception instead of returning null
-			return null;
+			throw new IllegalStateException(abilityType +
+					" does not implement " + IUsingMoveAbility.class.getSimpleName());
 		}
+		IUsingMoveAbility movableAbility = (IUsingMoveAbility) ability;
+		return movableAbility.createAbility(entity, moveAbility);
 	}
 }

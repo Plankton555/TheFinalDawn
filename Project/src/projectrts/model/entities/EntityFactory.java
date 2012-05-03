@@ -35,8 +35,8 @@ public enum EntityFactory {INSTANCE;
 	 */
 	public PlayerControlledEntity createPCE(String pceType, IPlayer aiPlayer, Position pos) {
 		if(pceMap.get(pceType) == null) {
-			// TODO Anyone: Throw exception instead of returning null
-			return null;
+			throw new IllegalStateException("You must register "+ pceType +
+					" before you can use it");
 		}
 		
 		return pceMap.get(pceType).createPCE(aiPlayer, pos);
@@ -61,8 +61,8 @@ public enum EntityFactory {INSTANCE;
 	 */
 	public NonPlayerControlledEntity createNPCE(String npceType, Position pos) {
 		if(npceMap.get(npceType) == null) {
-			// TODO Anyone: Throw exception instead of returning null
-			return null;
+			throw new IllegalStateException("You must register "+ npceType +
+					" before you can use it");
 		}
 		return npceMap.get(npceType).createNPCE(pos);
 	}
