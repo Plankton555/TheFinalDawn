@@ -23,6 +23,7 @@ import de.lessvoid.nifty.render.image.ImageModeHelper;
 public enum ImageManager {
 	INSTANCE;
 	private HashMap<String, NiftyImage> images = new HashMap<String, NiftyImage>();
+	private NiftyRenderEngine engine;
 	
 
 	/**
@@ -30,18 +31,7 @@ public enum ImageManager {
 	 * @param nifty
 	 */
 	public void initializeImages(Nifty nifty){
-		NiftyRenderEngine engine = nifty.getRenderEngine();
-
-
-		images.put(MoveAbility.class.getSimpleName(), engine.createImage("assets/gui/MoveAbility.png", false));
-		images.put(AttackAbility.class.getSimpleName(), engine.createImage("/assets/gui/AttackAbility.png", false));
-		images.put(OffensiveSpellAbility.class.getSimpleName(), engine.createImage("/assets/gui/OffensiveSpellAbility.bmp", false));
-		images.put(BuildWallAbility.class.getSimpleName(), engine.createImage("assets/gui/BuildWallAbility.png", false));
-		images.put(TrainWorkerAbility.class.getSimpleName(), engine.createImage("assets/gui/TrainWorkerAbility.png", false));
-		images.put(TrainWarriorAbility.class.getSimpleName(), engine.createImage("assets/gui/TrainWarriorAbility.png", false));
-		images.put(GatherResourceAbility.class.getSimpleName(), engine.createImage("assets/gui/GatherResourceAbility.png", true));
-		
-		images.put("NoImage", engine.createImage("/assets/gui/NoImage.bmp", false));
+		engine = nifty.getRenderEngine();
 		
 		NiftyImage image = engine.createImage("/assets/gui/background.png", false);
 	    String imageMode = "repeat:0,0,"+image.getWidth()+","+image.getHeight();
@@ -60,6 +50,10 @@ public enum ImageManager {
 	 */
 	public NiftyImage getImage(String name){
 		return images.get(name);
+	}
+	
+	public void addImage(String key, String imagePath) {
+		images.put(key, engine.createImage(imagePath, false));
 	}
 
 

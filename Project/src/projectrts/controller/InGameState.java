@@ -1,7 +1,15 @@
 package projectrts.controller;
 
 
+import projectrts.io.ImageManager;
 import projectrts.model.IGame;
+import projectrts.model.abilities.AttackAbility;
+import projectrts.model.abilities.BuildWallAbility;
+import projectrts.model.abilities.GatherResourceAbility;
+import projectrts.model.abilities.MoveAbility;
+import projectrts.model.abilities.OffensiveSpellAbility;
+import projectrts.model.abilities.TrainWarriorAbility;
+import projectrts.model.abilities.TrainWorkerAbility;
 import projectrts.model.world.Position;
 import projectrts.view.GameGUIView;
 import projectrts.view.GameView;
@@ -63,6 +71,7 @@ public class InGameState extends AbstractAppState {
         super.initialize(stateManager, app); 
         this.app = (SimpleApplication)app;          // cast to a more specific class
       // init stuff that is independent of whether state is PAUSED or RUNNING // modify scene graph...
+      initializeImages();
       view = new GameView(this.app, game);
       guiView = new GameGUIView(nifty, game);
       
@@ -76,6 +85,18 @@ public class InGameState extends AbstractAppState {
       input.addListener(guiView);
    }
  
+    private void initializeImages() {
+    	//Add images to ImageManager
+    	ImageManager.INSTANCE.addImage(MoveAbility.class.getSimpleName(), "assets/gui/MoveAbility.png");
+    	ImageManager.INSTANCE.addImage(AttackAbility.class.getSimpleName(), "/assets/gui/AttackAbility.png");
+    	ImageManager.INSTANCE.addImage(OffensiveSpellAbility.class.getSimpleName(), "/assets/gui/OffensiveSpellAbility.bmp");
+    	ImageManager.INSTANCE.addImage(BuildWallAbility.class.getSimpleName(), "assets/gui/BuildWallAbility.png");
+    	ImageManager.INSTANCE.addImage(TrainWorkerAbility.class.getSimpleName(), "assets/gui/TrainWorkerAbility.png");
+    	ImageManager.INSTANCE.addImage(TrainWarriorAbility.class.getSimpleName(), "assets/gui/TrainWarriorAbility.png");
+    	ImageManager.INSTANCE.addImage(GatherResourceAbility.class.getSimpleName(), "assets/gui/GatherResourceAbility.png");
+    	ImageManager.INSTANCE.addImage("NoImage", "/assets/gui/NoImage.bmp");
+    }
+    
     /**
      * This method is probably called automatically when changing states, I haven't looked it up
      * though but I think it is not supposed to be called manually.
