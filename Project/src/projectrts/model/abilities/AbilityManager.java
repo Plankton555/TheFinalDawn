@@ -155,11 +155,8 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	 */
 	@Override
 	public void useAbilitySelected(String ability, Position p, IPlayer owner){
-		for(IEntity entity : EntityManager.getInstance().getSelectedEntities()){
-			if(entity instanceof PlayerControlledEntity){
-				PlayerControlledEntity pce = (PlayerControlledEntity) entity;
-				doAbility(ability, p, pce);
-			}
+		for(IPlayerControlledEntity pce : EntityManager.getInstance().getSelectedEntitiesOfPlayer(owner)){
+			doAbility(ability, p, pce);
 		}
 	}
 

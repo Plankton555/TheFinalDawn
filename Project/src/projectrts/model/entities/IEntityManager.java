@@ -14,8 +14,14 @@ public interface IEntityManager {
 	public List<IPlayerControlledEntity> getEntitiesOfPlayer(IPlayer player);
 	
 	public void select(Position pos, IPlayer owner);
-	
+
+	/**
+	 * Returns the selected entities
+	 * @return A list with the selected entities
+	 */
 	public List<IEntity> getSelectedEntities();
+	
+	public List<IPlayerControlledEntity> getSelectedEntitiesOfPlayer(IPlayer player);
 	
 	public void addListener(PropertyChangeListener pcl);
 	
