@@ -1,11 +1,7 @@
 package projectrts.model.entities;
 
-import java.util.List;
-
-import projectrts.model.abilities.IAbility;
 import projectrts.model.entities.PlayerControlledEntity.State;
 import projectrts.model.player.IPlayer;
-import projectrts.model.utils.Position;
 
 /**
  * 

@@ -12,7 +12,6 @@ import org.junit.Test;
 
 import projectrts.model.utils.Position;
 import projectrts.model.world.INode;
-import projectrts.model.world.Node;
 import projectrts.model.world.World;
 
 public class WorldTest {
@@ -108,29 +107,6 @@ public class WorldTest {
 	public void testGetNodesAt()
 	{
 		// TODO Plankton: !!IMPLEMENT!
-	}
-	
-	@Test
-	public void testIsAnyNodeOccupied()
-	{
-		// TODO Plankton: !!IMPLEMENT!
-	}
-	
-	@Test
-	public void testIsAdjecentTo()
-	{
-		INode node1 = new Node(0,0);
-		INode node2 = new Node(1,0);
-		INode node3 = new Node(2,0);
-		INode node4 = new Node(3,0);
-		List<INode> nodes = new ArrayList<INode>();
-		nodes.add(node2);
-		nodes.add(node3);
-		nodes.add(node4);
-		
-		assertTrue(!World.isAdjacentTo(node1, nodes));
-		node1.addNeighbour(node4);
-		assertTrue(World.isAdjacentTo(node1, nodes));
 	}
 
 	/*

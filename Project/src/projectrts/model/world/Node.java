@@ -132,4 +132,42 @@ public class Node implements INode {
 	{
 		this.cost = cost;
 	}
+	
+	/**
+	 * Determines whether any of the provided nodes are occupied.
+	 * @param nodes The nodes to be examined.
+	 * @return true if any node is occupied, otherwise false.
+	 */
+	public static boolean isAnyNodeOccupied(List<INode> nodes){
+		// TODO Plankton: !Keep this method in World or Node?
+		for(INode node: nodes)
+		{
+			if(node.isOccupied())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Determines whether the provided node is adjacent to any of the nodes in the provided list.
+	 * @param node The node to be examined.
+	 * @param nodes The list of nodes that will be checked.
+	 * @return true if the node is adjacent to any of the nodes in the list, otherwise false.
+	 */
+	public static boolean isAdjacentTo(INode node, List<INode> nodes)
+	{
+		// TODO Plankton: !Keep this method in World or Node?
+		List<INode> adjacentNodes = node.getNeighbours();
+		for (INode adjNode : adjacentNodes)
+		{
+			if (nodes.contains(adjNode))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }

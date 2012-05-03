@@ -17,7 +17,7 @@ import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.Resource;
 import projectrts.model.utils.Position;
-import projectrts.model.world.World;
+import projectrts.model.world.Node;
 import projectrts.view.GameView;
 
 import com.jme3.app.SimpleApplication;
@@ -225,7 +225,7 @@ public class InputController {
     		Position pos = Utils.convertWorldToModel(
     				app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
     		if(choosingPosition){    			
-    			if(!World.isAnyNodeOccupied(
+    			if(!Node.isAnyNodeOccupied(
     					game.getWorld().getNodesAt(pos, buildingSize))){
     				
     				game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(),

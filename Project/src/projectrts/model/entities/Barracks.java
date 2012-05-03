@@ -1,7 +1,5 @@
 package projectrts.model.entities;
 
-import projectrts.model.abilities.AbilityFactory;
-import projectrts.model.abilities.TrainWarriorAbility;
 import projectrts.model.player.IPlayer;
 import projectrts.model.utils.Position;
 

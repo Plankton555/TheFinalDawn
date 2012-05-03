@@ -5,9 +5,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import projectrts.model.GameModel;
-import projectrts.model.abilities.AbilityFactory;
-import projectrts.model.abilities.GatherResourceAbility;
-import projectrts.model.abilities.MoveAbility;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Resource;
 import projectrts.model.entities.Worker;
