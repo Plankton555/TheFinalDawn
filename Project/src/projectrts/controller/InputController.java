@@ -11,12 +11,10 @@ import projectrts.model.abilities.IAbility;
 import projectrts.model.abilities.IBuildStructureAbility;
 import projectrts.model.abilities.ITargetAbility;
 import projectrts.model.abilities.MoveAbility;
-import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.Resource;
-import projectrts.model.world.Node;
 import projectrts.model.world.Position;
 import projectrts.view.GameView;
 
@@ -46,7 +44,7 @@ public class InputController{
 	private GameView view; 
 	private boolean choosingPosition=false;
 	private IAbility currentAbility;
-	private PlayerControlledEntity selectedEntity;
+	private IPlayerControlledEntity selectedEntity;
 	private float buildingSize;
 	private boolean choosingTarget;
 	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
@@ -228,7 +226,7 @@ public class InputController{
     		Position pos = InGameState.convertWorldToModel(
     				app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
     		if(choosingPosition){    			
-    			if(!Node.isAnyNodeOccupied(
+    			if(!game.isAnyNodeOccupied(
     					game.getWorld().getNodesAt(pos, buildingSize))){
     				
     				game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(),
@@ -238,7 +236,7 @@ public class InputController{
     			}
     		}else if(choosingTarget){
     			if(currentAbility instanceof GatherResourceAbility){
-    				if(EntityManager.getInstance().getNPCEAtPosition(pos) instanceof Resource){
+    				if(game.getEntityManager().getNPCEAtPosition(pos) instanceof Resource){
     					game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(),
         						pos, selectedEntity);
     					choosingTarget=false;
@@ -246,7 +244,7 @@ public class InputController{
     					pcs.firePropertyChange("TargetNotResource", null, null);
     				}
     			}else if(currentAbility instanceof AttackAbility){
-    				if(EntityManager.getInstance().getPCEAtPosition(pos)!=null){
+    				if(game.getEntityManager().getPCEAtPosition(pos)!=null){
     					game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(),
         						pos, selectedEntity);
     					choosingTarget=false;
@@ -275,7 +273,7 @@ public class InputController{
     	    	choosingTarget=false;
     		}else{
 	    		if(e!=null){
-	    			if(e.getName().equals(Resource.class.getSimpleName())){
+	    			if(e instanceof Resource){
 	    				game.getAbilityManager().useAbilitySelected(
 	    						GatherResourceAbility.class.getSimpleName(), click,
 	    						game.getHumanPlayer());
@@ -317,7 +315,7 @@ public class InputController{
     	}
     	
     	private IEntity getEntityAtPosition(Position pos){
-    		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
+    		List<IEntity> entities = game.getEntityManager().getAllEntities();
     		for(IEntity entity: entities){
 				float unitSize = entity.getSize();
 				Position unitPos = entity.getPosition();
@@ -349,7 +347,7 @@ public class InputController{
      * @param ability the ability to become selected
      */
     public void selectAbility(IAbility ability, IPlayerControlledEntity e){
-    	PlayerControlledEntity pce = (PlayerControlledEntity)e;
+    	IPlayerControlledEntity pce = (IPlayerControlledEntity)e;
     	currentAbility=ability;
     	selectedEntity= pce;
     	choosingPosition=false;

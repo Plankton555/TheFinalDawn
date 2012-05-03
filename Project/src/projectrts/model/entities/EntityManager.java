@@ -87,7 +87,7 @@ public class EntityManager implements IEntityManager{
 	 * @return A list of all entities of player.
 	 */
 	@Override
-	public List<IPlayerControlledEntity> getEntitiesOfPlayer(Player player)
+	public List<IPlayerControlledEntity> getEntitiesOfPlayer(IPlayer player)
 	{
 		
 		List<IPlayerControlledEntity> output = new ArrayList<IPlayerControlledEntity>();
@@ -108,6 +108,7 @@ public class EntityManager implements IEntityManager{
 	/**
 	 * @return All entities.
 	 */
+	@Override
 	public List<IEntity> getAllEntities()
 	{
 		List<IEntity> output = new ArrayList<IEntity>();
@@ -222,7 +223,7 @@ public class EntityManager implements IEntityManager{
 	 * @param pos the position where entities should be selected
 	 * @param owner the player that selected the entities
 	 */
-	public void select(Position pos, Player owner) {
+	public void select(Position pos, IPlayer owner) {
 		// TODO Anyone: Add support for selection of multiple units.
 		// TODO Plankton: !!!Add support for selection of enemy units.
 		selectedEntities.clear();
@@ -243,12 +244,12 @@ public class EntityManager implements IEntityManager{
 
 	@Override
 	public List<IPlayerControlledEntity> getSelectedEntitiesOfPlayer(
-			Player owner) {
+			IPlayer owner) {
 		List<IPlayerControlledEntity> output = new ArrayList<IPlayerControlledEntity>();
 		for(IEntity entity: selectedEntities){
-			if (entity instanceof IPlayerControlledEntity)
+			if (entity instanceof PlayerControlledEntity)
 			{
-				IPlayerControlledEntity pce = (IPlayerControlledEntity) entity;
+				PlayerControlledEntity pce = (PlayerControlledEntity) entity;
 				if (pce.getOwner().equals(owner))
 				{
 					output.add(pce);
@@ -277,7 +278,7 @@ public class EntityManager implements IEntityManager{
 	 * @param entity The entity from which to check.
 	 * @return List of all entities close to position.
 	 */
-	public List<AbstractEntity> getNearbyEntities(IPlayerControlledEntity entity, float range)
+	public List<AbstractEntity> getNearbyEntities(PlayerControlledEntity entity, float range)
 	{
 		// Preliminary method. May need to be changed to optimize.
 		
@@ -319,7 +320,7 @@ public class EntityManager implements IEntityManager{
 	}
 	
 	// TODO Markus(?): Add javadoc
-	public PlayerControlledEntity getClosestEnemyStructure(IPlayerControlledEntity pce) {
+	public PlayerControlledEntity getClosestEnemyStructure(PlayerControlledEntity pce) {
 		List<AbstractEntity> nearbyEntities= getNearbyEntities(pce, 
 				(float)Math.sqrt(Math.pow(100, 2)+ Math.pow(100, 2))); //TODO Markus: Change this
 		PlayerControlledEntity closestEnemyStruct = null;

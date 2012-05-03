@@ -1,6 +1,5 @@
 package projectrts.model.entities;
 
-import projectrts.model.entities.PlayerControlledEntity.State;
 
 /**
  * 
@@ -11,7 +10,7 @@ public interface IPlayerControlledEntity extends IEntity{
 	/**
 	 * @return The owner of the entity.
 	 */
-	public Player getOwner();
+	public IPlayer getOwner();
 	
 	/**
 	 * @return The sight range of the entity.
@@ -32,11 +31,6 @@ public interface IPlayerControlledEntity extends IEntity{
 	 * @return The damage of the entity.
 	 */
 	public int getDamage();
-
-	/**
-	 * @return The state of the unit;
-	 */
-	public State getState();
 	
 	/**
 	 * Deals damage to the entity

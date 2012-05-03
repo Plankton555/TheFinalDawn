@@ -1,8 +1,8 @@
 package projectrts.model.abilities;
 
 import projectrts.model.entities.EntityManager;
-import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.Player;
+import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.world.Position;
 import projectrts.model.world.World;
 
@@ -12,7 +12,7 @@ import projectrts.model.world.World;
  *
  */
 public class AbstractConstructAbility extends AbstractAbility implements IUsingMoveAbility, IBuildStructureAbility {
-	private IPlayerControlledEntity entity;
+	private PlayerControlledEntity entity;
 	private float buildTime; 
 	private int buildCost; 
 	private static float cooldown = 0.5f;
@@ -29,7 +29,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(IPlayerControlledEntity entity, MoveAbility moveAbility) {
+	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		this.entity = entity;
 		this.setCooldown(cooldown);
 		this.moveAbility = moveAbility;
@@ -78,8 +78,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 	}
 
 	@Override
-
-	public AbstractAbility createAbility(IPlayerControlledEntity entity, MoveAbility moveAbility) {
+	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		AbstractConstructAbility newAbility = new AbstractConstructAbility();
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;

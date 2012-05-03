@@ -2,7 +2,7 @@ package projectrts.model.abilities;
 
 import projectrts.model.entities.AbstractEntity;
 import projectrts.model.entities.EntityManager;
-import projectrts.model.entities.IPlayerControlledEntity;
+import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.Resource;
 import projectrts.model.world.Position;
 /**
@@ -12,7 +12,7 @@ import projectrts.model.world.Position;
  */
 public class MineResourceAbility extends AbstractAbility implements IUsingMoveAbility, IGatherAbility {
 	private Resource targetResource;
-	private IPlayerControlledEntity entity;
+	private PlayerControlledEntity entity;
 	private AbstractAbility moveAbility;
 	private int resourceCarriedAmount = RESOURCE_CARRIED_AMOUNT;
 	private final float recoveryTime = 0.3f;
@@ -26,7 +26,7 @@ public class MineResourceAbility extends AbstractAbility implements IUsingMoveAb
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(IPlayerControlledEntity entity, MoveAbility moveAbility) {
+	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		this.entity = entity;
 		this.moveAbility = moveAbility;
 	}
@@ -74,7 +74,7 @@ public class MineResourceAbility extends AbstractAbility implements IUsingMoveAb
 	}
 	
 	@Override
-	public AbstractAbility createAbility(IPlayerControlledEntity entity, MoveAbility moveAbility) {
+	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		MineResourceAbility newAbility = new MineResourceAbility();
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;

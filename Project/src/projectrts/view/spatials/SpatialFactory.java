@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 import projectrts.model.entities.IEntity;
 import projectrts.model.world.INode;
+import projectrts.view.controls.MoveControl;
+import projectrts.view.controls.NodeControl;
+import projectrts.view.controls.SelectControl;
 
 import com.jme3.scene.shape.Box;
 /**
@@ -14,6 +17,30 @@ import com.jme3.scene.shape.Box;
 public enum SpatialFactory {INSTANCE;
 	
 	private HashMap<String, AbstractSpatial> spatialMap = new HashMap<String, AbstractSpatial>();
+	
+	static{
+		try
+		{
+			// Initialize the control classes.
+			Class.forName(MoveControl.class.getName());
+			Class.forName(SelectControl.class.getName());
+			Class.forName(NodeControl.class.getName());
+			
+			// Initialize the spatial classes.
+			Class.forName(WarriorSpatial.class.getName());
+			Class.forName(WorkerSpatial.class.getName());
+			Class.forName(HeadquarterSpatial.class.getName());
+			Class.forName(BarracksSpatial.class.getName());
+			Class.forName(ResourceSpatial.class.getName());
+			Class.forName(SelectSpatial.class.getName());
+			Class.forName(DebugNodeSpatial.class.getName());
+			Class.forName(WallSpatial.class.getName());
+		}
+		catch (ClassNotFoundException any)
+		{
+			any.printStackTrace();
+		}
+	}
 	
 	/**
 	 * Registers a spatial in the factory. Registering a spatial enables

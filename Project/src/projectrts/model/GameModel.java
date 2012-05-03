@@ -1,16 +1,21 @@
 package projectrts.model;
 
+import java.util.List;
+
 import projectrts.model.abilities.AbilityManager;
 import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.Barracks;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Headquarter;
 import projectrts.model.entities.IEntityManager;
+import projectrts.model.entities.IPlayer;
 import projectrts.model.entities.Player;
 import projectrts.model.entities.Resource;
 import projectrts.model.entities.Warrior;
 import projectrts.model.entities.Worker;
+import projectrts.model.world.INode;
 import projectrts.model.world.IWorld;
+import projectrts.model.world.Node;
 import projectrts.model.world.Position;
 import projectrts.model.world.World;
 
@@ -27,6 +32,26 @@ public class GameModel implements IGame {
 	private AIManager aiManager;
 	private AbilityManager abilityManager;
 	private float gameTime = 0;
+
+	/**
+	 * Returns a position in the model with the given coordinates
+	 * @param x The x coordinate
+	 * @param y The y coordinate
+	 * @return A position with the given coordinates.
+	 */
+	public static Position getPosition(float x, float y) {
+		return new Position(x, y);
+	}
+	
+	/**
+	 * Determines whether any of the provided nodes are occupied.
+	 * @param nodes The nodes to be examined.
+	 * @return true if any node is occupied, otherwise false.
+	 */
+	@Override
+	public boolean isAnyNodeOccupied(List<INode> nodes){
+		return Node.isAnyNodeOccupied(nodes);
+	}
 	
 	public GameModel() {
 		world.initializeWorld();
@@ -55,12 +80,12 @@ public class GameModel implements IGame {
 	}
 
 	@Override
-	public Player getHumanPlayer() {
+	public IPlayer getHumanPlayer() {
 		return humanPlayer;
 	}
 	
 	@Override
-	public Player getAIPlayer() {
+	public IPlayer getAIPlayer() {
 		return aiPlayer;
 	}
 

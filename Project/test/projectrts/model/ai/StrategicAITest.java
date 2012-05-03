@@ -30,8 +30,8 @@ public class StrategicAITest {
 	@Test
 	public void testUpdate() {
 		model = new GameModel();
-		aiPlayer = model.getAIPlayer();
-		humanPlayer = model.getHumanPlayer();
+		aiPlayer = (Player)model.getAIPlayer();
+		humanPlayer = (Player)model.getHumanPlayer();
 		EntityManager.getInstance().addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(1.5, 1.5));
 		EntityManager.getInstance().addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(1.5, 10.5));
 		model.update(1f);

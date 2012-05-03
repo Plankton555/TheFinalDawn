@@ -3,6 +3,9 @@ package projectrts.model.world;
 import java.util.List;
 
 
+
+
+
 public interface INode {
 	
 	/**

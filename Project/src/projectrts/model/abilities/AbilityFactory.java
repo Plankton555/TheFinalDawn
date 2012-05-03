@@ -2,7 +2,6 @@ package projectrts.model.abilities;
 
 import java.util.HashMap;
 
-import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
 
 //TODO Markus: ADD JAVADOC!!
@@ -30,7 +29,7 @@ public enum AbilityFactory {INSTANCE;
 		return nMovableAbility.createAbility(entity);
 	}
 	
-	public AbstractAbility createUsingMoveAbility(String abilityType, IPlayerControlledEntity entity, MoveAbility moveAbility) {
+	public AbstractAbility createUsingMoveAbility(String abilityType, PlayerControlledEntity entity, MoveAbility moveAbility) {
 		AbstractAbility ability = abilityMap.get(abilityType);
 		if (ability == null)
 		{

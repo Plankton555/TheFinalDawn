@@ -1,12 +1,6 @@
 package projectrts.model.abilities;
 
-/**
- * Interface for abilities
- * @author Filip Brynfors
- *
- */
 public interface IAbility {
-	
 	/**
 	 * Gets the name of the ability
 	 * @return The name of the ability.

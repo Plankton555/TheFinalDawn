@@ -10,17 +10,6 @@ import projectrts.io.MaterialManager;
 import projectrts.io.TextureManager;
 import projectrts.model.GameModel;
 import projectrts.model.IGame;
-import projectrts.view.controls.MoveControl;
-import projectrts.view.controls.NodeControl;
-import projectrts.view.controls.SelectControl;
-import projectrts.view.spatials.BarracksSpatial;
-import projectrts.view.spatials.DebugNodeSpatial;
-import projectrts.view.spatials.HeadquarterSpatial;
-import projectrts.view.spatials.ResourceSpatial;
-import projectrts.view.spatials.SelectSpatial;
-import projectrts.view.spatials.WallSpatial;
-import projectrts.view.spatials.WarriorSpatial;
-import projectrts.view.spatials.WorkerSpatial;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.niftygui.NiftyJmeDisplay;

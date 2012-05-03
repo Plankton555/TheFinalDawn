@@ -2,6 +2,7 @@ package projectrts.model.entities;
 
 import projectrts.model.world.Position;
 
+
 /**
  * 
  * @author Filip Brynfors

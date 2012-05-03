@@ -1,15 +1,11 @@
 package projectrts.controller;
 
 
+import java.io.File;
+
 import projectrts.io.ImageManager;
+import projectrts.model.GameModel;
 import projectrts.model.IGame;
-import projectrts.model.abilities.AttackAbility;
-import projectrts.model.abilities.BuildWallAbility;
-import projectrts.model.abilities.GatherResourceAbility;
-import projectrts.model.abilities.MoveAbility;
-import projectrts.model.abilities.OffensiveSpellAbility;
-import projectrts.model.abilities.TrainWarriorAbility;
-import projectrts.model.abilities.TrainWorkerAbility;
 import projectrts.model.world.Position;
 import projectrts.view.GameGUIView;
 import projectrts.view.GameView;
@@ -48,7 +44,7 @@ public class InGameState extends AbstractAppState {
 	public static Position convertWorldToModel(Vector3f worldLoc) {
 		float x = worldLoc.x / InGameState.MODEL_TO_WORLD;
 		float y = -worldLoc.y / InGameState.MODEL_TO_WORLD;
-		return new Position(x, y);
+		return GameModel.getPosition(x, y);
 	}
     
     public InGameState(IGame game, Nifty nifty) {
@@ -87,13 +83,13 @@ public class InGameState extends AbstractAppState {
  
     private void initializeImages() {
     	//Add images to ImageManager
-    	ImageManager.INSTANCE.addImage(MoveAbility.class.getSimpleName(), "assets/gui/MoveAbility.png");
-    	ImageManager.INSTANCE.addImage(AttackAbility.class.getSimpleName(), "/assets/gui/AttackAbility.png");
-    	ImageManager.INSTANCE.addImage(OffensiveSpellAbility.class.getSimpleName(), "/assets/gui/OffensiveSpellAbility.bmp");
-    	ImageManager.INSTANCE.addImage(BuildWallAbility.class.getSimpleName(), "assets/gui/BuildWallAbility.png");
-    	ImageManager.INSTANCE.addImage(TrainWorkerAbility.class.getSimpleName(), "assets/gui/TrainWorkerAbility.png");
-    	ImageManager.INSTANCE.addImage(TrainWarriorAbility.class.getSimpleName(), "assets/gui/TrainWarriorAbility.png");
-    	ImageManager.INSTANCE.addImage(GatherResourceAbility.class.getSimpleName(), "assets/gui/GatherResourceAbility.png");
+    	String[] names = game.getAbilityManager().getExistingAbilityNames();
+    	for(int i = 0; i < names.length; i++) {
+    		File file = new File("src/assets/gui/" + names[i] + ".png");
+    		if(file.exists()) {
+    			ImageManager.INSTANCE.addImage(names[i], "assets/gui/" + names[i] + ".png");
+    		}
+    	}
     	ImageManager.INSTANCE.addImage("NoImage", "/assets/gui/NoImage.bmp");
     }
     

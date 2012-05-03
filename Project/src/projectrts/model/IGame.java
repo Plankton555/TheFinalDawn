@@ -1,9 +1,14 @@
 package projectrts.model;
 
+import java.util.List;
+
 import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.IEntityManager;
-import projectrts.model.entities.Player;
+import projectrts.model.entities.IPlayer;
+import projectrts.model.world.INode;
 import projectrts.model.world.IWorld;
+
+
 
 /**
  * 
@@ -21,7 +26,7 @@ public interface IGame {
 	/**
 	 * @return The human player
 	 */
-	public Player getHumanPlayer();
+	public IPlayer getHumanPlayer();
 	
 	/**
 	 * @return The entity manager.
@@ -46,5 +51,12 @@ public interface IGame {
 	/**
 	 * @return The ai player.
 	 */
-	public Player getAIPlayer();
+	public IPlayer getAIPlayer();
+	
+	/**
+	 * Determines whether any of the provided nodes are occupied.
+	 * @param nodes The nodes to be examined.
+	 * @return true if any node is occupied, otherwise false.
+	 */
+	public boolean isAnyNodeOccupied(List<INode> nodes);
 }

@@ -1,7 +1,6 @@
 package projectrts.model.abilities;
 
 import projectrts.model.entities.Barracks;
-import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
 
 /**
@@ -38,7 +37,7 @@ public class BuildBarracksAbility extends AbstractConstructAbility implements IU
 
 	@Override
 
-	public AbstractAbility createAbility(IPlayerControlledEntity entity, MoveAbility moveAbility) {
+	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		BuildBarracksAbility newAbility = new BuildBarracksAbility();
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;

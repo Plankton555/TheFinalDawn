@@ -28,9 +28,9 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	 * @param owner2 The owner of the entity.
 	 * @param spawnPos The initial position of the entity.
 	 */
-	protected void initialize(Player owner2, Position spawnPos) {
+	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(spawnPos);
-		this.owner = owner2;
+		this.owner = owner;
 		this.pcs = new PropertyChangeSupport(this);
 	}
 	
@@ -40,7 +40,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	
 	
 	@Override
-	public Player getOwner() {
+	public IPlayer getOwner() {
 		return owner;
 	}
 	

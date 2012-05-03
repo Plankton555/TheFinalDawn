@@ -1,6 +1,5 @@
 package projectrts.model.abilities;
 
-import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.Wall;
 
@@ -35,7 +34,7 @@ public class BuildWallAbility extends AbstractConstructAbility implements IUsing
 	}
 
 	@Override
-	public AbstractAbility createAbility(IPlayerControlledEntity entity, MoveAbility moveAbility) {
+	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		BuildWallAbility newAbility = new BuildWallAbility();
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;

@@ -2,6 +2,8 @@ package projectrts.model.world;
 
 import javax.vecmath.Vector2d;
 
+
+
 /**
  * A 2D position.
  * @author Bjorn Persson Mattsson
@@ -30,14 +32,17 @@ public class Position {
 		this(otherPos.getX(), otherPos.getY());
 	}
 	
-	/**
-	 * @return Returns a clone of this position.
+	/* (non-Javadoc)
+	 * @see projectrts.model.world.Position#copy()
 	 */
 	public Position copy()
 	{
 		return new Position(this.getX(), this.getY());
 	}
 	
+	/* (non-Javadoc)
+	 * @see projectrts.model.world.Position#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 29; // Default generated hashcode
@@ -50,6 +55,9 @@ public class Position {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see projectrts.model.world.Position#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -66,32 +74,32 @@ public class Position {
 		return true;
 	}
 
-	/**
-	 * @return The x component.
+	/* (non-Javadoc)
+	 * @see projectrts.model.world.Position#getX()
 	 */
 	public double getX()
 	{
 		return coord.x;
 	}
 	
-	/**
-	 * @return The y component.
+	/* (non-Javadoc)
+	 * @see projectrts.model.world.Position#getY()
 	 */
 	public double getY()
 	{
 		return coord.y;
 	}
 	
+	/* (non-Javadoc)
+	 * @see projectrts.model.world.Position#toString()
+	 */
 	@Override
 	public String toString() {
 		return coord.x + ";" + coord.y;
 	}
 
-	/**
-	 * Returns the position at the distance and direction from this position.
-	 * @param distance Distance from this position to the returned one.
-	 * @param direction Direction vector from this position.
-	 * @return Position at the distance and direction from this position.
+	/* (non-Javadoc)
+	 * @see projectrts.model.world.Position#add(double, javax.vecmath.Vector2d)
 	 */
 	public Position add(double distance, Vector2d direction) {
 		if (direction.length() == 0) // null vector, no direction

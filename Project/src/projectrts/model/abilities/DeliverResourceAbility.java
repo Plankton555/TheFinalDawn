@@ -7,6 +7,7 @@ import projectrts.model.entities.AbstractStructure;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.Player;
+import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.world.Position;
 /**
  * An ability for delivering a resource at a deposit structure
@@ -15,7 +16,7 @@ import projectrts.model.world.Position;
  */
 public class DeliverResourceAbility extends AbstractAbility implements IUsingMoveAbility, IGatherAbility {
 	
-	private IPlayerControlledEntity entity;
+	private PlayerControlledEntity entity;
 	private AbstractStructure depositStructure;
 	private AbstractAbility moveAbility;
 	private double range = 1;
@@ -27,7 +28,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(IPlayerControlledEntity entity, MoveAbility moveAbility) {
+	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		this.entity=entity;
 		this.moveAbility = moveAbility;
 	}
@@ -69,8 +70,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 	}
 	
 	private void findDepositStructure(){
-		List<IPlayerControlledEntity> entities = 
-				EntityManager.getInstance().getEntitiesOfPlayer(entity.getOwner());
+		List<IPlayerControlledEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(entity.getOwner());
 		
 		for(IPlayerControlledEntity e: entities){
 			if(e instanceof AbstractStructure){
@@ -92,7 +92,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 	}
 
 	@Override
-	public AbstractAbility createAbility(IPlayerControlledEntity entity, MoveAbility moveAbility) {
+	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		DeliverResourceAbility newAbility = new DeliverResourceAbility();
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;

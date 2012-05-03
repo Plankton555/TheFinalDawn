@@ -1,7 +1,6 @@
 
 package projectrts.view.controls;
 
-import projectrts.controller.InGameState;
 import projectrts.model.entities.IEntity;
 import projectrts.model.world.Position;
 

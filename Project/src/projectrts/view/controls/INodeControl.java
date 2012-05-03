@@ -1,10 +1,7 @@
 package projectrts.view.controls;
 
-import projectrts.controller.InGameState;
 import projectrts.model.world.INode;
-import projectrts.model.world.Position;
 
-import com.jme3.math.Vector3f;
 import com.jme3.scene.control.AbstractControl;
 /**
  * 

@@ -26,8 +26,8 @@ public class MicroAITest {
 	@Before
 	public void setUp() {
 		model = new GameModel();
-		aiPlayer = model.getAIPlayer();
-		humanPlayer = model.getHumanPlayer();
+		aiPlayer = (Player)model.getAIPlayer();
+		humanPlayer = (Player)model.getHumanPlayer();
 		EntityManager.getInstance().addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(32.5, 42.5));
 		EntityManager.getInstance().addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(32.5, 32.5));
 		model.update(1f);
