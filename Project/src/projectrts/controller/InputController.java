@@ -1,5 +1,7 @@
 package projectrts.controller;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.List;
 
 import projectrts.global.constants.Constants;
@@ -36,7 +38,7 @@ import com.jme3.math.Vector3f;
  * @author Markus Ekström Modifed by Jakob Svensson
  *
  */
-public class InputController {
+public class InputController{
 
 	// Before the mouse is moved it has the position (0, 0), causing the camera to move in that direction.
 	// mouseActivated suppresses the camera until set to true (which is done when the mouse is first moved).
@@ -49,7 +51,7 @@ public class InputController {
 	private PlayerControlledEntity selectedEntity;
 	private float buildingSize;
 	private boolean choosingTarget;
-
+	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private InputGUIController guiControl;
 	
 
@@ -240,7 +242,7 @@ public class InputController {
         						pos, selectedEntity);
     					choosingTarget=false;
     				}else{
-    					//TODO Jakob: Notify gui that target is invalid
+    					pcs.firePropertyChange("TargetNotResource", null, null);
     				}
     			}else if(currentAbility instanceof AttackAbility){
     				if(EntityManager.getInstance().getPCEAtPosition(pos)!=null){
@@ -248,7 +250,7 @@ public class InputController {
         						pos, selectedEntity);
     					choosingTarget=false;
     				}else{
-    					//TODO Jakob: Notify gui that target is invalid
+    					pcs.firePropertyChange("TargetNotPCE", null, null);
     				}
     			}else{
     				game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(),
@@ -352,6 +354,10 @@ public class InputController {
     
     public void drawNodesAroundCursor(){
     	
+    }
+    
+    public void addListener(PropertyChangeListener pcl){
+    	pcs.addPropertyChangeListener(pcl);
     }
     
     

@@ -4,7 +4,6 @@ import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.Wall;
 
-//TODO Jakob: Make abstract constructBuilding class
 /**
  * An ability for building Barracks
  * @author Jakob Svensson

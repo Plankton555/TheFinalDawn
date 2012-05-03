@@ -10,11 +10,11 @@ import projectrts.model.utils.Position;
  * @author Jakob Svensson
  *
  */
-public class MineResourceAbility extends AbstractAbility implements IUsingMoveAbility {
+public class MineResourceAbility extends AbstractAbility implements IUsingMoveAbility, IGatherAbility {
 	private Resource targetResource;
 	private IPlayerControlledEntity entity;
 	private AbstractAbility moveAbility;
-	private int resourceCarriedAmount;
+	private int resourceCarriedAmount = RESOURCE_CARRIED_AMOUNT;
 	private final float recoveryTime = 0.3f;
 	private float miningCooldown = 0;
 	private int range = 1;
@@ -51,7 +51,7 @@ public class MineResourceAbility extends AbstractAbility implements IUsingMoveAb
 					miningCooldown -= tpf; 
 				}
 				
-				if(resourceCarriedAmount >= 12) { //TODO Jakob: As a consequence of removing P, 12 is now hardcoded. should be fixed in some way
+				if(resourceCarriedAmount >= resourceCarriedAmount) {
 					setFinished(true);
 				}
 				
@@ -84,4 +84,5 @@ public class MineResourceAbility extends AbstractAbility implements IUsingMoveAb
 	{
 		return (Position.getDistance(entity.getPosition(), target.getPosition()) < range + (target.getSize()/2)*1.5);
 	}
+	
 }

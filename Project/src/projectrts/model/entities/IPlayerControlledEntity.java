@@ -39,6 +39,9 @@ public interface IPlayerControlledEntity extends IEntity{
 	 */
 	public State getState();
 	
-	// TODO Jakob: Add javadoc
+	/**
+	 * Deals damage to the entity
+	 * @param damage The damage to be dealt
+	 */
 	public void dealDamageTo(int damage);
 }

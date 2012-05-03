@@ -183,22 +183,30 @@ public class GameGUIView implements PropertyChangeListener {
 		labelPlayerInfo.getRenderer(TextRenderer.class).setText("Resources: "+game.getHumanPlayer().getResources());
 	}
 
-
+	private void showMessage(String message){
+		labelMessage.getRenderer(TextRenderer.class).setText(message);
+		activeMessage = true;
+		labelMessage.setVisible(true);
+	}
+	
 	@Override
 	public void propertyChange(PropertyChangeEvent pce) {
 		if("ResourceChange".equals(pce.getPropertyName())){
 			updatePlayerInfo();
 		} else if ("ShowMessage".equals(pce.getPropertyName())){
 			message = pce.getNewValue().toString();
-			labelMessage.getRenderer(TextRenderer.class).setText(message);
-			activeMessage = true;
-			labelMessage.setVisible(true);
+			showMessage(message);
+			
 		}else if (pce.getPropertyName().equals("entityRemoved")) {
 			if(pce.getOldValue() instanceof IEntity) {
 				selectedPce=null;
 				updateSelected(null);
 				
 			}
+		}else if("TargetNotResource".equals(pce.getPropertyName())){
+			showMessage("Target is invalid, must target a Resource");
+		}else if("TargetNotPCE".equals(pce.getPropertyName())){
+			showMessage("Target is invalid, must target a Unit or Structure");
 		}
 		
 	}

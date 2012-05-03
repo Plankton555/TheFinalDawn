@@ -60,6 +60,7 @@ public class InGameState extends AbstractAppState {
       // Initialize view last, after model and controller, since its initialization is dependent on the other's.
       view.initialize();
       guiView.initialize();
+      input.addListener(guiView);
    }
  
     /**

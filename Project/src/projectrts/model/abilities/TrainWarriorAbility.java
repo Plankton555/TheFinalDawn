@@ -2,7 +2,7 @@ package projectrts.model.abilities;
 
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.Warrior;
-//TODO Jakob: Maybe extract common code with trainWorkerAbility to a abstract class
+
 /**
  * A class that trains a Warrior
  * @author Jakob Svensson

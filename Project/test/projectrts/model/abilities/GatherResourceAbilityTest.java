@@ -35,7 +35,7 @@ public class GatherResourceAbilityTest {
 		ab.useAbility(res.getPosition());
 		int counter = 0;
 
-		while(player.getResources()!=12*2+Player.RESOURCE_START_AMOUNT){ //TODO Jakob: As a consequence of removing P, 12 is now hardcoded. should be fixed in some way
+		while(player.getResources()!=IGatherAbility.RESOURCE_CARRIED_AMOUNT*2+Player.RESOURCE_START_AMOUNT){ 
 			ab.update(.5f);
 			move.update(.5f);
 			if(counter==12){

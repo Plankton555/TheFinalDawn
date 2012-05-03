@@ -13,7 +13,7 @@ import projectrts.model.utils.Position;
  * @author Jakob Svensson
  *
  */
-public class DeliverResourceAbility extends AbstractAbility implements IUsingMoveAbility {
+public class DeliverResourceAbility extends AbstractAbility implements IUsingMoveAbility, IGatherAbility {
 	
 	private IPlayerControlledEntity entity;
 	private AbstractStructure depositStructure;
@@ -49,7 +49,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 				moveAbility.setFinished(true);
 				
 				Player player = (Player)entity.getOwner();
-				player.modifyResource(12);//TODO Jakob: As a consequence of removing P, 12 is now hardcoded. should be fixed in some way
+				player.modifyResource(RESOURCE_CARRIED_AMOUNT);
 				setFinished(true);
 			}else{
 				// Not in range
@@ -104,4 +104,6 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 		
 		return (Position.getDistance(entity.getPosition(), target.getPosition()) < range  + (target.getSize()/2)*1.5);
 	}
+
+
 }

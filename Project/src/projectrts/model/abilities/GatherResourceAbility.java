@@ -12,6 +12,7 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 	private AbstractAbility mineResourceAbility;
 	private AbstractAbility deliverResourceAbility;
 	private Position target;
+	private static final int resourceCarriedAmount = 12;
 	
 	static {
 		AbilityFactory.INSTANCE.registerAbility(GatherResourceAbility.class.getSimpleName(), new GatherResourceAbility());
@@ -24,6 +25,7 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 		this.mineResourceAbility = AbilityFactory.INSTANCE.createUsingMoveAbility(MineResourceAbility.class.getSimpleName(), entity, moveAbility);
 		this.deliverResourceAbility = AbilityFactory.INSTANCE.createUsingMoveAbility(DeliverResourceAbility.class.getSimpleName(), entity, moveAbility);
 	}
+
 	
 	@Override
 	public String getName() {
@@ -66,6 +68,10 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 		GatherResourceAbility newAbility = new GatherResourceAbility();
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;
+	}
+	
+	public int getResourceCarriedAmount(){
+		return resourceCarriedAmount;
 	}
 
 }
