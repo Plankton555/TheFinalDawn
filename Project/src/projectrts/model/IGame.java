@@ -18,7 +18,7 @@ import projectrts.model.world.IWorld;
  *
  */
 public interface IGame {
-
+	
 	/**
 	 * This method gets called every frame.
 	 * @param tpf Time per frame (Time since last frame)
