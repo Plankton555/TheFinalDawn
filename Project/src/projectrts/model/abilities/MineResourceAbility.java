@@ -14,8 +14,8 @@ public class MineResourceAbility extends AbstractAbility implements IUsingMoveAb
 	private Resource targetResource;
 	private PlayerControlledEntity entity;
 	private AbstractAbility moveAbility;
-	private int resourceCarriedAmount = RESOURCE_CARRIED_AMOUNT;
-	private final float recoveryTime = 0.3f;
+	private int resourceCarriedAmount = 0;
+	private final float recoveryTime = .4f;
 	private float miningCooldown = 0;
 	private int range = 1;
 	
@@ -49,9 +49,10 @@ public class MineResourceAbility extends AbstractAbility implements IUsingMoveAb
 					miningCooldown = recoveryTime;
 				} else {
 					miningCooldown -= tpf; 
+					System.out.println(miningCooldown);
 				}
 				
-				if(resourceCarriedAmount >= resourceCarriedAmount) {
+				if(resourceCarriedAmount >= RESOURCE_CARRIED_AMOUNT) {
 					setFinished(true);
 				}
 				
