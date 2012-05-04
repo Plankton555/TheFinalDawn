@@ -10,8 +10,7 @@ import projectrts.model.world.Position;
 public class Barracks extends AbstractStructure{
 	
 	private static float size = 3;
-	//TODO Jakob: PMD error, "Variables that are final and static should be all in caps"
-	private static final float sightRange = 5;
+	private static final float SIGHT_RANGE = 5;
 	private static int maxHealth = 1000;
 	
 	static {
@@ -22,7 +21,7 @@ public class Barracks extends AbstractStructure{
 		super.initialize(owner, spawnPos);
 		this.setName(Barracks.class.getSimpleName());
 		this.setSize(size);
-		this.setSightRange(sightRange);
+		this.setSightRange(SIGHT_RANGE);
 		this.setMaxHealth(maxHealth);		
 		deposit = false;
 	}

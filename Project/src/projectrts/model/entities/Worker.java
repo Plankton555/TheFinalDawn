@@ -9,12 +9,11 @@ import projectrts.model.world.Position;
  */
 public class Worker extends AbstractUnit{
 	
-	// TODO Jakob: PMD error, "Variables that are final and static should be all in caps"
-	private static final float size = 1f;
-	private static final float speed = 5;
-	private static final int damage = 5;
-	private static final float sightRange = 5;
-	private static final int maxHealth = 50;
+	private static final float SIZE = 1f;
+	private static final float SPEED = 5;
+	private static final int DAMAGE = 5;
+	private static final float SIGHT_RANGE = 5;
+	private static final int MAXH_HEALTH = 50;
 
 	static {
 		EntityFactory.INSTANCE.registerPCE(Worker.class.getSimpleName(), new Worker());
@@ -23,11 +22,11 @@ public class Worker extends AbstractUnit{
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		setName(Worker.class.getSimpleName());
-		setSize(size);
-		setSpeed(speed);
-		setMaxHealth(maxHealth);
-		setSightRange(sightRange);
-		this.setDamage(damage);
+		setSize(SIZE);
+		setSpeed(SPEED);
+		setMaxHealth(MAXH_HEALTH);
+		setSightRange(SIGHT_RANGE);
+		this.setDamage(DAMAGE);
 	}
 	
 	@Override

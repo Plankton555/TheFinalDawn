@@ -9,12 +9,11 @@ import projectrts.model.world.Position;
  */
 public class Warrior extends AbstractUnit{
 	
-	// TODO Jakob: PMD error, "Variables that are final and static should be all in caps"
-	private static final float size = 1f;
-	private static final float speed = 4f;
-	private static final float sightRange = 5f;
-	private static final int damage = 20;
-	private static final int maxHealth = 100;
+	private static final float SIZE = 1f;
+	private static final float SPEED = 4f;
+	private static final float SIGHT_RANGE = 5f;
+	private static final int DAMAGE = 20;
+	private static final int MAX_HEALTH = 100;
 	
 	
 	static {
@@ -24,11 +23,11 @@ public class Warrior extends AbstractUnit{
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		setName(Warrior.class.getSimpleName());
-		setSightRange(sightRange);
-		this.setMaxHealth(maxHealth);
-		this.setSize(size);
-		this.setSpeed(speed);
-		this.setDamage(damage);
+		setSightRange(SIGHT_RANGE);
+		this.setMaxHealth(MAX_HEALTH);
+		this.setSize(SIZE);
+		this.setSpeed(SPEED);
+		this.setDamage(DAMAGE);
 	}
 
 	@Override
