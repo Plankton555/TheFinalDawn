@@ -48,7 +48,7 @@ public class InputController{
 	private float buildingSize;
 	private boolean choosingTarget;
 	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-	private InputGUIController guiControl;
+	private InGameGUIController guiControl;
 	
 	private static final float CAMERA_SPEED = 1f;
 	private static final float CAMERA_MOVE_MARGIN = 5f;
@@ -337,7 +337,7 @@ public class InputController{
      * Sets the GUI Control
      * @param guiControl
      */
-    public void setGUIControl(InputGUIController guiControl){
+    public void setGUIControl(InGameGUIController guiControl){
     	this.guiControl = guiControl;
     }
     

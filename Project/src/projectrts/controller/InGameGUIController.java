@@ -28,7 +28,7 @@ import de.lessvoid.nifty.tools.SizeValue;
  * @author Filip Brynfors Modified by Jakob Svensson
  *
  */
-public class InputGUIController implements ScreenController {
+public class InGameGUIController implements ScreenController {
 	private Nifty nifty;
 	private Screen screen;
 	private GameGUIView guiView;
@@ -44,7 +44,7 @@ public class InputGUIController implements ScreenController {
 	 * @param input the inputController
 	 * @param nifty the nifty
 	 */
-	public InputGUIController(InputController input, Nifty nifty, GameGUIView guiView, IAbilityManager abilityManager) {
+	public InGameGUIController(InputController input, Nifty nifty, GameGUIView guiView, IAbilityManager abilityManager) {
 		this.input = input;
 		this.nifty = nifty;
 		this.guiView = guiView;
@@ -58,7 +58,7 @@ public class InputGUIController implements ScreenController {
 	    
 	    // <screen>
 	    nifty.addScreen("Screen_Game", new ScreenBuilder("GUI Screen"){{
-	        controller(InputGUIController.this); // Screen properties       
+	        controller(InGameGUIController.this); // Screen properties       
 	 
 	        // <layer>
 	        layer(new LayerBuilder("Layer_ID") {{

@@ -31,7 +31,7 @@ public class InGameState extends AbstractAppState {
     private InputController input;
     private GameView view;
     private GameGUIView guiView;
-    private InputGUIController guiControl;
+    private InGameGUIController guiControl;
     private Nifty nifty;
     
     public static final float MODEL_TO_WORLD = 0.05f;
@@ -72,7 +72,7 @@ public class InGameState extends AbstractAppState {
       guiView = new GameGUIView(nifty, game);
       
       input = new InputController(this.app, game, view);
-      guiControl = new InputGUIController(input, nifty, guiView, game.getAbilityManager()); 
+      guiControl = new InGameGUIController(input, nifty, guiView, game.getAbilityManager()); 
 
       initializeCamera();
       // Initialize view last, after model and controller, since its initialization is dependent on the other's.
