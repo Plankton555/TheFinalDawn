@@ -156,8 +156,9 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		if(abilities != null) {
 			if(!abilities.isEmpty()) {
 				for(AbstractAbility ownAbility: abilities){
-					ownAbility.setActive(false); //Make sure that only one ability can be active at once
-					ownAbility.setFinished(true);
+					if(ownAbility.isActive()){
+						ownAbility.abortAbility(); //Make sure that only one ability can be active at once
+					}
 					if(ability.equals(ownAbility.getClass().getSimpleName())){
 						toBeUsedAbility = ownAbility;
 					}

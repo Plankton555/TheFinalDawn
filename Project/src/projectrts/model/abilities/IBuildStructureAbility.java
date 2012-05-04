@@ -6,6 +6,4 @@ package projectrts.model.abilities;
  */
 public interface IBuildStructureAbility {
 	public float getSizeOfBuilding();
-	
-	// TODO Jakob: Set nodes unoccupied if construction of a building is aborted!
 }

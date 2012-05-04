@@ -105,5 +105,13 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 		this.entityToTrain=name;
 	}
 	
+	@Override
+	public void abortAbility(){
+		super.abortAbility();
+		World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(buildPos)
+				, getSizeOfBuilding(), 0);
+		
+	}
+	
 
 }

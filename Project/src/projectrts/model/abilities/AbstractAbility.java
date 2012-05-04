@@ -94,4 +94,9 @@ public abstract class AbstractAbility implements IAbility {
 	 * @param target the position where the ability should be cast at
 	 */
 	public abstract void useAbility(Position target);
+	
+
+	public void abortAbility(){
+		setFinished(true);
+	}
 }
