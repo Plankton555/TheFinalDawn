@@ -79,6 +79,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(GatherResourceAbility.class.getSimpleName(), worker, workerMove));
 		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(BuildBarracksAbility.class.getSimpleName(), worker, workerMove));
 		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(BuildWallAbility.class.getSimpleName(), worker, workerMove));
+		workerAbilities.add(workerMove);
 		abilityReferenceMap.put(Worker.class.getSimpleName(), workerAbilities);
 		
 		//Warrior
@@ -86,6 +87,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		MoveAbility warriorMove = (MoveAbility) AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), worker);
 		ArrayList<AbstractAbility> warriorAbilities = new ArrayList<AbstractAbility>();
 		warriorAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(AttackAbility.class.getSimpleName(), warrior, warriorMove));
+		warriorAbilities.add(warriorMove);
 		abilityReferenceMap.put(Warrior.class.getSimpleName(), warriorAbilities);
 		
 		//Headquarter
