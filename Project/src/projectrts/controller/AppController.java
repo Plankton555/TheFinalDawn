@@ -41,16 +41,12 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
 	 
 	    nifty.loadStyleFile("nifty-default-styles.xml");
 	    nifty.loadControlFile("nifty-default-controls.xml");
-	    
-	    
     	
     	this.cam.setParallelProjection(true);
     	TextureManager.INSTANCE.initializeTextures(this);
     	MaterialManager.INSTANCE.initializeMaterial(this);
     	ImageManager.INSTANCE.initializeImages(nifty);
 
-    	
-    	//TODO Afton: Should not send itself as parameter. Too strong connections
     	menuState = new MenuState(nifty);    	
     	menuState.setEnabled(false);
     	menuState.addListener(this);
