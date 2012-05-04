@@ -198,7 +198,7 @@ public class GameGUIView implements PropertyChangeListener {
 			showMessage(message);
 			
 		}else if (pce.getPropertyName().equals("entityRemoved")) {
-			if(pce.getOldValue() instanceof IEntity) {
+			if(pce.getOldValue()==selectedPce ) {
 				selectedPce=null;
 				updateSelected(null);
 				
