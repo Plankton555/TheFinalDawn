@@ -72,7 +72,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 			setActive(true);
 			setFinished(false);
 			buildTimeLeft=buildTime;
-			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(target)//TODO Jakob: Set unoccupied if ability is aborted
+			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(target)
 					, getSizeOfBuilding(), EntityManager.getInstance().requestNewEntityID());
 		}
 	}
