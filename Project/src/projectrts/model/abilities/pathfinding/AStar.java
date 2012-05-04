@@ -82,7 +82,7 @@ public class AStar {
 					node.calculateCostFromStart(currentNode, false);
 					if (towardsNode != null)
 					{
-						node.calculateHeuristic(towardsNode, 10);
+						node.calculateHeuristic(towardsNode, 1);
 					}
 				}
 			}

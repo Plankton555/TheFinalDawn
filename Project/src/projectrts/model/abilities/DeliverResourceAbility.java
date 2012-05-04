@@ -76,7 +76,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 			if(e instanceof AbstractStructure){
 				AbstractStructure struct = (AbstractStructure)e;
 				if(struct.isDeposit()){
-					if(depositStructure == null) {
+					if(depositStructure == null || depositStructure.isDead()) {
 						depositStructure = struct;
 					}else{
 						//System.out.println(e.getPosition());

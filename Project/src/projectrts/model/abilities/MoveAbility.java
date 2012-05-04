@@ -123,7 +123,7 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	private void refreshPath(Position herePos, Position targetPos, INode hereNode,
 			int entityID, float entitySize)
 	{
-		path = AStar.calculatePath(herePos, targetPos, 5, entityID);
+		path = AStar.calculatePath(herePos, targetPos, 2, entityID);
 		if (path.nrOfNodesLeft() > 0)
 		{
 			world.setNodesOccupied(hereNode,
