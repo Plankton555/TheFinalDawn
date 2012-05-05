@@ -28,6 +28,7 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
 	private Nifty nifty;
 	private MenuState menuState;
 	private InGameState ingameState;
+	private HighscoreState highscoreState;
 	
     @Override
     public void simpleInitApp() {
@@ -64,6 +65,12 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
     	this.stateManager.attach(ingameState);
     	ingameState.setEnabled(true);
     }
+    
+    private void startHighscoreState(float time){
+    	highscoreState = new HighscoreState(nifty, time);
+    	this.stateManager.attach(highscoreState);
+    	highscoreState.setEnabled(true);
+    }
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
@@ -71,6 +78,12 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
 			menuState.setEnabled(false);
 			getStateManager().detach(menuState);
 			startIngameState();
+		} else if(evt.getPropertyName().equals("Highscore")){
+			ingameState.setEnabled(false);
+			getStateManager().detach(ingameState);
+			if(evt.getNewValue() instanceof Integer){
+				startHighscoreState((int)evt.getNewValue());
+			}
 		}
 	}
 }
