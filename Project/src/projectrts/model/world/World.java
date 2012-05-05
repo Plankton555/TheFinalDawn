@@ -3,7 +3,7 @@ package projectrts.model.world;
 import java.util.ArrayList;
 import java.util.List;
 
-import projectrts.model.utils.ModelUtils;
+import se.chalmers.pebjorn.javautils.Math;
 
 /**
  * The class containing the "world"
@@ -120,8 +120,8 @@ public final class World implements IWorld {
 	{
 		int x = (int)p.getX();
 		int y = (int)p.getY();
-		x = (int)ModelUtils.clamp(x, 0, width-1);
-		y = (int)ModelUtils.clamp(y, 0, height-1);
+		x = (int)Math.clamp(x, 0, width-1);
+		y = (int)Math.clamp(y, 0, height-1);
 		return nodes[y][x];
 	}
 	
@@ -158,11 +158,11 @@ public final class World implements IWorld {
 		
 		for (int i=centerY-offset; i<=centerY+offset; i++)
 		{
-			if (ModelUtils.isWithin(i, 0, width-1))
+			if (Math.isWithin(i, 0, width-1))
 			{
 				for (int j=centerX-offset; j<=centerX+offset; j++)
 				{
-					if (ModelUtils.isWithin(j, 0, height-1))
+					if (Math.isWithin(j, 0, height-1))
 					{
 						output.add(nodes[i][j]);
 					}

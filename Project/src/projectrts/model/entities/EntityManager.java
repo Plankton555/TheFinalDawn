@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.vecmath.Vector2d;
 
-import projectrts.model.utils.ModelUtils;
 import projectrts.model.world.Position;
 
 /**
@@ -166,8 +165,8 @@ public class EntityManager implements IEntityManager{
 				Position unitPos = entity.getPosition();
 				
 				//If the point is within the area of the unit
-				if(ModelUtils.isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
-						&& ModelUtils.isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
+				if(se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
+						&& se.chalmers.pebjorn.javautils.Math.isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
 					PlayerControlledEntity pcEntity  = (PlayerControlledEntity) entity; 
 					return pcEntity;
 					
@@ -204,8 +203,8 @@ public class EntityManager implements IEntityManager{
 				Position unitPos = entity.getPosition();
 				
 				//If the point is within the area of the unit
-				if(ModelUtils.isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
-						&& ModelUtils.isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
+				if(se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
+						&& se.chalmers.pebjorn.javautils.Math.isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
 					NonPlayerControlledEntity npcEntity  = (NonPlayerControlledEntity) entity; 
 					return npcEntity;
 					
