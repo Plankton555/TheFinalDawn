@@ -1,12 +1,16 @@
 package projectrts.model;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import projectrts.model.abilities.AbilityManager;
 import projectrts.model.abilities.IAbilityManager;
+import projectrts.model.entities.AbstractStructure;
 import projectrts.model.entities.Barracks;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Headquarter;
+import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IEntityManager;
 import projectrts.model.entities.IPlayer;
 import projectrts.model.entities.Player;
@@ -24,7 +28,7 @@ import projectrts.model.world.World;
  * The class handles the world and they players in the game
  * @author Björn Persson Mattson, Modified by Filip Brynfors, Jakob Svensson
  */
-public class GameModel implements IGame {
+public class GameModel implements IGame, PropertyChangeListener {
 	private World world = World.getInstance();
 	private EntityManager entityManager = EntityManager.getInstance();
 	private Player humanPlayer = new Player();
@@ -32,6 +36,7 @@ public class GameModel implements IGame {
 	private AIManager aiManager;
 	private AbilityManager abilityManager;
 	private float gameTime = 0;
+	private boolean gameIsOver = false;
 
 	/**
 	 * Returns a position in the model with the given coordinates
@@ -107,5 +112,31 @@ public class GameModel implements IGame {
 	@Override
 	public float getGameTime() {
 		return gameTime;
+	}
+	
+	private void checkIfGameOver(){
+		//Assumes that all structures are dead and loops until it finds a living one
+		List<IEntity> entities = entityManager.getAllEntities();
+		boolean allDead = true;
+		for(IEntity entity: entities){
+			if(entity instanceof AbstractStructure){
+				if(!((AbstractStructure) entity).isDead()){
+					allDead = false;
+					break;
+				}
+			}
+		}
+		if(allDead){
+			setGameOver();
+		}
+	}
+	
+	private void setGameOver(){
+		gameIsOver = true;
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		
 	}
 }
