@@ -2,7 +2,6 @@ package projectrts.model.pathfinding;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -88,22 +87,5 @@ public class NodeTest {
 	public void testIsAnyNodeOccupied()
 	{
 		// TODO Plankton: !!IMPLEMENT!
-	}
-	
-	@Test
-	public void testIsAdjecentTo()
-	{
-		INode node1 = new Node(0,0);
-		INode node2 = new Node(1,0);
-		INode node3 = new Node(2,0);
-		INode node4 = new Node(3,0);
-		List<INode> nodes = new ArrayList<INode>();
-		nodes.add(node2);
-		nodes.add(node3);
-		nodes.add(node4);
-		
-		assertTrue(!Node.isAdjacentTo(node1, nodes));
-		node1.addNeighbour(node4);
-		assertTrue(Node.isAdjacentTo(node1, nodes));
 	}
 }

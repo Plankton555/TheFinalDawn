@@ -16,7 +16,6 @@ public class Node implements INode {
 
 	private Position position;
 	private int occupyingEntityID = 0;
-	//private int distanceToObstacle = 10; // needed for different entity sizes
 	private float cost = 1;
 	private List<INode> neighbours = new ArrayList<INode>();
 	
@@ -61,14 +60,6 @@ public class Node implements INode {
 	 */
 	public void setOccupied(int occupyingEntityID) {
 		this.occupyingEntityID = occupyingEntityID;
-	}
-	
-	/**
-	 * Updates the distance to the nearest obstacle.
-	 */
-	public void updateDistanceToObstacle()
-	{
-		// TODO Plankton: !Implement Node.updateDistanceToObstacle()
 	}
 	
 	@Override
@@ -149,27 +140,6 @@ public class Node implements INode {
 				return true;
 			}
 		}
-		return false;
-	}
-	
-	/**
-	 * Determines whether the provided node is adjacent to any of the nodes in the provided list.
-	 * @param node The node to be examined.
-	 * @param nodes The list of nodes that will be checked.
-	 * @return true if the node is adjacent to any of the nodes in the list, otherwise false.
-	 */
-	public static boolean isAdjacentTo(INode node, List<INode> nodes)
-	{
-		// TODO Plankton: !Make this method not static
-		List<INode> adjacentNodes = node.getNeighbours();
-		for (INode adjNode : adjacentNodes)
-		{
-			if (nodes.contains(adjNode))
-			{
-				return true;
-			}
-		}
-		
 		return false;
 	}
 }
