@@ -16,11 +16,13 @@ public final class World implements IWorld {
 	private World()
 	{
 	}
-	public synchronized static World getInstance()
+	public static World getInstance()
 	{
-		if (instance == null)
-		{
-			instance = new World();
+		synchronized (instance) {
+			if (instance == null)
+			{
+				instance = new World();
+			}
 		}
 		return instance;
 	}

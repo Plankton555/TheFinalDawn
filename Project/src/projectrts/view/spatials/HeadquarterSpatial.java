@@ -14,7 +14,9 @@ import com.jme3.scene.shape.Box;
  * @author Jakob Svensson
  *
  */
+//TODO Anyone: PMD: Class cannot be instantiated and does not provide any static methods or fields
 public final class HeadquarterSpatial extends AbstractSpatial implements IEntitySpatial{
+	// TODO Jakob: PMD: Perhaps 'material' could be replaced by a local variable.
 	private Material material;
 	
 	static {

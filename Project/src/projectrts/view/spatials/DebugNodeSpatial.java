@@ -14,8 +14,10 @@ import com.jme3.scene.shape.Box;
  * @author Bjorn Persson Mattsson
  *
  */
+//TODO Anyone: PMD: Class cannot be instantiated and does not provide any static methods or fields
 public final class DebugNodeSpatial extends AbstractSpatial implements INodeSpatial {
-private Material material;
+	// TODO Jakob: PMD: Perhaps 'material' could be replaced by a local variable.
+	private Material material;
 	
 	static {
 		SpatialFactory.INSTANCE.registerSpatial(DebugNodeSpatial.class.getSimpleName(), new DebugNodeSpatial("DebugNodeSpatialCreator", new Box()));

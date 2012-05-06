@@ -13,6 +13,7 @@ public abstract class NonPlayerControlledEntity extends AbstractEntity {
 	 * @param spawnPos The initial position of the entity.
 	 */
 	protected void initialize(Position spawnPos) {
+		// TODO Jakob: PMD: Overriding method merely calls super
 		super.initialize(spawnPos);
 	}
 

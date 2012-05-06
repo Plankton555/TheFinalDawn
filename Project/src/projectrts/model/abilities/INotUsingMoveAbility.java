@@ -3,7 +3,7 @@ package projectrts.model.abilities;
 import projectrts.model.entities.PlayerControlledEntity;
 
 
-
+// TODO Plankton: ADD JAVADOC
 public interface INotUsingMoveAbility {
 
 	/**

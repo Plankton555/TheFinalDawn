@@ -11,7 +11,9 @@ import projectrts.model.world.Position;
  */
 public enum EntityFactory {INSTANCE;
 
+	// TODO Markus: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
 	private HashMap<String, PlayerControlledEntity> pceMap = new HashMap<String, PlayerControlledEntity>();
+	// TODO Markus: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
 	private HashMap<String, NonPlayerControlledEntity> npceMap = new HashMap<String, NonPlayerControlledEntity>();
 
 	/**

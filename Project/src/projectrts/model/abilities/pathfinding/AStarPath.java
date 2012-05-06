@@ -9,6 +9,7 @@ import java.util.Stack;
  */
 public class AStarPath {
 	
+	// TODO Plankton: PMD: Private field 'nodeStack' could be made final; it is only initialized in the declaration or constructor.
 	private Stack<AStarNode> nodeStack = new Stack<AStarNode>();
 	
 	/**

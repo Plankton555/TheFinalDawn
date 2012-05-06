@@ -20,9 +20,12 @@ import de.lessvoid.nifty.screen.Screen;
  * @author Filip Brynfors
  *
  */
+// TODO Afton: PMD: Too many fields
 public class GameGUIView implements PropertyChangeListener {
+	// TODO Afton: PMD: Private field 'nifty' could be made final; it is only initialized in the declaration or constructor.
 	private Nifty nifty;
 	private Screen screen;
+	// TODO Afton: PMD: Private field 'game' could be made final; it is only initialized in the declaration or constructor.
 	private IGame game;
 	
 	private Element labelName;
@@ -38,6 +41,7 @@ public class GameGUIView implements PropertyChangeListener {
 	
 	private boolean activeMessage = false;
 	private float messageTimer = 0;
+	// TODO Afton: PMD: This final field could be made static
 	private final float MESSAGE_MAX_TIME = 3;
 	private String message = ""; 
 	
@@ -101,8 +105,10 @@ public class GameGUIView implements PropertyChangeListener {
     	
     	String output="Time: ";
     	if(sec/60>0){
+    		// TODO Afton: PMD: Prefer StringBuffer over += for concatenating strings
     		output+=sec/60+":";
     	}
+    	// TODO Afton: PMD: Prefer StringBuffer over += for concatenating strings
     	output += sec%60;
     	labelTime.getRenderer(TextRenderer.class).setText(output);
 	}
@@ -120,6 +126,7 @@ public class GameGUIView implements PropertyChangeListener {
 	}
 	
 	private void updateAbilities(){
+		// TODO Afton: PMD: Avoid if (x != y) ..; else ..;
 		if(selectedPce!=null){
 			panelAbilities.setVisible(true);
 	    	List<IAbility> abilities = game.getAbilityManager().getAbilities(selectedPce);
@@ -154,6 +161,7 @@ public class GameGUIView implements PropertyChangeListener {
 	}
 	
 	private void updateSelectedInfo(){
+		// TODO Afton: PMD: Avoid if (x != y) ..; else ..;
     	if(selectedPce!=null){
     		//Update the Info about the unit in the GUI
     		labelName.getRenderer(TextRenderer.class).setText(selectedPce.getName());
@@ -199,6 +207,7 @@ public class GameGUIView implements PropertyChangeListener {
 			
 		}else if (pce.getPropertyName().equals("entityRemoved")) {
 			if(pce.getOldValue()==selectedPce ) {
+				// TODO Afton: PMD: Assigning an Object to null is a code smell. Consider refactoring.
 				selectedPce=null;
 				updateSelected(null);
 				

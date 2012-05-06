@@ -111,6 +111,7 @@ public class Position {
 		
 		// this position plus delta
 		Position result = new Position(this.getX() + delta.x, this.getY() + delta.y);
+		// TODO Plankton: PMD: Consider simply returning the value vs storing it in local variable 'result'
 		return result;
 	}
 

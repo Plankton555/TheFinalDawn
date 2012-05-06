@@ -32,11 +32,17 @@ import com.jme3.texture.Texture.WrapMode;
  * @author Markus Ekström
  *
  */
+// TODO Markus: PMD: This class has too many methods, consider refactoring it.
 public class GameView implements PropertyChangeListener{
+	// TODO Markus: PMD: Private field 'app' could be made final; it is only initialized in the declaration or constructor.
 	private SimpleApplication app;
+	// TODO Markus: PMD: Private field 'game' could be made final; it is only initialized in the declaration or constructor.
 	private IGame game;
+	// TODO Markus: PMD: Private field 'entities' could be made final; it is only initialized in the declaration or constructor.
     private Node entities = new Node("entities"); // The node for all entities
+    // TODO Markus: PMD: Private field 'selected' could be made final; it is only initialized in the declaration or constructor.
     private Node selected = new Node("selected"); // The node for the selected graphics
+ // TODO Markus: PMD: Private field 'debug' could be made final; it is only initialized in the declaration or constructor.
     private Node debug = new Node("debug"); // The node for the debugging graphics
     private Node terrainNode = new Node("terrain"); // The node for all terrain
     private Node mouseEffects = new Node("mouseEffects"); // The node for mouseEffects
@@ -158,6 +164,7 @@ public class GameView implements PropertyChangeListener{
      * @param tpf The time passed since the last frame.
      */
     public void update(float tpf) {
+    	// TODO Markus: PMD: Document empty method
     }
     
     private void integrateNodes(INode[][] nodes)
@@ -260,6 +267,7 @@ public class GameView implements PropertyChangeListener{
 				integrateNewEntity((IEntity)evt.getNewValue());
 			}
 		} else if (evt.getPropertyName().equals("entityRemoved")) {
+			// TODO Markus: PMD: These nested if statements could be combined
 			if(evt.getOldValue() instanceof IEntity) {
 				removeDeadEntity((IEntity)evt.getOldValue());
 				drawSelected(game.getEntityManager().getSelectedEntities());

@@ -11,6 +11,7 @@ import java.beans.PropertyChangeSupport;
 public class Player implements IPlayer{
 	public static final int RESOURCE_START_AMOUNT = 200;
 	private int resources;
+	// TODO Jakob: PMD: Private field 'pcs' could be made final; it is only initialized in the declaration or constructor.
 	private PropertyChangeSupport pcs;
 	
 	/**

@@ -11,6 +11,7 @@ import projectrts.model.entities.PlayerControlledEntity;
 public class BuildBarracksAbility extends AbstractConstructAbility implements IUsingMoveAbility, IBuildStructureAbility {
 	private static float buildTime = 1; 
 	private static int buildCost = 200; 
+	// TODO Jakob: PMD: Private field 'size' could be made final; it is only initialized in the declaration or constructor.
 	private float size = 3; //TODO Jakob: Sync with Barracks class
 
 

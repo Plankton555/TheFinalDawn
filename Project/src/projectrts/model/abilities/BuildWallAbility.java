@@ -11,6 +11,7 @@ import projectrts.model.entities.Wall;
 public class BuildWallAbility extends AbstractConstructAbility implements IUsingMoveAbility, IBuildStructureAbility{
 	private static float buildTime = 1; 
 	private static int buildCost = 50; 
+	// TODO Jakob: PMD: Private field 'size' could be made final; it is only initialized in the declaration or constructor.
 	private float size = 1; //TODO Jakob: Sync with Barracks class
 
 	static {

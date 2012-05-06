@@ -19,6 +19,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 	private PlayerControlledEntity entity;
 	private AbstractStructure depositStructure;
 	private AbstractAbility moveAbility;
+	// TODO Jakob: PMD: Private field 'range' could be made final; it is only initialized in the declaration or constructor.
 	private double range = 1;
 	
 	static {
@@ -54,6 +55,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 					setFinished(true);
 				}else{
 					// Not in range
+					// TODO Jakob: PMD: Deeply nested if..then statements are hard to read
 					if(!moveAbility.isActive()){
 						moveAbility.useAbility(depositStructure.getPosition());
 					}
@@ -93,6 +95,7 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 		}
 		
 		if(depositStructure==null || depositStructure.isDead()){
+			// TODO Jakob: PMD: Assigning an Object to null is a code smell. Consider refactoring.
 			depositStructure = null;
 			abortAbility();
 		}

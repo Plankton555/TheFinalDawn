@@ -25,10 +25,13 @@ import projectrts.model.world.World;
 // TODO Markus: ADD JAVADOC!
 public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 
+	// TODO Markus: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
 	private HashMap<String, ArrayList<AbstractAbility>> abilityReferenceMap = new HashMap<String, ArrayList<AbstractAbility>>();
+	// TODO Markus: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
 	private HashMap<Integer, ArrayList<AbstractAbility>> abilityListsMap = new HashMap<Integer, ArrayList<AbstractAbility>>();
 	private PropertyChangeListener pcl;
 	
+	// TODO Markus: PMD: Variables that are final and static should be in all caps.
 	private static final String[] abilityNames = new String[10];
 	
 	static {
@@ -114,7 +117,9 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			if(entity instanceof PlayerControlledEntity) {
 				PlayerControlledEntity pce = (PlayerControlledEntity) entity;
 				if(pce != null) {
+					// TODO Markus: PMD: These nested if statements could be combined
 					if(!pce.isDead() && abilityListsMap.get(pce.getEntityID()) != null) {
+						// TODO Markus: PMD: These nested if statements could be combined
 							if(!abilityListsMap.get(pce.getEntityID()).isEmpty()) {
 							ArrayList<AbstractAbility> abilities = abilityListsMap.get(pce.getEntityID());
 							pce.setState(State.IDLE);
@@ -140,6 +145,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		List<IAbility> copy = new ArrayList<IAbility>();
 		ArrayList<AbstractAbility> abilities = abilityReferenceMap.get(entity.getClass().getSimpleName());
 		if(abilities != null) {
+			// TODO Markus: PMD: These nested if statements could be combined
 			if(!abilities.isEmpty()) {
 				for(IAbility ability: abilities){
 					copy.add(ability);
@@ -158,6 +164,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		ArrayList<AbstractAbility> abilities = abilityListsMap.get(entity.getEntityID());
 		AbstractAbility toBeUsedAbility = null;
 		if(abilities != null) {
+			// TODO Markus: PMD: These nested if statements could be combined
 			if(!abilities.isEmpty()) {
 				for(AbstractAbility ownAbility: abilities){
 					if(ownAbility.isActive()){
@@ -186,12 +193,14 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 
 
 	@Override
+	// TODO Markus: PMD: The method 'propertyChange' has a Cyclomatic Complexity of 11.
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getNewValue() instanceof PlayerControlledEntity) {
 			PlayerControlledEntity pce = (PlayerControlledEntity)evt.getNewValue();
 			ArrayList<AbstractAbility> abilitiesReferenceList = abilityReferenceMap.get(pce.getClass().getSimpleName());
 			ArrayList<AbstractAbility> abilities = new ArrayList<AbstractAbility>();
 			if(abilitiesReferenceList != null) {
+				// TODO Markus: PMD: These nested if statements could be combined
 				if(!abilitiesReferenceList.isEmpty()) {
 					if(evt.getNewValue() instanceof AbstractUnit) {
 						MoveAbility moveAbility = (MoveAbility) AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), pce);
@@ -237,6 +246,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	@Override
 	public String[] getExistingAbilityNames() {
 		String[] copy = new String[abilityNames.length];
+		// TODO Markus: PMD: System.arraycopy is more efficient
 		for(int i = 0; i < abilityNames.length; i++) {
 			copy[i] = abilityNames[i];
 		}

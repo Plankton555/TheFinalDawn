@@ -16,6 +16,7 @@ import com.jme3.scene.shape.Box;
  */
 public enum SpatialFactory {INSTANCE;
 	
+	// TODO Markus: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
 	private HashMap<String, AbstractSpatial> spatialMap = new HashMap<String, AbstractSpatial>();
 	
 	static{
@@ -63,6 +64,7 @@ public enum SpatialFactory {INSTANCE;
 	 */
 	public AbstractSpatial createEntitySpatial(String spatialType, String name, Box box, IEntity entity) {
 		if(spatialMap.get(spatialType) == null) {
+			// TODO Plankton: Throw an exception instead?
 			return null;
 		}
 		
@@ -80,6 +82,7 @@ public enum SpatialFactory {INSTANCE;
 	 */
 	public AbstractSpatial createNodeSpatial(String spatialType, String name, Box box, INode node) {
 		if(spatialMap.get(spatialType) == null) {
+			// TODO Plankton: Throw an exception instead?
 			return null;
 		}
 		

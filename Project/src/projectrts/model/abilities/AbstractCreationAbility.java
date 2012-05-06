@@ -44,6 +44,7 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 	@Override
 
 	public void useAbility(Position target) {
+		// TODO Jakob: PMD: Avoid if (x != y) ..; else ..;
 		if(!isActive()){
 			Player owner = (Player)entity.getOwner();
 			if(owner.getResources()>=buildCost){
@@ -72,6 +73,7 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 	}
 	
 	@Override
+	// TODO Jakob: PMD: An empty method in an abstract class should be abstract instead
 	public void abortAbility(){
 		//Override so it won't be aborted if the ability is used again before it's finished
 	}

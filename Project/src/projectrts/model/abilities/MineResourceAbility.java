@@ -17,6 +17,7 @@ public class MineResourceAbility extends AbstractAbility implements IUsingMoveAb
 	private int resourceCarriedAmount = 0;
 	private final float recoveryTime = .4f;
 	private float miningCooldown = 0;
+	// TODO Jakob: PMD: Private field 'range' could be made final; it is only initialized in the declaration or constructor.
 	private int range = 1;
 	
 	static {

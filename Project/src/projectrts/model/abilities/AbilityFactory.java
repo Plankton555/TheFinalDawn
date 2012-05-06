@@ -6,7 +6,7 @@ import projectrts.model.entities.PlayerControlledEntity;
 
 //TODO Markus: ADD JAVADOC!!
 public enum AbilityFactory {INSTANCE;
-
+	// TODO Markus: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
 	private HashMap<String, AbstractAbility> abilityMap = new HashMap<String, AbstractAbility>();
 	
 	public void registerAbility(String abilityType, AbstractAbility ability) {

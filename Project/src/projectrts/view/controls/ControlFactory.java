@@ -14,7 +14,7 @@ import com.jme3.scene.control.AbstractControl;
  */
 public enum ControlFactory {INSTANCE;
 	
-	
+	// TODO Markus: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
 	private HashMap<String, AbstractControl> controlMap = new HashMap<String, AbstractControl>();
 
 	/**

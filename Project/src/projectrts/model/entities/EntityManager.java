@@ -17,9 +17,13 @@ import projectrts.model.world.Position;
 public class EntityManager implements IEntityManager{
 
 	private static EntityManager instance = new EntityManager();
+	// TODO Markus: PMD: Private field 'allEntities' could be made final; it is only initialized in the declaration or constructor.
 	private List<AbstractEntity> allEntities = new ArrayList<AbstractEntity>();
+	// TODO Markus: PMD: Private field 'entitiesAddQueue' could be made final; it is only initialized in the declaration or constructor.
 	private List<AbstractEntity> entitiesAddQueue = new ArrayList<AbstractEntity>();
+	// TODO Markus: PMD: Private field 'entitiesRemoveQueue' could be made final; it is only initialized in the declaration or constructor.
 	private List<AbstractEntity> entitiesRemoveQueue = new ArrayList<AbstractEntity>();
+	// TODO Markus: PMD: Private field 'selectedEntities' could be made final; it is only initialized in the declaration or constructor.
 	private List<PlayerControlledEntity> selectedEntities = new ArrayList<PlayerControlledEntity>();
 	private int idCounter = 0;
 	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
@@ -168,6 +172,7 @@ public class EntityManager implements IEntityManager{
 				if(se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
 						&& se.chalmers.pebjorn.javautils.Math.isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
 					PlayerControlledEntity pcEntity  = (PlayerControlledEntity) entity; 
+					// TODO Markus: PMD: Consider simply returning the value vs storing it in local variable 'pcEntity'
 					return pcEntity;
 					
 				}
@@ -186,6 +191,7 @@ public class EntityManager implements IEntityManager{
 	 */
 	public PlayerControlledEntity getPCEAtPosition(Position pos, Player player) {
 		if(getPCEAtPosition(pos) != null) {
+			// TODO Markus: PMD: These nested if statements could be combined
 			if( getPCEAtPosition(pos).getOwner().equals(player)) {
 				return getPCEAtPosition(pos);
 			}
@@ -206,8 +212,8 @@ public class EntityManager implements IEntityManager{
 				if(se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
 						&& se.chalmers.pebjorn.javautils.Math.isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
 					NonPlayerControlledEntity npcEntity  = (NonPlayerControlledEntity) entity; 
+					// TODO Markus: PMD: Consider simply returning the value vs storing it in local variable 'npcEntity'
 					return npcEntity;
-					
 				}
 			}
 		}
@@ -302,6 +308,7 @@ public class EntityManager implements IEntityManager{
 		for(AbstractEntity entity : nearbyEntities) {
 			if(entity instanceof PlayerControlledEntity) {
 				PlayerControlledEntity otherPCE = (PlayerControlledEntity)entity;
+				// TODO Markus: PMD: Avoid if (x != y) ..; else ..;
 				if(closestPCE != null) {
 					if(Position.getDistance(pce.getPosition(), entity.getPosition())
 							< Position.getDistance(pce.getPosition(), closestPCE.getPosition()) 
@@ -327,6 +334,7 @@ public class EntityManager implements IEntityManager{
 			if(entity instanceof PlayerControlledEntity) {
 				PlayerControlledEntity otherPCE = (PlayerControlledEntity)entity;
 				if(otherPCE instanceof AbstractStructure) {
+					// TODO Markus: PMD: Avoid if (x != y) ..; else ..;
 					if(closestEnemyStruct != null) {
 						if(Position.getDistance(pce.getPosition(), entity.getPosition())
 								< Position.getDistance(pce.getPosition(), closestEnemyStruct.getPosition()) 

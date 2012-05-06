@@ -15,6 +15,7 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 	private PlayerControlledEntity target;
 	
 	private MoveAbility moveAbility;
+	// TODO Afton: PMD: Found non-transient, non-static member. Please mark as transient or provide accessors.
 	private double range = 1;
 	
 	static {
@@ -57,6 +58,7 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 					target.dealDamageTo(entity.getDamage());
 					this.setAbilityUsed();
 			
+					// TODO Afton: PMD: Deeply nested if..then statements are hard to read
 					if(target.getCurrentHealth() == 0) {
 						this.setFinished(true);
 					}
@@ -64,6 +66,7 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 			} else {
 				//Out of range
 				
+				// TODO Afton: PMD: Avoid if (x != y) ..; else ..;
 				if(!moveAbility.isActive()){
 					moveAbility.useAbility(target.getPosition());
 				}
