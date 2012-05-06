@@ -52,7 +52,7 @@ public class AStarNode implements Comparable<AStarNode> {
 	 */
 	public void calculateHeuristic(AStarNode endNode, int heuristicModifier)
 	{
-		// TODO Plankton: !Use a more accurate way to calculate heuristic? (Count diagonals as 14 and rest as 10)
+		// TODO Plankton: !Decide which algorithm to use (when movement works as it should again...)
 		if (heuristicModifier < 1)
 		{
 			heuristicModifier = 1;
@@ -62,6 +62,15 @@ public class AStarNode implements Comparable<AStarNode> {
 		// Calculating heuristic using the "Manhattan" distance
 		this.heuristic = ((int) (Math.abs(endPos.getX() - mePos.getX()) +
 				Math.abs(endPos.getY() - mePos.getY())))*heuristicModifier;
+		
+		// Calculating heuristic based on approximate distance (using diagonals and side movement)
+		/*
+		int deltaX = (int) Math.abs(endPos.getX() - mePos.getX());
+		int deltaY = (int) Math.abs(endPos.getY() - mePos.getY());
+		int sidewayMove = Math.abs(deltaX - deltaY);
+		int diagonalMove = Math.max(deltaX, deltaY) - sidewayMove;
+		this.heuristic = Math.round((sidewayMove*1.4f + diagonalMove)*heuristicModifier);
+		*/
 	}
 
 	/**
