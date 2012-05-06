@@ -18,8 +18,11 @@ import de.lessvoid.nifty.screen.ScreenController;
  *
  */
 public class HighscoreGUIController implements ScreenController {
+	// TODO Filip: PMD: Private field 'app' could be made final; it is only initialized in the declaration or constructor.
 	private SimpleApplication app;
+	// TODO Filip: PMD: Private field 'nifty' could be made final; it is only initialized in the declaration or constructor.
 	private Nifty nifty;
+	// TODO Filip: PMD: Private field 'time' could be made final; it is only initialized in the declaration or constructor.
 	private float time;
 	
 	/**
@@ -37,17 +40,17 @@ public class HighscoreGUIController implements ScreenController {
 	
 	@Override
 	public void bind(Nifty nifty, Screen screen) {
-		
+		// TODO Filip: PMD: Document empty method
 	}
 
 	@Override
 	public void onEndScreen() {
-		
+		// TODO Filip: PMD: Document empty method
 	}
 
 	@Override
 	public void onStartScreen() {
-		
+		// TODO Filip: PMD: Document empty method
 	}
 	
 	private void initializeGUI() {    

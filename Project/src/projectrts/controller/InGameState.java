@@ -27,12 +27,14 @@ public class InGameState extends AbstractAppState {
 	
  
     private SimpleApplication app;
+ // TODO Anyone: PMD: Private field 'game' could be made final; it is only initialized in the declaration or constructor.
     private IGame game;
     private InputController input;
     private GameView view;
     private GameGUIView guiView;
     // TODO Markus: PMD: The value of the field InGameState.guiControl is not used
     private InGameGUIController guiControl;
+    // TODO Anyone: PMD: Private field 'nifty' could be made final; it is only initialized in the declaration or constructor.
     private Nifty nifty;
     
     public static final float MODEL_TO_WORLD = 0.05f;

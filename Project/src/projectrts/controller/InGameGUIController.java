@@ -32,8 +32,11 @@ import de.lessvoid.nifty.tools.SizeValue;
 public class InGameGUIController implements ScreenController {
 	private Nifty nifty;
 	private Screen screen;
+	// TODO Anyone: PMD: Private field 'guiView' could be made final; it is only initialized in the declaration or constructor.
 	private GameGUIView guiView;
+	// TODO Anyone: PMD: Private field 'abilityManager' could be made final; it is only initialized in the declaration or constructor.
 	private IAbilityManager abilityManager;
+	// TODO Anyone: PMD: Private field 'input' could be made final; it is only initialized in the declaration or constructor.
 	private InputController input;
 	
 	private IPlayerControlledEntity selectedPce;
@@ -338,12 +341,12 @@ public class InGameGUIController implements ScreenController {
 
 	@Override
 	public void onEndScreen() {
-		
+		// TODO Filip: PMD: Document empty method
 	}
 
 	@Override
 	public void onStartScreen() {
-		
+		// TODO Filip: PMD: Document empty method
 	}
 	
 	

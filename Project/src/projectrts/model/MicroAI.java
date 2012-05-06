@@ -12,8 +12,10 @@ import projectrts.model.entities.PlayerControlledEntity;
  *
  */
 public class MicroAI {
+	// TODO Markus: PMD: Private field 'myPCE' could be made final; it is only initialized in the declaration or constructor.
 	private PlayerControlledEntity myPCE;
 	private PlayerControlledEntity target;
+	// TODO Markus: PMD: Private field 'abilityManager' could be made final; it is only initialized in the declaration or constructor.
 	private IAbilityManager abilityManager;
 	
 	/**
@@ -30,6 +32,7 @@ public class MicroAI {
 	public void update(float tpf) {
 		if(!EntityManager.getInstance().isSelected(myPCE)) {
 			if(EntityManager.getInstance().getClosestEnemy(myPCE) != null) {
+				// TODO Markus: PMD: These nested if statements could be combined. Deeply nested if..then statements are hard to read
 				if(!EntityManager.getInstance().getClosestEnemy(myPCE).equals(target)) {
 					target = EntityManager.getInstance().getClosestEnemy(myPCE);
 					abilityManager.doAbility(AttackAbility.class.getSimpleName(), 

@@ -18,7 +18,7 @@ public class MenuState extends AbstractAppState {
 	private SimpleApplication app;
 	// TODO Afton: PMD: Private field 'nifty' could be made final; it is only initialized in the declaration or constructor.
 	private Nifty nifty;
-	// TODO Afton: PMD: Private field 'menuGuiController' could be made final; it is only initialized in the declaration or constructor.
+	// TODO Afton: PMD: Perhaps 'menuGuiController' could be replaced by a local variable.
 	private MenuGUIController menuGuiController;
 	private PropertyChangeListener pcl;
 	

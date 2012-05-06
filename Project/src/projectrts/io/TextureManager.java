@@ -12,6 +12,7 @@ import com.jme3.texture.Texture;
  */
 public enum TextureManager {
 	INSTANCE;
+	// TODO Jakob: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
 	private HashMap<String, Texture> textures = new HashMap<String, Texture>();
 	
 	/**

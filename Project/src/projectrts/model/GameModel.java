@@ -30,13 +30,20 @@ import projectrts.model.world.World;
  * @author Björn Persson Mattson, Modified by Filip Brynfors, Jakob Svensson
  */
 public class GameModel implements IGame, PropertyChangeListener {
+	// TODO Plankton: PMD: Private field 'world' could be made final; it is only initialized in the declaration or constructor.
 	private World world = World.getInstance();
+	// TODO Anyone: PMD: Private field 'entityManager' could be made final; it is only initialized in the declaration or constructor.
 	private EntityManager entityManager = EntityManager.getInstance();
+	// TODO Anyone: PMD: Private field 'humanPlayer' could be made final; it is only initialized in the declaration or constructor.
 	private Player humanPlayer = new Player();
+	// TODO Markus: PMD: Private field 'aiPlayer' could be made final; it is only initialized in the declaration or constructor.
 	private Player aiPlayer = new Player();
+	// TODO Markus: PMD: Private field 'aiManager' could be made final; it is only initialized in the declaration or constructor.
 	private AIManager aiManager;
 	private AbilityManager abilityManager;
 	private float gameTime = 0;
+	// TODO Afton: PMD: Avoid unused private fields such as 'gameIsOver'.
+	// TODO Afton: The value of the field GameModel.gameIsOver is not used
 	private boolean gameIsOver = false;
 	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -47,6 +54,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 	 * @return A position with the given coordinates.
 	 */
 	public static Position getPosition(float x, float y) {
+		// TODO Anyone: Why not just create a new position?..
 		return new Position(x, y);
 	}
 	
@@ -126,6 +134,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 		boolean allDead = true;
 		for(IEntity entity: entities){
 			if(entity instanceof AbstractStructure){
+				// TODO Afton: PMD: These nested if statements could be combined
 				if(!((AbstractStructure) entity).isDead()){
 					allDead = false;
 					break;

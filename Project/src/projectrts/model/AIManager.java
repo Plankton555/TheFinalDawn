@@ -10,8 +10,11 @@ import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Player;
 import projectrts.model.entities.PlayerControlledEntity;
 
+// TODO Markus: ADD JAVADOC!
 public class AIManager implements PropertyChangeListener{
+	// TODO Markus: PMD: Private field 'abilityManager' could be made final; it is only initialized in the declaration or constructor.
 	private AbilityManager abilityManager;
+	// TODO Markus: PMD: Private field 'stratAI' could be made final; it is only initialized in the declaration or constructor.
 	private StrategicAI stratAI;
 	private List<MicroAI> microAIs = new ArrayList<MicroAI>();
 	

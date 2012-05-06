@@ -13,6 +13,7 @@ import com.jme3.material.Material;
  */
 public enum MaterialManager {
 	INSTANCE;
+	// TODO Jakob: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
 	private HashMap<String, Material> materials = new HashMap<String, Material>();
 	
 	/**
