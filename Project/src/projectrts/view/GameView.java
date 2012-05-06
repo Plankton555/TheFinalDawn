@@ -44,7 +44,7 @@ public class GameView implements PropertyChangeListener{
     private TerrainQuad terrain;
     private float mod = InGameState.MODEL_TO_WORLD; // The modifier value for converting lengths between model and world.
     
-    private boolean debugNodes = false; //TODO (Won't have time for this but adds it as a TODO nonetheless) add a debug mode.
+    private boolean debugNodes = false; //TODO !WhoWroteThis?: (Won't have time for this but adds it as a nonetheless) add a debug mode.
     
 	public GameView(SimpleApplication app, IGame game) {
 		this.app = app;

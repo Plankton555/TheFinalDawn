@@ -224,7 +224,6 @@ public class EntityManager implements IEntityManager{
 	 */
 	public void select(Position pos, IPlayer owner) {
 		// TODO Anyone: Add support for selection of multiple units.
-		// TODO Plankton: !!!Add support for selection of enemy units.
 		selectedEntities.clear();
 		//PlayerControlledEntity entity = getPCEAtPosition(pos, owner);
 		PlayerControlledEntity entity = getPCEAtPosition(pos);

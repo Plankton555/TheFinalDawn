@@ -12,7 +12,6 @@ import se.chalmers.pebjorn.javautils.Math;
  */
 public final class World implements IWorld {
 	
-	// TODO Plankton: !!!Communicate via INode instead of Node?.. Especially when outside of model
 	private static World instance;
 	private World()
 	{
@@ -93,9 +92,6 @@ public final class World implements IWorld {
 		}
 	}
 	
-	/**
-	 * @return The matrix of all nodes.
-	 */
 	@Override
 	public INode[][] getNodes()
 	{
@@ -110,11 +106,6 @@ public final class World implements IWorld {
 		return output;
 	}
 	
-	/**
-	 * Returns the node closest to the specified position.
-	 * @param p Position.
-	 * @return Node at position.
-	 */
 	@Override
 	public INode getNodeAt(Position p)
 	{
@@ -125,12 +116,6 @@ public final class World implements IWorld {
 		return nodes[y][x];
 	}
 	
-	/**
-	 * Sets the nodes around nodeInCenter as occupied by entityID.
-	 * @param nodeInCenter The node in center of the occupied nodes.
-	 * @param entitySize The size around the center node that will be occupied.
-	 * @param entityID ID of the entity that occupies.
-	 */
 	@Override
 	public void setNodesOccupied(INode nodeInCenter, float entitySize, int entityID) {
 		List<INode> changingNodes = getNodesAt(nodeInCenter.getPosition(), entitySize);
@@ -140,13 +125,6 @@ public final class World implements IWorld {
 		}
 	}
 	
-	/**
-	 * Returns the nodes that would be covered by an object at
-	 * the provided position with the provided size.
-	 * @param centerPos Center position.
-	 * @param size Size.
-	 * @return All nodes that would be covered.
-	 */
 	@Override
 	public List<INode> getNodesAt(Position centerPos, float size)
 	{

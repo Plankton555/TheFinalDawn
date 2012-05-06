@@ -13,7 +13,6 @@ import projectrts.model.world.Position;
  *
  */
 public class AStar {
-	// TODO Plankton: !!AStar communicate with world interface?
 	
 	private static IWorld world;
 	/**
