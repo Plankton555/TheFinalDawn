@@ -85,10 +85,6 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 			refreshPath(occupiedNode.getPosition(), targetPos,
 					occupiedNode,
 					entity.getEntityID(), entity.getSize());
-			/*
-			path = aStar.calculatePath(entity.getPosition(), targetPos, entity.getEntityID());
-			world.setNodesOccupied(world.getNodeAt(entity.getPosition()), entity.getSize(), 0);
-			*/
 		}
 		
 		Position outputPos = entity.getPosition();

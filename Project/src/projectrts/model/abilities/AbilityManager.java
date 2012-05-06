@@ -22,6 +22,7 @@ import projectrts.model.world.INode;
 import projectrts.model.world.Position;
 import projectrts.model.world.World;
 
+// TODO Markus: ADD JAVADOC!
 public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 
 	private HashMap<String, ArrayList<AbstractAbility>> abilityReferenceMap = new HashMap<String, ArrayList<AbstractAbility>>();
@@ -193,7 +194,6 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 				if(!abilitiesReferenceList.isEmpty()) {
 					if(evt.getNewValue() instanceof AbstractUnit) {
 						MoveAbility moveAbility = (MoveAbility) AbilityFactory.INSTANCE.createAbility(MoveAbility.class.getSimpleName(), pce);
-						abilities.add(moveAbility);
 						for(AbstractAbility ability : abilitiesReferenceList) {
 							if(ability instanceof IUsingMoveAbility) {
 								abilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(ability.getClass().getSimpleName(), pce, moveAbility));
@@ -201,6 +201,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 								abilities.add(AbilityFactory.INSTANCE.createAbility(ability.getClass().getSimpleName(), pce));
 							}
 						}
+						abilities.add(moveAbility);
 					} else {
 						for(AbstractAbility ability : abilitiesReferenceList) {
 							abilities.add(AbilityFactory.INSTANCE.createAbility(ability.getClass().getSimpleName(), pce));
