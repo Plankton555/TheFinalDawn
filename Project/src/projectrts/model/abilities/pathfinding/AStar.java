@@ -104,8 +104,7 @@ public class AStar {
 	public static AStarPath calculatePath(Position startPos, Position targetPos, int heuristicModifier, int occupyingEntityID)
 	{
 		checkInit();
-		// TODO Plankton: !Take entity size into account when calculating path
-		// TODO Plankton: !Use threads to not slow down the game when using many agents?
+		// Plankton: Use threads to not slow down the game when using many agents?
 		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
 		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
 		List<AStarNode> openList = new ArrayList<AStarNode>();
