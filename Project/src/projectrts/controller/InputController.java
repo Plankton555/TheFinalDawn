@@ -170,7 +170,7 @@ public class InputController{
 	    		Vector3f loc = app.getCamera().getLocation();
 	    		
 	            if (name.equals("cameraRightKey") && loc.x <= game.getWorld().getWorldWidth() * InGameState.MODEL_TO_WORLD) {
-	            	app.getCamera().setLocation(loc.2add(new Vector3f(value*CAMERA_SPEED, 0, 0)));
+	            	app.getCamera().setLocation(loc.add(new Vector3f(value*CAMERA_SPEED, 0, 0)));
 	            }
 	            if (name.equals("cameraLeftKey") && loc.x >= 0) {
 	            	app.getCamera().setLocation(loc.add(new Vector3f(-value*CAMERA_SPEED, 0, 0)));
