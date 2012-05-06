@@ -28,6 +28,7 @@ import de.lessvoid.nifty.tools.SizeValue;
  * @author Filip Brynfors Modified by Jakob Svensson
  *
  */
+// TODO Anyone: PMD: This class has too many methods, consider refactoring it.
 public class InGameGUIController implements ScreenController {
 	private Nifty nifty;
 	private Screen screen;
@@ -125,9 +126,11 @@ public class InGameGUIController implements ScreenController {
 			childLayoutVertical();
 			
 			control(new LabelBuilder("Label_Time"){{
+				// TODO Anyone: PMD: The String literal "100%" appears 11 times in this file; the first occurrence is here
 				width("100%");
 				textHAlignLeft();
 				textVAlignTop();
+				// TODO Anyone: PMD: The String literal "#0F0F" appears 4 times in this file; the first occurrence is here
 				color("#0F0F");
 				
 			}});
@@ -320,6 +323,7 @@ public class InGameGUIController implements ScreenController {
     	if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
     		selectedPce = (IPlayerControlledEntity) selectedEntities.get(0);
     	} else {
+    		// TODO Afton: PMD: Assigning an Object to null is a code smell. Consider refactoring.
     		selectedPce = null;
     	}
     	guiView.updateSelected(selectedPce);

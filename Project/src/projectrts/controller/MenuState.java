@@ -1,9 +1,5 @@
 package projectrts.controller;
 
-/**
- * The menu state that controls the menu before the game starts
- * @author Filip Brynfors
- */
 import java.beans.PropertyChangeListener;
 
 import com.jme3.app.Application;
@@ -13,9 +9,16 @@ import com.jme3.app.state.AppStateManager;
 
 import de.lessvoid.nifty.Nifty;
 
+/**
+ * The menu state that controls the menu before the game starts
+ * @author Filip Brynfors
+ */
 public class MenuState extends AbstractAppState {
+	// TODO Afton: PMD: Perhaps 'app' could be replaced by a local variable.
 	private SimpleApplication app;
+	// TODO Afton: PMD: Private field 'nifty' could be made final; it is only initialized in the declaration or constructor.
 	private Nifty nifty;
+	// TODO Afton: PMD: Private field 'menuGuiController' could be made final; it is only initialized in the declaration or constructor.
 	private MenuGUIController menuGuiController;
 	private PropertyChangeListener pcl;
 	

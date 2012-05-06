@@ -31,6 +31,7 @@ public class InGameState extends AbstractAppState {
     private InputController input;
     private GameView view;
     private GameGUIView guiView;
+    // TODO Markus: PMD: The value of the field InGameState.guiControl is not used
     private InGameGUIController guiControl;
     private Nifty nifty;
     
@@ -99,6 +100,7 @@ public class InGameState extends AbstractAppState {
      */
    @Override
     public void cleanup() {
+	   // TODO Markus: PMD: Overriding method merely calls super
       super.cleanup();
       // unregister all my listeners, detach all my nodes, etc... // modify scene graph...
     }
@@ -111,6 +113,7 @@ public class InGameState extends AbstractAppState {
     public void setEnabled(boolean enabled) {
       // Pause and unpause
       super.setEnabled(enabled);
+      // TODO Markus: PMD: Avoid empty if statements
       if(enabled){
         // init stuff that is in use while this state is RUNNING // modify scene graph...
     	  
@@ -136,6 +139,7 @@ public class InGameState extends AbstractAppState {
     	  view.update(tpf);
     	  guiView.update(tpf);
       } else {
+    	// TODO Markus: PMD: Avoid empty if statements
         // do the following while game is PAUSED, e.g. play an idle animation.
         //...        
       }

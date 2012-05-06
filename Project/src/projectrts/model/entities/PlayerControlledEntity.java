@@ -100,6 +100,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	
 	@Override
 	public void update(float tpf) {
+		// TODO Anyone: PMD: An empty method in an abstract class should be abstract instead
 	}
 	
 	public State getState() {
