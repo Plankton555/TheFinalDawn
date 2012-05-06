@@ -210,6 +210,9 @@ public class GameGUIView implements PropertyChangeListener {
 		}else if("NotEnoughResources".equals(pce.getPropertyName())){
 			showMessage("Not enough resources");
 		}
+		else if("AlreadyTraining".equals(pce.getPropertyName())){
+			showMessage("That building is already training a unit");
+		}
 		
 	}
 }

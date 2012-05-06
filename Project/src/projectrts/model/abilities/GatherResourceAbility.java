@@ -12,8 +12,6 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 	private AbstractAbility mineResourceAbility;
 	private AbstractAbility deliverResourceAbility;
 	private Position target;
-	// TODO Jakob: PMD: Variables that are final and static should be in all caps.
-	private static final int resourceCarriedAmount = 12;
 	
 	static {
 		AbilityFactory.INSTANCE.registerAbility(GatherResourceAbility.class.getSimpleName(), new GatherResourceAbility());
@@ -71,8 +69,4 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 		return newAbility;
 	}
 	
-	public int getResourceCarriedAmount(){
-		return resourceCarriedAmount;
-	}
-
 }

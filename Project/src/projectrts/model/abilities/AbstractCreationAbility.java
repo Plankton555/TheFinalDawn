@@ -44,8 +44,7 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 	@Override
 
 	public void useAbility(Position target) {
-		if(!isActive()){//TODO Jakob: Notify view that ability is already in use(or maybe set in queue?)
-			
+		if(!isActive()){
 			Player owner = (Player)entity.getOwner();
 			if(owner.getResources()>=buildCost){
 				owner.modifyResource(-buildCost); 
@@ -55,6 +54,8 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 			}else{
 				pcs.firePropertyChange("NotEnoughResources", null, null);
 			}
+		}else{
+			pcs.firePropertyChange("AlreadyTraining", null, null);
 		}
 	}
 	
@@ -68,6 +69,11 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 	
 	protected void setEntityToTrain(String name){
 		this.entityToTrain=name;
+	}
+	
+	@Override
+	public void abortAbility(){
+		//Override so it won't be aborted if the ability is used again before it's finished
 	}
 	
 }
