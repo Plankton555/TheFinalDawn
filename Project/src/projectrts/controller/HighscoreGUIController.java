@@ -1,8 +1,5 @@
 package projectrts.controller;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
-
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 
@@ -11,6 +8,7 @@ import de.lessvoid.nifty.builder.LayerBuilder;
 import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.ScreenBuilder;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
+import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 
@@ -22,7 +20,7 @@ import de.lessvoid.nifty.screen.ScreenController;
 public class HighscoreGUIController implements ScreenController {
 	private SimpleApplication app;
 	private Nifty nifty;
-	private PropertyChangeSupport pcs;
+	private float time;
 	
 	/**
 	 * Creates a new GUI controller
@@ -30,10 +28,10 @@ public class HighscoreGUIController implements ScreenController {
 	 * @param nifty the Nifty GUI object
 	 * @param observer 
 	 */
-	public HighscoreGUIController(Application app, Nifty nifty){
+	public HighscoreGUIController(Application app, Nifty nifty, float time){
 		this.app = (SimpleApplication) app;
 		this.nifty = nifty;
-		pcs = new PropertyChangeSupport(this);
+		this.time = time;
 		initializeGUI();
 	}
 	
@@ -67,7 +65,13 @@ public class HighscoreGUIController implements ScreenController {
 	               valignCenter();
 
 		                // GUI elements
-	               			               	
+	               		control(new LabelBuilder("Label_Score"){{
+	               			width("100%");
+	               			int min = (int) (time/60);
+	               			int sec = (int) (time%60);
+	               			text("Congratulations!\nYou managed to survive "+min+" minutes and "+sec+" seconds!");
+	               		}});
+	               		
 		                control(new ButtonBuilder("Button_Exit", "Exit Game"){{
 		                	alignCenter();
 			                interactOnClick("buttonExitClicked()");
@@ -89,9 +93,6 @@ public class HighscoreGUIController implements ScreenController {
 	public void buttonExitClicked(){
 		app.stop();
 	}
-	
-	public void addListener(PropertyChangeListener pcl) {
-		pcs.addPropertyChangeListener(pcl);
-	}
+
 
 }

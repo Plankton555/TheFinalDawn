@@ -4,8 +4,6 @@ package projectrts.controller;
  * The menu state that controls the menu before the game starts
  * @author Filip Brynfors
  */
-import java.beans.PropertyChangeListener;
-
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
@@ -16,8 +14,7 @@ import de.lessvoid.nifty.Nifty;
 public class HighscoreState extends AbstractAppState {
 	private SimpleApplication app;
 	private Nifty nifty;
-	private HighscoreGUIController hichscoreGuiController;
-	private PropertyChangeListener pcl;
+	private float time;
 	
 	/**
 	 * Creates a new MenuState
@@ -27,6 +24,7 @@ public class HighscoreState extends AbstractAppState {
 	 */
     public HighscoreState(Nifty nifty, float time) {
 		this.nifty = nifty;
+		this.time = time;
 	}
 
 
@@ -36,12 +34,6 @@ public class HighscoreState extends AbstractAppState {
     	this.app.getInputManager().setCursorVisible(true);
     	this.app.getInputManager().clearMappings();
     	    	
-    	hichscoreGuiController = new HighscoreGUIController(app, nifty);
-    	hichscoreGuiController.addListener(pcl);
+    	HighscoreGUIController hichscoreGuiController = new HighscoreGUIController(app, nifty, time);
     }
-	
-	public void addListener(PropertyChangeListener pcl) {
-		this.pcl = pcl;
-		
-	}
 }
