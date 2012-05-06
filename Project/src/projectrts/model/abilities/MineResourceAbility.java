@@ -48,8 +48,7 @@ public class MineResourceAbility extends AbstractAbility implements IUsingMoveAb
 					resourceCarriedAmount += targetResource.mine();
 					miningCooldown = recoveryTime;
 				} else {
-					miningCooldown -= tpf; 
-					System.out.println(miningCooldown);
+					miningCooldown -= tpf;
 				}
 				
 				if(resourceCarriedAmount >= RESOURCE_CARRIED_AMOUNT) {

@@ -43,19 +43,20 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 		if(isActive() && !isFinished()){
 			
 			findDepositStructure();
-			
-			//if(Position.getDistance(entity.getPosition(),depositStructure.getPosition() )<1.5*depositStructure.getSize()){
-			if(inRange(depositStructure)){
-				//If in range of deposit structure
-				moveAbility.setFinished(true);
-				
-				Player player = (Player)entity.getOwner();
-				player.modifyResource(RESOURCE_CARRIED_AMOUNT);
-				setFinished(true);
-			}else{
-				// Not in range
-				if(!moveAbility.isActive()){
-					moveAbility.useAbility(depositStructure.getPosition());
+			if(depositStructure!=null){
+				//if(Position.getDistance(entity.getPosition(),depositStructure.getPosition() )<1.5*depositStructure.getSize()){
+				if(inRange(depositStructure)){
+					//If in range of deposit structure
+					moveAbility.setFinished(true);
+					
+					Player player = (Player)entity.getOwner();
+					player.modifyResource(RESOURCE_CARRIED_AMOUNT);
+					setFinished(true);
+				}else{
+					// Not in range
+					if(!moveAbility.isActive()){
+						moveAbility.useAbility(depositStructure.getPosition());
+					}
 				}
 			}
 		}
@@ -71,12 +72,13 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 	
 	private void findDepositStructure(){
 		List<IPlayerControlledEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(entity.getOwner());
-		
+	
+	
 		for(IPlayerControlledEntity e: entities){
 			if(e instanceof AbstractStructure){
 				AbstractStructure struct = (AbstractStructure)e;
 				if(struct.isDeposit()){
-					if(depositStructure == null || depositStructure.isDead()) {
+					if(depositStructure == null) {
 						depositStructure = struct;
 					}else{
 						//System.out.println(e.getPosition());
@@ -88,6 +90,11 @@ public class DeliverResourceAbility extends AbstractAbility implements IUsingMov
 					}
 				}
 			}
+		}
+		
+		if(depositStructure==null || depositStructure.isDead()){
+			depositStructure = null;
+			abortAbility();
 		}
 	}
 
