@@ -34,6 +34,8 @@ public class HighscoreState extends AbstractAppState {
     	this.app.getInputManager().setCursorVisible(true);
     	this.app.getInputManager().clearMappings();
     	    	
+    	// TODO Afton: The value of the local variable hichscoreGuiController is not used
+    	// Räcker det inte med att bara köra new *...* ?
     	HighscoreGUIController hichscoreGuiController = new HighscoreGUIController(app, nifty, time);
     }
 }
