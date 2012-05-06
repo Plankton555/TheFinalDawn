@@ -1,5 +1,6 @@
 package projectrts.model;
 
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import projectrts.model.abilities.IAbilityManager;
@@ -59,4 +60,10 @@ public interface IGame {
 	 * @return true if any node is occupied, otherwise false.
 	 */
 	public boolean isAnyNodeOccupied(List<INode> nodes);
+
+	/**
+	 * Adds a listener to the game model
+	 * @param pcl the listener that will listen to the model
+	 */
+	public void addListener(PropertyChangeListener pcl);
 }

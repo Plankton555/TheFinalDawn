@@ -2,6 +2,7 @@ package projectrts.model;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.List;
 
 import projectrts.model.abilities.AbilityManager;
@@ -37,6 +38,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 	private AbilityManager abilityManager;
 	private float gameTime = 0;
 	private boolean gameIsOver = false;
+	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
 	/**
 	 * Returns a position in the model with the given coordinates
@@ -63,6 +65,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 		
 		abilityManager = new AbilityManager();
 		aiManager = new AIManager(aiPlayer, abilityManager);
+		entityManager.addListener(this);
 		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(52.5, 52.5));
 		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(55.5, 55.5));
 		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(56.5, 55.5));
@@ -72,6 +75,9 @@ public class GameModel implements IGame, PropertyChangeListener {
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 50.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 52.5));
 		entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(32.5, 34.5));
+		entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(30.5, 34.5));
+		entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(28.5, 34.5));
+		entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(26.5, 34.5));
 
 
 	}
@@ -133,10 +139,18 @@ public class GameModel implements IGame, PropertyChangeListener {
 	
 	private void setGameOver(){
 		gameIsOver = true;
+		pcs.firePropertyChange("gameIsOver", false, true);
 	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
-		
+		if("entityRemoved".equals(event.getPropertyName())){
+			checkIfGameOver();
+		}
+	}
+	
+	@Override
+	public void addListener(PropertyChangeListener pcl){
+		pcs.addPropertyChangeListener(pcl);
 	}
 }

@@ -117,6 +117,7 @@ public class InGameState extends AbstractAppState {
         
       } else {
         // take away everything not needed while this state is PAUSED
+    	  
       }
     }
  
