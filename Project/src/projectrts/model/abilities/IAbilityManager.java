@@ -1,5 +1,6 @@
 package projectrts.model.abilities;
 
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import projectrts.model.entities.IPlayer;
@@ -30,5 +31,6 @@ public interface IAbilityManager {
 	 * @return A list containing the names of the existing abilities.
 	 */
 	public String[] getExistingAbilityNames();
-
+	
+	public void setPropertyChangeLister(PropertyChangeListener pcl);
 }

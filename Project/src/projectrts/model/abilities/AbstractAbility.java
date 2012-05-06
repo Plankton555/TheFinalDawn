@@ -1,5 +1,8 @@
 package projectrts.model.abilities;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import projectrts.model.world.Position;
 
 /**
@@ -12,6 +15,7 @@ public abstract class AbstractAbility implements IAbility {
 	private boolean active = false;
 	private float cooldown;
 	private float remainingCooldown = 0;
+	protected final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
 	public void setCooldown(float cooldown) {
 		this.cooldown = cooldown;
@@ -98,5 +102,9 @@ public abstract class AbstractAbility implements IAbility {
 
 	public void abortAbility(){
 		setFinished(true);
+	}
+	
+	public void addListener(PropertyChangeListener pcl) {
+		pcs.addPropertyChangeListener(pcl);
 	}
 }

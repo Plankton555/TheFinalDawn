@@ -27,6 +27,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 
 	private HashMap<String, ArrayList<AbstractAbility>> abilityReferenceMap = new HashMap<String, ArrayList<AbstractAbility>>();
 	private HashMap<Integer, ArrayList<AbstractAbility>> abilityListsMap = new HashMap<Integer, ArrayList<AbstractAbility>>();
+	private PropertyChangeListener pcl;
 	
 	private static final String[] abilityNames = new String[10];
 	
@@ -200,11 +201,13 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 							} else {
 								abilities.add(AbilityFactory.INSTANCE.createAbility(ability.getClass().getSimpleName(), pce));
 							}
+							abilities.get(abilities.size()-1).addListener(pcl);
 						}
 						abilities.add(moveAbility);
 					} else {
 						for(AbstractAbility ability : abilitiesReferenceList) {
 							abilities.add(AbilityFactory.INSTANCE.createAbility(ability.getClass().getSimpleName(), pce));
+							abilities.get(abilities.size()-1).addListener(pcl);
 						}
 					}
 				}
@@ -239,4 +242,10 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		}
 		return copy;
 	}
+	
+	public void setPropertyChangeLister(PropertyChangeListener pcl){
+		this.pcl = pcl;
+	}
+	
+	
 }

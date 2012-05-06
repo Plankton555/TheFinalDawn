@@ -66,7 +66,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 	@Override
 	public void useAbility(Position target) {
 		Player owner = (Player)entity.getOwner();
-		if(owner.getResources()>=buildCost){//TODO Jakob: Notify view somehow when not enough resources
+		if(owner.getResources()>=buildCost){
 			owner.modifyResource(-buildCost); 
 			buildPos = target;
 			setActive(true);
@@ -74,6 +74,8 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 			buildTimeLeft=buildTime;
 			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(target)
 					, getSizeOfBuilding(), EntityManager.getInstance().requestNewEntityID());
+		}else{
+			pcs.firePropertyChange("NotEnoughResources", null, null);
 		}
 	}
 

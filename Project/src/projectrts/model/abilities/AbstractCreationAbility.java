@@ -47,11 +47,13 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 		if(!isActive()){//TODO Jakob: Notify view that ability is already in use(or maybe set in queue?)
 			
 			Player owner = (Player)entity.getOwner();
-			if(owner.getResources()>=buildCost){//TODO Jakob: Notify view somehow when not enough resources
+			if(owner.getResources()>=buildCost){
 				owner.modifyResource(-buildCost); 
 				setActive(true);
 				setFinished(false);
 				buildTimeLeft=buildTime;
+			}else{
+				pcs.firePropertyChange("NotEnoughResources", null, null);
 			}
 		}
 	}

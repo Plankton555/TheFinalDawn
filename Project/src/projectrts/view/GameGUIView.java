@@ -53,6 +53,7 @@ public class GameGUIView implements PropertyChangeListener {
 		
 		game.getHumanPlayer().addListener(this);
 		game.getEntityManager().addListener(this);
+		game.getAbilityManager().setPropertyChangeLister(this);
 	}
 	
 	
@@ -206,6 +207,8 @@ public class GameGUIView implements PropertyChangeListener {
 			showMessage("Target is invalid, must target a Resource");
 		}else if("TargetNotPCE".equals(pce.getPropertyName())){
 			showMessage("Target is invalid, must target a Unit or Structure");
+		}else if("NotEnoughResources".equals(pce.getPropertyName())){
+			showMessage("Not enough resources");
 		}
 		
 	}
