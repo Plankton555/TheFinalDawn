@@ -83,6 +83,7 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
 		} else if(evt.getPropertyName().equals("gameIsOver")){
 			ingameState.setEnabled(false);
 			getStateManager().detach(ingameState);
+			getRootNode().detachAllChildren();
 			startHighscoreState(game.getGameTime());
 		}
 	}
