@@ -5,6 +5,7 @@ import projectrts.model.entities.Player;
 import projectrts.model.entities.Warrior;
 import projectrts.model.world.Position;
 
+//TODO Markus: Add javadoc!
 public class Level {
 	private int wave = 1;
 	private float timePassed = 0;
