@@ -53,7 +53,8 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
     	menuState.setEnabled(false);
     	menuState.addListener(this);
     	
-       	this.stateManager.attach(menuState);
+       	//this.stateManager.attach(menuState);
+    	startIngameState();
         
         // Set logger level
         Logger.getLogger("").setLevel(Level.SEVERE);

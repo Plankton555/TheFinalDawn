@@ -18,12 +18,13 @@ public final class World implements IWorld {
 	}
 	public static World getInstance()
 	{
-		synchronized (instance) {
+		// TODO Plankton: Kraschade konstant för mig med nullpointerexception, så kommenterade ut det och då funkade det.
+		//synchronized (instance) {
 			if (instance == null)
 			{
 				instance = new World();
 			}
-		}
+		//}
 		return instance;
 	}
 	/**

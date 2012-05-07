@@ -46,6 +46,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 	// TODO Afton: The value of the field GameModel.gameIsOver is not used
 	private boolean gameIsOver = false;
 	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+	private final Level level = new Level(aiPlayer);
 
 	/**
 	 * Returns a position in the model with the given coordinates
@@ -82,16 +83,17 @@ public class GameModel implements IGame, PropertyChangeListener {
 		entityManager.addNewPCE(Barracks.class.getSimpleName(), humanPlayer, new Position(38.5, 56.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 50.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 52.5));
-		entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(32.5, 34.5));
-		entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(30.5, 34.5));
-		entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(28.5, 34.5));
-		entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(26.5, 34.5));
+		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(32.5, 34.5));
+		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(30.5, 34.5));
+		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(28.5, 34.5));
+		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(26.5, 34.5));
 
 
 	}
 	
 	@Override
 	public void update(float tpf) {
+		level.update(tpf);
 		aiManager.update(tpf);
 		abilityManager.update(tpf);
 		entityManager.update(tpf);
