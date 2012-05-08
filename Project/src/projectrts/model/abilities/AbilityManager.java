@@ -31,7 +31,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	private HashMap<Integer, ArrayList<AbstractAbility>> abilityListsMap = new HashMap<Integer, ArrayList<AbstractAbility>>();
 	private PropertyChangeListener pcl;
 	
-	private static final String[] ABILITY_NAMES = new String[10];
+	private static final String[] ABILITY_NAMES = new String[11];
 	
 	static {
 		try
@@ -47,6 +47,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			Class.forName(OffensiveSpellAbility.class.getName());
 			Class.forName(TrainWorkerAbility.class.getName());
 			Class.forName(TrainWarriorAbility.class.getName());
+			Class.forName(BuildHeadquarterAbility.class.getName());
 			
 			//DON'T FORGET TO ADJUST THE ARRAY SIZE IF CREATING/DELETING ABILITIES
 			ABILITY_NAMES[0] = AttackAbility.class.getSimpleName();
@@ -59,6 +60,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			ABILITY_NAMES[7] = OffensiveSpellAbility.class.getSimpleName();
 			ABILITY_NAMES[8] = TrainWorkerAbility.class.getSimpleName();
 			ABILITY_NAMES[9] = TrainWarriorAbility.class.getSimpleName();
+			ABILITY_NAMES[10] = BuildHeadquarterAbility.class.getSimpleName();
 						
 		}
 		catch (ClassNotFoundException any)
@@ -83,6 +85,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(GatherResourceAbility.class.getSimpleName(), worker, workerMove));
 		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(BuildBarracksAbility.class.getSimpleName(), worker, workerMove));
 		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(BuildWallAbility.class.getSimpleName(), worker, workerMove));
+		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(BuildHeadquarterAbility.class.getSimpleName(), worker, workerMove));
 		workerAbilities.add(workerMove);
 		abilityReferenceMap.put(Worker.class.getSimpleName(), workerAbilities);
 		
