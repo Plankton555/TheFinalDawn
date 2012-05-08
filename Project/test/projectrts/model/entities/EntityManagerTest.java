@@ -39,6 +39,9 @@ public class EntityManagerTest {
 	
 	// TODO Plankton: !!Test the methods that are written by Plankton
 
-	
+	@Test
+	public void testGetInstance()
+	{
+	}
 	
 }

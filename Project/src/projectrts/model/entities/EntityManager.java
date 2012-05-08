@@ -79,11 +79,6 @@ public class EntityManager implements IEntityManager{
 		entitiesRemoveQueue.clear();
 	}
 	
-	/**
-	 * Returns all entities that the provided player owns.
-	 * @param player Player
-	 * @return A list of all entities of player.
-	 */
 	@Override
 	public List<IPlayerControlledEntity> getEntitiesOfPlayer(IPlayer player)
 	{
@@ -103,9 +98,6 @@ public class EntityManager implements IEntityManager{
 		return output;
 	}
 	
-	/**
-	 * @return All entities.
-	 */
 	@Override
 	public List<IEntity> getAllEntities()
 	{
@@ -150,11 +142,13 @@ public class EntityManager implements IEntityManager{
 		return idCounter;
 	}
 
+	// TODO Markus: Add javadoc
 	public void removeEntity(AbstractEntity entity) {
 		entitiesRemoveQueue.add(entity);
 	}
 	
 	// TODO Markus: Possible duplicated code
+	@Override
 	public PlayerControlledEntity getPCEAtPosition(Position pos){
 		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
 		for(IEntity entity: entities){
@@ -194,7 +188,8 @@ public class EntityManager implements IEntityManager{
 		return null;
 	}
 	
-	//TODO Markus: Extraxt common code from getPlayerControlledEntityAtPosition and this method
+	// TODO Markus: Extraxt common code from getPlayerControlledEntityAtPosition and this method
+	@Override
 	public NonPlayerControlledEntity getNPCEAtPosition(Position pos){
 		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
 		for(IEntity entity: entities){
@@ -218,11 +213,7 @@ public class EntityManager implements IEntityManager{
 	// TODO Markus: add support for ai selecting
 	
 
-	/**
-	 * Selected entities at the specified position
-	 * @param pos the position where entities should be selected
-	 * @param owner the player that selected the entities
-	 */
+	@Override
 	public void select(Position pos, IPlayer owner) {
 		selectedEntities.clear();
 		//PlayerControlledEntity entity = getPCEAtPosition(pos, owner);
@@ -232,7 +223,9 @@ public class EntityManager implements IEntityManager{
 		}
 	}
 	
-	public List<IEntity> getSelectedEntities() {
+	@Override
+	public List<IEntity> getSelectedEntities()
+	{
 		List<IEntity> entities = new ArrayList<IEntity>();
 		for(IEntity entity: selectedEntities){
 			entities.add(entity);
@@ -241,8 +234,8 @@ public class EntityManager implements IEntityManager{
 	}
 
 	@Override
-	public List<IPlayerControlledEntity> getSelectedEntitiesOfPlayer(
-			IPlayer owner) {
+	public List<IPlayerControlledEntity> getSelectedEntitiesOfPlayer(IPlayer owner)
+	{
 		List<IPlayerControlledEntity> output = new ArrayList<IPlayerControlledEntity>();
 		for(IEntity entity: selectedEntities){
 			if (entity instanceof PlayerControlledEntity)
@@ -257,6 +250,7 @@ public class EntityManager implements IEntityManager{
 		return output;
 	}
 	
+	// TODO Markus(?): Add javadoc
 	public boolean isSelected(PlayerControlledEntity entity) {
 		boolean ans = false;
 		
@@ -279,6 +273,7 @@ public class EntityManager implements IEntityManager{
 	public List<AbstractEntity> getNearbyEntities(PlayerControlledEntity entity, float range)
 	{
 		// Preliminary method. May need to be changed to optimize.
+		// TODO Plankton: Change parameter entity to position?
 		
 		List<AbstractEntity> output = new ArrayList<AbstractEntity>();
 		
@@ -295,6 +290,7 @@ public class EntityManager implements IEntityManager{
 		return output;
 	}
 	
+	// TODO Markus: Add javadoc
 	public PlayerControlledEntity getClosestEnemy(PlayerControlledEntity pce) {
 		List<AbstractEntity> nearbyEntities= getNearbyEntities(pce, pce.getSightRange());
 		PlayerControlledEntity closestPCE = null;
@@ -345,7 +341,7 @@ public class EntityManager implements IEntityManager{
 		return closestEnemyStruct;
 	}
 	
-	
+	@Override
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 	}
