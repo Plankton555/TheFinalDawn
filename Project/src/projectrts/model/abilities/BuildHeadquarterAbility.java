@@ -11,8 +11,6 @@ import projectrts.model.entities.PlayerControlledEntity;
 public class BuildHeadquarterAbility extends AbstractConstructAbility implements IUsingMoveAbility, IBuildStructureAbility {
 	private static float buildTime = 30; 
 	private static int buildCost = 400; 
-	// TODO Jakob: PMD: Private field 'size' could be made final; it is only initialized in the declaration or constructor.
-	private float size = 3; //TODO Jakob: Sync with Headquarter class
 
 
 	static {
@@ -27,7 +25,7 @@ public class BuildHeadquarterAbility extends AbstractConstructAbility implements
 		this.setBuildCost(buildCost);
 		this.setBuildTime(buildTime);
 		this.setEntityToTrain(Headquarter.class.getSimpleName());
-		this.setSizeOfBuilding(size);
+		this.setSizeOfBuilding(Headquarter.SIZE);
 	}
 
 	@Override

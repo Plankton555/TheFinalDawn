@@ -11,8 +11,6 @@ import projectrts.model.entities.PlayerControlledEntity;
 public class BuildBarracksAbility extends AbstractConstructAbility implements IUsingMoveAbility, IBuildStructureAbility {
 	private static float buildTime = 20; 
 	private static int buildCost = 200; 
-	// TODO Jakob: PMD: Private field 'size' could be made final; it is only initialized in the declaration or constructor.
-	private float size = 3; //TODO Jakob: Sync with Barracks class
 
 
 	static {
@@ -27,7 +25,7 @@ public class BuildBarracksAbility extends AbstractConstructAbility implements IU
 		this.setBuildCost(buildCost);
 		this.setBuildTime(buildTime);
 		this.setEntityToTrain(Barracks.class.getSimpleName());
-		this.setSizeOfBuilding(size);
+		this.setSizeOfBuilding(Barracks.SIZE);
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import projectrts.model.world.Position;
  */
 public class Headquarter extends AbstractStructure{
 	
-	private static float size = 3;
+	public static final float SIZE = 3;
 	private static final float SIGHT_RANGE = 5;
 	private static int maxHealth = 2000;
 	
@@ -20,7 +20,7 @@ public class Headquarter extends AbstractStructure{
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		this.setName(Headquarter.class.getSimpleName());
-		this.setSize(size);
+		this.setSize(SIZE);
 		this.setSightRange(SIGHT_RANGE);
 		this.setMaxHealth(maxHealth);
 		deposit = true;

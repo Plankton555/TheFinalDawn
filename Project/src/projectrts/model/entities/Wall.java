@@ -9,7 +9,7 @@ import projectrts.model.world.Position;
  */
 public class Wall extends AbstractStructure{
 	
-	private static float size = 1;
+	public static final float SIZE = 1;
 	private static final float SIGHT_RANGE = 5;
 	private static int maxHealth = 500;
 	
@@ -20,7 +20,7 @@ public class Wall extends AbstractStructure{
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
 		this.setName(Wall.class.getSimpleName());
-		this.setSize(size);
+		this.setSize(SIZE);
 		this.setSightRange(SIGHT_RANGE);
 		this.setMaxHealth(maxHealth);		
 		deposit = false;

@@ -21,6 +21,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 	private AbstractAbility moveAbility;
 	private float size;
 	private String entityToTrain;
+	private Player owner;
 
 	static {
 		AbilityFactory.INSTANCE.registerAbility(AbstractConstructAbility.class.getSimpleName(), new AbstractConstructAbility());
@@ -65,7 +66,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 
 	@Override
 	public void useAbility(Position target) {
-		Player owner = (Player)entity.getOwner();
+		owner = (Player)entity.getOwner();
 		if(owner.getResources()>=buildCost){
 			owner.modifyResource(-buildCost); 
 			buildPos = target;
@@ -112,6 +113,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 		super.abortAbility();
 		World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(buildPos)
 				, getSizeOfBuilding(), 0);
+		owner.modifyResource(buildCost);
 		
 	}
 	
