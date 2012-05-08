@@ -1,4 +1,4 @@
-package projectrts.model.pathfinding;
+package projectrts.model.world;
 
 import static org.junit.Assert.assertTrue;
 
@@ -9,10 +9,6 @@ import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import projectrts.model.world.INode;
-import projectrts.model.world.Position;
-import projectrts.model.world.World;
 
 public class WorldTest {
 

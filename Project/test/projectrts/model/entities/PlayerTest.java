@@ -1,10 +1,8 @@
-package projectrts.model.player;
+package projectrts.model.entities;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
-import projectrts.model.entities.Player;
 
 
 public class PlayerTest {
