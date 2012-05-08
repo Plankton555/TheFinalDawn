@@ -15,13 +15,13 @@ public interface IEntityManager {
 	
 	/**
 	 * Returns all entities that the provided player owns.
-	 * @param player Player
+	 * @param player Player.
 	 * @return A list of all entities of player.
 	 */
 	public List<IPlayerControlledEntity> getEntitiesOfPlayer(IPlayer player);
 	
 	/**
-	 * Selected entities at the specified position
+	 * Selects entities at the specified position
 	 * @param pos the position where entities should be selected
 	 * @param owner the player that selected the entities
 	 */
