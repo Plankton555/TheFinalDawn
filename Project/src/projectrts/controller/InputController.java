@@ -19,6 +19,7 @@ import projectrts.model.world.Position;
 import projectrts.view.GameView;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.app.state.AppStateManager;
 import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.ActionListener;
@@ -162,7 +163,8 @@ public class InputController{
 	    public void onAnalog(String name, float value, float tpf) {
 	    	
 	    	// Make sure we are in the correct state and that it is enabled.
-	    	if (app.getStateManager().getState(InGameState.class).isEnabled()) {
+	    	InGameState state = app.getStateManager().getState(InGameState.class);
+	    	if (state != null && state.isEnabled()) {
 	    		Vector3f loc = app.getCamera().getLocation();
 	    		
 	            if (name.equals("cameraRightKey") && loc.x <= game.getWorld().getWorldWidth() * InGameState.MODEL_TO_WORLD) {
