@@ -30,8 +30,7 @@ import projectrts.model.world.World;
  * @author Björn Persson Mattson, Modified by Filip Brynfors, Jakob Svensson
  */
 public class GameModel implements IGame, PropertyChangeListener {
-	// TODO Plankton: PMD: Private field 'world' could be made final; it is only initialized in the declaration or constructor.
-	private World world = World.getInstance();
+	private final World world = World.getInstance();
 	// TODO Anyone: PMD: Private field 'entityManager' could be made final; it is only initialized in the declaration or constructor.
 	private EntityManager entityManager = EntityManager.getInstance();
 	// TODO Anyone: PMD: Private field 'humanPlayer' could be made final; it is only initialized in the declaration or constructor.

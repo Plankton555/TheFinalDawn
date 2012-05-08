@@ -64,8 +64,8 @@ public enum SpatialFactory {INSTANCE;
 	 */
 	public AbstractSpatial createEntitySpatial(String spatialType, String name, Box box, IEntity entity) {
 		if(spatialMap.get(spatialType) == null) {
-			// TODO Plankton: Throw an exception instead?
-			return null;
+			throw new IllegalStateException("You must register "+ spatialType +
+					" before you can use it");
 		}
 		
 		return ((IEntitySpatial)spatialMap.get(spatialType)).createSpatial(name, box, entity);
@@ -82,8 +82,8 @@ public enum SpatialFactory {INSTANCE;
 	 */
 	public AbstractSpatial createNodeSpatial(String spatialType, String name, Box box, INode node) {
 		if(spatialMap.get(spatialType) == null) {
-			// TODO Plankton: Throw an exception instead?
-			return null;
+			throw new IllegalStateException("You must register "+ spatialType +
+					" before you can use it");
 		}
 		
 		return ((INodeSpatial)spatialMap.get(spatialType)).createSpatial(name, box, node);

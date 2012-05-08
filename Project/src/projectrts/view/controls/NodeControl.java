@@ -19,8 +19,7 @@ import com.jme3.scene.control.Control;
 //TODO Anyone: PMD: Class cannot be instantiated and does not provide any static methods or fields
 public final class NodeControl extends AbstractControl implements INodeControl {
 
-	// TODO Plankton: PMD: Private field 'node' could be made final; it is only initialized in the declaration or constructor.
-	private INode node;
+	private final INode node;
 	
 	static {
 		ControlFactory.INSTANCE.registerControl("NodeControl", new NodeControl(null));

@@ -2,7 +2,11 @@ package projectrts.model.abilities;
 
 import projectrts.model.entities.PlayerControlledEntity;
 
-// TODO Plankton: ADD JAVADOC!!!
+/**
+ * Any ability that will use a MoveAbility internally must implement this.
+ * @author Bjorn Persson Mattsson
+ *
+ */
 public interface IUsingMoveAbility {
 
 	/**

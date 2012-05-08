@@ -13,18 +13,15 @@ import se.chalmers.pebjorn.javautils.Math;
 public final class World implements IWorld {
 	
 	private static World instance;
-	private World()
-	{
-	}
+	
+	private World() {}
+	
 	public static World getInstance()
 	{
-		// TODO Plankton: Kraschade konstant för mig med nullpointerexception, så kommenterade ut det och då funkade det.
-		//synchronized (instance) {
-			if (instance == null)
-			{
-				instance = new World();
-			}
-		//}
+		if (instance == null)
+		{
+			instance = new World();
+		}
 		return instance;
 	}
 	/**
