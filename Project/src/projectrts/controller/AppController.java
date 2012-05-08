@@ -73,6 +73,7 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
     	highscoreState = new HighscoreState(nifty, time);
     	this.stateManager.attach(highscoreState);
     	highscoreState.setEnabled(true);
+    	highscoreState.addListener(this);
     }
 
 	@Override
@@ -86,6 +87,10 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
 			getStateManager().detach(ingameState);
 			getRootNode().detachAllChildren();
 			startHighscoreState(game.getGameTime());
+		} else if (evt.getPropertyName().equals("Restart")){
+			highscoreState.setEnabled(false);
+			getStateManager().detach(highscoreState);
+			startIngameState();
 		}
 	}
 }

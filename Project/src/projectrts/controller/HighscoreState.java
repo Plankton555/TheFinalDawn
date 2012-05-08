@@ -1,5 +1,7 @@
 package projectrts.controller;
 
+import java.beans.PropertyChangeListener;
+
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
@@ -14,6 +16,7 @@ import de.lessvoid.nifty.Nifty;
 public class HighscoreState extends AbstractAppState {
 	private final Nifty nifty;
 	private final float time;
+	private PropertyChangeListener pcl;
 	
 	/**
 	 * Creates a new MenuState
@@ -34,6 +37,16 @@ public class HighscoreState extends AbstractAppState {
     	simpleApp.getInputManager().setCursorVisible(true);
     	simpleApp.getInputManager().clearMappings();
     	    	
-    	new HighscoreGUIController(app, nifty, time);
+    	HighscoreGUIController highscoreGUIController = new HighscoreGUIController(app, nifty, time);
+    	highscoreGUIController.addListener(pcl);
     }
+
+
+	/**
+	 * Adds a new listener to the GUI
+	 * @param listener the listener
+	 */
+	public void addListener(PropertyChangeListener listener) {
+		pcl = listener;
+	}
 }
