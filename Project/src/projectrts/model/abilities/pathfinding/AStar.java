@@ -12,10 +12,12 @@ import projectrts.model.world.Position;
  * @author Bjorn Persson Mattsson
  *
  */
-// TODO Plankton: PMD: All methods are static. Consider using Singleton instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
 public class AStar {
 	
 	private static IWorld world;
+	
+	private AStar() {} //Empty private constructor to disallow any AStar instances. 
+	
 	/**
 	 * Initializes the A* class
 	 * @param world Game world
@@ -49,21 +51,20 @@ public class AStar {
 		// Use A* "backwards" to find the closest walkable node.
 		AStarNode targetNode = new AStarNode(world.getNodeAt(startingPos));
 		AStarNode towardsNode;
-		// TODO Plankton: PMD: Avoid if (x != y) ..; else ..;
-		if (towards != null)
+		
+		if (towards == null)
 		{
-			towardsNode = new AStarNode(world.getNodeAt(towards));
+			towardsNode = null;
 		}
 		else
 		{
-			towardsNode = null;
+			towardsNode = new AStarNode(world.getNodeAt(towards));
 		}
 		List<AStarNode> closedList = new ArrayList<AStarNode>();
 		List<AStarNode> openList = new ArrayList<AStarNode>();
 		
 		openList.add(targetNode);
-		// TODO Plankton: PMD: Substitute calls to size() == 0 (or size() != 0) with calls to isEmpty()
-		while (openList.size() > 0)
+		while (!openList.isEmpty())
 		{
 			Collections.sort(openList);
 			AStarNode currentNode = openList.get(0);
@@ -125,8 +126,7 @@ public class AStar {
 		
 		// A* algorithm starts here
 		openList.add(startNode);
-		// TODO Plankton: PMD: Substitute calls to size() == 0 (or size() != 0) with calls to isEmpty()
-		while (openList.size() > 0) // while open list is not empty
+		while (!openList.isEmpty()) // while open list is not empty
 		{
 			// current node  = node from the open list with the lowest cost
 			Collections.sort(openList);

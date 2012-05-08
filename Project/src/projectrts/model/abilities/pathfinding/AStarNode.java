@@ -103,7 +103,7 @@ public class AStarNode implements Comparable<AStarNode> {
 		// TODO Plankton: PMD: Avoid if (x != y) ..; else ..;
 		else if (pos1.getX() != pos2.getX() && pos1.getY() != pos2.getY())
 		{
-			distance = 14; //diagonal: sqrt(2) ~= 1.4
+			distance = 14; //diagonal: sqrt(2) ~= 1.4, faster to use int than double.
 		}
 		else
 		{

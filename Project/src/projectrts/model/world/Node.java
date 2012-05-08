@@ -17,8 +17,7 @@ public class Node implements INode {
 	private Position position;
 	private int occupyingEntityID = 0;
 	private float cost = 1;
-	// TODO Plankton: PMD: Private field 'neighbours' could be made final; it is only initialized in the declaration or constructor.
-	private List<INode> neighbours = new ArrayList<INode>();
+	private final List<INode> neighbours = new ArrayList<INode>();
 	
 	/**
 	 * Creates a new node at the position.
