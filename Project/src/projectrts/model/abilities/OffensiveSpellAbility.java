@@ -10,6 +10,7 @@ import projectrts.model.world.Position;
  * @author Filip Brynfors
  *
  */
+// TODO Afton: Remove this class?
 public class OffensiveSpellAbility extends AbstractAbility implements IUsingMoveAbility {
 	// TODO Afton: PMD: Private field 'abilityRange' could be made final; it is only initialized in the declaration or constructor.
 	private int abilityRange = 50;
