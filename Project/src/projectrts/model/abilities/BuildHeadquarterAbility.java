@@ -4,7 +4,7 @@ import projectrts.model.entities.Headquarter;
 import projectrts.model.entities.PlayerControlledEntity;
 
 /**
- * An ability for building Barracks
+ * An ability for building Headquarter
  * @author Jakob Svensson
  *
  */
@@ -12,7 +12,7 @@ public class BuildHeadquarterAbility extends AbstractConstructAbility implements
 	private static float buildTime = 30; 
 	private static int buildCost = 400; 
 	// TODO Jakob: PMD: Private field 'size' could be made final; it is only initialized in the declaration or constructor.
-	private float size = 3; //TODO Jakob: Sync with Barracks class
+	private float size = 3; //TODO Jakob: Sync with Headquarter class
 
 
 	static {
