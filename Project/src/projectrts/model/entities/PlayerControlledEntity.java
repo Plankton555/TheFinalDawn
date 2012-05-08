@@ -98,11 +98,6 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		this.currentHealth = newCurrentHealth;
 	}
 	
-	@Override
-	public void update(float tpf) {
-		// TODO Jakob: PMD: An empty method in an abstract class should be abstract instead
-	}
-	
 	public State getState() {
 		return this.state;
 	}

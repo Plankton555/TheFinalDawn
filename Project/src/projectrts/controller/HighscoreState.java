@@ -12,11 +12,11 @@ import de.lessvoid.nifty.Nifty;
  * @author Filip Brynfors
  */
 public class HighscoreState extends AbstractAppState {
-	// TODO Filip: PMD: Perhaps 'app' could be replaced by a local variable.
+	// TODO Afton: PMD: Perhaps 'app' could be replaced by a local variable.
 	private SimpleApplication app;
-	// TODO Filip: PMD: Private field 'nifty' could be made final; it is only initialized in the declaration or constructor.
+	// TODO Afton: PMD: Private field 'nifty' could be made final; it is only initialized in the declaration or constructor.
 	private Nifty nifty;
-	// TODO Filip: PMD: Private field 'time' could be made final; it is only initialized in the declaration or constructor.
+	// TODO Afton: PMD: Private field 'time' could be made final; it is only initialized in the declaration or constructor.
 	private float time;
 	
 	/**

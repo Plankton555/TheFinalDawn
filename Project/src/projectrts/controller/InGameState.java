@@ -31,8 +31,6 @@ public class InGameState extends AbstractAppState {
     private InputController input;
     private GameView view;
     private GameGUIView guiView;
-    // TODO Markus: PMD: The value of the field InGameState.guiControl is not used
-    private InGameGUIController guiControl;
     private final Nifty nifty;
     
     public static final float MODEL_TO_WORLD = 0.05f;
@@ -74,7 +72,7 @@ public class InGameState extends AbstractAppState {
       guiView = new GameGUIView(nifty, game);
       
       input = new InputController(this.app, game, view);
-      guiControl = new InGameGUIController(input, nifty, guiView, game.getAbilityManager()); 
+      new InGameGUIController(input, nifty, guiView, game.getAbilityManager()); 
 
       initializeCamera();
       // Initialize view last, after model and controller, since its initialization is dependent on the other's.
@@ -137,7 +135,6 @@ public class InGameState extends AbstractAppState {
         // do the following while game is RUNNING // modify scene graph...
     	  input.update(tpf);
     	  game.update(tpf);
-    	  view.update(tpf);
     	  guiView.update(tpf);
       } else {
     	// TODO Markus: PMD: Avoid empty if statements

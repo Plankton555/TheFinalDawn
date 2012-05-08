@@ -7,15 +7,6 @@ import projectrts.model.world.Position;
  *
  */
 public abstract class NonPlayerControlledEntity extends AbstractEntity {
-	
-	/**
-	 * When subclassing, invoke this to initialize the entity.
-	 * @param spawnPos The initial position of the entity.
-	 */
-	protected void initialize(Position spawnPos) {
-		// TODO Jakob: PMD: Overriding method merely calls super
-		super.initialize(spawnPos);
-	}
 
 	/**
 	 * Concrete version used for creating new instances according to

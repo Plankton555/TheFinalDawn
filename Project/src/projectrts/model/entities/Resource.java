@@ -24,12 +24,6 @@ public class Resource extends NonPlayerControlledEntity{
 		setName(Resource.class.getSimpleName());
 		setSize(size);
 	}
-
-	@Override
-	public void update(float tpf) {
-		// Do nothing yet
-		
-	}
 	
 	@Override
 	public NonPlayerControlledEntity createNPCE(Position pos) {

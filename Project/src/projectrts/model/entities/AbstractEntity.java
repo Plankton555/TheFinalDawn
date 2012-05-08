@@ -81,10 +81,4 @@ public abstract class AbstractEntity implements IEntity {
 	{
 		world.setNodesOccupied(newNode, getSize(), getEntityID());
 	}
-	
-	/**
-	 * Updates the unit.
-	 * @param tpf Time per frame
-	 */
-	public abstract void update(float tpf);
 }

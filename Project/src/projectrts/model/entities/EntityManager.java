@@ -59,11 +59,6 @@ public class EntityManager implements IEntityManager{
 	 */
 	public void update(float tpf)
 	{	
-		for (AbstractEntity e : allEntities)
-		{
-			e.update(tpf);
-		}
-		
 		for (AbstractEntity e : entitiesAddQueue){
 			allEntities.add(e);
 			pcs.firePropertyChange("entityCreated", null, e);

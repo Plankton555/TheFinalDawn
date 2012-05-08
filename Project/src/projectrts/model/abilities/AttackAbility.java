@@ -15,7 +15,6 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 	private PlayerControlledEntity target;
 	
 	private MoveAbility moveAbility;
-	// TODO Afton: PMD: Found non-transient, non-static member. Please mark as transient or provide accessors.
 	private double range = 1;
 	
 	static {

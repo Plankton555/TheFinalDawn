@@ -159,14 +159,6 @@ public class GameView implements PropertyChangeListener{
     	this.app.getRootNode().attachChild(mouseEffects);
     }
     
-    /**
-     * Updates the view.
-     * @param tpf The time passed since the last frame.
-     */
-    public void update(float tpf) {
-    	// TODO Markus: PMD: Document empty method
-    }
-    
     private void integrateNodes(INode[][] nodes)
     {
     	Box[][] nodeShapes = new Box[nodes.length][];

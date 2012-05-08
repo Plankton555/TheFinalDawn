@@ -31,8 +31,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	private HashMap<Integer, ArrayList<AbstractAbility>> abilityListsMap = new HashMap<Integer, ArrayList<AbstractAbility>>();
 	private PropertyChangeListener pcl;
 	
-	// TODO Markus: PMD: Variables that are final and static should be in all caps.
-	private static final String[] abilityNames = new String[10];
+	private static final String[] ABILITY_NAMES = new String[10];
 	
 	static {
 		try
@@ -50,16 +49,16 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			Class.forName(TrainWarriorAbility.class.getName());
 			
 			//DON'T FORGET TO ADJUST THE ARRAY SIZE IF CREATING/DELETING ABILITIES
-			abilityNames[0] = AttackAbility.class.getSimpleName();
-			abilityNames[1] = BuildBarracksAbility.class.getSimpleName();
-			abilityNames[2] = BuildWallAbility.class.getSimpleName();
-			abilityNames[3] = DeliverResourceAbility.class.getSimpleName();
-			abilityNames[4] = GatherResourceAbility.class.getSimpleName();
-			abilityNames[5] = MineResourceAbility.class.getSimpleName();
-			abilityNames[6] = MoveAbility.class.getSimpleName();
-			abilityNames[7] = OffensiveSpellAbility.class.getSimpleName();
-			abilityNames[8] = TrainWorkerAbility.class.getSimpleName();
-			abilityNames[9] = TrainWarriorAbility.class.getSimpleName();
+			ABILITY_NAMES[0] = AttackAbility.class.getSimpleName();
+			ABILITY_NAMES[1] = BuildBarracksAbility.class.getSimpleName();
+			ABILITY_NAMES[2] = BuildWallAbility.class.getSimpleName();
+			ABILITY_NAMES[3] = DeliverResourceAbility.class.getSimpleName();
+			ABILITY_NAMES[4] = GatherResourceAbility.class.getSimpleName();
+			ABILITY_NAMES[5] = MineResourceAbility.class.getSimpleName();
+			ABILITY_NAMES[6] = MoveAbility.class.getSimpleName();
+			ABILITY_NAMES[7] = OffensiveSpellAbility.class.getSimpleName();
+			ABILITY_NAMES[8] = TrainWorkerAbility.class.getSimpleName();
+			ABILITY_NAMES[9] = TrainWarriorAbility.class.getSimpleName();
 						
 		}
 		catch (ClassNotFoundException any)
@@ -245,10 +244,10 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 
 	@Override
 	public String[] getExistingAbilityNames() {
-		String[] copy = new String[abilityNames.length];
+		String[] copy = new String[ABILITY_NAMES.length];
 		// TODO Markus: PMD: System.arraycopy is more efficient
-		for(int i = 0; i < abilityNames.length; i++) {
-			copy[i] = abilityNames[i];
+		for(int i = 0; i < ABILITY_NAMES.length; i++) {
+			copy[i] = ABILITY_NAMES[i];
 		}
 		return copy;
 	}

@@ -338,12 +338,12 @@ public class InGameGUIController implements ScreenController {
 
 	@Override
 	public void onEndScreen() {
-		// TODO Filip: PMD: Document empty method
+		// TODO Afton: PMD: Document empty method
 	}
 
 	@Override
 	public void onStartScreen() {
-		// TODO Filip: PMD: Document empty method
+		// TODO Afton: PMD: Document empty method
 	}
 	
 	
