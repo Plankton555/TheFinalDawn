@@ -12,10 +12,8 @@ import projectrts.model.world.Position;
  */
 // TODO Afton: Remove this class?
 public class OffensiveSpellAbility extends AbstractAbility implements IUsingMoveAbility {
-	// TODO Afton: PMD: Private field 'abilityRange' could be made final; it is only initialized in the declaration or constructor.
-	private int abilityRange = 50;
-	// TODO Afton: PMD: Private field 'damage' could be made final; it is only initialized in the declaration or constructor.
-	private int damage = 90;
+	private final int abilityRange = 50;
+	private final int damage = 90;
 	
 	private PlayerControlledEntity attacker;
 	private PlayerControlledEntity target;

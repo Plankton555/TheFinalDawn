@@ -127,12 +127,9 @@ public class GameModel implements IGame, PropertyChangeListener {
 		List<IEntity> entities = entityManager.getAllEntities();
 		boolean allDead = true;
 		for(IEntity entity: entities){
-			if(entity instanceof AbstractStructure){
-				// TODO Afton: PMD: These nested if statements could be combined
-				if(!((AbstractStructure) entity).isDead()){
-					allDead = false;
-					break;
-				}
+			if(entity instanceof AbstractStructure && !((AbstractStructure) entity).isDead()){
+				allDead = false;
+				break;
 			}
 		}
 		if(allDead){

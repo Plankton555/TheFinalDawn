@@ -14,12 +14,8 @@ import de.lessvoid.nifty.Nifty;
  * @author Filip Brynfors
  */
 public class MenuState extends AbstractAppState {
-	// TODO Afton: PMD: Perhaps 'app' could be replaced by a local variable.
-	private SimpleApplication app;
-	// TODO Afton: PMD: Private field 'nifty' could be made final; it is only initialized in the declaration or constructor.
-	private Nifty nifty;
-	// TODO Afton: PMD: Perhaps 'menuGuiController' could be replaced by a local variable.
-	private MenuGUIController menuGuiController;
+
+	private final Nifty nifty;
 	private PropertyChangeListener pcl;
 	
 	/**
@@ -34,11 +30,10 @@ public class MenuState extends AbstractAppState {
 
 	@Override
     public void initialize(AppStateManager stateManager, Application app) {
-    	this.app = (SimpleApplication) app;
-    	this.app.getInputManager().setCursorVisible(true);
-    	this.app.getInputManager().clearMappings();
+    	app.getInputManager().setCursorVisible(true);
+    	app.getInputManager().clearMappings();
     	    	
-    	menuGuiController = new MenuGUIController(app, nifty);
+    	MenuGUIController menuGuiController = new MenuGUIController(app, nifty);
     	menuGuiController.addListener(pcl);
     }
 	

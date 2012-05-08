@@ -20,12 +20,9 @@ import de.lessvoid.nifty.screen.ScreenController;
  *
  */
 public class MenuGUIController implements ScreenController {
-	// TODO Afton: PMD: Private field 'app' could be made final; it is only initialized in the declaration or constructor.
-	private SimpleApplication app;
-	// TODO Afton: PMD: Private field 'nifty' could be made final; it is only initialized in the declaration or constructor.
-	private Nifty nifty;
-	// TODO Afton: PMD: Private field 'pcs' could be made final; it is only initialized in the declaration or constructor.
-	private PropertyChangeSupport pcs;
+	private final SimpleApplication app;
+	private final Nifty nifty;
+	private final PropertyChangeSupport pcs;
 	
 	/**
 	 * Creates a new GUI controller

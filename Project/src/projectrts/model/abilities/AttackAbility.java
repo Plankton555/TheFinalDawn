@@ -65,13 +65,12 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 			} else {
 				//Out of range
 				
-				// TODO Afton: PMD: Avoid if (x != y) ..; else ..;
-				if(!moveAbility.isActive()){
-					moveAbility.useAbility(target.getPosition());
+				if(moveAbility.isActive()){
+					moveAbility.updateTarget(target.getPosition());
 				}
 				else
 				{
-					moveAbility.updateTarget(target.getPosition());
+					moveAbility.useAbility(target.getPosition());
 				}
 			}
 		}

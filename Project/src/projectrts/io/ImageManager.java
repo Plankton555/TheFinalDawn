@@ -1,6 +1,7 @@
 package projectrts.io;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.render.NiftyImage;
@@ -15,8 +16,7 @@ import de.lessvoid.nifty.render.image.ImageModeHelper;
  */
 public enum ImageManager {
 	INSTANCE;
-	// TODO Afton: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
-	private HashMap<String, NiftyImage> images = new HashMap<String, NiftyImage>();
+	private Map<String, NiftyImage> images = new HashMap<String, NiftyImage>();
 	private NiftyRenderEngine engine;
 	
 

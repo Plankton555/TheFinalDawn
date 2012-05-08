@@ -22,11 +22,9 @@ import de.lessvoid.nifty.screen.Screen;
  */
 // TODO Afton: PMD: Too many fields
 public class GameGUIView implements PropertyChangeListener {
-	// TODO Afton: PMD: Private field 'nifty' could be made final; it is only initialized in the declaration or constructor.
-	private Nifty nifty;
+	private final Nifty nifty;
 	private Screen screen;
-	// TODO Afton: PMD: Private field 'game' could be made final; it is only initialized in the declaration or constructor.
-	private IGame game;
+	private final IGame game;
 	
 	private Element labelName;
 	private Element labelInfo;
@@ -41,8 +39,7 @@ public class GameGUIView implements PropertyChangeListener {
 	
 	private boolean activeMessage = false;
 	private float messageTimer = 0;
-	// TODO Afton: PMD: This final field could be made static
-	private final float MESSAGE_MAX_TIME = 3;
+	private static final float MESSAGE_MAX_TIME = 3;
 	private String message = ""; 
 	
 	
@@ -126,8 +123,9 @@ public class GameGUIView implements PropertyChangeListener {
 	}
 	
 	private void updateAbilities(){
-		// TODO Afton: PMD: Avoid if (x != y) ..; else ..;
-		if(selectedPce!=null){
+		if(selectedPce==null){
+			panelAbilities.setVisible(false);
+		} else {
 			panelAbilities.setVisible(true);
 	    	List<IAbility> abilities = game.getAbilityManager().getAbilities(selectedPce);
 	    	
@@ -154,15 +152,13 @@ public class GameGUIView implements PropertyChangeListener {
 	    		}
 	
 	    	}
-	    	
-		} else {
-			panelAbilities.setVisible(false);
 		}
 	}
 	
 	private void updateSelectedInfo(){
-		// TODO Afton: PMD: Avoid if (x != y) ..; else ..;
-    	if(selectedPce!=null){
+    	if(selectedPce==null){
+    		panelInfo.setVisible(false);
+    	} else {
     		//Update the Info about the unit in the GUI
     		labelName.getRenderer(TextRenderer.class).setText(selectedPce.getName());
     		
@@ -182,8 +178,6 @@ public class GameGUIView implements PropertyChangeListener {
     		labelInfo.getRenderer(TextRenderer.class).setText(infoBuilder.toString());
     		
     		panelInfo.setVisible(true);
-    	} else {
-    		panelInfo.setVisible(false);
     	}
 	}
 	

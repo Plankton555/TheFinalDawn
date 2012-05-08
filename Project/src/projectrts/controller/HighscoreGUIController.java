@@ -18,12 +18,9 @@ import de.lessvoid.nifty.screen.ScreenController;
  *
  */
 public class HighscoreGUIController implements ScreenController {
-	// TODO Afton: PMD: Private field 'app' could be made final; it is only initialized in the declaration or constructor.
-	private SimpleApplication app;
-	// TODO Afton: PMD: Private field 'nifty' could be made final; it is only initialized in the declaration or constructor.
-	private Nifty nifty;
-	// TODO Afton: PMD: Private field 'time' could be made final; it is only initialized in the declaration or constructor.
-	private float time;
+	private final SimpleApplication app;
+	private final Nifty nifty;
+	private final float time;
 	
 	/**
 	 * Creates a new GUI controller
