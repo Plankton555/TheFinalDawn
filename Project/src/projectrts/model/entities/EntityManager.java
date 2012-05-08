@@ -229,7 +229,6 @@ public class EntityManager implements IEntityManager{
 	 * @param owner the player that selected the entities
 	 */
 	public void select(Position pos, IPlayer owner) {
-		// TODO Anyone: Add support for selection of multiple units.
 		selectedEntities.clear();
 		//PlayerControlledEntity entity = getPCEAtPosition(pos, owner);
 		PlayerControlledEntity entity = getPCEAtPosition(pos);

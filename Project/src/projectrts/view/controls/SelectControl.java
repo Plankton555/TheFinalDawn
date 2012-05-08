@@ -18,7 +18,6 @@ import com.jme3.scene.control.Control;
  * @author Markus Ekström
  *
  */
-//TODO Anyone: PMD: Class cannot be instantiated and does not provide any static methods or fields
 public final class SelectControl extends AbstractCustomControl implements IEntityControl{
 	// TODO Markus: PMD: Private field 'entity' could be made final; it is only initialized in the declaration or constructor.
 	private IEntity entity;

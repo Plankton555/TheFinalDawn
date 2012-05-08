@@ -28,16 +28,13 @@ import de.lessvoid.nifty.tools.SizeValue;
  * @author Filip Brynfors Modified by Jakob Svensson
  *
  */
-// TODO Anyone: PMD: This class has too many methods, consider refactoring it.
+// TODO Afton: PMD: This class has too many methods, consider refactoring it.
 public class InGameGUIController implements ScreenController {
 	private Nifty nifty;
 	private Screen screen;
-	// TODO Anyone: PMD: Private field 'guiView' could be made final; it is only initialized in the declaration or constructor.
-	private GameGUIView guiView;
-	// TODO Anyone: PMD: Private field 'abilityManager' could be made final; it is only initialized in the declaration or constructor.
-	private IAbilityManager abilityManager;
-	// TODO Anyone: PMD: Private field 'input' could be made final; it is only initialized in the declaration or constructor.
-	private InputController input;
+	private final GameGUIView guiView;
+	private final IAbilityManager abilityManager;
+	private final InputController input;
 	
 	private IPlayerControlledEntity selectedPce;
 	private int showingTooltipID = 0;
@@ -129,11 +126,11 @@ public class InGameGUIController implements ScreenController {
 			childLayoutVertical();
 			
 			control(new LabelBuilder("Label_Time"){{
-				// TODO Anyone: PMD: The String literal "100%" appears 11 times in this file; the first occurrence is here
+				// TODO Afton: PMD: The String literal "100%" appears 11 times in this file; the first occurrence is here
 				width("100%");
 				textHAlignLeft();
 				textVAlignTop();
-				// TODO Anyone: PMD: The String literal "#0F0F" appears 4 times in this file; the first occurrence is here
+				// TODO Afton: PMD: The String literal "#0F0F" appears 4 times in this file; the first occurrence is here
 				color("#0F0F");
 				
 			}});

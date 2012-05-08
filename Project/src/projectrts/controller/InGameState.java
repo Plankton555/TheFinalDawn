@@ -27,15 +27,13 @@ public class InGameState extends AbstractAppState {
 	
  
     private SimpleApplication app;
- // TODO Anyone: PMD: Private field 'game' could be made final; it is only initialized in the declaration or constructor.
-    private IGame game;
+    private final IGame game;
     private InputController input;
     private GameView view;
     private GameGUIView guiView;
     // TODO Markus: PMD: The value of the field InGameState.guiControl is not used
     private InGameGUIController guiControl;
-    // TODO Anyone: PMD: Private field 'nifty' could be made final; it is only initialized in the declaration or constructor.
-    private Nifty nifty;
+    private final Nifty nifty;
     
     public static final float MODEL_TO_WORLD = 0.05f;
     
@@ -47,6 +45,7 @@ public class InGameState extends AbstractAppState {
 	public static Position convertWorldToModel(Vector3f worldLoc) {
 		float x = worldLoc.x / InGameState.MODEL_TO_WORLD;
 		float y = -worldLoc.y / InGameState.MODEL_TO_WORLD;
+		// TODO Markus: Should this method be called or not?
 		return GameModel.getPosition(x, y);
 	}
     

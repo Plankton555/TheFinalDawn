@@ -34,25 +34,21 @@ import com.jme3.math.Vector3f;
  * @author Markus Ekström Modifed by Jakob Svensson
  *
  */
-// TODO Anyone: PMD: This class has too many methods, consider refactoring it.
+// TODO Markus: PMD: This class has too many methods, consider refactoring it.
 public class InputController{
 
 	// Before the mouse is moved it has the position (0, 0), causing the camera to move in that direction.
 	// mouseActivated suppresses the camera until set to true (which is done when the mouse is first moved).
 	private boolean mouseActivated = false; 
-	// TODO Anyone: PMD: Private field 'app' could be made final; it is only initialized in the declaration or constructor.
-	private SimpleApplication app;
-	// TODO Anyone: PMD: Private field 'game' could be made final; it is only initialized in the declaration or constructor.
-	private IGame game; // The model
-	// TODO Anyone: PMD: Private field 'view' could be made final; it is only initialized in the declaration or constructor.
-	private GameView view; 
+	private final SimpleApplication app;
+	private final IGame game; // The model
+	private final GameView view; 
 	private boolean choosingPosition=false;
 	private IAbility currentAbility;
 	private IPlayerControlledEntity selectedEntity;
 	private float buildingSize;
 	private boolean choosingTarget;
-	// TODO Anyone: PMD: Private field 'pcs' could be made final; it is only initialized in the declaration or constructor.
-	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private InGameGUIController guiControl;
 	
 	private static final float CAMERA_SPEED = 1f;
@@ -96,7 +92,7 @@ public class InputController{
      * in that direction. The amount is decided by the getCameraSpeed method in the Constants class. 
      * @param tpf
      */
-    // TODO Anyone: PMD: The method 'updateCamera' has a Cyclomatic Complexity of 10. The highest is 15.
+    // TODO Markus: PMD: The method 'updateCamera' has a Cyclomatic Complexity of 10. The highest is 15.
     private void updateCamera(float tpf) {
 
     	if(mouseActivated) {
@@ -133,7 +129,7 @@ public class InputController{
     	this.app.getInputManager().addMapping("cameraUpKey",  new KeyTrigger(KeyInput.KEY_UP));
     	this.app.getInputManager().addMapping("cameraDownKey", new KeyTrigger(KeyInput.KEY_DOWN));
     	
-    	// TODO Anyone: PMD: The 4 following String literals appears 4 times in this file; the first occurrence is here
+    	// TODO Markus: PMD: The 4 following String literals appears 4 times in this file; the first occurrence is here
     	this.app.getInputManager().addMapping("cameraRightMouse",  new MouseAxisTrigger(MouseInput.AXIS_X, true) );
     	this.app.getInputManager().addMapping("cameraLeftMouse",   new MouseAxisTrigger(MouseInput.AXIS_X, false) );
     	this.app.getInputManager().addMapping("cameraUpMouse",  new MouseAxisTrigger(MouseInput.AXIS_Y, true) );
@@ -161,8 +157,8 @@ public class InputController{
      * 
      */
     private AnalogListener analogListener = new AnalogListener() {
-    	// TODO Anyone: PMD: The method onAnalog() has an NPath complexity of 487
-    	// TODO Anyone: PMD: The method 'onAnalog' has a Cyclomatic Complexity of 15.
+    	// TODO Markus: PMD: The method onAnalog() has an NPath complexity of 487
+    	// TODO Markus: PMD: The method 'onAnalog' has a Cyclomatic Complexity of 15.
 	    public void onAnalog(String name, float value, float tpf) {
 	    	
 	    	// Make sure we are in the correct state and that it is enabled.
@@ -196,9 +192,6 @@ public class InputController{
 			    	app.getInputManager().deleteMapping("cameraDownMouse");
 		    	}
 		    	
-          	} else {
-          		// TODO Anyone: PMD: System.out.print is used
-	        	  System.out.println("Press P to unpause.");
           	}
     	}
     };
@@ -208,7 +201,7 @@ public class InputController{
      * be either "on" or "off".
      */
     private ActionListener actionListener = new ActionListener() {
-    	// TODO Anyone: PMD: The method 'onAction' has a Cyclomatic Complexity of 10. Highest is 15
+    	// TODO Markus: PMD: The method 'onAction' has a Cyclomatic Complexity of 10. Highest is 15
     	public void onAction(String name, boolean keyPressed, float tpf) {
     		if (name.equals("exit") && keyPressed) {
 	            app.stop();
@@ -224,16 +217,11 @@ public class InputController{
 	    		
 	    		//Debugging
 	    		if (name.equals("checkMouseLoc") && keyPressed) {
-	    			// TODO Anyone: PMD: System.out.print is used
+	    			// TODO Markus: PMD: System.out.print is used
 	    			System.out.println("mLoc = " + app.getInputManager().getCursorPosition().toString());
 	    			System.out.println("wLoc = " + app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
 	    		}
-	    	} else {
-	    		// TODO Anyone: PMD: Avoid empty if statements
-	    		
 	    	}
-	    	
-
 	    }
     	
     	private void handleLeftClick(){
@@ -258,7 +246,7 @@ public class InputController{
     					pcs.firePropertyChange("TargetNotResource", null, null);
     				}
     			}else if(currentAbility instanceof AttackAbility){
-    				// TODO Anyone: PMD: Avoid if (x != y) ..; else ..;
+    				// TODO Jakob: PMD: Avoid if (x != y) ..; else ..;
     				if(game.getEntityManager().getPCEAtPosition(pos)!=null){
     					game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(),
         						pos, selectedEntity);
@@ -287,7 +275,7 @@ public class InputController{
     			view.clearNodes();
     	    	choosingTarget=false;
     		}else{
-    			// TODO Anyone: PMD: Avoid if (x != y) ..; else ..;
+    			// TODO Jakob: PMD: Avoid if (x != y) ..; else ..;
 	    		if(e!=null){
 	    			if(e instanceof Resource){
 	    				game.getAbilityManager().useAbilitySelected(
@@ -296,7 +284,7 @@ public class InputController{
 	    				
 	    			}else if(e instanceof PlayerControlledEntity){
 	    				PlayerControlledEntity pce = (PlayerControlledEntity) e;
-	    				// TODO Anyone: PMD: Avoid if (x != y) ..; else ..;
+	    				// TODO Jakob: PMD: Avoid if (x != y) ..; else ..;
 	    				if(!pce.getOwner().equals(game.getHumanPlayer())){
 	    					game.getAbilityManager().useAbilitySelected(
 	    							AttackAbility.class.getSimpleName(), pce.getPosition(),
@@ -328,7 +316,7 @@ public class InputController{
     	}
     	
     	private boolean isWithin(double p, double low, double high){
-    		// TODO Anyone: This method should be replaced by the one in imported JavaUtils
+    		// TODO Jakob: This method should be replaced by the one in imported JavaUtils
     		return (p>=low && p<=high);
     	}
     	
@@ -379,12 +367,6 @@ public class InputController{
     	}else{
     		game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(), pce.getPosition(), pce);
     	}
-    	// TODO Anyone: PMD: System.out.print is used
-    	System.out.println(ability.getName());
-    }
-    
-    public void drawNodesAroundCursor(){
-    	// TODO Anyone: PMD: Document empty method
     }
     
     public void addListener(PropertyChangeListener pcl){

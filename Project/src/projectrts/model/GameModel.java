@@ -31,19 +31,12 @@ import projectrts.model.world.World;
  */
 public class GameModel implements IGame, PropertyChangeListener {
 	private final World world = World.getInstance();
-	// TODO Anyone: PMD: Private field 'entityManager' could be made final; it is only initialized in the declaration or constructor.
-	private EntityManager entityManager = EntityManager.getInstance();
-	// TODO Anyone: PMD: Private field 'humanPlayer' could be made final; it is only initialized in the declaration or constructor.
-	private Player humanPlayer = new Player();
-	// TODO Markus: PMD: Private field 'aiPlayer' could be made final; it is only initialized in the declaration or constructor.
-	private Player aiPlayer = new Player();
-	// TODO Markus: PMD: Private field 'aiManager' could be made final; it is only initialized in the declaration or constructor.
-	private AIManager aiManager;
+	private final EntityManager entityManager = EntityManager.getInstance();
+	private final Player humanPlayer = new Player();
+	private final Player aiPlayer = new Player();
+	private final AIManager aiManager;
 	private AbilityManager abilityManager;
 	private float gameTime = 0;
-	// TODO Afton: PMD: Avoid unused private fields such as 'gameIsOver'.
-	// TODO Afton: The value of the field GameModel.gameIsOver is not used
-	private boolean gameIsOver = false;
 	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private final Level level = new Level(aiPlayer);
 
@@ -54,7 +47,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 	 * @return A position with the given coordinates.
 	 */
 	public static Position getPosition(float x, float y) {
-		// TODO Anyone: Why not just create a new position?..
+		// TODO Markus: Should this method exist or not?
 		return new Position(x, y);
 	}
 	
@@ -148,7 +141,6 @@ public class GameModel implements IGame, PropertyChangeListener {
 	}
 	
 	private void setGameOver(){
-		gameIsOver = true;
 		pcs.firePropertyChange("gameIsOver", false, true);
 	}
 
