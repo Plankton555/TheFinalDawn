@@ -3,7 +3,6 @@ package projectrts.controller;
 import java.beans.PropertyChangeListener;
 
 import com.jme3.app.Application;
-import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 
