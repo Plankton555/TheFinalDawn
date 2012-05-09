@@ -107,7 +107,7 @@ public class HighscoreGUIController implements ScreenController {
 	 * Used when the restartButton is clicked
 	 */
 	public void buttonRestartClicked(){
-		//pcs.firePropertyChange("Restart",null,null);
+		pcs.firePropertyChange("Restart",null,null);
 	}
 
 	/**
