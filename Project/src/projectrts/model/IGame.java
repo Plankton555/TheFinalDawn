@@ -3,6 +3,7 @@ package projectrts.model;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import projectrts.model.Level.Difficulty;
 import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.IEntityManager;
 import projectrts.model.entities.IPlayer;
@@ -66,4 +67,15 @@ public interface IGame {
 	 * @param pcl the listener that will listen to the model
 	 */
 	public void addListener(PropertyChangeListener pcl);
+	
+	/**
+	 * Set the difficulty of the game.
+	 * @param difficulty The difficulty you want to set the game to.
+	 */
+	public void setDifficulty(Difficulty difficulty);
+	
+	/**
+	 * @return The current difficulty.
+	 */
+	public Difficulty getCurrentDifficulty();
 }

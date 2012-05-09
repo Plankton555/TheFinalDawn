@@ -9,20 +9,47 @@ import projectrts.model.world.Position;
 public class Level {
 	private int wave = 1;
 	private float timePassed = 0;
-	private static final int WAVE_INTERVAL = 20; // in seconds
+	private int waveInterval = 20; // in seconds
+	private float monstersPerWave = 1;
+	private float mpwCoefficient = 1.5f;
 	private final Player aiPlayer;
+	
+	public enum Difficulty{EASY, MEDIUM, HARD, NIGHTMARE}
+	
+	private Difficulty currentDifficulty = Difficulty.MEDIUM;
 	
 	public Level(Player aiPlayer) {
 		this.aiPlayer = aiPlayer;
 	}
 	
-	
 	public void update(float tpf) {
 		timePassed += tpf;
-		if(timePassed >= wave*WAVE_INTERVAL) {
+		if(timePassed >= wave*waveInterval) {
 			callNewWave();
 			wave++;
 		}
+	}
+	
+	public void setDifficulty(Difficulty difficulty) {
+		currentDifficulty = difficulty;
+		if(currentDifficulty == Difficulty.EASY) {
+			waveInterval = 30;
+			mpwCoefficient = 1.25f;
+		} else if(currentDifficulty == Difficulty.MEDIUM) {
+			waveInterval = 20;
+			mpwCoefficient = 1.5f;
+		} else if(currentDifficulty == Difficulty.HARD){
+			waveInterval = 20;
+			mpwCoefficient = 1.75f;
+		} else {
+			waveInterval = 15;
+			mpwCoefficient = 2;
+			monstersPerWave = 2;
+		}
+	}
+	
+	public Difficulty getCurrentDifficulty() {
+		return currentDifficulty;
 	}
 	
 	private void callNewWave() {
@@ -30,17 +57,19 @@ public class Level {
 		
 		switch(direction) {
 			case(0): 
-				spawnEnemies(new Position(0, 50), wave);
+				spawnEnemies(new Position(0, 50), Math.round(monstersPerWave));
 				break;
 			case(1): 
-				spawnEnemies(new Position(50, 0), wave);
+				spawnEnemies(new Position(50, 0), Math.round(monstersPerWave));
 				break;
 			case(2): 
-				spawnEnemies(new Position(100, 50), wave);
+				spawnEnemies(new Position(100, 50), Math.round(monstersPerWave));
 				break;
 			default: 
-				spawnEnemies(new Position(50, 100), wave);
+				spawnEnemies(new Position(50, 100), Math.round(monstersPerWave));
 		}
+		monstersPerWave *= mpwCoefficient;
+		
 	}
 	
 	

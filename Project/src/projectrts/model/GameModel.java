@@ -5,6 +5,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
 
+import projectrts.model.Level.Difficulty;
 import projectrts.model.abilities.AbilityManager;
 import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.AbstractStructure;
@@ -40,7 +41,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 	private float gameTime = 0;
 	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private final Level level = new Level(aiPlayer);
-
+	
 	/**
 	 * Returns a position in the model with the given coordinates
 	 * @param x The x coordinate
@@ -78,11 +79,11 @@ public class GameModel implements IGame, PropertyChangeListener {
 		entityManager.addNewPCE(Barracks.class.getSimpleName(), humanPlayer, new Position(38.5, 56.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 50.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 52.5));
-		entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(32.5, 34.5));
+		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(32.5, 34.5));
 		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(30.5, 34.5));
 		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(28.5, 34.5));
 		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(26.5, 34.5));
-
+		level.setDifficulty(Level.Difficulty.NIGHTMARE);
 
 	}
 	
@@ -152,7 +153,19 @@ public class GameModel implements IGame, PropertyChangeListener {
 	}
 	
 	@Override
+	public void setDifficulty(Difficulty difficulty) {
+		level.setDifficulty(difficulty);
+	}
+	
+	@Override
+	public Difficulty getCurrentDifficulty() {
+		return level.getCurrentDifficulty();
+	}
+		
+	@Override
 	public void addListener(PropertyChangeListener pcl){
 		pcs.addPropertyChangeListener(pcl);
 	}
+
+
 }
