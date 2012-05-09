@@ -66,6 +66,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 		
 		abilityManager = new AbilityManager();
 		aiManager = new AIManager(aiPlayer, abilityManager);
+		entityManager.resetData();
 		entityManager.addListener(this);
 		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(52.5, 52.5));
 		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(55.5, 55.5));

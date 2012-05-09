@@ -345,4 +345,14 @@ public class EntityManager implements IEntityManager{
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 	}
+	
+	/**
+	 * Resets all lists with entities
+	 */
+	public void resetData(){
+		selectedEntities.clear();
+		allEntities.clear();
+		entitiesRemoveQueue.clear();
+		entitiesAddQueue.clear();
+	}
 }

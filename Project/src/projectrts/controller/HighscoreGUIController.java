@@ -1,5 +1,8 @@
 package projectrts.controller;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 
@@ -21,6 +24,7 @@ public class HighscoreGUIController implements ScreenController {
 	private final SimpleApplication app;
 	private final Nifty nifty;
 	private final float time;
+	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	
 	/**
 	 * Creates a new GUI controller
@@ -72,6 +76,11 @@ public class HighscoreGUIController implements ScreenController {
 	               			text("Congratulations!\nYou managed to survive "+min+" minutes and "+sec+" seconds!");
 	               		}});
 	               		
+	               		
+		                control(new ButtonBuilder("Button_Restart", "Restart Game"){{
+		                	alignCenter();
+			                interactOnClick("buttonRestartClicked()");
+			            }}); 
 		                control(new ButtonBuilder("Button_Exit", "Exit Game"){{
 		                	alignCenter();
 			                interactOnClick("buttonExitClicked()");
@@ -92,6 +101,21 @@ public class HighscoreGUIController implements ScreenController {
 	 */
 	public void buttonExitClicked(){
 		app.stop();
+	}
+	
+	/**
+	 * Used when the restartButton is clicked
+	 */
+	public void buttonRestartClicked(){
+		pcs.firePropertyChange("Restart",null,null);
+	}
+
+	/**
+	 * Adds a listener to the GUI
+	 * @param pcl the listener
+	 */
+	public void addListener(PropertyChangeListener pcl) {
+		pcs.addPropertyChangeListener(pcl);		
 	}
 
 

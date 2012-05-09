@@ -149,7 +149,8 @@ public class InGameState extends AbstractAppState {
     private void initializeCamera() {
     	int worldWidth = game.getWorld().getWorldWidth();
     	int worldHeight = game.getWorld().getWorldHeight();
-    	app.getCamera().setLocation(app.getCamera().getLocation().add(new Vector3f((worldWidth / 2) * MODEL_TO_WORLD,
-    			-(worldHeight / 2) * MODEL_TO_WORLD, 0)));
+    	app.getCamera().setLocation(new Vector3f((worldWidth / 2) * MODEL_TO_WORLD,
+    			-(worldHeight / 2) * MODEL_TO_WORLD, app.getCamera().getLocation().getZ()));
+    	
     }
 }
