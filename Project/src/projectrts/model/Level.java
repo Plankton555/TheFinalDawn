@@ -10,8 +10,8 @@ public class Level {
 	private int wave = 1;
 	private float timePassed = 0;
 	private int waveInterval = 20; // in seconds
-	private float monstersPerWave = 1;
-	private float mpwCoefficient = 1.5f;
+	private float enemiesPerWave = 1;
+	private float epwCoefficient = 1.5f;
 	private final Player aiPlayer;
 	
 	public enum Difficulty{EASY, MEDIUM, HARD, NIGHTMARE}
@@ -34,17 +34,17 @@ public class Level {
 		currentDifficulty = difficulty;
 		if(currentDifficulty == Difficulty.EASY) {
 			waveInterval = 30;
-			mpwCoefficient = 1.25f;
+			epwCoefficient = 1.25f;
 		} else if(currentDifficulty == Difficulty.MEDIUM) {
 			waveInterval = 20;
-			mpwCoefficient = 1.5f;
+			epwCoefficient = 1.5f;
 		} else if(currentDifficulty == Difficulty.HARD){
 			waveInterval = 20;
-			mpwCoefficient = 1.75f;
+			epwCoefficient = 1.75f;
 		} else {
 			waveInterval = 15;
-			mpwCoefficient = 2;
-			monstersPerWave = 2;
+			epwCoefficient = 2;
+			enemiesPerWave = 2;
 		}
 	}
 	
@@ -57,18 +57,18 @@ public class Level {
 		
 		switch(direction) {
 			case(0): 
-				spawnEnemies(new Position(0, 50), Math.round(monstersPerWave));
+				spawnEnemies(new Position(0, 50), Math.round(enemiesPerWave));
 				break;
 			case(1): 
-				spawnEnemies(new Position(50, 0), Math.round(monstersPerWave));
+				spawnEnemies(new Position(50, 0), Math.round(enemiesPerWave));
 				break;
 			case(2): 
-				spawnEnemies(new Position(100, 50), Math.round(monstersPerWave));
+				spawnEnemies(new Position(100, 50), Math.round(enemiesPerWave));
 				break;
 			default: 
-				spawnEnemies(new Position(50, 100), Math.round(monstersPerWave));
+				spawnEnemies(new Position(50, 100), Math.round(enemiesPerWave));
 		}
-		monstersPerWave *= mpwCoefficient;
+		enemiesPerWave *= epwCoefficient;
 		
 	}
 	
