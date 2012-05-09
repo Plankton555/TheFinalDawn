@@ -1,5 +1,6 @@
 package projectrts.model.abilities;
 
+import projectrts.model.entities.AbstractUnit;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
@@ -15,7 +16,7 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 	private PlayerControlledEntity target;
 	
 	private MoveAbility moveAbility;
-	private double range = 1;
+	private double range;
 	
 	static {
 		AbilityFactory.INSTANCE.registerAbility(AttackAbility.class.getSimpleName(), new AttackAbility());
@@ -38,6 +39,8 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 	@Override
 	public void useAbility(Position pos){
 		target = EntityManager.getInstance().getPCEAtPosition(pos);
+		AbstractUnit au = (AbstractUnit)entity;
+		range = au.getAttackRange();
 		setActive(true);
 		setFinished(false);
 		
@@ -52,6 +55,7 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 			//attacker.getRange();
 			if(inRange(target)){
 				//In range
+				moveAbility.abortAbility();
 				if(getRemainingCooldown()<=0){
 					
 					target.dealDamageTo(entity.getDamage());
