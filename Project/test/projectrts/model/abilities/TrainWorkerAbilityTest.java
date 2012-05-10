@@ -1,9 +1,5 @@
 package projectrts.model.abilities;
 
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
-
 import projectrts.model.GameModel;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Headquarter;

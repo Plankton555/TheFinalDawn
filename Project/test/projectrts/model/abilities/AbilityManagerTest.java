@@ -1,7 +1,6 @@
 package projectrts.model.abilities;
 
 
-import org.junit.Before;
 
 public class AbilityManagerTest {
 
