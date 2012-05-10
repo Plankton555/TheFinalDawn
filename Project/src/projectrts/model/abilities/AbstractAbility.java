@@ -101,7 +101,9 @@ public abstract class AbstractAbility implements IAbility {
 	
 
 	public void abortAbility(){
-		setFinished(true);
+		if(isActive()){
+			setFinished(true);
+		}
 	}
 	
 	public void addListener(PropertyChangeListener pcl) {

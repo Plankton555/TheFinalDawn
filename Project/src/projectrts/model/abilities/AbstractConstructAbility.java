@@ -110,11 +110,13 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 	
 	@Override
 	public void abortAbility(){
-		super.abortAbility();
-		World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(buildPos)
-				, getSizeOfBuilding(), 0);
-		owner.modifyResource(buildCost);
-		
+		if(isActive()){
+			super.abortAbility();
+			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(buildPos)
+					, getSizeOfBuilding(), 0);
+			owner.modifyResource(buildCost);
+			
+		}
 	}
 	
 
