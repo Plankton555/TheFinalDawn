@@ -3,7 +3,7 @@ package projectrts.controller;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import projectrts.model.Level.Difficulty;
+import projectrts.model.Difficulty;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
@@ -15,7 +15,6 @@ import de.lessvoid.nifty.builder.ScreenBuilder;
 import de.lessvoid.nifty.controls.Button;
 import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.elements.Element;
-import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 

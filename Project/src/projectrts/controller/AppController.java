@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 import projectrts.io.ImageManager;
 import projectrts.io.MaterialManager;
 import projectrts.io.TextureManager;
+import projectrts.model.Difficulty;
 import projectrts.model.GameModel;
 import projectrts.model.IGame;
-import projectrts.model.Level.Difficulty;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.niftygui.NiftyJmeDisplay;
