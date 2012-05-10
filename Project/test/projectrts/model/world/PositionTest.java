@@ -1,6 +1,6 @@
 package projectrts.model.world;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import javax.vecmath.Vector2d;
 

@@ -1,6 +1,6 @@
 package projectrts.model.abilities.pathfinding;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
