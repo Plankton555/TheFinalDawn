@@ -105,76 +105,14 @@ public class AStar {
 	 * @param occupyingEntityID ID of occupying entity.
 	 * @return An AStarPath from startPos to targetPos.
 	 */
-	public static AStarPath calculatePath(Position startPos, Position targetPos, int heuristicModifier, int occupyingEntityID)
+	public static void calculatePath(Position startPos, Position targetPos, int heuristicModifier,
+			int occupyingEntityID, AStarUser astarUser)
 	{
 		checkInit();
 		// Plankton: Use threads to not slow down the game when using many agents?
-		AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
-		AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
-		List<AStarNode> openList = new ArrayList<AStarNode>();
-		List<AStarNode> closedList = new ArrayList<AStarNode>();
-		// Sets the search limit to 10 times the approximate distance to the target (or 50 if the distance is short)
-		startNode.calculateHeuristic(endNode, 10);
-		int searchlimit = Math.max(startNode.getHeuristic(), 50);
-		
-		if (endNode.isObstacle(occupyingEntityID))
-		{
-			// Use A* "backwards" from the end node to find the closest walkable node.
-			// Probably not the best way of dealing with it, but it will do for now.
-			endNode = getClosestUnoccupiedNode(targetPos, startPos, occupyingEntityID);
-		}
-		
-		// A* algorithm starts here
-		openList.add(startNode);
-		while (!openList.isEmpty()) // while open list is not empty
-		{
-			// current node  = node from the open list with the lowest cost
-			Collections.sort(openList);
-			AStarNode currentNode = openList.get(0);
-			
-			if (currentNode.equals(endNode))
-			{
-				return generatePath(startNode, currentNode);
-			}
-			else
-			{
-				// http://www.policyalmanac.org/games/aStarTutorial.htm
-				
-				// move current node to the closed list
-				openList.remove(0);
-				closedList.add(currentNode);
-				
-				// examine each node adjacent to the current node
-				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
-				for (AStarNode node : adjacentNodes)
-				{
-					if (!node.isObstacle(occupyingEntityID) && !closedList.contains(node))
-					{ // if not an obstacle and not on closed list
-						if (openList.contains(node)) // if on open list, check to see if new path is better
-						{
-							node.calculateCostFromStart(currentNode, true);
-						}
-						else  // if not on open list
-						{
-							// move to open list and calculate cost
-							openList.add(node);
-							node.calculateCostFromStart(currentNode, false);
-							node.calculateHeuristic(endNode, heuristicModifier);
-						}
-					}
-				}
-			}
-			// if too many nodes are searched without finding a way, break out of loop.
-			if (closedList.size() > searchlimit)
-			{
-				break;
-			}
-		}
-		
-		// path not found, return path to the node closest to the target instead.
-		
-		Collections.sort(closedList, AStarNode.getHeuristicComparator());
-		return generatePath(startNode, closedList.get(0));
+		PathCalculator pathCalculator = new PathCalculator(startPos, targetPos,
+				heuristicModifier, occupyingEntityID, astarUser);
+		pathCalculator.run();
 	}
 	
 	private static AStarPath generatePath(AStarNode startNode, AStarNode endNode)
@@ -196,6 +134,96 @@ public class AStar {
 		if (!isInitialized())
 		{
 			throw new IllegalStateException("You must initialize the AStar class before you can use it");
+		}
+	}
+	
+	private static class PathCalculator implements Runnable
+	{
+		private Position startPos;
+		private Position targetPos;
+		private int heuristicModifier;
+		private int occupyingEntityID;
+		private AStarUser astarUser;
+		
+		public PathCalculator(Position startPos, Position targetPos, int heuristicModifier,
+				int occupyingEntityID, AStarUser astarUser)
+		{
+			this.startPos = startPos;
+			this.targetPos = targetPos;
+			this.heuristicModifier = heuristicModifier;
+			this.occupyingEntityID = occupyingEntityID;
+			this.astarUser = astarUser;
+		}
+		
+		@Override
+		public void run() {
+			AStarNode startNode = new AStarNode(world.getNodeAt(startPos));
+			AStarNode endNode = new AStarNode(world.getNodeAt(targetPos));
+			List<AStarNode> openList = new ArrayList<AStarNode>();
+			List<AStarNode> closedList = new ArrayList<AStarNode>();
+			// Sets the search limit to 10 times the approximate distance to the target (or 50 if the distance is short)
+			startNode.calculateHeuristic(endNode, 10);
+			int searchlimit = Math.max(startNode.getHeuristic(), 50);
+			
+			if (endNode.isObstacle(occupyingEntityID))
+			{
+				// Use A* "backwards" from the end node to find the closest walkable node.
+				// Probably not the best way of dealing with it, but it will do for now.
+				endNode = getClosestUnoccupiedNode(targetPos, startPos, occupyingEntityID);
+			}
+			
+			// A* algorithm starts here
+			openList.add(startNode);
+			while (!openList.isEmpty()) // while open list is not empty
+			{
+				// current node  = node from the open list with the lowest cost
+				Collections.sort(openList);
+				AStarNode currentNode = openList.get(0);
+				
+				if (currentNode.equals(endNode))
+				{
+					astarUser.receivePath(generatePath(startNode, currentNode));
+					return;
+				}
+				else
+				{
+					// http://www.policyalmanac.org/games/aStarTutorial.htm
+					
+					// move current node to the closed list
+					openList.remove(0);
+					closedList.add(currentNode);
+					
+					// examine each node adjacent to the current node
+					List<AStarNode> adjacentNodes = currentNode.getNeighbours();
+					for (AStarNode node : adjacentNodes)
+					{
+						if (!node.isObstacle(occupyingEntityID) && !closedList.contains(node))
+						{ // if not an obstacle and not on closed list
+							if (openList.contains(node)) // if on open list, check to see if new path is better
+							{
+								node.calculateCostFromStart(currentNode, true);
+							}
+							else  // if not on open list
+							{
+								// move to open list and calculate cost
+								openList.add(node);
+								node.calculateCostFromStart(currentNode, false);
+								node.calculateHeuristic(endNode, heuristicModifier);
+							}
+						}
+					}
+				}
+				// if too many nodes are searched without finding a way, break out of loop.
+				if (closedList.size() > searchlimit)
+				{
+					break;
+				}
+			}
+			
+			// path not found, return path to the node closest to the target instead.
+			
+			Collections.sort(closedList, AStarNode.getHeuristicComparator());
+			astarUser.receivePath(generatePath(startNode, closedList.get(0)));
 		}
 	}
 }

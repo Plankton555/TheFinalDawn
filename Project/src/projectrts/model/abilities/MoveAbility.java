@@ -5,6 +5,7 @@ import javax.vecmath.Vector2d;
 import projectrts.model.abilities.pathfinding.AStar;
 import projectrts.model.abilities.pathfinding.AStarNode;
 import projectrts.model.abilities.pathfinding.AStarPath;
+import projectrts.model.abilities.pathfinding.AStarUser;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.world.INode;
 import projectrts.model.world.Position;
@@ -15,7 +16,7 @@ import projectrts.model.world.World;
  * @author Filip Brynfors, modified by Bjorn Persson Mattsson
  *
  */
-public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility, ITargetAbility {
+public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility, ITargetAbility, AStarUser {
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
 	
@@ -24,6 +25,7 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 
 	private AStarPath path;
 	private boolean pathRefresh = true;
+	private boolean waitingForPath = false;
 	
 	static {
 		AbilityFactory.INSTANCE.registerAbility(MoveAbility.class.getSimpleName(), new MoveAbility());
@@ -119,15 +121,8 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	private void refreshPath(Position herePos, Position targetPos, INode hereNode,
 			int entityID, float entitySize)
 	{
-		path = AStar.calculatePath(herePos, targetPos, 2, entityID);
-		if (path.nrOfNodesLeft() > 0)
-		{
-			world.setNodesOccupied(hereNode,
-					entitySize, 0);
-			this.occupiedNode = path.getNextNode().getNode();
-			world.setNodesOccupied(this.occupiedNode,
-					entitySize, entityID);
-		}
+		waitingForPath = true;
+		AStar.calculatePath(herePos, targetPos, 2, entityID, this);
 	}
 	
 	@Override
@@ -147,5 +142,18 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	 */
 	public INode getOccupiedNode() {
 		return occupiedNode;
+	}
+
+	@Override
+	public void receivePath(AStarPath newPath) {
+		this.path = newPath;
+		if (path.nrOfNodesLeft() > 0)
+		{
+			world.setNodesOccupied(hereNode,
+					entitySize, 0);
+			this.occupiedNode = path.getNextNode().getNode();
+			world.setNodesOccupied(this.occupiedNode,
+					entitySize, entityID);
+		}
 	}
 }
