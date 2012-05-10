@@ -8,7 +8,8 @@ import projectrts.model.world.Position;
  *
  */
 public abstract class AbstractUnit extends PlayerControlledEntity{
-
+	private float attackRange;
+	
 	/**
 	 * When subclassing, invoke this to initialize the entity.
 	 * @param owner The owner of the entity.
@@ -16,5 +17,11 @@ public abstract class AbstractUnit extends PlayerControlledEntity{
 	 */
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
+	}
+	public void setAttackRange(float attackRange){
+		this.attackRange=attackRange;
+	}
+	public float getAttackRange(){
+		return attackRange;
 	}
 }

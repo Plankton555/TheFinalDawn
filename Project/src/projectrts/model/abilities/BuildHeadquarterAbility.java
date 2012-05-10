@@ -30,7 +30,7 @@ public class BuildHeadquarterAbility extends AbstractConstructAbility implements
 
 	@Override
 	public String getName() {
-		return BuildHeadquarterAbility.class.getSimpleName();
+		return "Build Headquarter";
 	}
 
 

@@ -28,7 +28,7 @@ protected void initialize(PlayerControlledEntity entity) {
 	
 	@Override
 	public String getName() {
-		return "TrainWorker";
+		return "Train Worker";
 	}
 
 	@Override

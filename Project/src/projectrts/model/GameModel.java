@@ -8,6 +8,7 @@ import java.util.List;
 import projectrts.model.abilities.AbilityManager;
 import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.AbstractStructure;
+import projectrts.model.entities.Archer;
 import projectrts.model.entities.Barracks;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Headquarter;
@@ -39,7 +40,8 @@ public class GameModel implements IGame, PropertyChangeListener {
 	private float gameTime = 0;
 	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private final Level level = new Level(aiPlayer);
-
+	private Difficulty currentDifficulty = Difficulty.MEDIUM;
+	
 	/**
 	 * Returns a position in the model with the given coordinates
 	 * @param x The x coordinate
@@ -69,6 +71,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 		entityManager.resetData();
 		entityManager.addListener(this);
 		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(52.5, 52.5));
+		entityManager.addNewPCE(Archer.class.getSimpleName(), humanPlayer, new Position(55.5, 52.5));
 		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(55.5, 55.5));
 		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(56.5, 55.5));
 		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(60.5, 60.5));
@@ -80,7 +83,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(30.5, 34.5));
 		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(28.5, 34.5));
 		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(26.5, 34.5));
-
+		level.setDifficulty(Difficulty.NIGHTMARE);
 
 	}
 	
@@ -150,7 +153,20 @@ public class GameModel implements IGame, PropertyChangeListener {
 	}
 	
 	@Override
+	public void setDifficulty(Difficulty difficulty) {
+		currentDifficulty = difficulty;
+		level.setDifficulty(currentDifficulty);
+	}
+	
+	@Override
+	public Difficulty getCurrentDifficulty() {
+		return currentDifficulty;
+	}
+		
+	@Override
 	public void addListener(PropertyChangeListener pcl){
 		pcs.addPropertyChangeListener(pcl);
 	}
+
+
 }

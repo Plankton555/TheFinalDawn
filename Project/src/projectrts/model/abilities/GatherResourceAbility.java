@@ -28,7 +28,7 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 	
 	@Override
 	public String getName() {
-		return "GatherResource";
+		return "Gather Resources";
 	}
 
 	@Override

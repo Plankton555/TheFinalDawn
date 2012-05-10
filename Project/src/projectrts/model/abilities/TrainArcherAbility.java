@@ -1,19 +1,19 @@
 package projectrts.model.abilities;
 
+import projectrts.model.entities.Archer;
 import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.entities.Warrior;
 
 /**
- * A class that trains a Warrior
+ * A class that trains an Acrher
  * @author Jakob Svensson
  *
  */
-public class TrainWarriorAbility extends AbstractCreationAbility implements INotUsingMoveAbility {
-	private static float buildTime = 7; 
-	private static int buildCost = 100; 
+public class TrainArcherAbility extends AbstractCreationAbility implements INotUsingMoveAbility {
+	private static float buildTime = 8; 
+	private static int buildCost = 150; 
 	
 	static {
-		AbilityFactory.INSTANCE.registerAbility(TrainWarriorAbility.class.getSimpleName(), new TrainWarriorAbility());
+		AbilityFactory.INSTANCE.registerAbility(TrainArcherAbility.class.getSimpleName(), new TrainArcherAbility());
 	}
 	
 	/**
@@ -23,18 +23,18 @@ public class TrainWarriorAbility extends AbstractCreationAbility implements INot
 		super.initialize(entity);
 		this.setBuildCost(buildCost);
 		this.setBuildTime(buildTime);
-		this.setEntityToTrain(Warrior.class.getSimpleName());
+		this.setEntityToTrain(Archer.class.getSimpleName());
 	}
 	
 	@Override
 	public String getName() {
-		return "Train Warrior";
+		return "Train Archer";
 	}
 
 	
 	@Override
 	public AbstractAbility createAbility(PlayerControlledEntity entity) {
-		TrainWarriorAbility newAbility = new TrainWarriorAbility();
+		TrainArcherAbility newAbility = new TrainArcherAbility();
 		newAbility.initialize(entity);
 		return newAbility;
 	}

@@ -29,6 +29,7 @@ public enum SpatialFactory {INSTANCE;
 			
 			// Initialize the spatial classes.
 			Class.forName(WarriorSpatial.class.getName());
+			Class.forName(ArcherSpatial.class.getName());
 			Class.forName(WorkerSpatial.class.getName());
 			Class.forName(HeadquarterSpatial.class.getName());
 			Class.forName(BarracksSpatial.class.getName());

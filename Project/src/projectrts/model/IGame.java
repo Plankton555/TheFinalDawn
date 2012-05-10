@@ -17,7 +17,7 @@ import projectrts.model.world.IWorld;
  *
  */
 public interface IGame {
-
+	
 	/**
 	 * This method gets called every frame.
 	 * @param tpf Time per frame (Time since last frame)
@@ -66,4 +66,15 @@ public interface IGame {
 	 * @param pcl the listener that will listen to the model
 	 */
 	public void addListener(PropertyChangeListener pcl);
+	
+	/**
+	 * Set the difficulty of the game.
+	 * @param difficulty The difficulty you want to set the game to.
+	 */
+	public void setDifficulty(Difficulty difficulty);
+	
+	/**
+	 * @return The current difficulty.
+	 */
+	public Difficulty getCurrentDifficulty();
 }
