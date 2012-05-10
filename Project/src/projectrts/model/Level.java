@@ -59,7 +59,13 @@ public class Level {
 			default: 
 				spawnEnemies(new Position(50, 100), Math.round(enemiesPerWave));
 		}
-		enemiesPerWave *= epwCoefficient;
+		
+		if(enemiesPerWave < 4) {
+			enemiesPerWave *= epwCoefficient;
+		}
+		if(waveInterval > 5) {
+			waveInterval--;
+		}
 		
 	}
 	
@@ -67,6 +73,7 @@ public class Level {
 	private void spawnEnemies(Position pos, int amount) {
 		for(int i = 0; i < amount; i++) {
 			EntityManager.getInstance().addNewPCE(Warrior.class.getSimpleName(), aiPlayer, pos);
+			pos = new Position(pos.getX(), pos.getY() + 1);
 		}
 	}
 }
