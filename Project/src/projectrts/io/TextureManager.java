@@ -33,6 +33,7 @@ public enum TextureManager {
 	            "assets/terrain/Water_Texture.png");
 	    textures.put("Water", water);
 	      
+	    // TODO Jakob: Is this rock texture even used?
 	    Texture rock = assetManager.loadTexture(
 	            "Textures/Terrain/splat/road.jpg");
 	    textures.put("Rock", rock);
@@ -40,6 +41,9 @@ public enum TextureManager {
 	    Texture heightMapImage = assetManager.loadTexture(
 	            "assets/terrain/mountains512.png");
 	    textures.put("HeightMap", heightMapImage);
+	    
+	    Texture headquarter = assetManager.loadTexture("assets/sprites/Headquarter.png");
+	    textures.put("Headquarter", headquarter);
 	}
 	
 	/**
