@@ -28,7 +28,7 @@ public class TrainArcherAbility extends AbstractCreationAbility implements INotU
 	
 	@Override
 	public String getName() {
-		return TrainArcherAbility.class.getSimpleName();
+		return "Train Archer";
 	}
 
 	

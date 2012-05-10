@@ -28,7 +28,7 @@ public class TrainWarriorAbility extends AbstractCreationAbility implements INot
 	
 	@Override
 	public String getName() {
-		return TrainWarriorAbility.class.getSimpleName();
+		return "Train Warrior";
 	}
 
 	

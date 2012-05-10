@@ -29,7 +29,7 @@ public class BuildWallAbility extends AbstractConstructAbility implements IUsing
 
 	@Override
 	public String getName() {
-		return BuildWallAbility.class.getSimpleName();
+		return "Build Wall";
 	}
 
 	@Override

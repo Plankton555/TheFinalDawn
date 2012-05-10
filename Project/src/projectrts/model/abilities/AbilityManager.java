@@ -32,7 +32,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	private HashMap<Integer, ArrayList<AbstractAbility>> abilityListsMap = new HashMap<Integer, ArrayList<AbstractAbility>>();
 	private PropertyChangeListener pcl;
 	
-	private static final String[] ABILITY_NAMES = new String[12];
+	private static final String[] ABILITY_NAMES = new String[11];
 	
 	static {
 		try
@@ -45,7 +45,6 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			Class.forName(GatherResourceAbility.class.getName());
 			Class.forName(MineResourceAbility.class.getName());
 			Class.forName(MoveAbility.class.getName());
-			Class.forName(OffensiveSpellAbility.class.getName());
 			Class.forName(TrainWorkerAbility.class.getName());
 			Class.forName(TrainWarriorAbility.class.getName());
 			Class.forName(TrainArcherAbility.class.getName());
@@ -59,11 +58,10 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			ABILITY_NAMES[4] = GatherResourceAbility.class.getSimpleName();
 			ABILITY_NAMES[5] = MineResourceAbility.class.getSimpleName();
 			ABILITY_NAMES[6] = MoveAbility.class.getSimpleName();
-			ABILITY_NAMES[7] = OffensiveSpellAbility.class.getSimpleName();
-			ABILITY_NAMES[8] = TrainWorkerAbility.class.getSimpleName();
-			ABILITY_NAMES[9] = TrainWarriorAbility.class.getSimpleName();
-			ABILITY_NAMES[10] = BuildHeadquarterAbility.class.getSimpleName();
-			ABILITY_NAMES[11] = TrainArcherAbility.class.getSimpleName();
+			ABILITY_NAMES[7] = TrainWorkerAbility.class.getSimpleName();
+			ABILITY_NAMES[8] = TrainWarriorAbility.class.getSimpleName();
+			ABILITY_NAMES[9] = BuildHeadquarterAbility.class.getSimpleName();
+			ABILITY_NAMES[10] = TrainArcherAbility.class.getSimpleName();
 						
 		}
 		catch (ClassNotFoundException any)

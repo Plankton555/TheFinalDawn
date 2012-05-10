@@ -30,7 +30,7 @@ public class BuildBarracksAbility extends AbstractConstructAbility implements IU
 
 	@Override
 	public String getName() {
-		return BuildBarracksAbility.class.getSimpleName();
+		return "Build Barracks";
 	}
 
 
