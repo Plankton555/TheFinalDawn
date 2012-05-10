@@ -5,7 +5,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
 
-import projectrts.model.Level.Difficulty;
 import projectrts.model.abilities.AbilityManager;
 import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.AbstractStructure;
@@ -41,6 +40,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 	private float gameTime = 0;
 	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private final Level level = new Level(aiPlayer);
+	private Difficulty currentDifficulty = Difficulty.MEDIUM;
 	
 	/**
 	 * Returns a position in the model with the given coordinates
@@ -83,7 +83,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(30.5, 34.5));
 		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(28.5, 34.5));
 		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(26.5, 34.5));
-		level.setDifficulty(Level.Difficulty.NIGHTMARE);
+		level.setDifficulty(Difficulty.NIGHTMARE);
 
 	}
 	
@@ -154,12 +154,13 @@ public class GameModel implements IGame, PropertyChangeListener {
 	
 	@Override
 	public void setDifficulty(Difficulty difficulty) {
-		level.setDifficulty(difficulty);
+		currentDifficulty = difficulty;
+		level.setDifficulty(currentDifficulty);
 	}
 	
 	@Override
 	public Difficulty getCurrentDifficulty() {
-		return level.getCurrentDifficulty();
+		return currentDifficulty;
 	}
 		
 	@Override

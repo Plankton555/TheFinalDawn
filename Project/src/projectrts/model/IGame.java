@@ -3,7 +3,6 @@ package projectrts.model;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-import projectrts.model.Level.Difficulty;
 import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.IEntityManager;
 import projectrts.model.entities.IPlayer;

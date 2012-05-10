@@ -14,10 +14,6 @@ public class Level {
 	private float epwCoefficient = 1.5f;
 	private final Player aiPlayer;
 	
-	public enum Difficulty{EASY, MEDIUM, HARD, NIGHTMARE}
-	
-	private Difficulty currentDifficulty = Difficulty.MEDIUM;
-	
 	public Level(Player aiPlayer) {
 		this.aiPlayer = aiPlayer;
 	}
@@ -31,14 +27,13 @@ public class Level {
 	}
 	
 	public void setDifficulty(Difficulty difficulty) {
-		currentDifficulty = difficulty;
-		if(currentDifficulty == Difficulty.EASY) {
+		if(difficulty == Difficulty.EASY) {
 			waveInterval = 30;
 			epwCoefficient = 1.25f;
-		} else if(currentDifficulty == Difficulty.MEDIUM) {
+		} else if(difficulty == Difficulty.MEDIUM) {
 			waveInterval = 20;
 			epwCoefficient = 1.5f;
-		} else if(currentDifficulty == Difficulty.HARD){
+		} else if(difficulty == Difficulty.HARD){
 			waveInterval = 20;
 			epwCoefficient = 1.75f;
 		} else {
@@ -46,10 +41,6 @@ public class Level {
 			epwCoefficient = 2;
 			enemiesPerWave = 2;
 		}
-	}
-	
-	public Difficulty getCurrentDifficulty() {
-		return currentDifficulty;
 	}
 	
 	private void callNewWave() {
