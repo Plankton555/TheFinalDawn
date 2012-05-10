@@ -1,5 +1,9 @@
 package projectrts.model.abilities.pathfinding;
 
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
 import projectrts.model.world.Node;
 import projectrts.model.world.Position;
 

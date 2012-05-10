@@ -1,6 +1,11 @@
 package projectrts.model.abilities.pathfinding;
 
+import static org.junit.Assert.*;
+
 import java.util.List;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import projectrts.model.world.Node;
 import projectrts.model.world.Position;

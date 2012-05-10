@@ -1,6 +1,11 @@
 package projectrts.model.world;
 
+import static org.junit.Assert.*;
+
 import javax.vecmath.Vector2d;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * 

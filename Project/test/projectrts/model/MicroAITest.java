@@ -1,5 +1,10 @@
 package projectrts.model;
 
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Player;
 import projectrts.model.entities.PlayerControlledEntity;
