@@ -7,8 +7,18 @@ import projectrts.model.entities.IPlayer;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.world.Position;
 
+/**
+ * The interface for the abilityManager.
+ * @author Markus Ekström
+ *
+ */
 public interface IAbilityManager {
 
+	/**
+	 * Returns all abilities that are associated with the given entity.
+	 * @param entity The entity whose abilities you want.
+	 * @return A list of the abilities associated with the entity.
+	 */
 	public abstract List<IAbility> getAbilities(IPlayerControlledEntity entity);
 
 	/**
@@ -32,5 +42,9 @@ public interface IAbilityManager {
 	 */
 	public String[] getExistingAbilityNames();
 	
+	/**
+	 * Adds the pcl to the AbilityManager as a listener.
+	 * @param pcl The PropertyChangeListener you want as listener.
+	 */
 	public void setPropertyChangeLister(PropertyChangeListener pcl);
 }

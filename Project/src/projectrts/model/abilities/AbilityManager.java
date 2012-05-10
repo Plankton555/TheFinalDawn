@@ -5,6 +5,7 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import projectrts.model.entities.AbstractUnit;
 import projectrts.model.entities.Archer;
@@ -23,13 +24,15 @@ import projectrts.model.world.INode;
 import projectrts.model.world.Position;
 import projectrts.model.world.World;
 
-// TODO Markus: ADD JAVADOC!
+/**
+ * A class in charge of managing all the abilities in the game.
+ * @author Markus Ekström
+ *
+ */
 public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 
-	// TODO Markus: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
-	private HashMap<String, ArrayList<AbstractAbility>> abilityReferenceMap = new HashMap<String, ArrayList<AbstractAbility>>();
-	// TODO Markus: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
-	private HashMap<Integer, ArrayList<AbstractAbility>> abilityListsMap = new HashMap<Integer, ArrayList<AbstractAbility>>();
+	private Map<String, ArrayList<AbstractAbility>> abilityReferenceMap = new HashMap<String, ArrayList<AbstractAbility>>();
+	private Map<Integer, ArrayList<AbstractAbility>> abilityListsMap = new HashMap<Integer, ArrayList<AbstractAbility>>();
 	private PropertyChangeListener pcl;
 	
 	private static final String[] ABILITY_NAMES = new String[11];
@@ -70,6 +73,9 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		}
     }
 	
+	/**
+	 * The constructor for the AbilityManager.
+	 */
 	public AbilityManager() {
 		initializeAbilityLists();
 		EntityManager.getInstance().addListener(this);
@@ -123,6 +129,10 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		//None so far
 	}
 
+	/**
+	 * Updates all abilities.
+	 * @param tpf The time passed since the last frame.
+	 */
 	public void update(float tpf) {
 		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
 		for(IEntity entity : entities) {
@@ -149,9 +159,6 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see projectrts.model.abilities.IAbilityManager#getAbilities(projectrts.model.entities.PlayerControlledEntity)
-	 */
 	@Override
 	public List<IAbility> getAbilities(IPlayerControlledEntity entity) {
 		List<IAbility> copy = new ArrayList<IAbility>();
@@ -168,9 +175,6 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		return copy;
 	}
 	
-	/* (non-Javadoc)
-	 * @see projectrts.model.abilities.IAbilityManager#doAbility(java.lang.String, projectrts.model.utils.Position, projectrts.model.entities.PlayerControlledEntity)
-	 */
 	@Override
 	public void doAbility(String ability, Position pos, IPlayerControlledEntity entity) {
 		ArrayList<AbstractAbility> abilities = abilityListsMap.get(entity.getEntityID());
@@ -193,9 +197,6 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see projectrts.model.abilities.IAbilityManager#useAbilitySelected(java.lang.String, projectrts.model.utils.Position)
-	 */
 	@Override
 	public void useAbilitySelected(String ability, Position p, IPlayer owner){
 		for(IPlayerControlledEntity pce : EntityManager.getInstance().getSelectedEntitiesOfPlayer(owner)){
