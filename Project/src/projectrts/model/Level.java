@@ -5,7 +5,12 @@ import projectrts.model.entities.Player;
 import projectrts.model.entities.Warrior;
 import projectrts.model.world.Position;
 
-//TODO Markus: Add javadoc!
+/**
+ * A class representing a level in the game. 
+ * Is in charge of sending waves of enemies towards the player.
+ * @author Markus Ekström
+ *
+ */
 public class Level {
 	private int wave = 1;
 	private float timePassed = 0;
@@ -14,10 +19,18 @@ public class Level {
 	private float epwCoefficient = 1.5f;
 	private final Player aiPlayer;
 	
+	/**
+	 * A constructor for the level.
+	 * @param aiPlayer The Player that the incoming waves is supposed to fight under.
+	 */
 	public Level(Player aiPlayer) {
 		this.aiPlayer = aiPlayer;
 	}
 	
+	/**
+	 * Updates the level.
+	 * @param tpf The time passed since last frame.
+	 */
 	public void update(float tpf) {
 		timePassed += tpf;
 		if(timePassed >= wave*waveInterval) {
@@ -26,6 +39,10 @@ public class Level {
 		}
 	}
 	
+	/**
+	 * Sets the difficulty of the level.
+	 * @param difficulty The desired difficulty.
+	 */
 	public void setDifficulty(Difficulty difficulty) {
 		if(difficulty == Difficulty.EASY) {
 			waveInterval = 30;
@@ -59,7 +76,13 @@ public class Level {
 			default: 
 				spawnEnemies(new Position(50, 100), Math.round(enemiesPerWave));
 		}
-		enemiesPerWave *= epwCoefficient;
+		
+		if(enemiesPerWave < 4) {
+			enemiesPerWave *= epwCoefficient;
+		}
+		if(waveInterval > 5) {
+			waveInterval--;
+		}
 		
 	}
 	
@@ -67,6 +90,7 @@ public class Level {
 	private void spawnEnemies(Position pos, int amount) {
 		for(int i = 0; i < amount; i++) {
 			EntityManager.getInstance().addNewPCE(Warrior.class.getSimpleName(), aiPlayer, pos);
+			pos = new Position(pos.getX(), pos.getY() + 1);
 		}
 	}
 }
