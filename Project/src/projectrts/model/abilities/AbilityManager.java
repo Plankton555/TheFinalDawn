@@ -244,7 +244,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			ArrayList<AbstractAbility> abilities = abilityListsMap.get(pce.getEntityID());
 			INode occupiedNode = World.getInstance().getNodeAt(pce.getPosition());
 			for(AbstractAbility ability: abilities){
-				ability.setFinished(true);
+				ability.abortAbility();
 				if (ability instanceof MoveAbility)
 				{
 					MoveAbility mAbility = (MoveAbility) ability;
