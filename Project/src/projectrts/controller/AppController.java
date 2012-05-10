@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import projectrts.io.ImageManager;
 import projectrts.io.MaterialManager;
 import projectrts.io.TextureManager;
+import projectrts.model.Difficulty;
 import projectrts.model.GameModel;
 import projectrts.model.IGame;
 
@@ -49,20 +50,25 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
     	MaterialManager.INSTANCE.initializeMaterial(this);
     	ImageManager.INSTANCE.initializeImages(nifty);
 
-    	menuState = new MenuState(nifty);    	
-    	menuState.setEnabled(false);
-    	menuState.addListener(this);
-    	
-       	this.stateManager.attach(menuState);
+    	startMenuState();
         
         // Set logger level
         Logger.getLogger("").setLevel(Level.SEVERE);
          
     }
     
-    private void startIngameState(){
+    private void startMenuState(){
+    	menuState = new MenuState(nifty);    	
+    	menuState.setEnabled(false);
+    	menuState.addListener(this);
+    	
+       	this.stateManager.attach(menuState);
+    }
+    
+    private void startIngameState(Difficulty difficulty){
         game = new GameModel();
         game.addListener(this);
+        game.setDifficulty(difficulty);
     	ingameState = new InGameState(game, nifty);
     	this.stateManager.attach(ingameState);
     	ingameState.setEnabled(true);
@@ -80,16 +86,18 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
 		if(evt.getPropertyName().equals("Start")){
 			menuState.setEnabled(false);
 			getStateManager().detach(menuState);
-			startIngameState();
+			startIngameState((Difficulty)evt.getNewValue());
+			
 		} else if(evt.getPropertyName().equals("gameIsOver")){
 			ingameState.setEnabled(false);
 			getStateManager().detach(ingameState);
 			getRootNode().detachAllChildren();
 			startHighscoreState(game.getGameTime());
-		} else if (evt.getPropertyName().equals("Restart")){
+			
+		} else if (evt.getPropertyName().equals("Menu")){
 			highscoreState.setEnabled(false);
 			getStateManager().detach(highscoreState);
-			startIngameState();
+			startMenuState();
 		}
 	}
 }
