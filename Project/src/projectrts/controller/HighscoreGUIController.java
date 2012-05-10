@@ -77,7 +77,7 @@ public class HighscoreGUIController implements ScreenController {
 	               		}});
 	               		
 	               		
-		                control(new ButtonBuilder("Button_Restart", "Restart Game"){{
+		                control(new ButtonBuilder("Button_Menu", "Back to Menu"){{
 		                	alignCenter();
 			                interactOnClick("buttonRestartClicked()");
 			            }}); 
@@ -107,7 +107,7 @@ public class HighscoreGUIController implements ScreenController {
 	 * Used when the restartButton is clicked
 	 */
 	public void buttonRestartClicked(){
-		pcs.firePropertyChange("Restart",null,null);
+		pcs.firePropertyChange("Menu",null,null);
 	}
 
 	/**
