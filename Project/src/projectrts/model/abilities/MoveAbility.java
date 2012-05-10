@@ -60,11 +60,14 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	@Override
 	public void update(float tpf) {
 		if(isActive() && !isFinished()){
-			entity.setPosition(determineNextStep(tpf, entity, targetPosition));
-			
-			if (path.nrOfNodesLeft() == 0)
+			if (!waitingForPath)
 			{
-				setFinished(true);
+				entity.setPosition(determineNextStep(tpf, targetPosition));
+				
+				if (path.nrOfNodesLeft() == 0)
+				{
+					setFinished(true);
+				}
 			}
 			
 		}
@@ -77,7 +80,7 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	 * @param targetPos The position that the entity will move towards.
 	 * @return Position of next step.
 	 */
-	private Position determineNextStep(float tpf, PlayerControlledEntity entity, Position targetPos)
+	private Position determineNextStep(float tpf, Position targetPos)
 	{
 		double stepLength = tpf*entity.getSpeed();
 		
@@ -147,13 +150,14 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	@Override
 	public void receivePath(AStarPath newPath) {
 		this.path = newPath;
+		waitingForPath = false;
 		if (path.nrOfNodesLeft() > 0)
 		{
-			world.setNodesOccupied(hereNode,
-					entitySize, 0);
+			world.setNodesOccupied(occupiedNode,
+					entity.getSize(), 0);
 			this.occupiedNode = path.getNextNode().getNode();
-			world.setNodesOccupied(this.occupiedNode,
-					entitySize, entityID);
+			world.setNodesOccupied(occupiedNode,
+					entity.getSize(), entity.getEntityID());
 		}
 	}
 }
