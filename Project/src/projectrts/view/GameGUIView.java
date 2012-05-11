@@ -123,7 +123,7 @@ public class GameGUIView implements PropertyChangeListener {
 	}
 	
 	private void updateAbilities(){
-		if(selectedPce==null){
+		if(selectedPce==null || !selectedPce.getOwner().equals(game.getHumanPlayer())){
 			panelAbilities.setVisible(false);
 		} else {
 			panelAbilities.setVisible(true);

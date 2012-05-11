@@ -44,9 +44,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			Class.forName(AttackAbility.class.getName());
 			Class.forName(BuildBarracksAbility.class.getName());
 			Class.forName(BuildWallAbility.class.getName());
-			Class.forName(DeliverResourceAbility.class.getName());
 			Class.forName(GatherResourceAbility.class.getName());
-			Class.forName(MineResourceAbility.class.getName());
 			Class.forName(MoveAbility.class.getName());
 			Class.forName(TrainWorkerAbility.class.getName());
 			Class.forName(TrainWarriorAbility.class.getName());
@@ -57,9 +55,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			ABILITY_NAMES[0] = AttackAbility.class.getSimpleName();
 			ABILITY_NAMES[1] = BuildBarracksAbility.class.getSimpleName();
 			ABILITY_NAMES[2] = BuildWallAbility.class.getSimpleName();
-			ABILITY_NAMES[3] = DeliverResourceAbility.class.getSimpleName();
 			ABILITY_NAMES[4] = GatherResourceAbility.class.getSimpleName();
-			ABILITY_NAMES[5] = MineResourceAbility.class.getSimpleName();
 			ABILITY_NAMES[6] = MoveAbility.class.getSimpleName();
 			ABILITY_NAMES[7] = TrainWorkerAbility.class.getSimpleName();
 			ABILITY_NAMES[8] = TrainWarriorAbility.class.getSimpleName();
