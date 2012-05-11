@@ -30,7 +30,7 @@ import de.lessvoid.nifty.tools.SizeValue;
  */
 // TODO Afton: PMD: This class has too many methods, consider refactoring it.
 public class InGameGUIController implements ScreenController {
-	private Nifty nifty;
+	private final Nifty nifty;
 	private Screen screen;
 	private final GameGUIView guiView;
 	private final IAbilityManager abilityManager;
@@ -331,9 +331,7 @@ public class InGameGUIController implements ScreenController {
 
 	@Override
 	public void bind(Nifty nifty, Screen screen) {
-		this.nifty = nifty;
-		this.screen = screen;
-		
+		// TODO Afton: PMD: Document empty method
 	}
 
 	@Override
