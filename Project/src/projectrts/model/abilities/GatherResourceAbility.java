@@ -1,6 +1,8 @@
 package projectrts.model.abilities;
 
+import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.Resource;
 import projectrts.model.world.Position;
 /**
  * An ability for gathering resources
@@ -55,10 +57,14 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 	@Override
 	public void useAbility(Position target) {
 		this.target = target;
-		setActive(true);
-		setFinished(false);
-		if(!deliverResourceAbility.isActive()){
-			mineResourceAbility.useAbility(target);
+			if(EntityManager.getInstance().getNPCEAtPosition(target) instanceof Resource){
+			setActive(true);
+			setFinished(false);
+			if(!deliverResourceAbility.isActive()){
+				mineResourceAbility.useAbility(target);
+			}
+		}else{
+			pcs.firePropertyChange("TargetNotResource", null, null);
 		}
 	}
 
