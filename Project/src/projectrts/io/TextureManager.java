@@ -44,6 +44,9 @@ public enum TextureManager {
 	    
 	    Texture headquarter = assetManager.loadTexture("assets/sprites/Headquarter.png");
 	    textures.put("Headquarter", headquarter);
+	    
+	    Texture barracks = assetManager.loadTexture("assets/sprites/Barracks.png");
+	    textures.put("Barracks", barracks);
 	}
 	
 	/**
