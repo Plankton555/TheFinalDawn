@@ -238,28 +238,10 @@ public class InputController{
 	    			view.clearNodes();
     			}
     		}else if(choosingTarget){
-    			if(currentAbility instanceof GatherResourceAbility){
-    				if(game.getEntityManager().getNPCEAtPosition(pos) instanceof Resource){
-    					game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(),
-        						pos, selectedEntity);
-    					choosingTarget=false;
-    				}else{
-    					pcs.firePropertyChange("TargetNotResource", null, null);
-    				}
-    			}else if(currentAbility instanceof AttackAbility){
-    				// TODO Jakob: PMD: Avoid if (x != y) ..; else ..;
-    				if(game.getEntityManager().getPCEAtPosition(pos)!=null){
-    					game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(),
-        						pos, selectedEntity);
-    					choosingTarget=false;
-    				}else{
-    					pcs.firePropertyChange("TargetNotPCE", null, null);
-    				}
-    			}else{
     				game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(),
     						pos, selectedEntity);
     				choosingTarget=false;
-    			}
+    			
     		}else{
 	    		game.getEntityManager().select(pos, game.getHumanPlayer());
 				view.drawSelected(game.getEntityManager().getSelectedEntities());
@@ -354,19 +336,21 @@ public class InputController{
      * @param ability the ability to become selected
      */
     public void selectAbility(IAbility ability, IPlayerControlledEntity e){
-    	IPlayerControlledEntity pce = (IPlayerControlledEntity)e;
-    	currentAbility=ability;
-    	selectedEntity= pce;
-    	choosingPosition=false;
-    	choosingTarget=false;
-    	if(currentAbility instanceof IBuildStructureAbility){
-    		choosingPosition=true;
-    		IBuildStructureAbility ab = (IBuildStructureAbility)ability;
-    		buildingSize = ab.getSizeOfBuilding();
-    	}else if(currentAbility instanceof ITargetAbility){
-    		choosingTarget=true;
-    	}else{
-    		game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(), pce.getPosition(), pce);
+    	if(e.getOwner().equals(game.getHumanPlayer())){
+	    	IPlayerControlledEntity pce = (IPlayerControlledEntity)e;
+	    	currentAbility=ability;
+	    	selectedEntity= pce;
+	    	choosingPosition=false;
+	    	choosingTarget=false;
+	    	if(currentAbility instanceof IBuildStructureAbility){
+	    		choosingPosition=true;
+	    		IBuildStructureAbility ab = (IBuildStructureAbility)ability;
+	    		buildingSize = ab.getSizeOfBuilding();
+	    	}else if(currentAbility instanceof ITargetAbility){
+	    		choosingTarget=true;
+	    	}else{
+	    		game.getAbilityManager().doAbility(currentAbility.getClass().getSimpleName(), pce.getPosition(), pce);
+	    	}
     	}
     }
     

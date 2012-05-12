@@ -39,11 +39,14 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 	@Override
 	public void useAbility(Position pos){
 		target = EntityManager.getInstance().getPCEAtPosition(pos);
-		AbstractUnit au = (AbstractUnit)entity;
-		range = au.getAttackRange();
-		setActive(true);
-		setFinished(false);
-		
+		if(target!=null){
+			AbstractUnit au = (AbstractUnit)entity;
+			range = au.getAttackRange();
+			setActive(true);
+			setFinished(false);
+		}else{
+			pcs.firePropertyChange("TargetNotPCE", null, null);
+		}
 	}
 
 	@Override
