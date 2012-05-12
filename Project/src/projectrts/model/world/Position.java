@@ -12,6 +12,7 @@ import javax.vecmath.Vector2d;
 public class Position {
 
 	private Vector2d coord;
+	// TODO Plankton: Fix the javadoc here.
 	
 	/**
 	 * Creates a new position with the given components.

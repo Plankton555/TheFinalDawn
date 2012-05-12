@@ -44,5 +44,12 @@ public class AStarPath {
 		return nodeStack.size();
 	}
 	
-	// Plankton: Create a method for adding two paths into one. Could be useful... maybe.
+	/**
+	 * Tests if this path has no nodes.
+	 * @return true if and only if this path has no nodes, that is, its size is zero; false otherwise.
+	 */
+	public boolean isEmpty()
+	{
+		return nodeStack.isEmpty();
+	}
 }
