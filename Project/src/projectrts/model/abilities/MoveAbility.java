@@ -17,6 +17,8 @@ import projectrts.model.world.World;
  *
  */
 public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility, ITargetAbility, AStarUser {
+	
+	// TODO Plankton: REWRITE THIS WHOLE CLASS!!!...
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
 	
@@ -64,7 +66,7 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 			{
 				entity.setPosition(determineNextStep(tpf, targetPosition));
 				
-				if (path.nrOfNodesLeft() == 0)
+				if (path != null && path.nrOfNodesLeft() == 0)
 				{
 					setFinished(true);
 				}
@@ -94,7 +96,7 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 		
 		Position outputPos = entity.getPosition();
 		
-		while (stepLength > 0) // repeat until the whole step is taken (or no nodes are left in the path)
+		while (stepLength > 0 && !waitingForPath) // repeat until the whole step is taken (or no nodes are left in the path)
 		{
 			if (path.nrOfNodesLeft() < 1)
 			{
@@ -125,6 +127,7 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 			int entityID, float entitySize)
 	{
 		waitingForPath = true;
+		System.out.println("A* path is getting calculated for ID " + entityID);
 		AStar.calculatePath(herePos, targetPos, 2, entityID, this);
 	}
 	
@@ -149,6 +152,7 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 
 	@Override
 	public void receivePath(AStarPath newPath) {
+		System.out.println("A* path received for ID " + entity.getEntityID());
 		this.path = newPath;
 		waitingForPath = false;
 		if (path.nrOfNodesLeft() > 0)

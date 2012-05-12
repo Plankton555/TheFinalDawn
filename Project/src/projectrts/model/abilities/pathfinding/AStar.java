@@ -112,7 +112,8 @@ public class AStar {
 		// Plankton: Use threads to not slow down the game when using many agents?
 		PathCalculator pathCalculator = new PathCalculator(startPos, targetPos,
 				heuristicModifier, occupyingEntityID, astarUser);
-		pathCalculator.run();
+		new Thread(pathCalculator).start();
+		//pathCalculator.run();
 	}
 	
 	private static AStarPath generatePath(AStarNode startNode, AStarNode endNode)
