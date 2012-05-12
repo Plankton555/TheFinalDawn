@@ -100,14 +100,13 @@ public class GameGUIView implements PropertyChangeListener {
 	private void updateTime(){
     	int sec = (int)game.getGameTime();
     	
-    	String output="Time: ";
+    	StringBuffer buffer = new StringBuffer("Time: ");
     	if(sec/60>0){
-    		// TODO Afton: PMD: Prefer StringBuffer over += for concatenating strings
-    		output+=sec/60+":";
+    		buffer.append(sec/60);
+    		buffer.append(":");
     	}
-    	// TODO Afton: PMD: Prefer StringBuffer over += for concatenating strings
-    	output += sec%60;
-    	labelTime.getRenderer(TextRenderer.class).setText(output);
+    	buffer.append(sec%60);
+    	labelTime.getRenderer(TextRenderer.class).setText(buffer.toString());
 	}
 	
 	private void updateMessage(float tpf){
