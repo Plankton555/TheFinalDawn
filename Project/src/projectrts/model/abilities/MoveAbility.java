@@ -129,7 +129,6 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	private void refreshPath()
 	{
 		waitingForPath = true;
-		System.out.println("A* path is getting calculated for ID " + entity.getEntityID());
 		AStar.calculatePath(entity.getPosition(), targetPosition, 2, entity.getEntityID(), this);
 	}
 	
@@ -154,7 +153,6 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 
 	@Override
 	public void receivePath(AStarPath newPath) {
-		System.out.println("A* path received for ID " + entity.getEntityID());
 		if (this.waitingForPath)
 		{
 			this.path = newPath;
