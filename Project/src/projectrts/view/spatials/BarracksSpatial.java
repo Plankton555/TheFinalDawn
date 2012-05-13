@@ -50,5 +50,4 @@ public final class BarracksSpatial extends AbstractSpatial implements IEntitySpa
 		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}
-
 }

@@ -37,6 +37,8 @@ public enum TextureManager {
 	    textures.put("Barracks", assetManager.loadTexture("assets/sprites/SC_barracks.png"));
 	    
 	    textures.put("GoldMine", assetManager.loadTexture("assets/sprites/WC2_goldmine.png"));
+	    
+	    textures.put("SCV", assetManager.loadTexture("assets/sprites/SC_scv.png"));
 	}
 	
 	/**
