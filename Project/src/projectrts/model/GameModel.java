@@ -70,21 +70,16 @@ public class GameModel implements IGame, PropertyChangeListener {
 		aiManager = new AIManager(aiPlayer, abilityManager);
 		entityManager.resetData();
 		entityManager.addListener(this);
-		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(52.5, 52.5));
-		entityManager.addNewPCE(Archer.class.getSimpleName(), humanPlayer, new Position(55.5, 52.5));
-		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(55.5, 55.5));
-		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(56.5, 55.5));
-		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(60.5, 60.5));
-		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(34.5, 50.5));
-		entityManager.addNewPCE(Barracks.class.getSimpleName(), humanPlayer, new Position(38.5, 56.5));
-		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 50.5));
-		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(40.5, 52.5));
-		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(32.5, 34.5));
-		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(30.5, 34.5));
-		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(28.5, 34.5));
-		//entityManager.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(26.5, 34.5));
+		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(50.5, 47.5));
+		entityManager.addNewPCE(Archer.class.getSimpleName(), humanPlayer, new Position(50.5, 48.5));
+		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(50.5, 50.5));
+		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(50.5, 51.5));
+		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(46.5, 50.5));
+		entityManager.addNewPCE(Barracks.class.getSimpleName(), humanPlayer, new Position(47.5, 46.5));
+		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(54.5, 55.5));
+		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(54.5, 51.5));
+		
 		level.setDifficulty(Difficulty.NIGHTMARE);
-
 	}
 	
 	@Override
