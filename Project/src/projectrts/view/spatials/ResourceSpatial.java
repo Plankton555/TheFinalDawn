@@ -1,13 +1,16 @@
 package projectrts.view.spatials;
 
 import projectrts.io.MaterialManager;
+import projectrts.io.TextureManager;
 import projectrts.model.entities.IEntity;
 import projectrts.view.controls.ControlFactory;
 import projectrts.view.controls.MoveControl;
 
 import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
+import com.jme3.material.RenderState.BlendMode;
+import com.jme3.renderer.queue.RenderQueue.Bucket;
 import com.jme3.scene.shape.Box;
+import com.jme3.texture.Texture;
 
 /**
  * 
@@ -36,10 +39,14 @@ public final class ResourceSpatial extends AbstractSpatial implements IEntitySpa
 	@Override
 	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
 		material = MaterialManager.INSTANCE.getMaterial("Unshaded");
-		material.setColor("Color", ColorRGBA.Yellow);
+		//material.setColor("Color", ColorRGBA.Yellow);
+		Texture texture = TextureManager.INSTANCE.getTexture("GoldMine");
+		material.setTexture("ColorMap", texture);
+		material.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);
 		
 		ResourceSpatial newSpatial = new ResourceSpatial(name, box);
 		newSpatial.setMaterial(material);
+		newSpatial.setQueueBucket(Bucket.Transparent);
 		// TODO Jakob: Should a resource really have a MoveControl?...
 		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(MoveControl.class.getSimpleName(), entity));
 		return newSpatial;

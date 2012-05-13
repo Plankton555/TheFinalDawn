@@ -22,31 +22,21 @@ public enum TextureManager {
 	public void initializeTextures(SimpleApplication app){
 		AssetManager assetManager = app.getAssetManager();
 
-		Texture alpha = assetManager.loadTexture("assets/terrain/alphamap.png");
-		textures.put("Alpha",alpha);
+		textures.put("Alpha", assetManager.loadTexture("assets/terrain/alphamap.png"));
    
-		Texture grass = assetManager.loadTexture(
-	            "Textures/Terrain/splat/grass.jpg");
-	    textures.put("Grass", grass);
+	    textures.put("Grass", assetManager.loadTexture("Textures/Terrain/splat/grass.jpg"));
 	
-	    Texture water = assetManager.loadTexture(
-	            "assets/terrain/Water_Texture.png");
-	    textures.put("Water", water);
-	      
-	    // TODO Jakob: Is this rock texture even used?
-	    Texture rock = assetManager.loadTexture(
-	            "Textures/Terrain/splat/road.jpg");
-	    textures.put("Rock", rock);
+	    textures.put("Water", assetManager.loadTexture("assets/terrain/Water_Texture.png"));
+	    
+	    textures.put("Rock", assetManager.loadTexture("Textures/Terrain/splat/road.jpg"));
 
-	    Texture heightMapImage = assetManager.loadTexture(
-	            "assets/terrain/mountains512.png");
-	    textures.put("HeightMap", heightMapImage);
+	    textures.put("HeightMap", assetManager.loadTexture("assets/terrain/mountains512.png"));
 	    
-	    Texture headquarter = assetManager.loadTexture("assets/sprites/Headquarter.png");
-	    textures.put("Headquarter", headquarter);
+	    textures.put("Headquarter", assetManager.loadTexture("assets/sprites/Headquarter.png"));
 	    
-	    Texture barracks = assetManager.loadTexture("assets/sprites/Barracks.png");
-	    textures.put("Barracks", barracks);
+	    textures.put("Barracks", assetManager.loadTexture("assets/sprites/SC_barracks.png"));
+	    
+	    textures.put("GoldMine", assetManager.loadTexture("assets/sprites/WC2_goldmine.png"));
 	}
 	
 	/**

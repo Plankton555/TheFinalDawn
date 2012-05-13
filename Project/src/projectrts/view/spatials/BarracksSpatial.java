@@ -8,7 +8,6 @@ import projectrts.view.controls.MoveControl;
 
 import com.jme3.material.Material;
 import com.jme3.material.RenderState.BlendMode;
-import com.jme3.math.ColorRGBA;
 import com.jme3.renderer.queue.RenderQueue.Bucket;
 import com.jme3.scene.shape.Box;
 import com.jme3.texture.Texture;
