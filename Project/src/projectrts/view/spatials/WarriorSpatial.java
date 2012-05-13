@@ -1,13 +1,16 @@
 package projectrts.view.spatials;
 
 import projectrts.io.MaterialManager;
+import projectrts.io.TextureManager;
 import projectrts.model.entities.IEntity;
 import projectrts.view.controls.ControlFactory;
 import projectrts.view.controls.MoveControl;
 
 import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
+import com.jme3.material.RenderState.BlendMode;
+import com.jme3.renderer.queue.RenderQueue.Bucket;
 import com.jme3.scene.shape.Box;
+import com.jme3.texture.Texture;
 /**
  * 
  * @author Markus Ekström
@@ -35,10 +38,14 @@ public final class WarriorSpatial extends AbstractSpatial implements IEntitySpat
 	@Override
 	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
 		material = MaterialManager.INSTANCE.getMaterial("Unshaded");
-		material.setColor("Color", ColorRGBA.Pink);
+		//material.setColor("Color", ColorRGBA.Pink);
+		Texture texture = TextureManager.INSTANCE.getTexture("Drone");
+		material.setTexture("ColorMap", texture);
+		material.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);
 		
 		WarriorSpatial newSpatial = new WarriorSpatial(name, box);
 		newSpatial.setMaterial(material);
+		newSpatial.setQueueBucket(Bucket.Transparent);
 		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}
