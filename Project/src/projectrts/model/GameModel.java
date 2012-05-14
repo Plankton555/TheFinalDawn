@@ -8,7 +8,7 @@ import java.util.List;
 import projectrts.model.abilities.AbilityManager;
 import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.AbstractStructure;
-import projectrts.model.entities.Archer;
+import projectrts.model.entities.Ranged;
 import projectrts.model.entities.Barracks;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Headquarter;
@@ -71,7 +71,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 		entityManager.resetData();
 		entityManager.addListener(this);
 		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(50.5, 47.5));
-		entityManager.addNewPCE(Archer.class.getSimpleName(), humanPlayer, new Position(50.5, 48.5));
+		entityManager.addNewPCE(Ranged.class.getSimpleName(), humanPlayer, new Position(50.5, 48.5));
 		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(50.5, 50.5));
 		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(50.5, 51.5));
 		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(46.5, 50.5));

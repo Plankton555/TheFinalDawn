@@ -7,7 +7,7 @@ import projectrts.model.world.Position;
  * @author Jakob Svensson
  *
  */
-public class Archer extends AbstractUnit{
+public class Ranged extends AbstractUnit{
 	
 	private static final float SIZE = 1f;
 	private static final float SPEED = 4f;
@@ -18,12 +18,12 @@ public class Archer extends AbstractUnit{
 	
 	
 	static {
-		EntityFactory.INSTANCE.registerPCE(Archer.class.getSimpleName(), new Archer());
+		EntityFactory.INSTANCE.registerPCE(Ranged.class.getSimpleName(), new Ranged());
 	}
 	
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
-		this.setName(Archer.class.getSimpleName());
+		this.setName(Ranged.class.getSimpleName());
 		this.setSightRange(SIGHT_RANGE);
 		this.setAttackRange(ATTACK_RANGE);
 		this.setMaxHealth(MAX_HEALTH);
@@ -34,7 +34,7 @@ public class Archer extends AbstractUnit{
 
 	@Override
 	public PlayerControlledEntity createPCE(Player owner, Position pos) {
-		Archer newWarrior = new Archer();
+		Ranged newWarrior = new Ranged();
 		newWarrior.initialize(owner, pos);
 		return newWarrior;
 	}

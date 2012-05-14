@@ -1,6 +1,6 @@
 package projectrts.model.abilities;
 
-import projectrts.model.entities.Archer;
+import projectrts.model.entities.Ranged;
 import projectrts.model.entities.PlayerControlledEntity;
 
 /**
@@ -8,12 +8,12 @@ import projectrts.model.entities.PlayerControlledEntity;
  * @author Jakob Svensson
  *
  */
-public class TrainArcherAbility extends AbstractCreationAbility implements INotUsingMoveAbility {
+public class TrainRangedAbility extends AbstractCreationAbility implements INotUsingMoveAbility {
 	private static float buildTime = 8; 
 	private static int buildCost = 150; 
 	
 	static {
-		AbilityFactory.INSTANCE.registerAbility(TrainArcherAbility.class.getSimpleName(), new TrainArcherAbility());
+		AbilityFactory.INSTANCE.registerAbility(TrainRangedAbility.class.getSimpleName(), new TrainRangedAbility());
 	}
 	
 	/**
@@ -23,7 +23,7 @@ public class TrainArcherAbility extends AbstractCreationAbility implements INotU
 		super.initialize(entity);
 		this.setBuildCost(buildCost);
 		this.setBuildTime(buildTime);
-		this.setEntityToTrain(Archer.class.getSimpleName());
+		this.setEntityToTrain(Ranged.class.getSimpleName());
 	}
 	
 	@Override
@@ -34,7 +34,7 @@ public class TrainArcherAbility extends AbstractCreationAbility implements INotU
 	
 	@Override
 	public AbstractAbility createAbility(PlayerControlledEntity entity) {
-		TrainArcherAbility newAbility = new TrainArcherAbility();
+		TrainRangedAbility newAbility = new TrainRangedAbility();
 		newAbility.initialize(entity);
 		return newAbility;
 	}

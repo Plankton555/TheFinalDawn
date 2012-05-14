@@ -16,15 +16,15 @@ import com.jme3.texture.Texture;
  * @author Jakob Svensson
  *
  */
-public final class ArcherSpatial extends AbstractSpatial implements IEntitySpatial {
+public final class RangedSpatial extends AbstractSpatial implements IEntitySpatial {
 	// TODO Jakob: PMD: Perhaps 'material' could be replaced by a local variable.
 	private Material material;
 	
 	static {
-		SpatialFactory.INSTANCE.registerSpatial(ArcherSpatial.class.getSimpleName(), new ArcherSpatial("UnitSpatialCreator", new Box()));
+		SpatialFactory.INSTANCE.registerSpatial(RangedSpatial.class.getSimpleName(), new RangedSpatial("UnitSpatialCreator", new Box()));
 	}
 	
-	private ArcherSpatial(String name, Box box) {
+	private RangedSpatial(String name, Box box) {
 		super(name, box);
 	}
 	
@@ -43,7 +43,7 @@ public final class ArcherSpatial extends AbstractSpatial implements IEntitySpati
 		material.setTexture("ColorMap", texture);
 		material.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);
 		
-		ArcherSpatial newSpatial = new ArcherSpatial(name, box);
+		RangedSpatial newSpatial = new RangedSpatial(name, box);
 		newSpatial.setMaterial(material);
 		newSpatial.setQueueBucket(Bucket.Transparent);
 		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(MoveControl.class.getSimpleName(), entity));

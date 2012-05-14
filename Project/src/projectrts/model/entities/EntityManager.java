@@ -33,7 +33,7 @@ public class EntityManager implements IEntityManager{
 		{
 			// Initialize the entity classes.
 			Class.forName(Warrior.class.getName());
-			Class.forName(Archer.class.getName());
+			Class.forName(Ranged.class.getName());
 			Class.forName(Worker.class.getName());
 			Class.forName(Resource.class.getName());
 			Class.forName(Headquarter.class.getName());
