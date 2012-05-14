@@ -54,6 +54,8 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
         
         // Set logger level
         Logger.getLogger("").setLevel(Level.SEVERE);
+        setDisplayFps(false);
+        setDisplayStatView(false);
          
     }
     
