@@ -156,10 +156,10 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 		if (this.waitingForPath)
 		{
 			this.path = newPath;
-			world.setNodesOccupied(occupiedNode, entity.getSize(), 0);
 
 			if (!path.isEmpty())
 			{
+				world.setNodesOccupied(occupiedNode, entity.getSize(), 0);
 				this.occupiedNode = path.getNextNode().getNode();
 				world.setNodesOccupied(occupiedNode, entity.getSize(), entity.getEntityID());
 			}
