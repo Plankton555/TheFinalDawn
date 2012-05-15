@@ -365,16 +365,8 @@ public class InGameGUIController implements ScreenController {
 			
 		}
 
-		Element panelTooltip = screen.findElementByName("Panel_Tooltip");
-		Element labelTooltip = screen.findElementByName("Label_Tooltip");
-		panelTooltip.setVisible(true);
-		
-		panelTooltip.setConstraintX(new SizeValue(nifty.getNiftyMouse().getX()-panelTooltip.getWidth()+"px"));
-		panelTooltip.setConstraintY(new SizeValue(nifty.getNiftyMouse().getY()-panelTooltip.getHeight()+"px"));
-		
-		screen.layoutLayers();
-		
-		labelTooltip.getRenderer(TextRenderer.class).setText(getAbility(nr).getName());
+		guiView.showTooltip(getAbility(nr));
+	
 	}
 	
 	public void buttonMouseLeave(String nr) {
@@ -385,8 +377,7 @@ public class InGameGUIController implements ScreenController {
 			
 		}
 		if(iNr == showingTooltipID){
-			Element panelTooltip = screen.findElementByName("Panel_Tooltip");
-			panelTooltip.setVisible(false);
+			guiView.showTooltip(null);
 		}
 	}
 

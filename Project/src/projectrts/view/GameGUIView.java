@@ -14,6 +14,7 @@ import de.lessvoid.nifty.elements.render.ImageRenderer;
 import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.screen.Screen;
+import de.lessvoid.nifty.tools.SizeValue;
 
 /**
  * A view class for the GUI
@@ -122,6 +123,7 @@ public class GameGUIView implements PropertyChangeListener {
 	}
 	
 	private void updateAbilities(){
+		showTooltip(null);
 		if(selectedPce==null || !selectedPce.getOwner().equals(game.getHumanPlayer())){
 			panelAbilities.setVisible(false);
 		} else {
@@ -216,5 +218,26 @@ public class GameGUIView implements PropertyChangeListener {
 			showMessage("That building is already training a unit");
 		}
 		
+	}
+	
+	/**
+	 * Shows the tooltip of the given ability, hides the tooltip of the given ability is null
+	 * @param ability shown ability
+	 */
+	public void showTooltip(IAbility ability){
+		Element panelTooltip = screen.findElementByName("Panel_Tooltip");
+		if(ability==null){
+			panelTooltip.hide();
+		} else {
+			Element labelTooltip = screen.findElementByName("Label_Tooltip");
+			panelTooltip.setVisible(true);
+			
+			panelTooltip.setConstraintX(new SizeValue(nifty.getNiftyMouse().getX()-panelTooltip.getWidth()+"px"));
+			panelTooltip.setConstraintY(new SizeValue(nifty.getNiftyMouse().getY()-panelTooltip.getHeight()+"px"));
+			
+			screen.layoutLayers();
+			
+			labelTooltip.getRenderer(TextRenderer.class).setText(ability.getName());
+		}
 	}
 }
