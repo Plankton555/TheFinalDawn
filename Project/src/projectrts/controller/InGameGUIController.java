@@ -17,11 +17,9 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.elements.render.ImageRenderer;
-import de.lessvoid.nifty.elements.render.TextRenderer;
 import de.lessvoid.nifty.render.NiftyImage;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
-import de.lessvoid.nifty.tools.SizeValue;
 
 /**
  * A controller class that handles input from the gui
@@ -154,42 +152,9 @@ public class InGameGUIController implements ScreenController {
 			childLayoutVertical();
 			backgroundColor("#000F");
 			
-			//TODO Afton: Remove or use this testing code
-
-			/*
-			panel(new PanelBuilder("Filler") {{
-				height("10px");
-				
-			}});
-			
-    		
-    		//labelName.getRenderer(TextRenderer.class).setTextMinHeight(new SizeValue("40px"));
-    		//labelName.getRenderer(TextRenderer.class).setTextLineHeight(new SizeValue("40px"));
-    		//labelName.getRenderer(TextRenderer.class)
-			
-			text(new TextBuilder() {{
-				font("aurulent-sans-16.fnt");
-				color("#f00f");
-				text("Hello World!");
-				
-				alignCenter();
-				valignCenter();
-			}});
-			*/
-			
-			
 			control(new LabelBuilder("Label_Name"){{
-				//height("50px");
 				width("100%");
 				color("#00FF");
-
-				//TODO Afton: fix text size
-				/*
-				onActiveEffect(new EffectBuilder("textSize") {{
-					//effectParameter("", "10px");
-				}});
-				*/
-				
 			}});
 			
 
