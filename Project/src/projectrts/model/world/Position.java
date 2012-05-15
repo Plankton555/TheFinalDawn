@@ -32,18 +32,15 @@ public class Position {
 	{
 		this(otherPos.getX(), otherPos.getY());
 	}
-	
-	/* (non-Javadoc)
-	 * @see projectrts.model.world.Position#copy()
+	/**
+	 * Creates a new position with the same components.
+	 * @return A copy of the position such that oldPos.equals(returnedPos)==true.
 	 */
 	public Position copy()
 	{
 		return new Position(this.getX(), this.getY());
 	}
 	
-	/* (non-Javadoc)
-	 * @see projectrts.model.world.Position#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 29; // Default generated hashcode
@@ -56,9 +53,6 @@ public class Position {
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see projectrts.model.world.Position#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -75,32 +69,32 @@ public class Position {
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see projectrts.model.world.Position#getX()
+	/**
+	 * @return The x component.
 	 */
 	public double getX()
 	{
 		return coord.x;
 	}
 	
-	/* (non-Javadoc)
-	 * @see projectrts.model.world.Position#getY()
+	/**
+	 * @return The y component.
 	 */
 	public double getY()
 	{
 		return coord.y;
 	}
 	
-	/* (non-Javadoc)
-	 * @see projectrts.model.world.Position#toString()
-	 */
 	@Override
 	public String toString() {
 		return coord.x + ";" + coord.y;
 	}
 
-	/* (non-Javadoc)
-	 * @see projectrts.model.world.Position#add(double, javax.vecmath.Vector2d)
+	/**
+	 * Returns a new position that, from this position, is distance away in the direction.
+	 * @param distance The distance from this position.
+	 * @param direction The direction from this position.
+	 * @return The resulting position.
 	 */
 	public Position add(double distance, Vector2d direction) {
 		if (direction.length() == 0) // null vector, no direction
