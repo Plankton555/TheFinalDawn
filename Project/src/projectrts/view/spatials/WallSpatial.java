@@ -1,13 +1,16 @@
 package projectrts.view.spatials;
 
 import projectrts.io.MaterialManager;
+import projectrts.io.TextureManager;
 import projectrts.model.entities.IEntity;
 import projectrts.view.controls.ControlFactory;
 import projectrts.view.controls.MoveControl;
 
 import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
+import com.jme3.material.RenderState.BlendMode;
+import com.jme3.renderer.queue.RenderQueue.Bucket;
 import com.jme3.scene.shape.Box;
+import com.jme3.texture.Texture;
 
 /**
  * 
@@ -36,10 +39,14 @@ public final class WallSpatial extends AbstractSpatial implements IEntitySpatial
 	@Override
 	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
 		material = MaterialManager.INSTANCE.getMaterial("Unshaded");
-		material.setColor("Color", ColorRGBA.Brown);
+		//material.setColor("Color", ColorRGBA.Brown);
+		Texture texture = TextureManager.INSTANCE.getTexture("Wall");
+		material.setTexture("ColorMap", texture);
+		material.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);
 		
 		WallSpatial newSpatial = new WallSpatial(name, box);
 		newSpatial.setMaterial(material);
+		newSpatial.setQueueBucket(Bucket.Transparent);
 		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}
