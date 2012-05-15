@@ -36,6 +36,7 @@ public class InGameGUIController implements ScreenController {
 	
 	private IPlayerControlledEntity selectedPce;
 	private int showingTooltipID = 0;
+	private String labelColor = "#0F0F";
 
 	/**
 	 * Creates a new inputGUIController
@@ -128,8 +129,7 @@ public class InGameGUIController implements ScreenController {
 				width("100%");
 				textHAlignLeft();
 				textVAlignTop();
-				// TODO Afton: PMD: The String literal "#0F0F" appears 4 times in this file; the first occurrence is here
-				color("#0F0F");
+				color(labelColor);
 				
 			}});
 			
@@ -137,7 +137,7 @@ public class InGameGUIController implements ScreenController {
 				width("100%");
 				textHAlignLeft();
 				textVAlignTop();
-				color("#0F0F");
+				color(labelColor);
 				
 			}});
 			
@@ -166,7 +166,7 @@ public class InGameGUIController implements ScreenController {
 					height("100%");
 					textHAlignLeft();
 					textVAlignTop();
-					color("#0F0F");
+					color(labelColor);
 					
 				}});
 				
@@ -175,7 +175,7 @@ public class InGameGUIController implements ScreenController {
 					height("100%");
 					textHAlignLeft();
 					textVAlignTop();
-					color("#0F0F");
+					color(labelColor);
 				}});
 				
 			}});
