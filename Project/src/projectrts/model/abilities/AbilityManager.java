@@ -237,7 +237,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		if(evt.getOldValue() instanceof PlayerControlledEntity) {
 			PlayerControlledEntity pce = (PlayerControlledEntity) evt.getOldValue();
 			ArrayList<AbstractAbility> abilities = abilityListsMap.get(pce.getEntityID());
-			INode occupiedNode = World.getInstance().getNodeAt(pce.getPosition());
+			INode occupiedNode = World.INSTANCE.getNodeAt(pce.getPosition());
 			for(AbstractAbility ability: abilities){
 				ability.abortAbility();
 				if (ability instanceof MoveAbility)
@@ -246,7 +246,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 					occupiedNode = mAbility.getOccupiedNode();
 				}
 			}
-			World.getInstance().setNodesOccupied(occupiedNode, pce.getSize(), 0);
+			World.INSTANCE.setNodesOccupied(occupiedNode, pce.getSize(), 0);
 			
 			abilityListsMap.remove(pce.getEntityID());
 		}

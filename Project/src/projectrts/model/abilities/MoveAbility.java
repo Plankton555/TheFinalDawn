@@ -28,7 +28,8 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	
 	static {
 		AbilityFactory.INSTANCE.registerAbility(MoveAbility.class.getSimpleName(), new MoveAbility());
-		AStar.initialize(World.getInstance());
+		// TODO Plankton: Check this
+		AStar.initialize(World.INSTANCE);
 	}
 	
 	/**
@@ -36,7 +37,7 @@ public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility
 	 */
 	protected void initialize(PlayerControlledEntity entity) {
 		this.entity = entity;
-		this.world = World.getInstance();
+		this.world = World.INSTANCE;
 		this.occupiedNode = world.getNodeAt(entity.getPosition());
 	}
 	

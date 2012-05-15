@@ -27,7 +27,7 @@ public abstract class AbstractEntity implements IEntity {
 	protected void initialize(Position spawnPos) {
 		this.entityID = EntityManager.INSTANCE.requestNewEntityID();
 		
-		this.world = World.getInstance();
+		this.world = World.INSTANCE;
 
 		this.position = spawnPos.copy();
 	}

@@ -23,7 +23,7 @@ public class WorldTest {
 	{
 		int width = 100;
 		int height = 100;
-		world = World.getInstance();
+		world = World.INSTANCE;
 		world.initializeWorld();
 		WorldTest.width = width;
 		WorldTest.height = height;

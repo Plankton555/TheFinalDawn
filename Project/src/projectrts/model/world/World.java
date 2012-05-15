@@ -10,12 +10,13 @@ import se.chalmers.pebjorn.javautils.Math;
  * @author Bjorn Persson Mattsson
  *
  */
-public final class World implements IWorld {
+public enum World implements IWorld { INSTANCE;
 	
-	private static World instance;
+	//private static World instance;
 	
 	private World() {}
 	
+	/*
 	public static World getInstance()
 	{
 		if (instance == null)
@@ -24,6 +25,7 @@ public final class World implements IWorld {
 		}
 		return instance;
 	}
+	*/
 	/**
 	 * Initializes the world with specified height and width.
 	 * @param height Height.

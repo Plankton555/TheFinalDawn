@@ -73,7 +73,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 			setActive(true);
 			setFinished(false);
 			buildTimeLeft=buildTime;
-			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(target)
+			World.INSTANCE.setNodesOccupied(World.INSTANCE.getNodeAt(target)
 					, getSizeOfBuilding(), EntityManager.INSTANCE.requestNewEntityID());
 		}else{
 			pcs.firePropertyChange("NotEnoughResources", null, null);
@@ -112,7 +112,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 	public void abortAbility(){
 		if(isActive()){
 			super.abortAbility();
-			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(buildPos)
+			World.INSTANCE.setNodesOccupied(World.INSTANCE.getNodeAt(buildPos)
 					, getSizeOfBuilding(), 0);
 			owner.modifyResource(buildCost);
 			

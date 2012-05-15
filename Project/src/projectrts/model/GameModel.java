@@ -31,7 +31,7 @@ import projectrts.model.world.World;
  * @author Björn Persson Mattson, Modified by Filip Brynfors, Jakob Svensson
  */
 public class GameModel implements IGame, PropertyChangeListener {
-	private final World world = World.getInstance();
+	private final World world = World.INSTANCE;
 	private final EntityManager entityManager = EntityManager.INSTANCE;
 	private final Player humanPlayer = new Player();
 	private final Player aiPlayer = new Player();
