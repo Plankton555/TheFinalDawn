@@ -268,21 +268,20 @@ public class EntityManager implements IEntityManager{
 	 * Returns a list of all entities close to the position.
 	 * Returns all entities that can be seen from the circle with center in 'p'
 	 * and the radius 'range'.
-	 * @param entity The entity from which to check.
+	 * @param position The position from which to check.
 	 * @return List of all entities close to position.
 	 */
-	public List<AbstractEntity> getNearbyEntities(PlayerControlledEntity entity, float range)
+	public List<AbstractEntity> getNearbyEntities(Position position, float range)
 	{
 		// Preliminary method. May need to be changed to optimize.
-		// TODO Plankton: Change parameter entity to position?
 		
 		List<AbstractEntity> output = new ArrayList<AbstractEntity>();
 		
 		for (AbstractEntity e : allEntities)
 		{
 			Vector2d distance = new Vector2d(
-					e.getPosition().getX()-entity.getPosition().getX(),
-					e.getPosition().getY()-entity.getPosition().getY());
+					e.getPosition().getX()-position.getX(),
+					e.getPosition().getY()-position.getY());
 			if (distance.length() - (e.getSize()/2) <= range)
 			{
 				output.add(e);
@@ -293,7 +292,7 @@ public class EntityManager implements IEntityManager{
 	
 	// TODO Markus: Add javadoc
 	public PlayerControlledEntity getClosestEnemy(PlayerControlledEntity pce) {
-		List<AbstractEntity> nearbyEntities= getNearbyEntities(pce, pce.getSightRange());
+		List<AbstractEntity> nearbyEntities= getNearbyEntities(pce.getPosition(), pce.getSightRange());
 		PlayerControlledEntity closestPCE = null;
 		
 		for(AbstractEntity entity : nearbyEntities) {
@@ -317,7 +316,7 @@ public class EntityManager implements IEntityManager{
 	
 	// TODO Markus(?): Add javadoc
 	public PlayerControlledEntity getClosestEnemyStructure(PlayerControlledEntity pce) {
-		List<AbstractEntity> nearbyEntities= getNearbyEntities(pce, 
+		List<AbstractEntity> nearbyEntities= getNearbyEntities(pce.getPosition(), 
 				(float)Math.sqrt(Math.pow(100, 2)+ Math.pow(100, 2))); //TODO Markus: Change this
 		PlayerControlledEntity closestEnemyStruct = null;
 		
