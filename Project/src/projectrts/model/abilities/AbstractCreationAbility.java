@@ -32,7 +32,7 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 		if(isActive() && !isFinished()){
 			if(buildTimeLeft<=0){
 				spawnPos = AStar.getClosestUnoccupiedNode(entity.getPosition(), null, 0).getPosition();
-				EntityManager.getInstance().addNewPCE(entityToTrain, (Player)entity.getOwner(),spawnPos);
+				EntityManager.INSTANCE.addNewPCE(entityToTrain, (Player)entity.getOwner(),spawnPos);
 				setFinished(true);
 				buildTimeLeft =buildTime;
 			}else{

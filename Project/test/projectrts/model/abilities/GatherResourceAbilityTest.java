@@ -22,13 +22,13 @@ public class GatherResourceAbilityTest {
 		new GameModel();
 		
 		Player player = new Player();
-		EntityManager.getInstance().addNewPCE("Worker", player,new Position(2.5f,15.5f));
-		EntityManager.getInstance().addNewPCE("Headquarter", player,new Position(40.5f,15.5));
-		EntityManager.getInstance().addNewPCE("Barracks", player,new Position(40.5f,15.5));
-		EntityManager.getInstance().addNewNPCE("Resource", new Position(15.5f, 15.5f));
-		EntityManager.getInstance().update(1);
-		Worker worker = (Worker) EntityManager.getInstance().getPCEAtPosition(new Position(2.5f, 15.5f));
-		Resource res = (Resource) EntityManager.getInstance().getNPCEAtPosition(new Position(15.5f,15.5f));
+		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(2.5f,15.5f));
+		EntityManager.INSTANCE.addNewPCE("Headquarter", player,new Position(40.5f,15.5));
+		EntityManager.INSTANCE.addNewPCE("Barracks", player,new Position(40.5f,15.5));
+		EntityManager.INSTANCE.addNewNPCE("Resource", new Position(15.5f, 15.5f));
+		EntityManager.INSTANCE.update(1);
+		Worker worker = (Worker) EntityManager.INSTANCE.getPCEAtPosition(new Position(2.5f, 15.5f));
+		Resource res = (Resource) EntityManager.INSTANCE.getNPCEAtPosition(new Position(15.5f,15.5f));
 		MoveAbility move = new MoveAbility();
 		move.initialize(worker);
 		GatherResourceAbility ab = (GatherResourceAbility) AbilityFactory.INSTANCE.createUsingMoveAbility(GatherResourceAbility.class.getSimpleName(),worker, move);
@@ -39,8 +39,8 @@ public class GatherResourceAbilityTest {
 			ab.update(.5f);
 			move.update(.5f);
 			if(counter==12){
-				EntityManager.getInstance().addNewPCE("Headquarter", player,new Position(8.5f,15.5));
-				EntityManager.getInstance().update(1);
+				EntityManager.INSTANCE.addNewPCE("Headquarter", player,new Position(8.5f,15.5));
+				EntityManager.INSTANCE.update(1);
 			}
 			counter++;
 			assertTrue(counter < 1000);	

@@ -20,9 +20,9 @@ public class TrainWorkerAbilityTest {
 	public void test() {
 		new GameModel();
 		Player player = new Player();
-		EntityManager.getInstance().addNewPCE("Headquarter", player,new Position(10f,10f));
-		EntityManager.getInstance().update(1);
-		Headquarter hq = (Headquarter)  EntityManager.getInstance().getPCEAtPosition(new Position(10f, 10f));
+		EntityManager.INSTANCE.addNewPCE("Headquarter", player,new Position(10f,10f));
+		EntityManager.INSTANCE.update(1);
+		Headquarter hq = (Headquarter)  EntityManager.INSTANCE.getPCEAtPosition(new Position(10f, 10f));
 		TrainWorkerAbility ab = (TrainWorkerAbility)AbilityFactory.INSTANCE.createAbility(TrainWorkerAbility.class.getSimpleName(),hq);
 	
 		ab.useAbility(new Position(1,1));

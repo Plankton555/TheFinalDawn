@@ -25,7 +25,7 @@ public abstract class AbstractEntity implements IEntity {
 	 * @param spawnPos The initial position of the entity.
 	 */
 	protected void initialize(Position spawnPos) {
-		this.entityID = EntityManager.getInstance().requestNewEntityID();
+		this.entityID = EntityManager.INSTANCE.requestNewEntityID();
 		
 		this.world = World.getInstance();
 

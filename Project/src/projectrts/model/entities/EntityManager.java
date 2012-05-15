@@ -14,9 +14,9 @@ import projectrts.model.world.Position;
  * @author Bjorn Persson Mattsson, Modified by Markus Ekström
  *
  */
-public class EntityManager implements IEntityManager{
+public enum EntityManager implements IEntityManager{ INSTANCE;
 
-	private static EntityManager instance = new EntityManager();
+	//private static EntityManager instance = new EntityManager();
 	// TODO Markus: PMD: Private field 'allEntities' could be made final; it is only initialized in the declaration or constructor.
 	private List<AbstractEntity> allEntities = new ArrayList<AbstractEntity>();
 	// TODO Markus: PMD: Private field 'entitiesAddQueue' could be made final; it is only initialized in the declaration or constructor.
@@ -45,14 +45,6 @@ public class EntityManager implements IEntityManager{
 			any.printStackTrace();
 		}
     }
-	
-	/**
-	 * @return The instance of this class.
-	 */
-	public static EntityManager getInstance()
-	{
-		return instance;
-	}
 	
 	/**
 	 * Updates all entities.
@@ -151,7 +143,7 @@ public class EntityManager implements IEntityManager{
 	// TODO Markus: Possible duplicated code
 	@Override
 	public PlayerControlledEntity getPCEAtPosition(Position pos){
-		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
+		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();
 		for(IEntity entity: entities){
 			if(entity instanceof PlayerControlledEntity){
 				
@@ -192,7 +184,7 @@ public class EntityManager implements IEntityManager{
 	// TODO Markus: Extraxt common code from getPlayerControlledEntityAtPosition and this method
 	@Override
 	public NonPlayerControlledEntity getNPCEAtPosition(Position pos){
-		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
+		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();
 		for(IEntity entity: entities){
 			if(entity instanceof NonPlayerControlledEntity){
 				

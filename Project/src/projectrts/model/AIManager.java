@@ -21,7 +21,7 @@ public class AIManager implements PropertyChangeListener{
 	public AIManager(Player aiPlayer, AbilityManager abilityManager) {
 		this.abilityManager = abilityManager;
 		stratAI = new StrategicAI(aiPlayer, abilityManager);
-		EntityManager.getInstance().addListener(this);
+		EntityManager.INSTANCE.addListener(this);
 	}
 	
 	public void update(float tpf) {

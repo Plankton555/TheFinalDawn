@@ -74,7 +74,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	 */
 	public AbilityManager() {
 		initializeAbilityLists();
-		EntityManager.getInstance().addListener(this);
+		EntityManager.INSTANCE.addListener(this);
 	}
 	
 	private void initializeAbilityLists() {
@@ -130,7 +130,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	 * @param tpf The time passed since the last frame.
 	 */
 	public void update(float tpf) {
-		List<IEntity> entities = EntityManager.getInstance().getAllEntities();
+		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();
 		for(IEntity entity : entities) {
 			if(entity instanceof PlayerControlledEntity) {
 				PlayerControlledEntity pce = (PlayerControlledEntity) entity;
@@ -195,7 +195,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	
 	@Override
 	public void useAbilitySelected(String ability, Position p, IPlayer owner){
-		for(IPlayerControlledEntity pce : EntityManager.getInstance().getSelectedEntitiesOfPlayer(owner)){
+		for(IPlayerControlledEntity pce : EntityManager.INSTANCE.getSelectedEntitiesOfPlayer(owner)){
 			doAbility(ability, p, pce);
 		}
 	}

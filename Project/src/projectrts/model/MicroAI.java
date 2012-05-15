@@ -8,7 +8,7 @@ import projectrts.model.entities.PlayerControlledEntity;
 
 /**
  * The "brain" of a unit.
- * @author Bjorn Persson Mattsson
+ * @author Markus Ekström
  *
  */
 public class MicroAI {
@@ -30,13 +30,14 @@ public class MicroAI {
 	}
 	
 	public void update(float tpf) {
-		if(!EntityManager.getInstance().isSelected(myPCE)) {
-			if(EntityManager.getInstance().getClosestEnemy(myPCE) != null) {
+		// TODO Markus: Save the EntityManager instance and use that instead of asking for it every time?
+		if(!EntityManager.INSTANCE.isSelected(myPCE)) {
+			if(EntityManager.INSTANCE.getClosestEnemy(myPCE) != null) {
 				// TODO Markus: PMD: These nested if statements could be combined. Deeply nested if..then statements are hard to read
-				if(!EntityManager.getInstance().getClosestEnemy(myPCE).equals(target)) {
-					target = EntityManager.getInstance().getClosestEnemy(myPCE);
+				if(!EntityManager.INSTANCE.getClosestEnemy(myPCE).equals(target)) {
+					target = EntityManager.INSTANCE.getClosestEnemy(myPCE);
 					abilityManager.doAbility(AttackAbility.class.getSimpleName(), 
-							EntityManager.getInstance().getClosestEnemy(myPCE).getPosition(), myPCE);
+							EntityManager.INSTANCE.getClosestEnemy(myPCE).getPosition(), myPCE);
 				}
 			}
 		}

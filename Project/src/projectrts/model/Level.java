@@ -89,7 +89,7 @@ public class Level {
 	
 	private void spawnEnemies(Position pos, int amount) {
 		for(int i = 0; i < amount; i++) {
-			EntityManager.getInstance().addNewPCE(Warrior.class.getSimpleName(), aiPlayer, pos);
+			EntityManager.INSTANCE.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, pos);
 			pos = new Position(pos.getX(), pos.getY() + 1);
 		}
 	}

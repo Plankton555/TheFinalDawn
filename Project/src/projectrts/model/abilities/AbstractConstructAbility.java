@@ -48,7 +48,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 				//If in range of buildingPosition
 				moveAbility.setFinished(true);
 				if(buildTimeLeft<=0){
-					EntityManager.getInstance().addNewPCE(entityToTrain, (Player)entity.getOwner(),buildPos);
+					EntityManager.INSTANCE.addNewPCE(entityToTrain, (Player)entity.getOwner(),buildPos);
 					setFinished(true);
 					buildTimeLeft =buildTime;
 				}else{
@@ -74,7 +74,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 			setFinished(false);
 			buildTimeLeft=buildTime;
 			World.getInstance().setNodesOccupied(World.getInstance().getNodeAt(target)
-					, getSizeOfBuilding(), EntityManager.getInstance().requestNewEntityID());
+					, getSizeOfBuilding(), EntityManager.INSTANCE.requestNewEntityID());
 		}else{
 			pcs.firePropertyChange("NotEnoughResources", null, null);
 		}

@@ -27,11 +27,11 @@ public class MicroAITest {
 		model = new GameModel();
 		aiPlayer = (Player)model.getAIPlayer();
 		humanPlayer = (Player)model.getHumanPlayer();
-		EntityManager.getInstance().addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(32.5, 42.5));
-		EntityManager.getInstance().addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(32.5, 32.5));
+		EntityManager.INSTANCE.addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(32.5, 42.5));
+		EntityManager.INSTANCE.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(32.5, 32.5));
 		model.update(1f);
-		myWarrior = EntityManager.getInstance().getPCEAtPosition(new Position(32.5, 42.5), humanPlayer);
-		enemyWarrior = EntityManager.getInstance().getPCEAtPosition(new Position(32.5, 32.5), aiPlayer);
+		myWarrior = EntityManager.INSTANCE.getPCEAtPosition(new Position(32.5, 42.5), humanPlayer);
+		enemyWarrior = EntityManager.INSTANCE.getPCEAtPosition(new Position(32.5, 32.5), aiPlayer);
 	}
 	
 	@Test
@@ -49,8 +49,8 @@ public class MicroAITest {
 		enemyWarrior.setPosition(new Position(32.5, 34.5 + enemyWarrior.getSightRange()));
 		
 		//Select the warrior controlled by the human player and make sure it is selected.
-		EntityManager.getInstance().select(new Position(32.5, 34.5), humanPlayer);
-		assertTrue(EntityManager.getInstance().isSelected(myWarrior));
+		EntityManager.INSTANCE.select(new Position(32.5, 34.5), humanPlayer);
+		assertTrue(EntityManager.INSTANCE.isSelected(myWarrior));
 
 		//Update the model and check that the human controlled warrior is dead and that 
 		//the enemy hasn't taken any damage.

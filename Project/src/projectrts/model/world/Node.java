@@ -128,7 +128,6 @@ public class Node implements INode {
 	 * @return true if any node is occupied, otherwise false.
 	 */
 	public static boolean isAnyNodeOccupied(List<INode> nodes){
-		// TODO Plankton: !Move this to a NodeHandler of some sort maybe?
 		for(INode node: nodes)
 		{
 			if(node.isOccupied())

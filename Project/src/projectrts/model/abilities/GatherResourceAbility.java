@@ -65,7 +65,7 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 	@Override
 	public void useAbility(Position target) {
 		this.target = target;
-			if(EntityManager.getInstance().getNPCEAtPosition(target) instanceof Resource){
+			if(EntityManager.INSTANCE.getNPCEAtPosition(target) instanceof Resource){
 			setActive(true);
 			setFinished(false);
 			if(!deliverResourceAbility.isActive()){
@@ -146,7 +146,7 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 		}
 		
 		private void findDepositStructure(){
-			List<IPlayerControlledEntity> entities = EntityManager.getInstance().getEntitiesOfPlayer(entity.getOwner());
+			List<IPlayerControlledEntity> entities = EntityManager.INSTANCE.getEntitiesOfPlayer(entity.getOwner());
 		
 		
 			for(IPlayerControlledEntity e: entities){
@@ -250,7 +250,7 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 
 		@Override
 		public void useAbility(Position target) {
-			this.targetResource = (Resource) EntityManager.getInstance().getNPCEAtPosition(target);
+			this.targetResource = (Resource) EntityManager.INSTANCE.getNPCEAtPosition(target);
 			resourceCarriedAmount = 0;
 			setActive(true);
 			setFinished(false);

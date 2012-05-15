@@ -26,15 +26,16 @@ public class StrategicAI {
 	
 	public void update(float tpf) {
 		if(cooldownRemaining <= 0) {
-			entities = EntityManager.getInstance().getEntitiesOfPlayer(aiPlayer);
+			// TODO Markus: Save the EntityManager instance and use that instead of asking for it every time?
+			entities = EntityManager.INSTANCE.getEntitiesOfPlayer(aiPlayer);
 			for(IPlayerControlledEntity entity : entities) {
 				if(entity instanceof PlayerControlledEntity) {
 					PlayerControlledEntity pce = (PlayerControlledEntity) entity;
 					if(pce.getState() == PlayerControlledEntity.State.IDLE) {
 						// TODO Markus: PMD: These nested if statements could be combined. Deeply nested if..then statements are hard to read
-						if(EntityManager.getInstance().getClosestEnemyStructure(pce) != null) {
+						if(EntityManager.INSTANCE.getClosestEnemyStructure(pce) != null) {
 							abilityManager.doAbility(AttackAbility.class.getSimpleName(), 
-									EntityManager.getInstance().getClosestEnemyStructure(pce).getPosition(), entity);
+									EntityManager.INSTANCE.getClosestEnemyStructure(pce).getPosition(), entity);
 						}
 					}
 				}

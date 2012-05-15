@@ -32,7 +32,7 @@ import projectrts.model.world.World;
  */
 public class GameModel implements IGame, PropertyChangeListener {
 	private final World world = World.getInstance();
-	private final EntityManager entityManager = EntityManager.getInstance();
+	private final EntityManager entityManager = EntityManager.INSTANCE;
 	private final Player humanPlayer = new Player();
 	private final Player aiPlayer = new Player();
 	private final AIManager aiManager;
@@ -103,7 +103,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 
 	@Override
 	public IEntityManager getEntityManager() {
-		return EntityManager.getInstance();
+		return EntityManager.INSTANCE;
 	}
 	
 	@Override

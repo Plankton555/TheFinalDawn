@@ -17,7 +17,6 @@ import projectrts.model.world.World;
  */
 public class MoveAbility extends AbstractAbility implements INotUsingMoveAbility, ITargetAbility, AStarUser {
 	
-	// TODO Plankton: Clean class.
 	private PlayerControlledEntity entity;
 	private Position targetPosition;
 	

@@ -31,11 +31,11 @@ public class StrategicAITest {
 		model = new GameModel();
 		aiPlayer = (Player)model.getAIPlayer();
 		humanPlayer = (Player)model.getHumanPlayer();
-		EntityManager.getInstance().addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(1.5, 1.5));
-		EntityManager.getInstance().addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(1.5, 10.5));
+		EntityManager.INSTANCE.addNewPCE(Warrior.class.getSimpleName(), aiPlayer, new Position(1.5, 1.5));
+		EntityManager.INSTANCE.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(1.5, 10.5));
 		model.update(1f);
-		enemyWarrior = EntityManager.getInstance().getPCEAtPosition(new Position(1.5, 1.5), aiPlayer);
-		myHQ = EntityManager.getInstance().getPCEAtPosition(new Position(1.5, 10.5), humanPlayer);
+		enemyWarrior = EntityManager.INSTANCE.getPCEAtPosition(new Position(1.5, 1.5), aiPlayer);
+		myHQ = EntityManager.INSTANCE.getPCEAtPosition(new Position(1.5, 10.5), humanPlayer);
 		for(int i = 0; i < 500; i++) {
 			model.update(0.5f);
 		}
