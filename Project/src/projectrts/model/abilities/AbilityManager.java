@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import projectrts.model.entities.AbstractUnit;
-import projectrts.model.entities.Ranged;
 import projectrts.model.entities.Barracks;
 import projectrts.model.entities.EntityFactory;
 import projectrts.model.entities.EntityManager;
@@ -18,6 +17,7 @@ import projectrts.model.entities.IPlayer;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.PlayerControlledEntity.State;
+import projectrts.model.entities.Ranged;
 import projectrts.model.entities.Warrior;
 import projectrts.model.entities.Worker;
 import projectrts.model.world.INode;
