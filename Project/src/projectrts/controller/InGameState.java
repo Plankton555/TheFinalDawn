@@ -1,7 +1,7 @@
 package projectrts.controller;
 
 
-import java.io.File;
+import java.util.List;
 
 import projectrts.io.ImageManager;
 import projectrts.model.GameModel;
@@ -83,12 +83,13 @@ public class InGameState extends AbstractAppState {
  
     private void initializeImages() {
     	//Add images to ImageManager
-    	String[] names = game.getAbilityManager().getExistingAbilityNames();
-    	for(int i = 0; i < names.length; i++) {
-    		File file = new File("src/assets/gui/" + names[i] + ".png");
-    		if(file.exists()) {
-    			ImageManager.INSTANCE.addImage(names[i], "assets/gui/" + names[i] + ".png");
-    		}
+    	List<String> names = game.getAbilityManager().getExistingAbilityNames();
+    	for(String str : names) {
+    		// TODO Plankton: Check this.
+    		//File file = new File("src/assets/gui/" + str + ".png");
+    		//if(file.exists()) {
+    			ImageManager.INSTANCE.addImage(str, "assets/gui/" + str + ".png");
+    		//}
     	}
     	ImageManager.INSTANCE.addImage("NoImage", "/assets/gui/NoImage.bmp");
     }

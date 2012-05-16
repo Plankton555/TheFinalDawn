@@ -40,7 +40,7 @@ public interface IAbilityManager {
 	/**
 	 * @return A list containing the names of the existing abilities.
 	 */
-	public String[] getExistingAbilityNames();
+	public List<String> getExistingAbilityNames();
 	
 	/**
 	 * Adds the pcl to the AbilityManager as a listener.

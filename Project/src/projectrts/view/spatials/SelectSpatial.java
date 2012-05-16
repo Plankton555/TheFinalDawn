@@ -6,7 +6,6 @@ import projectrts.model.entities.IEntity;
 import projectrts.view.controls.ControlFactory;
 import projectrts.view.controls.SelectControl;
 
-import com.jme3.material.Material;
 import com.jme3.material.RenderState.BlendMode;
 import com.jme3.renderer.queue.RenderQueue.Bucket;
 import com.jme3.scene.shape.Box;

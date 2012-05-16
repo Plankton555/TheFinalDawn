@@ -5,7 +5,6 @@ import projectrts.model.world.INode;
 import projectrts.view.controls.ControlFactory;
 import projectrts.view.controls.NodeControl;
 
-import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.shape.Box;
 

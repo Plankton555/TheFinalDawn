@@ -26,7 +26,7 @@ import projectrts.model.world.World;
 
 /**
  * A class in charge of managing all the abilities in the game.
- * @author Markus Ekström
+ * @author Markus Ekström, modified by Bjorn Persson Mattsson
  *
  */
 public class AbilityManager implements PropertyChangeListener, IAbilityManager {
@@ -35,7 +35,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	private Map<Integer, ArrayList<AbstractAbility>> abilityListsMap = new HashMap<Integer, ArrayList<AbstractAbility>>();
 	private PropertyChangeListener pcl;
 	
-	private static final String[] ABILITY_NAMES = new String[11];
+	private static List<String> abilityNames = new ArrayList<String>();
 	
 	static {
 		try
@@ -51,17 +51,15 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			Class.forName(TrainRangedAbility.class.getName());
 			Class.forName(BuildHeadquarterAbility.class.getName());
 			
-			//DON'T FORGET TO ADJUST THE ARRAY SIZE IF CREATING/DELETING ABILITIES
-			ABILITY_NAMES[0] = AttackAbility.class.getSimpleName();
-			ABILITY_NAMES[1] = BuildBarracksAbility.class.getSimpleName();
-			ABILITY_NAMES[2] = BuildWallAbility.class.getSimpleName();
-			ABILITY_NAMES[4] = GatherResourceAbility.class.getSimpleName();
-			ABILITY_NAMES[6] = MoveAbility.class.getSimpleName();
-			ABILITY_NAMES[7] = TrainWorkerAbility.class.getSimpleName();
-			ABILITY_NAMES[8] = TrainWarriorAbility.class.getSimpleName();
-			ABILITY_NAMES[9] = BuildHeadquarterAbility.class.getSimpleName();
-			ABILITY_NAMES[10] = TrainRangedAbility.class.getSimpleName();
-						
+			abilityNames.add(AttackAbility.class.getSimpleName());
+			abilityNames.add(BuildBarracksAbility.class.getSimpleName());
+			abilityNames.add(BuildWallAbility.class.getSimpleName());
+			abilityNames.add(GatherResourceAbility.class.getSimpleName());
+			abilityNames.add(MoveAbility.class.getSimpleName());
+			abilityNames.add(TrainWorkerAbility.class.getSimpleName());
+			abilityNames.add(TrainWarriorAbility.class.getSimpleName());
+			abilityNames.add(BuildHeadquarterAbility.class.getSimpleName());
+			abilityNames.add(TrainRangedAbility.class.getSimpleName());		
 		}
 		catch (ClassNotFoundException any)
 		{
@@ -253,18 +251,16 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	}
 
 	@Override
-	public String[] getExistingAbilityNames() {
-		String[] copy = new String[ABILITY_NAMES.length];
-		// TODO Markus: PMD: System.arraycopy is more efficient
-		for(int i = 0; i < ABILITY_NAMES.length; i++) {
-			copy[i] = ABILITY_NAMES[i];
+	public List<String> getExistingAbilityNames() {
+		List<String> output = new ArrayList<String>();
+		for (String s : abilityNames)
+		{
+			output.add(s);
 		}
-		return copy;
+		return output;
 	}
 	
 	public void setPropertyChangeLister(PropertyChangeListener pcl){
 		this.pcl = pcl;
 	}
-	
-	
 }
