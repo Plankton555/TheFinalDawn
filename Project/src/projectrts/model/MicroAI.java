@@ -14,12 +14,10 @@ import projectrts.model.entities.Worker;
  *
  */
 public class MicroAI {
-	// TODO Markus: PMD: Private field 'myPCE' could be made final; it is only initialized in the declaration or constructor.
-	private PlayerControlledEntity myPCE;
+	private final PlayerControlledEntity myPCE;
 	private PlayerControlledEntity target;
-	// TODO Markus: PMD: Private field 'abilityManager' could be made final; it is only initialized in the declaration or constructor.
-	private IAbilityManager abilityManager;
-	private EntityManager entityManager;
+	private final IAbilityManager abilityManager;
+	private final EntityManager entityManager;
 	
 	/**
 	 * Creates a micro AI for the provided unit.

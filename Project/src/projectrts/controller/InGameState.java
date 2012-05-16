@@ -106,25 +106,6 @@ public class InGameState extends AbstractAppState {
       // unregister all my listeners, detach all my nodes, etc... // modify scene graph...
     }
  
-   /**
-    * Sets whether this state is enabled or not.
-    * @param enabled Decides if the state is enabled or not.
-    */
-    @Override
-    public void setEnabled(boolean enabled) {
-      // Pause and unpause
-      super.setEnabled(enabled);
-      // TODO Markus: PMD: Avoid empty if statements
-      if(enabled){
-        // init stuff that is in use while this state is RUNNING // modify scene graph...
-    	  
-        
-      } else {
-        // take away everything not needed while this state is PAUSED
-    	  
-      }
-    }
- 
     /**
      * The update loop, do not call manually!
      * 
@@ -138,11 +119,9 @@ public class InGameState extends AbstractAppState {
     	  input.update(tpf);
     	  game.update(tpf);
     	  guiView.update(tpf);
-      } else {
-    	// TODO Markus: PMD: Avoid empty if statements
-        // do the following while game is PAUSED, e.g. play an idle animation.
-        //...        
       }
+        // do something in an else statement while game is PAUSED, e.g. play an idle animation.
+        //... 
     }
     
     /**

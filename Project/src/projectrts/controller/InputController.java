@@ -80,11 +80,9 @@ public class InputController{
         				app.getCamera().getWorldCoordinates(app.getInputManager().getCursorPosition(), 0));
         		view.drawNodes(game.getWorld().getNodesAt(pos,buildingSize));
         	}
-        } else {
-        	// TODO Markus: PMD: Avoid empty if statements
-          // do the following while game is PAUSED, e.g. play an idle animation.
-          //...        
         }
+          // do something in an else statement while game is PAUSED, e.g. play an idle animation.
+          //...  
       }
     
     /**

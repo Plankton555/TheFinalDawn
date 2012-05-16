@@ -202,9 +202,6 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 		}
 		return null;
 	}
-	
-	// TODO Markus: add support for ai selecting
-	
 
 	@Override
 	public void select(Position pos, IPlayer owner) {
@@ -290,15 +287,14 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 		for(AbstractEntity entity : nearbyEntities) {
 			if(entity instanceof PlayerControlledEntity) {
 				PlayerControlledEntity otherPCE = (PlayerControlledEntity)entity;
-				// TODO Markus: PMD: Avoid if (x != y) ..; else ..;
-				if(closestPCE != null) {
+				if(closestPCE == null && pce.getOwner() != otherPCE.getOwner()) {
+					closestPCE = (PlayerControlledEntity)entity;
+				} else if (closestPCE != null){
 					if(Position.getDistance(pce.getPosition(), entity.getPosition())
 							< Position.getDistance(pce.getPosition(), closestPCE.getPosition()) 
 							&& pce.getOwner() != otherPCE.getOwner()) {
 						closestPCE = (PlayerControlledEntity)entity;
 					}
-				} else if (pce.getOwner() != otherPCE.getOwner()){
-					closestPCE = (PlayerControlledEntity)entity;
 				}
 			}
 		}
@@ -317,14 +313,14 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 				PlayerControlledEntity otherPCE = (PlayerControlledEntity)entity;
 				if(otherPCE instanceof AbstractStructure) {
 					// TODO Markus: PMD: Avoid if (x != y) ..; else ..;
-					if(closestEnemyStruct != null) {
+					if(closestEnemyStruct == null && pce.getOwner() != otherPCE.getOwner()) {
+						closestEnemyStruct = (PlayerControlledEntity)entity;
+					} else if (closestEnemyStruct != null){
 						if(Position.getDistance(pce.getPosition(), entity.getPosition())
 								< Position.getDistance(pce.getPosition(), closestEnemyStruct.getPosition()) 
 								&& pce.getOwner() != otherPCE.getOwner()) {
 							closestEnemyStruct = (PlayerControlledEntity)entity;
 						}
-					} else if (pce.getOwner() != otherPCE.getOwner()){
-						closestEnemyStruct = (PlayerControlledEntity)entity;
 					}
 				}
 			}
