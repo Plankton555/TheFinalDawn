@@ -35,8 +35,9 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 				EntityManager.INSTANCE.addNewPCE(entityToTrain, (Player)entity.getOwner(),spawnPos);
 				setFinished(true);
 				buildTimeLeft =buildTime;
+				pcs.firePropertyChange("BuildCompleted",entity,null);
 			}else{
-				pcs.firePropertyChange("TrainTimeLeft", null, (int)(buildTimeLeft-tpf+1));
+				pcs.firePropertyChange("TrainTimeLeft", entity, (int)(buildTimeLeft-tpf+1));
 				buildTimeLeft-=tpf;
 				
 			}

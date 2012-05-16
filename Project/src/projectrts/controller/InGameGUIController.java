@@ -37,7 +37,7 @@ public class InGameGUIController implements ScreenController {
 	private IPlayerControlledEntity selectedPce;
 	private int showingTooltipID = 0;
 	// TODO Afton: PMD: Private field 'labelColor' could be made final; it is only initialized in the declaration or constructor.
-	private String labelColor = "#0F0F";
+	private String greenColor = "#0F0F";
 
 	/**
 	 * Creates a new inputGUIController
@@ -78,8 +78,9 @@ public class InGameGUIController implements ScreenController {
 	                childLayoutHorizontal(); // panel properties, add more...  
 	    	        visibleToMouse(true);
 	    	           
-	                panel(createLeftPanel());
+	                panel(createPlayerInfoPanel());
 	                
+	                panel(createBuildInfoPanel());
 	                
 	                panel(createMiddlePanel()); 
 	                
@@ -120,9 +121,9 @@ public class InGameGUIController implements ScreenController {
 	}
 	
 	//Creates the panel that shows the player info
-	private PanelBuilder createLeftPanel(){
+	private PanelBuilder createPlayerInfoPanel(){
 		PanelBuilder builder = new PanelBuilder("Panel_PlayerInfo"){{
-			width("40%");
+			width("20%");
 			childLayoutVertical();
 			
 			control(new LabelBuilder("Label_Time"){{
@@ -130,7 +131,7 @@ public class InGameGUIController implements ScreenController {
 				width("100%");
 				textHAlignLeft();
 				textVAlignTop();
-				color(labelColor);
+				color(greenColor);
 				
 			}});
 			
@@ -138,7 +139,7 @@ public class InGameGUIController implements ScreenController {
 				width("100%");
 				textHAlignLeft();
 				textVAlignTop();
-				color(labelColor);
+				color(greenColor);
 				
 			}});
 			
@@ -167,7 +168,7 @@ public class InGameGUIController implements ScreenController {
 					height("100%");
 					textHAlignLeft();
 					textVAlignTop();
-					color(labelColor);
+					color(greenColor);
 					
 				}});
 				
@@ -176,7 +177,7 @@ public class InGameGUIController implements ScreenController {
 					height("100%");
 					textHAlignLeft();
 					textVAlignTop();
-					color(labelColor);
+					color(greenColor);
 				}});
 				
 			}});
@@ -275,6 +276,24 @@ public class InGameGUIController implements ScreenController {
 				textVAlignTop();
 				
 			}});
+		}};
+		return builder;
+	}
+	
+	//Creates the panel that shows build info
+	private PanelBuilder createBuildInfoPanel(){
+		PanelBuilder builder = new PanelBuilder("Panel_BuildInfo"){{
+			width("20%");
+			childLayoutVertical();
+			visible(false);
+			
+			control(new LabelBuilder("Label_BuildText"){{
+				width("100%");
+				height("100%");
+				textVAlignTop();
+				color(greenColor);
+				
+			}});			
 		}};
 		return builder;
 	}

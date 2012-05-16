@@ -51,8 +51,9 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 					EntityManager.INSTANCE.addNewPCE(entityToTrain, (Player)entity.getOwner(),buildPos);
 					setFinished(true);
 					buildTimeLeft =buildTime;
+					pcs.firePropertyChange("BuildCompleted",entity,null);
 				}else{
-					pcs.firePropertyChange("BuildTimeLeft", null, (int)(buildTimeLeft-tpf+1));
+					pcs.firePropertyChange("BuildTimeLeft", entity, (int)(buildTimeLeft-tpf+1));
 					buildTimeLeft-=tpf;
 				}
 			}else{
@@ -116,7 +117,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 			World.INSTANCE.setNodesOccupied(World.INSTANCE.getNodeAt(buildPos)
 					, getSizeOfBuilding(), 0);
 			owner.modifyResource(buildCost);
-			
+			pcs.firePropertyChange("BuildCompleted",entity,null);
 		}
 	}
 	

@@ -7,6 +7,7 @@ import java.util.List;
 import projectrts.io.ImageManager;
 import projectrts.model.IGame;
 import projectrts.model.abilities.IAbility;
+import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.elements.Element;
@@ -96,6 +97,7 @@ public class GameGUIView implements PropertyChangeListener {
 	 */
 	public void updateSelected(IPlayerControlledEntity selectedPce){
     	this.selectedPce = selectedPce;
+    	showBuildInfo("");
     	updateSelectedInfo();
     	updateAbilities();
     }
@@ -195,6 +197,21 @@ public class GameGUIView implements PropertyChangeListener {
 		labelMessage.setVisible(true);
 	}
 	
+	private void showBuildInfo(String text){
+		Element buildInfoPanel = screen.findElementByName("Panel_BuildInfo");
+		
+		if(text == null || "".equals(text)){
+			buildInfoPanel.setVisible(false);
+		} else {		
+			buildInfoPanel.setVisible(true);
+			
+			Element buildTextPanel = screen.findElementByName("Label_BuildText");
+			buildTextPanel.getRenderer(TextRenderer.class).setText(text);
+
+		}
+	}
+	
+
 	@Override
 	// TODO Afton: PMD: The method 'propertyChange' has a Cyclomatic Complexity of 11.
 	public void propertyChange(PropertyChangeEvent pce) {
@@ -217,14 +234,20 @@ public class GameGUIView implements PropertyChangeListener {
 			showMessage("Target is invalid, must target a Unit or Structure");
 		}else if("NotEnoughResources".equals(pce.getPropertyName())){
 			showMessage("Not enough resources");
-		}
-		else if("AlreadyTraining".equals(pce.getPropertyName())){
+		}else if("AlreadyTraining".equals(pce.getPropertyName())){
 			showMessage("That building is already training a unit");
 		}else if("BuildTimeLeft".equals(pce.getPropertyName())){
-			//add code for showing buildtime left here
-			// TODO Afton: PMD: Avoid empty if statements
+			if(pce.getOldValue() == selectedPce){
+				showBuildInfo("Building structure\nTime left: " + pce.getNewValue());
+			}
 		}else if("TrainTimeLeft".equals(pce.getPropertyName())){
-			//add code for showing traintime left here
+			if(pce.getOldValue() == selectedPce){
+				showBuildInfo("Training Unit\nTime left: " + pce.getNewValue());
+			}
+		}else if("BuildCompleted".equals(pce.getPropertyName())){
+			if(pce.getOldValue() == selectedPce){
+				showBuildInfo("");
+			}
 		}
 		
 	}
