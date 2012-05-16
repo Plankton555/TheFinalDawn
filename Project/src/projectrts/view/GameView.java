@@ -46,7 +46,9 @@ public class GameView implements PropertyChangeListener{
     private Node debug = new Node("debug"); // The node for the debugging graphics
     private Node terrainNode = new Node("terrain"); // The node for all terrain
     private Node mouseEffects = new Node("mouseEffects"); // The node for mouseEffects
+    // TODO Markus: PMD: Perhaps 'matTerrain' could be replaced by a local variable.
     private Material matTerrain;
+    // TODO Markus: PMD: Perhaps 'terrain' could be replaced by a local variable.
     private TerrainQuad terrain;
     private float mod = InGameState.MODEL_TO_WORLD; // The modifier value for converting lengths between model and world.
     
@@ -102,6 +104,7 @@ public class GameView implements PropertyChangeListener{
         matTerrain.setFloat("Tex3Scale", 128f);
      
         /** 2. Create the height map */
+        // TODO Markus: Move declaration of 'heightmap' to where it actually gets a value
         AbstractHeightMap heightmap = null;
         Texture heightMapImage = TextureManager.INSTANCE.getTexture("HeightMap");
         heightmap = new ImageBasedHeightMap(heightMapImage.getImage());

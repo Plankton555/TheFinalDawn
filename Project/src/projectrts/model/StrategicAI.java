@@ -12,6 +12,7 @@ import projectrts.model.entities.PlayerControlledEntity;
 // TODO Markus: ADD JAVADOC!!!
 public class StrategicAI {
 	private List<IPlayerControlledEntity> entities;
+	// TODO Markus: PMD: This final field could be made static
 	private final float cooldownInterval = 0.5f;
 	private float cooldownRemaining = 0;
 	// TODO Markus: PMD: Private field 'aiPlayer' could be made final; it is only initialized in the declaration or constructor.

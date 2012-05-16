@@ -64,6 +64,8 @@ public class Level {
 		int direction = wave % 4;
 		
 		switch(direction) {
+		// TODO Markus: PMD: These statements may have some unnecessary parentheses
+		// I think it means you can write case 1 instead of case(1)... I dunno :S //Plankton
 			case(0): 
 				spawnEnemies(new Position(0, 50), Math.round(enemiesPerWave));
 				break;

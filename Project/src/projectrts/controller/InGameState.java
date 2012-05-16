@@ -29,6 +29,7 @@ public class InGameState extends AbstractAppState {
     private SimpleApplication app;
     private final IGame game;
     private InputController input;
+    // TODO Markus: PMD: Perhaps 'view' could be replaced by a local variable.
     private GameView view;
     private GameGUIView guiView;
     private final Nifty nifty;

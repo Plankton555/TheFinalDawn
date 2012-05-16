@@ -22,6 +22,8 @@ import de.lessvoid.nifty.tools.SizeValue;
  *
  */
 // TODO Afton: PMD: Too many fields
+// TODO Afton: PMD: This class has too many methods, consider refactoring it.
+// TODO Afton: PMD: The class 'GameGUIView' has a Cyclomatic Complexity of 3 (Highest = 11).
 public class GameGUIView implements PropertyChangeListener {
 	private final Nifty nifty;
 	private Screen screen;
@@ -104,6 +106,7 @@ public class GameGUIView implements PropertyChangeListener {
     	StringBuffer buffer = new StringBuffer("Time: ");
     	if(sec/60>0){
     		buffer.append(sec/60);
+    		// TODO Afton: PMD: Avoid appending characters as strings in StringBuffer.append.
     		buffer.append(":");
     	}
     	buffer.append(sec%60);
@@ -193,6 +196,7 @@ public class GameGUIView implements PropertyChangeListener {
 	}
 	
 	@Override
+	// TODO Afton: PMD: The method 'propertyChange' has a Cyclomatic Complexity of 11.
 	public void propertyChange(PropertyChangeEvent pce) {
 		if("ResourceChange".equals(pce.getPropertyName())){
 			updatePlayerInfo();
@@ -218,6 +222,7 @@ public class GameGUIView implements PropertyChangeListener {
 			showMessage("That building is already training a unit");
 		}else if("BuildTimeLeft".equals(pce.getPropertyName())){
 			//add code for showing buildtime left here
+			// TODO Afton: PMD: Avoid empty if statements
 		}else if("TrainTimeLeft".equals(pce.getPropertyName())){
 			//add code for showing traintime left here
 		}

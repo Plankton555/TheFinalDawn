@@ -24,6 +24,7 @@ import de.lessvoid.nifty.screen.ScreenController;
  * @author Filip Brynfors
  * 
  */
+// TODO Afton: PMD: This class has too many methods, consider refactoring it.
 public class MenuGUIController implements ScreenController {
 	private final SimpleApplication app;
 	private final Nifty nifty;
@@ -98,6 +99,7 @@ public class MenuGUIController implements ScreenController {
 	private PanelBuilder createDifficultyPopupPanel() {
 		PanelBuilder builder = new PanelBuilder("Panel_DifficultyPopup") {{
 			childLayoutCenter();
+			// TODO Afton: PMD: The String literal "100%" appears 5 times in this file; the first occurrence is here
 			width("100%");
 			height("100%");
 			visible(false);
@@ -220,6 +222,8 @@ public class MenuGUIController implements ScreenController {
 
 	private void updateDifficultyText() {
 		String difficulty = chosenDifficulty.toString();
+		// TODO Afton: PMD: When doing a String.toLowerCase()/toUpperCase() call, use a Locale
+		// Vet inte hur viktigt det är dock... /Plankton
 		difficulty = difficulty.toLowerCase();
 		difficulty = difficulty.substring(0, 1).toUpperCase() + difficulty.substring(1);
 		changeDifficultyButton.setText("Difficulty: " + difficulty);

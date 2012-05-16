@@ -36,6 +36,7 @@ import com.jme3.math.Vector3f;
  *
  */
 // TODO Markus: PMD: This class has too many methods, consider refactoring it.
+// TODO Markus: PMD: The class 'InputController' has a Cyclomatic Complexity of 5 (Highest = 16).
 public class InputController{
 
 	// Before the mouse is moved it has the position (0, 0), causing the camera to move in that direction.
@@ -157,9 +158,10 @@ public class InputController{
      * values, not just "on" and "off". 
      * 
      */
+    // TODO Markus: PMD: Private field 'analogListener' could be made final; it is only initialized in the declaration or constructor.
     private AnalogListener analogListener = new AnalogListener() {
     	// TODO Markus: PMD: The method onAnalog() has an NPath complexity of 487
-    	// TODO Markus: PMD: The method 'onAnalog' has a Cyclomatic Complexity of 15.
+    	// TODO Markus: PMD: The method 'onAnalog' has a Cyclomatic Complexity of 16.
 	    public void onAnalog(String name, float value, float tpf) {
 	    	
 	    	// Make sure we are in the correct state and that it is enabled.
@@ -202,8 +204,9 @@ public class InputController{
      * A digital listener, use if the input is digital - i.e. it can only
      * be either "on" or "off".
      */
+    // TODO Markus: PMD: Private field 'actionListener' could be made final; it is only initialized in the declaration or constructor.
     private ActionListener actionListener = new ActionListener() {
-    	// TODO Markus: PMD: The method 'onAction' has a Cyclomatic Complexity of 10. Highest is 15
+    	// TODO Markus: PMD: The method 'onAction' has a Cyclomatic Complexity of 10.
     	public void onAction(String name, boolean keyPressed, float tpf) {
     		if (name.equals("exit") && keyPressed) {
 	            app.stop();
@@ -253,12 +256,12 @@ public class InputController{
     	private void handleRightClick(){
     		Position click = InGameState.convertWorldToModel(app.getCamera().getWorldCoordinates(
     				app.getInputManager().getCursorPosition(), 0));
-    		IEntity e = getEntityAtPosition(click);
     		if(choosingPosition||choosingTarget){
     			choosingPosition=false;
     			view.clearNodes();
     	    	choosingTarget=false;
     		}else{
+        		IEntity e = getEntityAtPosition(click);
 	    		if(e==null){
 	    			doMoveAbility();	    			
 	    		}

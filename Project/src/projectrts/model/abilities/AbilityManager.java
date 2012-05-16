@@ -30,10 +30,13 @@ import projectrts.model.world.World;
  * @author Markus Ekström, modified by Bjorn Persson Mattsson
  *
  */
+// TODO Markus: PMD: The class 'AbilityManager' has a Cyclomatic Complexity of 4 (Highest = 11).
 public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 
+	// TODO Markus: PMD: Private field 'abilityReferenceMap' could be made final; it is only initialized in the declaration or constructor.
 	private Map<String, ArrayList<AbstractAbility>> abilityReferenceMap =
 			new HashMap<String, ArrayList<AbstractAbility>>();
+	// TODO Markus: PMD: Private field 'abilityListsMap' could be made final; it is only initialized in the declaration or constructor.
 	private Map<Integer, ArrayList<AbstractAbility>> abilityListsMap =
 			new HashMap<Integer, ArrayList<AbstractAbility>>();
 	private PropertyChangeListener pcl;
@@ -157,6 +160,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 				PlayerControlledEntity pce = (PlayerControlledEntity) entity;
 				if(pce != null) {
 					// TODO Markus: PMD: These nested if statements could be combined
+					// TODO Markus: PMD: Deeply nested if..then statements are hard to read
 					if(!pce.isDead() && abilityListsMap.get(pce.getEntityID()) != null) {
 						// TODO Markus: PMD: These nested if statements could be combined
 							if(!abilityListsMap.get(pce.getEntityID()).isEmpty()) {
@@ -202,14 +206,17 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			// TODO Markus: PMD: These nested if statements could be combined
 			if(!abilities.isEmpty()) {
 				for(AbstractAbility ownAbility: abilities){
+					// TODO Markus: PMD: Deeply nested if..then statements are hard to read
 					if(ownAbility.isActive()){
 						//Make sure that only one ability can be active at once
 						ownAbility.abortAbility();
 					}
+					// TODO Markus: PMD: Deeply nested if..then statements are hard to read
 					if(ability.equals(ownAbility.getClass().getSimpleName())){
 						toBeUsedAbility = ownAbility;
 					}
 				}
+				// TODO Markus: PMD: Deeply nested if..then statements are hard to read
 				if(toBeUsedAbility != null) {
 					toBeUsedAbility.useAbility(pos);
 				}
@@ -242,6 +249,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 								(MoveAbility) AbilityFactory.INSTANCE.createAbility(
 										MoveAbility.class.getSimpleName(), pce);
 						for(AbstractAbility ability : abilitiesReferenceList) {
+							// TODO Markus: PMD: Deeply nested if..then statements are hard to read
 							if(ability instanceof IUsingMoveAbility) {
 								abilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(
 										ability.getClass().getSimpleName(), pce, moveAbility));

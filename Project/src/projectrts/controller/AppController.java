@@ -35,6 +35,7 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
     @Override
     public void simpleInitApp() {
     	
+    	// TODO Afton: PMD: Local variable 'niftyDisplay' could be declared final
 		NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
 	            getAssetManager(), getInputManager(), getAudioRenderer(), getGuiViewPort());
 	    nifty = niftyDisplay.getNifty();

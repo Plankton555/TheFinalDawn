@@ -15,6 +15,7 @@ import projectrts.model.world.Position;
  * @author Jakob Svensson
  *
  */
+// TODO Jakob: PMD: This class has too many methods, consider refactoring it.
 public class GatherResourceAbility extends AbstractAbility implements IUsingMoveAbility, ITargetAbility{
 	
 	private AbstractAbility mineResourceAbility;
@@ -201,6 +202,7 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 		private PlayerControlledEntity entity;
 		private AbstractAbility moveAbility;
 		private int resourceCarriedAmount = 0;
+		// TODO Jakob: PMD: This final field could be made static
 		private final float recoveryTime = .4f;
 		private float miningCooldown = 0;
 		// TODO Jakob: PMD: Private field 'range' could be made final; it is only initialized in the declaration or constructor.

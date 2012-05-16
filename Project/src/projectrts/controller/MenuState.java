@@ -23,6 +23,7 @@ public class MenuState extends AbstractAppState {
 	 * @param appController the appController
 	 */
     public MenuState(Nifty nifty) {
+    	// TODO Afton: PMD: It is a good practice to call super() in a constructor
 		this.nifty = nifty;
 	}
 

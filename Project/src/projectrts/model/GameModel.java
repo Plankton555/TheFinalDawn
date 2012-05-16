@@ -36,8 +36,10 @@ public class GameModel implements IGame, PropertyChangeListener {
 	private final Player humanPlayer = new Player();
 	private final Player aiPlayer = new Player();
 	private final AIManager aiManager;
+	// TODO Jakob: PMD: Private field 'abilityManager' could be made final; it is only initialized in the declaration or constructor.
 	private AbilityManager abilityManager;
 	private float gameTime = 0;
+	// TODO Jakob: PMD: Private field 'pcs' could be made final; it is only initialized in the declaration or constructor.
 	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private final Level level = new Level(aiPlayer);
 	private Difficulty currentDifficulty = Difficulty.MEDIUM;

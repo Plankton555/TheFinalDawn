@@ -36,6 +36,7 @@ public class InGameGUIController implements ScreenController {
 	
 	private IPlayerControlledEntity selectedPce;
 	private int showingTooltipID = 0;
+	// TODO Afton: PMD: Private field 'labelColor' could be made final; it is only initialized in the declaration or constructor.
 	private String labelColor = "#0F0F";
 
 	/**
