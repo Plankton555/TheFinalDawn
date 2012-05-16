@@ -32,12 +32,9 @@ import projectrts.model.world.World;
  */
 // TODO Markus: PMD: The class 'AbilityManager' has a Cyclomatic Complexity of 4 (Highest = 11).
 public class AbilityManager implements PropertyChangeListener, IAbilityManager {
-
-	// TODO Markus: PMD: Private field 'abilityReferenceMap' could be made final; it is only initialized in the declaration or constructor.
-	private Map<String, ArrayList<AbstractAbility>> abilityReferenceMap =
+	private final Map<String, ArrayList<AbstractAbility>> abilityReferenceMap =
 			new HashMap<String, ArrayList<AbstractAbility>>();
-	// TODO Markus: PMD: Private field 'abilityListsMap' could be made final; it is only initialized in the declaration or constructor.
-	private Map<Integer, ArrayList<AbstractAbility>> abilityListsMap =
+	private final Map<Integer, ArrayList<AbstractAbility>> abilityListsMap =
 			new HashMap<Integer, ArrayList<AbstractAbility>>();
 	private PropertyChangeListener pcl;
 	
@@ -186,12 +183,9 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		List<IAbility> copy = new ArrayList<IAbility>();
 		ArrayList<AbstractAbility> abilities =
 				abilityReferenceMap.get(entity.getClass().getSimpleName());
-		if(abilities != null) {
-			// TODO Markus: PMD: These nested if statements could be combined
-			if(!abilities.isEmpty()) {
-				for(IAbility ability: abilities){
-					copy.add(ability);
-				}
+		if(abilities != null && !abilities.isEmpty()) {
+			for(IAbility ability: abilities){
+				copy.add(ability);
 			}
 		}
 		
@@ -222,6 +216,19 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 				}
 			}
 		}
+	}
+	
+	@Override
+	public void abortAbility(String abilityName, IPlayerControlledEntity entity) {
+		ArrayList<AbstractAbility> abilities =
+			abilityReferenceMap.get(entity.getClass().getSimpleName());
+	if(abilities != null && !abilities.isEmpty()) {
+		for(AbstractAbility ability: abilities){
+			if(ability.getClass().getSimpleName().equals(abilityName)) {
+				ability.abortAbility();
+			}
+		}
+	}
 	}
 	
 	@Override

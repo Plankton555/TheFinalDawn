@@ -47,4 +47,12 @@ public interface IAbilityManager {
 	 * @param pcl The PropertyChangeListener you want as listener.
 	 */
 	public void setPropertyChangeLister(PropertyChangeListener pcl);
+
+	/**
+	 * If the entity is paired with an ability which class is named like abilityName, 
+	 * then that ability is aborted.
+	 * @param abilityName The simple name of the ability's class.
+	 * @param entity The entity the ability is paired with.
+	 */
+	public void abortAbility(String abilityName, IPlayerControlledEntity entity);
 }

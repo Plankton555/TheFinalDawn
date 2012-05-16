@@ -18,8 +18,6 @@ import projectrts.model.world.World;
 // TODO Plankton: PMD: This class has too many methods, consider refactoring it.
 public class MoveAbility extends AbstractAbility
 implements INotUsingMoveAbility, ITargetAbility, AStarUser {
-	
-	private PlayerControlledEntity entity;
 	private Position targetPosition;
 	
 	private World world;

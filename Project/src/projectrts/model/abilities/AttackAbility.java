@@ -12,7 +12,6 @@ import projectrts.model.world.Position;
  *
  */
 public class AttackAbility extends AbstractAbility implements IUsingMoveAbility, ITargetAbility {
-	private PlayerControlledEntity entity;
 	private PlayerControlledEntity target;
 	
 	private MoveAbility moveAbility;

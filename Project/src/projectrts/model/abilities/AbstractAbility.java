@@ -3,6 +3,7 @@ package projectrts.model.abilities;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.world.Position;
 
 /**
@@ -16,6 +17,7 @@ public abstract class AbstractAbility implements IAbility {
 	private float cooldown;
 	private float remainingCooldown = 0;
 	protected final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+	protected PlayerControlledEntity entity;
 
 	public void setCooldown(float cooldown) {
 		this.cooldown = cooldown;

@@ -19,7 +19,6 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 	private float buildTimeLeft;
 	private static float cooldown = 0.5f;
 	private Position spawnPos;
-	private PlayerControlledEntity entity;
 	private String entityToTrain;	
 	
 	

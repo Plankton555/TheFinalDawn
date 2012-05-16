@@ -12,7 +12,6 @@ import projectrts.model.world.World;
  *
  */
 public abstract class AbstractConstructAbility extends AbstractAbility implements IUsingMoveAbility, IBuildStructureAbility {
-	private PlayerControlledEntity entity;
 	private float buildTime; 
 	private int buildCost; 
 	private static float cooldown = 0.5f;

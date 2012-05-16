@@ -12,32 +12,29 @@ import projectrts.model.entities.PlayerControlledEntity;
 // TODO Markus: ADD JAVADOC!!!
 public class StrategicAI {
 	private List<IPlayerControlledEntity> entities;
-	// TODO Markus: PMD: This final field could be made static
-	private final float cooldownInterval = 0.5f;
+	private static final float cooldownInterval = 0.5f;
 	private float cooldownRemaining = 0;
-	// TODO Markus: PMD: Private field 'aiPlayer' could be made final; it is only initialized in the declaration or constructor.
-	private Player aiPlayer;
-	// TODO Markus: PMD: Private field 'abilityManager' could be made final; it is only initialized in the declaration or constructor.
-	private AbilityManager abilityManager;
+	private final Player aiPlayer;
+	private final AbilityManager abilityManager;
+	private final EntityManager entityManager;
 	
 	public StrategicAI(Player aiPlayer, AbilityManager abilityManager) {
 		this.aiPlayer = aiPlayer;
 		this.abilityManager = abilityManager;
+		this.entityManager = EntityManager.INSTANCE;
 	}
 	
 	public void update(float tpf) {
 		if(cooldownRemaining <= 0) {
 			// TODO Markus: Save the EntityManager instance and use that instead of asking for it every time?
-			entities = EntityManager.INSTANCE.getEntitiesOfPlayer(aiPlayer);
+			entities = entityManager.getEntitiesOfPlayer(aiPlayer);
 			for(IPlayerControlledEntity entity : entities) {
 				if(entity instanceof PlayerControlledEntity) {
 					PlayerControlledEntity pce = (PlayerControlledEntity) entity;
-					if(pce.getState() == PlayerControlledEntity.State.IDLE) {
-						// TODO Markus: PMD: These nested if statements could be combined. Deeply nested if..then statements are hard to read
-						if(EntityManager.INSTANCE.getClosestEnemyStructure(pce) != null) {
-							abilityManager.doAbility(AttackAbility.class.getSimpleName(), 
-									EntityManager.INSTANCE.getClosestEnemyStructure(pce).getPosition(), entity);
-						}
+					if(pce.getState() == PlayerControlledEntity.State.IDLE && 
+							entityManager.getClosestEnemyStructure(pce) != null) {
+						abilityManager.doAbility(AttackAbility.class.getSimpleName(), 
+								entityManager.getClosestEnemyStructure(pce).getPosition(), entity);
 					}
 				}
 			}
