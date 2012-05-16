@@ -153,9 +153,7 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 				//If the point is within the area of the unit
 				if(se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
 						&& se.chalmers.pebjorn.javautils.Math.isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
-					PlayerControlledEntity pcEntity  = (PlayerControlledEntity) entity; 
-					// TODO Markus: PMD: Consider simply returning the value vs storing it in local variable 'pcEntity'
-					return pcEntity;
+					return (PlayerControlledEntity) entity;
 					
 				}
 			}
@@ -194,9 +192,7 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 				//If the point is within the area of the unit
 				if(se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
 						&& se.chalmers.pebjorn.javautils.Math.isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
-					NonPlayerControlledEntity npcEntity  = (NonPlayerControlledEntity) entity; 
-					// TODO Markus: PMD: Consider simply returning the value vs storing it in local variable 'npcEntity'
-					return npcEntity;
+					return (NonPlayerControlledEntity) entity;
 				}
 			}
 		}
