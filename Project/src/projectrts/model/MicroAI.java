@@ -5,6 +5,7 @@ import projectrts.model.abilities.IAbility;
 import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.Worker;
 
 
 /**
@@ -39,7 +40,7 @@ public class MicroAI {
 				abilityManager.abortAbility(AttackAbility.class.getSimpleName(), myPCE);
 				myPCE.setState(PlayerControlledEntity.State.IDLE);
 			} else {
-				if(!EntityManager.INSTANCE.getClosestEnemy(myPCE).equals(target)) {
+				if(!EntityManager.INSTANCE.getClosestEnemy(myPCE).equals(target) && myPCE.getClass() != Worker.class) {
 					target = EntityManager.INSTANCE.getClosestEnemy(myPCE);
 					abilityManager.doAbility(AttackAbility.class.getSimpleName(), 
 							EntityManager.INSTANCE.getClosestEnemy(myPCE).getPosition(), myPCE);
