@@ -9,6 +9,7 @@ import projectrts.model.world.Position;
  */
 public abstract class AbstractStructure extends PlayerControlledEntity{
 	protected boolean deposit = false;
+	protected boolean trainingUnit = false;
 	
 	/**
 	 * When subclassing, invoke this to initialize the entity.
@@ -25,5 +26,11 @@ public abstract class AbstractStructure extends PlayerControlledEntity{
 	 */
 	public boolean isDeposit() {
 		return deposit;
+	}
+	public boolean trainingUnit(){
+		return trainingUnit;
+	}
+	public void setTrainingUnit(boolean b){
+		trainingUnit = b;
 	}
 }

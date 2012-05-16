@@ -1,6 +1,7 @@
 package projectrts.model.abilities;
 
 import projectrts.model.abilities.pathfinding.AStar;
+import projectrts.model.entities.AbstractStructure;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Player;
 import projectrts.model.entities.PlayerControlledEntity;
@@ -34,6 +35,8 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 				spawnPos = AStar.getClosestUnoccupiedNode(entity.getPosition(), null, 0).getPosition();
 				EntityManager.INSTANCE.addNewPCE(entityToTrain, (Player)entity.getOwner(),spawnPos);
 				setFinished(true);
+				AbstractStructure as = (AbstractStructure)entity;
+				as.setTrainingUnit(false);
 				buildTimeLeft =buildTime;
 				pcs.firePropertyChange("BuildCompleted",entity,null);
 			}else{
@@ -47,7 +50,8 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 	@Override
 
 	public void useAbility(Position target) {
-		if(isActive()){
+		AbstractStructure as = (AbstractStructure)entity;
+		if(isActive()|| as.trainingUnit()){
 			pcs.firePropertyChange("AlreadyTraining", null, null);			
 		}else{
 			Player owner = (Player)entity.getOwner();
@@ -56,6 +60,7 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 				setActive(true);
 				setFinished(false);
 				buildTimeLeft=buildTime;
+				as.setTrainingUnit(true);
 			}else{
 				pcs.firePropertyChange("NotEnoughResources", null, null);
 			}
