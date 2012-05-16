@@ -36,7 +36,9 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 				setFinished(true);
 				buildTimeLeft =buildTime;
 			}else{
+				pcs.firePropertyChange("TrainTimeLeft", null, (int)(buildTimeLeft-tpf+1));
 				buildTimeLeft-=tpf;
+				
 			}
 		}
 	}

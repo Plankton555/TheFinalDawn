@@ -52,6 +52,7 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 					setFinished(true);
 					buildTimeLeft =buildTime;
 				}else{
+					pcs.firePropertyChange("BuildTimeLeft", null, (int)(buildTimeLeft-tpf+1));
 					buildTimeLeft-=tpf;
 				}
 			}else{

@@ -216,6 +216,10 @@ public class GameGUIView implements PropertyChangeListener {
 		}
 		else if("AlreadyTraining".equals(pce.getPropertyName())){
 			showMessage("That building is already training a unit");
+		}else if("BuildTimeLeft".equals(pce.getPropertyName())){
+			//add code for showing buildtime left here
+		}else if("TrainTimeLeft".equals(pce.getPropertyName())){
+			//add code for showing traintime left here
 		}
 		
 	}
