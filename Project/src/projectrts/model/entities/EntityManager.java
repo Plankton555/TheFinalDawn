@@ -312,7 +312,6 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 			if(entity instanceof PlayerControlledEntity) {
 				PlayerControlledEntity otherPCE = (PlayerControlledEntity)entity;
 				if(otherPCE instanceof AbstractStructure) {
-					// TODO Markus: PMD: Avoid if (x != y) ..; else ..;
 					if(closestEnemyStruct == null && pce.getOwner() != otherPCE.getOwner()) {
 						closestEnemyStruct = (PlayerControlledEntity)entity;
 					} else if (closestEnemyStruct != null){

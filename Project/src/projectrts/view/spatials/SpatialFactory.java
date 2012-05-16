@@ -1,6 +1,7 @@
 package projectrts.view.spatials;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import projectrts.model.entities.IEntity;
 import projectrts.model.world.INode;
@@ -16,8 +17,7 @@ import com.jme3.scene.shape.Box;
  */
 public enum SpatialFactory {INSTANCE;
 	
-	// TODO Markus: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
-	private HashMap<String, AbstractSpatial> spatialMap = new HashMap<String, AbstractSpatial>();
+	private Map<String, AbstractSpatial> spatialMap = new HashMap<String, AbstractSpatial>();
 	
 	static{
 		try

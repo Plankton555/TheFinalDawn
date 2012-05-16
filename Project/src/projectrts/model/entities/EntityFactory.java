@@ -1,6 +1,7 @@
 package projectrts.model.entities;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import projectrts.model.world.Position;
 
@@ -10,11 +11,8 @@ import projectrts.model.world.Position;
  *
  */
 public enum EntityFactory {INSTANCE;
-
-	// TODO Markus: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
-	private HashMap<String, PlayerControlledEntity> pceMap = new HashMap<String, PlayerControlledEntity>();
-	// TODO Markus: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
-	private HashMap<String, NonPlayerControlledEntity> npceMap = new HashMap<String, NonPlayerControlledEntity>();
+	private Map<String, PlayerControlledEntity> pceMap = new HashMap<String, PlayerControlledEntity>();
+	private Map<String, NonPlayerControlledEntity> npceMap = new HashMap<String, NonPlayerControlledEntity>();
 
 	/**
 	 * Registers a PlayerControlledEntity in the factory. Registering an entity enables
