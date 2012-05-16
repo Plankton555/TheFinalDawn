@@ -2,10 +2,11 @@ package projectrts.model.world;
 
 import java.util.List;
 
-
-
-
-
+/**
+ * An interface for a node.
+ * @author Bjorn Persson Mattsson
+ *
+ */
 public interface INode {
 	
 	/**

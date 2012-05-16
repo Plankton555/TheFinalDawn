@@ -54,6 +54,7 @@ public class GameView implements PropertyChangeListener{
     
     private boolean debugNodes = false; //TODO Markus: (Won't have time for this but adds it as a nonetheless) add a debug mode.
     
+  //TODO Markus: Add javadoc
 	public GameView(SimpleApplication app, IGame game) {
 		this.app = app;
 		this.game = game;
@@ -234,6 +235,7 @@ public class GameView implements PropertyChangeListener{
     	}
     }
     
+    //TODO Jakob: Add javadoc
     public void drawNodes(List<projectrts.model.world.INode> coveredNodes){
     	clearNodes();
     	for(projectrts.model.world.INode node: coveredNodes){
@@ -251,6 +253,7 @@ public class GameView implements PropertyChangeListener{
     	}
     }
     
+  //TODO Jakob: Add javadoc
     public void clearNodes(){
     	mouseEffects.detachAllChildren();
     }
@@ -267,8 +270,6 @@ public class GameView implements PropertyChangeListener{
 				removeDeadEntity((IEntity)evt.getOldValue());
 				drawSelected(game.getEntityManager().getSelectedEntities());
 			}
-		}
-		
-	}
-    
+		}	
+	}   
 }

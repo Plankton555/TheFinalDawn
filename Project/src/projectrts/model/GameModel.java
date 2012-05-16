@@ -65,6 +65,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 		return Node.isAnyNodeOccupied(nodes);
 	}
 	
+	// TODO Plankton: Add javadoc
 	public GameModel() {
 		world.initializeWorld();
 		

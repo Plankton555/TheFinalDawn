@@ -18,12 +18,14 @@ public class StrategicAI {
 	private final AbilityManager abilityManager;
 	private final EntityManager entityManager;
 	
+	// TODO Markus: Add javadoc
 	public StrategicAI(Player aiPlayer, AbilityManager abilityManager) {
 		this.aiPlayer = aiPlayer;
 		this.abilityManager = abilityManager;
 		this.entityManager = EntityManager.INSTANCE;
 	}
 	
+	// TODO Markus: Add javadoc
 	public void update(float tpf) {
 		if(cooldownRemaining <= 0) {
 			// TODO Markus: Save the EntityManager instance and use that instead of asking for it every time?

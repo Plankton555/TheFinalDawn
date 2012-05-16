@@ -300,6 +300,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		return output;
 	}
 	
+	@Override
 	public void setPropertyChangeLister(PropertyChangeListener pcl){
 		this.pcl = pcl;
 	}

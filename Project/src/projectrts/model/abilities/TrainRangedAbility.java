@@ -4,7 +4,7 @@ import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.Ranged;
 
 /**
- * A class that trains an Acrher
+ * A class that trains a ranged unit
  * @author Jakob Svensson
  *
  */

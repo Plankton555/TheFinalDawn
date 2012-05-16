@@ -9,10 +9,12 @@ import projectrts.model.entities.PlayerControlledEntity;
 public enum AbilityFactory {INSTANCE;
 	private Map<String, AbstractAbility> abilityMap = new HashMap<String, AbstractAbility>();
 	
+	// TODO Markus: Add javadoc
 	public void registerAbility(String abilityType, AbstractAbility ability) {
 		abilityMap.put(abilityType, ability);
 	}
 	
+	// TODO Markus: Add javadoc
 	public AbstractAbility createAbility(String abilityType, PlayerControlledEntity entity) {
 		AbstractAbility ability = abilityMap.get(abilityType);
 		if (ability == null)
@@ -29,6 +31,7 @@ public enum AbilityFactory {INSTANCE;
 		return nMovableAbility.createAbility(entity);
 	}
 	
+	// TODO Markus: Add javadoc
 	public AbstractAbility createUsingMoveAbility(String abilityType, PlayerControlledEntity entity, MoveAbility moveAbility) {
 		AbstractAbility ability = abilityMap.get(abilityType);
 		if (ability == null)

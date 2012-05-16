@@ -27,9 +27,13 @@ public abstract class AbstractStructure extends PlayerControlledEntity{
 	public boolean isDeposit() {
 		return deposit;
 	}
+	
+	// TODO Jakob: Add javadoc
 	public boolean trainingUnit(){
 		return trainingUnit;
 	}
+	
+	// TODO Jakob: Add javadoc
 	public void setTrainingUnit(boolean b){
 		trainingUnit = b;
 	}

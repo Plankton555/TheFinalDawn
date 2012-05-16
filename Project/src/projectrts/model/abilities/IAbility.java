@@ -1,5 +1,6 @@
 package projectrts.model.abilities;
 
+// TODO Anyone: Add javadoc
 public interface IAbility {
 	/**
 	 * Gets the name of the ability

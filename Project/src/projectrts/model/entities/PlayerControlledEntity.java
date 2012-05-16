@@ -21,6 +21,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	private boolean dead = false;
 	private State state = State.IDLE;
 	
+	//TODO Anyone: Add javadoc
 	public enum State{IDLE, BUSY};
 	
 	/**
@@ -34,6 +35,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		this.pcs = new PropertyChangeSupport(this);
 	}
 	
+	//TODO Markus: Add javadoc
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 	}
@@ -64,6 +66,7 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		}
 	}
 
+	//TODO Anyone: Add javadoc
 	public boolean isDead() {
 		return dead;
 	}
@@ -77,14 +80,17 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		return sightRange;
 	}
 	
+	@Override
 	public int getDamage() {
 		return damage;
 	}
 	
+	//TODO Jakob: Add javadoc
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
 	
+	//TODO Anyone: Add javadoc
 	public void setMaxHealth(int newMaxHealth) {
 		this.maxHealth = newMaxHealth;
 		this.currentHealth = newMaxHealth;
@@ -94,17 +100,21 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		this.sightRange = sightRange;
 	}
 	
+	//TODO Anyone: Add javadoc
 	public void setCurrentHealth(int newCurrentHealth) {
 		this.currentHealth = newCurrentHealth;
 	}
 	
+	//TODO Anyone: Add javadoc
 	public State getState() {
 		return this.state;
 	}
 	
+	//TODO Anyone: Add javadoc
 	public void setState(State state) {
 		this.state = state;
 	}
 
+	//TODO Anyone: Add javadoc
 	public abstract PlayerControlledEntity createPCE(Player aiPlayer, Position pos);
 }

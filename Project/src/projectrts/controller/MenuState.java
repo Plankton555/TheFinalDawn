@@ -37,6 +37,7 @@ public class MenuState extends AbstractAppState {
     	menuGuiController.addListener(pcl);
     }
 	
+	// TODO Afton: Add javadoc
 	public void addListener(PropertyChangeListener pcl) {
 		this.pcl = pcl;
 		

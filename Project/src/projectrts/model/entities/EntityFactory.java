@@ -65,6 +65,4 @@ public enum EntityFactory {INSTANCE;
 		}
 		return npceMap.get(npceType).createNPCE(pos);
 	}
-	
-
 }

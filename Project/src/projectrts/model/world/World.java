@@ -12,20 +12,6 @@ import se.chalmers.pebjorn.javautils.Math;
  */
 public enum World implements IWorld { INSTANCE;
 	
-	//private static World instance;
-	
-	private World() {}
-	
-	/*
-	public static World getInstance()
-	{
-		if (instance == null)
-		{
-			instance = new World();
-		}
-		return instance;
-	}
-	*/
 	/**
 	 * Initializes the world with specified height and width.
 	 * @param height Height.

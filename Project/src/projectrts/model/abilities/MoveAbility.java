@@ -134,6 +134,7 @@ implements INotUsingMoveAbility, ITargetAbility, AStarUser {
 		return newAbility;
 	}
 	
+	// TODO Plankton: Add javadoc
 	public void updateTarget(Position newTarget)
 	{
 		this.targetPosition = newTarget.copy();

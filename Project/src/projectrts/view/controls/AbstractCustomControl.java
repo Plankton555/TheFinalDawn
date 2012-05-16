@@ -6,6 +6,7 @@ import projectrts.model.world.Position;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.control.AbstractControl;
 
+//TODO Anyone: Add javadoc
 public abstract class AbstractCustomControl extends AbstractControl{
 
 	/**

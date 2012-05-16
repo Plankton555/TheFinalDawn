@@ -354,6 +354,7 @@ public class InGameGUIController implements ScreenController {
 	
 	}
 	
+	// TODO Afton: Add javadoc
 	public void buttonMouseLeave(String nr) {
 		int iNr = 0;
 		try{

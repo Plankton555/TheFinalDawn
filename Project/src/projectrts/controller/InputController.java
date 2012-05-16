@@ -57,7 +57,7 @@ public class InputController{
 	private static final float CAMERA_MOVE_MARGIN = 5f;
 	
 
-	
+	// TODO Markus: Add javadoc
 	public InputController(SimpleApplication app, IGame game, GameView view) {
 		this.app = app;
 		this.game = game;
@@ -345,6 +345,7 @@ public class InputController{
     	}
     }
     
+    // TODO Markus: Add javadoc
     public void addListener(PropertyChangeListener pcl){
     	pcs.addPropertyChangeListener(pcl);
     }

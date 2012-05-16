@@ -35,7 +35,6 @@ public class BuildBarracksAbility extends AbstractConstructAbility implements IU
 
 
 	@Override
-
 	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		BuildBarracksAbility newAbility = new BuildBarracksAbility();
 		newAbility.initialize(entity, moveAbility);

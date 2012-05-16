@@ -179,7 +179,7 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 		return null;
 	}
 	
-	// TODO Markus: Extraxt common code from getPlayerControlledEntityAtPosition and this method
+	// TODO Markus: Extract common code from getPlayerControlledEntityAtPosition and this method
 	@Override
 	public NonPlayerControlledEntity getNPCEAtPosition(Position pos){
 		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();

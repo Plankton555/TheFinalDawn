@@ -144,6 +144,7 @@ public class AStar {
 		private final int occupyingEntityID;
 		private final AStarUser astarUser;
 		
+		// TODO Plankton: Add javadoc
 		public PathCalculator(Position startPos, Position targetPos, int heuristicModifier,
 				int occupyingEntityID, AStarUser astarUser)
 		{

@@ -188,31 +188,37 @@ public class MenuGUIController implements ScreenController {
 		app.stop();
 	}
 
+	// TODO Afton: Add javadoc
 	public void buttonChangeClicked() {
 		difficultyPanel.show();
 		menuPanel.hide();
 	}
-
+	
+	// TODO Afton: Add javadoc
 	public void buttonEasyClicked() {
 		chosenDifficulty = Difficulty.EASY;
 		buttonCancelClicked();
 	}
 
+	// TODO Afton: Add javadoc
 	public void buttonMediumClicked() {
 		chosenDifficulty = Difficulty.MEDIUM;
 		buttonCancelClicked();
 	}
 
+	// TODO Afton: Add javadoc
 	public void buttonHardClicked() {
 		chosenDifficulty = Difficulty.HARD;
 		buttonCancelClicked();
 	}
 
+	// TODO Afton: Add javadoc
 	public void buttonNightmareClicked() {
 		chosenDifficulty = Difficulty.NIGHTMARE;
 		buttonCancelClicked();
 	}
 
+	// TODO Afton: Add javadoc
 	public void buttonCancelClicked() {
 		difficultyPanel.hide();
 		menuPanel.show();

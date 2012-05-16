@@ -2,8 +2,6 @@ package projectrts.model.world;
 
 import javax.vecmath.Vector2d;
 
-
-
 /**
  * A 2D position.
  * @author Bjorn Persson Mattsson

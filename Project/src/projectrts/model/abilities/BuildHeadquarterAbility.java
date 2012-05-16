@@ -35,7 +35,6 @@ public class BuildHeadquarterAbility extends AbstractConstructAbility implements
 
 
 	@Override
-
 	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
 		BuildHeadquarterAbility newAbility = new BuildHeadquarterAbility();
 		newAbility.initialize(entity, moveAbility);

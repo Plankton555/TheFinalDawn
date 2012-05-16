@@ -46,10 +46,9 @@ public enum ImageManager {
 		return images.get(name);
 	}
 	
+	// TODO Afton: Add javadoc
 	public void addImage(String key, String imagePath) {
 		images.put(key, engine.createImage(imagePath, false));
 	}
-
-
 }
 

@@ -9,8 +9,6 @@ import projectrts.model.entities.IPlayer;
 import projectrts.model.world.INode;
 import projectrts.model.world.IWorld;
 
-
-
 /**
  * 
  * @author Bjorn Persson Mattsson

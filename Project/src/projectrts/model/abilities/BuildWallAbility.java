@@ -38,6 +38,4 @@ public class BuildWallAbility extends AbstractConstructAbility implements IUsing
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;
 	}
-
-	
 }
