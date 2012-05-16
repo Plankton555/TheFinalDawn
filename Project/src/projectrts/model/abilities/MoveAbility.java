@@ -163,4 +163,9 @@ implements INotUsingMoveAbility, ITargetAbility, AStarUser {
 			waitingForPath = false;
 		}
 	}
+
+	@Override
+	public String getInfo() {
+		return "Moves to the selected position";
+	}
 }

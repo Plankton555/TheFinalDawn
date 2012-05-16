@@ -189,6 +189,11 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 			return (Position.getDistance(entity.getPosition(), target.getPosition()) < range  + (target.getSize()/2)*1.5);
 		}
 
+		@Override
+		public String getInfo() {
+			return "Delivers a resource";
+		}
+
 
 	}
 	
@@ -269,7 +274,17 @@ public class GatherResourceAbility extends AbstractAbility implements IUsingMove
 		{
 			return (Position.getDistance(entity.getPosition(), target.getPosition()) < range + (target.getSize()/2)*1.5);
 		}
+
+		@Override
+		public String getInfo() {
+			return "Fetches a resource";
+		}
 		
+	}
+
+	@Override
+	public String getInfo() {
+		return "Gathers a resource";
 	}
 	
 }

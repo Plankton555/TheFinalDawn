@@ -263,7 +263,7 @@ public class InGameGUIController implements ScreenController {
 		PanelBuilder builder = new PanelBuilder("Panel_Tooltip"){{
 			childLayoutVertical();
 			
-			width("150px");
+			width("200px");
 			height("60px");
 			backgroundColor("#FFFF");
 			visible(false);

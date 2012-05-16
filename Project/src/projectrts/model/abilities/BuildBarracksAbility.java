@@ -41,4 +41,9 @@ public class BuildBarracksAbility extends AbstractConstructAbility implements IU
 		return newAbility;
 	}
 
+	@Override
+	public String getInfo() {
+		return "Builds a new barrack.\nCost: "+buildCost;
+	}
+
 }

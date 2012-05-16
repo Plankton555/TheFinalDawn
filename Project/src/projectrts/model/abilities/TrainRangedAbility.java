@@ -39,4 +39,9 @@ public class TrainRangedAbility extends AbstractCreationAbility implements INotU
 		return newAbility;
 	}
 
+	@Override
+	public String getInfo() {
+		return "Trains a new Headquarter\nCost: " +buildCost;
+	}
+
 }

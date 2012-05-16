@@ -37,5 +37,10 @@ protected void initialize(PlayerControlledEntity entity) {
 		newAbility.initialize(entity);
 		return newAbility;
 	}
+	
+	@Override
+	public String getInfo() {
+		return "Builds a new Headquarter\nCost: " +buildCost;
+	}
 
 }

@@ -38,5 +38,10 @@ public class TrainWarriorAbility extends AbstractCreationAbility implements INot
 		newAbility.initialize(entity);
 		return newAbility;
 	}
+	
+	@Override
+	public String getInfo() {
+		return "Builds a new Headquarter\nCost: " +buildCost;
+	}
 
 }

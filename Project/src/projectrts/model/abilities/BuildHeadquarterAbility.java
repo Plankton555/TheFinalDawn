@@ -41,4 +41,9 @@ public class BuildHeadquarterAbility extends AbstractConstructAbility implements
 		return newAbility;
 	}
 
+	@Override
+	public String getInfo() {
+		return "Builds a new Headquarter\nCost: " +buildCost;
+	}
+
 }

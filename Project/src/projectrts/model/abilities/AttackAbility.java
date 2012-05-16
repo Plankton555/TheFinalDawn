@@ -94,5 +94,10 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 	{
 		return (Position.getDistance(entity.getPosition(), target.getPosition()) < range + (target.getSize()/2)*1.5);
 	}
+
+	@Override
+	public String getInfo() {
+		return "Attacks an enemy";
+	}
 	
 }

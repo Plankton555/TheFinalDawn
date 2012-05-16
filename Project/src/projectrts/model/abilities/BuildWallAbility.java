@@ -38,4 +38,10 @@ public class BuildWallAbility extends AbstractConstructAbility implements IUsing
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;
 	}
+	
+	@Override
+	public String getInfo() {
+		return "Builds a new Headquarter\nCost: " +buildCost;
+	}
+
 }

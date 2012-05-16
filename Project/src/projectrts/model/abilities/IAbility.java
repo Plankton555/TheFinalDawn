@@ -20,4 +20,10 @@ public interface IAbility {
 	 * @return the remaining cooldown
 	 */
 	public float getRemainingCooldown();
+	
+	/**
+	 * Gets the information about the ability
+	 * @return the information
+	 */
+	public String getInfo();
 }

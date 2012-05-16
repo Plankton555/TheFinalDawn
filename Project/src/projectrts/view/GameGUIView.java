@@ -270,7 +270,7 @@ public class GameGUIView implements PropertyChangeListener {
 			screen.layoutLayers();
 			
 			labelTooltipHeader.getRenderer(TextRenderer.class).setText(ability.getName());
-			labelTooltipInfo.getRenderer(TextRenderer.class).setText("ability.getInfo()");
+			labelTooltipInfo.getRenderer(TextRenderer.class).setText(ability.getInfo());
 		}
 	}
 }
