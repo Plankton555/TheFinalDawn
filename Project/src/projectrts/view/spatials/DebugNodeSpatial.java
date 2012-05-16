@@ -15,8 +15,6 @@ import com.jme3.scene.shape.Box;
  *
  */
 public final class DebugNodeSpatial extends AbstractSpatial implements INodeSpatial {
-	// TODO Jakob: PMD: Perhaps 'material' could be replaced by a local variable.
-	private Material material;
 	
 	static {
 		SpatialFactory.INSTANCE.registerSpatial(DebugNodeSpatial.class.getSimpleName(), new DebugNodeSpatial("DebugNodeSpatialCreator", new Box()));

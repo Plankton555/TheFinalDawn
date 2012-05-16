@@ -6,7 +6,6 @@ import projectrts.model.entities.IEntity;
 import projectrts.view.controls.ControlFactory;
 import projectrts.view.controls.MoveControl;
 
-import com.jme3.material.Material;
 import com.jme3.material.RenderState.BlendMode;
 import com.jme3.renderer.queue.RenderQueue.Bucket;
 import com.jme3.scene.shape.Box;
@@ -18,8 +17,7 @@ import com.jme3.texture.Texture;
  *
  */
 public final class BarracksSpatial extends AbstractSpatial implements IEntitySpatial{
-	// TODO Jakob: PMD: Perhaps 'material' could be replaced by a local variable.
-	private Material material;
+	
 	
 	static {
 		SpatialFactory.INSTANCE.registerSpatial(BarracksSpatial.class.getSimpleName(), new BarracksSpatial("HeadquarterSpatialCreator", new Box()));

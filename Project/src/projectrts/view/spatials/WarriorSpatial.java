@@ -17,8 +17,6 @@ import com.jme3.texture.Texture;
  *
  */
 public final class WarriorSpatial extends AbstractSpatial implements IEntitySpatial {
-	// TODO Jakob: PMD: Perhaps 'material' could be replaced by a local variable.
-	private Material material;
 	
 	static {
 		SpatialFactory.INSTANCE.registerSpatial(WarriorSpatial.class.getSimpleName(), new WarriorSpatial("UnitSpatialCreator", new Box()));

@@ -1,6 +1,7 @@
 package projectrts.io;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.asset.AssetManager;
@@ -13,8 +14,7 @@ import com.jme3.material.Material;
  */
 public enum MaterialManager {
 	INSTANCE;
-	// TODO Jakob: PMD: Avoid using implementation types like 'HashMap'; use the interface instead
-	private HashMap<String, Material> materials = new HashMap<String, Material>();
+	private Map<String, Material> materials = new HashMap<String, Material>();
 	
 	/**
 	 * Initializes the materials

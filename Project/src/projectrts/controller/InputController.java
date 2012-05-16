@@ -29,6 +29,7 @@ import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 
+
 /**
  * A class for handling all input.
  * @author Markus Ekström Modifed by Jakob Svensson
@@ -258,8 +259,10 @@ public class InputController{
     			view.clearNodes();
     	    	choosingTarget=false;
     		}else{
-    			// TODO Jakob: PMD: Avoid if (x != y) ..; else ..;
-	    		if(e!=null){
+	    		if(e==null){
+	    			doMoveAbility();	    			
+	    		}
+	    		else{	    			    			
 	    			if(e instanceof Resource){
 	    				game.getAbilityManager().useAbilitySelected(
 	    						GatherResourceAbility.class.getSimpleName(), click,
@@ -267,41 +270,28 @@ public class InputController{
 	    				
 	    			}else if(e instanceof PlayerControlledEntity){
 	    				PlayerControlledEntity pce = (PlayerControlledEntity) e;
-	    				// TODO Jakob: PMD: Avoid if (x != y) ..; else ..;
-	    				if(!pce.getOwner().equals(game.getHumanPlayer())){
+	    				if(pce.getOwner().equals(game.getHumanPlayer())){
+	    					doMoveAbility();	    					
+	    				}else{
 	    					game.getAbilityManager().useAbilitySelected(
 	    							AttackAbility.class.getSimpleName(), pce.getPosition(),
 	    							game.getHumanPlayer());
-	    				}else{
-	    					game.getAbilityManager().useAbilitySelected(
-	    							MoveAbility.class.getSimpleName(),InGameState.convertWorldToModel(
-	    	    					app.getCamera().getWorldCoordinates(
-	    	    							app.getInputManager().getCursorPosition(), 0)),
-	    	    							game.getHumanPlayer());
 	    				}
 	    			}else{
-	    				game.getAbilityManager().useAbilitySelected(
-	    						MoveAbility.class.getSimpleName(),InGameState.convertWorldToModel(
-		    					app.getCamera().getWorldCoordinates(
-		    							app.getInputManager().getCursorPosition(), 0)),
-		    							game.getHumanPlayer());
+	    				doMoveAbility();
 	    			}
-	    			
-	    		}
-	    		else{
-	    			game.getAbilityManager().useAbilitySelected(
-	    					MoveAbility.class.getSimpleName(),InGameState.convertWorldToModel(
-	    					app.getCamera().getWorldCoordinates(
-	    							app.getInputManager().getCursorPosition(), 0)),
-	    							game.getHumanPlayer());
 	    		}
     		}
     	}
     	
-    	private boolean isWithin(double p, double low, double high){
-    		// TODO Jakob: This method should be replaced by the one in imported JavaUtils
-    		return (p>=low && p<=high);
+    	private void doMoveAbility(){
+    		game.getAbilityManager().useAbilitySelected(
+					MoveAbility.class.getSimpleName(),InGameState.convertWorldToModel(
+					app.getCamera().getWorldCoordinates(
+							app.getInputManager().getCursorPosition(), 0)),
+							game.getHumanPlayer());
     	}
+    	
     	
     	private IEntity getEntityAtPosition(Position pos){
     		List<IEntity> entities = game.getEntityManager().getAllEntities();
@@ -310,8 +300,8 @@ public class InputController{
 				Position unitPos = entity.getPosition();
 				
 				//If the point is within the area of the unit
-				if(isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
-						&& isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
+				if(se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
+						&& se.chalmers.pebjorn.javautils.Math.isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
 					
 					return entity;
 					

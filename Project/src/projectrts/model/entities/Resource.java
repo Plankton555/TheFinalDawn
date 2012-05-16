@@ -10,8 +10,7 @@ import projectrts.model.world.Position;
 public class Resource extends NonPlayerControlledEntity{
 	
 	private static float size = 1;
-	// TODO Jakob: PMD: It is somewhat confusing to have a field name with the same name as a method
-	private static int mine = 4;
+	private static int mineAmount = 4;
 	static {
 		EntityFactory.INSTANCE.registerNPCE(Resource.class.getSimpleName(), new Resource());
 	}
@@ -38,7 +37,7 @@ public class Resource extends NonPlayerControlledEntity{
 	 * @return the amount of resources 
 	 */
 	public int mine(){
-		return mine;
+		return mineAmount;
 	}
 
 }

@@ -17,8 +17,6 @@ import com.jme3.texture.Texture;
  *
  */
 public final class RangedSpatial extends AbstractSpatial implements IEntitySpatial {
-	// TODO Jakob: PMD: Perhaps 'material' could be replaced by a local variable.
-	private Material material;
 	
 	static {
 		SpatialFactory.INSTANCE.registerSpatial(RangedSpatial.class.getSimpleName(), new RangedSpatial("UnitSpatialCreator", new Box()));

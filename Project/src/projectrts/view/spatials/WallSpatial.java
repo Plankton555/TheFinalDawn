@@ -18,8 +18,6 @@ import com.jme3.texture.Texture;
  *
  */
 public final class WallSpatial extends AbstractSpatial implements IEntitySpatial{
-	// TODO Jakob: PMD: Perhaps 'material' could be replaced by a local variable.
-	private Material material;
 	
 	static {
 		SpatialFactory.INSTANCE.registerSpatial(WallSpatial.class.getSimpleName(), new WallSpatial("BarracksSpatialCreator", new Box()));

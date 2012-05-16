@@ -46,8 +46,9 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 	@Override
 
 	public void useAbility(Position target) {
-		// TODO Jakob: PMD: Avoid if (x != y) ..; else ..;
-		if(!isActive()){
+		if(isActive()){
+			pcs.firePropertyChange("AlreadyTraining", null, null);			
+		}else{
 			Player owner = (Player)entity.getOwner();
 			if(owner.getResources()>=buildCost){
 				owner.modifyResource(-buildCost); 
@@ -57,8 +58,6 @@ public abstract class AbstractCreationAbility extends AbstractAbility{
 			}else{
 				pcs.firePropertyChange("NotEnoughResources", null, null);
 			}
-		}else{
-			pcs.firePropertyChange("AlreadyTraining", null, null);
 		}
 	}
 	

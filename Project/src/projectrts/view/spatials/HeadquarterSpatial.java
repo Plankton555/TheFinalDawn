@@ -18,8 +18,6 @@ import com.jme3.texture.Texture;
  *
  */
 public final class HeadquarterSpatial extends AbstractSpatial implements IEntitySpatial{
-	// TODO Jakob: PMD: Perhaps 'material' could be replaced by a local variable.
-	private Material material;
 	
 	static {
 		SpatialFactory.INSTANCE.registerSpatial(HeadquarterSpatial.class.getSimpleName(), new HeadquarterSpatial("HeadquarterSpatialCreator", new Box()));
