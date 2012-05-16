@@ -261,20 +261,25 @@ public class InGameGUIController implements ScreenController {
 	
 	private PanelBuilder createTooltipPanel(){
 		PanelBuilder builder = new PanelBuilder("Panel_Tooltip"){{
-			childLayoutCenter();
+			childLayoutVertical();
 			
 			width("150px");
-			height("20px");
+			height("60px");
 			backgroundColor("#FFFF");
 			visible(false);
 			
-			control(new LabelBuilder("Label_Tooltip"){{
+			control(new LabelBuilder("Label_TooltipHeader"){{
+				width("100%");
+				color("#F00F");
+				textVAlignTop();
+				
+			}});
+			
+			control(new LabelBuilder("Label_TooltipInfo"){{
 				width("100%");
 				height("100%");
 				color("#F00F");
-				text("LOTS OF TEXT HERE");
 				textVAlignTop();
-				
 			}});
 		}};
 		return builder;

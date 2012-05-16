@@ -260,7 +260,8 @@ public class GameGUIView implements PropertyChangeListener {
 		if(ability==null){
 			panelTooltip.hide();
 		} else {
-			Element labelTooltip = screen.findElementByName("Label_Tooltip");
+			Element labelTooltipHeader = screen.findElementByName("Label_TooltipHeader");
+			Element labelTooltipInfo = screen.findElementByName("Label_TooltipInfo");
 			panelTooltip.setVisible(true);
 			
 			panelTooltip.setConstraintX(new SizeValue(nifty.getNiftyMouse().getX()-panelTooltip.getWidth()+"px"));
@@ -268,7 +269,8 @@ public class GameGUIView implements PropertyChangeListener {
 			
 			screen.layoutLayers();
 			
-			labelTooltip.getRenderer(TextRenderer.class).setText(ability.getName());
+			labelTooltipHeader.getRenderer(TextRenderer.class).setText(ability.getName());
+			labelTooltipInfo.getRenderer(TextRenderer.class).setText("ability.getInfo()");
 		}
 	}
 }
