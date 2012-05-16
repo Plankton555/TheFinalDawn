@@ -138,12 +138,11 @@ public class AStar {
 	
 	private static class PathCalculator implements Runnable
 	{
-		// TODO Plankton: PMD: These private fields could be made final; they are only initialized in the declaration or constructor.
-		private Position startPos;
-		private Position targetPos;
-		private int heuristicModifier;
-		private int occupyingEntityID;
-		private AStarUser astarUser;
+		private final Position startPos;
+		private final Position targetPos;
+		private final int heuristicModifier;
+		private final int occupyingEntityID;
+		private final AStarUser astarUser;
 		
 		public PathCalculator(Position startPos, Position targetPos, int heuristicModifier,
 				int occupyingEntityID, AStarUser astarUser)

@@ -15,7 +15,6 @@ import projectrts.model.world.World;
  * @author Filip Brynfors, modified by Bjorn Persson Mattsson
  *
  */
-// TODO Plankton: PMD: This class has too many methods, consider refactoring it.
 public class MoveAbility extends AbstractAbility
 implements INotUsingMoveAbility, ITargetAbility, AStarUser {
 	private Position targetPosition;
@@ -58,13 +57,9 @@ implements INotUsingMoveAbility, ITargetAbility, AStarUser {
 
 	@Override
 	public void update(float tpf) {
-		if(isActive() && !isFinished()){
-			// TODO Plankton: PMD: These nested if statements could be combined
-			if (!waitingForPath)
-			{
-				moveToNewPosition(tpf);
-				checkIfFinished();
-			}
+		if(isActive() && !isFinished() && !waitingForPath){
+			moveToNewPosition(tpf);
+			checkIfFinished();
 		}
 	}
 	

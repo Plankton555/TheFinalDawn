@@ -36,12 +36,6 @@ public class EntityManagerTest {
 		assertTrue(EntityManager.INSTANCE.getSelectedEntities().size() == 0);
 		
 	}
-
-	@Test
-	public void testGetInstance()
-	{
-		// TODO Plankton Implement
-	}
 	
 	@Test
 	public void testGetEntitiesOfPlayer()
