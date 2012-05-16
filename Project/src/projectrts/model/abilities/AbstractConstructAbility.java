@@ -7,11 +7,11 @@ import projectrts.model.world.Position;
 import projectrts.model.world.World;
 
 /**
- * An ability for building Barracks
+ * An ability for handling constructions of buildings
  * @author Jakob Svensson
  *
  */
-public class AbstractConstructAbility extends AbstractAbility implements IUsingMoveAbility, IBuildStructureAbility {
+public abstract class AbstractConstructAbility extends AbstractAbility implements IUsingMoveAbility, IBuildStructureAbility {
 	private PlayerControlledEntity entity;
 	private float buildTime; 
 	private int buildCost; 
@@ -23,9 +23,6 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 	private String entityToTrain;
 	private Player owner;
 
-	static {
-		AbilityFactory.INSTANCE.registerAbility(AbstractConstructAbility.class.getSimpleName(), new AbstractConstructAbility());
-	}
 
 	/**
 	 * When subclassing, invoke this to initialize the ability.
@@ -80,13 +77,6 @@ public class AbstractConstructAbility extends AbstractAbility implements IUsingM
 		}else{
 			pcs.firePropertyChange("NotEnoughResources", null, null);
 		}
-	}
-
-	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
-		AbstractConstructAbility newAbility = new AbstractConstructAbility();
-		newAbility.initialize(entity, moveAbility);
-		return newAbility;
 	}
 
 	@Override
