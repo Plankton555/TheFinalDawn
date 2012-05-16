@@ -7,7 +7,6 @@ import java.util.List;
 import projectrts.io.ImageManager;
 import projectrts.model.IGame;
 import projectrts.model.abilities.IAbility;
-import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.elements.Element;

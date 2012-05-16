@@ -2,6 +2,9 @@ package projectrts.model.entities;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 import projectrts.model.GameModel;
@@ -15,6 +18,7 @@ public class EntityManagerTest {
 	public void testSelect() {
 		new GameModel();
 		Player player = new Player();
+		EntityManager.INSTANCE.resetData();
 		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(10,10));
 		Position onUnit = new Position(10, 10);
 		Position closeToUnit = new Position(9.5f, 9.5f);
@@ -40,24 +44,89 @@ public class EntityManagerTest {
 	@Test
 	public void testGetEntitiesOfPlayer()
 	{
-		// TODO Plankton Implement
+		new GameModel();
+		Player player = new Player();
+		EntityManager.INSTANCE.resetData();
+		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(10,10));
+		EntityManager.INSTANCE.update(1);
+		List<IPlayerControlledEntity> entities = EntityManager.INSTANCE.getEntitiesOfPlayer(player);
+		
+		assertTrue(entities.size() == 1);
+		for (IPlayerControlledEntity e : entities)
+		{
+			assertTrue(e.getOwner().equals(player));
+		}
+		
+		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(11,10));
+		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(12,10));
+		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(13,10));
+		EntityManager.INSTANCE.addNewPCE("Worker", new Player(),new Position(10,13));
+		EntityManager.INSTANCE.update(1);
+		entities = EntityManager.INSTANCE.getEntitiesOfPlayer(player);
+		
+		assertTrue(entities.size() == 4);
+		for (IPlayerControlledEntity e : entities)
+		{
+			assertTrue(e.getOwner().equals(player));
+		}
 	}
 	
 	@Test
 	public void testGetAllEntities()
 	{
-		// TODO Plankton Implement
+		new GameModel();
+		Player player = new Player();
+		EntityManager.INSTANCE.resetData();
+		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(10,10));
+		EntityManager.INSTANCE.update(1);
+		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();
+		
+		assertTrue(entities.size() == 1);
+		
+		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(11,10));
+		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(12,10));
+		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(13,10));
+		EntityManager.INSTANCE.addNewPCE("Worker", new Player(),new Position(10,13));
+		EntityManager.INSTANCE.update(1);
+		entities = EntityManager.INSTANCE.getAllEntities();
+		
+		assertTrue(entities.size() == 5);
 	}
 	
 	@Test
 	public void testRequestNewEntityID()
 	{
-		// TODO Plankton Implement
+		List<Integer> numbers = new ArrayList<Integer>();
+		int testAmount = 1000;
+		
+		for (int i=0; i<testAmount; i++)
+		{
+			int nr = EntityManager.INSTANCE.requestNewEntityID();
+			assertTrue(!numbers.contains(nr));
+			numbers.add(nr);
+		}
 	}
 	
 	@Test
 	public void testGetNearbyEntities()
 	{
-		// TODO Plankton Implement
+		new GameModel();
+		Player player = new Player();
+		EntityManager.INSTANCE.resetData();
+		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(10,10));
+		EntityManager.INSTANCE.update(1);
+		List<AbstractEntity> entities = EntityManager.INSTANCE.getNearbyEntities(new Position(15, 10), 2);
+		assertTrue(entities.size() == 0);
+		
+		entities = EntityManager.INSTANCE.getNearbyEntities(new Position(15, 10), 6);
+		assertTrue(entities.size() == 1);
+		
+		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(11,10));
+		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(12,10));
+		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(13,10));
+		EntityManager.INSTANCE.addNewPCE("Worker", new Player(),new Position(14,10));
+		EntityManager.INSTANCE.update(1);
+		entities = EntityManager.INSTANCE.getNearbyEntities(new Position(15, 10), 3);
+		assertTrue(entities.size() == 3);
 	}
 }
