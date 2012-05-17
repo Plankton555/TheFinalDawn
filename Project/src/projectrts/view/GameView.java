@@ -102,10 +102,8 @@ public class GameView implements PropertyChangeListener{
         matTerrain.setFloat("Tex3Scale", 128f);
      
         /** 2. Create the height map */
-        // TODO Jakob: Move declaration of 'heightmap' to where it actually gets a value
-        AbstractHeightMap heightmap = null;
         Texture heightMapImage = TextureManager.INSTANCE.getTexture("HeightMap");
-        heightmap = new ImageBasedHeightMap(heightMapImage.getImage());
+        AbstractHeightMap heightmap = new ImageBasedHeightMap(heightMapImage.getImage());
         heightmap.load();
      
         /** 3. We have prepared material and heightmap. 
