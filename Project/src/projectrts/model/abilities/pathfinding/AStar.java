@@ -96,13 +96,14 @@ public class AStar {
 	}
 	
 	/**
-	 * Calculates a path using the A* algorithm.
+	 * Calculates a path using the A* algorithm and sends it to the AStarUser.
 	 * @param startPos Start position.
 	 * @param targetPos End position.
 	 * @param heuristicModifier Default is 10. A high heuristic modifier results in faster
 	 * A* calculations but a more inaccurate path. A lower modifier results in slower
 	 * calculations but a more accurate and shorter path.
 	 * @param occupyingEntityID ID of occupying entity.
+	 * @param astarUser The AStarUser that will receive the path when it's calculated.
 	 * @return An AStarPath from startPos to targetPos.
 	 */
 	public static void calculatePath(Position startPos, Position targetPos, int heuristicModifier,
@@ -144,7 +145,16 @@ public class AStar {
 		private final int occupyingEntityID;
 		private final AStarUser astarUser;
 		
-		// TODO Plankton: Add javadoc
+		/**
+		 * Creates a path calculator with start parameters.
+		 * @param startPos Start position.
+		 * @param targetPos End position.
+		 * @param heuristicModifier Default is 10. A high heuristic modifier results in faster
+		 * A* calculations but a more inaccurate path. A lower modifier results in slower
+		 * calculations but a more accurate and shorter path.
+		 * @param occupyingEntityID ID of occupying entity.
+		 * @param astarUser The AStarUser that will receive the path when it's calculated.
+		 */
 		public PathCalculator(Position startPos, Position targetPos, int heuristicModifier,
 				int occupyingEntityID, AStarUser astarUser)
 		{

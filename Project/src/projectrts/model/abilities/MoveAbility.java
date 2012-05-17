@@ -134,7 +134,10 @@ implements INotUsingMoveAbility, ITargetAbility, AStarUser {
 		return newAbility;
 	}
 	
-	// TODO Plankton: Add javadoc
+	/**
+	 * Updates the target without calculating a new path right away.
+	 * @param newTarget The new target.
+	 */
 	public void updateTarget(Position newTarget)
 	{
 		this.targetPosition = newTarget.copy();

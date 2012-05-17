@@ -1,7 +1,14 @@
 package projectrts.model.abilities.pathfinding;
 
-//TODO Plankton: Add javadoc
+/**
+ * An object that is able to receive an AStarPath.
+ * @author Bjorn Persson Mattsson
+ *
+ */
 public interface AStarUser {
 
+	/**
+	 * @param path The calculated AStarPath.
+	 */
 	public void receivePath(AStarPath path);
 }
