@@ -188,25 +188,21 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	public void doAbility(String ability, Position pos, IPlayerControlledEntity entity) {
 		ArrayList<AbstractAbility> abilities = abilityListsMap.get(entity.getEntityID());
 		AbstractAbility toBeUsedAbility = null;
-		if(abilities != null) {
-			// TODO Markus: PMD: These nested if statements could be combined
-			if(!abilities.isEmpty()) {
-				for(AbstractAbility ownAbility: abilities){
-					// TODO Markus: PMD: Deeply nested if..then statements are hard to read
-					if(ownAbility.isActive()){
-						//Make sure that only one ability can be active at once
-						ownAbility.abortAbility();
-					}
-					// TODO Markus: PMD: Deeply nested if..then statements are hard to read
-					if(ability.equals(ownAbility.getClass().getSimpleName())){
-						toBeUsedAbility = ownAbility;
-					}
+		if(abilities != null && !abilities.isEmpty()) {
+			for(AbstractAbility ownAbility: abilities){
+				if(ownAbility.isActive()){
+					//Make sure that only one ability can be active at once
+					ownAbility.abortAbility();
 				}
-				// TODO Markus: PMD: Deeply nested if..then statements are hard to read
-				if(toBeUsedAbility != null) {
-					toBeUsedAbility.useAbility(pos);
+				
+				if(ability.equals(ownAbility.getClass().getSimpleName())){
+					toBeUsedAbility = ownAbility;
 				}
 			}
+		}
+		
+		if(toBeUsedAbility != null) {
+				toBeUsedAbility.useAbility(pos);
 		}
 	}
 	
