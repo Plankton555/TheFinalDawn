@@ -17,14 +17,10 @@ import projectrts.model.world.Position;
 public enum EntityManager implements IEntityManager{ INSTANCE;
 
 	//private static EntityManager instance = new EntityManager();
-	// TODO Markus: PMD: Private field 'allEntities' could be made final; it is only initialized in the declaration or constructor.
-	private List<AbstractEntity> allEntities = new ArrayList<AbstractEntity>();
-	// TODO Markus: PMD: Private field 'entitiesAddQueue' could be made final; it is only initialized in the declaration or constructor.
-	private List<AbstractEntity> entitiesAddQueue = new ArrayList<AbstractEntity>();
-	// TODO Markus: PMD: Private field 'entitiesRemoveQueue' could be made final; it is only initialized in the declaration or constructor.
-	private List<AbstractEntity> entitiesRemoveQueue = new ArrayList<AbstractEntity>();
-	// TODO Markus: PMD: Private field 'selectedEntities' could be made final; it is only initialized in the declaration or constructor.
-	private List<PlayerControlledEntity> selectedEntities = new ArrayList<PlayerControlledEntity>();
+	private final List<AbstractEntity> allEntities = new ArrayList<AbstractEntity>();
+	private final List<AbstractEntity> entitiesAddQueue = new ArrayList<AbstractEntity>();
+	private final List<AbstractEntity> entitiesRemoveQueue = new ArrayList<AbstractEntity>();
+	private final List<PlayerControlledEntity> selectedEntities = new ArrayList<PlayerControlledEntity>();
 	private int idCounter = 0;
 	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	

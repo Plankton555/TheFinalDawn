@@ -34,16 +34,11 @@ import com.jme3.texture.Texture.WrapMode;
  */
 // TODO Markus: PMD: This class has too many methods, consider refactoring it.
 public class GameView implements PropertyChangeListener{
-	// TODO Markus: PMD: Private field 'app' could be made final; it is only initialized in the declaration or constructor.
-	private SimpleApplication app;
-	// TODO Markus: PMD: Private field 'game' could be made final; it is only initialized in the declaration or constructor.
-	private IGame game;
-	// TODO Markus: PMD: Private field 'entities' could be made final; it is only initialized in the declaration or constructor.
-    private Node entities = new Node("entities"); // The node for all entities
-    // TODO Markus: PMD: Private field 'selected' could be made final; it is only initialized in the declaration or constructor.
-    private Node selected = new Node("selected"); // The node for the selected graphics
- // TODO Markus: PMD: Private field 'debug' could be made final; it is only initialized in the declaration or constructor.
-    private Node debug = new Node("debug"); // The node for the debugging graphics
+	private final SimpleApplication app;
+	private final IGame game;
+    private final Node entities = new Node("entities"); // The node for all entities
+    private final Node selected = new Node("selected"); // The node for the selected graphics
+    private final Node debug = new Node("debug"); // The node for the debugging graphics
     private Node terrainNode = new Node("terrain"); // The node for all terrain
     private Node mouseEffects = new Node("mouseEffects"); // The node for mouseEffects
     // TODO Markus: PMD: Perhaps 'matTerrain' could be replaced by a local variable.

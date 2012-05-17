@@ -12,12 +12,9 @@ import projectrts.model.entities.PlayerControlledEntity;
 
 // TODO Markus: ADD JAVADOC!
 public class AIManager implements PropertyChangeListener{
-	// TODO Markus: PMD: Private field 'abilityManager' could be made final; it is only initialized in the declaration or constructor.
-	private AbilityManager abilityManager;
-	// TODO Markus: PMD: Private field 'stratAI' could be made final; it is only initialized in the declaration or constructor.
-	private StrategicAI stratAI;
-	// TODO Markus: PMD: Private field 'microAIs' could be made final; it is only initialized in the declaration or constructor.
-	private List<MicroAI> microAIs = new ArrayList<MicroAI>();
+	private final AbilityManager abilityManager;
+	private final StrategicAI stratAI;
+	private final List<MicroAI> microAIs = new ArrayList<MicroAI>();
 	
 	public AIManager(Player aiPlayer, AbilityManager abilityManager) {
 		this.abilityManager = abilityManager;

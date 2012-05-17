@@ -156,8 +156,7 @@ public class InputController{
      * values, not just "on" and "off". 
      * 
      */
-    // TODO Markus: PMD: Private field 'analogListener' could be made final; it is only initialized in the declaration or constructor.
-    private AnalogListener analogListener = new AnalogListener() {
+    private final AnalogListener analogListener = new AnalogListener() {
     	// TODO Markus: PMD: The method onAnalog() has an NPath complexity of 487
     	// TODO Markus: PMD: The method 'onAnalog' has a Cyclomatic Complexity of 16.
 	    public void onAnalog(String name, float value, float tpf) {
@@ -202,8 +201,7 @@ public class InputController{
      * A digital listener, use if the input is digital - i.e. it can only
      * be either "on" or "off".
      */
-    // TODO Markus: PMD: Private field 'actionListener' could be made final; it is only initialized in the declaration or constructor.
-    private ActionListener actionListener = new ActionListener() {
+    private final ActionListener actionListener = new ActionListener() {
     	// TODO Markus: PMD: The method 'onAction' has a Cyclomatic Complexity of 10.
     	public void onAction(String name, boolean keyPressed, float tpf) {
     		if (name.equals("exit") && keyPressed) {
