@@ -30,7 +30,7 @@ import projectrts.model.world.World;
  * @author Markus Ekström, modified by Bjorn Persson Mattsson
  *
  */
-// TODO Markus: PMD: The class 'AbilityManager' has a Cyclomatic Complexity of 4 (Highest = 11).
+// TODO Markus: Add javadoc!
 public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	private final Map<String, ArrayList<AbstractAbility>> abilityReferenceMap =
 			new HashMap<String, ArrayList<AbstractAbility>>();
@@ -229,61 +229,63 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 
 
 	@Override
-	// TODO Markus: PMD: The method 'propertyChange' has a Cyclomatic Complexity of 11.
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getNewValue() instanceof PlayerControlledEntity) {
-			PlayerControlledEntity pce = (PlayerControlledEntity)evt.getNewValue();
-			ArrayList<AbstractAbility> abilitiesReferenceList =
-					abilityReferenceMap.get(pce.getClass().getSimpleName());
-			ArrayList<AbstractAbility> abilities = new ArrayList<AbstractAbility>();
-			if(abilitiesReferenceList != null) {
-				// TODO Markus: PMD: These nested if statements could be combined
-				if(!abilitiesReferenceList.isEmpty()) {
-					if(evt.getNewValue() instanceof AbstractUnit) {
-						MoveAbility moveAbility =
-								(MoveAbility) AbilityFactory.INSTANCE.createAbility(
-										MoveAbility.class.getSimpleName(), pce);
-						for(AbstractAbility ability : abilitiesReferenceList) {
-							// TODO Markus: PMD: Deeply nested if..then statements are hard to read
-							if(ability instanceof IUsingMoveAbility) {
-								abilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(
-										ability.getClass().getSimpleName(), pce, moveAbility));
-							} else {
-								abilities.add(AbilityFactory.INSTANCE.createAbility(
-										ability.getClass().getSimpleName(), pce));
-							}
-							abilities.get(abilities.size()-1).addListener(pcl);
-						}
-						abilities.add(moveAbility);
-					} else {
-						for(AbstractAbility ability : abilitiesReferenceList) {
-							abilities.add(AbilityFactory.INSTANCE.createAbility(
-									ability.getClass().getSimpleName(), pce));
-							abilities.get(abilities.size()-1).addListener(pcl);
-						}
-					}
-				}
-			}
-			
-			abilityListsMap.put(pce.getEntityID(), abilities);
+			addAbilitiesToEntity((PlayerControlledEntity) evt.getNewValue());
 		}
 		
 		if(evt.getOldValue() instanceof PlayerControlledEntity) {
-			PlayerControlledEntity pce = (PlayerControlledEntity) evt.getOldValue();
-			ArrayList<AbstractAbility> abilities = abilityListsMap.get(pce.getEntityID());
-			INode occupiedNode = World.INSTANCE.getNodeAt(pce.getPosition());
-			for(AbstractAbility ability: abilities){
-				ability.abortAbility();
-				if (ability instanceof MoveAbility)
-				{
-					MoveAbility mAbility = (MoveAbility) ability;
-					occupiedNode = mAbility.getOccupiedNode();
-				}
-			}
-			World.INSTANCE.setNodesOccupied(occupiedNode, pce.getSize(), 0);
-			
-			abilityListsMap.remove(pce.getEntityID());
+			removeDeadAbilities((PlayerControlledEntity) evt.getOldValue());
 		}
+	}
+	
+	private void addAbilitiesToEntity(PlayerControlledEntity pce) {
+		ArrayList<AbstractAbility> abilitiesReferenceList =
+				abilityReferenceMap.get(pce.getClass().getSimpleName());
+		ArrayList<AbstractAbility> abilities = new ArrayList<AbstractAbility>();
+		
+		if(abilitiesReferenceList != null && !abilitiesReferenceList.isEmpty() && pce instanceof AbstractUnit) {
+			MoveAbility moveAbility =
+					(MoveAbility) AbilityFactory.INSTANCE.createAbility(
+							MoveAbility.class.getSimpleName(), pce);
+			for(AbstractAbility ability : abilitiesReferenceList) {
+				
+				if(ability instanceof IUsingMoveAbility) {
+					abilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(
+							ability.getClass().getSimpleName(), pce, moveAbility));
+				} else {
+					abilities.add(AbilityFactory.INSTANCE.createAbility(
+							ability.getClass().getSimpleName(), pce));
+				}
+				
+				abilities.get(abilities.size()-1).addListener(pcl);
+			}
+			
+			abilities.add(moveAbility);
+		} else {
+			for(AbstractAbility ability : abilitiesReferenceList) {
+				abilities.add(AbilityFactory.INSTANCE.createAbility(
+						ability.getClass().getSimpleName(), pce));
+				abilities.get(abilities.size()-1).addListener(pcl);
+			}
+		}
+		abilityListsMap.put(pce.getEntityID(), abilities);
+	}
+	
+	private void removeDeadAbilities(PlayerControlledEntity pce) {
+		ArrayList<AbstractAbility> abilities = abilityListsMap.get(pce.getEntityID());
+		INode occupiedNode = World.INSTANCE.getNodeAt(pce.getPosition());
+		for(AbstractAbility ability: abilities){
+			ability.abortAbility();
+			if (ability instanceof MoveAbility)
+			{
+				MoveAbility mAbility = (MoveAbility) ability;
+				occupiedNode = mAbility.getOccupiedNode();
+			}
+		}
+		World.INSTANCE.setNodesOccupied(occupiedNode, pce.getSize(), 0);
+		
+		abilityListsMap.remove(pce.getEntityID());
 	}
 
 	@Override
