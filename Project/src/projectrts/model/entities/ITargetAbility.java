@@ -1,5 +1,9 @@
 package projectrts.model.entities;
-//TODO Anyone: Add javadoc
+/**
+ * An interface for the targetable abilities
+ * @author Jakob Svensson
+ *
+ */
 public interface ITargetAbility {
 
 }

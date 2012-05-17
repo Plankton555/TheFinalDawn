@@ -22,7 +22,7 @@ public class Player implements IPlayer{
 		pcs = new PropertyChangeSupport(this);
 	}
 	
-	//TODO Jakob: Add javadoc
+	@Override
 	public int getResources(){
 		return resources; 
 	}
@@ -36,7 +36,7 @@ public class Player implements IPlayer{
 		pcs.firePropertyChange("ResourceChange", resources-amount, resources);
 	}
 
-	//TODO Jakob: Add javadoc
+	@Override
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 		

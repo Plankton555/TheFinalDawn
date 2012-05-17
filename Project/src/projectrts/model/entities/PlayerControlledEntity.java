@@ -21,7 +21,11 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 	private boolean dead = false;
 	private State state = State.IDLE;
 	
-	//TODO Anyone: Add javadoc
+	/**
+	 * A state for showing if the pce is busy or idle
+	 * @author Markus Ekström
+	 *
+	 */
 	public enum State{IDLE, BUSY};
 	
 	/**
@@ -66,7 +70,10 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		}
 	}
 
-	//TODO Anyone: Add javadoc
+	/**
+	 * Returns whether the pce is dead or not
+	 * @return true if dead, false otherwise
+	 */
 	public boolean isDead() {
 		return dead;
 	}
@@ -85,13 +92,16 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		return damage;
 	}
 	
-	//TODO Jakob: Add javadoc
+	/**
+	 * Sets the amount damage that the pce deals with each hit
+	 * @param damage the new damage
+	 */
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
 	
-	//TODO Anyone: Add javadoc
-	public void setMaxHealth(int newMaxHealth) {
+
+	protected void setMaxHealth(int newMaxHealth) {
 		this.maxHealth = newMaxHealth;
 		this.currentHealth = newMaxHealth;
 	}
@@ -100,21 +110,35 @@ public abstract class PlayerControlledEntity extends AbstractEntity implements I
 		this.sightRange = sightRange;
 	}
 	
-	//TODO Anyone: Add javadoc
+	/**
+	 * Sets the current health of the pce
+	 * @param newCurrentHealth the new health
+	 */
 	public void setCurrentHealth(int newCurrentHealth) {
 		this.currentHealth = newCurrentHealth;
 	}
 	
-	//TODO Anyone: Add javadoc
+	/**
+	 * Returns which state the pce is in
+	 * @return the current state
+	 */
 	public State getState() {
 		return this.state;
 	}
 	
-	//TODO Anyone: Add javadoc
+	/**
+	 * Sets the current state of the pec
+	 * @param state the new state
+	 */
 	public void setState(State state) {
 		this.state = state;
 	}
 
-	//TODO Anyone: Add javadoc
-	public abstract PlayerControlledEntity createPCE(Player aiPlayer, Position pos);
+	/**
+	 * Creates a new Player Controlled Entity
+	 * @param player the owner of the pce
+	 * @param pos the spawn position
+	 * @return the new pce
+	 */
+	public abstract PlayerControlledEntity createPCE(Player player, Position pos);
 }

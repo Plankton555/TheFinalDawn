@@ -2,13 +2,23 @@ package projectrts.model.entities;
 
 import java.beans.PropertyChangeListener;
 
-//TODO Anyone: Add javadoc
+/**
+ * An interface for the Players
+ * @author Filip Brynfors
+ *
+ */
 public interface IPlayer {
 
-	//TODO Anyone: Add javadoc
+	/**
+	 * Adds a listener to the player
+	 * @param pcl the listener
+	 */
 	public void addListener(PropertyChangeListener pcl);
 
-	//TODO Anyone: Add javadoc
+	/**
+	 * Returns the amount of resources the player has
+	 * @return the amount of resources
+	 */
 	public int getResources();
 
 }
