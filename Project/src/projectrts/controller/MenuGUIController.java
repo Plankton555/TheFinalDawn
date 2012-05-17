@@ -4,16 +4,14 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 import projectrts.model.Difficulty;
+import projectrts.view.MenuGUICreator;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 
 import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.builder.LayerBuilder;
-import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.ScreenBuilder;
 import de.lessvoid.nifty.controls.Button;
-import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
 import de.lessvoid.nifty.elements.Element;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
@@ -24,7 +22,6 @@ import de.lessvoid.nifty.screen.ScreenController;
  * @author Filip Brynfors
  * 
  */
-// TODO Afton: PMD: This class has too many methods, consider refactoring it.
 public class MenuGUIController implements ScreenController {
 	private final SimpleApplication app;
 	private final Nifty nifty;
@@ -68,20 +65,12 @@ public class MenuGUIController implements ScreenController {
 
 		nifty.addScreen("Screen_StartMenu",new ScreenBuilder("GUI Start Menu") {{
 			controller(MenuGUIController.this);
-			layer(new LayerBuilder("Layer_DifficultyPopup") {{
-				childLayoutCenter();
-				panel(createDifficultyPopupPanel());
-			}}); // </layer>
+			layer(MenuGUICreator.createDifficultyPopupLayer()); // </layer>
 
 			// <layer>
-			layer(new LayerBuilder("Layer_Menu") {{
-				childLayoutCenter();
-				panel(createMenuPanel());
-				
-			}});// </layer>
+			layer(MenuGUICreator.createMainLayer());
 
 		}}.build(nifty));
-		// </screen>
 
 		nifty.gotoScreen("Screen_StartMenu"); // start the screen
 
@@ -94,83 +83,6 @@ public class MenuGUIController implements ScreenController {
 		changeDifficultyButton = screen.findNiftyControl("Button_ChangeDifficulty", Button.class);
 
 		updateDifficultyText();
-	}
-
-	private PanelBuilder createDifficultyPopupPanel() {
-		PanelBuilder builder = new PanelBuilder("Panel_DifficultyPopup") {{
-			childLayoutCenter();
-			width("100%");
-			height("100%");
-			visible(false);
-			
-			panel(new PanelBuilder("PanelDifficultyCenter") {{
-				childLayoutVertical();
-
-				control(new ButtonBuilder("Button_Easy", "Easy") {{
-					alignCenter();
-					interactOnClick("buttonEasyClicked()");
-				}});
-
-				control(new ButtonBuilder("Button_Medium", "Medium") {{
-					alignCenter();
-					interactOnClick("buttonMediumClicked()");
-				}});
-
-				control(new ButtonBuilder("Button_Hard", "Hard") {{
-					alignCenter();
-					interactOnClick("buttonHardClicked()");
-				}});
-
-				control(new ButtonBuilder("Button_Nightmare","Nightmare") {{
-					alignCenter();
-					interactOnClick("buttonNightmareClicked()");
-				}});
-
-				panel(new PanelBuilder("Panel_Spacer") {{
-					childLayoutCenter();
-					height("10px");
-				}});
-
-				control(new ButtonBuilder("Button_Cancel", "Cancel") {{
-					alignCenter();
-					interactOnClick("buttonCancelClicked()");
-				}});
-			}});
-		}};
-
-		return builder;
-	}
-
-	private PanelBuilder createMenuPanel() {
-		PanelBuilder builder = new PanelBuilder("Panel_Menu") {{
-			childLayoutVertical();
-			valignCenter();
-			width("150px");
-			
-			// GUI elements
-			control(new ButtonBuilder("Button_Start", "Start Game") {{
-				width("100%");
-				alignCenter();
-				interactOnClick("buttonStartClicked()");
-			}});
-			control(new ButtonBuilder("Button_ChangeDifficulty") {{
-				width("100%");
-				alignCenter();
-				interactOnClick("buttonChangeClicked()");	
-			}});
-				
-			panel(new PanelBuilder("Panel_Spacer") {{
-				childLayoutCenter();
-				height("10px");
-			}});
-		
-			control(new ButtonBuilder("Button_Exit", "Exit Game") {{
-				width("100%");
-				alignCenter();
-				interactOnClick("buttonExitClicked()");
-			}});
-		}};
-		return builder;
 	}
 
 	/**

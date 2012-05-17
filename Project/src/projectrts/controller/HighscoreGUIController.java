@@ -3,15 +3,13 @@ package projectrts.controller;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import projectrts.view.HighScoreGUICreator;
+
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 
 import de.lessvoid.nifty.Nifty;
-import de.lessvoid.nifty.builder.LayerBuilder;
-import de.lessvoid.nifty.builder.PanelBuilder;
 import de.lessvoid.nifty.builder.ScreenBuilder;
-import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
-import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
 import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 
@@ -55,45 +53,14 @@ public class HighscoreGUIController implements ScreenController {
 	}
 	
 	private void initializeGUI() {    
-
-	    nifty.addScreen("Screen_Highscore", new ScreenBuilder("GUI Highscore"){{
-	        controller(HighscoreGUIController.this); // Screen properties       
-	 
-	        // <layer>
-	        layer(new LayerBuilder("Layer_ID") {{
-	            childLayoutCenter(); // layer properties, add more...
-	 
-	            // <panel>
-	            panel(new PanelBuilder("Panel_GUI") {{
-	               childLayoutVertical();            
-	               valignCenter();
-
-		                // GUI elements
-	               		control(new LabelBuilder("Label_Score"){{
-	               			width("100%");
-	               			int min = (int) (time/60);
-	               			int sec = (int) (time%60);
-	               			text("Congratulations!\nYou managed to survive "+min+" minutes and "+sec+" seconds!");
-	               		}});
-	               		
-	               		
-		                control(new ButtonBuilder("Button_Menu", "Back to Menu"){{
-		                	alignCenter();
-			                interactOnClick("buttonRestartClicked()");
-			            }}); 
-		                control(new ButtonBuilder("Button_Exit", "Exit Game"){{
-		                	alignCenter();
-			                interactOnClick("buttonExitClicked()");
-			            }}); 
-		                
-	              }});
-	            // </panel>
-	          }});
-	        // </layer>
-	      }}.build(nifty));
-	    // </screen>
-	    
-	    nifty.gotoScreen("Screen_Highscore"); // start the screen	
+	
+		nifty.addScreen("Screen_Highscore", new ScreenBuilder("GUI Highscore"){{
+			controller(HighscoreGUIController.this);
+			
+			layer(HighScoreGUICreator.createMainLayer(time));
+		}}.build(nifty));
+		
+		nifty.gotoScreen("Screen_Highscore");
 	}
 	
 	/**
