@@ -19,9 +19,11 @@ public class AStarPathTest {
 		AStarNode aNode2 = new AStarNode(node2);
 		AStarPath path = new AStarPath();
 		
+		assertTrue(path.isEmpty());
 		assertTrue(path.nrOfNodesLeft() == 0);
 		path.addNodeToPath(aNode1);
 		assertTrue(path.getNextNode().getPosition().equals(p1));
+		assertTrue(!path.isEmpty());
 		assertTrue(path.nrOfNodesLeft() == 1);
 		path.addNodeToPath(aNode2);
 		assertTrue(path.getNextNode().getPosition().equals(p2));
@@ -29,5 +31,7 @@ public class AStarPathTest {
 		path.removeNodeFromPath();
 		assertTrue(path.getNextNode().getPosition().equals(p1));
 		assertTrue(path.nrOfNodesLeft() == 1);
+		path.removeNodeFromPath();
+		assertTrue(path.isEmpty());
 	}
 }

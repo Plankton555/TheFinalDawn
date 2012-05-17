@@ -118,6 +118,12 @@ public class AStarNodeTest {
 		aNode9.calculateCostFromStart(aNode8, false);
 		assertTrue(aNode9.getCostFromStart() == 24);
 	}
+	
+	@Test
+	public void testGetTotalCost()
+	{
+		// TODO Plankton: Implement
+	}
 
 	@Test
 	public void testGetPosition() {
@@ -174,5 +180,10 @@ public class AStarNodeTest {
 		node1.setOccupied(0);
 		assertTrue(!aNode1.isObstacle(2));
 	}
-
+	
+	@Test
+	public void testGetNode()
+	{
+		// TODO Plankton: Implement
+	}
 }
