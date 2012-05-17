@@ -7,7 +7,6 @@ import projectrts.model.entities.IEntity;
 import projectrts.model.world.INode;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.controls.NodeControl;
-import projectrts.view.controls.SelectControl;
 
 import com.jme3.scene.shape.Box;
 /**
@@ -24,7 +23,6 @@ public enum SpatialFactory {INSTANCE;
 		{
 			// Initialize the control classes.
 			Class.forName(MoveControl.class.getName());
-			Class.forName(SelectControl.class.getName());
 			Class.forName(NodeControl.class.getName());
 			
 			// Initialize the spatial classes.

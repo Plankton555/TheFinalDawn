@@ -4,7 +4,7 @@ import projectrts.io.MaterialManager;
 import projectrts.io.TextureManager;
 import projectrts.model.entities.IEntity;
 import projectrts.view.controls.ControlFactory;
-import projectrts.view.controls.SelectControl;
+import projectrts.view.controls.MoveControl;
 
 import com.jme3.material.RenderState.BlendMode;
 import com.jme3.renderer.queue.RenderQueue.Bucket;
@@ -44,7 +44,7 @@ public final class SelectSpatial extends AbstractSpatial implements IEntitySpati
 		SelectSpatial newSpatial = new SelectSpatial(name, box);
 		newSpatial.setMaterial(material);
 		newSpatial.setQueueBucket(Bucket.Transparent);
-		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(SelectControl.class.getSimpleName(), entity));
+		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(MoveControl.class.getSimpleName(), entity));
 		
 		return newSpatial;
 	}
