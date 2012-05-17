@@ -50,8 +50,6 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 		for (AbstractEntity e : entitiesAddQueue){
 			allEntities.add(e);
 			pcs.firePropertyChange("entityCreated", null, e);
-			
-			
 		}
 		
 		for (AbstractEntity e : entitiesRemoveQueue) {
@@ -70,7 +68,6 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 	@Override
 	public List<IPlayerControlledEntity> getEntitiesOfPlayer(IPlayer player)
 	{
-		
 		List<IPlayerControlledEntity> output = new ArrayList<IPlayerControlledEntity>();
 		for (AbstractEntity e : allEntities)
 		{
@@ -141,7 +138,6 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();
 		for(IEntity entity: entities){
 			if(entity instanceof PlayerControlledEntity){
-				
 				float unitSize = entity.getSize();
 				Position unitPos = entity.getPosition();
 				
@@ -149,12 +145,10 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 				if(se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(), unitPos.getX()-unitSize/2, unitPos.getX()+unitSize/2)
 						&& se.chalmers.pebjorn.javautils.Math.isWithin(pos.getY(), unitPos.getY()-unitSize/2, unitPos.getY() + unitSize/2)){
 					return (PlayerControlledEntity) entity;
-					
 				}
 			}
 		}
 		return null;
-		
 	}
 	
 	/**
@@ -180,7 +174,6 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();
 		for(IEntity entity: entities){
 			if(entity instanceof NonPlayerControlledEntity){
-				
 				float unitSize = entity.getSize();
 				Position unitPos = entity.getPosition();
 				
@@ -240,7 +233,6 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 				ans = true;
 			}
 		}
-		
 		return ans;
 	}
 	
@@ -253,8 +245,6 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 	 */
 	public List<AbstractEntity> getNearbyEntities(Position position, float range)
 	{
-		// Preliminary method. May need to be changed to optimize.
-		
 		List<AbstractEntity> output = new ArrayList<AbstractEntity>();
 		
 		for (AbstractEntity e : allEntities)
@@ -289,7 +279,6 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 				}
 			}
 		}
-		
 		return closestPCE;
 	}
 	
@@ -315,7 +304,6 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 				}
 			}
 		}
-		
 		return closestEnemyStruct;
 	}
 	
