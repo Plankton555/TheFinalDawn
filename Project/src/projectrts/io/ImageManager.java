@@ -46,7 +46,11 @@ public enum ImageManager {
 		return images.get(name);
 	}
 	
-	// TODO Afton: Add javadoc
+	/**
+	 * Creates an image and stores it
+	 * @param key the key to getting the image
+	 * @param imagePath the path for the file of the imagefile
+	 */
 	public void addImage(String key, String imagePath) {
 		images.put(key, engine.createImage(imagePath, false));
 	}

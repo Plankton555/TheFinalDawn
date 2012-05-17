@@ -41,17 +41,17 @@ public class HighscoreGUIController implements ScreenController {
 	
 	@Override
 	public void bind(Nifty nifty, Screen screen) {
-		// TODO Afton: PMD: Document empty method
+		
 	}
 
 	@Override
 	public void onEndScreen() {
-		// TODO Afton: PMD: Document empty method
+		
 	}
 
 	@Override
 	public void onStartScreen() {
-		// TODO Afton: PMD: Document empty method
+		
 	}
 	
 	private void initializeGUI() {    

@@ -23,7 +23,7 @@ public class MenuState extends AbstractAppState {
 	 * @param appController the appController
 	 */
     public MenuState(Nifty nifty) {
-    	// TODO Afton: PMD: It is a good practice to call super() in a constructor
+    	super();
 		this.nifty = nifty;
 	}
 
@@ -37,7 +37,10 @@ public class MenuState extends AbstractAppState {
     	menuGuiController.addListener(pcl);
     }
 	
-	// TODO Afton: Add javadoc
+	/**
+	 * Adds a listener to the Menu State
+	 * @param pcl the listener
+	 */
 	public void addListener(PropertyChangeListener pcl) {
 		this.pcl = pcl;
 		

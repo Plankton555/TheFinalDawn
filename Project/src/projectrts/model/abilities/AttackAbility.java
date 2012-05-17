@@ -38,14 +38,14 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 	@Override
 	public void useAbility(Position pos){
 		target = EntityManager.INSTANCE.getPCEAtPosition(pos);
-		// TODO Afton: PMD: Avoid if (x != y) ..; else ..;
-		if(target!=null){
+
+		if(target==null){
+			pcs.firePropertyChange("TargetNotPCE", null, null);
+		} else {
 			AbstractUnit au = (AbstractUnit)entity;
 			range = au.getAttackRange();
 			setActive(true);
 			setFinished(false);
-		}else{
-			pcs.firePropertyChange("TargetNotPCE", null, null);
 		}
 	}
 
@@ -61,22 +61,14 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 				moveAbility.abortAbility();
 				if(getRemainingCooldown()<=0){
 					
-					target.dealDamageTo(entity.getDamage());
-					this.setAbilityUsed();
-			
-					// TODO Afton: PMD: Deeply nested if..then statements are hard to read
-					if(target.getCurrentHealth() == 0) {
-						this.setFinished(true);
-					}
+					dealDamage();
 				}
 			} else {
 				//Out of range
 				
 				if(moveAbility.isActive()){
 					moveAbility.updateTarget(target.getPosition());
-				}
-				else
-				{
+				} else {
 					moveAbility.useAbility(target.getPosition());
 				}
 			}
@@ -90,9 +82,17 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 		return newAbility;
 	}
 
-	private boolean inRange(IPlayerControlledEntity target)
-	{
+	private boolean inRange(IPlayerControlledEntity target){
 		return (Position.getDistance(entity.getPosition(), target.getPosition()) < range + (target.getSize()/2)*1.5);
+	}
+	
+	private void dealDamage(){
+		target.dealDamageTo(entity.getDamage());
+		this.setAbilityUsed();
+
+		if(target.getCurrentHealth() == 0) {
+			this.setFinished(true);
+		}
 	}
 
 	@Override

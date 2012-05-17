@@ -36,8 +36,7 @@ public class InGameGUIController implements ScreenController {
 	
 	private IPlayerControlledEntity selectedPce;
 	private int showingTooltipID = 0;
-	// TODO Afton: PMD: Private field 'labelColor' could be made final; it is only initialized in the declaration or constructor.
-	private String greenColor = "#0F0F";
+	private final String greenColor = "#0F0F";
 
 	/**
 	 * Creates a new inputGUIController
@@ -127,7 +126,6 @@ public class InGameGUIController implements ScreenController {
 			childLayoutVertical();
 			
 			control(new LabelBuilder("Label_Time"){{
-				// TODO Afton: PMD: The String literal "100%" appears 11 times in this file; the first occurrence is here
 				width("100%");
 				textHAlignLeft();
 				textVAlignTop();
@@ -321,17 +319,17 @@ public class InGameGUIController implements ScreenController {
 
 	@Override
 	public void bind(Nifty nifty, Screen screen) {
-		// TODO Afton: PMD: Document empty method
+		
 	}
 
 	@Override
 	public void onEndScreen() {
-		// TODO Afton: PMD: Document empty method
+		
 	}
 
 	@Override
 	public void onStartScreen() {
-		// TODO Afton: PMD: Document empty method
+		
 	}
 	
 	
@@ -359,7 +357,10 @@ public class InGameGUIController implements ScreenController {
 	
 	}
 	
-	// TODO Afton: Add javadoc
+	/**
+	 * Used when the cursor leaves any of the ability buttons
+	 * @param nr the ID of the button that the cursor left
+	 */
 	public void buttonMouseLeave(String nr) {
 		int iNr = 0;
 		try{

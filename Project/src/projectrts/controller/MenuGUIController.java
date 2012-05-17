@@ -99,7 +99,6 @@ public class MenuGUIController implements ScreenController {
 	private PanelBuilder createDifficultyPopupPanel() {
 		PanelBuilder builder = new PanelBuilder("Panel_DifficultyPopup") {{
 			childLayoutCenter();
-			// TODO Afton: PMD: The String literal "100%" appears 5 times in this file; the first occurrence is here
 			width("100%");
 			height("100%");
 			visible(false);
@@ -188,37 +187,49 @@ public class MenuGUIController implements ScreenController {
 		app.stop();
 	}
 
-	// TODO Afton: Add javadoc
+	/**
+	 * Used when the change difficulty button is clicked
+	 */
 	public void buttonChangeClicked() {
 		difficultyPanel.show();
 		menuPanel.hide();
 	}
 	
-	// TODO Afton: Add javadoc
+	/**
+	 * Used when the Easy Difficulty button is clicked
+	 */
 	public void buttonEasyClicked() {
 		chosenDifficulty = Difficulty.EASY;
 		buttonCancelClicked();
 	}
 
-	// TODO Afton: Add javadoc
+	/**
+	 * Used when the Medium Difficulty button is clicked
+	 */
 	public void buttonMediumClicked() {
 		chosenDifficulty = Difficulty.MEDIUM;
 		buttonCancelClicked();
 	}
 
-	// TODO Afton: Add javadoc
+	/**
+	 * Used when the Hard Difficulty button is clicked
+	 */
 	public void buttonHardClicked() {
 		chosenDifficulty = Difficulty.HARD;
 		buttonCancelClicked();
 	}
 
-	// TODO Afton: Add javadoc
+	/**
+	 * Used when the Nightmare Difficulty button is clicked
+	 */
 	public void buttonNightmareClicked() {
 		chosenDifficulty = Difficulty.NIGHTMARE;
 		buttonCancelClicked();
 	}
 
-	// TODO Afton: Add javadoc
+	/**
+	 * Used when the Cancel button is clicked
+	 */
 	public void buttonCancelClicked() {
 		difficultyPanel.hide();
 		menuPanel.show();
@@ -228,8 +239,6 @@ public class MenuGUIController implements ScreenController {
 
 	private void updateDifficultyText() {
 		String difficulty = chosenDifficulty.toString();
-		// TODO Afton: PMD: When doing a String.toLowerCase()/toUpperCase() call, use a Locale
-		// Vet inte hur viktigt det är dock... /Plankton
 		difficulty = difficulty.toLowerCase();
 		difficulty = difficulty.substring(0, 1).toUpperCase() + difficulty.substring(1);
 		changeDifficultyButton.setText("Difficulty: " + difficulty);

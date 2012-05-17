@@ -21,22 +21,11 @@ import de.lessvoid.nifty.tools.SizeValue;
  * @author Filip Brynfors
  *
  */
-// TODO Afton: PMD: Too many fields
 // TODO Afton: PMD: This class has too many methods, consider refactoring it.
-// TODO Afton: PMD: The class 'GameGUIView' has a Cyclomatic Complexity of 3 (Highest = 11).
 public class GameGUIView implements PropertyChangeListener {
 	private final Nifty nifty;
 	private Screen screen;
 	private final IGame game;
-	
-	private Element labelName;
-	private Element labelInfo;
-	private Element labelInfoValues;
-	private Element labelTime;
-	private Element labelPlayerInfo;
-	private Element panelInfo;
-	private Element panelAbilities;
-	private Element labelMessage;
 	
 	private IPlayerControlledEntity selectedPce;
 	
@@ -44,7 +33,7 @@ public class GameGUIView implements PropertyChangeListener {
 	private float messageTimer = 0;
 	private static final float MESSAGE_MAX_TIME = 3;
 	private String message = ""; 
-	
+	private Element labelMessage;
 	
 	/**
 	 * Creates a new view
@@ -66,15 +55,8 @@ public class GameGUIView implements PropertyChangeListener {
 	 */
 	public void initialize(){
 		screen = nifty.getScreen("Screen_Game");
-		labelName = screen.findElementByName("Label_Name");
-		labelInfo = screen.findElementByName("Label_Info");
-		labelInfoValues = screen.findElementByName("Label_InfoValues");
-		labelTime = screen.findElementByName("Label_Time");
-		labelPlayerInfo = screen.findElementByName("Label_PlayerInfo");
-		panelInfo = screen.findElementByName("Panel_SelectedInfo");
 		labelMessage = screen.findElementByName("Label_Message");
-		panelAbilities = screen.findElementByName("Panel_Abilities");
-		
+				
 		updatePlayerInfo();
 	}
 	
@@ -107,10 +89,10 @@ public class GameGUIView implements PropertyChangeListener {
     	StringBuffer buffer = new StringBuffer("Time: ");
     	if(sec/60>0){
     		buffer.append(sec/60);
-    		// TODO Afton: PMD: Avoid appending characters as strings in StringBuffer.append.
-    		buffer.append(":");
+    		buffer.append(':');
     	}
     	buffer.append(sec%60);
+    	Element labelTime = screen.findElementByName("Label_Time");
     	labelTime.getRenderer(TextRenderer.class).setText(buffer.toString());
 	}
 	
@@ -127,6 +109,7 @@ public class GameGUIView implements PropertyChangeListener {
 	}
 	
 	private void updateAbilities(){
+		Element panelAbilities = screen.findElementByName("Panel_Abilities");
 		showTooltip(null);
 		if(selectedPce==null || !selectedPce.getOwner().equals(game.getHumanPlayer())){
 			panelAbilities.setVisible(false);
@@ -161,10 +144,12 @@ public class GameGUIView implements PropertyChangeListener {
 	}
 	
 	private void updateSelectedInfo(){
+		Element panelInfo = screen.findElementByName("Panel_SelectedInfo");
     	if(selectedPce==null){
     		panelInfo.setVisible(false);
     	} else {
     		//Update the Info about the unit in the GUI
+    		Element labelName = screen.findElementByName("Label_Name");
     		labelName.getRenderer(TextRenderer.class).setText(selectedPce.getName());
     		
     		StringBuilder infoValuesBuilder = new StringBuilder();
@@ -179,6 +164,8 @@ public class GameGUIView implements PropertyChangeListener {
     		infoBuilder.append("\nRange:");
     		infoValuesBuilder.append("\n" + selectedPce.getSightRange());
     		
+    		Element labelInfo = screen.findElementByName("Label_Info");
+    		Element labelInfoValues = screen.findElementByName("Label_InfoValues");
     		labelInfoValues.getRenderer(TextRenderer.class).setText(infoValuesBuilder.toString());
     		labelInfo.getRenderer(TextRenderer.class).setText(infoBuilder.toString());
     		
@@ -187,10 +174,12 @@ public class GameGUIView implements PropertyChangeListener {
 	}
 	
 	private void updatePlayerInfo(){
+		Element labelPlayerInfo = screen.findElementByName("Label_PlayerInfo");
 		labelPlayerInfo.getRenderer(TextRenderer.class).setText("Resources: "+game.getHumanPlayer().getResources());
 	}
 
 	private void showMessage(String message){
+		
 		labelMessage.getRenderer(TextRenderer.class).setText(message);
 		activeMessage = true;
 		labelMessage.setVisible(true);
@@ -212,8 +201,13 @@ public class GameGUIView implements PropertyChangeListener {
 	
 
 	@Override
-	// TODO Afton: PMD: The method 'propertyChange' has a Cyclomatic Complexity of 11.
 	public void propertyChange(PropertyChangeEvent pce) {
+		checkForEntityEvent(pce);
+		checkForBuildEvent(pce);
+		
+	}
+	
+	private void checkForEntityEvent(PropertyChangeEvent pce){
 		if("ResourceChange".equals(pce.getPropertyName())){
 			updatePlayerInfo();
 		} else if ("ShowMessage".equals(pce.getPropertyName())){
@@ -225,13 +219,16 @@ public class GameGUIView implements PropertyChangeListener {
 				// TODO Afton: PMD: Assigning an Object to null is a code smell. Consider refactoring.
 				selectedPce=null;
 				updateSelected(null);
-				
 			}
 		}else if("TargetNotResource".equals(pce.getPropertyName())){
 			showMessage("Target is invalid, must target a Resource");
 		}else if("TargetNotPCE".equals(pce.getPropertyName())){
 			showMessage("Target is invalid, must target a Unit or Structure");
-		}else if("NotEnoughResources".equals(pce.getPropertyName())){
+		}
+	}
+	
+	private void checkForBuildEvent(PropertyChangeEvent pce){
+		if("NotEnoughResources".equals(pce.getPropertyName())){
 			showMessage("Not enough resources");
 		}else if("AlreadyTraining".equals(pce.getPropertyName())){
 			showMessage("That building is already training a unit");
@@ -248,7 +245,6 @@ public class GameGUIView implements PropertyChangeListener {
 				showBuildInfo("");
 			}
 		}
-		
 	}
 	
 	/**

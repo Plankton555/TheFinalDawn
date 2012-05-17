@@ -19,7 +19,10 @@ public abstract class AbstractAbility implements IAbility {
 	protected final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	protected PlayerControlledEntity entity;
 
-	// TODO Afton: Add javadoc
+	/**
+	 * Sets the max cooldown of the ability
+	 * @param cooldown
+	 */
 	public void setCooldown(float cooldown) {
 		this.cooldown = cooldown;
 	}
@@ -102,14 +105,19 @@ public abstract class AbstractAbility implements IAbility {
 	 */
 	public abstract void useAbility(Position target);
 	
-	// TODO Afton(?): Add javadoc
+	/**
+	 * Aborts an ability so it wont execute anymore
+	 */
 	public void abortAbility(){
 		if(isActive()){
 			setFinished(true);
 		}
 	}
 	
-	// TODO Afton: Add javadoc
+	/**
+	 * Adds a listener to the ability
+	 * @param pcl the listener
+	 */
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 	}
