@@ -41,7 +41,7 @@ public class BuildWallAbility extends AbstractConstructAbility implements IUsing
 	
 	@Override
 	public String getInfo() {
-		return "Builds a new Headquarter\nCost: " +buildCost;
+		return "Builds a new Wall\nCost: " +buildCost;
 	}
 
 }
