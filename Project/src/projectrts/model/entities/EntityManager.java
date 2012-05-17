@@ -16,7 +16,6 @@ import projectrts.model.world.Position;
  */
 public enum EntityManager implements IEntityManager{ INSTANCE;
 
-	//private static EntityManager instance = new EntityManager();
 	private final List<AbstractEntity> allEntities = new ArrayList<AbstractEntity>();
 	private final List<AbstractEntity> entitiesAddQueue = new ArrayList<AbstractEntity>();
 	private final List<AbstractEntity> entitiesRemoveQueue = new ArrayList<AbstractEntity>();
