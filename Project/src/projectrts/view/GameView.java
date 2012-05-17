@@ -2,6 +2,7 @@ package projectrts.view;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import projectrts.controller.InGameState;
@@ -12,6 +13,7 @@ import projectrts.model.entities.IEntity;
 import projectrts.model.world.INode;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.spatials.AbstractSpatial;
+import projectrts.view.spatials.DebugNodeSpatial;
 import projectrts.view.spatials.SpatialFactory;
 
 import com.jme3.app.SimpleApplication;
@@ -232,22 +234,63 @@ public class GameView implements PropertyChangeListener{
     
     //TODO Jakob: Add javadoc
     public void drawNodes(List<projectrts.model.world.INode> coveredNodes){
-    	clearNodes();
-    	for(projectrts.model.world.INode node: coveredNodes){
-    		Box nodeBox = new Box(
-					new Vector3f((float)node.getPosition().getX()*mod,
-							-(float)node.getPosition().getY()*mod,
-							1),
-					(1f * mod)/2,
-					(1f * mod)/2,
-					0);
-
-    		AbstractSpatial nodeSpatial = SpatialFactory.INSTANCE.createNodeSpatial("DebugNodeSpatial",
-					node.getClass().getSimpleName(), nodeBox, node);
-    		mouseEffects.attachChild(nodeSpatial);
+    	   	
+    	List<INode> oldNodes = getNodes(mouseEffects.getChildren());
+    	
+    	for (INode node : coveredNodes){
+    		if (!oldNodes.contains(node)){
+    			addNodeSpatial(node);
+    		}
+    	}  	
+    	
+    	for (INode node : oldNodes){
+    		if (!coveredNodes.contains(node)){
+    			removeNodeSpatial(node);
+    		}
     	}
+    	
+    	
     }
     
+
+	private List<INode> getNodes(List<Spatial> coveredNodes){
+		List<INode> output = new ArrayList<INode>();
+		DebugNodeSpatial dSpatial;
+		for (Spatial spatial : coveredNodes){
+			if(spatial instanceof DebugNodeSpatial){
+				dSpatial = (DebugNodeSpatial) spatial;				
+				output.add(dSpatial.getNode());
+				
+			}
+			
+		}
+		return output;
+	}
+
+	private void removeNodeSpatial(INode node){	
+		DebugNodeSpatial dSpatial;
+		for(Spatial spatial: mouseEffects.getChildren()){
+			
+			if(spatial instanceof DebugNodeSpatial){
+				dSpatial = (DebugNodeSpatial)spatial;
+				if(node.equals(dSpatial.getNode())){
+					mouseEffects.detachChild(dSpatial);
+				}
+			}
+		}
+	}
+	
+	private void addNodeSpatial(INode node){	
+		Box nodeBox = new Box(new Vector3f((float)node.getPosition().getX()*mod,
+						-(float)node.getPosition().getY()*mod,1),
+				(1f * mod)/2,(1f * mod)/2,0);
+		AbstractSpatial nodeSpatial = 
+				SpatialFactory.INSTANCE.createNodeSpatial("DebugNodeSpatial",
+									node.getClass().getSimpleName(), nodeBox, node);
+				    		mouseEffects.attachChild(nodeSpatial);
+	}
+	
+		
   //TODO Jakob: Add javadoc
     public void clearNodes(){
     	mouseEffects.detachAllChildren();

@@ -14,6 +14,7 @@ import com.jme3.scene.shape.Box;
  *
  */
 public final class DebugNodeSpatial extends AbstractSpatial implements INodeSpatial {
+	private INode node;
 	
 	static {
 		SpatialFactory.INSTANCE.registerSpatial(DebugNodeSpatial.class.getSimpleName(), new DebugNodeSpatial("DebugNodeSpatialCreator", new Box()));
@@ -27,11 +28,15 @@ public final class DebugNodeSpatial extends AbstractSpatial implements INodeSpat
 	public AbstractSpatial createSpatial(String name, Box box, INode node) {
 		material = MaterialManager.INSTANCE.getMaterial("Unshaded");
 		material.setColor("Color", ColorRGBA.Green);
-		
 		DebugNodeSpatial newSpatial = new DebugNodeSpatial(name, box);
+		newSpatial.node = node;
 		newSpatial.setMaterial(material);
 		newSpatial.addControl(ControlFactory.INSTANCE.createNodeControl(NodeControl.class.getSimpleName(), node));
 		return newSpatial;
+	}
+	
+	public INode getNode(){
+		return this.node;
 	}
 
 }
