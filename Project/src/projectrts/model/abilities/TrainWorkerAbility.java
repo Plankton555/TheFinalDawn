@@ -40,7 +40,7 @@ protected void initialize(PlayerControlledEntity entity) {
 	
 	@Override
 	public String getInfo() {
-		return "Builds a new Headquarter\nCost: " +buildCost;
+		return "Trains a new Worker\nCost: " +buildCost;
 	}
 
 }

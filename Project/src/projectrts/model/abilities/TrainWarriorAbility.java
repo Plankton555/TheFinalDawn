@@ -41,7 +41,7 @@ public class TrainWarriorAbility extends AbstractCreationAbility implements INot
 	
 	@Override
 	public String getInfo() {
-		return "Builds a new Headquarter\nCost: " +buildCost;
+		return "Trains a new Warrior\nCost: " +buildCost;
 	}
 
 }

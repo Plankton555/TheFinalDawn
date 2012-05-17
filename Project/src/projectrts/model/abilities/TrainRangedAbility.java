@@ -28,7 +28,7 @@ public class TrainRangedAbility extends AbstractCreationAbility implements INotU
 	
 	@Override
 	public String getName() {
-		return "Train Archer";
+		return "Train Ranged";
 	}
 
 	
@@ -41,7 +41,7 @@ public class TrainRangedAbility extends AbstractCreationAbility implements INotU
 
 	@Override
 	public String getInfo() {
-		return "Trains a new Headquarter\nCost: " +buildCost;
+		return "Trains a new Ranged\nCost: " +buildCost;
 	}
 
 }
