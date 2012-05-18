@@ -71,7 +71,7 @@ public class AStarNode implements Comparable<AStarNode> {
 		int deltaY = (int) Math.abs(endPos.getY() - mePos.getY());
 		int sidewayMove = Math.abs(deltaX - deltaY);
 		int diagonalMove = Math.max(deltaX, deltaY) - sidewayMove;
-		this.heuristic = Math.round((sidewayMove*1.4f + diagonalMove)*heuristicModifier);
+		this.heuristic = Math.round((sidewayMove + diagonalMove*1.4f)*heuristicModifier);
 		
 	}
 

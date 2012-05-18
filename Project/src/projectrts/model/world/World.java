@@ -13,9 +13,7 @@ import se.chalmers.pebjorn.javautils.Math;
 public enum World implements IWorld { INSTANCE;
 	
 	/**
-	 * Initializes the world with specified height and width.
-	 * @param height Height.
-	 * @param width Width.
+	 * Initializes the world.
 	 */
 	public void initializeWorld() {
 		initNodes(height, width);

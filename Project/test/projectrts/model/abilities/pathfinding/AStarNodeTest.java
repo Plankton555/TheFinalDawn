@@ -98,9 +98,9 @@ public class AStarNodeTest {
 		aNode6.calculateHeuristic(aNode5, 10);
 		assertTrue(aNode6.getHeuristic() == 40);
 		aNode5.calculateHeuristic(aNode7, 10);
-		assertTrue(aNode5.getHeuristic() == 60);
+		assertTrue(aNode5.getHeuristic() == 42);
 		aNode7.calculateHeuristic(aNode6, 10);
-		assertTrue(aNode6.getHeuristic() == 40);
+		assertTrue(aNode7.getHeuristic() == 34);
 	}
 
 	@Test
