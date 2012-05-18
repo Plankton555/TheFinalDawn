@@ -79,9 +79,80 @@ public class GameGUIView implements PropertyChangeListener {
 	public void updateSelected(IPlayerControlledEntity selectedPce){
     	this.selectedPce = selectedPce;
     	showBuildInfo("");
-    	updateSelectedInfo();
     	updateAbilities();
     }
+	
+
+	@Override
+	public void propertyChange(PropertyChangeEvent pce) {
+		checkForEntityEvent(pce);
+		checkForBuildEvent(pce);
+		
+	}
+	
+	private void checkForEntityEvent(PropertyChangeEvent pce){
+		if("ResourceChange".equals(pce.getPropertyName())){
+			updatePlayerInfo();
+		} else if ("ShowMessage".equals(pce.getPropertyName())){
+			message = pce.getNewValue().toString();
+			showMessage(message);
+			
+		}else if (pce.getPropertyName().equals("entityRemoved")) {
+			if(pce.getOldValue()==selectedPce ) {
+				// TODO Afton: PMD: Assigning an Object to null is a code smell. Consider refactoring.
+				selectedPce=null;
+				updateSelected(null);
+			}
+		}else if("TargetNotResource".equals(pce.getPropertyName())){
+			showMessage("Target is invalid, must target a Resource");
+		}else if("TargetNotPCE".equals(pce.getPropertyName())){
+			showMessage("Target is invalid, must target a Unit or Structure");
+		}
+	}
+	
+	private void checkForBuildEvent(PropertyChangeEvent pce){
+		if("NotEnoughResources".equals(pce.getPropertyName())){
+			showMessage("Not enough resources");
+		}else if("AlreadyTraining".equals(pce.getPropertyName())){
+			showMessage("That building is already training a unit");
+		}else if("BuildTimeLeft".equals(pce.getPropertyName())){
+			if(pce.getOldValue() == selectedPce){
+				showBuildInfo("Building structure\nTime left: " + pce.getNewValue());
+			}
+		}else if("TrainTimeLeft".equals(pce.getPropertyName())){
+			if(pce.getOldValue() == selectedPce){
+				showBuildInfo("Training Unit\nTime left: " + pce.getNewValue());
+			}
+		}else if("BuildCompleted".equals(pce.getPropertyName())){
+			if(pce.getOldValue() == selectedPce){
+				showBuildInfo("");
+			}
+		}
+	}
+	
+	/**
+	 * Shows the tooltip of the given ability, hides the tooltip of the given ability is null
+	 * @param ability shown ability
+	 */
+	public void showTooltip(IAbility ability){
+		Element panelTooltip = screen.findElementByName("Panel_Tooltip");
+		if(ability==null){
+			panelTooltip.hide();
+		} else {
+			Element labelTooltipHeader = screen.findElementByName("Label_TooltipHeader");
+			Element labelTooltipInfo = screen.findElementByName("Label_TooltipInfo");
+			panelTooltip.setVisible(true);
+			
+			panelTooltip.setConstraintX(new SizeValue(nifty.getNiftyMouse().getX()-panelTooltip.getWidth()+"px"));
+			panelTooltip.setConstraintY(new SizeValue(nifty.getNiftyMouse().getY()-panelTooltip.getHeight()+"px"));
+			
+			screen.layoutLayers();
+			
+			labelTooltipHeader.getRenderer(TextRenderer.class).setText(ability.getName());
+			labelTooltipInfo.getRenderer(TextRenderer.class).setText(ability.getInfo());
+		}
+	}
+	
 	
 	private void updateTime(){
     	int sec = (int)game.getGameTime();
@@ -196,77 +267,6 @@ public class GameGUIView implements PropertyChangeListener {
 			Element buildTextPanel = screen.findElementByName("Label_BuildText");
 			buildTextPanel.getRenderer(TextRenderer.class).setText(text);
 
-		}
-	}
-	
-
-	@Override
-	public void propertyChange(PropertyChangeEvent pce) {
-		checkForEntityEvent(pce);
-		checkForBuildEvent(pce);
-		
-	}
-	
-	private void checkForEntityEvent(PropertyChangeEvent pce){
-		if("ResourceChange".equals(pce.getPropertyName())){
-			updatePlayerInfo();
-		} else if ("ShowMessage".equals(pce.getPropertyName())){
-			message = pce.getNewValue().toString();
-			showMessage(message);
-			
-		}else if (pce.getPropertyName().equals("entityRemoved")) {
-			if(pce.getOldValue()==selectedPce ) {
-				// TODO Afton: PMD: Assigning an Object to null is a code smell. Consider refactoring.
-				selectedPce=null;
-				updateSelected(null);
-			}
-		}else if("TargetNotResource".equals(pce.getPropertyName())){
-			showMessage("Target is invalid, must target a Resource");
-		}else if("TargetNotPCE".equals(pce.getPropertyName())){
-			showMessage("Target is invalid, must target a Unit or Structure");
-		}
-	}
-	
-	private void checkForBuildEvent(PropertyChangeEvent pce){
-		if("NotEnoughResources".equals(pce.getPropertyName())){
-			showMessage("Not enough resources");
-		}else if("AlreadyTraining".equals(pce.getPropertyName())){
-			showMessage("That building is already training a unit");
-		}else if("BuildTimeLeft".equals(pce.getPropertyName())){
-			if(pce.getOldValue() == selectedPce){
-				showBuildInfo("Building structure\nTime left: " + pce.getNewValue());
-			}
-		}else if("TrainTimeLeft".equals(pce.getPropertyName())){
-			if(pce.getOldValue() == selectedPce){
-				showBuildInfo("Training Unit\nTime left: " + pce.getNewValue());
-			}
-		}else if("BuildCompleted".equals(pce.getPropertyName())){
-			if(pce.getOldValue() == selectedPce){
-				showBuildInfo("");
-			}
-		}
-	}
-	
-	/**
-	 * Shows the tooltip of the given ability, hides the tooltip of the given ability is null
-	 * @param ability shown ability
-	 */
-	public void showTooltip(IAbility ability){
-		Element panelTooltip = screen.findElementByName("Panel_Tooltip");
-		if(ability==null){
-			panelTooltip.hide();
-		} else {
-			Element labelTooltipHeader = screen.findElementByName("Label_TooltipHeader");
-			Element labelTooltipInfo = screen.findElementByName("Label_TooltipInfo");
-			panelTooltip.setVisible(true);
-			
-			panelTooltip.setConstraintX(new SizeValue(nifty.getNiftyMouse().getX()-panelTooltip.getWidth()+"px"));
-			panelTooltip.setConstraintY(new SizeValue(nifty.getNiftyMouse().getY()-panelTooltip.getHeight()+"px"));
-			
-			screen.layoutLayers();
-			
-			labelTooltipHeader.getRenderer(TextRenderer.class).setText(ability.getName());
-			labelTooltipInfo.getRenderer(TextRenderer.class).setText(ability.getInfo());
 		}
 	}
 }
