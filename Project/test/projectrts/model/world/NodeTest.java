@@ -2,6 +2,7 @@ package projectrts.model.world;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -82,6 +83,13 @@ public class NodeTest {
 	@Test
 	public void testIsAnyNodeOccupied()
 	{
-		// TODO Plankton: Implement
+		List<INode> nodes = new ArrayList<INode>();
+		nodes.add(new Node(2, 5));
+		nodes.add(new Node(1, 8));
+		nodes.add(new Node(2, 8));
+		
+		assertTrue(!Node.isAnyNodeOccupied(nodes));
+		nodes.get(1).setOccupied(5);
+		assertTrue(Node.isAnyNodeOccupied(nodes));
 	}
 }
