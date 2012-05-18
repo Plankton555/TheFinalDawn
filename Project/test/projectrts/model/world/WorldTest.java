@@ -90,6 +90,8 @@ public class WorldTest {
 	public void testSetNodesOccupied()
 	{
 		// TODO Plankton: Implement
+		IWorld world = World.INSTANCE;
+		//world.setNodesOccupied(nodeInCenter, entitySize, entityID);
 	}
 	
 	@Test
