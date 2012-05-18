@@ -12,7 +12,7 @@ import projectrts.model.world.Position;
  * @author Jakob Svensson
  *
  */
-public abstract class AbstractCreationAbility extends AbstractAbility{
+abstract class AbstractCreationAbility extends AbstractAbility{
 
 	private float buildTime; 
 	private int buildCost; 

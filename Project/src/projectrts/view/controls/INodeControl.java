@@ -8,7 +8,7 @@ import com.jme3.scene.control.AbstractControl;
  * @author Bjorn Persson Mattsson
  *
  */
-public interface INodeControl {
+interface INodeControl {
 	
 	/**
 	 * Creates a NodeControl for the provided node.

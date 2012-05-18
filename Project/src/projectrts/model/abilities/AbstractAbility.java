@@ -11,7 +11,7 @@ import projectrts.model.world.Position;
  * @author Filip Brynfors
  *
  */
-public abstract class AbstractAbility implements IAbility {
+abstract class AbstractAbility implements IAbility {
 	private boolean finished = false;
 	private boolean active = false;
 	private float cooldown;

@@ -10,7 +10,7 @@ import projectrts.model.entities.Player;
 import projectrts.model.entities.PlayerControlledEntity;
 
 // TODO Markus: ADD JAVADOC!!!
-public class StrategicAI {
+class StrategicAI {
 	private List<IPlayerControlledEntity> entities;
 	private static final float cooldownInterval = 0.5f;
 	private float cooldownRemaining = 0;

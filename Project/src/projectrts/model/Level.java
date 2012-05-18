@@ -11,7 +11,7 @@ import projectrts.model.world.Position;
  * @author Markus Ekström
  *
  */
-public class Level {
+class Level {
 	private int wave = 1;
 	private float timePassed = 0;
 	private int waveInterval = 20; // in seconds

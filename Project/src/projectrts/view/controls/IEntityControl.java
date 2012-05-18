@@ -8,7 +8,7 @@ import com.jme3.scene.control.AbstractControl;
  * @author Markus Ekström
  *
  */
-public interface IEntityControl {
+interface IEntityControl {
 	
 	/**
 	 * Creates a control of the same class and returns it as an AbstractControl.

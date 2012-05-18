@@ -11,7 +11,7 @@ import com.jme3.scene.control.AbstractControl;
  * @author Markus Ekström
  *
  */
-public abstract class AbstractCustomControl extends AbstractControl{
+abstract class AbstractCustomControl extends AbstractControl{
 
 	/**
 	 * Converts a Position position from the model into a Vector3f position in the world.

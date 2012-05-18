@@ -16,7 +16,7 @@ import com.jme3.texture.Texture;
  * @author Jakob Svensson
  *
  */
-public final class BarracksSpatial extends AbstractSpatial implements IEntitySpatial{
+final class BarracksSpatial extends AbstractSpatial implements IEntitySpatial{
 	
 	
 	static {

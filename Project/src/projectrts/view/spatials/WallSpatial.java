@@ -16,7 +16,7 @@ import com.jme3.texture.Texture;
  * @author Jakob Svensson
  *
  */
-public final class WallSpatial extends AbstractSpatial implements IEntitySpatial{
+final class WallSpatial extends AbstractSpatial implements IEntitySpatial{
 	
 	static {
 		SpatialFactory.INSTANCE.registerSpatial(WallSpatial.class.getSimpleName(), new WallSpatial("BarracksSpatialCreator", new Box()));

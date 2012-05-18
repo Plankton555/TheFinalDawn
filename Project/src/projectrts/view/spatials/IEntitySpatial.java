@@ -8,7 +8,7 @@ import com.jme3.scene.shape.Box;
  * @author Markus Ekström
  *
  */
-public interface IEntitySpatial {
+interface IEntitySpatial {
 
 	/**
 	 * Creates a spatial of the same class.

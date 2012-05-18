@@ -7,7 +7,7 @@ import projectrts.model.entities.PlayerControlledEntity;
  * @author Bjorn Persson Mattsson
  *
  */
-public interface INotUsingMoveAbility {
+interface INotUsingMoveAbility {
 
 	/**
 	 * Creates a new ability.

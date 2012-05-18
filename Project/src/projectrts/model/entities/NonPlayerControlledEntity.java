@@ -6,7 +6,7 @@ import projectrts.model.world.Position;
  * @author Jakob Svensson
  *
  */
-public abstract class NonPlayerControlledEntity extends AbstractEntity {
+abstract class NonPlayerControlledEntity extends AbstractEntity {
 
 	/**
 	 * Concrete version used for creating new instances according to

@@ -6,7 +6,7 @@ import java.util.Map;
 import projectrts.model.entities.PlayerControlledEntity;
 
 //TODO Markus: ADD JAVADOC!!
-public enum AbilityFactory {INSTANCE;
+enum AbilityFactory {INSTANCE;
 	private Map<String, AbstractAbility> abilityMap = new HashMap<String, AbstractAbility>();
 	
 	// TODO Markus: Add javadoc

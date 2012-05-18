@@ -11,7 +11,7 @@ import projectrts.model.world.World;
  * @author Jakob Svensson
  *
  */
-public abstract class AbstractConstructAbility extends AbstractAbility implements IUsingMoveAbility, IBuildStructureAbility {
+abstract class AbstractConstructAbility extends AbstractAbility implements IUsingMoveAbility, IBuildStructureAbility {
 	private float buildTime; 
 	private int buildCost; 
 	private static float cooldown = 0.5f;

@@ -9,7 +9,7 @@ import com.jme3.scene.shape.Box;
  * @author Bjorn Persson Mattsson
  *
  */
-public interface INodeSpatial {
+interface INodeSpatial {
 
 	/**
 	 * Creates and returns a new NodeSpatial using the parameters provided.

@@ -4,6 +4,6 @@ package projectrts.model.entities;
  * @author Jakob Svensson
  *
  */
-public interface ITargetAbility {
+interface ITargetAbility {
 
 }

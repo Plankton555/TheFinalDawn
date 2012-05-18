@@ -37,7 +37,7 @@ import com.jme3.math.Vector3f;
  */
 // TODO Markus: PMD: This class has too many methods, consider refactoring it.
 // TODO Markus: PMD: The class 'InputController' has a Cyclomatic Complexity of 5 (Highest = 16).
-public class InputController{
+class InputController{
 
 	// Before the mouse is moved it has the position (0, 0), causing the camera to move in that direction.
 	// mouseActivated suppresses the camera until set to true (which is done when the mouse is first moved).

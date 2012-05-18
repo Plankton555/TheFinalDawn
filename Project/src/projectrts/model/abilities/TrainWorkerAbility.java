@@ -8,7 +8,7 @@ import projectrts.model.entities.Worker;
  * @author Jakob Svensson
  *
  */
-public class TrainWorkerAbility extends AbstractCreationAbility implements INotUsingMoveAbility {
+class TrainWorkerAbility extends AbstractCreationAbility implements INotUsingMoveAbility {
 	private static float buildTime = 5; 
 	private static int buildCost = 50; 
 	

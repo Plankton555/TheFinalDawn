@@ -4,7 +4,7 @@ package projectrts.model.entities;
  * @author Jakob Svensson
  *
  */
-public interface IBuildStructureAbility {
+interface IBuildStructureAbility {
 	// TODO Jakob: Add javadoc
 	public float getSizeOfBuilding();
 }

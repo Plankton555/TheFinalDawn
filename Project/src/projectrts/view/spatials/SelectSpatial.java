@@ -16,7 +16,7 @@ import com.jme3.texture.Texture;
  * @author Markus Ekström
  *
  */
-public final class SelectSpatial extends AbstractSpatial implements IEntitySpatial{
+final class SelectSpatial extends AbstractSpatial implements IEntitySpatial{
 	
 	static {
 		SpatialFactory.INSTANCE.registerSpatial("SelectSpatial", new SelectSpatial("SelectSpatialCreator", new Box()));

@@ -12,7 +12,7 @@ import de.lessvoid.nifty.Nifty;
  * The menu state that controls the menu before the game starts
  * @author Filip Brynfors
  */
-public class MenuState extends AbstractAppState {
+class MenuState extends AbstractAppState {
 
 	private final Nifty nifty;
 	private PropertyChangeListener pcl;

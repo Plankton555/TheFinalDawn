@@ -8,7 +8,7 @@ import projectrts.model.entities.PlayerControlledEntity;
  * @author Jakob Svensson
  *
  */
-public class BuildHeadquarterAbility extends AbstractConstructAbility implements IUsingMoveAbility, IBuildStructureAbility {
+class BuildHeadquarterAbility extends AbstractConstructAbility implements IUsingMoveAbility, IBuildStructureAbility {
 	private static float buildTime = 30; 
 	private static int buildCost = 400; 
 

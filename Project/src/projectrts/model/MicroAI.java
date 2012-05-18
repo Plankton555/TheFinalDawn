@@ -12,7 +12,7 @@ import projectrts.model.entities.Worker;
  * @author Markus Ekström
  *
  */
-public class MicroAI {
+class MicroAI {
 	private final PlayerControlledEntity myPCE;
 	private PlayerControlledEntity target;
 	private final IAbilityManager abilityManager;

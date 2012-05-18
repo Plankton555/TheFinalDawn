@@ -11,7 +11,7 @@ import projectrts.model.entities.Player;
 import projectrts.model.entities.PlayerControlledEntity;
 
 // TODO Markus: ADD JAVADOC!
-public class AIManager implements PropertyChangeListener{
+class AIManager implements PropertyChangeListener{
 	private final AbilityManager abilityManager;
 	private final StrategicAI stratAI;
 	private final List<MicroAI> microAIs = new ArrayList<MicroAI>();
