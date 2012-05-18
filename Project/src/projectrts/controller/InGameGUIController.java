@@ -80,7 +80,6 @@ public class InGameGUIController implements ScreenController {
 		if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
     		selectedPce = (IPlayerControlledEntity) selectedEntities.get(0);
     	} else {
-    		// TODO Afton: PMD: Assigning an Object to null is a code smell. Consider refactoring.
     		selectedPce = null;
     	}
     	guiView.updateSelected(selectedPce);

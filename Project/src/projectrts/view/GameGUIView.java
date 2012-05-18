@@ -99,7 +99,6 @@ public class GameGUIView implements PropertyChangeListener {
 			
 		}else if (pce.getPropertyName().equals("entityRemoved")) {
 			if(pce.getOldValue()==selectedPce ) {
-				// TODO Afton: PMD: Assigning an Object to null is a code smell. Consider refactoring.
 				selectedPce=null;
 				updateSelected(null);
 			}
