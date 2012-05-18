@@ -263,7 +263,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			
 			abilities.add(moveAbility);
 		} else {
-			//TODO: Markus, FINDBUGS: abilitiesReferenceList kan vara null
+			//TODO Markus: FINDBUGS: abilitiesReferenceList kan vara null
 			for(AbstractAbility ability : abilitiesReferenceList) {
 				abilities.add(AbilityFactory.INSTANCE.createAbility(
 						ability.getClass().getSimpleName(), pce));

@@ -29,6 +29,7 @@ public class Position {
 	{
 		this(otherPos.getX(), otherPos.getY());
 	}
+	
 	/**
 	 * Creates a new position with the same components.
 	 * @return A copy of the position such that oldPos.equals(returnedPos)==true.

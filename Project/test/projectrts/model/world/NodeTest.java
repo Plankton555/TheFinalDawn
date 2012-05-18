@@ -82,6 +82,6 @@ public class NodeTest {
 	@Test
 	public void testIsAnyNodeOccupied()
 	{
-		// TODO Plankton: !!IMPLEMENT testIsAnyNodeOccupied()!
+		// TODO Plankton: Implement
 	}
 }

@@ -7,7 +7,6 @@ import org.junit.Test;
 import projectrts.model.GameModel;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Player;
-import projectrts.model.entities.Resource;
 import projectrts.model.entities.Warrior;
 import projectrts.model.entities.Worker;
 import projectrts.model.world.Position;

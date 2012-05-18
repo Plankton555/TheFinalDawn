@@ -13,30 +13,23 @@ import org.junit.Test;
 public class WorldTest {
 
 	private static World world;
-	private static int width;
-	private static int height;
 	private Position p;
-	// TODO Plankton: !!Update tests
 	
 	@BeforeClass
 	public static void beforeClass()
 	{
-		int width = 100;
-		int height = 100;
 		world = World.INSTANCE;
 		world.initializeWorld();
-		WorldTest.width = width;
-		WorldTest.height = height;
 	}
 
 	@Test
 	public void testGetNodes() {
 		INode[][] nodes = world.getNodes();
 		
-		assertTrue(nodes.length == height);
+		assertTrue(nodes.length == world.getWorldHeight());
 		for (int i = 0; i < nodes.length; i++)
 		{
-			assertTrue(nodes[i].length == width);
+			assertTrue(nodes[i].length == world.getWorldWidth());
 			for (int j = 0; j < nodes[i].length; j++)
 			{
 				assertTrue(nodes[i][j] != null);
@@ -96,30 +89,12 @@ public class WorldTest {
 	@Test
 	public void testSetNodesOccupied()
 	{
-		// TODO Plankton: !!IMPLEMENT testSetNodesOccupied()!
+		// TODO Plankton: Implement
 	}
 	
 	@Test
 	public void testGetNodesAt()
 	{
-		// TODO Plankton: !!IMPLEMENT testGetNodesAt()!
+		// TODO Plankton: Implement
 	}
-
-	/*
-	public void testCorrectNeighbours()
-	{
-		World world = new World(10, 10);
-		Node[][] myNodes = world.getNodes();
-		
-		int x = 5;
-		int y = 5;
-		System.out.println(myNodes[y][x].getPosition());
-		System.out.println("has the neighbours:");
-		
-		for (Node n : myNodes[y][x].getNeighbours())
-		{
-			System.out.println(n.getPosition());
-		}
-	}
-	*/
 }
