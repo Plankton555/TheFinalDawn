@@ -6,11 +6,12 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.math.Vector3f;
 
-	/**
-	 * An analog listener, use if the input is analog - i.e. it can take on
-	 * several values, not just "on" and "off".
-	 * 
-	 */
+/**
+ * An analog listener, use if the input is analog - i.e. it can take on
+ * several values, not just "on" and "off".
+ * 
+ * @author Markus Ekstrom
+ */
 class AnalogInputHandler implements AnalogListener{
 	private final SimpleApplication app;
 	private final IGame game;

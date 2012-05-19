@@ -2,27 +2,16 @@ package projectrts.controller;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.List;
 
 import projectrts.model.IGame;
-import projectrts.model.abilities.AttackAbility;
-import projectrts.model.abilities.GatherResourceAbility;
 import projectrts.model.abilities.IAbility;
-import projectrts.model.abilities.IBuildStructureAbility;
-import projectrts.model.abilities.ITargetAbility;
-import projectrts.model.abilities.MoveAbility;
-import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
-import projectrts.model.entities.PlayerControlledEntity;
-import projectrts.model.entities.Resource;
 import projectrts.model.world.Position;
 import projectrts.view.GameView;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
-import com.jme3.input.controls.ActionListener;
-import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
@@ -32,11 +21,9 @@ import com.jme3.math.Vector3f;
 /**
  * A class for handling all input.
  * 
- * @author Markus Ekström Modifed by Jakob Svensson
+ * @author Markus Ekström modified by Jakob Svensson
  * 
  */
-// TODO Markus: PMD: This class has too many methods, consider refactoring it.
-// TODO Markus: PMD: The class 'InputController' has a Cyclomatic Complexity of 5 (Highest = 16).
 class InputController {
 
 	// Before the mouse is moved it has the position (0, 0), causing the camera to move in that direction.
@@ -44,15 +31,9 @@ class InputController {
 	private final SimpleApplication app;
 	private final IGame game; // The model
 	private final GameView view;
-	private boolean choosingPosition = false;
-	private IAbility currentAbility;
-	private IPlayerControlledEntity selectedEntity;
-	private float buildingSize;
-	private boolean choosingTarget;
 	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-	private InGameGUIController guiControl;
 	private final AnalogInputHandler analogInputHandler;
-
+	private final ActionInputHandler actionInputHandler;
 	public static final float CAMERA_SPEED = 1f;
 	private static final float CAMERA_MOVE_MARGIN = 5f;
 
@@ -62,6 +43,7 @@ class InputController {
 		this.game = game;
 		this.view = view;
 		analogInputHandler = new AnalogInputHandler(app, game);
+		actionInputHandler = new ActionInputHandler(app, game, view);
 		initializeKeys();
 	}
 
@@ -76,11 +58,11 @@ class InputController {
 		if (app.getStateManager().getState(InGameState.class).isEnabled()) {
 			// do the following while game is RUNNING // modify scene graph...
 			updateCamera(tpf);
-			if (choosingPosition) {
+			if (actionInputHandler.isChoosingPosition()) {
 				Position pos = InGameState.convertWorldToModel(app.getCamera()
 						.getWorldCoordinates(
 								app.getInputManager().getCursorPosition(), 0));
-				view.drawNodes(game.getWorld().getNodesAt(pos, buildingSize));
+				view.drawNodes(game.getWorld().getNodesAt(pos, actionInputHandler.getBuildingSize()));
 			}
 		}
 		// do something in an else statement while game is PAUSED, e.g. play an
@@ -97,7 +79,6 @@ class InputController {
 	 * 
 	 * @param tpf
 	 */
-	// TODO Markus: PMD: The method 'updateCamera' has a Cyclomatic Complexity of 10.
 	private void updateCamera(float tpf) {
 
 		if (analogInputHandler.getMouseActivated()) {
@@ -164,7 +145,7 @@ class InputController {
 				new String[] { "cameraRightMouse", "cameraLeftMouse",
 						"cameraUpMouse", "cameraDownMouse", "cameraRightKey",
 						"cameraLeftKey", "cameraUpKey", "cameraDownKey" });
-		this.app.getInputManager().addListener(actionListener,
+		this.app.getInputManager().addListener(actionInputHandler,
 				new String[] { "mouseLeftButton", "mouseRightButton" });
 		// Debug control mapping
 		this.app.getInputManager().addMapping("exit",
@@ -173,133 +154,10 @@ class InputController {
 				new KeyTrigger(KeyInput.KEY_M));
 
 		// Add debug controls to action/analog listener
-		this.app.getInputManager().addListener(actionListener,
+		this.app.getInputManager().addListener(actionInputHandler,
 				new String[] { "exit", "checkMouseLoc" });
 	}
 
-	/**
-	 * A digital listener, use if the input is digital - i.e. it can only be
-	 * either "on" or "off".
-	 */
-	private final ActionListener actionListener = new ActionListener() {
-		// TODO Markus: PMD: The method 'onAction' has a Cyclomatic Complexity of 10.
-		public void onAction(String name, boolean keyPressed, float tpf) {
-			if (name.equals("exit") && keyPressed) {
-				app.stop();
-			}
-
-			if (app.getStateManager().getState(InGameState.class).isEnabled()) {
-				if (name.equals("mouseLeftButton") && keyPressed) {
-					handleLeftClick();
-				}
-				if (name.equals("mouseRightButton") && keyPressed) {
-					handleRightClick();
-				}
-
-				// Debugging
-				if (name.equals("checkMouseLoc") && keyPressed) {
-					// TODO Markus: PMD: System.out.print is used
-					System.out.println("mLoc = "
-							+ app.getInputManager().getCursorPosition()
-									.toString());
-					System.out.println("wLoc = "
-							+ app.getCamera().getWorldCoordinates(
-									app.getInputManager().getCursorPosition(),
-									0));
-				}
-			}
-		}
-
-		private void handleLeftClick() {
-			Position pos = InGameState.convertWorldToModel(app.getCamera()
-					.getWorldCoordinates(
-							app.getInputManager().getCursorPosition(), 0));
-			if (choosingPosition) {
-				if (!game.isAnyNodeOccupied(game.getWorld().getNodesAt(pos,
-						buildingSize))) {
-
-					game.getAbilityManager().doAbility(
-							currentAbility.getClass().getSimpleName(),
-							game.getWorld().getNodeAt(pos).getPosition(),
-							selectedEntity);
-					choosingPosition = false;
-					view.clearNodes();
-				}
-			} else if (choosingTarget) {
-				game.getAbilityManager().doAbility(
-						currentAbility.getClass().getSimpleName(), pos,
-						selectedEntity);
-				choosingTarget = false;
-
-			} else {
-				game.getEntityManager().select(pos, game.getHumanPlayer());
-				guiControl.updateAbilities(game.getEntityManager()
-						.getSelectedEntities());
-			}
-		}
-
-		private void handleRightClick() {
-			Position click = InGameState.convertWorldToModel(app.getCamera()
-					.getWorldCoordinates(
-							app.getInputManager().getCursorPosition(), 0));
-			if (choosingPosition || choosingTarget) {
-				choosingPosition = false;
-				view.clearNodes();
-				choosingTarget = false;
-			} else {
-				IEntity e = getEntityAtPosition(click);
-				if (e == null) {
-					doMoveAbility();
-				} else {
-					if (e instanceof Resource) {
-						game.getAbilityManager().useAbilitySelected(
-								GatherResourceAbility.class.getSimpleName(),
-								click, game.getHumanPlayer());
-
-					} else if (e instanceof PlayerControlledEntity) {
-						PlayerControlledEntity pce = (PlayerControlledEntity) e;
-						if (pce.getOwner().equals(game.getHumanPlayer())) {
-							doMoveAbility();
-						} else {
-							game.getAbilityManager().useAbilitySelected(
-									AttackAbility.class.getSimpleName(),
-									pce.getPosition(), game.getHumanPlayer());
-						}
-					} else {
-						doMoveAbility();
-					}
-				}
-			}
-		}
-
-		private void doMoveAbility() {
-			game.getAbilityManager().useAbilitySelected(
-					MoveAbility.class.getSimpleName(),
-					InGameState.convertWorldToModel(app.getCamera()
-							.getWorldCoordinates(
-									app.getInputManager().getCursorPosition(),
-									0)), game.getHumanPlayer());
-		}
-
-		private IEntity getEntityAtPosition(Position pos) {
-			List<IEntity> entities = game.getEntityManager().getAllEntities();
-			for (IEntity entity : entities) {
-				float unitSize = entity.getSize();
-				Position unitPos = entity.getPosition();
-
-				// If the point is within the area of the unit
-				if (se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(),
-						unitPos.getX() - unitSize / 2, unitPos.getX()
-								+ unitSize / 2)
-						&& se.chalmers.pebjorn.javautils.Math.isWithin(
-								pos.getY(), unitPos.getY() - unitSize / 2,
-								unitPos.getY() + unitSize / 2)) {
-					return entity;
-				}
-			}
-			return null;
-		}
-	};
 
 	/**
 	 * Sets the GUI Control
@@ -307,7 +165,7 @@ class InputController {
 	 * @param guiControl
 	 */
 	public void setGUIControl(InGameGUIController guiControl) {
-		this.guiControl = guiControl;
+		actionInputHandler.setGUIControl(guiControl);
 	}
 
 	/**
@@ -317,24 +175,7 @@ class InputController {
 	 *            the ability to become selected
 	 */
 	public void selectAbility(IAbility ability, IPlayerControlledEntity e) {
-		if (e.getOwner().equals(game.getHumanPlayer())) {
-			IPlayerControlledEntity pce = (IPlayerControlledEntity) e;
-			currentAbility = ability;
-			selectedEntity = pce;
-			choosingPosition = false;
-			choosingTarget = false;
-			if (currentAbility instanceof IBuildStructureAbility) {
-				choosingPosition = true;
-				IBuildStructureAbility ab = (IBuildStructureAbility) ability;
-				buildingSize = ab.getSizeOfBuilding();
-			} else if (currentAbility instanceof ITargetAbility) {
-				choosingTarget = true;
-			} else {
-				game.getAbilityManager().doAbility(
-						currentAbility.getClass().getSimpleName(),
-						pce.getPosition(), pce);
-			}
-		}
+		actionInputHandler.selectAbility(ability, e);
 	}
 
 	// TODO Markus: Add javadoc
