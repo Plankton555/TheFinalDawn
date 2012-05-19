@@ -23,6 +23,8 @@ public class HighScoreGUICreator {
 	public static LayerBuilder createMainLayer(final float time) {
 		LayerBuilder layer = new LayerBuilder("Layer_Highscore_Main") {{
 			childLayoutCenter();
+			
+			
 			panel(new PanelBuilder("Panel_GUI") {{
 				childLayoutVertical();
 				valignCenter();
@@ -34,6 +36,7 @@ public class HighScoreGUICreator {
 					text("Congratulations!\nYou managed to survive "+min+" minutes and "+sec+" seconds!");
 				}});
 				
+				//Menu buttons
 				control(new ButtonBuilder("Button_Menu", "Back to Menu"){{
 					alignCenter();
 					interactOnClick("buttonRestartClicked()");

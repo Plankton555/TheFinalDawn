@@ -109,6 +109,7 @@ public class GameGUIView implements PropertyChangeListener {
 		}
 	}
 	
+	
 	private void checkForBuildEvent(PropertyChangeEvent pce){
 		if("NotEnoughResources".equals(pce.getPropertyName())){
 			showMessage("Not enough resources");
@@ -145,6 +146,7 @@ public class GameGUIView implements PropertyChangeListener {
 			panelTooltip.setConstraintX(new SizeValue(nifty.getNiftyMouse().getX()-panelTooltip.getWidth()+"px"));
 			panelTooltip.setConstraintY(new SizeValue(nifty.getNiftyMouse().getY()-panelTooltip.getHeight()+"px"));
 			
+			//Update the screen so it moves the panel
 			screen.layoutLayers();
 			
 			labelTooltipHeader.getRenderer(TextRenderer.class).setText(ability.getName());
@@ -222,6 +224,8 @@ public class GameGUIView implements PropertyChangeListener {
     		Element labelName = screen.findElementByName("Label_Name");
     		labelName.getRenderer(TextRenderer.class).setText(selectedPce.getName());
     		
+    		
+    		//Puts together strings with the info
     		StringBuilder infoValuesBuilder = new StringBuilder();
     		StringBuilder infoBuilder = new StringBuilder();
     		
@@ -255,6 +259,7 @@ public class GameGUIView implements PropertyChangeListener {
 		labelMessage.setVisible(true);
 	}
 	
+	//Shows the timer when constructing buildings or training units
 	private void showBuildInfo(String text){
 		Element buildInfoPanel = screen.findElementByName("Panel_BuildInfo");
 		

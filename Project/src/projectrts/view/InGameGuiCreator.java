@@ -142,7 +142,6 @@ public class InGameGuiCreator {
          		childLayoutHorizontal();
         	   
          		for(int i = 1; i<=4; i++){
-         			// GUI elements
          			control(createAbilityButton(i));
          		}
            }});    
@@ -154,7 +153,6 @@ public class InGameGuiCreator {
         	   childLayoutHorizontal();
                 
         	   for(int i = 5; i<=8; i++){
-	                // GUI elements
 	                control(createAbilityButton(i));
         	   }
      
