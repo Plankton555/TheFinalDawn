@@ -15,6 +15,8 @@ import com.jme3.material.Material;
 public class MaterialManager {
 	private static Map<String, Material> materials = new HashMap<String, Material>();
 	
+	private MaterialManager(){}; //Empty private constructor to disallow any instances.
+	
 	/**
 	 * Initializes the materials
 	 * @param app The SimpleApplication

@@ -18,7 +18,8 @@ public class ImageManager {
 	private static Map<String, NiftyImage> images = new HashMap<String, NiftyImage>();
 	private static NiftyRenderEngine engine;
 	
-
+	private ImageManager(){}; //Empty private constructor to disallow any instances.
+	
 	/**
 	 * Initializes the images that are needed for the GUI
 	 * @param nifty

@@ -14,6 +14,8 @@ import com.jme3.texture.Texture;
 public class TextureManager {
 	private static Map<String, Texture> textures = new HashMap<String, Texture>();
 	
+	private TextureManager(){}; //Empty private constructor to disallow any instances.
+	
 	/**
 	 * Initializes the textures
 	 * @param app The SimpleApplication
