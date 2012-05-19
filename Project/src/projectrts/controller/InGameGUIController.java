@@ -55,7 +55,6 @@ public class InGameGUIController implements ScreenController {
 	}
 
 	private void initializeGUI() {
-
 		nifty.addScreen("Screen_Game", new ScreenBuilder("GUI Screen") {
 			{
 				controller(InGameGUIController.this);
@@ -65,7 +64,6 @@ public class InGameGUIController implements ScreenController {
 				layer(InGameGuiCreator.createMessageLayer());
 
 				layer(InGameGuiCreator.createTooltipLayer());
-
 			}
 		}.build(nifty));
 
@@ -75,7 +73,6 @@ public class InGameGUIController implements ScreenController {
 		guiPanel.getRenderer(ImageRenderer.class).setImage(image);
 
 		nifty.gotoScreen("Screen_Game"); // start the screen
-
 	}
 
 	/**

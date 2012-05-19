@@ -14,7 +14,6 @@ import de.lessvoid.nifty.Nifty;
  * @author Filip Brynfors
  */
 class MenuState extends AbstractAppState {
-
 	private final Nifty nifty;
 	private PropertyChangeListener pcl;
 
@@ -48,6 +47,5 @@ class MenuState extends AbstractAppState {
 	 */
 	public void addListener(PropertyChangeListener pcl) {
 		this.pcl = pcl;
-
 	}
 }

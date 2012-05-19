@@ -58,7 +58,6 @@ public class AppController extends SimpleApplication implements
 		Logger.getLogger("").setLevel(Level.SEVERE);
 		setDisplayFps(true);
 		setDisplayStatView(false);
-
 	}
 
 	private void startMenuState() {

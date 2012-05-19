@@ -173,5 +173,4 @@ public class MenuGUIController implements ScreenController {
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 	}
-
 }

@@ -142,6 +142,5 @@ public class InGameState extends AbstractAppState {
 				new Vector3f((worldWidth / 2) * MODEL_TO_WORLD,
 						-(worldHeight / 2) * MODEL_TO_WORLD, app.getCamera()
 								.getLocation().getZ()));
-
 	}
 }

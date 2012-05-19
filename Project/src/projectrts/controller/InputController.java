@@ -234,7 +234,6 @@ class InputController {
 					app.getInputManager().deleteMapping("cameraUpMouse");
 					app.getInputManager().deleteMapping("cameraDownMouse");
 				}
-
 			}
 		}
 	};
@@ -358,11 +357,8 @@ class InputController {
 						&& se.chalmers.pebjorn.javautils.Math.isWithin(
 								pos.getY(), unitPos.getY() - unitSize / 2,
 								unitPos.getY() + unitSize / 2)) {
-
 					return entity;
-
 				}
-
 			}
 			return null;
 		}
@@ -408,5 +404,4 @@ class InputController {
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 	}
-
 }
