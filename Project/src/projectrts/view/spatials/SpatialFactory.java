@@ -13,10 +13,8 @@ import com.jme3.scene.shape.Box;
  *
  */
 public class SpatialFactory {
-	
-	private SpatialFactory(){}
-	
 	private static Map<String, AbstractSpatial> spatialMap = new HashMap<String, AbstractSpatial>();
+	
 	/**
 	 * Registers a spatial in the factory. Registering a spatial enables
 	 * creation of that spatial through createSpatial methods.
@@ -62,4 +60,6 @@ public class SpatialFactory {
 		
 		return ((INodeSpatial)spatialMap.get(spatialType)).createSpatial(name, box, node);
 	}
+	
+	private SpatialFactory(){}
 }

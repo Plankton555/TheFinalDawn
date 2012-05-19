@@ -17,7 +17,7 @@ public class Worker extends AbstractUnit{
 	private static final int MAXH_HEALTH = 50;
 
 	static {
-		EntityFactory.INSTANCE.registerPCE(Worker.class.getSimpleName(), new Worker());
+		EntityFactory.registerPCE(Worker.class.getSimpleName(), new Worker());
 	}
 	
 	protected void initialize(Player owner, Position spawnPos) {

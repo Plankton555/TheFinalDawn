@@ -12,7 +12,7 @@ public class Resource extends NonPlayerControlledEntity{
 	private static float size = 1;
 	private static int mineAmount = 4;
 	static {
-		EntityFactory.INSTANCE.registerNPCE(Resource.class.getSimpleName(), new Resource());
+		EntityFactory.registerNPCE(Resource.class.getSimpleName(), new Resource());
 	}
 	
 	/**

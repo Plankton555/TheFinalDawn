@@ -10,9 +10,9 @@ import projectrts.model.world.Position;
  * @author Markus Ekström
  *
  */
-public enum EntityFactory {INSTANCE;
-	private Map<String, PlayerControlledEntity> pceMap = new HashMap<String, PlayerControlledEntity>();
-	private Map<String, NonPlayerControlledEntity> npceMap = new HashMap<String, NonPlayerControlledEntity>();
+public class EntityFactory {
+	private static Map<String, PlayerControlledEntity> pceMap = new HashMap<String, PlayerControlledEntity>();
+	private static Map<String, NonPlayerControlledEntity> npceMap = new HashMap<String, NonPlayerControlledEntity>();
 
 	/**
 	 * Registers a PlayerControlledEntity in the factory. Registering an entity enables
@@ -20,7 +20,7 @@ public enum EntityFactory {INSTANCE;
 	 * @param pceType The class name of the entity (use class.getSimpleName()).
 	 * @param pce An instance of the entity you want to register.
 	 */
-	public void registerPCE(String pceType, PlayerControlledEntity pce) {
+	public static void registerPCE(String pceType, PlayerControlledEntity pce) {
 		pceMap.put(pceType, pce);
 	}
 
@@ -32,7 +32,7 @@ public enum EntityFactory {INSTANCE;
 	 * @param pos The position of the desired entity.
 	 * @return An instance of the desired entity.
 	 */
-	public PlayerControlledEntity createPCE(String pceType, Player aiPlayer, Position pos) {
+	public static PlayerControlledEntity createPCE(String pceType, Player aiPlayer, Position pos) {
 		if(pceMap.get(pceType) == null) {
 			throw new IllegalStateException("You must register "+ pceType +
 					" before you can use it");
@@ -47,7 +47,7 @@ public enum EntityFactory {INSTANCE;
 	 * @param npceType The class name of the entity (use class.getSimpleName()).
 	 * @param npce An instance of the entity you want to register.
 	 */
-	public void registerNPCE(String npceType, NonPlayerControlledEntity npce) {
+	public static void registerNPCE(String npceType, NonPlayerControlledEntity npce) {
 		npceMap.put(npceType, npce);
 	}
 	
@@ -58,11 +58,13 @@ public enum EntityFactory {INSTANCE;
 	 * @param pos The position of the desired entity.
 	 * @return An instance of the desired entity.
 	 */
-	public NonPlayerControlledEntity createNPCE(String npceType, Position pos) {
+	public static NonPlayerControlledEntity createNPCE(String npceType, Position pos) {
 		if(npceMap.get(npceType) == null) {
 			throw new IllegalStateException("You must register "+ npceType +
 					" before you can use it");
 		}
 		return npceMap.get(npceType).createNPCE(pos);
 	}
+	
+	private EntityFactory(){}
 }

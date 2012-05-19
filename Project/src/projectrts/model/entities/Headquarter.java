@@ -14,7 +14,7 @@ public class Headquarter extends AbstractStructure{
 	private static int maxHealth = 2000;
 	
 	static {
-		EntityFactory.INSTANCE.registerPCE(Headquarter.class.getSimpleName(), new Headquarter());
+		EntityFactory.registerPCE(Headquarter.class.getSimpleName(), new Headquarter());
 	}
 
 	

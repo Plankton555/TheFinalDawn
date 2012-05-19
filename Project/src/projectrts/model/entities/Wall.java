@@ -15,7 +15,7 @@ public class Wall extends AbstractStructure{
 	private static int maxHealth = 500;
 	
 	static {
-		EntityFactory.INSTANCE.registerPCE(Wall.class.getSimpleName(), new Wall());
+		EntityFactory.registerPCE(Wall.class.getSimpleName(), new Wall());
 	}
 	
 	protected void initialize(Player owner, Position spawnPos) {

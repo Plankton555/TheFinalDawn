@@ -85,7 +85,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		
 		//Worker
 		ArrayList<AbstractAbility> workerAbilities = new ArrayList<AbstractAbility>();
-		PlayerControlledEntity worker = EntityFactory.INSTANCE.createPCE(
+		PlayerControlledEntity worker = EntityFactory.createPCE(
 				Worker.class.getSimpleName(), null, new Position(-1, -1));
 		MoveAbility workerMove = (MoveAbility) AbilityFactory.INSTANCE.createAbility(
 				MoveAbility.class.getSimpleName(), worker);
@@ -103,7 +103,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		abilityReferenceMap.put(Worker.class.getSimpleName(), workerAbilities);
 		
 		//Warrior
-		PlayerControlledEntity warrior = EntityFactory.INSTANCE.createPCE(
+		PlayerControlledEntity warrior = EntityFactory.createPCE(
 				Warrior.class.getSimpleName(), null, new Position(-1, -1));
 		MoveAbility warriorMove = (MoveAbility) AbilityFactory.INSTANCE.createAbility(
 				MoveAbility.class.getSimpleName(), worker);
@@ -114,7 +114,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		abilityReferenceMap.put(Warrior.class.getSimpleName(), warriorAbilities);
 		
 		//Archer
-		PlayerControlledEntity archer = EntityFactory.INSTANCE.createPCE(
+		PlayerControlledEntity archer = EntityFactory.createPCE(
 				Ranged.class.getSimpleName(), null, new Position(-1, -1));
 		MoveAbility archerMove = (MoveAbility) AbilityFactory.INSTANCE.createAbility(
 				MoveAbility.class.getSimpleName(), worker);
@@ -125,7 +125,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		abilityReferenceMap.put(Ranged.class.getSimpleName(), archerAbilities);
 		
 		//Headquarter
-		PlayerControlledEntity headquarter = EntityFactory.INSTANCE.createPCE(
+		PlayerControlledEntity headquarter = EntityFactory.createPCE(
 				Headquarter.class.getSimpleName(), null, new Position(-1, -1));
 		ArrayList<AbstractAbility> headquarterAbilities = new ArrayList<AbstractAbility>();
 		headquarterAbilities.add(AbilityFactory.INSTANCE.createAbility(
@@ -133,7 +133,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		abilityReferenceMap.put(Headquarter.class.getSimpleName(), headquarterAbilities);
 		
 		//Barracks
-		PlayerControlledEntity barracks = EntityFactory.INSTANCE.createPCE(
+		PlayerControlledEntity barracks = EntityFactory.createPCE(
 				Barracks.class.getSimpleName(), null, new Position(-1, -1));
 		ArrayList<AbstractAbility> barracksAbilities = new ArrayList<AbstractAbility>();
 		barracksAbilities.add(AbilityFactory.INSTANCE.createAbility(

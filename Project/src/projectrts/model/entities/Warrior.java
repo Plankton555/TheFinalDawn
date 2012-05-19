@@ -18,7 +18,7 @@ public class Warrior extends AbstractUnit{
 	
 	
 	static {
-		EntityFactory.INSTANCE.registerPCE(Warrior.class.getSimpleName(), new Warrior());
+		EntityFactory.registerPCE(Warrior.class.getSimpleName(), new Warrior());
 	}
 	
 	protected void initialize(Player owner, Position spawnPos) {

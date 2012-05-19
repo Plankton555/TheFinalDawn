@@ -14,7 +14,7 @@ public class Barracks extends AbstractStructure{
 	private static int maxHealth = 1000;
 	
 	static {
-		EntityFactory.INSTANCE.registerPCE(Barracks.class.getSimpleName(), new Barracks());
+		EntityFactory.registerPCE(Barracks.class.getSimpleName(), new Barracks());
 	}
 	
 	protected void initialize(Player owner, Position spawnPos) {

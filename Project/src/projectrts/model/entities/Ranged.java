@@ -18,7 +18,7 @@ public class Ranged extends AbstractUnit{
 	
 	
 	static {
-		EntityFactory.INSTANCE.registerPCE(Ranged.class.getSimpleName(), new Ranged());
+		EntityFactory.registerPCE(Ranged.class.getSimpleName(), new Ranged());
 	}
 	
 	protected void initialize(Player owner, Position spawnPos) {

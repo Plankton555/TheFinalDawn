@@ -102,7 +102,7 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 	 */
 	public void addNewNPCE(String npce, Position pos)
 	{
-		NonPlayerControlledEntity newNPCE = EntityFactory.INSTANCE.createNPCE(npce, pos);
+		NonPlayerControlledEntity newNPCE = EntityFactory.createNPCE(npce, pos);
 		entitiesAddQueue.add(newNPCE);
 	}
 	
@@ -114,7 +114,7 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 	 * @param pos The position of the entity.
 	 */
 	public void addNewPCE(String pce, Player iPlayer, Position pos) {
-		PlayerControlledEntity newPCE = EntityFactory.INSTANCE.createPCE(pce, iPlayer, pos);
+		PlayerControlledEntity newPCE = EntityFactory.createPCE(pce, iPlayer, pos);
 		entitiesAddQueue.add(newPCE);
 	}
 	
