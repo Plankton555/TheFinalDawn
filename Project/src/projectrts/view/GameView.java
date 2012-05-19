@@ -52,9 +52,9 @@ public class GameView implements PropertyChangeListener{
     private final Node debug = new Node("debug"); // The node for the debugging graphics
     private Node terrainNode = new Node("terrain"); // The node for all terrain
     private Node mouseEffects = new Node("mouseEffects"); // The node for mouseEffects
-    // TODO Markus: PMD: Perhaps 'matTerrain' could be replaced by a local variable.
+    // TODO Jakob: PMD: Perhaps 'matTerrain' could be replaced by a local variable.
     private Material matTerrain;
-    // TODO Markus: PMD: Perhaps 'terrain' could be replaced by a local variable.
+    // TODO Jakob: PMD: Perhaps 'terrain' could be replaced by a local variable.
     private TerrainQuad terrain;
     private float mod = InGameState.MODEL_TO_WORLD; // The modifier value for converting lengths between model and world.
     
@@ -333,12 +333,9 @@ public class GameView implements PropertyChangeListener{
 			if(evt.getNewValue() instanceof IEntity) {
 				integrateNewEntity((IEntity)evt.getNewValue());
 			}
-		} else if (evt.getPropertyName().equals("entityRemoved")) {
-			// TODO Markus: PMD: These nested if statements could be combined
-			if(evt.getOldValue() instanceof IEntity) {
-				removeDeadEntity((IEntity)evt.getOldValue());
-				drawSelected(game.getEntityManager().getSelectedEntities());
-			}
+		} else if (evt.getPropertyName().equals("entityRemoved") && evt.getOldValue() instanceof IEntity) {
+			removeDeadEntity((IEntity)evt.getOldValue());
+			drawSelected(game.getEntityManager().getSelectedEntities());
 		}	
 	}   
 }
