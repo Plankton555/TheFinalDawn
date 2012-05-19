@@ -30,6 +30,7 @@ public class TrainWorkerAbilityTest {
 		while(!ab.isFinished()){
 			ab.update(1);
 			counter++;
+			EntityManager.INSTANCE.update(1);
 			assertTrue(counter < 1000);	
 		}
 	}
