@@ -36,7 +36,7 @@ public final class RangedSpatial extends AbstractSpatial implements IEntitySpati
 	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
 		material = MaterialManager.getMaterial("Unshaded");
 		//material.setColor("Color", ColorRGBA.Magenta);
-		Texture texture = TextureManager.INSTANCE.getTexture("Marine");
+		Texture texture = TextureManager.getTexture("Marine");
 		material.setTexture("ColorMap", texture);
 		material.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);
 		

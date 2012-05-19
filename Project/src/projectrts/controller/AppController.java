@@ -45,7 +45,7 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
 	    nifty.loadControlFile("nifty-default-controls.xml");
     	
     	this.cam.setParallelProjection(true);
-    	TextureManager.INSTANCE.initializeTextures(this);
+    	TextureManager.initializeTextures(this);
     	MaterialManager.initializeMaterial(this);
     	ImageManager.INSTANCE.initializeImages(nifty);
 

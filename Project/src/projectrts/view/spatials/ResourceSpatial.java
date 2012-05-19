@@ -37,7 +37,7 @@ public final class ResourceSpatial extends AbstractSpatial implements IEntitySpa
 	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
 		material = MaterialManager.getMaterial("Unshaded");
 		//material.setColor("Color", ColorRGBA.Yellow);
-		Texture texture = TextureManager.INSTANCE.getTexture("GoldMine");
+		Texture texture = TextureManager.getTexture("GoldMine");
 		material.setTexture("ColorMap", texture);
 		material.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);
 		

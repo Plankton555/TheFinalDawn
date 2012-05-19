@@ -38,7 +38,7 @@ public final class BarracksSpatial extends AbstractSpatial implements IEntitySpa
 	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
 		material = MaterialManager.getMaterial("Unshaded");
 		//material.setColor("Color", ColorRGBA.Black);
-		Texture texture = TextureManager.INSTANCE.getTexture("Barracks");
+		Texture texture = TextureManager.getTexture("Barracks");
 		material.setTexture("ColorMap", texture);
 		material.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);
 		

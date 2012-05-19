@@ -11,15 +11,14 @@ import com.jme3.texture.Texture;
  * @author Jakob Svensson
  *
  */
-public enum TextureManager {
-	INSTANCE;
-	private Map<String, Texture> textures = new HashMap<String, Texture>();
+public class TextureManager {
+	private static Map<String, Texture> textures = new HashMap<String, Texture>();
 	
 	/**
 	 * Initializes the textures
 	 * @param app The SimpleApplication
 	 */
-	public void initializeTextures(SimpleApplication app){
+	public static void initializeTextures(SimpleApplication app){
 		AssetManager assetManager = app.getAssetManager();
 
 		textures.put("Alpha", assetManager.loadTexture("assets/terrain/alphamap.png"));
@@ -56,7 +55,7 @@ public enum TextureManager {
 	 * @param name The name of the texture
 	 * @return The texture with the name
 	 */
-	public Texture getTexture(String name){
+	public static Texture getTexture(String name){
 		
 			return textures.get(name);
 		

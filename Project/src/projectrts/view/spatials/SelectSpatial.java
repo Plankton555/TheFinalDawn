@@ -37,7 +37,7 @@ public final class SelectSpatial extends AbstractSpatial implements IEntitySpati
 	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
 		material = MaterialManager.getMaterial("Unshaded");
 		//material.setColor("Color", ColorRGBA.Green);
-		Texture texture = TextureManager.INSTANCE.getTexture("SelectSquare");
+		Texture texture = TextureManager.getTexture("SelectSquare");
 		material.setTexture("ColorMap", texture);
 		material.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);
 		
