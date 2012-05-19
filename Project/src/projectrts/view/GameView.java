@@ -52,10 +52,6 @@ public class GameView implements PropertyChangeListener{
     private final Node debug = new Node("debug"); // The node for the debugging graphics
     private Node terrainNode = new Node("terrain"); // The node for all terrain
     private Node mouseEffects = new Node("mouseEffects"); // The node for mouseEffects
-    // TODO Jakob: PMD: Perhaps 'matTerrain' could be replaced by a local variable.
-    private Material matTerrain;
-    // TODO Jakob: PMD: Perhaps 'terrain' could be replaced by a local variable.
-    private TerrainQuad terrain;
     private float mod = InGameState.MODEL_TO_WORLD; // The modifier value for converting lengths between model and world.
     
     private boolean debugNodes = false;
@@ -109,7 +105,9 @@ public class GameView implements PropertyChangeListener{
 	 * http://jmonkeyengine.org/wiki/doku.php/jme3:beginner:hello_terrain
 	 */
     private void initializeWorld() {
-    	
+    	Material matTerrain;
+        TerrainQuad terrain;
+        
     	  /** 1. Create terrain material and load four textures into it. */
         matTerrain = MaterialManager.INSTANCE.getMaterial("Terrain");
      
