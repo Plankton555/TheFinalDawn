@@ -12,25 +12,26 @@ import projectrts.model.world.World;
 
 /**
  * An ability for moving
+ * 
  * @author Filip Brynfors, modified by Bjorn Persson Mattsson
- *
+ * 
  */
 // TODO Plankton: PMD: This class has too many methods, consider refactoring it.
-public class MoveAbility extends AbstractAbility
-implements INotUsingMoveAbility, ITargetAbility, AStarUser {
+public class MoveAbility extends AbstractAbility implements
+		INotUsingMoveAbility, ITargetAbility, AStarUser {
 	private Position targetPosition;
-	
+
 	private World world;
 	private INode occupiedNode;
 
 	private AStarPath path;
 	private boolean waitingForPath = false;
-	
+
 	static {
-		AbilityFactory.registerAbility(
-				MoveAbility.class.getSimpleName(), new MoveAbility());
+		AbilityFactory.registerAbility(MoveAbility.class.getSimpleName(),
+				new MoveAbility());
 	}
-	
+
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
@@ -39,37 +40,36 @@ implements INotUsingMoveAbility, ITargetAbility, AStarUser {
 		this.world = World.INSTANCE;
 		this.occupiedNode = world.getNodeAt(entity.getPosition());
 	}
-	
+
 	@Override
 	public String getName() {
 		return "Move";
 	}
-	
+
 	@Override
-	public void useAbility(Position pos){
+	public void useAbility(Position pos) {
 		this.targetPosition = pos;
-		
+
 		// Want to refresh path as soon as a click is made
 		refreshPath();
-		
+
 		setActive(true);
 		setFinished(false);
 	}
 
 	@Override
 	public void update(float tpf) {
-		if(isActive() && !isFinished() && !waitingForPath){
+		if (isActive() && !isFinished() && !waitingForPath) {
 			moveToNewPosition(tpf);
 			checkIfFinished();
 		}
 	}
-	
+
 	private void checkIfFinished() {
-		if (isAtTarget())
-		{
+		if (isAtTarget()) {
 			waitingForPath = false;
 			setFinished(true);
-			//path = null;
+			// path = null;
 		}
 	}
 
@@ -78,11 +78,9 @@ implements INotUsingMoveAbility, ITargetAbility, AStarUser {
 	}
 
 	private void moveToNewPosition(float tpf) {
-		if (pathAlreadyExists())
-		{
+		if (pathAlreadyExists()) {
 			entity.setPosition(calculateNextPosition(tpf));
-		}
-		else //if (!pathAlreadyExists)
+		} else // if (!pathAlreadyExists)
 		{
 			refreshPath();
 		}
@@ -94,56 +92,60 @@ implements INotUsingMoveAbility, ITargetAbility, AStarUser {
 
 	/**
 	 * Returns the position of the next step using A* algorithm.
-	 * @param stepLength Length of the step the entity can take this update.
-	 * @param entity The entity that's moving.
-	 * @param targetPos The position that the entity will move towards.
+	 * 
+	 * @param stepLength
+	 *            Length of the step the entity can take this update.
+	 * @param entity
+	 *            The entity that's moving.
+	 * @param targetPos
+	 *            The position that the entity will move towards.
 	 * @return Position of next step.
 	 */
-	private Position calculateNextPosition(float tpf)
-	{
+	private Position calculateNextPosition(float tpf) {
 		Position newPosition = entity.getPosition();
 		Position nextNodePos = path.getNextNode().getPosition();
-		
-		double stepLength = tpf*entity.getSpeed(); // *nodeModifier
-		double distanceToNextNode = Position.getDistance(newPosition, nextNodePos);
-		
-		if (stepLength >= distanceToNextNode)
-		{
+
+		double stepLength = tpf * entity.getSpeed(); // *nodeModifier
+		double distanceToNextNode = Position.getDistance(newPosition,
+				nextNodePos);
+
+		if (stepLength >= distanceToNextNode) {
 			newPosition = nextNodePos.copy();
-			//stepLength -= distanceToNextNode;
+			// stepLength -= distanceToNextNode;
 			refreshPath();
-		}
-		else //if (stepLength < distanceToNextNode)
+		} else // if (stepLength < distanceToNextNode)
 		{
-			Vector2d direction = Position.getVectorBetween(newPosition, nextNodePos);
+			Vector2d direction = Position.getVectorBetween(newPosition,
+					nextNodePos);
 			newPosition = newPosition.add(stepLength, direction);
-			//stepLength = 0;
+			// stepLength = 0;
 		}
 		return newPosition;
 	}
-	
-	private void refreshPath()
-	{
+
+	private void refreshPath() {
 		waitingForPath = true;
-		AStar.calculatePath(entity.getPosition(), targetPosition, 2, entity.getEntityID(), this);
+		AStar.calculatePath(entity.getPosition(), targetPosition, 2,
+				entity.getEntityID(), this);
 	}
-	
+
 	@Override
 	public AbstractAbility createAbility(PlayerControlledEntity entity) {
 		MoveAbility newAbility = new MoveAbility();
 		newAbility.initialize(entity);
 		return newAbility;
 	}
-	
+
 	/**
 	 * Updates the target without calculating a new path right away.
-	 * @param newTarget The new target.
+	 * 
+	 * @param newTarget
+	 *            The new target.
 	 */
-	public void updateTarget(Position newTarget)
-	{
+	public void updateTarget(Position newTarget) {
 		this.targetPosition = newTarget.copy();
 	}
-	
+
 	/**
 	 * @return the occupiedNode
 	 */
@@ -153,17 +155,16 @@ implements INotUsingMoveAbility, ITargetAbility, AStarUser {
 
 	@Override
 	public void receivePath(AStarPath newPath) {
-		if (this.waitingForPath)
-		{
+		if (this.waitingForPath) {
 			this.path = newPath;
 
-			if (!path.isEmpty())
-			{
+			if (!path.isEmpty()) {
 				world.setNodesOccupied(occupiedNode, entity.getSize(), 0);
 				this.occupiedNode = path.getNextNode().getNode();
-				world.setNodesOccupied(occupiedNode, entity.getSize(), entity.getEntityID());
+				world.setNodesOccupied(occupiedNode, entity.getSize(),
+						entity.getEntityID());
 			}
-			
+
 			waitingForPath = false;
 		}
 	}

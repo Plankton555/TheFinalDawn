@@ -12,23 +12,26 @@ import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
 
 /**
- * A custom control that handles the debug nodes color change when they are occupied.
+ * A custom control that handles the debug nodes color change when they are
+ * occupied.
+ * 
  * @author Bjorn Persson Mattsson
- *
+ * 
  */
 public final class NodeControl extends AbstractControl implements INodeControl {
 
 	private final INode node;
-	
+
 	static {
-		ControlFactory.INSTANCE.registerControl("NodeControl", new NodeControl(null));
+		ControlFactory.INSTANCE.registerControl("NodeControl", new NodeControl(
+				null));
 	}
-	
+
 	private NodeControl(INode node) {
 		super();
 		this.node = node;
 	}
-	
+
 	@Override
 	public Control cloneForSpatial(Spatial spatial) {
 		NodeControl control = new NodeControl(node);
@@ -47,19 +50,17 @@ public final class NodeControl extends AbstractControl implements INodeControl {
 
 	/**
 	 * Automatically hooks into the update loop. Should not be manually called!
-	 * @param tpf Time-per-frame
+	 * 
+	 * @param tpf
+	 *            Time-per-frame
 	 */
 	@Override
 	protected void controlUpdate(float arg0) {
-		if(this.enabled && spatial != null)
-		{
+		if (this.enabled && spatial != null) {
 			Material material = MaterialManager.getMaterial("Unshaded");
-			if (node.isOccupied())
-			{
+			if (node.isOccupied()) {
 				material.setColor("Color", ColorRGBA.Red);
-			}
-			else
-			{
+			} else {
 				material.setColor("Color", ColorRGBA.Green);
 			}
 			spatial.setMaterial(material);

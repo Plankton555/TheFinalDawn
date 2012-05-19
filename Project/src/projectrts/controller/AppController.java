@@ -20,82 +20,85 @@ import de.lessvoid.nifty.Nifty;
 /**
  * The top-level controller.
  * 
- * Is the connection to jMonkeyEngine (extends SimpleApplication)
- * and handles top-level stuff like swapping AppStates.
+ * Is the connection to jMonkeyEngine (extends SimpleApplication) and handles
+ * top-level stuff like swapping AppStates.
+ * 
  * @author Markus Ekström Modifed by Jakob Svensson, Filip Brynfors
- *
+ * 
  */
-public class AppController extends SimpleApplication implements PropertyChangeListener{
+public class AppController extends SimpleApplication implements
+		PropertyChangeListener {
 	private Nifty nifty;
 	private MenuState menuState;
 	private InGameState ingameState;
 	private HighscoreState highscoreState;
 	private IGame game;
-	
-    @Override
-    public void simpleInitApp() {
-    	
-		final NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(getAssetManager(), getInputManager(), getAudioRenderer(), getGuiViewPort());
-	    nifty = niftyDisplay.getNifty();
-	    
-	    getGuiViewPort().addProcessor(niftyDisplay);
 
-	 
-	    nifty.loadStyleFile("nifty-default-styles.xml");
-	    nifty.loadControlFile("nifty-default-controls.xml");
-    	
-    	this.cam.setParallelProjection(true);
-    	TextureManager.initializeTextures(this);
-    	MaterialManager.initializeMaterial(this);
-    	ImageManager.initializeImages(nifty);
+	@Override
+	public void simpleInitApp() {
 
-    	startMenuState();
-        
-        // Set logger level
-        Logger.getLogger("").setLevel(Level.SEVERE);
-        setDisplayFps(true);
-        setDisplayStatView(false);
-         
-    }
-    
-    private void startMenuState(){
-    	menuState = new MenuState(nifty);    	
-    	menuState.setEnabled(false);
-    	menuState.addListener(this);
-    	
-       	this.stateManager.attach(menuState);
-    }
-    
-    private void startIngameState(Difficulty difficulty){
-        game = new GameModel();
-        game.addListener(this);
-        game.setDifficulty(difficulty);
-    	ingameState = new InGameState(game, nifty);
-    	this.stateManager.attach(ingameState);
-    	ingameState.setEnabled(true);
-    }
-    
-    private void startHighscoreState(float time){
-    	highscoreState = new HighscoreState(nifty, time);
-    	this.stateManager.attach(highscoreState);
-    	highscoreState.setEnabled(true);
-    	highscoreState.addListener(this);
-    }
+		final NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
+				getAssetManager(), getInputManager(), getAudioRenderer(),
+				getGuiViewPort());
+		nifty = niftyDisplay.getNifty();
+
+		getGuiViewPort().addProcessor(niftyDisplay);
+
+		nifty.loadStyleFile("nifty-default-styles.xml");
+		nifty.loadControlFile("nifty-default-controls.xml");
+
+		this.cam.setParallelProjection(true);
+		TextureManager.initializeTextures(this);
+		MaterialManager.initializeMaterial(this);
+		ImageManager.initializeImages(nifty);
+
+		startMenuState();
+
+		// Set logger level
+		Logger.getLogger("").setLevel(Level.SEVERE);
+		setDisplayFps(true);
+		setDisplayStatView(false);
+
+	}
+
+	private void startMenuState() {
+		menuState = new MenuState(nifty);
+		menuState.setEnabled(false);
+		menuState.addListener(this);
+
+		this.stateManager.attach(menuState);
+	}
+
+	private void startIngameState(Difficulty difficulty) {
+		game = new GameModel();
+		game.addListener(this);
+		game.setDifficulty(difficulty);
+		ingameState = new InGameState(game, nifty);
+		this.stateManager.attach(ingameState);
+		ingameState.setEnabled(true);
+	}
+
+	private void startHighscoreState(float time) {
+		highscoreState = new HighscoreState(nifty, time);
+		this.stateManager.attach(highscoreState);
+		highscoreState.setEnabled(true);
+		highscoreState.addListener(this);
+	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		if(evt.getPropertyName().equals("Start")){
+		if (evt.getPropertyName().equals("Start")) {
 			menuState.setEnabled(false);
 			getStateManager().detach(menuState);
-			startIngameState((Difficulty)evt.getNewValue());
-			
-		} else if(evt.getPropertyName().equals("gameIsOver")){
+			startIngameState((Difficulty) evt.getNewValue());
+
+		} else if (evt.getPropertyName().equals("gameIsOver")) {
 			ingameState.setEnabled(false);
 			getStateManager().detach(ingameState);
 			getRootNode().detachAllChildren();
 			startHighscoreState(game.getGameTime());
-			
-		} else if (evt.getPropertyName().equals("Menu")){
+
+		} else if (evt.getPropertyName().equals("Menu")) {
 			highscoreState.setEnabled(false);
 			getStateManager().detach(highscoreState);
 			startMenuState();

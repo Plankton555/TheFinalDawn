@@ -5,17 +5,21 @@ import projectrts.model.entities.Ranged;
 
 /**
  * A class that trains a ranged unit
+ * 
  * @author Jakob Svensson
- *
+ * 
  */
-class TrainRangedAbility extends AbstractCreationAbility implements INotUsingMoveAbility {
-	private static float buildTime = 8; 
-	private static int buildCost = 150; 
-	
+class TrainRangedAbility extends AbstractCreationAbility implements
+		INotUsingMoveAbility {
+	private static float buildTime = 8;
+	private static int buildCost = 150;
+
 	static {
-		AbilityFactory.registerAbility(TrainRangedAbility.class.getSimpleName(), new TrainRangedAbility());
+		AbilityFactory.registerAbility(
+				TrainRangedAbility.class.getSimpleName(),
+				new TrainRangedAbility());
 	}
-	
+
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
@@ -25,13 +29,12 @@ class TrainRangedAbility extends AbstractCreationAbility implements INotUsingMov
 		this.setBuildTime(buildTime);
 		this.setEntityToTrain(Ranged.class.getSimpleName());
 	}
-	
+
 	@Override
 	public String getName() {
 		return "Train Ranged";
 	}
 
-	
 	@Override
 	public AbstractAbility createAbility(PlayerControlledEntity entity) {
 		TrainRangedAbility newAbility = new TrainRangedAbility();
@@ -41,7 +44,7 @@ class TrainRangedAbility extends AbstractCreationAbility implements INotUsingMov
 
 	@Override
 	public String getInfo() {
-		return "Trains a new Ranged\nCost: " +buildCost;
+		return "Trains a new Ranged\nCost: " + buildCost;
 	}
 
 }

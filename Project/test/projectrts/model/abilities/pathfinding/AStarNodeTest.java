@@ -42,10 +42,9 @@ public class AStarNodeTest {
 	private static AStarNode aNode8;
 	private static AStarNode aNode9;
 	private static AStarNode aNode10;
-	
+
 	@BeforeClass
-	public static void beforeClass()
-	{
+	public static void beforeClass() {
 		p1 = new Position(2.7, 2);
 		p2 = new Position(6.2, 4.9);
 		p3 = new Position(2.7, 2);
@@ -77,7 +76,7 @@ public class AStarNodeTest {
 		aNode9 = new AStarNode(node9);
 		aNode10 = new AStarNode(node10);
 	}
-	
+
 	@Test
 	public void testGetNeighbours() {
 		assertTrue(aNode1.getNeighbours().size() == 0);
@@ -92,7 +91,7 @@ public class AStarNodeTest {
 
 	@Test
 	public void testCalculateHeuristic() {
-		
+
 		aNode5.calculateHeuristic(aNode6, 10);
 		assertTrue(aNode5.getHeuristic() == 40);
 		aNode6.calculateHeuristic(aNode5, 10);
@@ -105,7 +104,7 @@ public class AStarNodeTest {
 
 	@Test
 	public void testCalculateCostFromStart() {
-		
+
 		assertTrue(aNode5.getCostFromStart() == 0);
 		aNode8.calculateCostFromStart(aNode5, false);
 		assertTrue(aNode8.getCostFromStart() == 10);
@@ -127,7 +126,7 @@ public class AStarNodeTest {
 
 	@Test
 	public void testGetParent() {
-		
+
 		assertTrue(aNode5.getParent() == null);
 		aNode8.calculateCostFromStart(aNode5, false);
 		assertTrue(aNode8.getParent().equals(aNode5));
@@ -139,16 +138,15 @@ public class AStarNodeTest {
 
 	@Test
 	public void testCompareTo() {
-		
+
 		aNode8.calculateCostFromStart(aNode5, false);
 		aNode9.calculateCostFromStart(aNode8, false);
 		assertTrue(aNode9.compareTo(aNode8) > 0);
 		assertTrue(aNode8.compareTo(aNode9) < 0);
 	}
-	
+
 	@Test
-	public void testHashCode()
-	{
+	public void testHashCode() {
 		assertTrue(aNode10.hashCode() == aNode9.hashCode());
 		assertTrue(aNode10.hashCode() == aNode10.hashCode());
 		assertTrue(aNode8.hashCode() != aNode9.hashCode());
@@ -159,10 +157,10 @@ public class AStarNodeTest {
 	public void testEquals() {
 		assertTrue(!aNode1.equals(aNode2));
 		assertTrue(!aNode2.equals(aNode1));
-		
+
 		assertTrue(aNode1.equals(aNode3));
 		assertTrue(aNode3.equals(aNode1));
-		
+
 		assertTrue(!aNode2.equals(aNode3));
 		assertTrue(!aNode3.equals(aNode2));
 	}
@@ -174,10 +172,9 @@ public class AStarNodeTest {
 		node1.setOccupied(0);
 		assertTrue(!aNode1.isObstacle(2));
 	}
-	
+
 	@Test
-	public void testGetNode()
-	{
+	public void testGetNode() {
 		assertTrue(aNode1.getNode().equals(node1));
 		assertTrue(!aNode1.getNode().equals(node2));
 	}

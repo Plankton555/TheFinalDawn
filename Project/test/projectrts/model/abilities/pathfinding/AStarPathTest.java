@@ -18,7 +18,7 @@ public class AStarPathTest {
 		AStarNode aNode1 = new AStarNode(node1);
 		AStarNode aNode2 = new AStarNode(node2);
 		AStarPath path = new AStarPath();
-		
+
 		assertTrue(path.isEmpty());
 		assertTrue(path.nrOfNodesLeft() == 0);
 		path.addNodeToPath(aNode1);

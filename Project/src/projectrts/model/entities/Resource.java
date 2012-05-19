@@ -4,17 +4,19 @@ import projectrts.model.world.Position;
 
 /**
  * A resource to be gathered
+ * 
  * @author Jakob Svensson
- *
+ * 
  */
-public class Resource extends NonPlayerControlledEntity{
-	
+public class Resource extends NonPlayerControlledEntity {
+
 	private static float size = 1;
 	private static int mineAmount = 4;
 	static {
-		EntityFactory.registerNPCE(Resource.class.getSimpleName(), new Resource());
+		EntityFactory.registerNPCE(Resource.class.getSimpleName(),
+				new Resource());
 	}
-	
+
 	/**
 	 * Initializes the resource
 	 */
@@ -23,20 +25,20 @@ public class Resource extends NonPlayerControlledEntity{
 		setName(Resource.class.getSimpleName());
 		setSize(size);
 	}
-	
+
 	@Override
 	public NonPlayerControlledEntity createNPCE(Position pos) {
 		Resource newResource = new Resource();
-			newResource.initialize(pos);
+		newResource.initialize(pos);
 		return newResource;
 	}
-	
-	
+
 	/**
 	 * Returns the the amount of resources the Resource gives each mine.
-	 * @return the amount of resources 
+	 * 
+	 * @return the amount of resources
 	 */
-	public int mine(){
+	public int mine() {
 		return mineAmount;
 	}
 

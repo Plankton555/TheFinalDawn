@@ -26,8 +26,9 @@ import projectrts.model.world.Position;
 import projectrts.model.world.World;
 
 /**
- * The main model class of the RTS Game
- * The class handles the world and they players in the game
+ * The main model class of the RTS Game The class handles the world and they
+ * players in the game
+ * 
  * @author Björn Persson Mattson, Modified by Filip Brynfors, Jakob Svensson
  */
 public class GameModel implements IGame, PropertyChangeListener {
@@ -41,64 +42,78 @@ public class GameModel implements IGame, PropertyChangeListener {
 	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private final Level level = new Level(aiPlayer);
 	private Difficulty currentDifficulty = Difficulty.MEDIUM;
-	
+
 	/**
 	 * Returns a position in the model with the given coordinates
-	 * @param x The x coordinate
-	 * @param y The y coordinate
+	 * 
+	 * @param x
+	 *            The x coordinate
+	 * @param y
+	 *            The y coordinate
 	 * @return A position with the given coordinates.
 	 */
 	public static Position getPosition(float x, float y) {
 		// TODO Markus: Should this method exist or not?
 		return new Position(x, y);
 	}
-	
+
 	/**
 	 * Determines whether any of the provided nodes are occupied.
-	 * @param nodes The nodes to be examined.
+	 * 
+	 * @param nodes
+	 *            The nodes to be examined.
 	 * @return true if any node is occupied, otherwise false.
 	 */
 	@Override
-	public boolean isAnyNodeOccupied(List<INode> nodes){
+	public boolean isAnyNodeOccupied(List<INode> nodes) {
 		return Node.isAnyNodeOccupied(nodes);
 	}
-	
+
 	/**
 	 * Creates a new GameModel.
 	 */
 	public GameModel() {
 		world.initializeWorld();
-		
+
 		abilityManager = new AbilityManager();
 		aiManager = new AIManager(aiPlayer, abilityManager);
 		entityManager.resetData();
 		entityManager.addListener(this);
-		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(50.5, 47.5));
-		entityManager.addNewPCE(Ranged.class.getSimpleName(), humanPlayer, new Position(50.5, 48.5));
-		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(50.5, 50.5));
-		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(50.5, 51.5));
-		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(46.5, 50.5));
-		entityManager.addNewPCE(Barracks.class.getSimpleName(), humanPlayer, new Position(47.5, 46.5));
-		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(54.5, 55.5));
-		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(54.5, 51.5));
-		
+		// Place starting units
+		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer,
+				new Position(50.5, 47.5));
+		entityManager.addNewPCE(Ranged.class.getSimpleName(), humanPlayer,
+				new Position(50.5, 48.5));
+		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer,
+				new Position(50.5, 50.5));
+		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer,
+				new Position(50.5, 51.5));
+		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer,
+				new Position(46.5, 50.5));
+		entityManager.addNewPCE(Barracks.class.getSimpleName(), humanPlayer,
+				new Position(47.5, 46.5));
+		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(
+				54.5, 55.5));
+		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(
+				54.5, 51.5));
+
 		level.setDifficulty(Difficulty.NIGHTMARE);
 	}
-	
+
 	@Override
 	public void update(float tpf) {
 		level.update(tpf);
 		aiManager.update(tpf);
 		abilityManager.update(tpf);
 		entityManager.update(tpf);
-		gameTime +=tpf;
+		gameTime += tpf;
 	}
 
 	@Override
 	public IPlayer getHumanPlayer() {
 		return humanPlayer;
 	}
-	
+
 	@Override
 	public IPlayer getAIPlayer() {
 		return aiPlayer;
@@ -108,7 +123,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 	public IEntityManager getEntityManager() {
 		return EntityManager.INSTANCE;
 	}
-	
+
 	@Override
 	public IAbilityManager getAbilityManager() {
 		return abilityManager;
@@ -123,48 +138,48 @@ public class GameModel implements IGame, PropertyChangeListener {
 	public float getGameTime() {
 		return gameTime;
 	}
-	
-	private void checkIfGameOver(){
-		//Assumes that all structures are dead and loops until it finds a living one
+
+	private void checkIfGameOver() {
+		// Assumes that all structures are dead and loops until it finds a
+		// living one
 		List<IEntity> entities = entityManager.getAllEntities();
 		boolean allDead = true;
-		for(IEntity entity: entities){
-			if(entity instanceof AbstractStructure && !((AbstractStructure) entity).isDead()){
+		for (IEntity entity : entities) {
+			if (entity instanceof AbstractStructure
+					&& !((AbstractStructure) entity).isDead()) {
 				allDead = false;
 				break;
 			}
 		}
-		if(allDead){
+		if (allDead) {
 			setGameOver();
 		}
 	}
-	
-	private void setGameOver(){
+
+	private void setGameOver() {
 		pcs.firePropertyChange("gameIsOver", false, true);
 	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
-		if("entityRemoved".equals(event.getPropertyName())){
+		if ("entityRemoved".equals(event.getPropertyName())) {
 			checkIfGameOver();
 		}
 	}
-	
+
 	@Override
 	public void setDifficulty(Difficulty difficulty) {
 		currentDifficulty = difficulty;
 		level.setDifficulty(currentDifficulty);
 	}
-	
+
 	@Override
 	public Difficulty getCurrentDifficulty() {
 		return currentDifficulty;
 	}
-		
+
 	@Override
-	public void addListener(PropertyChangeListener pcl){
+	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 	}
-
-
 }

@@ -14,37 +14,46 @@ import com.jme3.texture.Texture;
 /**
  * 
  * @author Jakob Svensson
- *
+ * 
  */
-public final class HeadquarterSpatial extends AbstractSpatial implements IEntitySpatial{
-	
+public final class HeadquarterSpatial extends AbstractSpatial implements
+		IEntitySpatial {
+
 	static {
-		SpatialFactory.registerSpatial(HeadquarterSpatial.class.getSimpleName(), new HeadquarterSpatial("HeadquarterSpatialCreator", new Box()));
+		SpatialFactory.registerSpatial(
+				HeadquarterSpatial.class.getSimpleName(),
+				new HeadquarterSpatial("HeadquarterSpatialCreator", new Box()));
 	}
-	
+
 	private HeadquarterSpatial(String name, Box box) {
 		super(name, box);
 	}
-	
+
 	/**
 	 * Creates and returns a new spatial using the parameters provided.
-	 * @param name The name of the new spatial.
-	 * @param material The material of the new spatial.
-	 * @param box The shape of the new spatial.
-	 * @param controlList A list of the controls the spatial will use.
+	 * 
+	 * @param name
+	 *            The name of the new spatial.
+	 * @param material
+	 *            The material of the new spatial.
+	 * @param box
+	 *            The shape of the new spatial.
+	 * @param controlList
+	 *            A list of the controls the spatial will use.
 	 */
 	@Override
 	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
 		material = MaterialManager.getMaterial("Unshaded");
-		//material.setColor("Color", ColorRGBA.Gray);
+		// material.setColor("Color", ColorRGBA.Gray);
 		Texture texture = TextureManager.getTexture("Headquarter");
 		material.setTexture("ColorMap", texture);
 		material.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);
-		
+
 		HeadquarterSpatial newSpatial = new HeadquarterSpatial(name, box);
 		newSpatial.setMaterial(material);
 		newSpatial.setQueueBucket(Bucket.Transparent);
-		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(MoveControl.class.getSimpleName(), entity));
+		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(
+				MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}
 

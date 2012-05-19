@@ -10,40 +10,49 @@ import com.jme3.material.RenderState.BlendMode;
 import com.jme3.renderer.queue.RenderQueue.Bucket;
 import com.jme3.scene.shape.Box;
 import com.jme3.texture.Texture;
+
 /**
  * 
  * @author Markus Ekström
- *
+ * 
  */
-public final class WarriorSpatial extends AbstractSpatial implements IEntitySpatial {
-	
+public final class WarriorSpatial extends AbstractSpatial implements
+		IEntitySpatial {
+
 	static {
-		SpatialFactory.registerSpatial(WarriorSpatial.class.getSimpleName(), new WarriorSpatial("UnitSpatialCreator", new Box()));
+		SpatialFactory.registerSpatial(WarriorSpatial.class.getSimpleName(),
+				new WarriorSpatial("UnitSpatialCreator", new Box()));
 	}
-	
+
 	private WarriorSpatial(String name, Box box) {
 		super(name, box);
 	}
-	
+
 	/**
 	 * Creates and returns a new spatial using the parameters provided.
-	 * @param name The name of the new spatial.
-	 * @param material The material of the new spatial.
-	 * @param box The shape of the new spatial.
-	 * @param controlList A list of the controls the spatial will use.
+	 * 
+	 * @param name
+	 *            The name of the new spatial.
+	 * @param material
+	 *            The material of the new spatial.
+	 * @param box
+	 *            The shape of the new spatial.
+	 * @param controlList
+	 *            A list of the controls the spatial will use.
 	 */
 	@Override
 	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
 		material = MaterialManager.getMaterial("Unshaded");
-		//material.setColor("Color", ColorRGBA.Pink);
+		// material.setColor("Color", ColorRGBA.Pink);
 		Texture texture = TextureManager.getTexture("Drone");
 		material.setTexture("ColorMap", texture);
 		material.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);
-		
+
 		WarriorSpatial newSpatial = new WarriorSpatial(name, box);
 		newSpatial.setMaterial(material);
 		newSpatial.setQueueBucket(Bucket.Transparent);
-		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(MoveControl.class.getSimpleName(), entity));
+		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(
+				MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}
 }

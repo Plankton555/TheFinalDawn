@@ -36,8 +36,10 @@ public class MenuGUIController implements ScreenController {
 	/**
 	 * Creates a new GUI controller
 	 * 
-	 * @param app the simpleApplication
-	 * @param nifty the Nifty GUI object
+	 * @param app
+	 *            the simpleApplication
+	 * @param nifty
+	 *            the Nifty GUI object
 	 * @param observer
 	 */
 	public MenuGUIController(Application app, Nifty nifty) {
@@ -64,13 +66,16 @@ public class MenuGUIController implements ScreenController {
 
 	private void initializeGUI() {
 
-		nifty.addScreen("Screen_StartMenu",new ScreenBuilder("GUI Start Menu") {{
-			controller(MenuGUIController.this);
-			layer(MenuGUICreator.createDifficultyPopupLayer());
+		nifty.addScreen("Screen_StartMenu",
+				new ScreenBuilder("GUI Start Menu") {
+					{
+						controller(MenuGUIController.this);
+						layer(MenuGUICreator.createDifficultyPopupLayer());
 
-			layer(MenuGUICreator.createMainLayer());
+						layer(MenuGUICreator.createMainLayer());
 
-		}}.build(nifty));
+					}
+				}.build(nifty));
 
 		nifty.gotoScreen("Screen_StartMenu"); // start the screen
 
@@ -80,7 +85,8 @@ public class MenuGUIController implements ScreenController {
 
 		difficultyPanel = screen.findElementByName("Panel_DifficultyPopup");
 		menuPanel = screen.findElementByName("Panel_Menu");
-		changeDifficultyButton = screen.findNiftyControl("Button_ChangeDifficulty", Button.class);
+		changeDifficultyButton = screen.findNiftyControl(
+				"Button_ChangeDifficulty", Button.class);
 
 		updateDifficultyText();
 	}
@@ -106,7 +112,7 @@ public class MenuGUIController implements ScreenController {
 		difficultyPanel.show();
 		menuPanel.hide();
 	}
-	
+
 	/**
 	 * Used when the Easy Difficulty button is clicked
 	 */
@@ -152,7 +158,8 @@ public class MenuGUIController implements ScreenController {
 	private void updateDifficultyText() {
 		String difficulty = chosenDifficulty.toString();
 		difficulty = difficulty.toLowerCase();
-		difficulty = difficulty.substring(0, 1).toUpperCase() + difficulty.substring(1);
+		difficulty = difficulty.substring(0, 1).toUpperCase()
+				+ difficulty.substring(1);
 		changeDifficultyButton.setText("Difficulty: " + difficulty);
 		menuPanel.resetLayout();
 	}
@@ -160,7 +167,8 @@ public class MenuGUIController implements ScreenController {
 	/**
 	 * Adds a listener to the controller
 	 * 
-	 * @param pcl the listener
+	 * @param pcl
+	 *            the listener
 	 */
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);

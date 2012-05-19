@@ -15,7 +15,7 @@ public class NodeTest {
 		double arg2 = 4.15;
 		Position p = new Position(arg1, arg2);
 		Node node = new Node(p);
-		
+
 		assertTrue(node.getPosition().equals(p));
 	}
 
@@ -25,7 +25,7 @@ public class NodeTest {
 		double arg2 = 1.59;
 		Position p = new Position(arg1, arg2);
 		Node node = new Node(arg1, arg2);
-		
+
 		assertTrue(node.getPosition().equals(p));
 	}
 
@@ -45,7 +45,7 @@ public class NodeTest {
 		Node node3 = new Node(3, 5);
 		List<INode> nodes = node1.getNeighbours();
 		assertTrue(nodes.isEmpty());
-		
+
 		node1.addNeighbour(node2);
 		node1.addNeighbour(node3);
 		nodes = node1.getNeighbours();
@@ -59,13 +59,13 @@ public class NodeTest {
 		Node node1 = new Node(2, 5);
 		Node node2 = new Node(1, 8);
 		Node node3 = new Node(2, 5);
-		
+
 		assertTrue(!node1.equals(node2));
 		assertTrue(!node2.equals(node1));
-		
+
 		assertTrue(node1.equals(node3));
 		assertTrue(node3.equals(node1));
-		
+
 		assertTrue(!node2.equals(node3));
 		assertTrue(!node3.equals(node2));
 	}
@@ -79,15 +79,14 @@ public class NodeTest {
 		node.setCost(0.5f);
 		assertTrue(node.getCost() == 0.5f);
 	}
-	
+
 	@Test
-	public void testIsAnyNodeOccupied()
-	{
+	public void testIsAnyNodeOccupied() {
 		List<INode> nodes = new ArrayList<INode>();
 		nodes.add(new Node(2, 5));
 		nodes.add(new Node(1, 8));
 		nodes.add(new Node(2, 8));
-		
+
 		assertTrue(!Node.isAnyNodeOccupied(nodes));
 		nodes.get(1).setOccupied(5);
 		assertTrue(Node.isAnyNodeOccupied(nodes));

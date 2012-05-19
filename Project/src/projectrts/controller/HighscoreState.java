@@ -11,40 +11,45 @@ import de.lessvoid.nifty.Nifty;
 
 /**
  * The menu state that controls the menu before the game starts
+ * 
  * @author Filip Brynfors
  */
 class HighscoreState extends AbstractAppState {
 	private final Nifty nifty;
 	private final float time;
 	private PropertyChangeListener pcl;
-	
+
 	/**
 	 * Creates a new MenuState
-	 * @param nifty the nifty GUI object
-	 * @param time 
-	 * @param appController the appController
+	 * 
+	 * @param nifty
+	 *            the nifty GUI object
+	 * @param time
+	 * @param appController
+	 *            the appController
 	 */
-    public HighscoreState(Nifty nifty, float time) {
-    	super();
+	public HighscoreState(Nifty nifty, float time) {
+		super();
 		this.nifty = nifty;
 		this.time = time;
 	}
 
-
 	@Override
-    public void initialize(AppStateManager stateManager, Application app) {
-    	SimpleApplication simpleApp = (SimpleApplication) app;
-    	simpleApp.getInputManager().setCursorVisible(true);
-    	simpleApp.getInputManager().clearMappings();
-    	    	
-    	HighscoreGUIController highscoreGUIController = new HighscoreGUIController(app, nifty, time);
-    	highscoreGUIController.addListener(pcl);
-    }
+	public void initialize(AppStateManager stateManager, Application app) {
+		SimpleApplication simpleApp = (SimpleApplication) app;
+		simpleApp.getInputManager().setCursorVisible(true);
+		simpleApp.getInputManager().clearMappings();
 
+		HighscoreGUIController highscoreGUIController = new HighscoreGUIController(
+				app, nifty, time);
+		highscoreGUIController.addListener(pcl);
+	}
 
 	/**
 	 * Adds a new listener to the GUI
-	 * @param listener the listener
+	 * 
+	 * @param listener
+	 *            the listener
 	 */
 	public void addListener(PropertyChangeListener listener) {
 		pcl = listener;

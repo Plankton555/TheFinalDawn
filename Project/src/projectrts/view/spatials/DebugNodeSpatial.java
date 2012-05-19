@@ -11,15 +11,17 @@ import com.jme3.scene.shape.Box;
 /**
  * 
  * @author Bjorn Persson Mattsson
- *
+ * 
  */
-public final class DebugNodeSpatial extends AbstractSpatial implements INodeSpatial {
+public final class DebugNodeSpatial extends AbstractSpatial implements
+		INodeSpatial {
 	private INode node;
-	
+
 	static {
-		SpatialFactory.registerSpatial(DebugNodeSpatial.class.getSimpleName(), new DebugNodeSpatial("DebugNodeSpatialCreator", new Box()));
+		SpatialFactory.registerSpatial(DebugNodeSpatial.class.getSimpleName(),
+				new DebugNodeSpatial("DebugNodeSpatialCreator", new Box()));
 	}
-	
+
 	private DebugNodeSpatial(String name, Box box) {
 		super(name, box);
 	}
@@ -31,11 +33,12 @@ public final class DebugNodeSpatial extends AbstractSpatial implements INodeSpat
 		DebugNodeSpatial newSpatial = new DebugNodeSpatial(name, box);
 		newSpatial.node = node;
 		newSpatial.setMaterial(material);
-		newSpatial.addControl(ControlFactory.INSTANCE.createNodeControl(NodeControl.class.getSimpleName(), node));
+		newSpatial.addControl(ControlFactory.INSTANCE.createNodeControl(
+				NodeControl.class.getSimpleName(), node));
 		return newSpatial;
 	}
-	
-	public INode getNode(){
+
+	public INode getNode() {
 		return this.node;
 	}
 

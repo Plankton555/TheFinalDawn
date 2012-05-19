@@ -5,22 +5,26 @@ import projectrts.model.entities.PlayerControlledEntity;
 
 /**
  * An ability for building Headquarter
+ * 
  * @author Jakob Svensson
- *
+ * 
  */
-class BuildHeadquarterAbility extends AbstractConstructAbility implements IUsingMoveAbility, IBuildStructureAbility {
-	private static float buildTime = 30; 
-	private static int buildCost = 400; 
-
+class BuildHeadquarterAbility extends AbstractConstructAbility implements
+		IUsingMoveAbility, IBuildStructureAbility {
+	private static float buildTime = 30;
+	private static int buildCost = 400;
 
 	static {
-		AbilityFactory.registerAbility(BuildHeadquarterAbility.class.getSimpleName(), new BuildHeadquarterAbility());
+		AbilityFactory.registerAbility(
+				BuildHeadquarterAbility.class.getSimpleName(),
+				new BuildHeadquarterAbility());
 	}
 
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
+	protected void initialize(PlayerControlledEntity entity,
+			MoveAbility moveAbility) {
 		super.initialize(entity, moveAbility);
 		this.setBuildCost(buildCost);
 		this.setBuildTime(buildTime);
@@ -33,9 +37,9 @@ class BuildHeadquarterAbility extends AbstractConstructAbility implements IUsing
 		return "Build Headquarter";
 	}
 
-
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility) {
+	public AbstractAbility createAbility(PlayerControlledEntity entity,
+			MoveAbility moveAbility) {
 		BuildHeadquarterAbility newAbility = new BuildHeadquarterAbility();
 		newAbility.initialize(entity, moveAbility);
 		return newAbility;
@@ -43,7 +47,7 @@ class BuildHeadquarterAbility extends AbstractConstructAbility implements IUsing
 
 	@Override
 	public String getInfo() {
-		return "Builds a new Headquarter\nCost: " +buildCost;
+		return "Builds a new Headquarter\nCost: " + buildCost;
 	}
 
 }

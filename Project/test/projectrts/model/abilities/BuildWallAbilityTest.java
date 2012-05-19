@@ -9,10 +9,12 @@ import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Player;
 import projectrts.model.entities.Worker;
 import projectrts.model.world.Position;
+
 /**
  * A test class for testing TrainWorkerAbility
+ * 
  * @author Jakob Svensson
- *
+ * 
  */
 public class BuildWallAbilityTest {
 
@@ -20,16 +22,22 @@ public class BuildWallAbilityTest {
 	public void test() {
 		new GameModel();
 		Player player = new Player();
-		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,new Position(10.5f,10.5f));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(10.5f, 10.5f));
 		EntityManager.INSTANCE.update(1);
-		Worker worker = (Worker)  EntityManager.INSTANCE.getPCEAtPosition(new Position(10.5f, 10.5f));
+		Worker worker = (Worker) EntityManager.INSTANCE
+				.getPCEAtPosition(new Position(10.5f, 10.5f));
 		MoveAbility move = new MoveAbility();
 		move.initialize(worker);
-		BuildWallAbility ab = (BuildWallAbility)AbilityFactory.createUsingMoveAbility(BuildWallAbility.class.getSimpleName(),worker,move);
-	
-		ab.useAbility(new Position(5.5,3.5));
+		BuildWallAbility ab = (BuildWallAbility) AbilityFactory
+				.createUsingMoveAbility(BuildWallAbility.class.getSimpleName(),
+						worker, move);
+
+		ab.useAbility(new Position(5.5, 3.5));
 		int counter = 0;
-		while(!ab.isFinished()||EntityManager.INSTANCE.getPCEAtPosition(new Position(5.5,3.5))==null){
+		while (!ab.isFinished()
+				|| EntityManager.INSTANCE.getPCEAtPosition(new Position(5.5,
+						3.5)) == null) {
 			ab.update(2);
 			move.update(2);
 			counter++;

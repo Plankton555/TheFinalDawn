@@ -5,8 +5,9 @@ import java.util.List;
 
 /**
  * A node with the primary purpose of helping with pathfinding.
+ * 
  * @author Bjorn Persson Mattsson
- *
+ * 
  */
 public class Node implements INode {
 
@@ -14,66 +15,67 @@ public class Node implements INode {
 	private int occupyingEntityID = 0;
 	private float cost = 1;
 	private final List<INode> neighbours = new ArrayList<INode>();
-	
+
 	/**
 	 * Creates a new node at the position.
-	 * @param position Position.
+	 * 
+	 * @param position
+	 *            Position.
 	 */
-	public Node(Position position)
-	{
+	public Node(Position position) {
 		this(position.getX(), position.getY());
 	}
+
 	/**
 	 * Creates a new node at the position of the x and y coordinates.
-	 * @param posX X coordinate.
-	 * @param posY Y coordinate.
+	 * 
+	 * @param posX
+	 *            X coordinate.
+	 * @param posY
+	 *            Y coordinate.
 	 */
-	public Node(double posX, double posY)
-	{
+	public Node(double posX, double posY) {
 		this.position = new Position(posX, posY);
 	}
-	
+
 	/**
 	 * @return Position of the node.
 	 */
-	public Position getPosition()
-	{
+	public Position getPosition() {
 		return this.position.copy();
 	}
-	
 
 	@Override
 	public boolean isOccupied() {
 		return isOccupied(0);
 	}
-	
+
 	@Override
 	public boolean isOccupied(int occupyingEntityID) {
 		return (!(this.occupyingEntityID == occupyingEntityID || this.occupyingEntityID == 0));
 	}
+
 	/**
-	 * @param occupyingEntityID ID of occupying entity. Set the node unoccupied by providing 0 as parameter.
+	 * @param occupyingEntityID
+	 *            ID of occupying entity. Set the node unoccupied by providing 0
+	 *            as parameter.
 	 */
 	public void setOccupied(int occupyingEntityID) {
 		this.occupyingEntityID = occupyingEntityID;
 	}
-	
+
 	@Override
-	public List<INode> getNeighbours()
-	{
+	public List<INode> getNeighbours() {
 		List<INode> output = new ArrayList<INode>();
-		for (INode n : neighbours)
-		{
+		for (INode n : neighbours) {
 			output.add(n);
 		}
 		return output;
 	}
-	
+
 	@Override
-	public void addNeighbour(INode node)
-	{
-		if (!this.equals(node))
-		{
+	public void addNeighbour(INode node) {
+		if (!this.equals(node)) {
 			neighbours.add(node);
 		}
 	}
@@ -110,29 +112,30 @@ public class Node implements INode {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public float getCost() {
 		return cost;
 	}
+
 	/**
-	 * @param cost Cost
+	 * @param cost
+	 *            Cost
 	 */
-	public void setCost(float cost)
-	{
+	public void setCost(float cost) {
 		this.cost = cost;
 	}
-	
+
 	/**
 	 * Determines whether any of the provided nodes are occupied.
-	 * @param nodes The nodes to be examined.
+	 * 
+	 * @param nodes
+	 *            The nodes to be examined.
 	 * @return true if any node is occupied, otherwise false.
 	 */
-	public static boolean isAnyNodeOccupied(List<INode> nodes){
-		for(INode node: nodes)
-		{
-			if(node.isOccupied())
-			{
+	public static boolean isAnyNodeOccupied(List<INode> nodes) {
+		for (INode node : nodes) {
+			if (node.isOccupied()) {
 				return true;
 			}
 		}

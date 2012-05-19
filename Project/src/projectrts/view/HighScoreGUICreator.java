@@ -7,47 +7,63 @@ import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
 
 /**
  * A class that creates the GUI for the Highscore menu
+ * 
  * @author Filip Brynfors
- *
+ * 
  */
 // TODO Afton: PMD: A class which only has private constructors should be final
 public class HighScoreGUICreator {
-	
-	private HighScoreGUICreator(){	
+
+	private HighScoreGUICreator() {
 	}
-	
+
 	/**
 	 * Creates the Main layer for the menu GUI
-	 * @param time the time for the highscore
+	 * 
+	 * @param time
+	 *            the time for the highscore
 	 * @return the LayerBuilder for the layer
 	 */
 	public static LayerBuilder createMainLayer(final float time) {
-		LayerBuilder layer = new LayerBuilder("Layer_Highscore_Main") {{
-			childLayoutCenter();
-			
-			
-			panel(new PanelBuilder("Panel_GUI") {{
-				childLayoutVertical();
-				valignCenter();
+		LayerBuilder layer = new LayerBuilder("Layer_Highscore_Main") {
+			{
+				childLayoutCenter();
 
-				control(new LabelBuilder("Label_Score"){{
-					width("100%");
-					int min = (int) (time/60);
-					int sec = (int) (time%60);
-					text("Congratulations!\nYou managed to survive "+min+" minutes and "+sec+" seconds!");
-				}});
-				
-				//Menu buttons
-				control(new ButtonBuilder("Button_Menu", "Back to Menu"){{
-					alignCenter();
-					interactOnClick("buttonRestartClicked()");
-				}}); 
-				control(new ButtonBuilder("Button_Exit", "Exit Game"){{
-					alignCenter();
-					interactOnClick("buttonExitClicked()");
-				}});
-			}});
-		}};
+				panel(new PanelBuilder("Panel_GUI") {
+					{
+						childLayoutVertical();
+						valignCenter();
+
+						control(new LabelBuilder("Label_Score") {
+							{
+								width("100%");
+								int min = (int) (time / 60);
+								int sec = (int) (time % 60);
+								text("Congratulations!\nYou managed to survive "
+										+ min
+										+ " minutes and "
+										+ sec
+										+ " seconds!");
+							}
+						});
+
+						// Menu buttons
+						control(new ButtonBuilder("Button_Menu", "Back to Menu") {
+							{
+								alignCenter();
+								interactOnClick("buttonRestartClicked()");
+							}
+						});
+						control(new ButtonBuilder("Button_Exit", "Exit Game") {
+							{
+								alignCenter();
+								interactOnClick("buttonExitClicked()");
+							}
+						});
+					}
+				});
+			}
+		};
 		return layer;
 	}
 }

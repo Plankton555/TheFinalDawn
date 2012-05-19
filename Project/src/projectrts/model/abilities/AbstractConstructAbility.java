@@ -8,12 +8,14 @@ import projectrts.model.world.World;
 
 /**
  * An ability for handling constructions of buildings
+ * 
  * @author Jakob Svensson
- *
+ * 
  */
-abstract class AbstractConstructAbility extends AbstractAbility implements IUsingMoveAbility, IBuildStructureAbility {
-	private float buildTime; 
-	private int buildCost; 
+abstract class AbstractConstructAbility extends AbstractAbility implements
+		IUsingMoveAbility, IBuildStructureAbility {
+	private float buildTime;
+	private int buildCost;
 	private static float cooldown = 0.5f;
 	private Position buildPos;
 	private float buildTimeLeft;
@@ -22,11 +24,11 @@ abstract class AbstractConstructAbility extends AbstractAbility implements IUsin
 	private String entityToTrain;
 	private Player owner;
 
-
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity, MoveAbility moveAbility) {
+	protected void initialize(PlayerControlledEntity entity,
+			MoveAbility moveAbility) {
 		this.entity = entity;
 		this.setCooldown(cooldown);
 		this.moveAbility = moveAbility;
@@ -39,22 +41,24 @@ abstract class AbstractConstructAbility extends AbstractAbility implements IUsin
 
 	@Override
 	public void update(float tpf) {
-		if(isActive() && !isFinished()){
-			if(Position.getDistance(entity.getPosition(),buildPos)<size*1.5){
-				//If in range of buildingPosition
+		if (isActive() && !isFinished()) {
+			if (Position.getDistance(entity.getPosition(), buildPos) < size * 1.5) {
+				// If in range of buildingPosition
 				moveAbility.setFinished(true);
-				if(buildTimeLeft<=0){
-					EntityManager.INSTANCE.addNewPCE(entityToTrain, (Player)entity.getOwner(),buildPos);
+				if (buildTimeLeft <= 0) {
+					EntityManager.INSTANCE.addNewPCE(entityToTrain,
+							(Player) entity.getOwner(), buildPos);
 					setFinished(true);
-					buildTimeLeft =buildTime;
-					pcs.firePropertyChange("BuildCompleted",entity,null);
-				}else{
-					pcs.firePropertyChange("BuildTimeLeft", entity, (int)(buildTimeLeft-tpf+1));
-					buildTimeLeft-=tpf;
+					buildTimeLeft = buildTime;
+					pcs.firePropertyChange("BuildCompleted", entity, null);
+				} else {
+					pcs.firePropertyChange("BuildTimeLeft", entity,
+							(int) (buildTimeLeft - tpf + 1));
+					buildTimeLeft -= tpf;
 				}
-			}else{
+			} else {
 				// Not in range
-				if(!moveAbility.isActive()){
+				if (!moveAbility.isActive()) {
 					moveAbility.useAbility(buildPos);
 				}
 			}
@@ -63,16 +67,17 @@ abstract class AbstractConstructAbility extends AbstractAbility implements IUsin
 
 	@Override
 	public void useAbility(Position target) {
-		owner = (Player)entity.getOwner();
-		if(owner.getResources()>=buildCost){
-			owner.modifyResource(-buildCost); 
+		owner = (Player) entity.getOwner();
+		if (owner.getResources() >= buildCost) {
+			owner.modifyResource(-buildCost);
 			buildPos = target;
 			setActive(true);
 			setFinished(false);
-			buildTimeLeft=buildTime;
-			World.INSTANCE.setNodesOccupied(World.INSTANCE.getNodeAt(target)
-					, getSizeOfBuilding(), EntityManager.INSTANCE.requestNewEntityID());
-		}else{
+			buildTimeLeft = buildTime;
+			World.INSTANCE.setNodesOccupied(World.INSTANCE.getNodeAt(target),
+					getSizeOfBuilding(),
+					EntityManager.INSTANCE.requestNewEntityID());
+		} else {
 			pcs.firePropertyChange("NotEnoughResources", null, null);
 		}
 	}
@@ -81,11 +86,11 @@ abstract class AbstractConstructAbility extends AbstractAbility implements IUsin
 	public float getSizeOfBuilding() {
 		return size;
 	}
-	
-	protected void setSizeOfBuilding(float size){
-		this.size=size;
+
+	protected void setSizeOfBuilding(float size) {
+		this.size = size;
 	}
-	
+
 	protected void setBuildTime(float buildTime) {
 		this.buildTime = buildTime;
 	}
@@ -93,21 +98,20 @@ abstract class AbstractConstructAbility extends AbstractAbility implements IUsin
 	protected void setBuildCost(int buildCost) {
 		this.buildCost = buildCost;
 	}
-	
-	protected void setEntityToTrain(String name){
-		this.entityToTrain=name;
+
+	protected void setEntityToTrain(String name) {
+		this.entityToTrain = name;
 	}
-	
+
 	@Override
-	public void abortAbility(){
-		if(isActive()){
+	public void abortAbility() {
+		if (isActive()) {
 			super.abortAbility();
-			World.INSTANCE.setNodesOccupied(World.INSTANCE.getNodeAt(buildPos)
-					, getSizeOfBuilding(), 0);
+			World.INSTANCE.setNodesOccupied(World.INSTANCE.getNodeAt(buildPos),
+					getSizeOfBuilding(), 0);
 			owner.modifyResource(buildCost);
-			pcs.firePropertyChange("BuildCompleted",entity,null);
+			pcs.firePropertyChange("BuildCompleted", entity, null);
 		}
 	}
-	
 
 }

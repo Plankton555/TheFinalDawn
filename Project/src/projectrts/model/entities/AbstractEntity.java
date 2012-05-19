@@ -7,8 +7,10 @@ import projectrts.model.world.World;
 
 /**
  * Abstract class for the common parts of the different entities
- * @author Filip Brynfors, Modified by Markus Ekström, Jakob Svensson, Bjorn Persson Mattsson
- *
+ * 
+ * @author Filip Brynfors, Modified by Markus Ekström, Jakob Svensson, Bjorn
+ *         Persson Mattsson
+ * 
  */
 public abstract class AbstractEntity implements IEntity {
 
@@ -22,32 +24,36 @@ public abstract class AbstractEntity implements IEntity {
 
 	/**
 	 * When subclassing, invoke this to initialize the entity.
-	 * @param spawnPos The initial position of the entity.
+	 * 
+	 * @param spawnPos
+	 *            The initial position of the entity.
 	 */
 	protected void initialize(Position spawnPos) {
 		this.entityID = EntityManager.INSTANCE.requestNewEntityID();
-		
+
 		this.world = World.INSTANCE;
 
 		this.position = spawnPos.copy();
 	}
-	
-	protected void setSize(float size){
-		this.size=size;
+
+	protected void setSize(float size) {
+		this.size = size;
 		occupyNodes(world.getNodeAt(this.getPosition()));
 	}
-	protected void setSpeed(float speed){
-		this.speed=speed;
+
+	protected void setSpeed(float speed) {
+		this.speed = speed;
 	}
+
 	protected void setName(String name) {
 		this.name = name;
 	}
-	
+
 	@Override
 	public float getSize() {
 		return size;
 	}
-	
+
 	@Override
 	public float getSpeed() {
 		return speed;
@@ -57,28 +63,28 @@ public abstract class AbstractEntity implements IEntity {
 	public String getName() {
 		return name;
 	}
-	
+
 	@Override
 	public Position getPosition() {
 		return position;
 	}
-	
+
 	@Override
-	public int getEntityID()
-	{
+	public int getEntityID() {
 		return entityID;
 	}
-	
+
 	/**
 	 * Sets the position of the entity
-	 * @param pos the new position
+	 * 
+	 * @param pos
+	 *            the new position
 	 */
-	public void setPosition(Position pos){
+	public void setPosition(Position pos) {
 		position = pos.copy();
 	}
-	
-	private void occupyNodes(INode newNode)
-	{
+
+	private void occupyNodes(INode newNode) {
 		world.setNodesOccupied(newNode, getSize(), getEntityID());
 	}
 }

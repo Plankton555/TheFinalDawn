@@ -1,4 +1,3 @@
-
 package projectrts.view.controls;
 
 import projectrts.model.entities.IEntity;
@@ -13,22 +12,26 @@ import com.jme3.scene.control.Control;
 
 /**
  * A custom Control that handles entity-spatial's movement.
+ * 
  * @author Markus Ekström
- *
+ * 
  */
-public final class MoveControl extends AbstractCustomControl implements IEntityControl{
-	// TODO Markus: PMD: Private field 'entity' could be made final; it is only initialized in the declaration or constructor.
+public final class MoveControl extends AbstractCustomControl implements
+		IEntityControl {
+	// TODO Markus: PMD: Private field 'entity' could be made final; it is only
+	// initialized in the declaration or constructor.
 	private IEntity entity;
-	
+
 	static {
-		ControlFactory.INSTANCE.registerControl("MoveControl", new MoveControl(null));
+		ControlFactory.INSTANCE.registerControl("MoveControl", new MoveControl(
+				null));
 	}
-	
+
 	private MoveControl(IEntity entity) {
 		super();
 		this.entity = entity;
 	}
-	
+
 	@Override
 	public Control cloneForSpatial(Spatial spatial) {
 		MoveControl control = new MoveControl(entity);
@@ -38,22 +41,32 @@ public final class MoveControl extends AbstractCustomControl implements IEntityC
 
 	@Override
 	protected void controlRender(RenderManager arg0, ViewPort arg1) {
-		
+
 	}
 
 	/**
 	 * Automatically hooks into the update loop. Should not be manually called!
-	 * @param tpf Time-per-frame
+	 * 
+	 * @param tpf
+	 *            Time-per-frame
 	 */
 	@Override
 	protected void controlUpdate(float tpf) {
-		if(this.enabled && spatial != null) {
-			Position pos = entity.getPosition(); // Gets the position from it's associated entity. 
-			Vector3f worldPos = this.convertModelToWorld(pos); // Converts it to world position.
-			Vector3f moveVector = worldPos.subtract(spatial.getWorldTranslation()); // Subtracts the current position from the desired to get a movement vector.
-			if(!moveVector.equals(Vector3f.ZERO)) { // If the spatial needs to be moved.
-				spatial.move(moveVector); // Move the spatial according to the movement vector.
-			}		
+		if (this.enabled && spatial != null) {
+			Position pos = entity.getPosition(); // Gets the position from it's
+													// associated entity.
+			Vector3f worldPos = this.convertModelToWorld(pos); // Converts it to
+																// world
+																// position.
+			Vector3f moveVector = worldPos.subtract(spatial
+					.getWorldTranslation()); // Subtracts the current position
+												// from the desired to get a
+												// movement vector.
+			if (!moveVector.equals(Vector3f.ZERO)) { // If the spatial needs to
+														// be moved.
+				spatial.move(moveVector); // Move the spatial according to the
+											// movement vector.
+			}
 		}
 	}
 
@@ -61,8 +74,8 @@ public final class MoveControl extends AbstractCustomControl implements IEntityC
 	public AbstractControl createControl(IEntity entity) {
 		return new MoveControl(entity);
 	}
-	
-	//TODO Markus: Add javadoc
+
+	// TODO Markus: Add javadoc
 	public IEntity getEntity() {
 		return entity;
 	}

@@ -10,13 +10,12 @@ import projectrts.model.world.Node;
 import projectrts.model.world.Position;
 import projectrts.model.world.World;
 
-
 public class AStarTest {
-	
+
 	private AStarNode node = null;
+
 	@Test
-	public void testInitialize()
-	{
+	public void testInitialize() {
 		AStar.initialize(null);
 		assertTrue(!AStar.isInitialized());
 		try {
@@ -25,14 +24,13 @@ public class AStarTest {
 		} catch (Exception e) {
 			assertTrue(true);
 		}
-		
+
 		AStar.initialize(World.INSTANCE);
 		assertTrue(AStar.isInitialized());
 	}
-	
+
 	@Test
-	public void testGetClosestUnoccupiedNode()
-	{
+	public void testGetClosestUnoccupiedNode() {
 		World.INSTANCE.initializeWorld();
 		IWorld world = World.INSTANCE;
 		INode occupied = world.getNodeAt(new Position(5, 5));
@@ -40,34 +38,35 @@ public class AStarTest {
 		INode unoccupied = world.getNodeAt(new Position(5, 6));
 		unoccupied.setOccupied(0);
 		AStar.initialize(world);
-		
-		AStarNode closestNode = AStar.getClosestUnoccupiedNode(new Position(5, 5), null, 0);
+
+		AStarNode closestNode = AStar.getClosestUnoccupiedNode(new Position(5,
+				5), null, 0);
 		assertTrue(!closestNode.getNode().equals(occupied));
-		
-		closestNode = AStar.getClosestUnoccupiedNode(new Position(5, 6), null, 0);
+
+		closestNode = AStar.getClosestUnoccupiedNode(new Position(5, 6), null,
+				0);
 		assertTrue(closestNode.getNode().equals(unoccupied));
-		
-		closestNode = AStar.getClosestUnoccupiedNode(new Position(5, 5), new Position(5, 7), 0);
+
+		closestNode = AStar.getClosestUnoccupiedNode(new Position(5, 5),
+				new Position(5, 7), 0);
 		assertTrue(closestNode.getNode().equals(unoccupied));
 	}
-	
+
 	@Test
-	public void testCalculatePath()
-	{
+	public void testCalculatePath() {
 		World.INSTANCE.initializeWorld();
 		IWorld world = World.INSTANCE;
 		AStar.initialize(world);
 		Position startPos = new Position(5.5, 5.5);
 		Position targetPos = new Position(15.5, 20.5);
 		AStarNode endNode = new AStarNode(new Node(targetPos));
-		
+
 		AStarUser astarUser = new AStarUser() {
-			
+
 			@Override
 			public void receivePath(AStarPath path) {
 				AStarNode nextNode = null;
-				while (!path.isEmpty())
-				{
+				while (!path.isEmpty()) {
 					nextNode = path.getNextNode();
 					path.removeNodeFromPath();
 				}
@@ -75,14 +74,13 @@ public class AStarTest {
 			}
 		};
 		AStar.calculatePath(startPos, targetPos, 10, 1, astarUser);
-		while (node == null)
-		{
+		while (node == null) {
 			try {
 				Thread.sleep(5);
 			} catch (InterruptedException e) {
 				// do nothing
 			}
-			//wait for path to be received
+			// wait for path to be received
 		}
 		assertTrue(node.equals(endNode));
 	}

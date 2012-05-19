@@ -105,8 +105,8 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		// Warrior
 		PlayerControlledEntity warrior = EntityFactory.createPCE(
 				Warrior.class.getSimpleName(), null, new Position(-1, -1));
-		MoveAbility warriorMove = (MoveAbility) AbilityFactory
-				.createAbility(MoveAbility.class.getSimpleName(), worker);
+		MoveAbility warriorMove = (MoveAbility) AbilityFactory.createAbility(
+				MoveAbility.class.getSimpleName(), worker);
 		ArrayList<AbstractAbility> warriorAbilities = new ArrayList<AbstractAbility>();
 		warriorAbilities.add(AbilityFactory.createUsingMoveAbility(
 				AttackAbility.class.getSimpleName(), warrior, warriorMove));
@@ -117,8 +117,8 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		// Archer
 		PlayerControlledEntity archer = EntityFactory.createPCE(
 				Ranged.class.getSimpleName(), null, new Position(-1, -1));
-		MoveAbility archerMove = (MoveAbility) AbilityFactory
-				.createAbility(MoveAbility.class.getSimpleName(), worker);
+		MoveAbility archerMove = (MoveAbility) AbilityFactory.createAbility(
+				MoveAbility.class.getSimpleName(), worker);
 		ArrayList<AbstractAbility> archerAbilities = new ArrayList<AbstractAbility>();
 		archerAbilities.add(AbilityFactory.createUsingMoveAbility(
 				AttackAbility.class.getSimpleName(), archer, archerMove));
@@ -168,7 +168,8 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 					pce.setState(State.IDLE);
 					for (AbstractAbility ability : abilities) {
 						ability.update(tpf);
-						// TODO Markus: PMD: Deeply nested if..then statements are hard to read
+						// TODO Markus: PMD: Deeply nested if..then statements
+						// are hard to read
 						if (ability.isActive()) {
 							pce.setState(State.BUSY);
 						}
@@ -260,9 +261,8 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			for (AbstractAbility ability : abilitiesReferenceList) {
 
 				if (ability instanceof IUsingMoveAbility) {
-					abilities.add(AbilityFactory
-							.createUsingMoveAbility(ability.getClass()
-									.getSimpleName(), pce, moveAbility));
+					abilities.add(AbilityFactory.createUsingMoveAbility(ability
+							.getClass().getSimpleName(), pce, moveAbility));
 				} else {
 					abilities.add(AbilityFactory.createAbility(ability
 							.getClass().getSimpleName(), pce));
@@ -274,8 +274,8 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			abilities.add(moveAbility);
 		} else if (abilitiesReferenceList != null) {
 			for (AbstractAbility ability : abilitiesReferenceList) {
-				abilities.add(AbilityFactory.createAbility(ability
-						.getClass().getSimpleName(), pce));
+				abilities.add(AbilityFactory.createAbility(ability.getClass()
+						.getSimpleName(), pce));
 				abilities.get(abilities.size() - 1).addListener(pcl);
 			}
 		}
