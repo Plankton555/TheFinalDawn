@@ -77,7 +77,6 @@ public class AStarNode implements Comparable<AStarNode> {
 		int diagonalMove = Math.max(deltaX, deltaY) - sidewayMove;
 		this.heuristic = Math.round((sidewayMove + diagonalMove * 1.4f)
 				* heuristicModifier);
-
 	}
 
 	/**
@@ -191,13 +190,15 @@ public class AStarNode implements Comparable<AStarNode> {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Plankton: PMD: Avoid using if statements without curly braces
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		AStarNode other = (AStarNode) obj;
 		if (node == null) {
 			if (other.node != null)

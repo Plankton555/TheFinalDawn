@@ -15,8 +15,7 @@ public class AStar {
 
 	private static IWorld world;
 
-	private AStar() {
-	} // Empty private constructor to disallow any AStar instances.
+	private AStar() { } // Empty private constructor to disallow any AStar instances.
 
 	/**
 	 * Initializes the A* class

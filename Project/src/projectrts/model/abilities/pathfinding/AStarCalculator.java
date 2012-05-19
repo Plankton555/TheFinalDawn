@@ -110,7 +110,6 @@ class AStarCalculator implements Runnable {
 				break;
 			}
 		}
-
 		// path not found, return path to the node closest to the target
 		// instead.
 
@@ -126,7 +125,6 @@ class AStarCalculator implements Runnable {
 			path.addNodeToPath(nextNode);
 			nextNode = nextNode.getParent();
 		}
-
 		return path;
 	}
 
@@ -182,7 +180,6 @@ class AStarCalculator implements Runnable {
 				}
 			}
 		}
-
 		// Nothing could be found
 		return null;
 	}
