@@ -33,5 +33,4 @@ public class Wall extends AbstractStructure {
 		newBarracks.initialize(owner, pos);
 		return newBarracks;
 	}
-
 }

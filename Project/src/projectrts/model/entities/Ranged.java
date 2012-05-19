@@ -38,5 +38,4 @@ public class Ranged extends AbstractUnit {
 		newWarrior.initialize(owner, pos);
 		return newWarrior;
 	}
-
 }

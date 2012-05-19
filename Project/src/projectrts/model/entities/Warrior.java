@@ -38,5 +38,4 @@ public class Warrior extends AbstractUnit {
 		newWarrior.initialize(owner, pos);
 		return newWarrior;
 	}
-
 }

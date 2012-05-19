@@ -298,10 +298,7 @@ public enum EntityManager implements IEntityManager {
 			PlayerControlledEntity pce) {
 		List<AbstractEntity> nearbyEntities = getNearbyEntities(
 				pce.getPosition(),
-				(float) Math.sqrt(Math.pow(100, 2) + Math.pow(100, 2))); // TODO
-																			// Markus:
-																			// Change
-																			// this
+				(float) Math.sqrt(Math.pow(100, 2) + Math.pow(100, 2))); // TODO Markus: Change this
 		PlayerControlledEntity closestEnemyStruct = null;
 
 		for (AbstractEntity entity : nearbyEntities) {

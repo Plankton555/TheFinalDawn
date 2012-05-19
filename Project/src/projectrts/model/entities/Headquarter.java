@@ -34,5 +34,4 @@ public class Headquarter extends AbstractStructure {
 		newHQ.initialize(owner, pos);
 		return newHQ;
 	}
-
 }

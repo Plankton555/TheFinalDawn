@@ -24,5 +24,4 @@ public interface IPlayer {
 	 * @return the amount of resources
 	 */
 	int getResources();
-
 }

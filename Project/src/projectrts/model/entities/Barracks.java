@@ -34,5 +34,4 @@ public class Barracks extends AbstractStructure {
 		newBarracks.initialize(owner, pos);
 		return newBarracks;
 	}
-
 }

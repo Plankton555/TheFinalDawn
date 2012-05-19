@@ -41,5 +41,4 @@ public class Resource extends NonPlayerControlledEntity {
 	public int mine() {
 		return mineAmount;
 	}
-
 }
