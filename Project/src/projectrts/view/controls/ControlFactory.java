@@ -15,7 +15,7 @@ import com.jme3.scene.control.AbstractControl;
  */
 public enum ControlFactory {INSTANCE;
 	
-	// TODO Anyone: Make factories and managers static, not singleton
+	// TODO Anyone: Make managers static, not singleton
 	private Map<String, AbstractControl> controlMap = new HashMap<String, AbstractControl>();
 
 	/**
