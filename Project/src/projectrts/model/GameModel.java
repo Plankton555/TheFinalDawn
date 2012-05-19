@@ -78,25 +78,21 @@ public class GameModel implements IGame, PropertyChangeListener {
 		aiManager = new AIManager(aiPlayer, abilityManager);
 		entityManager.resetData();
 		entityManager.addListener(this);
-		// Place starting units
-		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer,
-				new Position(50.5, 47.5));
-		entityManager.addNewPCE(Ranged.class.getSimpleName(), humanPlayer,
-				new Position(50.5, 48.5));
-		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer,
-				new Position(50.5, 50.5));
-		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer,
-				new Position(50.5, 51.5));
-		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer,
-				new Position(46.5, 50.5));
-		entityManager.addNewPCE(Barracks.class.getSimpleName(), humanPlayer,
-				new Position(47.5, 46.5));
-		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(
-				54.5, 55.5));
-		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(
-				54.5, 51.5));
+		
+		// Place starting units		
+		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer, new Position(50.5, 47.5));
+		entityManager.addNewPCE(Ranged.class.getSimpleName(), humanPlayer, new Position(50.5, 48.5));
+		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(50.5, 50.5));
+		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(50.5, 51.5));
+		entityManager.addNewPCE(Worker.class.getSimpleName(), humanPlayer, new Position(50.5, 52.5));
+		entityManager.addNewPCE(Headquarter.class.getSimpleName(), humanPlayer, new Position(46.5, 53.5));
+		entityManager.addNewPCE(Barracks.class.getSimpleName(), humanPlayer, new Position(47.5, 46.5));
+		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(54.5, 55.5));
+		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(54.5, 53.5));
+		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(54.5, 51.5));
+		
 	}
-
+	
 	@Override
 	public void update(float tpf) {
 		level.update(tpf);
