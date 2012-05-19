@@ -287,7 +287,6 @@ class InputController {
 
 			} else {
 				game.getEntityManager().select(pos, game.getHumanPlayer());
-				view.drawSelected(game.getEntityManager().getSelectedEntities());
 				guiControl.updateAbilities(game.getEntityManager()
 						.getSelectedEntities());
 			}

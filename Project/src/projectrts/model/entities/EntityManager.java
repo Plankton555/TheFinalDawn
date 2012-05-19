@@ -204,6 +204,7 @@ public enum EntityManager implements IEntityManager {
 		if (entity != null) { // No entity is at that position
 			selectedEntities.add(entity);
 		}
+		pcs.firePropertyChange("entitySelected", null, entity);
 	}
 
 	@Override

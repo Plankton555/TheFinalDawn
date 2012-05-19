@@ -1,16 +1,10 @@
 package projectrts.view;
 
-// TODO Markus: PMD: A high number of imports can indicate a high degree of coupling within an object.
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import projectrts.controller.InGameState;
-import projectrts.io.MaterialManager;
-import projectrts.io.TextureManager;
 import projectrts.model.IGame;
-import projectrts.model.entities.IEntity;
 import projectrts.model.world.INode;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.controls.NodeControl;
@@ -27,17 +21,10 @@ import projectrts.view.spatials.WarriorSpatial;
 import projectrts.view.spatials.WorkerSpatial;
 
 import com.jme3.app.SimpleApplication;
-import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
-import com.jme3.terrain.geomipmap.TerrainLodControl;
-import com.jme3.terrain.geomipmap.TerrainQuad;
-import com.jme3.terrain.heightmap.AbstractHeightMap;
-import com.jme3.terrain.heightmap.ImageBasedHeightMap;
-import com.jme3.texture.Texture;
-import com.jme3.texture.Texture.WrapMode;
 
 /**
  * The in-game view, creating and managing the scene.
@@ -45,26 +32,20 @@ import com.jme3.texture.Texture.WrapMode;
  * @author Markus Ekström
  * 
  */
-// TODO Markus: PMD: This class has too many methods, consider refactoring it.
-public class GameView implements PropertyChangeListener {
+public class GameView{
 	private final SimpleApplication app;
 	private final IGame game;
-	private final Node entities = new Node("entities"); // The node for all entities
-	private final Node selected = new Node("selected"); // The node for the selected graphics
-	private final Node debug = new Node("debug"); // The node for the debugging graphics
-	// TODO Markus: PMD: Private field 'terrainNode' could be made final; it is only initialized in the declaration or constructor.
-	private Node terrainNode = new Node("terrain"); // The node for all terrain
-	// TODO Jakob(?): PMD: Private field 'mouseEffects' could be made final; it is only initialized in the declaration or constructor.
-	private Node mouseEffects = new Node("mouseEffects"); // The node for mouseEffects
-
-	// TODO Markus: PMD: Private field 'mod' could be made final; it is only initialized in the declaration or constructor.
-	private float mod = InGameState.MODEL_TO_WORLD; // The modifier value for converting lengths between model and world.
-
-	// TODO Markus: PMD: Private field 'debugNodes' could be made final; it is only initialized in the declaration or constructor.
-	private boolean debugNodes = false;
-
-	static {
-		try {
+    private final Node debug = new Node("debug"); // The node for the debugging graphics
+    private Node mouseEffects = new Node("mouseEffects"); // The node for mouseEffects
+    private final static float mod = InGameState.MODEL_TO_WORLD; // The modifier value for converting lengths between model and world.
+    private EntityHandler entityHandler;
+    private TerrainHandler terrainHandler;
+    
+    private boolean debugNodes = false;
+    
+	static{
+		try
+		{
 			// Initialize the control classes.
 			Class.forName(MoveControl.class.getName());
 			Class.forName(NodeControl.class.getName());
@@ -88,7 +69,9 @@ public class GameView implements PropertyChangeListener {
 	public GameView(SimpleApplication app, IGame game) {
 		this.app = app;
 		this.game = game;
-		game.getEntityManager().addListener(this);
+		entityHandler = new EntityHandler(app, game);
+		terrainHandler = new TerrainHandler(app);
+		
 	}
 
 	/**
@@ -100,81 +83,10 @@ public class GameView implements PropertyChangeListener {
 	 *            The controls for the initial entities.
 	 */
 	public void initialize() {
-		initializeWorld();
+		terrainHandler.initialize();
+		entityHandler.initialize();
 		initializeDebug();
-		initializeEntities();
 		initializeMouseEffects();
-		this.app.getRootNode().attachChild(selected);
-	}
-
-	/**
-	 * Based on Jmonkey terrain example code
-	 * http://jmonkeyengine.org/wiki/doku.php/jme3:beginner:hello_terrain
-	 */
-	private void initializeWorld() {
-		Material matTerrain;
-		TerrainQuad terrain;
-
-		/** 1. Create terrain material and load four textures into it. */
-		matTerrain = MaterialManager.getMaterial("Terrain");
-
-		/** 1.1) Add ALPHA map (for red-blue-green coded splat textures) */
-		matTerrain.setTexture("Alpha", TextureManager.getTexture("Alpha"));
-
-		/** 1.2) Add GRASS texture into the red layer (Tex1). */
-		Texture grass = TextureManager.getTexture("Grass");
-		grass.setWrap(WrapMode.Repeat);
-		matTerrain.setTexture("Tex1", grass);
-		matTerrain.setFloat("Tex1Scale", 64f);
-
-		/** 1.3) Add WATER texture into the green layer (Tex2) */
-		Texture water = TextureManager.getTexture("Water");
-		water.setWrap(WrapMode.Repeat);
-		matTerrain.setTexture("Tex2", water);
-		matTerrain.setFloat("Tex2Scale", 32f);
-
-		/** 1.4) Add ROAD texture into the blue layer (Tex3) */
-		Texture rock = TextureManager.getTexture("Rock");
-		rock.setWrap(WrapMode.Repeat);
-		matTerrain.setTexture("Tex3", rock);
-		matTerrain.setFloat("Tex3Scale", 128f);
-
-		/** 2. Create the height map */
-		Texture heightMapImage = TextureManager.getTexture("HeightMap");
-		AbstractHeightMap heightmap = new ImageBasedHeightMap(
-				heightMapImage.getImage());
-		heightmap.load();
-
-		/**
-		 * 3. We have prepared material and heightmap. Now we create the actual
-		 * terrain: 3.1) Create a TerrainQuad and name it "my terrain". 3.2) A
-		 * good value for terrain tiles is 64x64 -- so we supply 64+1=65. 3.3)
-		 * We prepared a heightmap of size 512x512 -- so we supply 512+1=513.
-		 * 3.4) As LOD step scale we supply Vector3f(1,1,1). 3.5) We supply the
-		 * prepared heightmap itself.
-		 */
-		int patchSize = 65;
-		terrain = new TerrainQuad("my terrain", patchSize, 513,
-				heightmap.getHeightMap());
-
-		/**
-		 * 4. We give the terrain its material, position & scale it, and attach
-		 * it.
-		 */
-		terrain.setMaterial(matTerrain);
-		terrain.setLocalTranslation(0, 0, 0);
-		terrain.setLocalScale(.02f, .01f, .02f);
-		terrainNode.attachChild(terrain);
-		app.getRootNode().attachChild(terrainNode);
-
-		terrainNode.setLocalTranslation(2, -2, -100);
-		terrainNode.rotateUpTo(new Vector3f(0f, 0f, 1f));
-
-		/** 5. The LOD (level of detail) depends on were the camera is: */
-		TerrainLodControl control = new TerrainLodControl(terrain,
-				app.getCamera());
-		terrain.addControl(control);
-
 	}
 
 	private void initializeDebug() {
@@ -183,15 +95,6 @@ public class GameView implements PropertyChangeListener {
 		}
 
 		this.app.getRootNode().attachChild(debug);
-	}
-
-	private void initializeEntities() {
-
-		integrateNewEntities(game.getEntityManager().getAllEntities());
-
-		// Attach the entities node to the root node, connecting it to the
-		// world.
-		this.app.getRootNode().attachChild(entities);
 	}
 
 	private void initializeMouseEffects() {
@@ -221,84 +124,29 @@ public class GameView implements PropertyChangeListener {
 		}
 	}
 
-	private void integrateNewEntities(List<IEntity> newEntities) {
-		for (int i = 0; i < newEntities.size(); i++) {
-			integrateNewEntity(newEntities.get(i));
-		}
-	}
+    
+    //TODO Jakob: Add javadoc
+    public void drawNodes(List<projectrts.model.world.INode> coveredNodes){
+    	   	
+    	List<INode> oldNodes = getNodes(mouseEffects.getChildren());
+    	
+    	for (INode node : coveredNodes){
+    		if (!oldNodes.contains(node)){
+    			addNodeSpatial(node);
+    		}
+    	}  	
+    	
+    	for (INode node : oldNodes){
+    		if (!coveredNodes.contains(node)){
+    			removeNodeSpatial(node);
+    		}
+    	}
+    	
+    	
+    }
+    
 
-	private void integrateNewEntity(IEntity newEntity) {
-		// Create shape.
-		// The location of the entity is initialized to (0, 0, 0) but is then
-		// instantly translated to the correct place by moveControl.
-		// Gets the size from the model and converts it to world size.
-		Box shape = new Box(new Vector3f(0, 0, 0),
-				(newEntity.getSize() * mod) / 2,
-				(newEntity.getSize() * mod) / 2, 0);
-		// Create spatial.
-		AbstractSpatial entitySpatial = SpatialFactory.createEntitySpatial(
-				newEntity.getClass().getSimpleName() + "Spatial", newEntity
-						.getClass().getSimpleName(), shape, newEntity);
-		// Attach spatial to the entities node.
-		entities.attachChild(entitySpatial);
-	}
-
-	private void removeDeadEntity(IEntity entity) {
-		for (Spatial spatial : entities.getChildren()) {
-			if (spatial.getControl(MoveControl.class).getEntity()
-					.equals(entity)) {
-				spatial.removeFromParent();
-			}
-		}
-	}
-
-	/**
-	 * Draws the selected graphics for all entities in the passed list.
-	 * 
-	 * @param selectedEntities
-	 *            A list of selected entities.
-	 * @param controlList
-	 *            A list of controls for the select-spatials, one for each
-	 *            spatial.
-	 */
-	public void drawSelected(List<IEntity> selectedEntities) {
-		// Remove all previously selected graphics
-		selected.detachAllChildren();
-
-		for (int i = 0; i < selectedEntities.size(); i++) {
-			// Sets the location of the spatial to (0, 0, -1) to make sure it's
-			// behind the entities that use (x, y, 0).
-			// The control will instantly translate it to the correct location.
-			Box circle = new Box(new Vector3f(0, 0, -1), (selectedEntities.get(
-					i).getSize() + 0.3f)
-					/ 2 * mod, (selectedEntities.get(i).getSize() + 0.3f) / 2
-					* mod, 0);
-			AbstractSpatial circleSpatial = SpatialFactory.createEntitySpatial(
-					"SelectSpatial", selectedEntities.get(i).getName(), circle,
-					selectedEntities.get(i));
-			// Attach spatial to the selected node, connecting it to the world.
-			selected.attachChild(circleSpatial);
-		}
-	}
-
-	public void drawNodes(List<projectrts.model.world.INode> coveredNodes) {
-
-		List<INode> oldNodes = getNodes(mouseEffects.getChildren());
-
-		for (INode node : coveredNodes) {
-			if (!oldNodes.contains(node)) {
-				addNodeSpatial(node);
-			}
-		}
-
-		for (INode node : oldNodes) {
-			if (!coveredNodes.contains(node)) {
-				removeNodeSpatial(node);
-			}
-		}
-	}
-
-	private List<INode> getNodes(List<Spatial> coveredNodes) {
+	private List<INode> getNodes(List<Spatial> coveredNodes){
 		List<INode> output = new ArrayList<INode>();
 		DebugNodeSpatial dSpatial;
 		for (Spatial spatial : coveredNodes) {
@@ -337,18 +185,5 @@ public class GameView implements PropertyChangeListener {
 
 	public void clearNodes() {
 		mouseEffects.detachAllChildren();
-	}
-
-	@Override
-	public void propertyChange(PropertyChangeEvent evt) {
-		if (evt.getPropertyName().equals("entityCreated")) {
-			if (evt.getNewValue() instanceof IEntity) {
-				integrateNewEntity((IEntity) evt.getNewValue());
-			}
-		} else if (evt.getPropertyName().equals("entityRemoved")
-				&& evt.getOldValue() instanceof IEntity) {
-			removeDeadEntity((IEntity) evt.getOldValue());
-			drawSelected(game.getEntityManager().getSelectedEntities());
-		}
 	}
 }
