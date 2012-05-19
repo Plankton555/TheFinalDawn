@@ -13,16 +13,13 @@ import projectrts.model.entities.Warrior;
 import projectrts.model.world.Position;
 
 public class StrategicAITest {
-	// TODO Markus: PMD: Perhaps 'aiPlayer' could be replaced by a local
-	// variable.
+	// TODO Markus: PMD: Perhaps 'aiPlayer' could be replaced by a local variable.
 	private Player aiPlayer;
-	// TODO Markus: PMD: Perhaps 'humanPlayer' could be replaced by a local
-	// variable.
+	// TODO Markus: PMD: Perhaps 'humanPlayer' could be replaced by a local variable.
 	private Player humanPlayer;
 	// TODO Markus: PMD: Perhaps 'model' could be replaced by a local variable.
 	private GameModel model;
-	// TODO Markus: PMD: Perhaps 'enemyWarrior' could be replaced by a local
-	// variable.
+	// TODO Markus: PMD: Perhaps 'enemyWarrior' could be replaced by a local variable.
 	private PlayerControlledEntity enemyWarrior;
 	// TODO Markus: PMD: Perhaps 'myHQ' could be replaced by a local variable.
 	private PlayerControlledEntity myHQ;

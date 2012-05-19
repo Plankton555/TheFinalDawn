@@ -36,14 +36,11 @@ import com.jme3.math.Vector3f;
  * 
  */
 // TODO Markus: PMD: This class has too many methods, consider refactoring it.
-// TODO Markus: PMD: The class 'InputController' has a Cyclomatic Complexity of
-// 5 (Highest = 16).
+// TODO Markus: PMD: The class 'InputController' has a Cyclomatic Complexity of 5 (Highest = 16).
 class InputController {
 
-	// Before the mouse is moved it has the position (0, 0), causing the camera
-	// to move in that direction.
-	// mouseActivated suppresses the camera until set to true (which is done
-	// when the mouse is first moved).
+	// Before the mouse is moved it has the position (0, 0), causing the camera to move in that direction.
+	// mouseActivated suppresses the camera until set to true (which is done when the mouse is first moved).
 	private boolean mouseActivated = false;
 	private final SimpleApplication app;
 	private final IGame game; // The model
@@ -99,8 +96,7 @@ class InputController {
 	 * 
 	 * @param tpf
 	 */
-	// TODO Markus: PMD: The method 'updateCamera' has a Cyclomatic Complexity
-	// of 10.
+	// TODO Markus: PMD: The method 'updateCamera' has a Cyclomatic Complexity of 10.
 	private void updateCamera(float tpf) {
 
 		if (mouseActivated) {
@@ -145,8 +141,7 @@ class InputController {
 		this.app.getInputManager().addMapping("cameraDownKey",
 				new KeyTrigger(KeyInput.KEY_DOWN));
 
-		// TODO Markus: PMD: The 4 following String literals appears 4 times in
-		// this file; the first occurrence is here
+		// TODO Markus: PMD: The 4 following String literals appears 4 times in this file; the first occurrence is here
 		this.app.getInputManager().addMapping("cameraRightMouse",
 				new MouseAxisTrigger(MouseInput.AXIS_X, true));
 		this.app.getInputManager().addMapping("cameraLeftMouse",
@@ -187,10 +182,8 @@ class InputController {
 	 * 
 	 */
 	private final AnalogListener analogListener = new AnalogListener() {
-		// TODO Markus: PMD: The method onAnalog() has an NPath complexity of
-		// 488
-		// TODO Markus: PMD: The method 'onAnalog' has a Cyclomatic Complexity
-		// of 16.
+		// TODO Markus: PMD: The method onAnalog() has an NPath complexity of 488
+		// TODO Markus: PMD: The method 'onAnalog' has a Cyclomatic Complexity of 16.
 		public void onAnalog(String name, float value, float tpf) {
 
 			// Make sure we are in the correct state and that it is enabled.
@@ -243,8 +236,7 @@ class InputController {
 	 * either "on" or "off".
 	 */
 	private final ActionListener actionListener = new ActionListener() {
-		// TODO Markus: PMD: The method 'onAction' has a Cyclomatic Complexity
-		// of 10.
+		// TODO Markus: PMD: The method 'onAction' has a Cyclomatic Complexity of 10.
 		public void onAction(String name, boolean keyPressed, float tpf) {
 			if (name.equals("exit") && keyPressed) {
 				app.stop();

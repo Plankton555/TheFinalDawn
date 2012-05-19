@@ -18,8 +18,7 @@ public class EntityManagerTest {
 		new GameModel();
 		Player player = new Player();
 		EntityManager.INSTANCE.resetData();
-		// TODO Markus: PMD: The String literal "Worker" appears 16 times in
-		// this file; the first occurrence is here
+		// TODO Markus: PMD: The String literal "Worker" appears 16 times in this file; the first occurrence is here
 		EntityManager.INSTANCE
 				.addNewPCE("Worker", player, new Position(10, 10));
 		Position onUnit = new Position(10, 10);
