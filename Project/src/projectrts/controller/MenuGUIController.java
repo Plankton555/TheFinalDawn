@@ -65,9 +65,8 @@ public class MenuGUIController implements ScreenController {
 
 		nifty.addScreen("Screen_StartMenu",new ScreenBuilder("GUI Start Menu") {{
 			controller(MenuGUIController.this);
-			layer(MenuGUICreator.createDifficultyPopupLayer()); // </layer>
+			layer(MenuGUICreator.createDifficultyPopupLayer());
 
-			// <layer>
 			layer(MenuGUICreator.createMainLayer());
 
 		}}.build(nifty));
