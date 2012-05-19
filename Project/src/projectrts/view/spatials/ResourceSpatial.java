@@ -44,7 +44,6 @@ public final class ResourceSpatial extends AbstractSpatial implements IEntitySpa
 		ResourceSpatial newSpatial = new ResourceSpatial(name, box);
 		newSpatial.setMaterial(material);
 		newSpatial.setQueueBucket(Bucket.Transparent);
-		// TODO Jakob: Should a resource really have a MoveControl?...
 		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}

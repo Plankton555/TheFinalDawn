@@ -15,7 +15,6 @@ import projectrts.model.world.Position;
  * @author Jakob Svensson
  *
  */
-// TODO Jakob: PMD: This class has too many methods, consider refactoring it.
 public class GatherResourceAbility extends AbstractAbility implements IUsingMoveAbility, ITargetAbility{
 	
 	public static final int RESOURCE_CARRIED_AMOUNT = 12;

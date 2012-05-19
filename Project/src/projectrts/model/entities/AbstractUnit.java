@@ -19,12 +19,10 @@ public abstract class AbstractUnit extends PlayerControlledEntity{
 		super.initialize(owner, spawnPos);
 	}
 	
-	// TODO Jakob: Add javadoc
 	public void setAttackRange(float attackRange){
 		this.attackRange=attackRange;
 	}
 	
-	// TODO Jakob: Add javadoc
 	public float getAttackRange(){
 		return attackRange;
 	}

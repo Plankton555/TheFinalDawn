@@ -9,7 +9,6 @@ import projectrts.model.world.Position;
  */
 public class Wall extends AbstractStructure{
 	
-	//TODO Jakob: Add javadoc (public field)
 	public static final float SIZE = 1;
 	private static final float SIGHT_RANGE = 5;
 	private static int maxHealth = 500;

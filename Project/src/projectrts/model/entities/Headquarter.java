@@ -8,7 +8,6 @@ import projectrts.model.world.Position;
  */
 public class Headquarter extends AbstractStructure{
 	
-	// TODO Jakob: Add javadoc (field SIZE since it's public)
 	public static final float SIZE = 3;
 	private static final float SIGHT_RANGE = 5;
 	private static int maxHealth = 2000;

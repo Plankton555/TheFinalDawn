@@ -263,7 +263,6 @@ public class GameView implements PropertyChangeListener{
     	}
     }
     
-    //TODO Jakob: Add javadoc
     public void drawNodes(List<projectrts.model.world.INode> coveredNodes){
     	   	
     	List<INode> oldNodes = getNodes(mouseEffects.getChildren());
@@ -322,7 +321,6 @@ public class GameView implements PropertyChangeListener{
 	}
 	
 		
-  //TODO Jakob: Add javadoc
     public void clearNodes(){
     	mouseEffects.detachAllChildren();
     }

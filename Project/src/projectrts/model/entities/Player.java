@@ -9,7 +9,6 @@ import java.beans.PropertyChangeSupport;
  * @author Björn Persson Mattson, Modified by Filip Brynfors, Jakob Svensson
  */
 public class Player implements IPlayer{
-	//TODO Jakob: Add javadoc (public field)
 	public static final int RESOURCE_START_AMOUNT = 200;
 	private int resources;
 	private final PropertyChangeSupport pcs;

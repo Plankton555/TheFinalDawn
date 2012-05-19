@@ -1,5 +1,9 @@
 package projectrts.model.abilities;
-//TODO Jakob(?): Add javadoc
+/**
+ * An interface for abilities that requires a target
+ * @author Jakob Svensson
+ *
+ */
 public interface ITargetAbility {
 
 }
