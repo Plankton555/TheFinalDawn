@@ -88,11 +88,7 @@ public class InGameState extends AbstractAppState {
     	//Add images to ImageManager
     	List<String> names = game.getAbilityManager().getExistingAbilityNames();
     	for(String str : names) {
-    		// TODO Plankton: Check this.
-    		//File file = new File("src/assets/gui/" + str + ".png");
-    		//if(file.exists()) {
-    			ImageManager.INSTANCE.addImage(str, "/assets/gui/" + str + ".png");
-    		//}
+    		ImageManager.INSTANCE.addImage(str, "/assets/gui/" + str + ".png");
     	}
     	ImageManager.INSTANCE.addImage("NoImage", "/assets/gui/NoImage.bmp");
     }
