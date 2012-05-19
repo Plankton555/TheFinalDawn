@@ -150,7 +150,9 @@ class InputController {
 		this.app.getInputManager().addMapping("exit",
 				new KeyTrigger(KeyInput.KEY_ESCAPE));
 
-		// Add debug controls to action/analog listener below
+		// Add debug controls to action/analog listener
+		this.app.getInputManager().addListener(actionInputHandler,
+				new String[] { "exit" });
 	}
 
 
