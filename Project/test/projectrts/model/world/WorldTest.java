@@ -89,14 +89,57 @@ public class WorldTest {
 	@Test
 	public void testSetNodesOccupied()
 	{
-		// TODO Plankton: Implement
 		IWorld world = World.INSTANCE;
-		//world.setNodesOccupied(nodeInCenter, entitySize, entityID);
+		List<INode> nodes = new ArrayList<INode>();
+		INode nodeInCenter = world.getNodeAt(new Position(20.5, 20.5));
+		for (int i=18; i<23; i++)
+		{
+			for (int j=18; j<23; j++)
+			{
+				nodes.add(world.getNodeAt(new Position(i+0.5, j+0.5)));
+			}
+		}
+		world.setNodesOccupied(nodeInCenter, 5, 0);
+		for (INode node : nodes)
+		{
+			assertTrue(!node.isOccupied());
+		}
+		
+		world.setNodesOccupied(nodeInCenter, 1, 1);
+		assertTrue(nodeInCenter.isOccupied());
+		for (INode node : nodes)
+		{
+			if (!node.equals(nodeInCenter))
+			{
+				assertTrue(!node.isOccupied());
+			}
+		}
+		
+		world.setNodesOccupied(nodeInCenter, 5, 0);
+		for (INode node : nodes)
+		{
+			assertTrue(!node.isOccupied());
+		}
+		
+		world.setNodesOccupied(nodeInCenter, 2, 1);
+		assertTrue(nodeInCenter.isOccupied());
+		for (INode node : nodeInCenter.getNeighbours())
+		{
+			assertTrue(node.isOccupied());
+		}
 	}
 	
 	@Test
 	public void testGetNodesAt()
 	{
-		// TODO Plankton: Implement
+		IWorld world = World.INSTANCE;
+		List<INode> nodes = world.getNodesAt(new Position(20.5, 20.5), 1);
+		assertTrue(nodes.size() == 1);
+		
+		nodes = world.getNodesAt(new Position(20.5, 20.5), 2);
+		assertTrue(nodes.size() == 9);
+		
+		nodes = world.getNodesAt(new Position(20.5, 20.5), 3);
+		assertTrue(nodes.size() == 9);
 	}
 }
