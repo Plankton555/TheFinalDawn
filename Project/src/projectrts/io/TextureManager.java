@@ -66,9 +66,6 @@ public class TextureManager {
 
 		textures.put("SelectSquare",
 				assetManager.loadTexture("assets/sprites/select_square.png"));
-
-		textures.put("SelectCircle",
-				assetManager.loadTexture("assets/sprites/select_circle.png"));
 	}
 
 	/**
