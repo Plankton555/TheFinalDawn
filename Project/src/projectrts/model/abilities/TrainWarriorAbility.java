@@ -10,7 +10,7 @@ import projectrts.model.entities.Warrior;
  * 
  */
 class TrainWarriorAbility extends AbstractCreationAbility implements
-		INotUsingMoveAbility {
+		IStationaryAbility {
 	private static float buildTime = 7;
 	private static int buildCost = 100;
 

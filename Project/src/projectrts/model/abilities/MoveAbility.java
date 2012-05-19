@@ -17,7 +17,7 @@ import projectrts.model.world.World;
  * 
  */
 public class MoveAbility extends AbstractAbility implements
-		INotUsingMoveAbility, ITargetAbility, AStarUser {
+		IStationaryAbility, ITargetAbility, AStarUser {
 	private Position targetPosition;
 
 	private World world;

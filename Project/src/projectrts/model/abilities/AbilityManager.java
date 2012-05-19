@@ -259,7 +259,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 					.createAbility(MoveAbility.class.getSimpleName(), pce);
 			for (AbstractAbility ability : abilitiesReferenceList) {
 
-				if (ability instanceof IUsingMoveAbility) {
+				if (ability instanceof IMoveable) {
 					abilities.add(AbilityFactory.createUsingMoveAbility(ability
 							.getClass().getSimpleName(), pce, moveAbility));
 				} else {

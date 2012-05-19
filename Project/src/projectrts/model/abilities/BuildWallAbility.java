@@ -10,7 +10,7 @@ import projectrts.model.entities.Wall;
  * 
  */
 class BuildWallAbility extends AbstractConstructAbility implements
-		IUsingMoveAbility, IBuildStructureAbility {
+		IMoveable, IBuildStructureAbility {
 	private static float buildTime = 1;
 	private static int buildCost = 50;
 

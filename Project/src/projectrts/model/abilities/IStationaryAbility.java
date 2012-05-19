@@ -8,7 +8,7 @@ import projectrts.model.entities.PlayerControlledEntity;
  * @author Bjorn Persson Mattsson
  * 
  */
-interface INotUsingMoveAbility {
+interface IStationaryAbility {
 
 	/**
 	 * Creates a new ability.

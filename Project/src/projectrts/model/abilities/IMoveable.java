@@ -8,7 +8,7 @@ import projectrts.model.entities.PlayerControlledEntity;
  * @author Bjorn Persson Mattsson
  * 
  */
-interface IUsingMoveAbility {
+interface IMoveable {
 
 	/**
 	 * Creates a new ability.

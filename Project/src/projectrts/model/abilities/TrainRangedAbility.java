@@ -10,7 +10,7 @@ import projectrts.model.entities.Ranged;
  * 
  */
 class TrainRangedAbility extends AbstractCreationAbility implements
-		INotUsingMoveAbility {
+		IStationaryAbility {
 	private static float buildTime = 8;
 	private static int buildCost = 150;
 

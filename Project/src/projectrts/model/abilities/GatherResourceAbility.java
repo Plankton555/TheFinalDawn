@@ -18,7 +18,7 @@ import projectrts.model.world.Position;
  * 
  */
 public class GatherResourceAbility extends AbstractAbility implements
-		IUsingMoveAbility, ITargetAbility {
+		IMoveable, ITargetAbility {
 
 	public static final int RESOURCE_CARRIED_AMOUNT = 12;
 	private static final int RANGE = 1;

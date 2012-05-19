@@ -23,12 +23,12 @@ class AbilityFactory {
 		if (ability == null) {
 			throw new IllegalStateException("You must register " + abilityType
 					+ " before you can use it");
-		} else if (!(ability instanceof INotUsingMoveAbility)) {
+		} else if (!(ability instanceof IStationaryAbility)) {
 			throw new IllegalStateException(abilityType
 					+ " does not implement "
-					+ INotUsingMoveAbility.class.getSimpleName());
+					+ IStationaryAbility.class.getSimpleName());
 		}
-		INotUsingMoveAbility nMovableAbility = (INotUsingMoveAbility) ability;
+		IStationaryAbility nMovableAbility = (IStationaryAbility) ability;
 		return nMovableAbility.createAbility(entity);
 	}
 
@@ -39,12 +39,12 @@ class AbilityFactory {
 		if (ability == null) {
 			throw new IllegalStateException("You must register " + abilityType
 					+ " before you can use it");
-		} else if (!(ability instanceof IUsingMoveAbility)) {
+		} else if (!(ability instanceof IMoveable)) {
 			throw new IllegalStateException(abilityType
 					+ " does not implement "
-					+ IUsingMoveAbility.class.getSimpleName());
+					+ IMoveable.class.getSimpleName());
 		}
-		IUsingMoveAbility movableAbility = (IUsingMoveAbility) ability;
+		IMoveable movableAbility = (IMoveable) ability;
 		return movableAbility.createAbility(entity, moveAbility);
 	}
 
