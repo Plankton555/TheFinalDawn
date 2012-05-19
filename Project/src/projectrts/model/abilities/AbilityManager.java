@@ -27,22 +27,20 @@ import projectrts.model.world.World;
 
 /**
  * A class in charge of managing all the abilities in the game.
+ * 
  * @author Markus Ekström, modified by Bjorn Persson Mattsson
- *
+ * 
  */
 // TODO Markus: Add javadoc!
 public class AbilityManager implements PropertyChangeListener, IAbilityManager {
-	private final Map<String, ArrayList<AbstractAbility>> abilityReferenceMap =
-			new HashMap<String, ArrayList<AbstractAbility>>();
-	private final Map<Integer, ArrayList<AbstractAbility>> abilityListsMap =
-			new HashMap<Integer, ArrayList<AbstractAbility>>();
+	private final Map<String, ArrayList<AbstractAbility>> abilityReferenceMap = new HashMap<String, ArrayList<AbstractAbility>>();
+	private final Map<Integer, ArrayList<AbstractAbility>> abilityListsMap = new HashMap<Integer, ArrayList<AbstractAbility>>();
 	private PropertyChangeListener pcl;
-	
+
 	private static List<String> abilityNames = new ArrayList<String>();
-	
+
 	static {
-		try
-		{
+		try {
 			// Initialize the ability classes.
 			Class.forName(AttackAbility.class.getName());
 			Class.forName(BuildBarracksAbility.class.getName());
@@ -53,7 +51,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			Class.forName(TrainWarriorAbility.class.getName());
 			Class.forName(TrainRangedAbility.class.getName());
 			Class.forName(BuildHeadquarterAbility.class.getName());
-			
+
 			abilityNames.add(AttackAbility.class.getSimpleName());
 			abilityNames.add(BuildBarracksAbility.class.getSimpleName());
 			abilityNames.add(BuildWallAbility.class.getSimpleName());
@@ -62,16 +60,14 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			abilityNames.add(TrainWorkerAbility.class.getSimpleName());
 			abilityNames.add(TrainWarriorAbility.class.getSimpleName());
 			abilityNames.add(BuildHeadquarterAbility.class.getSimpleName());
-			abilityNames.add(TrainRangedAbility.class.getSimpleName());	
+			abilityNames.add(TrainRangedAbility.class.getSimpleName());
 
 			AStar.initialize(World.INSTANCE);
-		}
-		catch (ClassNotFoundException any)
-		{
+		} catch (ClassNotFoundException any) {
 			any.printStackTrace();
 		}
-    }
-	
+	}
+
 	/**
 	 * The constructor for the AbilityManager.
 	 */
@@ -79,89 +75,100 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		initializeAbilityLists();
 		EntityManager.INSTANCE.addListener(this);
 	}
-	
+
 	private void initializeAbilityLists() {
-		
-		
-		//Worker
+
+		// Worker
 		ArrayList<AbstractAbility> workerAbilities = new ArrayList<AbstractAbility>();
 		PlayerControlledEntity worker = EntityFactory.createPCE(
 				Worker.class.getSimpleName(), null, new Position(-1, -1));
-		MoveAbility workerMove = (MoveAbility) AbilityFactory.INSTANCE.createAbility(
+		MoveAbility workerMove = (MoveAbility) AbilityFactory.createAbility(
 				MoveAbility.class.getSimpleName(), worker);
-		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(
+		workerAbilities.add(AbilityFactory.createUsingMoveAbility(
 				AttackAbility.class.getSimpleName(), worker, workerMove));
-		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(
-				GatherResourceAbility.class.getSimpleName(), worker, workerMove));
-		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(
-				BuildBarracksAbility.class.getSimpleName(), worker, workerMove));
-		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(
+		workerAbilities
+				.add(AbilityFactory.createUsingMoveAbility(
+						GatherResourceAbility.class.getSimpleName(), worker,
+						workerMove));
+		workerAbilities
+				.add(AbilityFactory.createUsingMoveAbility(
+						BuildBarracksAbility.class.getSimpleName(), worker,
+						workerMove));
+		workerAbilities.add(AbilityFactory.createUsingMoveAbility(
 				BuildWallAbility.class.getSimpleName(), worker, workerMove));
-		workerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(
-				BuildHeadquarterAbility.class.getSimpleName(), worker, workerMove));
+		workerAbilities.add(AbilityFactory.createUsingMoveAbility(
+				BuildHeadquarterAbility.class.getSimpleName(), worker,
+				workerMove));
 		workerAbilities.add(workerMove);
 		abilityReferenceMap.put(Worker.class.getSimpleName(), workerAbilities);
-		
-		//Warrior
+
+		// Warrior
 		PlayerControlledEntity warrior = EntityFactory.createPCE(
 				Warrior.class.getSimpleName(), null, new Position(-1, -1));
-		MoveAbility warriorMove = (MoveAbility) AbilityFactory.INSTANCE.createAbility(
-				MoveAbility.class.getSimpleName(), worker);
+		MoveAbility warriorMove = (MoveAbility) AbilityFactory
+				.createAbility(MoveAbility.class.getSimpleName(), worker);
 		ArrayList<AbstractAbility> warriorAbilities = new ArrayList<AbstractAbility>();
-		warriorAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(
+		warriorAbilities.add(AbilityFactory.createUsingMoveAbility(
 				AttackAbility.class.getSimpleName(), warrior, warriorMove));
 		warriorAbilities.add(warriorMove);
-		abilityReferenceMap.put(Warrior.class.getSimpleName(), warriorAbilities);
-		
-		//Archer
+		abilityReferenceMap
+				.put(Warrior.class.getSimpleName(), warriorAbilities);
+
+		// Archer
 		PlayerControlledEntity archer = EntityFactory.createPCE(
 				Ranged.class.getSimpleName(), null, new Position(-1, -1));
-		MoveAbility archerMove = (MoveAbility) AbilityFactory.INSTANCE.createAbility(
-				MoveAbility.class.getSimpleName(), worker);
+		MoveAbility archerMove = (MoveAbility) AbilityFactory
+				.createAbility(MoveAbility.class.getSimpleName(), worker);
 		ArrayList<AbstractAbility> archerAbilities = new ArrayList<AbstractAbility>();
-		archerAbilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(
+		archerAbilities.add(AbilityFactory.createUsingMoveAbility(
 				AttackAbility.class.getSimpleName(), archer, archerMove));
 		archerAbilities.add(archerMove);
 		abilityReferenceMap.put(Ranged.class.getSimpleName(), archerAbilities);
-		
-		//Headquarter
+
+		// Headquarter
 		PlayerControlledEntity headquarter = EntityFactory.createPCE(
 				Headquarter.class.getSimpleName(), null, new Position(-1, -1));
 		ArrayList<AbstractAbility> headquarterAbilities = new ArrayList<AbstractAbility>();
-		headquarterAbilities.add(AbilityFactory.INSTANCE.createAbility(
+		headquarterAbilities.add(AbilityFactory.createAbility(
 				TrainWorkerAbility.class.getSimpleName(), headquarter));
-		abilityReferenceMap.put(Headquarter.class.getSimpleName(), headquarterAbilities);
-		
-		//Barracks
+		abilityReferenceMap.put(Headquarter.class.getSimpleName(),
+				headquarterAbilities);
+
+		// Barracks
 		PlayerControlledEntity barracks = EntityFactory.createPCE(
 				Barracks.class.getSimpleName(), null, new Position(-1, -1));
 		ArrayList<AbstractAbility> barracksAbilities = new ArrayList<AbstractAbility>();
-		barracksAbilities.add(AbilityFactory.INSTANCE.createAbility(
+		barracksAbilities.add(AbilityFactory.createAbility(
 				TrainWarriorAbility.class.getSimpleName(), barracks));
-		barracksAbilities.add(AbilityFactory.INSTANCE.createAbility(
+		barracksAbilities.add(AbilityFactory.createAbility(
 				TrainRangedAbility.class.getSimpleName(), barracks));
-		abilityReferenceMap.put(Barracks.class.getSimpleName(), barracksAbilities);
-		
-		//Wall
-		//None so far
+		abilityReferenceMap.put(Barracks.class.getSimpleName(),
+				barracksAbilities);
+
+		// Wall
+		// None so far
 	}
 
 	/**
 	 * Updates all abilities.
-	 * @param tpf The time passed since the last frame.
+	 * 
+	 * @param tpf
+	 *            The time passed since the last frame.
 	 */
 	public void update(float tpf) {
 		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();
-		for(IEntity entity : entities) {
-			if(entity instanceof PlayerControlledEntity) {
+		for (IEntity entity : entities) {
+			if (entity instanceof PlayerControlledEntity) {
 				PlayerControlledEntity pce = (PlayerControlledEntity) entity;
-				if(!pce.isDead() && abilityListsMap.get(pce.getEntityID()) != null && !abilityListsMap.get(pce.getEntityID()).isEmpty()) {
-					ArrayList<AbstractAbility> abilities =
-							abilityListsMap.get(pce.getEntityID());
+				if (!pce.isDead()
+						&& abilityListsMap.get(pce.getEntityID()) != null
+						&& !abilityListsMap.get(pce.getEntityID()).isEmpty()) {
+					ArrayList<AbstractAbility> abilities = abilityListsMap
+							.get(pce.getEntityID());
 					pce.setState(State.IDLE);
-					for(AbstractAbility ability: abilities){
+					for (AbstractAbility ability : abilities) {
 						ability.update(tpf);
-						if(ability.isActive()) {
+						if (ability.isActive()) {
 							pce.setState(State.BUSY);
 						}
 					}
@@ -173,133 +180,134 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	@Override
 	public List<IAbility> getAbilities(IPlayerControlledEntity entity) {
 		List<IAbility> copy = new ArrayList<IAbility>();
-		ArrayList<AbstractAbility> abilities =
-				abilityReferenceMap.get(entity.getClass().getSimpleName());
-		if(abilities != null && !abilities.isEmpty()) {
-			for(IAbility ability: abilities){
+		ArrayList<AbstractAbility> abilities = abilityReferenceMap.get(entity
+				.getClass().getSimpleName());
+		if (abilities != null && !abilities.isEmpty()) {
+			for (IAbility ability : abilities) {
 				copy.add(ability);
 			}
 		}
-		
+
 		return copy;
 	}
-	
+
 	@Override
-	public void doAbility(String ability, Position pos, IPlayerControlledEntity entity) {
-		ArrayList<AbstractAbility> abilities = abilityListsMap.get(entity.getEntityID());
+	public void doAbility(String ability, Position pos,
+			IPlayerControlledEntity entity) {
+		ArrayList<AbstractAbility> abilities = abilityListsMap.get(entity
+				.getEntityID());
 		AbstractAbility toBeUsedAbility = null;
-		if(abilities != null && !abilities.isEmpty()) {
-			for(AbstractAbility ownAbility: abilities){
-				if(ownAbility.isActive()){
-					//Make sure that only one ability can be active at once
+		if (abilities != null && !abilities.isEmpty()) {
+			for (AbstractAbility ownAbility : abilities) {
+				if (ownAbility.isActive()) {
+					// Make sure that only one ability can be active at once
 					ownAbility.abortAbility();
 				}
-				
-				if(ability.equals(ownAbility.getClass().getSimpleName())){
+
+				if (ability.equals(ownAbility.getClass().getSimpleName())) {
 					toBeUsedAbility = ownAbility;
 				}
 			}
 		}
-		
-		if(toBeUsedAbility != null) {
-				toBeUsedAbility.useAbility(pos);
+
+		if (toBeUsedAbility != null) {
+			toBeUsedAbility.useAbility(pos);
 		}
 	}
-	
+
 	@Override
 	public void abortAbility(String abilityName, IPlayerControlledEntity entity) {
-		ArrayList<AbstractAbility> abilities =
-			abilityReferenceMap.get(entity.getClass().getSimpleName());
-	if(abilities != null && !abilities.isEmpty()) {
-		for(AbstractAbility ability: abilities){
-			if(ability.getClass().getSimpleName().equals(abilityName)) {
-				ability.abortAbility();
+		ArrayList<AbstractAbility> abilities = abilityReferenceMap.get(entity
+				.getClass().getSimpleName());
+		if (abilities != null && !abilities.isEmpty()) {
+			for (AbstractAbility ability : abilities) {
+				if (ability.getClass().getSimpleName().equals(abilityName)) {
+					ability.abortAbility();
+				}
 			}
 		}
 	}
-	}
-	
+
 	@Override
-	public void useAbilitySelected(String ability, Position p, IPlayer owner){
-		for(IPlayerControlledEntity pce :
-			EntityManager.INSTANCE.getSelectedEntitiesOfPlayer(owner)){
+	public void useAbilitySelected(String ability, Position p, IPlayer owner) {
+		for (IPlayerControlledEntity pce : EntityManager.INSTANCE
+				.getSelectedEntitiesOfPlayer(owner)) {
 			doAbility(ability, p, pce);
 		}
 	}
 
-
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		if(evt.getNewValue() instanceof PlayerControlledEntity) {
+		if (evt.getNewValue() instanceof PlayerControlledEntity) {
 			addAbilitiesToEntity((PlayerControlledEntity) evt.getNewValue());
 		}
-		
-		if(evt.getOldValue() instanceof PlayerControlledEntity) {
+
+		if (evt.getOldValue() instanceof PlayerControlledEntity) {
 			removeDeadAbilities((PlayerControlledEntity) evt.getOldValue());
 		}
 	}
-	
+
 	private void addAbilitiesToEntity(PlayerControlledEntity pce) {
-		ArrayList<AbstractAbility> abilitiesReferenceList =
-				abilityReferenceMap.get(pce.getClass().getSimpleName());
+		ArrayList<AbstractAbility> abilitiesReferenceList = abilityReferenceMap
+				.get(pce.getClass().getSimpleName());
 		ArrayList<AbstractAbility> abilities = new ArrayList<AbstractAbility>();
-		
-		if(abilitiesReferenceList != null && !abilitiesReferenceList.isEmpty() && pce instanceof AbstractUnit) {
-			MoveAbility moveAbility =
-					(MoveAbility) AbilityFactory.INSTANCE.createAbility(
-							MoveAbility.class.getSimpleName(), pce);
-			for(AbstractAbility ability : abilitiesReferenceList) {
-				
-				if(ability instanceof IUsingMoveAbility) {
-					abilities.add(AbilityFactory.INSTANCE.createUsingMoveAbility(
-							ability.getClass().getSimpleName(), pce, moveAbility));
+
+		if (abilitiesReferenceList != null && !abilitiesReferenceList.isEmpty()
+				&& pce instanceof AbstractUnit) {
+			MoveAbility moveAbility = (MoveAbility) AbilityFactory
+					.createAbility(MoveAbility.class.getSimpleName(), pce);
+			for (AbstractAbility ability : abilitiesReferenceList) {
+
+				if (ability instanceof IUsingMoveAbility) {
+					abilities.add(AbilityFactory
+							.createUsingMoveAbility(ability.getClass()
+									.getSimpleName(), pce, moveAbility));
 				} else {
-					abilities.add(AbilityFactory.INSTANCE.createAbility(
-							ability.getClass().getSimpleName(), pce));
+					abilities.add(AbilityFactory.createAbility(ability
+							.getClass().getSimpleName(), pce));
 				}
-				
-				abilities.get(abilities.size()-1).addListener(pcl);
+
+				abilities.get(abilities.size() - 1).addListener(pcl);
 			}
-			
+
 			abilities.add(moveAbility);
-		} else if(abilitiesReferenceList != null){
-			for(AbstractAbility ability : abilitiesReferenceList) {
-				abilities.add(AbilityFactory.INSTANCE.createAbility(
-						ability.getClass().getSimpleName(), pce));
-				abilities.get(abilities.size()-1).addListener(pcl);
+		} else if (abilitiesReferenceList != null) {
+			for (AbstractAbility ability : abilitiesReferenceList) {
+				abilities.add(AbilityFactory.createAbility(ability
+						.getClass().getSimpleName(), pce));
+				abilities.get(abilities.size() - 1).addListener(pcl);
 			}
 		}
 		abilityListsMap.put(pce.getEntityID(), abilities);
 	}
-	
+
 	private void removeDeadAbilities(PlayerControlledEntity pce) {
-		ArrayList<AbstractAbility> abilities = abilityListsMap.get(pce.getEntityID());
+		ArrayList<AbstractAbility> abilities = abilityListsMap.get(pce
+				.getEntityID());
 		INode occupiedNode = World.INSTANCE.getNodeAt(pce.getPosition());
-		for(AbstractAbility ability: abilities){
+		for (AbstractAbility ability : abilities) {
 			ability.abortAbility();
-			if (ability instanceof MoveAbility)
-			{
+			if (ability instanceof MoveAbility) {
 				MoveAbility mAbility = (MoveAbility) ability;
 				occupiedNode = mAbility.getOccupiedNode();
 			}
 		}
 		World.INSTANCE.setNodesOccupied(occupiedNode, pce.getSize(), 0);
-		
+
 		abilityListsMap.remove(pce.getEntityID());
 	}
 
 	@Override
 	public List<String> getExistingAbilityNames() {
 		List<String> output = new ArrayList<String>();
-		for (String s : abilityNames)
-		{
+		for (String s : abilityNames) {
 			output.add(s);
 		}
 		return output;
 	}
-	
+
 	@Override
-	public void setPropertyChangeLister(PropertyChangeListener pcl){
+	public void setPropertyChangeLister(PropertyChangeListener pcl) {
 		this.pcl = pcl;
 	}
 }

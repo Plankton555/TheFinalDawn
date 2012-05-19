@@ -31,7 +31,7 @@ public class GatherResourceAbilityTest {
 		Resource res = (Resource) EntityManager.INSTANCE.getNPCEAtPosition(new Position(15.5f,15.5f));
 		MoveAbility move = new MoveAbility();
 		move.initialize(worker);
-		GatherResourceAbility ab = (GatherResourceAbility) AbilityFactory.INSTANCE.createUsingMoveAbility(GatherResourceAbility.class.getSimpleName(),worker, move);
+		GatherResourceAbility ab = (GatherResourceAbility) AbilityFactory.createUsingMoveAbility(GatherResourceAbility.class.getSimpleName(),worker, move);
 		ab.useAbility(res.getPosition());
 		int counter = 0;
 

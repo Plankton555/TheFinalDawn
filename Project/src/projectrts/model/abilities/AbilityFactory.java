@@ -6,16 +6,16 @@ import java.util.Map;
 import projectrts.model.entities.PlayerControlledEntity;
 
 //TODO Markus: ADD JAVADOC!!
-enum AbilityFactory {INSTANCE;
-	private Map<String, AbstractAbility> abilityMap = new HashMap<String, AbstractAbility>();
+class AbilityFactory {
+	private static Map<String, AbstractAbility> abilityMap = new HashMap<String, AbstractAbility>();
 	
 	// TODO Markus: Add javadoc
-	public void registerAbility(String abilityType, AbstractAbility ability) {
+	public static void registerAbility(String abilityType, AbstractAbility ability) {
 		abilityMap.put(abilityType, ability);
 	}
 	
 	// TODO Markus: Add javadoc
-	public AbstractAbility createAbility(String abilityType, PlayerControlledEntity entity) {
+	public static AbstractAbility createAbility(String abilityType, PlayerControlledEntity entity) {
 		AbstractAbility ability = abilityMap.get(abilityType);
 		if (ability == null)
 		{
@@ -32,7 +32,7 @@ enum AbilityFactory {INSTANCE;
 	}
 	
 	// TODO Markus: Add javadoc
-	public AbstractAbility createUsingMoveAbility(String abilityType, PlayerControlledEntity entity, MoveAbility moveAbility) {
+	public static AbstractAbility createUsingMoveAbility(String abilityType, PlayerControlledEntity entity, MoveAbility moveAbility) {
 		AbstractAbility ability = abilityMap.get(abilityType);
 		if (ability == null)
 		{
@@ -47,4 +47,6 @@ enum AbilityFactory {INSTANCE;
 		IUsingMoveAbility movableAbility = (IUsingMoveAbility) ability;
 		return movableAbility.createAbility(entity, moveAbility);
 	}
+	
+	private AbilityFactory(){}
 }

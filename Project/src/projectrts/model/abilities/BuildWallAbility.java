@@ -13,7 +13,7 @@ class BuildWallAbility extends AbstractConstructAbility implements IUsingMoveAbi
 	private static int buildCost = 50; 
 
 	static {
-		AbilityFactory.INSTANCE.registerAbility(BuildWallAbility.class.getSimpleName(), new BuildWallAbility());
+		AbilityFactory.registerAbility(BuildWallAbility.class.getSimpleName(), new BuildWallAbility());
 	}
 
 	/**

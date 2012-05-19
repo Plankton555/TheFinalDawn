@@ -14,7 +14,7 @@ class BuildBarracksAbility extends AbstractConstructAbility implements IUsingMov
 
 
 	static {
-		AbilityFactory.INSTANCE.registerAbility(BuildBarracksAbility.class.getSimpleName(), new BuildBarracksAbility());
+		AbilityFactory.registerAbility(BuildBarracksAbility.class.getSimpleName(), new BuildBarracksAbility());
 	}
 
 	/**

@@ -14,7 +14,7 @@ class BuildHeadquarterAbility extends AbstractConstructAbility implements IUsing
 
 
 	static {
-		AbilityFactory.INSTANCE.registerAbility(BuildHeadquarterAbility.class.getSimpleName(), new BuildHeadquarterAbility());
+		AbilityFactory.registerAbility(BuildHeadquarterAbility.class.getSimpleName(), new BuildHeadquarterAbility());
 	}
 
 	/**

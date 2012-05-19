@@ -18,7 +18,7 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 	private double range;
 	
 	static {
-		AbilityFactory.INSTANCE.registerAbility(AttackAbility.class.getSimpleName(), new AttackAbility());
+		AbilityFactory.registerAbility(AttackAbility.class.getSimpleName(), new AttackAbility());
 	}
 	
 	/**

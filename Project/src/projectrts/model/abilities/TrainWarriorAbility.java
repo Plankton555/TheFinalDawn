@@ -13,7 +13,7 @@ class TrainWarriorAbility extends AbstractCreationAbility implements INotUsingMo
 	private static int buildCost = 100; 
 	
 	static {
-		AbilityFactory.INSTANCE.registerAbility(TrainWarriorAbility.class.getSimpleName(), new TrainWarriorAbility());
+		AbilityFactory.registerAbility(TrainWarriorAbility.class.getSimpleName(), new TrainWarriorAbility());
 	}
 	
 	/**

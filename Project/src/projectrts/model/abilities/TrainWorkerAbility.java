@@ -13,7 +13,7 @@ class TrainWorkerAbility extends AbstractCreationAbility implements INotUsingMov
 	private static int buildCost = 50; 
 	
 	static {
-		AbilityFactory.INSTANCE.registerAbility(TrainWorkerAbility.class.getSimpleName(), new TrainWorkerAbility());
+		AbilityFactory.registerAbility(TrainWorkerAbility.class.getSimpleName(), new TrainWorkerAbility());
 	}
 	
 	/**

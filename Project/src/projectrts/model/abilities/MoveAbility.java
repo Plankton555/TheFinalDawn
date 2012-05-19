@@ -26,7 +26,7 @@ implements INotUsingMoveAbility, ITargetAbility, AStarUser {
 	private boolean waitingForPath = false;
 	
 	static {
-		AbilityFactory.INSTANCE.registerAbility(
+		AbilityFactory.registerAbility(
 				MoveAbility.class.getSimpleName(), new MoveAbility());
 	}
 	

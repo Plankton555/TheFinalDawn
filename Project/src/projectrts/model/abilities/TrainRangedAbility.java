@@ -13,7 +13,7 @@ class TrainRangedAbility extends AbstractCreationAbility implements INotUsingMov
 	private static int buildCost = 150; 
 	
 	static {
-		AbilityFactory.INSTANCE.registerAbility(TrainRangedAbility.class.getSimpleName(), new TrainRangedAbility());
+		AbilityFactory.registerAbility(TrainRangedAbility.class.getSimpleName(), new TrainRangedAbility());
 	}
 	
 	/**
