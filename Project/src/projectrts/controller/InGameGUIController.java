@@ -81,19 +81,16 @@ public class InGameGUIController implements ScreenController {
 	 * @param selectedEntities
 	 *            the abilities of the selected Entity
 	 */
-	public void updateAbilities(List<IEntity> selectedEntities) {
-		boolean oneIsSelected = selectedEntities.size() == 1;
-
-		if (oneIsSelected
-				&& selectedEntities.get(0) instanceof IPlayerControlledEntity) {
-			selectedPce = (IPlayerControlledEntity) selectedEntities.get(0);
-		} else {
-			// TODO Afton: PMD: Assigning an Object to null is a code smell.
-			// Consider refactoring.
-			selectedPce = null;
-		}
-		guiView.updateSelected(selectedPce);
-	}
+	public void updateAbilities(List<IEntity> selectedEntities){
+		boolean oneIsSelected = selectedEntities.size()==1;
+		
+		if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
+    		selectedPce = (IPlayerControlledEntity) selectedEntities.get(0);
+    	} else {
+    		selectedPce = null;
+    	}
+    	guiView.updateSelected(selectedPce);
+    }
 
 	@Override
 	public void bind(Nifty nifty, Screen screen) {
@@ -127,13 +124,12 @@ public class InGameGUIController implements ScreenController {
 	 *            the ID of the button which the cursor is on
 	 */
 	public void buttonMouseEnter(String nr) {
-		showingTooltipID = 0;
-		try {
+		try{
 			showingTooltipID = Integer.parseInt(nr);
-		} catch (NumberFormatException e) {
-			// TODO Afton: PMD: Avoid empty catch blocks
-
+		} catch(NumberFormatException e){
+			showingTooltipID = 0;
 		}
+
 		guiView.showTooltip(getAbility(nr));
 	}
 
@@ -144,12 +140,13 @@ public class InGameGUIController implements ScreenController {
 	 *            the ID of the button that the cursor left
 	 */
 	public void buttonMouseLeave(String nr) {
-		int iNr = 0;
-		try {
+		int iNr;
+		try{
 			iNr = Integer.parseInt(nr);
-		} catch (NumberFormatException e) {
-			// TODO Afton: PMD: Avoid empty catch blocks
+		} catch(NumberFormatException e){
+			iNr = 0;
 		}
+		
 		if (iNr == showingTooltipID) {
 			guiView.showTooltip(null);
 		}
@@ -165,8 +162,9 @@ public class InGameGUIController implements ScreenController {
 			if (iNr - 1 < abilities.size()) {
 				ability = abilities.get(iNr - 1);
 			}
-		} catch (NumberFormatException e) {
-			// TODO Afton: PMD: Avoid empty catch blocks
+			
+		} catch(NumberFormatException e) {
+
 		}
 		return ability;
 	}

@@ -15,8 +15,7 @@ class GUIMessageHandler {
 	private boolean activeMessage = false;
 	private float messageTimer = 0;
 	private static final float MESSAGE_MAX_TIME = 3;
-	// TODO Afton: PMD: Private field 'labelMessage' could be made final; it is only initialized in the declaration or constructor.
-	private Element labelMessage;
+	private final Element labelMessage;
 
 	/**
 	 * Creates a new handler

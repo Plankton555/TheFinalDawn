@@ -13,10 +13,8 @@ import de.lessvoid.nifty.screen.Screen;
  * 
  */
 class GUIUpdateHandler {
-	// TODO Afton: PMD: Private field 'game' could be made final; it is only initialized in the declaration or constructor.
-	private IGame game;
-	// TODO Afton: PMD: Private field 'screen' could be made final; it is only initialized in the declaration or constructor.
-	private Screen screen;
+	private final IGame game;
+	private final Screen screen;
 
 	/**
 	 * Creates a new handler

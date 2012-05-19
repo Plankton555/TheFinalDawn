@@ -17,8 +17,6 @@ import de.lessvoid.nifty.screen.Screen;
  */
 public class GameGUIView implements PropertyChangeListener {
 	private final Nifty nifty;
-	// TODO Afton: PMD: Perhaps 'screen' could be replaced by a local variable.
-	private Screen screen;
 	private final IGame game;
 	private GUIUpdateHandler updateHandler;
 	private GUIMessageHandler messageHandler;
@@ -46,9 +44,9 @@ public class GameGUIView implements PropertyChangeListener {
 	/**
 	 * Initializes the view
 	 */
-	public void initialize() {
-		screen = nifty.getScreen("Screen_Game");
-
+	public void initialize(){
+		Screen screen = nifty.getScreen("Screen_Game");
+		
 		updateHandler = new GUIUpdateHandler(game, screen);
 		updateHandler.updatePlayerInfo();
 

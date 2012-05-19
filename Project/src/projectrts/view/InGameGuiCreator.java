@@ -12,12 +12,10 @@ import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
  * @author Filip Brynfors
  * 
  */
-// TODO Afton: PMD: A class which only has private constructors should be final
-public class InGameGuiCreator {
-	// TODO Afton: PMD: Variables that are final and static should be in all caps.
-	private static final String greenColor = "#0F0F";
-
-	private InGameGuiCreator() {
+public final class InGameGuiCreator {
+	private static final String GREEN_COLOR = "#0F0F";
+	
+	private InGameGuiCreator(){
 	}
 
 	/**
@@ -58,100 +56,86 @@ public class InGameGuiCreator {
 		return layer;
 	}
 
-	// Creates the panel that shows the player info
-	private static PanelBuilder createPlayerInfoPanel() {
-		PanelBuilder builder = new PanelBuilder("Panel_PlayerInfo") {
-			{
-				width("20%");
-				childLayoutVertical();
-
-				control(new LabelBuilder("Label_Time") {
-					{
-						// TODO Afton: PMD: The String literal "100%" appears 14 times in this file; the first occurrence is here
-						width("100%");
-						textHAlignLeft();
-						textVAlignTop();
-						color(greenColor);
-					}
-				});
-
-				control(new LabelBuilder("Label_PlayerInfo") {
-					{
-						width("100%");
-						textHAlignLeft();
-						textVAlignTop();
-						color(greenColor);
-					}
-				});
-			}
-		};
+	
+	//Creates the panel that shows the player info
+	private static PanelBuilder createPlayerInfoPanel(){
+		PanelBuilder builder = new PanelBuilder("Panel_PlayerInfo"){{
+			width("20%");
+			childLayoutVertical();
+			
+			control(new LabelBuilder("Label_Time"){{
+				width("100%");
+				textHAlignLeft();
+				textVAlignTop();
+				color(GREEN_COLOR);
+				
+			}});
+			
+			control(new LabelBuilder("Label_PlayerInfo"){{
+				width("100%");
+				textHAlignLeft();
+				textVAlignTop();
+				color(GREEN_COLOR);
+				
+			}});
+			
+		}};
+		return builder;
+	}	
+	
+	//Creates the panel that shows build info
+	private static PanelBuilder createBuildInfoPanel(){
+		PanelBuilder builder = new PanelBuilder("Panel_BuildInfo"){{
+			width("20%");
+			childLayoutVertical();
+			visible(false);
+			
+			control(new LabelBuilder("Label_BuildText"){{
+				width("100%");
+				height("100%");
+				textVAlignTop();
+				color(GREEN_COLOR);
+				
+			}});			
+		}};
 		return builder;
 	}
+	
+	//Creates the panel that shows current hp
+	private static PanelBuilder createMiddlePanel(){
+		PanelBuilder builder = new PanelBuilder("Panel_SelectedInfo"){{
+			width("20%");
+			childLayoutVertical();
+			backgroundColor("#000F");
+			visible(false);
+			
+			control(new LabelBuilder("Label_Name"){{
+				width("100%");
+				color("#00FF");
+			}});
+			
 
-	// Creates the panel that shows build info
-	private static PanelBuilder createBuildInfoPanel() {
-		PanelBuilder builder = new PanelBuilder("Panel_BuildInfo") {
-			{
-				width("20%");
-				childLayoutVertical();
-				visible(false);
-
-				control(new LabelBuilder("Label_BuildText") {
-					{
-						width("100%");
-						height("100%");
-						textVAlignTop();
-						color(greenColor);
-					}
-				});
-			}
-		};
-		return builder;
-	}
-
-	// Creates the panel that shows current hp
-	private static PanelBuilder createMiddlePanel() {
-		PanelBuilder builder = new PanelBuilder("Panel_SelectedInfo") {
-			{
-				width("20%");
-				childLayoutVertical();
-				backgroundColor("#000F");
-				visible(false);
-
-				control(new LabelBuilder("Label_Name") {
-					{
-						width("100%");
-						color("#00FF");
-					}
-				});
-
-				panel(new PanelBuilder("Panel_Info") {
-					{
-						childLayoutHorizontal();
-
-						control(new LabelBuilder("Label_Info") {
-							{
-								width("30%");
-								height("100%");
-								textHAlignLeft();
-								textVAlignTop();
-								color(greenColor);
-							}
-						});
-
-						control(new LabelBuilder("Label_InfoValues") {
-							{
-								width("100%");
-								height("100%");
-								textHAlignLeft();
-								textVAlignTop();
-								color(greenColor);
-							}
-						});
-					}
-				});
-			}
-		};
+			panel(new PanelBuilder("Panel_Info"){{
+				childLayoutHorizontal();
+				
+				control(new LabelBuilder("Label_Info"){{
+					width("30%");
+					height("100%");
+					textHAlignLeft();
+					textVAlignTop();
+					color(GREEN_COLOR);
+					
+				}});
+				
+				control(new LabelBuilder("Label_InfoValues"){{
+					width("100%");
+					height("100%");
+					textHAlignLeft();
+					textVAlignTop();
+					color(GREEN_COLOR);
+				}});
+			}});
+		}};
 		return builder;
 	}
 

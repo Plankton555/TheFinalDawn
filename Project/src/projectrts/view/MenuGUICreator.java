@@ -10,10 +10,11 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
  * @author Filip Brynfors
  * 
  */
-// TODO Afton: PMD: A class which only has private constructors should be final
-public class MenuGUICreator {
 
-	private MenuGUICreator() { }
+public final class MenuGUICreator {
+	
+	private MenuGUICreator(){	
+	}
 
 	/**
 	 * Creates the Main layer for the menu
@@ -31,45 +32,35 @@ public class MenuGUICreator {
 	}
 
 	private static PanelBuilder createMenuPanel() {
-		PanelBuilder builder = new PanelBuilder("Panel_Menu") {
-			{
-				childLayoutVertical();
-				valignCenter();
-				width("150px");
+		PanelBuilder builder = new PanelBuilder("Panel_Menu") {{
+			childLayoutVertical();
+			valignCenter();
+			width("150px");
+			
+			//Buttons
+			control(new ButtonBuilder("Button_Start", "Start Game") {{
+				width("100%");
+				alignCenter();
+				interactOnClick("buttonStartClicked()");
+			}});
+			control(new ButtonBuilder("Button_ChangeDifficulty") {{
+				width("100%");
+				alignCenter();
+				interactOnClick("buttonChangeClicked()");	
+			}});
+				
+			panel(new PanelBuilder("Panel_Spacer") {{
+				childLayoutCenter();
+				height("10px");
+			}});
+		
+			control(new ButtonBuilder("Button_Exit", "Exit Game") {{
+				width("100%");
+				alignCenter();
+				interactOnClick("buttonExitClicked()");
+			}});
+		}};
 
-				// Buttons
-				control(new ButtonBuilder("Button_Start", "Start Game") {
-					{
-						// TODO Afton: PMD: The String literal "100%" appears 5 times in this file; the first occurrence is here
-						width("100%");
-						alignCenter();
-						interactOnClick("buttonStartClicked()");
-					}
-				});
-				control(new ButtonBuilder("Button_ChangeDifficulty") {
-					{
-						width("100%");
-						alignCenter();
-						interactOnClick("buttonChangeClicked()");
-					}
-				});
-
-				panel(new PanelBuilder("Panel_Spacer") {
-					{
-						childLayoutCenter();
-						height("10px");
-					}
-				});
-
-				control(new ButtonBuilder("Button_Exit", "Exit Game") {
-					{
-						width("100%");
-						alignCenter();
-						interactOnClick("buttonExitClicked()");
-					}
-				});
-			}
-		};
 		return builder;
 	}
 
