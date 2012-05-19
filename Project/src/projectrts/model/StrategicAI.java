@@ -12,6 +12,7 @@ import projectrts.model.entities.PlayerControlledEntity;
 // TODO Markus: ADD JAVADOC!!!
 class StrategicAI {
 	private List<IPlayerControlledEntity> entities;
+	// TODO Markus: PMD: Variables that are final and static should be in all caps.
 	private static final float cooldownInterval = 0.5f;
 	private float cooldownRemaining = 0;
 	private final Player aiPlayer;

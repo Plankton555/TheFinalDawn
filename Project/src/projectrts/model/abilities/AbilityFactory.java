@@ -6,6 +6,7 @@ import java.util.Map;
 import projectrts.model.entities.PlayerControlledEntity;
 
 //TODO Markus: ADD JAVADOC!!
+// TODO Markus: PMD: A class which only has private constructors should be final
 class AbilityFactory {
 	private static Map<String, AbstractAbility> abilityMap = new HashMap<String, AbstractAbility>();
 	

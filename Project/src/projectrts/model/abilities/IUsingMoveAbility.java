@@ -15,5 +15,5 @@ interface IUsingMoveAbility {
 	 * @param moveAbility The MoveAbility that the entity is using.
 	 * @return The new ability.
 	 */
-	public abstract AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility);
+	AbstractAbility createAbility(PlayerControlledEntity entity, MoveAbility moveAbility);
 }

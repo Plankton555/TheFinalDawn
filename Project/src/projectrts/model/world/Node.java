@@ -95,6 +95,7 @@ public class Node implements INode {
 	 */
 	@Override
 	public boolean equals(Object obj) {
+		// TODO Plankton: PMD: Avoid using if statements without curly braces
 		if (this == obj)
 			return true;
 		if (obj == null)

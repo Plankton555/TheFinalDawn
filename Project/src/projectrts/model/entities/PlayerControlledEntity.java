@@ -11,6 +11,7 @@ import projectrts.model.world.Position;
  * 
  *
  */
+//TODO Jakob: PMD: Abstract classes should be named AbstractXXX
 public abstract class PlayerControlledEntity extends AbstractEntity implements IPlayerControlledEntity{
 	private int currentHealth;
 	private int maxHealth;

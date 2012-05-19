@@ -10,5 +10,5 @@ public interface AStarUser {
 	/**
 	 * @param path The calculated AStarPath.
 	 */
-	public void receivePath(AStarPath path);
+	void receivePath(AStarPath path);
 }

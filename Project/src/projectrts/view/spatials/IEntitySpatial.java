@@ -17,5 +17,5 @@ interface IEntitySpatial {
 	 * @param entity The entity the spatial represents.
 	 * @return A spatial representing the entity.
 	 */
-	public AbstractSpatial createSpatial(String name, Box box, IEntity entity);
+	AbstractSpatial createSpatial(String name, Box box, IEntity entity);
 }

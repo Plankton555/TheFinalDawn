@@ -18,5 +18,5 @@ interface INodeSpatial {
 	 * @param node Node
 	 * @return The new NodeSpatial.
 	 */
-	public AbstractSpatial createSpatial(String name, Box box, INode node);
+	AbstractSpatial createSpatial(String name, Box box, INode node);
 }

@@ -15,5 +15,5 @@ interface INodeControl {
 	 * @param node Node.
 	 * @return AbstractControl that is the NodeControl.
 	 */
-	public AbstractControl createControl(INode node);
+	AbstractControl createControl(INode node);
 }

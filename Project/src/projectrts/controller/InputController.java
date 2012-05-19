@@ -92,7 +92,7 @@ class InputController{
      * in that direction. The amount is decided by the getCameraSpeed method in the Constants class. 
      * @param tpf
      */
-    // TODO Markus: PMD: The method 'updateCamera' has a Cyclomatic Complexity of 10. The highest is 15.
+    // TODO Markus: PMD: The method 'updateCamera' has a Cyclomatic Complexity of 10.
     private void updateCamera(float tpf) {
 
     	if(mouseActivated) {
@@ -157,7 +157,7 @@ class InputController{
      * 
      */
     private final AnalogListener analogListener = new AnalogListener() {
-    	// TODO Markus: PMD: The method onAnalog() has an NPath complexity of 487
+    	// TODO Markus: PMD: The method onAnalog() has an NPath complexity of 488
     	// TODO Markus: PMD: The method 'onAnalog' has a Cyclomatic Complexity of 16.
 	    public void onAnalog(String name, float value, float tpf) {
 	    	

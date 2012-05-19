@@ -10,24 +10,24 @@ public interface IAbility {
 	 * Gets the name of the ability
 	 * @return The name of the ability.
 	 */
-	public String getName();
+	String getName();
 	
 	/**
 	 * Gets the cooldown of the ability
 	 * @return the cooldown
 	 */
-	public float getCooldown();
+	float getCooldown();
 	
 	
 	/**
 	 * Gets the remaining time of the cooldown
 	 * @return the remaining cooldown
 	 */
-	public float getRemainingCooldown();
+	float getRemainingCooldown();
 	
 	/**
 	 * Gets the information about the ability
 	 * @return the information
 	 */
-	public String getInfo();
+	String getInfo();
 }

@@ -19,14 +19,14 @@ public interface IAbilityManager {
 	 * @param entity The entity whose abilities you want.
 	 * @return A list of the abilities associated with the entity.
 	 */
-	public abstract List<IAbility> getAbilities(IPlayerControlledEntity entity);
+	List<IAbility> getAbilities(IPlayerControlledEntity entity);
 
 	/**
 	 * Uses an ability at the given position
 	 * @param ability the name of ability to be used
 	 * @param pos the position that the ability will be used at
 	 */
-	public abstract void doAbility(String ability, Position pos,
+	void doAbility(String ability, Position pos,
 			IPlayerControlledEntity entity);
 
 	/**
@@ -35,18 +35,18 @@ public interface IAbilityManager {
 	 * @param p the position to use the ability at
 	 * @param owner Owner of the entities that will do something.
 	 */
-	public abstract void useAbilitySelected(String ability, Position p, IPlayer owner);
+	void useAbilitySelected(String ability, Position p, IPlayer owner);
 	
 	/**
 	 * @return A list containing the names of the existing abilities.
 	 */
-	public List<String> getExistingAbilityNames();
+	List<String> getExistingAbilityNames();
 	
 	/**
 	 * Adds the pcl to the AbilityManager as a listener.
 	 * @param pcl The PropertyChangeListener you want as listener.
 	 */
-	public void setPropertyChangeLister(PropertyChangeListener pcl);
+	void setPropertyChangeLister(PropertyChangeListener pcl);
 
 	/**
 	 * If the entity is paired with an ability which class is named like abilityName, 
@@ -54,5 +54,5 @@ public interface IAbilityManager {
 	 * @param abilityName The simple name of the ability's class.
 	 * @param entity The entity the ability is paired with.
 	 */
-	public void abortAbility(String abilityName, IPlayerControlledEntity entity);
+	void abortAbility(String abilityName, IPlayerControlledEntity entity);
 }

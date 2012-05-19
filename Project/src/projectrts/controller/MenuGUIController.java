@@ -22,6 +22,7 @@ import de.lessvoid.nifty.screen.ScreenController;
  * @author Filip Brynfors
  * 
  */
+// TODO Afton: PMD: This class has too many methods, consider refactoring it.
 public class MenuGUIController implements ScreenController {
 	private final SimpleApplication app;
 	private final Nifty nifty;

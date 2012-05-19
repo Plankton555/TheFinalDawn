@@ -15,5 +15,5 @@ interface IEntityControl {
 	 * @param entity The entity the control should control.
 	 * @return A new instance of the control.
 	 */
-	public AbstractControl createControl(IEntity entity);
+	AbstractControl createControl(IEntity entity);
 }

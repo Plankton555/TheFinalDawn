@@ -13,12 +13,12 @@ public interface IPlayer {
 	 * Adds a listener to the player
 	 * @param pcl the listener
 	 */
-	public void addListener(PropertyChangeListener pcl);
+	void addListener(PropertyChangeListener pcl);
 
 	/**
 	 * Returns the amount of resources the player has
 	 * @return the amount of resources
 	 */
-	public int getResources();
+	int getResources();
 
 }

@@ -6,6 +6,7 @@ import projectrts.model.world.Position;
  * @author Jakob Svensson
  *
  */
+// TODO Jakob: PMD: Abstract classes should be named AbstractXXX
 abstract class NonPlayerControlledEntity extends AbstractEntity {
 
 	/**

@@ -12,24 +12,24 @@ public interface IWorld {
 	/**
 	 * @return Width of the world (in tiles).
 	 */
-	public int getWorldWidth();
+	int getWorldWidth();
 	
 	/**
 	 * @return Height of the world (in tiles).
 	 */
-	public int getWorldHeight();
+	int getWorldHeight();
 
 	/**
 	 * @return The matrix of all nodes.
 	 */
-	public INode[][] getNodes();
+	INode[][] getNodes();
 
 	/**
 	 * Returns the node closest to the specified position.
 	 * @param p Position.
 	 * @return Node at position.
 	 */
-	public INode getNodeAt(Position p);
+	INode getNodeAt(Position p);
 
 	/**
 	 * Sets the nodes around nodeInCenter as occupied by entityID.
@@ -37,7 +37,7 @@ public interface IWorld {
 	 * @param entitySize The size around the center node that will be occupied.
 	 * @param entityID ID of the entity that occupies.
 	 */
-	public void setNodesOccupied(INode nodeInCenter, float entitySize, int entityID);
+	void setNodesOccupied(INode nodeInCenter, float entitySize, int entityID);
 
 	/**
 	 * Returns the nodes that would be covered by an object at
@@ -46,5 +46,5 @@ public interface IWorld {
 	 * @param size Size.
 	 * @return All nodes that would be covered.
 	 */
-	public List<INode> getNodesAt(Position centerPos, float size);
+	List<INode> getNodesAt(Position centerPos, float size);
 }

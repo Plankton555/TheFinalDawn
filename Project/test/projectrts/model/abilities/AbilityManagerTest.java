@@ -8,6 +8,7 @@ public class AbilityManagerTest {
 
 	@Before
 	public void setUp() throws Exception {
+		// TODO Markus: PMD: Empty method?
 	}
 
 }

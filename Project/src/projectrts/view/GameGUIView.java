@@ -16,6 +16,7 @@ import de.lessvoid.nifty.screen.Screen;
  */
 public class GameGUIView implements PropertyChangeListener {
 	private final Nifty nifty;
+	// TODO Afton: PMD: Perhaps 'screen' could be replaced by a local variable.
 	private Screen screen;
 	private final IGame game;
 	private GUIUpdateHandler updateHandler;
@@ -92,6 +93,7 @@ public class GameGUIView implements PropertyChangeListener {
 			messageHandler.showMessage(pce.getNewValue().toString());
 			
 		}else if (pce.getPropertyName().equals("entityRemoved")) {
+			// TODO Afton: Could these nested if statements be combined? /Plankton
 			if(pce.getOldValue()==selectedPce ) {
 				selectedPce=null;
 				updateSelected(null);
@@ -118,6 +120,7 @@ public class GameGUIView implements PropertyChangeListener {
 				updateHandler.showBuildInfo("Training Unit\nTime left: " + pce.getNewValue());
 			}
 		}else if("BuildCompleted".equals(pce.getPropertyName())){
+			// TODO Afton: PMD: These nested if statements could be combined
 			if(pce.getOldValue() == selectedPce){
 				updateHandler.showBuildInfo("");
 			}

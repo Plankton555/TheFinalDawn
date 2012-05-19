@@ -11,45 +11,45 @@ public interface IEntityManager {
 	/**
 	 * @return All entities.
 	 */
-	public List<IEntity> getAllEntities();
+	List<IEntity> getAllEntities();
 	
 	/**
 	 * Returns all entities that the provided player owns.
 	 * @param player Player.
 	 * @return A list of all entities of player.
 	 */
-	public List<IPlayerControlledEntity> getEntitiesOfPlayer(IPlayer player);
+	List<IPlayerControlledEntity> getEntitiesOfPlayer(IPlayer player);
 	
 	/**
 	 * Selects entities at the specified position
 	 * @param pos the position where entities should be selected
 	 * @param owner the player that selected the entities
 	 */
-	public void select(Position pos, IPlayer owner);
+	void select(Position pos, IPlayer owner);
 
 	/**
 	 * Returns the selected entities
 	 * @return A list with the selected entities
 	 */
-	public List<IEntity> getSelectedEntities();
+	List<IEntity> getSelectedEntities();
 	
 	/**
 	 * Returns the selected entities of the player.
 	 * @param player The player.
 	 * @return All selected entities of the player.
 	 */
-	public List<IPlayerControlledEntity> getSelectedEntitiesOfPlayer(IPlayer player);
+	List<IPlayerControlledEntity> getSelectedEntitiesOfPlayer(IPlayer player);
 
 	// TODO Markus(?): Add javadoc
-	public void addListener(PropertyChangeListener pcl);
+	void addListener(PropertyChangeListener pcl);
 
 	/**
 	 * If there exists a PCE at the passed position it is returned, otherwise this method returns null.
 	 * @param pos The position to check.
 	 * @return A PCE if there is one on the position, otherwise null.
 	 */
-	public IPlayerControlledEntity getPCEAtPosition(Position pos);
+	IPlayerControlledEntity getPCEAtPosition(Position pos);
 
 	// TODO Markus: Add javadoc
-	public IEntity getNPCEAtPosition(Position pos);
+	IEntity getNPCEAtPosition(Position pos);
 }

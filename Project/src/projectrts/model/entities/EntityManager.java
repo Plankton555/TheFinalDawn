@@ -271,6 +271,8 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 				if(closestPCE == null && pce.getOwner() != otherPCE.getOwner()) {
 					closestPCE = (PlayerControlledEntity)entity;
 				} else if (closestPCE != null){
+					// TODO Markus: PMD: Deeply nested if..then statements are hard to read
+					// TODO Markus: PMD: These nested if statements could be combined
 					if(Position.getDistance(pce.getPosition(), entity.getPosition())
 							< Position.getDistance(pce.getPosition(), closestPCE.getPosition()) 
 							&& pce.getOwner() != otherPCE.getOwner()) {
@@ -295,6 +297,8 @@ public enum EntityManager implements IEntityManager{ INSTANCE;
 					if(closestEnemyStruct == null && pce.getOwner() != otherPCE.getOwner()) {
 						closestEnemyStruct = (PlayerControlledEntity)entity;
 					} else if (closestEnemyStruct != null){
+						// TODO Markus: PMD: Deeply nested if..then statements are hard to read
+						// TODO Markus: PMD: These nested if statements could be combined
 						if(Position.getDistance(pce.getPosition(), entity.getPosition())
 								< Position.getDistance(pce.getPosition(), closestEnemyStruct.getPosition()) 
 								&& pce.getOwner() != otherPCE.getOwner()) {

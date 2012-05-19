@@ -10,6 +10,7 @@ import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
  * @author Filip Brynfors
  *
  */
+// TODO Afton: PMD: A class which only has private constructors should be final
 public class HighScoreGUICreator {
 	
 	private HighScoreGUICreator(){	

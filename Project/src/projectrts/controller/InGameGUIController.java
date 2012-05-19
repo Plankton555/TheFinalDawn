@@ -80,6 +80,7 @@ public class InGameGUIController implements ScreenController {
 		if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
     		selectedPce = (IPlayerControlledEntity) selectedEntities.get(0);
     	} else {
+    		// TODO Afton: PMD: Assigning an Object to null is a code smell. Consider refactoring.
     		selectedPce = null;
     	}
     	guiView.updateSelected(selectedPce);
@@ -118,6 +119,7 @@ public class InGameGUIController implements ScreenController {
 		try{
 			showingTooltipID = Integer.parseInt(nr);
 		} catch(NumberFormatException e){
+			// TODO Afton: PMD: Avoid empty catch blocks
 			
 		}
 
@@ -134,7 +136,7 @@ public class InGameGUIController implements ScreenController {
 		try{
 			iNr = Integer.parseInt(nr);
 		} catch(NumberFormatException e){
-			
+			// TODO Afton: PMD: Avoid empty catch blocks
 		}
 		if(iNr == showingTooltipID){
 			guiView.showTooltip(null);
@@ -154,7 +156,7 @@ public class InGameGUIController implements ScreenController {
 		
 		
 		} catch(NumberFormatException e) {
-			
+			// TODO Afton: PMD: Avoid empty catch blocks
 		}
 		return ability;
 	}
