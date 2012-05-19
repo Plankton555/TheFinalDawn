@@ -16,7 +16,7 @@ import com.jme3.texture.Texture;
  * @author Jakob Svensson
  *
  */
-final class WorkerSpatial extends AbstractSpatial implements IEntitySpatial{
+public final class WorkerSpatial extends AbstractSpatial implements IEntitySpatial{
 	
 	static {
 		SpatialFactory.INSTANCE.registerSpatial(WorkerSpatial.class.getSimpleName(), new WorkerSpatial("WorkerSpatialCreator", new Box()));

@@ -17,31 +17,6 @@ import com.jme3.scene.shape.Box;
 public enum SpatialFactory {INSTANCE;
 	
 	private Map<String, AbstractSpatial> spatialMap = new HashMap<String, AbstractSpatial>();
-	
-	static{
-		try
-		{
-			// Initialize the control classes.
-			Class.forName(MoveControl.class.getName());
-			Class.forName(NodeControl.class.getName());
-			
-			// Initialize the spatial classes.
-			Class.forName(WarriorSpatial.class.getName());
-			Class.forName(RangedSpatial.class.getName());
-			Class.forName(WorkerSpatial.class.getName());
-			Class.forName(HeadquarterSpatial.class.getName());
-			Class.forName(BarracksSpatial.class.getName());
-			Class.forName(ResourceSpatial.class.getName());
-			Class.forName(SelectSpatial.class.getName());
-			Class.forName(DebugNodeSpatial.class.getName());
-			Class.forName(WallSpatial.class.getName());
-		}
-		catch (ClassNotFoundException any)
-		{
-			any.printStackTrace();
-		}
-	}
-	
 	/**
 	 * Registers a spatial in the factory. Registering a spatial enables
 	 * creation of that spatial through createSpatial methods.

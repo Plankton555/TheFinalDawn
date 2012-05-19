@@ -16,7 +16,7 @@ import com.jme3.texture.Texture;
  * @author Jakob Svensson
  *
  */
-final class ResourceSpatial extends AbstractSpatial implements IEntitySpatial{
+public final class ResourceSpatial extends AbstractSpatial implements IEntitySpatial{
 	
 	static {
 		SpatialFactory.INSTANCE.registerSpatial(ResourceSpatial.class.getSimpleName(), new ResourceSpatial("ResourceSpatialCreator", new Box()));

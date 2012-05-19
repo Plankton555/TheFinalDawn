@@ -12,9 +12,18 @@ import projectrts.model.IGame;
 import projectrts.model.entities.IEntity;
 import projectrts.model.world.INode;
 import projectrts.view.controls.MoveControl;
+import projectrts.view.controls.NodeControl;
 import projectrts.view.spatials.AbstractSpatial;
+import projectrts.view.spatials.BarracksSpatial;
 import projectrts.view.spatials.DebugNodeSpatial;
+import projectrts.view.spatials.HeadquarterSpatial;
+import projectrts.view.spatials.RangedSpatial;
+import projectrts.view.spatials.ResourceSpatial;
+import projectrts.view.spatials.SelectSpatial;
 import projectrts.view.spatials.SpatialFactory;
+import projectrts.view.spatials.WallSpatial;
+import projectrts.view.spatials.WarriorSpatial;
+import projectrts.view.spatials.WorkerSpatial;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
@@ -50,6 +59,30 @@ public class GameView implements PropertyChangeListener{
     private float mod = InGameState.MODEL_TO_WORLD; // The modifier value for converting lengths between model and world.
     
     private boolean debugNodes = false;
+    
+	static{
+		try
+		{
+			// Initialize the control classes.
+			Class.forName(MoveControl.class.getName());
+			Class.forName(NodeControl.class.getName());
+			
+			// Initialize the spatial classes.
+			Class.forName(WarriorSpatial.class.getName());
+			Class.forName(RangedSpatial.class.getName());
+			Class.forName(WorkerSpatial.class.getName());
+			Class.forName(HeadquarterSpatial.class.getName());
+			Class.forName(BarracksSpatial.class.getName());
+			Class.forName(ResourceSpatial.class.getName());
+			Class.forName(SelectSpatial.class.getName());
+			Class.forName(DebugNodeSpatial.class.getName());
+			Class.forName(WallSpatial.class.getName());
+		}
+		catch (ClassNotFoundException any)
+		{
+			any.printStackTrace();
+		}
+	}
     
   //TODO Markus: Add javadoc
 	public GameView(SimpleApplication app, IGame game) {
