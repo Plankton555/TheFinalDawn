@@ -44,7 +44,5 @@ class AIManager implements PropertyChangeListener {
 			microAIs.add(new MicroAI(
 					(PlayerControlledEntity) evt.getNewValue(), abilityManager));
 		}
-
 	}
-
 }

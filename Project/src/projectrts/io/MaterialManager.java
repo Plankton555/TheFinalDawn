@@ -31,7 +31,6 @@ public class MaterialManager {
 				"Common/MatDefs/Terrain/Terrain.j3md"));
 		materials.put("Unshaded", new Material(assetManager,
 				"Common/MatDefs/Misc/Unshaded.j3md"));
-
 	}
 
 	/**
@@ -44,5 +43,4 @@ public class MaterialManager {
 	public static Material getMaterial(String name) {
 		return materials.get(name).clone();
 	}
-
 }

@@ -90,7 +90,6 @@ class Level {
 		if (waveInterval > 5) {
 			waveInterval--;
 		}
-
 	}
 
 	private void spawnEnemies(Position pos, int amount) {

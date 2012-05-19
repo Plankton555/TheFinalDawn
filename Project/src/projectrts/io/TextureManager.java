@@ -79,8 +79,6 @@ public class TextureManager {
 	 * @return The texture with the name
 	 */
 	public static Texture getTexture(String name) {
-
 		return textures.get(name);
-
 	}
 }
