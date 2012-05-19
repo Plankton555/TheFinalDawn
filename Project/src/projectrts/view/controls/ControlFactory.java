@@ -14,8 +14,8 @@ import com.jme3.scene.control.AbstractControl;
  * @author Markus Ekström
  * 
  */
-public class ControlFactory {
-
+public final class ControlFactory {
+	
 	private static Map<String, AbstractControl> controlMap = new HashMap<String, AbstractControl>();
 
 	/**
@@ -71,4 +71,6 @@ public class ControlFactory {
 		}
 		return ((INodeControl) controlMap.get(controlType)).createControl(node);
 	}
+	
+	private ControlFactory() {}
 }

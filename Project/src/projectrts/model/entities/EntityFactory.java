@@ -11,8 +11,7 @@ import projectrts.model.world.Position;
  * @author Markus Ekström
  * 
  */
-// TODO Markus: PMD: A class which only has private constructors should be final
-public class EntityFactory {
+public final class EntityFactory {
 	private static Map<String, PlayerControlledEntity> pceMap = new HashMap<String, PlayerControlledEntity>();
 	private static Map<String, NonPlayerControlledEntity> npceMap = new HashMap<String, NonPlayerControlledEntity>();
 
@@ -86,6 +85,5 @@ public class EntityFactory {
 		return npceMap.get(npceType).createNPCE(pos);
 	}
 
-	private EntityFactory() {
-	}
+	private EntityFactory() {}
 }

@@ -14,8 +14,7 @@ import com.jme3.scene.shape.Box;
  * @author Markus Ekström
  * 
  */
-// TODO Markus: PMD: A class which only has private constructors should be final
-public class SpatialFactory {
+public final class SpatialFactory {
 	private static Map<String, AbstractSpatial> spatialMap = new HashMap<String, AbstractSpatial>();
 
 	/**
@@ -84,6 +83,5 @@ public class SpatialFactory {
 				box, node);
 	}
 
-	private SpatialFactory() {
-	}
+	private SpatialFactory() {}
 }
