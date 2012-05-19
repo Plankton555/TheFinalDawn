@@ -55,7 +55,6 @@ public class AttackAbility extends AbstractAbility implements IUsingMoveAbility,
 		
 		
 		if(isActive() && !isFinished()){
-			//attacker.getRange();
 			if(inRange(target)){
 				//In range
 				moveAbility.abortAbility();
