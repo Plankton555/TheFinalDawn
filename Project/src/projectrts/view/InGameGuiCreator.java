@@ -14,8 +14,7 @@ import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
  */
 // TODO Afton: PMD: A class which only has private constructors should be final
 public class InGameGuiCreator {
-	// TODO Afton: PMD: Variables that are final and static should be in all
-	// caps.
+	// TODO Afton: PMD: Variables that are final and static should be in all caps.
 	private static final String greenColor = "#0F0F";
 
 	private InGameGuiCreator() {
@@ -68,13 +67,11 @@ public class InGameGuiCreator {
 
 				control(new LabelBuilder("Label_Time") {
 					{
-						// TODO Afton: PMD: The String literal "100%" appears 14
-						// times in this file; the first occurrence is here
+						// TODO Afton: PMD: The String literal "100%" appears 14 times in this file; the first occurrence is here
 						width("100%");
 						textHAlignLeft();
 						textVAlignTop();
 						color(greenColor);
-
 					}
 				});
 
@@ -84,10 +81,8 @@ public class InGameGuiCreator {
 						textHAlignLeft();
 						textVAlignTop();
 						color(greenColor);
-
 					}
 				});
-
 			}
 		};
 		return builder;
@@ -107,7 +102,6 @@ public class InGameGuiCreator {
 						height("100%");
 						textVAlignTop();
 						color(greenColor);
-
 					}
 				});
 			}
@@ -142,7 +136,6 @@ public class InGameGuiCreator {
 								textHAlignLeft();
 								textVAlignTop();
 								color(greenColor);
-
 							}
 						});
 
@@ -190,7 +183,6 @@ public class InGameGuiCreator {
 						for (int i = 5; i <= 8; i++) {
 							control(createAbilityButton(i));
 						}
-
 					}
 				});
 			}
@@ -221,11 +213,9 @@ public class InGameGuiCreator {
 								+ i + ")");
 					}
 				});
-
 			}
 		};
 		return builder;
-
 	}
 
 	/**
@@ -248,7 +238,6 @@ public class InGameGuiCreator {
 								height("100%");
 								color("#F00F");
 								visible(false);
-
 							}
 						});
 					}

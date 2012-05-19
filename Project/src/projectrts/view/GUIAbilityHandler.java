@@ -22,14 +22,11 @@ import de.lessvoid.nifty.tools.SizeValue;
  * 
  */
 public class GUIAbilityHandler {
-	// TODO Afton: PMD: Private field 'game' could be made final; it is only
-	// initialized in the declaration or constructor.
+	// TODO Afton: PMD: Private field 'game' could be made final; it is only initialized in the declaration or constructor.
 	private IGame game;
-	// TODO Afton: PMD: Private field 'screen' could be made final; it is only
-	// initialized in the declaration or constructor.
+	// TODO Afton: PMD: Private field 'screen' could be made final; it is only initialized in the declaration or constructor.
 	private Screen screen;
-	// TODO Afton: PMD: Private field 'nifty' could be made final; it is only
-	// initialized in the declaration or constructor.
+	// TODO Afton: PMD: Private field 'nifty' could be made final; it is only initialized in the declaration or constructor.
 	private Nifty nifty;
 
 	/**
@@ -86,7 +83,6 @@ public class GUIAbilityHandler {
 						button.setVisible(false);
 					}
 				}
-
 			}
 		}
 	}

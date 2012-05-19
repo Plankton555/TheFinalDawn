@@ -49,28 +49,18 @@ import com.jme3.texture.Texture.WrapMode;
 public class GameView implements PropertyChangeListener {
 	private final SimpleApplication app;
 	private final IGame game;
-	private final Node entities = new Node("entities"); // The node for all
-														// entities
-	private final Node selected = new Node("selected"); // The node for the
-														// selected graphics
-	private final Node debug = new Node("debug"); // The node for the debugging
-													// graphics
-	// TODO Markus: PMD: Private field 'terrainNode' could be made final; it is
-	// only initialized in the declaration or constructor.
+	private final Node entities = new Node("entities"); // The node for all entities
+	private final Node selected = new Node("selected"); // The node for the selected graphics
+	private final Node debug = new Node("debug"); // The node for the debugging graphics
+	// TODO Markus: PMD: Private field 'terrainNode' could be made final; it is only initialized in the declaration or constructor.
 	private Node terrainNode = new Node("terrain"); // The node for all terrain
-	// TODO Jakob(?): PMD: Private field 'mouseEffects' could be made final; it
-	// is only initialized in the declaration or constructor.
-	private Node mouseEffects = new Node("mouseEffects"); // The node for
-															// mouseEffects
+	// TODO Jakob(?): PMD: Private field 'mouseEffects' could be made final; it is only initialized in the declaration or constructor.
+	private Node mouseEffects = new Node("mouseEffects"); // The node for mouseEffects
 
-	// TODO Markus: PMD: Private field 'mod' could be made final; it is only
-	// initialized in the declaration or constructor.
-	private float mod = InGameState.MODEL_TO_WORLD; // The modifier value for
-													// converting lengths
-													// between model and world.
+	// TODO Markus: PMD: Private field 'mod' could be made final; it is only initialized in the declaration or constructor.
+	private float mod = InGameState.MODEL_TO_WORLD; // The modifier value for converting lengths between model and world.
 
-	// TODO Markus: PMD: Private field 'debugNodes' could be made final; it is
-	// only initialized in the declaration or constructor.
+	// TODO Markus: PMD: Private field 'debugNodes' could be made final; it is only initialized in the declaration or constructor.
 	private boolean debugNodes = false;
 
 	static {
@@ -229,7 +219,6 @@ public class GameView implements PropertyChangeListener {
 				debug.attachChild(nodeSpatial);
 			}
 		}
-
 	}
 
 	private void integrateNewEntities(List<IEntity> newEntities) {
@@ -307,7 +296,6 @@ public class GameView implements PropertyChangeListener {
 				removeNodeSpatial(node);
 			}
 		}
-
 	}
 
 	private List<INode> getNodes(List<Spatial> coveredNodes) {

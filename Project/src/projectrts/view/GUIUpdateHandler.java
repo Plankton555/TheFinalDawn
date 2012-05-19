@@ -13,11 +13,9 @@ import de.lessvoid.nifty.screen.Screen;
  * 
  */
 class GUIUpdateHandler {
-	// TODO Afton: PMD: Private field 'game' could be made final; it is only
-	// initialized in the declaration or constructor.
+	// TODO Afton: PMD: Private field 'game' could be made final; it is only initialized in the declaration or constructor.
 	private IGame game;
-	// TODO Afton: PMD: Private field 'screen' could be made final; it is only
-	// initialized in the declaration or constructor.
+	// TODO Afton: PMD: Private field 'screen' could be made final; it is only initialized in the declaration or constructor.
 	private Screen screen;
 
 	/**
@@ -74,7 +72,6 @@ class GUIUpdateHandler {
 			Element buildTextPanel = screen
 					.findElementByName("Label_BuildText");
 			buildTextPanel.getRenderer(TextRenderer.class).setText(text);
-
 		}
 	}
 
@@ -121,5 +118,4 @@ class GUIUpdateHandler {
 			panelInfo.setVisible(true);
 		}
 	}
-
 }

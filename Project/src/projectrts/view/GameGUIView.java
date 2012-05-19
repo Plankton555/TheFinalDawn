@@ -86,7 +86,6 @@ public class GameGUIView implements PropertyChangeListener {
 	public void propertyChange(PropertyChangeEvent pce) {
 		checkForEntityEvent(pce);
 		checkForBuildEvent(pce);
-
 	}
 
 	private void checkForEntityEvent(PropertyChangeEvent pce) {
