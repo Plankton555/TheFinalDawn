@@ -46,7 +46,8 @@ public class Position {
 
 	@Override
 	public int hashCode() {
-		final int prime = 29; // Eclipse-generated hashcode
+		// Eclipse-generated hashcode
+		final int prime = 29;
 		int result = 1;
 		long temp;
 		temp = Double.doubleToLongBits(coord.x);
@@ -58,6 +59,7 @@ public class Position {
 
 	@Override
 	public boolean equals(Object obj) {
+		// Eclipse-generated equals method
 		if (this == obj) {
 			return true;
 		}

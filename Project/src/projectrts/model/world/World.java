@@ -103,13 +103,13 @@ public enum World implements IWorld {
 
 	@Override
 	public List<INode> getNodesAt(Position centerPos, float size) {
-		// Maybe find some other way to do this...
 		List<INode> output = new ArrayList<INode>();
 		int offset = (int) (size / 2);
 		int centerX = (int) centerPos.getX();
 		int centerY = (int) centerPos.getY();
 
 		for (int i = centerY - offset; i <= centerY + offset; i++) {
+			// Checking to see that not out of array index
 			if (Math.isWithin(i, 0, width - 1)) {
 				for (int j = centerX - offset; j <= centerX + offset; j++) {
 					if (Math.isWithin(j, 0, height - 1)) {

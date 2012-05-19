@@ -62,12 +62,6 @@ public class AStarNode implements Comparable<AStarNode> {
 		Position mePos = this.getPosition();
 		Position endPos = endNode.getPosition();
 
-		/*
-		 * // Calculating heuristic using the "Manhattan" distance
-		 * this.heuristic = ((int) (Math.abs(endPos.getX() - mePos.getX()) +
-		 * Math.abs(endPos.getY() - mePos.getY())))*heuristicModifier;
-		 */
-
 		// Calculating heuristic based on approximate distance (using diagonals
 		// and side movement)
 
@@ -107,8 +101,8 @@ public class AStarNode implements Comparable<AStarNode> {
 		if (pos1.getX() == pos2.getX() && pos1.getY() == pos2.getY()) {
 			distance = 0;
 		} else if (pos1.getX() != pos2.getX() && pos1.getY() != pos2.getY()) {
-			distance = 14; // diagonal: sqrt(2) ~= 1.4, faster to use int than
-							// double.
+			// diagonal: sqrt(2) ~= 1.4, faster to use int than double.
+			distance = 14;
 		} else {
 			distance = 10;
 		}
@@ -169,25 +163,16 @@ public class AStarNode implements Comparable<AStarNode> {
 	public int compareTo(AStarNode other) {
 		return Integer.compare(getTotalCost(), other.getTotalCost());
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
+	
 	@Override
 	public int hashCode() {
+		// Eclipse-generated hashcode
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((node == null) ? 0 : node.hashCode());
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

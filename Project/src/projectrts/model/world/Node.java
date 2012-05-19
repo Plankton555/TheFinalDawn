@@ -80,11 +80,9 @@ public class Node implements INode {
 		}
 	}
 
-	/*
-	 * Auto generated hashcode method based on position.
-	 */
 	@Override
 	public int hashCode() {
+		// Eclipse-generated hashcode method based on Position.
 		final int prime = 173;
 		int result = 1;
 		result = prime * result
@@ -92,11 +90,9 @@ public class Node implements INode {
 		return result;
 	}
 
-	/*
-	 * Auto generated equals method based on Position.
-	 */
 	@Override
 	public boolean equals(Object obj) {
+		// Eclipse-generated equals method based on Position.
 		if (this == obj) {
 			return true;
 		}

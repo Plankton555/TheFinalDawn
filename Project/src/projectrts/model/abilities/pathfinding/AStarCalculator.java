@@ -55,10 +55,6 @@ class AStarCalculator implements Runnable {
 		int searchlimit = Math.max(startNode.getHeuristic(), 50);
 
 		if (endNode.isObstacle(occupyingEntityID)) {
-			// Use A* "backwards" from the end node to find the closest walkable
-			// node.
-			// Probably not the best way of dealing with it, but it will do for
-			// now.
 			endNode = getClosestUnoccupiedNode(targetPos, startPos,
 					occupyingEntityID, world);
 		}
@@ -75,8 +71,6 @@ class AStarCalculator implements Runnable {
 				astarUser.receivePath(generatePath(startNode, currentNode));
 				return;
 			} else {
-				// http://www.policyalmanac.org/games/aStarTutorial.htm
-
 				// move current node to the closed list
 				openList.remove(0);
 				closedList.add(currentNode);
@@ -84,14 +78,11 @@ class AStarCalculator implements Runnable {
 				// examine each node adjacent to the current node
 				List<AStarNode> adjacentNodes = currentNode.getNeighbours();
 				for (AStarNode node : adjacentNodes) {
+					// if not an obstacle and not on closed list
 					if (!node.isObstacle(occupyingEntityID)
-							&& !closedList.contains(node)) { // if not an
-																// obstacle and
-																// not on closed
-																// list
-						if (openList.contains(node)) // if on open list, check
-														// to see if new path is
-														// better
+							&& !closedList.contains(node)) { 
+						// if on open list, check to see if new path is better
+						if (openList.contains(node))
 						{
 							node.calculateCostFromStart(currentNode, true);
 						} else // if not on open list
@@ -146,7 +137,7 @@ class AStarCalculator implements Runnable {
 	 */
 	public static AStarNode getClosestUnoccupiedNode(Position startingPos,
 			Position towards, int occupyingEntityID, IWorld world) {
-		// Use A* "backwards" to find the closest walkable node.
+		// Use A* algorithm to find the closest walkable node.
 		AStarNode targetNode = new AStarNode(world.getNodeAt(startingPos));
 		AStarNode towardsNode;
 
