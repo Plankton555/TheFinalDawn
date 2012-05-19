@@ -19,7 +19,7 @@ import com.jme3.texture.Texture;
 public final class HeadquarterSpatial extends AbstractSpatial implements IEntitySpatial{
 	
 	static {
-		SpatialFactory.INSTANCE.registerSpatial(HeadquarterSpatial.class.getSimpleName(), new HeadquarterSpatial("HeadquarterSpatialCreator", new Box()));
+		SpatialFactory.registerSpatial(HeadquarterSpatial.class.getSimpleName(), new HeadquarterSpatial("HeadquarterSpatialCreator", new Box()));
 	}
 	
 	private HeadquarterSpatial(String name, Box box) {

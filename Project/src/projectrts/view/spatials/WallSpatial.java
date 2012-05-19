@@ -19,7 +19,7 @@ import com.jme3.texture.Texture;
 public final class WallSpatial extends AbstractSpatial implements IEntitySpatial{
 	
 	static {
-		SpatialFactory.INSTANCE.registerSpatial(WallSpatial.class.getSimpleName(), new WallSpatial("BarracksSpatialCreator", new Box()));
+		SpatialFactory.registerSpatial(WallSpatial.class.getSimpleName(), new WallSpatial("BarracksSpatialCreator", new Box()));
 	}
 	
 	private WallSpatial(String name, Box box) {

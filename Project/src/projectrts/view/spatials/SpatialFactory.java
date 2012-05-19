@@ -5,8 +5,6 @@ import java.util.Map;
 
 import projectrts.model.entities.IEntity;
 import projectrts.model.world.INode;
-import projectrts.view.controls.MoveControl;
-import projectrts.view.controls.NodeControl;
 
 import com.jme3.scene.shape.Box;
 /**
@@ -14,16 +12,18 @@ import com.jme3.scene.shape.Box;
  * @author Markus Ekström
  *
  */
-public enum SpatialFactory {INSTANCE;
+public class SpatialFactory {
 	
-	private Map<String, AbstractSpatial> spatialMap = new HashMap<String, AbstractSpatial>();
+	private SpatialFactory(){}
+	
+	private static Map<String, AbstractSpatial> spatialMap = new HashMap<String, AbstractSpatial>();
 	/**
 	 * Registers a spatial in the factory. Registering a spatial enables
 	 * creation of that spatial through createSpatial methods.
 	 * @param spatialType The class name of the spatial (use class.getSimpleName()).
 	 * @param spatial An instance of the spatial you want to register.
 	 */
-	public void registerSpatial(String spatialType, AbstractSpatial spatial) {
+	public static void registerSpatial(String spatialType, AbstractSpatial spatial) {
 		spatialMap.put(spatialType, spatial);
 	}
 
@@ -36,7 +36,7 @@ public enum SpatialFactory {INSTANCE;
 	 * @param entity The entity the desired spatial represents.
 	 * @return An instance of the desired spatial.
 	 */
-	public AbstractSpatial createEntitySpatial(String spatialType, String name, Box box, IEntity entity) {
+	public static AbstractSpatial createEntitySpatial(String spatialType, String name, Box box, IEntity entity) {
 		if(spatialMap.get(spatialType) == null) {
 			throw new IllegalStateException("You must register "+ spatialType +
 					" before you can use it");
@@ -54,7 +54,7 @@ public enum SpatialFactory {INSTANCE;
 	 * @param node The shape of the desired spatial.
 	 * @return An instance of the desired spatial.
 	 */
-	public AbstractSpatial createNodeSpatial(String spatialType, String name, Box box, INode node) {
+	public static AbstractSpatial createNodeSpatial(String spatialType, String name, Box box, INode node) {
 		if(spatialMap.get(spatialType) == null) {
 			throw new IllegalStateException("You must register "+ spatialType +
 					" before you can use it");

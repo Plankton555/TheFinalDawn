@@ -19,7 +19,7 @@ import com.jme3.texture.Texture;
 public final class WorkerSpatial extends AbstractSpatial implements IEntitySpatial{
 	
 	static {
-		SpatialFactory.INSTANCE.registerSpatial(WorkerSpatial.class.getSimpleName(), new WorkerSpatial("WorkerSpatialCreator", new Box()));
+		SpatialFactory.registerSpatial(WorkerSpatial.class.getSimpleName(), new WorkerSpatial("WorkerSpatialCreator", new Box()));
 	}
 	
 	private WorkerSpatial(String name, Box box) {

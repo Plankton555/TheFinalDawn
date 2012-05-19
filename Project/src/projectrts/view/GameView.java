@@ -208,7 +208,7 @@ public class GameView implements PropertyChangeListener{
     					(0.1f * mod)/2,
     					0);
     			
-    			AbstractSpatial nodeSpatial = SpatialFactory.INSTANCE.createNodeSpatial("DebugNodeSpatial",
+    			AbstractSpatial nodeSpatial = SpatialFactory.createNodeSpatial("DebugNodeSpatial",
     					nodes[i][j].getClass().getSimpleName(), nodeShapes[i][j], nodes[i][j]);
     			debug.attachChild(nodeSpatial);
     		}
@@ -229,7 +229,7 @@ public class GameView implements PropertyChangeListener{
 		Box shape = new Box(new Vector3f(0, 0, 0),  
 									(newEntity.getSize() * mod)/2, (newEntity.getSize() * mod)/2, 0); 
 		// Create spatial.
-		AbstractSpatial entitySpatial = SpatialFactory.INSTANCE.createEntitySpatial(newEntity.getClass().getSimpleName() + "Spatial",
+		AbstractSpatial entitySpatial = SpatialFactory.createEntitySpatial(newEntity.getClass().getSimpleName() + "Spatial",
 				newEntity.getClass().getSimpleName(), shape, newEntity);
 		// Attach spatial to the entities node.
 		entities.attachChild(entitySpatial);
@@ -257,7 +257,7 @@ public class GameView implements PropertyChangeListener{
 	    	// The control will instantly translate it to the correct location.
 	    	Box circle = new Box(new Vector3f(0, 0, -1), 
 	    			(selectedEntities.get(i).getSize() + 0.3f)/2 * mod, (selectedEntities.get(i).getSize() + 0.3f)/2 * mod, 0);
-	    	AbstractSpatial circleSpatial = SpatialFactory.INSTANCE.createEntitySpatial("SelectSpatial", selectedEntities.get(i).getName(), circle, selectedEntities.get(i));	
+	    	AbstractSpatial circleSpatial = SpatialFactory.createEntitySpatial("SelectSpatial", selectedEntities.get(i).getName(), circle, selectedEntities.get(i));	
 	    	// Attach spatial to the selected node, connecting it to the world.
 	    	selected.attachChild(circleSpatial);
     	}
@@ -316,7 +316,7 @@ public class GameView implements PropertyChangeListener{
 						-(float)node.getPosition().getY()*mod,1),
 				(1f * mod)/2,(1f * mod)/2,0);
 		AbstractSpatial nodeSpatial = 
-				SpatialFactory.INSTANCE.createNodeSpatial("DebugNodeSpatial",
+			SpatialFactory.createNodeSpatial("DebugNodeSpatial",
 									node.getClass().getSimpleName(), nodeBox, node);
 				    		mouseEffects.attachChild(nodeSpatial);
 	}

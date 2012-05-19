@@ -19,7 +19,7 @@ import com.jme3.texture.Texture;
 public final class ResourceSpatial extends AbstractSpatial implements IEntitySpatial{
 	
 	static {
-		SpatialFactory.INSTANCE.registerSpatial(ResourceSpatial.class.getSimpleName(), new ResourceSpatial("ResourceSpatialCreator", new Box()));
+		SpatialFactory.registerSpatial(ResourceSpatial.class.getSimpleName(), new ResourceSpatial("ResourceSpatialCreator", new Box()));
 	}
 	
 	private ResourceSpatial(String name, Box box) {

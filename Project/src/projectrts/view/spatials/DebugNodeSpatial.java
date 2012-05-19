@@ -17,7 +17,7 @@ public final class DebugNodeSpatial extends AbstractSpatial implements INodeSpat
 	private INode node;
 	
 	static {
-		SpatialFactory.INSTANCE.registerSpatial(DebugNodeSpatial.class.getSimpleName(), new DebugNodeSpatial("DebugNodeSpatialCreator", new Box()));
+		SpatialFactory.registerSpatial(DebugNodeSpatial.class.getSimpleName(), new DebugNodeSpatial("DebugNodeSpatialCreator", new Box()));
 	}
 	
 	private DebugNodeSpatial(String name, Box box) {

@@ -18,7 +18,7 @@ import com.jme3.texture.Texture;
 public final class WarriorSpatial extends AbstractSpatial implements IEntitySpatial {
 	
 	static {
-		SpatialFactory.INSTANCE.registerSpatial(WarriorSpatial.class.getSimpleName(), new WarriorSpatial("UnitSpatialCreator", new Box()));
+		SpatialFactory.registerSpatial(WarriorSpatial.class.getSimpleName(), new WarriorSpatial("UnitSpatialCreator", new Box()));
 	}
 	
 	private WarriorSpatial(String name, Box box) {

@@ -20,7 +20,7 @@ public final class BarracksSpatial extends AbstractSpatial implements IEntitySpa
 	
 	
 	static {
-		SpatialFactory.INSTANCE.registerSpatial(BarracksSpatial.class.getSimpleName(), new BarracksSpatial("HeadquarterSpatialCreator", new Box()));
+		SpatialFactory.registerSpatial(BarracksSpatial.class.getSimpleName(), new BarracksSpatial("HeadquarterSpatialCreator", new Box()));
 	}
 	
 	private BarracksSpatial(String name, Box box) {

@@ -18,7 +18,7 @@ import com.jme3.texture.Texture;
 public final class RangedSpatial extends AbstractSpatial implements IEntitySpatial {
 	
 	static {
-		SpatialFactory.INSTANCE.registerSpatial(RangedSpatial.class.getSimpleName(), new RangedSpatial("UnitSpatialCreator", new Box()));
+		SpatialFactory.registerSpatial(RangedSpatial.class.getSimpleName(), new RangedSpatial("UnitSpatialCreator", new Box()));
 	}
 	
 	private RangedSpatial(String name, Box box) {
