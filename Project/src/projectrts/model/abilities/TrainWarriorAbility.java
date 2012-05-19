@@ -46,5 +46,4 @@ class TrainWarriorAbility extends AbstractCreationAbility implements
 	public String getInfo() {
 		return "Trains a new Warrior\nCost: " + buildCost;
 	}
-
 }

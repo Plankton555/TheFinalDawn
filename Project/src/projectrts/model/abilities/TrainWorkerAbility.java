@@ -46,5 +46,4 @@ class TrainWorkerAbility extends AbstractCreationAbility implements
 	public String getInfo() {
 		return "Trains a new Worker\nCost: " + buildCost;
 	}
-
 }

@@ -104,5 +104,4 @@ public class AttackAbility extends AbstractAbility implements
 	public String getInfo() {
 		return "Attacks an enemy";
 	}
-
 }

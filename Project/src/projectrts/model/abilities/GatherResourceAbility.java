@@ -36,7 +36,6 @@ public class GatherResourceAbility extends AbstractAbility implements
 		AbilityFactory.registerAbility(
 				GatherResourceAbility.class.getSimpleName(),
 				new GatherResourceAbility());
-
 	}
 
 	/**
@@ -64,7 +63,6 @@ public class GatherResourceAbility extends AbstractAbility implements
 				updateMineResource(tpf);
 			}
 		}
-
 	}
 
 	@Override
@@ -178,5 +176,4 @@ public class GatherResourceAbility extends AbstractAbility implements
 	public String getInfo() {
 		return "Gathers a resource";
 	}
-
 }

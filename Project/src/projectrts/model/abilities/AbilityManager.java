@@ -189,7 +189,6 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 				copy.add(ability);
 			}
 		}
-
 		return copy;
 	}
 

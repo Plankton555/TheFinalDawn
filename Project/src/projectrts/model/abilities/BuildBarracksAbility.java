@@ -49,5 +49,4 @@ class BuildBarracksAbility extends AbstractConstructAbility implements
 	public String getInfo() {
 		return "Builds a new barrack.\nCost: " + buildCost;
 	}
-
 }

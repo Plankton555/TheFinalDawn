@@ -44,7 +44,6 @@ abstract class AbstractCreationAbility extends AbstractAbility {
 				pcs.firePropertyChange("TrainTimeLeft", entity,
 						(int) (buildTimeLeft - tpf + 1));
 				buildTimeLeft -= tpf;
-
 			}
 		}
 	}
@@ -85,5 +84,4 @@ abstract class AbstractCreationAbility extends AbstractAbility {
 		// Override so it won't be aborted if the ability is used again before
 		// it's finished
 	}
-
 }

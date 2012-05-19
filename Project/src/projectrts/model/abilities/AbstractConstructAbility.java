@@ -113,5 +113,4 @@ abstract class AbstractConstructAbility extends AbstractAbility implements
 			pcs.firePropertyChange("BuildCompleted", entity, null);
 		}
 	}
-
 }

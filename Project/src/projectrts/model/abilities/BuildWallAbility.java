@@ -48,5 +48,4 @@ class BuildWallAbility extends AbstractConstructAbility implements
 	public String getInfo() {
 		return "Builds a new Wall\nCost: " + buildCost;
 	}
-
 }

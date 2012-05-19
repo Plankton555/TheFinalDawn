@@ -46,5 +46,4 @@ class TrainRangedAbility extends AbstractCreationAbility implements
 	public String getInfo() {
 		return "Trains a new Ranged\nCost: " + buildCost;
 	}
-
 }

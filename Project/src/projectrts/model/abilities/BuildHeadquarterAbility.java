@@ -49,5 +49,4 @@ class BuildHeadquarterAbility extends AbstractConstructAbility implements
 	public String getInfo() {
 		return "Builds a new Headquarter\nCost: " + buildCost;
 	}
-
 }
