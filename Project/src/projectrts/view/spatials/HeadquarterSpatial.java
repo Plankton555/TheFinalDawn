@@ -56,5 +56,4 @@ public final class HeadquarterSpatial extends AbstractSpatial implements
 				MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}
-
 }

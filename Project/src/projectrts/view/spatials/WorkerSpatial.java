@@ -55,5 +55,4 @@ public final class WorkerSpatial extends AbstractSpatial implements
 				MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}
-
 }

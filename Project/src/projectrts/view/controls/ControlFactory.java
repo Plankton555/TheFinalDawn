@@ -71,7 +71,6 @@ public enum ControlFactory {
 			throw new IllegalStateException("You must register " + controlType
 					+ " before you can use it");
 		}
-
 		return ((INodeControl) controlMap.get(controlType)).createControl(node);
 	}
 }

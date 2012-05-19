@@ -66,5 +66,4 @@ public final class NodeControl extends AbstractControl implements INodeControl {
 			spatial.setMaterial(material);
 		}
 	}
-
 }

@@ -18,8 +18,7 @@ import com.jme3.scene.control.Control;
  */
 public final class MoveControl extends AbstractCustomControl implements
 		IEntityControl {
-	// TODO Markus: PMD: Private field 'entity' could be made final; it is only
-	// initialized in the declaration or constructor.
+	// TODO Markus: PMD: Private field 'entity' could be made final; it is only initialized in the declaration or constructor.
 	private IEntity entity;
 
 	static {
@@ -53,19 +52,12 @@ public final class MoveControl extends AbstractCustomControl implements
 	@Override
 	protected void controlUpdate(float tpf) {
 		if (this.enabled && spatial != null) {
-			Position pos = entity.getPosition(); // Gets the position from it's
-													// associated entity.
-			Vector3f worldPos = this.convertModelToWorld(pos); // Converts it to
-																// world
-																// position.
+			Position pos = entity.getPosition(); // Gets the position from it's associated entity.
+			Vector3f worldPos = this.convertModelToWorld(pos); // Converts it to world position.
 			Vector3f moveVector = worldPos.subtract(spatial
-					.getWorldTranslation()); // Subtracts the current position
-												// from the desired to get a
-												// movement vector.
-			if (!moveVector.equals(Vector3f.ZERO)) { // If the spatial needs to
-														// be moved.
-				spatial.move(moveVector); // Move the spatial according to the
-											// movement vector.
+					.getWorldTranslation()); // Subtracts the current position from the desired to get a movement vector.
+			if (!moveVector.equals(Vector3f.ZERO)) { // If the spatial needs to be moved.
+				spatial.move(moveVector); // Move the spatial according to the movement vector.
 			}
 		}
 	}

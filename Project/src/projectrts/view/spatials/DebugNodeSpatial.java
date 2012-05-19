@@ -41,5 +41,4 @@ public final class DebugNodeSpatial extends AbstractSpatial implements
 	public INode getNode() {
 		return this.node;
 	}
-
 }
