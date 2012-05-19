@@ -12,8 +12,7 @@ import projectrts.model.entities.PlayerControlledEntity;
 // TODO Markus: ADD JAVADOC!!!
 class StrategicAI {
 	private List<IPlayerControlledEntity> entities;
-	// TODO Markus: PMD: Variables that are final and static should be in all caps.
-	private static final float cooldownInterval = 0.5f;
+	private static final float CHECK_INTERVAL = 0.5f;
 	private float cooldownRemaining = 0;
 	private final Player aiPlayer;
 	private final AbilityManager abilityManager;
@@ -29,7 +28,6 @@ class StrategicAI {
 	// TODO Markus: Add javadoc
 	public void update(float tpf) {
 		if (cooldownRemaining <= 0) {
-			// TODO Markus: Save the EntityManager instance and use that instead of asking for it every time?
 			entities = entityManager.getEntitiesOfPlayer(aiPlayer);
 			for (IPlayerControlledEntity entity : entities) {
 				if (entity instanceof PlayerControlledEntity) {
@@ -43,7 +41,7 @@ class StrategicAI {
 					}
 				}
 			}
-			cooldownRemaining = cooldownInterval;
+			cooldownRemaining = CHECK_INTERVAL;
 		} else {
 			cooldownRemaining -= tpf;
 		}

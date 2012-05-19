@@ -27,8 +27,6 @@ public class InGameState extends AbstractAppState {
 	private SimpleApplication app;
 	private final IGame game;
 	private InputController input;
-	// TODO Markus: PMD: Perhaps 'view' could be replaced by a local variable.
-	private GameView view;
 	private GameGUIView guiView;
 	private final Nifty nifty;
 
@@ -75,7 +73,7 @@ public class InGameState extends AbstractAppState {
 		// init stuff that is independent of whether state is PAUSED or RUNNING
 		// // modify scene graph...
 		initializeImages();
-		view = new GameView(this.app, game);
+		GameView view = new GameView(this.app, game);
 		guiView = new GameGUIView(nifty, game);
 
 		input = new InputController(this.app, game, view);

@@ -60,18 +60,6 @@ class ActionInputHandler implements ActionListener{
 			if (name.equals("mouseRightButton") && keyPressed) {
 				handleRightClick();
 			}
-
-			// Debugging
-			if (name.equals("checkMouseLoc") && keyPressed) {
-				// TODO Markus: PMD: System.out.print is used
-				System.out.println("mLoc = "
-						+ app.getInputManager().getCursorPosition()
-								.toString());
-				System.out.println("wLoc = "
-						+ app.getCamera().getWorldCoordinates(
-								app.getInputManager().getCursorPosition(),
-								0));
-			}
 		}
 	}
 

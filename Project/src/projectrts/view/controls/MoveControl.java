@@ -18,8 +18,7 @@ import com.jme3.scene.control.Control;
  */
 public final class MoveControl extends AbstractCustomControl implements
 		IEntityControl {
-	// TODO Markus: PMD: Private field 'entity' could be made final; it is only initialized in the declaration or constructor.
-	private IEntity entity;
+	private final IEntity entity;
 
 	static {
 		ControlFactory.registerControl("MoveControl", new MoveControl(

@@ -123,7 +123,6 @@ class InputController {
 		this.app.getInputManager().addMapping("cameraDownKey",
 				new KeyTrigger(KeyInput.KEY_DOWN));
 
-		// TODO Markus: PMD: The 4 following String literals appears 4 times in this file; the first occurrence is here
 		this.app.getInputManager().addMapping("cameraRightMouse",
 				new MouseAxisTrigger(MouseInput.AXIS_X, true));
 		this.app.getInputManager().addMapping("cameraLeftMouse",
@@ -150,12 +149,8 @@ class InputController {
 		// Debug control mapping
 		this.app.getInputManager().addMapping("exit",
 				new KeyTrigger(KeyInput.KEY_ESCAPE));
-		this.app.getInputManager().addMapping("checkMouseLoc",
-				new KeyTrigger(KeyInput.KEY_M));
 
-		// Add debug controls to action/analog listener
-		this.app.getInputManager().addListener(actionInputHandler,
-				new String[] { "exit", "checkMouseLoc" });
+		// Add debug controls to action/analog listener below
 	}
 
 
