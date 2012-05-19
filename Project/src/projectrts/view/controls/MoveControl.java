@@ -22,7 +22,7 @@ public final class MoveControl extends AbstractCustomControl implements
 	private IEntity entity;
 
 	static {
-		ControlFactory.INSTANCE.registerControl("MoveControl", new MoveControl(
+		ControlFactory.registerControl("MoveControl", new MoveControl(
 				null));
 	}
 

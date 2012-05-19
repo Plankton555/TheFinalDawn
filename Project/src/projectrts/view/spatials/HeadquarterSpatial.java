@@ -52,7 +52,7 @@ public final class HeadquarterSpatial extends AbstractSpatial implements
 		HeadquarterSpatial newSpatial = new HeadquarterSpatial(name, box);
 		newSpatial.setMaterial(material);
 		newSpatial.setQueueBucket(Bucket.Transparent);
-		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(
+		newSpatial.addControl(ControlFactory.createEntityControl(
 				MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}

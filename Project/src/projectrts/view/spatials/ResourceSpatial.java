@@ -51,7 +51,7 @@ public final class ResourceSpatial extends AbstractSpatial implements
 		ResourceSpatial newSpatial = new ResourceSpatial(name, box);
 		newSpatial.setMaterial(material);
 		newSpatial.setQueueBucket(Bucket.Transparent);
-		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(
+		newSpatial.addControl(ControlFactory.createEntityControl(
 				MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}

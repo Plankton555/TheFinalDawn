@@ -51,7 +51,7 @@ public final class BarracksSpatial extends AbstractSpatial implements
 		BarracksSpatial newSpatial = new BarracksSpatial(name, box);
 		newSpatial.setMaterial(material);
 		newSpatial.setQueueBucket(Bucket.Transparent);
-		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(
+		newSpatial.addControl(ControlFactory.createEntityControl(
 				MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}

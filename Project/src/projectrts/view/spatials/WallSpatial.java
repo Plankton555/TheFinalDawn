@@ -51,7 +51,7 @@ public final class WallSpatial extends AbstractSpatial implements
 		WallSpatial newSpatial = new WallSpatial(name, box);
 		newSpatial.setMaterial(material);
 		newSpatial.setQueueBucket(Bucket.Transparent);
-		newSpatial.addControl(ControlFactory.INSTANCE.createEntityControl(
+		newSpatial.addControl(ControlFactory.createEntityControl(
 				MoveControl.class.getSimpleName(), entity));
 		return newSpatial;
 	}

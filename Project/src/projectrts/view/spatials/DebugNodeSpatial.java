@@ -33,7 +33,7 @@ public final class DebugNodeSpatial extends AbstractSpatial implements
 		DebugNodeSpatial newSpatial = new DebugNodeSpatial(name, box);
 		newSpatial.node = node;
 		newSpatial.setMaterial(material);
-		newSpatial.addControl(ControlFactory.INSTANCE.createNodeControl(
+		newSpatial.addControl(ControlFactory.createNodeControl(
 				NodeControl.class.getSimpleName(), node));
 		return newSpatial;
 	}

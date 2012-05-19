@@ -14,11 +14,9 @@ import com.jme3.scene.control.AbstractControl;
  * @author Markus Ekström
  * 
  */
-public enum ControlFactory {
-	INSTANCE;
+public class ControlFactory {
 
-	// TODO Anyone: Make managers static, not singleton
-	private Map<String, AbstractControl> controlMap = new HashMap<String, AbstractControl>();
+	private static Map<String, AbstractControl> controlMap = new HashMap<String, AbstractControl>();
 
 	/**
 	 * Registers a control in the factory. Registering a control enables
@@ -29,7 +27,7 @@ public enum ControlFactory {
 	 * @param control
 	 *            An instance of the control you want to register.
 	 */
-	public void registerControl(String controlType, AbstractControl control) {
+	public static void registerControl(String controlType, AbstractControl control) {
 		controlMap.put(controlType, control);
 	}
 
@@ -44,7 +42,7 @@ public enum ControlFactory {
 	 *            The entity the desired control should control.
 	 * @return An instance of the desired control.
 	 */
-	public AbstractControl createEntityControl(String controlType,
+	public static AbstractControl createEntityControl(String controlType,
 			IEntity entity) {
 		if (controlMap.get(controlType) == null) {
 			throw new IllegalStateException("You must register " + controlType
@@ -66,7 +64,7 @@ public enum ControlFactory {
 	 *            The node the desired control should control.
 	 * @return An instance of the desired control.
 	 */
-	public AbstractControl createNodeControl(String controlType, INode node) {
+	public static AbstractControl createNodeControl(String controlType, INode node) {
 		if (controlMap.get(controlType) == null) {
 			throw new IllegalStateException("You must register " + controlType
 					+ " before you can use it");

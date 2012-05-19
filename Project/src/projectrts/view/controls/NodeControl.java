@@ -23,7 +23,7 @@ public final class NodeControl extends AbstractControl implements INodeControl {
 	private final INode node;
 
 	static {
-		ControlFactory.INSTANCE.registerControl("NodeControl", new NodeControl(
+		ControlFactory.registerControl("NodeControl", new NodeControl(
 				null));
 	}
 
