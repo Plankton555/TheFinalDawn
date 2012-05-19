@@ -182,6 +182,10 @@ public class GameView{
 				node);
 		mouseEffects.attachChild(nodeSpatial);
 	}
+	
+	public void drawSelected(){
+		entityHandler.drawSelected();
+	}
 
 	public void clearNodes() {
 		mouseEffects.detachAllChildren();

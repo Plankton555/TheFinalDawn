@@ -34,31 +34,31 @@ class TerrainHandler {
 	
 	public void initialize() {
 		  /** 1. Create terrain material and load four textures into it. */
-        Material matTerrain = MaterialManager.INSTANCE.getMaterial("Terrain");
+        Material matTerrain = MaterialManager.getMaterial("Terrain");
      
         /** 1.1) Add ALPHA map (for red-blue-green coded splat textures) */
-        matTerrain.setTexture("Alpha",TextureManager.INSTANCE.getTexture("Alpha"));
+        matTerrain.setTexture("Alpha",TextureManager.getTexture("Alpha"));
      
         /** 1.2) Add GRASS texture into the red layer (Tex1). */
-        Texture grass = TextureManager.INSTANCE.getTexture("Grass");
+        Texture grass = TextureManager.getTexture("Grass");
         grass.setWrap(WrapMode.Repeat);
         matTerrain.setTexture("Tex1", grass);
         matTerrain.setFloat("Tex1Scale", 64f);
      
         /** 1.3) Add WATER texture into the green layer (Tex2) */
-        Texture water = TextureManager.INSTANCE.getTexture("Water");
+        Texture water = TextureManager.getTexture("Water");
         water.setWrap(WrapMode.Repeat);
         matTerrain.setTexture("Tex2", water);
         matTerrain.setFloat("Tex2Scale", 32f);
      
         /** 1.4) Add ROAD texture into the blue layer (Tex3) */
-        Texture rock = TextureManager.INSTANCE.getTexture("Rock");
+        Texture rock = TextureManager.getTexture("Rock");
         rock.setWrap(WrapMode.Repeat);
         matTerrain.setTexture("Tex3", rock);
         matTerrain.setFloat("Tex3Scale", 128f);
      
         /** 2. Create the height map */
-        Texture heightMapImage = TextureManager.INSTANCE.getTexture("HeightMap");
+        Texture heightMapImage = TextureManager.getTexture("HeightMap");
         AbstractHeightMap heightmap = new ImageBasedHeightMap(heightMapImage.getImage());
         heightmap.load();
      
