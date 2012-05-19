@@ -113,8 +113,7 @@ public class PositionTest {
 	public final void testAdd() {
 		Position p = p1.add(d3, new Vector2d(0, 1));
 		assertTrue(p.getX() == p1.getX());
-		// TODO Plankton: Do this check in another way
-		assertTrue(p.getY() == p1.getY()+d3);
+		assertTrue(Math.round(p.getY()) == Math.round(p1.getY()+d3));
 		
 		p = p1.add(d3, new Vector2d(0, 0));
 		assertTrue(p.equals(p1));
