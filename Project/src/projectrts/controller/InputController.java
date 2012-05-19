@@ -41,7 +41,6 @@ class InputController {
 
 	// Before the mouse is moved it has the position (0, 0), causing the camera to move in that direction.
 	// mouseActivated suppresses the camera until set to true (which is done when the mouse is first moved).
-	private boolean mouseActivated = false;
 	private final SimpleApplication app;
 	private final IGame game; // The model
 	private final GameView view;
@@ -52,8 +51,9 @@ class InputController {
 	private boolean choosingTarget;
 	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private InGameGUIController guiControl;
+	private final AnalogInputHandler analogInputHandler;
 
-	private static final float CAMERA_SPEED = 1f;
+	public static final float CAMERA_SPEED = 1f;
 	private static final float CAMERA_MOVE_MARGIN = 5f;
 
 	// TODO Markus: Add javadoc
@@ -61,6 +61,7 @@ class InputController {
 		this.app = app;
 		this.game = game;
 		this.view = view;
+		analogInputHandler = new AnalogInputHandler(app, game);
 		initializeKeys();
 	}
 
@@ -99,7 +100,7 @@ class InputController {
 	// TODO Markus: PMD: The method 'updateCamera' has a Cyclomatic Complexity of 10.
 	private void updateCamera(float tpf) {
 
-		if (mouseActivated) {
+		if (analogInputHandler.getMouseActivated()) {
 			Vector3f loc = app.getCamera().getLocation();
 			Vector2f mLoc = app.getInputManager().getCursorPosition();
 			float margin = CAMERA_MOVE_MARGIN;
@@ -159,7 +160,7 @@ class InputController {
 
 		// Add the names to the action/analog listener.
 		this.app.getInputManager().addListener(
-				analogListener,
+				analogInputHandler,
 				new String[] { "cameraRightMouse", "cameraLeftMouse",
 						"cameraUpMouse", "cameraDownMouse", "cameraRightKey",
 						"cameraLeftKey", "cameraUpKey", "cameraDownKey" });
@@ -175,61 +176,6 @@ class InputController {
 		this.app.getInputManager().addListener(actionListener,
 				new String[] { "exit", "checkMouseLoc" });
 	}
-
-	/**
-	 * An analog listener, use if the input is analog - i.e. it can take on
-	 * several values, not just "on" and "off".
-	 * 
-	 */
-	private final AnalogListener analogListener = new AnalogListener() {
-		// TODO Markus: PMD: The method onAnalog() has an NPath complexity of 488
-		// TODO Markus: PMD: The method 'onAnalog' has a Cyclomatic Complexity of 16.
-		public void onAnalog(String name, float value, float tpf) {
-
-			// Make sure we are in the correct state and that it is enabled.
-			InGameState state = app.getStateManager().getState(
-					InGameState.class);
-			if (state != null && state.isEnabled()) {
-				Vector3f loc = app.getCamera().getLocation();
-
-				if (name.equals("cameraRightKey")
-						&& loc.x <= game.getWorld().getWorldWidth()
-								* InGameState.MODEL_TO_WORLD) {
-					app.getCamera().setLocation(
-							loc.add(new Vector3f(value * CAMERA_SPEED, 0, 0)));
-				}
-				if (name.equals("cameraLeftKey") && loc.x >= 0) {
-					app.getCamera().setLocation(
-							loc.add(new Vector3f(-value * CAMERA_SPEED, 0, 0)));
-				}
-				if (name.equals("cameraUpKey") && loc.y <= 0) {
-					app.getCamera().setLocation(
-							loc.add(new Vector3f(0, value * CAMERA_SPEED, 0)));
-				}
-				if (name.equals("cameraDownKey")
-						&& loc.y >= -game.getWorld().getWorldHeight()
-								* InGameState.MODEL_TO_WORLD) {
-					app.getCamera().setLocation(
-							loc.add(new Vector3f(0, -value * CAMERA_SPEED, 0)));
-				}
-
-				// Bypass the fact that the cursor position is (0, 0) before it
-				// is moved,
-				// which causes the camera to move towards that location would
-				// this not be in place.
-				if ((!mouseActivated && name.equals("cameraRightMouse")
-						|| name.equals("cameraLeftMouse")
-						|| name.equals("cameraUpMouse") || name
-						.equals("cameraDownMouse"))) {
-					mouseActivated = true;
-					app.getInputManager().deleteMapping("cameraRightMouse");
-					app.getInputManager().deleteMapping("cameraLeftMouse");
-					app.getInputManager().deleteMapping("cameraUpMouse");
-					app.getInputManager().deleteMapping("cameraDownMouse");
-				}
-			}
-		}
-	};
 
 	/**
 	 * A digital listener, use if the input is digital - i.e. it can only be
