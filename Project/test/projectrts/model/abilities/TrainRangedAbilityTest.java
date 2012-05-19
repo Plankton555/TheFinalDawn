@@ -14,7 +14,7 @@ import projectrts.model.world.Position;
  * @author Jakob Svensson
  *
  */
-public class TrainWorkerAbilityTest {
+public class TrainRangedAbilityTest {
 
 	@Test
 	public void test() {
@@ -23,7 +23,7 @@ public class TrainWorkerAbilityTest {
 		EntityManager.INSTANCE.addNewPCE(Headquarter.class.getSimpleName(), player,new Position(10f,10f));
 		EntityManager.INSTANCE.update(1);
 		Headquarter hq = (Headquarter)  EntityManager.INSTANCE.getPCEAtPosition(new Position(10f, 10f));
-		TrainWorkerAbility ab = (TrainWorkerAbility)AbilityFactory.createAbility(TrainWorkerAbility.class.getSimpleName(),hq);
+		TrainRangedAbility ab = (TrainRangedAbility)AbilityFactory.createAbility(TrainRangedAbility.class.getSimpleName(),hq);
 	
 		ab.useAbility(new Position(1,1));
 		int counter = 0;

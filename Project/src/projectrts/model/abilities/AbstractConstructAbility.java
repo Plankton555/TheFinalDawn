@@ -54,7 +54,6 @@ abstract class AbstractConstructAbility extends AbstractAbility implements IUsin
 				}
 			}else{
 				// Not in range
-				
 				if(!moveAbility.isActive()){
 					moveAbility.useAbility(buildPos);
 				}

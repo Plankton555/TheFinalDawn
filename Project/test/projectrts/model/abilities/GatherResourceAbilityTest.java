@@ -43,9 +43,12 @@ public class GatherResourceAbilityTest {
 				EntityManager.INSTANCE.update(1);
 			}
 			counter++;
-			System.out.println(player.getResources());
-			System.out.println(worker.getPosition());
-			assertTrue(counter < 100000);	
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			assertTrue(counter < 100);	
 		}
 		
 		

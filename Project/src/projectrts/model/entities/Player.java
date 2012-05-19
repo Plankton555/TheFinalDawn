@@ -9,7 +9,7 @@ import java.beans.PropertyChangeSupport;
  * @author Björn Persson Mattson, Modified by Filip Brynfors, Jakob Svensson
  */
 public class Player implements IPlayer{
-	public static final int RESOURCE_START_AMOUNT = 200;
+	public static final int RESOURCE_START_AMOUNT = 400;
 	private int resources;
 	private final PropertyChangeSupport pcs;
 	

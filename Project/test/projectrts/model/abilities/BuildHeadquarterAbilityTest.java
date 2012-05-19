@@ -14,7 +14,7 @@ import projectrts.model.world.Position;
  * @author Jakob Svensson
  *
  */
-public class BuildBarracksAbilityTest {
+public class BuildHeadquarterAbilityTest {
 
 	@Test
 	public void test() {
@@ -25,7 +25,7 @@ public class BuildBarracksAbilityTest {
 		Worker worker = (Worker)  EntityManager.INSTANCE.getPCEAtPosition(new Position(10.5f, 10.5f));
 		MoveAbility move = new MoveAbility();
 		move.initialize(worker);
-		BuildBarracksAbility ab = (BuildBarracksAbility)AbilityFactory.createUsingMoveAbility(BuildBarracksAbility.class.getSimpleName(),worker,move);
+		BuildHeadquarterAbility ab = (BuildHeadquarterAbility)AbilityFactory.createUsingMoveAbility(BuildHeadquarterAbility.class.getSimpleName(),worker,move);
 	
 		ab.useAbility(new Position(5.5,3.5));
 		int counter = 0;
