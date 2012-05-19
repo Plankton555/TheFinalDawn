@@ -63,7 +63,7 @@ public class InGameGUIController implements ScreenController {
 
 		screen = nifty.getScreen("Screen_Game");
 		Element guiPanel = screen.findElementByName("Panel_GUI");
-		NiftyImage image = ImageManager.INSTANCE.getImage("GUIBackground");
+		NiftyImage image = ImageManager.getImage("GUIBackground");
 		guiPanel.getRenderer(ImageRenderer.class).setImage(image);
 
 		nifty.gotoScreen("Screen_Game"); // start the screen

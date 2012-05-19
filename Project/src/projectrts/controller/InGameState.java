@@ -88,9 +88,9 @@ public class InGameState extends AbstractAppState {
     	//Add images to ImageManager
     	List<String> names = game.getAbilityManager().getExistingAbilityNames();
     	for(String str : names) {
-    		ImageManager.INSTANCE.addImage(str, "/assets/gui/" + str + ".png");
+    		ImageManager.addImage(str, "/assets/gui/" + str + ".png");
     	}
-    	ImageManager.INSTANCE.addImage("NoImage", "/assets/gui/NoImage.bmp");
+    	ImageManager.addImage("NoImage", "/assets/gui/NoImage.bmp");
     }
     
     /**

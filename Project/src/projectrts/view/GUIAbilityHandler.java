@@ -57,9 +57,9 @@ public class GUIAbilityHandler {
 			    	if(abilities != null && i<abilities.size()){
 			    		IAbility ability = abilities.get(i);
 			    		
-			    		NiftyImage image = ImageManager.INSTANCE.getImage(ability.getClass().getSimpleName());
+			    		NiftyImage image = ImageManager.getImage(ability.getClass().getSimpleName());
 			    		if(image==null){
-			    			image = ImageManager.INSTANCE.getImage("NoImage");
+			    			image = ImageManager.getImage("NoImage");
 			    		}
 			    		
 			    		button.getRenderer(ImageRenderer.class).setImage(image);

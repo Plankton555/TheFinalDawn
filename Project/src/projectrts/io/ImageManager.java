@@ -14,17 +14,16 @@ import de.lessvoid.nifty.render.image.ImageModeHelper;
  * @author Filip Brynfors
  *
  */
-public enum ImageManager {
-	INSTANCE;
-	private Map<String, NiftyImage> images = new HashMap<String, NiftyImage>();
-	private NiftyRenderEngine engine;
+public class ImageManager {
+	private static Map<String, NiftyImage> images = new HashMap<String, NiftyImage>();
+	private static NiftyRenderEngine engine;
 	
 
 	/**
 	 * Initializes the images that are needed for the GUI
 	 * @param nifty
 	 */
-	public void initializeImages(Nifty nifty){
+	public static void initializeImages(Nifty nifty){
 		engine = nifty.getRenderEngine();
 		
 		NiftyImage image = engine.createImage("/assets/gui/background.png", false);
@@ -42,7 +41,7 @@ public enum ImageManager {
 	 * @param name the name of the image
 	 * @return the image
 	 */
-	public NiftyImage getImage(String name){
+	public static NiftyImage getImage(String name){
 		return images.get(name);
 	}
 	
@@ -51,7 +50,7 @@ public enum ImageManager {
 	 * @param key the key to getting the image
 	 * @param imagePath the path for the file of the imagefile
 	 */
-	public void addImage(String key, String imagePath) {
+	public static void addImage(String key, String imagePath) {
 		images.put(key, engine.createImage(imagePath, false));
 	}
 }

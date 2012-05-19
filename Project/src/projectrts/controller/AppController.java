@@ -47,7 +47,7 @@ public class AppController extends SimpleApplication implements PropertyChangeLi
     	this.cam.setParallelProjection(true);
     	TextureManager.initializeTextures(this);
     	MaterialManager.initializeMaterial(this);
-    	ImageManager.INSTANCE.initializeImages(nifty);
+    	ImageManager.initializeImages(nifty);
 
     	startMenuState();
         
