@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import projectrts.io.ImageManager;
 import projectrts.io.MaterialManager;
 import projectrts.io.TextureManager;
-import projectrts.model.Difficulty;
+import projectrts.model.AbstractDifficulty;
 import projectrts.model.GameModel;
 import projectrts.model.IGame;
 
@@ -68,7 +68,7 @@ public class AppController extends SimpleApplication implements
 		this.stateManager.attach(menuState);
 	}
 
-	private void startIngameState(Difficulty difficulty) {
+	private void startIngameState(AbstractDifficulty difficulty) {
 		game = new GameModel();
 		game.addListener(this);
 		game.setDifficulty(difficulty);
@@ -89,7 +89,7 @@ public class AppController extends SimpleApplication implements
 		if (evt.getPropertyName().equals("Start")) {
 			menuState.setEnabled(false);
 			getStateManager().detach(menuState);
-			startIngameState((Difficulty) evt.getNewValue());
+			startIngameState((AbstractDifficulty) evt.getNewValue());
 
 		} else if (evt.getPropertyName().equals("gameIsOver")) {
 			ingameState.setEnabled(false);

@@ -3,7 +3,11 @@ package projectrts.controller;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import projectrts.model.Difficulty;
+import projectrts.model.EasyDifficulty;
+import projectrts.model.HardDifficulty;
+import projectrts.model.IDifficulty;
+import projectrts.model.MediumDifficulty;
+import projectrts.model.NightmareDifficulty;
 import projectrts.view.MenuGUICreator;
 
 import com.jme3.app.Application;
@@ -31,7 +35,7 @@ public class MenuGUIController implements ScreenController {
 	private Element menuPanel;
 	private Button changeDifficultyButton;
 	private Element startButton;
-	private Difficulty chosenDifficulty = Difficulty.EASY;
+	private IDifficulty chosenDifficulty = new MediumDifficulty();
 
 	/**
 	 * Creates a new GUI controller
@@ -117,7 +121,7 @@ public class MenuGUIController implements ScreenController {
 	 * Used when the Easy Difficulty button is clicked
 	 */
 	public void buttonEasyClicked() {
-		chosenDifficulty = Difficulty.EASY;
+		chosenDifficulty = new EasyDifficulty();
 		buttonCancelClicked();
 	}
 
@@ -125,7 +129,7 @@ public class MenuGUIController implements ScreenController {
 	 * Used when the Medium Difficulty button is clicked
 	 */
 	public void buttonMediumClicked() {
-		chosenDifficulty = Difficulty.MEDIUM;
+		chosenDifficulty = new MediumDifficulty();
 		buttonCancelClicked();
 	}
 
@@ -133,7 +137,7 @@ public class MenuGUIController implements ScreenController {
 	 * Used when the Hard Difficulty button is clicked
 	 */
 	public void buttonHardClicked() {
-		chosenDifficulty = Difficulty.HARD;
+		chosenDifficulty = new HardDifficulty();
 		buttonCancelClicked();
 	}
 
@@ -141,7 +145,7 @@ public class MenuGUIController implements ScreenController {
 	 * Used when the Nightmare Difficulty button is clicked
 	 */
 	public void buttonNightmareClicked() {
-		chosenDifficulty = Difficulty.NIGHTMARE;
+		chosenDifficulty = new NightmareDifficulty();
 		buttonCancelClicked();
 	}
 

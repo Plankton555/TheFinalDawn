@@ -40,8 +40,7 @@ public class GameModel implements IGame, PropertyChangeListener {
 	private final AbilityManager abilityManager;
 	private float gameTime = 0;
 	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-	private final Level level = new Level(aiPlayer);
-	private Difficulty currentDifficulty = Difficulty.MEDIUM;
+	private final WaveManager level = new WaveManager(aiPlayer);
 
 	/**
 	 * Returns a position in the model with the given coordinates
@@ -96,8 +95,6 @@ public class GameModel implements IGame, PropertyChangeListener {
 				54.5, 55.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(
 				54.5, 51.5));
-
-		level.setDifficulty(Difficulty.NIGHTMARE);
 	}
 
 	@Override
@@ -168,14 +165,13 @@ public class GameModel implements IGame, PropertyChangeListener {
 	}
 
 	@Override
-	public void setDifficulty(Difficulty difficulty) {
-		currentDifficulty = difficulty;
-		level.setDifficulty(currentDifficulty);
+	public void setDifficulty(AbstractDifficulty difficulty) {
+		level.setDifficulty(difficulty);
 	}
 
 	@Override
-	public Difficulty getCurrentDifficulty() {
-		return currentDifficulty;
+	public AbstractDifficulty getCurrentDifficulty() {
+		return level.getDifficulty();
 	}
 
 	@Override

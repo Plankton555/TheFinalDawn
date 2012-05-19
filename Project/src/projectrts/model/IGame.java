@@ -77,10 +77,10 @@ public interface IGame {
 	 * @param difficulty
 	 *            The difficulty you want to set the game to.
 	 */
-	void setDifficulty(Difficulty difficulty);
+	void setDifficulty(AbstractDifficulty difficulty);
 
 	/**
 	 * @return The current difficulty.
 	 */
-	Difficulty getCurrentDifficulty();
+	AbstractDifficulty getCurrentDifficulty();
 }
