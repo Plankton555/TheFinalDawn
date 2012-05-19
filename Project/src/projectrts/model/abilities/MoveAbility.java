@@ -16,7 +16,6 @@ import projectrts.model.world.World;
  * @author Filip Brynfors, modified by Bjorn Persson Mattsson
  * 
  */
-// TODO Plankton: PMD: This class has too many methods, consider refactoring it.
 public class MoveAbility extends AbstractAbility implements
 		INotUsingMoveAbility, ITargetAbility, AStarUser {
 	private Position targetPosition;
@@ -50,7 +49,7 @@ public class MoveAbility extends AbstractAbility implements
 	public void useAbility(Position pos) {
 		this.targetPosition = pos;
 
-		// Want to refresh path as soon as a click is made
+		// Refreshing path as soon as a click is made
 		refreshPath();
 
 		setActive(true);
@@ -61,33 +60,22 @@ public class MoveAbility extends AbstractAbility implements
 	public void update(float tpf) {
 		if (isActive() && !isFinished() && !waitingForPath) {
 			moveToNewPosition(tpf);
-			checkIfFinished();
-		}
-	}
 
-	private void checkIfFinished() {
-		if (isAtTarget()) {
-			waitingForPath = false;
-			setFinished(true);
-			// path = null;
+			// if finished
+			if (path.isEmpty()) { // if at target
+				waitingForPath = false;
+				setFinished(true);
+			}
 		}
-	}
-
-	private boolean isAtTarget() {
-		return path.isEmpty();
 	}
 
 	private void moveToNewPosition(float tpf) {
-		if (pathAlreadyExists()) {
+		if (path != null && !path.isEmpty()) { // if path already exists
 			entity.setPosition(calculateNextPosition(tpf));
 		} else // if (!pathAlreadyExists)
 		{
 			refreshPath();
 		}
-	}
-
-	private boolean pathAlreadyExists() {
-		return (path != null && !path.isEmpty());
 	}
 
 	/**
@@ -111,14 +99,12 @@ public class MoveAbility extends AbstractAbility implements
 
 		if (stepLength >= distanceToNextNode) {
 			newPosition = nextNodePos.copy();
-			// stepLength -= distanceToNextNode;
 			refreshPath();
 		} else // if (stepLength < distanceToNextNode)
 		{
 			Vector2d direction = Position.getVectorBetween(newPosition,
 					nextNodePos);
 			newPosition = newPosition.add(stepLength, direction);
-			// stepLength = 0;
 		}
 		return newPosition;
 	}

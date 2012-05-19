@@ -46,7 +46,7 @@ public class Position {
 
 	@Override
 	public int hashCode() {
-		final int prime = 29; // Default generated hashcode
+		final int prime = 29; // Eclipse-generated hashcode
 		int result = 1;
 		long temp;
 		temp = Double.doubleToLongBits(coord.x);
@@ -58,7 +58,6 @@ public class Position {
 
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Plankton: PMD: Avoid using if statements without curly braces
 		if (this == obj) {
 			return true;
 		}

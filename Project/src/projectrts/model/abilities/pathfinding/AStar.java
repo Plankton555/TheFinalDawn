@@ -9,8 +9,7 @@ import projectrts.model.world.Position;
  * @author Bjorn Persson Mattsson
  * 
  */
-// TODO Plankton: PMD: A class which only has private constructors should be final
-public class AStar {
+public final class AStar {
 
 	private static IWorld world;
 
