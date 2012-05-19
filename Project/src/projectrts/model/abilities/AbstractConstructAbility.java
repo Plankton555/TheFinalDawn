@@ -2,7 +2,7 @@ package projectrts.model.abilities;
 
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Player;
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.world.Position;
 import projectrts.model.world.World;
 
@@ -27,7 +27,7 @@ abstract class AbstractConstructAbility extends AbstractAbility implements
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity,
+	protected void initialize(AbstractPlayerControlledEntity entity, 
 			MoveAbility moveAbility) {
 		this.entity = entity;
 		this.setCooldown(cooldown);

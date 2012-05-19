@@ -9,9 +9,9 @@ import projectrts.model.abilities.IAbility;
 import projectrts.model.abilities.IBuildStructureAbility;
 import projectrts.model.abilities.ITargetAbility;
 import projectrts.model.abilities.MoveAbility;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
-import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.Resource;
 import projectrts.model.world.Position;
 import projectrts.view.GameView;
@@ -109,8 +109,8 @@ class ActionInputHandler implements ActionListener{
 							GatherResourceAbility.class.getSimpleName(),
 							click, game.getHumanPlayer());
 
-				} else if (e instanceof PlayerControlledEntity) {
-					PlayerControlledEntity pce = (PlayerControlledEntity) e;
+				} else if (e instanceof AbstractPlayerControlledEntity) {
+					AbstractPlayerControlledEntity pce = (AbstractPlayerControlledEntity) e;
 					if (pce.getOwner().equals(game.getHumanPlayer())) {
 						doMoveAbility();
 					} else {

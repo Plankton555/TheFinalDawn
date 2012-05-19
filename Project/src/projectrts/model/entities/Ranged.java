@@ -33,7 +33,7 @@ public class Ranged extends AbstractUnit {
 	}
 
 	@Override
-	public PlayerControlledEntity createPCE(Player owner, Position pos) {
+	public AbstractPlayerControlledEntity createPCE(Player owner, Position pos) {
 		Ranged newWarrior = new Ranged();
 		newWarrior.initialize(owner, pos);
 		return newWarrior;

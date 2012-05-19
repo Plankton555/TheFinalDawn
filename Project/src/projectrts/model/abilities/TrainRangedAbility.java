@@ -1,6 +1,6 @@
 package projectrts.model.abilities;
 
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.entities.Ranged;
 
 /**
@@ -23,7 +23,7 @@ class TrainRangedAbility extends AbstractCreationAbility implements
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity) {
+	protected void initialize(AbstractPlayerControlledEntity entity) {
 		super.initialize(entity);
 		this.setBuildCost(buildCost);
 		this.setBuildTime(buildTime);
@@ -36,7 +36,7 @@ class TrainRangedAbility extends AbstractCreationAbility implements
 	}
 
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity) {
+	public AbstractAbility createAbility(AbstractPlayerControlledEntity entity) {
 		TrainRangedAbility newAbility = new TrainRangedAbility();
 		newAbility.initialize(entity);
 		return newAbility;

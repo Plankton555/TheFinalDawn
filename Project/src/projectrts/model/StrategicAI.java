@@ -7,7 +7,7 @@ import projectrts.model.abilities.AttackAbility;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.Player;
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 
 // TODO Markus: ADD JAVADOC!!!
 class StrategicAI {
@@ -29,15 +29,13 @@ class StrategicAI {
 	public void update(float tpf) {
 		if (cooldownRemaining <= 0) {
 			entities = entityManager.getEntitiesOfPlayer(aiPlayer);
-			for (IPlayerControlledEntity entity : entities) {
-				if (entity instanceof PlayerControlledEntity) {
-					PlayerControlledEntity pce = (PlayerControlledEntity) entity;
-					if (pce.getState() == PlayerControlledEntity.State.IDLE
-							&& entityManager.getClosestEnemyStructure(pce) != null) {
-						abilityManager.doAbility(AttackAbility.class
-								.getSimpleName(), entityManager
-								.getClosestEnemyStructure(pce).getPosition(),
-								entity);
+			for(IPlayerControlledEntity entity : entities) {
+				if(entity instanceof AbstractPlayerControlledEntity) {
+					AbstractPlayerControlledEntity pce = (AbstractPlayerControlledEntity) entity;
+					if(pce.getState() == AbstractPlayerControlledEntity.State.IDLE && 
+							entityManager.getClosestEnemyStructure(pce) != null) {
+						abilityManager.doAbility(AttackAbility.class.getSimpleName(), 
+								entityManager.getClosestEnemyStructure(pce).getPosition(), entity);
 					}
 				}
 			}

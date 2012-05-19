@@ -1,6 +1,7 @@
 package projectrts.model.abilities;
 
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
+
 
 /**
  * Any ability that will use a MoveAbility internally must implement this.
@@ -19,6 +20,6 @@ interface IMoveable {
 	 *            The MoveAbility that the entity is using.
 	 * @return The new ability.
 	 */
-	AbstractAbility createAbility(PlayerControlledEntity entity,
+	AbstractAbility createAbility(AbstractPlayerControlledEntity entity,
 			MoveAbility moveAbility);
 }

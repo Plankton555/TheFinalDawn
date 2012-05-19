@@ -36,10 +36,11 @@ public class GameView{
 	private final SimpleApplication app;
 	private final IGame game;
     private final Node debug = new Node("debug"); // The node for the debugging graphics
-    private Node mouseEffects = new Node("mouseEffects"); // The node for mouseEffects
     private final static float mod = InGameState.MODEL_TO_WORLD; // The modifier value for converting lengths between model and world.
     private EntityHandler entityHandler;
     private TerrainHandler terrainHandler;
+    // TODO Markus: PMD: Private field 'terrainNode' could be made final; it is only initialized in the declaration or constructor.
+    private final Node mouseEffects = new Node("mouseEffects"); // The node for mouseEffects
     
     private boolean debugNodes = false;
     

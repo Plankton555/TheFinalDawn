@@ -33,7 +33,7 @@ public class Worker extends AbstractUnit {
 	}
 
 	@Override
-	public PlayerControlledEntity createPCE(Player owner, Position pos) {
+	public AbstractPlayerControlledEntity createPCE(Player owner, Position pos) {
 		Worker newWorker = new Worker();
 		newWorker.initialize(owner, pos);
 		return newWorker;
