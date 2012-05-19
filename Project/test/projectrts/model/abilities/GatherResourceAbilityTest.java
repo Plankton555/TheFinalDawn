@@ -23,8 +23,8 @@ public class GatherResourceAbilityTest {
 		
 		Player player = new Player();
 		EntityManager.INSTANCE.addNewPCE("Worker", player,new Position(2.5f,15.5f));
-		EntityManager.INSTANCE.addNewPCE("Headquarter", player,new Position(40.5f,15.5));
-		EntityManager.INSTANCE.addNewPCE("Barracks", player,new Position(40.5f,15.5));
+		EntityManager.INSTANCE.addNewPCE("Headquarter", player,new Position(10.5f,15.5));
+		EntityManager.INSTANCE.addNewPCE("Barracks", player,new Position(35.5f,15.5));
 		EntityManager.INSTANCE.addNewNPCE("Resource", new Position(15.5f, 15.5f));
 		EntityManager.INSTANCE.update(1);
 		Worker worker = (Worker) EntityManager.INSTANCE.getPCEAtPosition(new Position(2.5f, 15.5f));
@@ -43,7 +43,9 @@ public class GatherResourceAbilityTest {
 				EntityManager.INSTANCE.update(1);
 			}
 			counter++;
-			assertTrue(counter < 1000);	
+			System.out.println(player.getResources());
+			System.out.println(worker.getPosition());
+			assertTrue(counter < 100000);	
 		}
 		
 		
