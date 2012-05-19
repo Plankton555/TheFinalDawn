@@ -35,7 +35,7 @@ public final class WorkerSpatial extends AbstractSpatial implements IEntitySpati
 	 */
 	@Override
 	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
-		material = MaterialManager.INSTANCE.getMaterial("Unshaded");
+		material = MaterialManager.getMaterial("Unshaded");
 		//material.setColor("Color", ColorRGBA.Blue);
 		Texture texture = TextureManager.INSTANCE.getTexture("SCV");
 		material.setTexture("ColorMap", texture);

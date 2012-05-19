@@ -12,15 +12,14 @@ import com.jme3.material.Material;
  * @author Jakob Svensson
  *
  */
-public enum MaterialManager {
-	INSTANCE;
-	private Map<String, Material> materials = new HashMap<String, Material>();
+public class MaterialManager {
+	private static Map<String, Material> materials = new HashMap<String, Material>();
 	
 	/**
 	 * Initializes the materials
 	 * @param app The SimpleApplication
 	 */
-	public void initializeMaterial(SimpleApplication app){
+	public static void initializeMaterial(SimpleApplication app){
 		AssetManager assetManager = app.getAssetManager();
 		materials.put("Terrain", new Material(assetManager,"Common/MatDefs/Terrain/Terrain.j3md"));
 		materials.put("Unshaded",new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"));
@@ -31,7 +30,7 @@ public enum MaterialManager {
 	 * @param name The name of the material
 	 * @return The material with the name
 	 */
-	public Material getMaterial(String name){
+	public static Material getMaterial(String name){
 		return materials.get(name).clone();
 	}
 	

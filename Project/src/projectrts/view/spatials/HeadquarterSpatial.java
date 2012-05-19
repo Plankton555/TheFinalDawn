@@ -35,7 +35,7 @@ public final class HeadquarterSpatial extends AbstractSpatial implements IEntity
 	 */
 	@Override
 	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
-		material = MaterialManager.INSTANCE.getMaterial("Unshaded");
+		material = MaterialManager.getMaterial("Unshaded");
 		//material.setColor("Color", ColorRGBA.Gray);
 		Texture texture = TextureManager.INSTANCE.getTexture("Headquarter");
 		material.setTexture("ColorMap", texture);

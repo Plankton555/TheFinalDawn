@@ -53,7 +53,7 @@ public final class NodeControl extends AbstractControl implements INodeControl {
 	protected void controlUpdate(float arg0) {
 		if(this.enabled && spatial != null)
 		{
-			Material material = MaterialManager.INSTANCE.getMaterial("Unshaded");
+			Material material = MaterialManager.getMaterial("Unshaded");
 			if (node.isOccupied())
 			{
 				material.setColor("Color", ColorRGBA.Red);

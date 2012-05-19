@@ -34,7 +34,7 @@ public final class WarriorSpatial extends AbstractSpatial implements IEntitySpat
 	 */
 	@Override
 	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
-		material = MaterialManager.INSTANCE.getMaterial("Unshaded");
+		material = MaterialManager.getMaterial("Unshaded");
 		//material.setColor("Color", ColorRGBA.Pink);
 		Texture texture = TextureManager.INSTANCE.getTexture("Drone");
 		material.setTexture("ColorMap", texture);

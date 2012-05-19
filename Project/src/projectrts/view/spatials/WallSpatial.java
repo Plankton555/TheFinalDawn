@@ -35,7 +35,7 @@ public final class WallSpatial extends AbstractSpatial implements IEntitySpatial
 	 */
 	@Override
 	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
-		material = MaterialManager.INSTANCE.getMaterial("Unshaded");
+		material = MaterialManager.getMaterial("Unshaded");
 		//material.setColor("Color", ColorRGBA.Brown);
 		Texture texture = TextureManager.INSTANCE.getTexture("Wall");
 		material.setTexture("ColorMap", texture);

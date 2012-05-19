@@ -109,7 +109,7 @@ public class GameView implements PropertyChangeListener{
         TerrainQuad terrain;
         
     	  /** 1. Create terrain material and load four textures into it. */
-        matTerrain = MaterialManager.INSTANCE.getMaterial("Terrain");
+        matTerrain = MaterialManager.getMaterial("Terrain");
      
         /** 1.1) Add ALPHA map (for red-blue-green coded splat textures) */
         matTerrain.setTexture("Alpha",TextureManager.INSTANCE.getTexture("Alpha"));

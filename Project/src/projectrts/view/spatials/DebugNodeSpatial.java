@@ -26,7 +26,7 @@ public final class DebugNodeSpatial extends AbstractSpatial implements INodeSpat
 
 	@Override
 	public AbstractSpatial createSpatial(String name, Box box, INode node) {
-		material = MaterialManager.INSTANCE.getMaterial("Unshaded");
+		material = MaterialManager.getMaterial("Unshaded");
 		material.setColor("Color", ColorRGBA.Green);
 		DebugNodeSpatial newSpatial = new DebugNodeSpatial(name, box);
 		newSpatial.node = node;
