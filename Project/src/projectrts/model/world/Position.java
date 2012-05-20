@@ -70,10 +70,12 @@ public class Position {
 			return false;
 		}
 		Position other = (Position) obj;
-		if (coord.x != other.coord.x)
+		if (coord.x != other.coord.x) {
 			return false;
-		if (coord.y != other.coord.y)
+		}
+		if (coord.y != other.coord.y) {
 			return false;
+		}
 		return true;
 	}
 

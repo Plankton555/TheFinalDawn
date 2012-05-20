@@ -13,6 +13,7 @@ import com.jme3.texture.Texture;
  * @author Jakob Svensson
  * 
  */
+// TODO Jakob: PMD: A class which only has private constructors should be final
 public class TextureManager {
 	private static Map<String, Texture> textures = new HashMap<String, Texture>();
 

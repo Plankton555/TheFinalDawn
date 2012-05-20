@@ -17,21 +17,17 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
-
+// TODO Markus: ADD JAVADOC!
 class EntityHandler implements PropertyChangeListener {
 	private SimpleApplication app;
 	private IGame game;
-	private final Node entities = new Node("entities"); // The node for all
-														// entities
-	private final Node selected = new Node("selected"); // The node for the
-														// selected graphics
-	private final static float mod = InGameState.MODEL_TO_WORLD; // The modifier
-																	// value for
-																	// converting
-																	// lengths
-																	// between
-																	// model and
-																	// world.
+	// The node for all entities
+	private final Node entities = new Node("entities");
+	// The node for the selected graphics
+	private final Node selected = new Node("selected");
+	// The modifier value for converting lengths between model and world.
+	// TODO Markus: PMD: Variables that are final and static should be in all caps.
+	private final static float mod = InGameState.MODEL_TO_WORLD;
 
 	public EntityHandler(SimpleApplication app, IGame game) {
 		this.app = app;

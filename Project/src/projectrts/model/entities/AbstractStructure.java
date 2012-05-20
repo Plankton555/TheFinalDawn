@@ -10,6 +10,8 @@ import projectrts.model.world.Position;
  */
 public abstract class AbstractStructure extends AbstractPlayerControlledEntity {
 	protected boolean deposit = false;
+	// TODO Jakob: PMD: It is somewhat confusing to have a field name with the same name as a method
+	// Change the method name to isTrainingUnit()  /Björn
 	protected boolean trainingUnit = false;
 
 	/**

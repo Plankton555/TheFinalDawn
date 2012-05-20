@@ -186,10 +186,12 @@ public class AStarNode implements Comparable<AStarNode> {
 		}
 		AStarNode other = (AStarNode) obj;
 		if (node == null) {
-			if (other.node != null)
+			if (other.node != null) {
 				return false;
-		} else if (!node.equals(other.node))
+			}
+		} else if (!node.equals(other.node)) {
 			return false;
+		}
 		return true;
 	}
 

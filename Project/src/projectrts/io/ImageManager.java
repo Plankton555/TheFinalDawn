@@ -15,6 +15,7 @@ import de.lessvoid.nifty.render.image.ImageModeHelper;
  * @author Filip Brynfors
  * 
  */
+// TODO Afton: PMD: A class which only has private constructors should be final
 public class ImageManager {
 	private static Map<String, NiftyImage> images = new HashMap<String, NiftyImage>();
 	private static NiftyRenderEngine engine;

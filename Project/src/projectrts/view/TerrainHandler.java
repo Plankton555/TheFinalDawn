@@ -20,12 +20,13 @@ import com.jme3.texture.Texture.WrapMode;
  * Based on Jmonkey terrain example code
  * http://jmonkeyengine.org/wiki/doku.php/jme3:beginner:hello_terrain
  * 
- * @author Heqir
+ * @author Markus Ekström
  * 
  */
 class TerrainHandler {
-	private Node terrainNode = new Node("terrain"); // The node for all terrain
-	private SimpleApplication app;
+	// The node for all terrain
+	private final Node terrainNode = new Node("terrain");
+	private final SimpleApplication app;
 
 	public TerrainHandler(SimpleApplication app) {
 		this.app = app;

@@ -104,10 +104,12 @@ public class Node implements INode {
 		}
 		Node other = (Node) obj;
 		if (position == null) {
-			if (other.position != null)
+			if (other.position != null) {
 				return false;
-		} else if (!position.equals(other.position))
+			}
+		} else if (!position.equals(other.position)) {
 			return false;
+		}
 		return true;
 	}
 

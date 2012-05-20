@@ -35,17 +35,13 @@ import com.jme3.scene.shape.Box;
 public class GameView {
 	private final SimpleApplication app;
 	private final IGame game;
-	private final Node debug = new Node("debug"); // The node for the debugging
-													// graphics
-	private Node mouseEffects = new Node("mouseEffects"); // The node for
-															// mouseEffects
-	private final static float mod = InGameState.MODEL_TO_WORLD; // The modifier
-																	// value for
-																	// converting
-																	// lengths
-																	// between
-																	// model and
-																	// world.
+	// The node for the debugging graphics
+	private final Node debug = new Node("debug");
+	// The node for mouseEffects
+	private Node mouseEffects = new Node("mouseEffects");
+	// The modifier value for converting lengths between model and world.
+	// TODO Markus: PMD: Variables that are final and static should be in all caps.
+	private final static float mod = InGameState.MODEL_TO_WORLD;
 	private EntityHandler entityHandler;
 	private TerrainHandler terrainHandler;
 

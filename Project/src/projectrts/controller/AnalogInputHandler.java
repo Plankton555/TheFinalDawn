@@ -72,6 +72,7 @@ class AnalogInputHandler implements AnalogListener {
 		}
 	}
 
+	// TODO Markus: PMD: A getX() method which returns a boolean should be named isX()
 	public boolean getMouseActivated() {
 		return mouseActivated;
 	}

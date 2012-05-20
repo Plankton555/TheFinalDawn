@@ -8,6 +8,7 @@ package projectrts.model;
 public final class MediumDifficulty extends AbstractDifficulty {
 
 	public MediumDifficulty() {
+		// TODO Markus: PMD: It is a good practice to call super() in a constructor
 		waveInterval = 25;
 		timeBeforeWaveZero = 60;
 	}
