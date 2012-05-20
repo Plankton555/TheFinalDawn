@@ -30,7 +30,7 @@ public class BuildBarracksAbilityTest {
 		MoveAbility move = new MoveAbility();
 		move.initialize(worker);
 		BuildBarracksAbility ab = (BuildBarracksAbility) AbilityFactory
-				.createUsingMoveAbility(
+				.createMoveableAbility(
 						BuildBarracksAbility.class.getSimpleName(), worker,
 						move);
 

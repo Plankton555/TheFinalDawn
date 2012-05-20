@@ -30,7 +30,7 @@ public class BuildWallAbilityTest {
 		MoveAbility move = new MoveAbility();
 		move.initialize(worker);
 		BuildWallAbility ab = (BuildWallAbility) AbilityFactory
-				.createUsingMoveAbility(BuildWallAbility.class.getSimpleName(),
+				.createMoveableAbility(BuildWallAbility.class.getSimpleName(),
 						worker, move);
 
 		ab.useAbility(new Position(5.5, 3.5));

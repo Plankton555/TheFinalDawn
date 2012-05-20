@@ -125,7 +125,6 @@ public enum EntityManager implements IEntityManager {
 		return idCounter;
 	}
 
-	// TODO Markus: Add javadoc
 	public void removeEntity(AbstractEntity entity) {
 		entitiesRemoveQueue.add(entity);
 	}
@@ -268,7 +267,6 @@ public enum EntityManager implements IEntityManager {
 		return output;
 	}
 
-	// TODO Markus: Add javadoc
 	public AbstractPlayerControlledEntity getClosestEnemy(
 			AbstractPlayerControlledEntity pce) {
 		List<AbstractEntity> nearbyEntities = getNearbyEntities(

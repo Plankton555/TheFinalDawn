@@ -9,7 +9,11 @@ import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.Player;
 
-// TODO Markus: ADD JAVADOC!!!
+/**
+ * The strategic ai.
+ * 
+ * @author Markus Ekstrom
+ */
 class StrategicAI {
 	private List<IPlayerControlledEntity> entities;
 	private static final float CHECK_INTERVAL = 0.5f;
@@ -18,14 +22,12 @@ class StrategicAI {
 	private final AbilityManager abilityManager;
 	private final EntityManager entityManager;
 
-	// TODO Markus: Add javadoc
 	public StrategicAI(Player aiPlayer, AbilityManager abilityManager) {
 		this.aiPlayer = aiPlayer;
 		this.abilityManager = abilityManager;
 		this.entityManager = EntityManager.INSTANCE;
 	}
 
-	// TODO Markus: Add javadoc
 	public void update(float tpf) {
 		if (cooldownRemaining <= 0) {
 			entities = entityManager.getEntitiesOfPlayer(aiPlayer);

@@ -72,7 +72,6 @@ public final class MoveControl extends AbstractCustomControl implements
 		return new MoveControl(entity);
 	}
 
-	// TODO Markus: Add javadoc
 	public IEntity getEntity() {
 		return entity;
 	}

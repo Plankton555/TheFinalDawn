@@ -47,8 +47,7 @@ public interface IEntityManager {
 	 * @return All selected entities of the player.
 	 */
 	List<IPlayerControlledEntity> getSelectedEntitiesOfPlayer(IPlayer player);
-
-	// TODO Markus(?): Add javadoc
+s
 	void addListener(PropertyChangeListener pcl);
 
 	/**
@@ -61,6 +60,5 @@ public interface IEntityManager {
 	 */
 	IPlayerControlledEntity getPCEAtPosition(Position pos);
 
-	// TODO Markus: Add javadoc
 	IEntity getNPCEAtPosition(Position pos);
 }

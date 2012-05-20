@@ -72,7 +72,6 @@ public class GameView {
 		}
 	}
 
-	// TODO Markus: Add javadoc
 	public GameView(SimpleApplication app, IGame game) {
 		this.app = app;
 		this.game = game;

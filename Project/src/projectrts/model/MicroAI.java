@@ -34,7 +34,6 @@ class MicroAI {
 		this.entityManager = EntityManager.INSTANCE;
 	}
 
-	// TODO Markus: Add javadoc
 	public void update(float tpf) {
 		if (!entityManager.isSelected(myPCE)) {
 			if (entityManager.getClosestEnemy(myPCE) == null) {
@@ -55,7 +54,6 @@ class MicroAI {
 		}
 	}
 
-	// TODO Markus: Add javadoc
 	public AbstractPlayerControlledEntity getEntity() {
 		return myPCE;
 	}

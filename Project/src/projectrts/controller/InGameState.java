@@ -28,10 +28,8 @@ public class InGameState extends AbstractAppState {
 	private GameGUIView guiView;
 	private final Nifty nifty;
 
-	// TODO Markus: Add javadoc (for this public field)
 	public static final float MODEL_TO_WORLD = 0.05f;
 
-	// TODO Markus: Add javadoc
 	public InGameState(IGame game, Nifty nifty) {
 		super();
 		this.game = game;

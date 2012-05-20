@@ -40,7 +40,7 @@ public class GatherResourceAbilityTest {
 		MoveAbility move = new MoveAbility();
 		move.initialize(worker);
 		GatherResourceAbility ab = (GatherResourceAbility) AbilityFactory
-				.createUsingMoveAbility(
+				.createMoveableAbility(
 						GatherResourceAbility.class.getSimpleName(), worker,
 						move);
 		ab.useAbility(res.getPosition());

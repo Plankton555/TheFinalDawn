@@ -5,17 +5,19 @@ import java.util.Map;
 
 import projectrts.model.entities.AbstractPlayerControlledEntity;
 
-//TODO Markus: ADD JAVADOC!!
+/**
+ * A factory for abilities.
+ * 
+ * @author Markus Ekstrom
+ */
 final class AbilityFactory {
 	private static Map<String, AbstractAbility> abilityMap = new HashMap<String, AbstractAbility>();
 
-	// TODO Markus: Add javadoc
 	public static void registerAbility(String abilityType,
 			AbstractAbility ability) {
 		abilityMap.put(abilityType, ability);
 	}
 
-	// TODO Markus: Add javadoc
 	public static AbstractAbility createAbility(String abilityType,
 			AbstractPlayerControlledEntity entity) {
 		AbstractAbility ability = abilityMap.get(abilityType);
@@ -31,8 +33,7 @@ final class AbilityFactory {
 		return nMovableAbility.createAbility(entity);
 	}
 
-	// TODO Markus: Add javadoc
-	public static AbstractAbility createUsingMoveAbility(String abilityType,
+	public static AbstractAbility createMoveableAbility(String abilityType,
 			AbstractPlayerControlledEntity entity, MoveAbility moveAbility) {
 		AbstractAbility ability = abilityMap.get(abilityType);
 		if (ability == null) {

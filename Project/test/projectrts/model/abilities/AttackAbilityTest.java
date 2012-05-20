@@ -37,7 +37,7 @@ public class AttackAbilityTest {
 		move.initialize(warrior);
 
 		AttackAbility ab = (AttackAbility) AbilityFactory
-				.createUsingMoveAbility(AttackAbility.class.getSimpleName(),
+				.createMoveableAbility(AttackAbility.class.getSimpleName(),
 						warrior, move);
 		ab.useAbility(worker.getPosition());
 

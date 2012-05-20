@@ -31,7 +31,6 @@ import projectrts.model.world.World;
  * @author Markus Ekström, modified by Bjorn Persson Mattsson
  * 
  */
-// TODO Markus: Add javadoc!
 public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	private final Map<String, ArrayList<AbstractAbility>> abilityReferenceMap = new HashMap<String, ArrayList<AbstractAbility>>();
 	private final Map<Integer, ArrayList<AbstractAbility>> abilityListsMap = new HashMap<Integer, ArrayList<AbstractAbility>>();
@@ -84,19 +83,19 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 				Worker.class.getSimpleName(), null, new Position(-1, -1));
 		MoveAbility workerMove = (MoveAbility) AbilityFactory.createAbility(
 				MoveAbility.class.getSimpleName(), worker);
-		workerAbilities.add(AbilityFactory.createUsingMoveAbility(
+		workerAbilities.add(AbilityFactory.createMoveableAbility(
 				AttackAbility.class.getSimpleName(), worker, workerMove));
 		workerAbilities
-				.add(AbilityFactory.createUsingMoveAbility(
+				.add(AbilityFactory.createMoveableAbility(
 						GatherResourceAbility.class.getSimpleName(), worker,
 						workerMove));
 		workerAbilities
-				.add(AbilityFactory.createUsingMoveAbility(
+				.add(AbilityFactory.createMoveableAbility(
 						BuildBarracksAbility.class.getSimpleName(), worker,
 						workerMove));
-		workerAbilities.add(AbilityFactory.createUsingMoveAbility(
+		workerAbilities.add(AbilityFactory.createMoveableAbility(
 				BuildWallAbility.class.getSimpleName(), worker, workerMove));
-		workerAbilities.add(AbilityFactory.createUsingMoveAbility(
+		workerAbilities.add(AbilityFactory.createMoveableAbility(
 				BuildHeadquarterAbility.class.getSimpleName(), worker,
 				workerMove));
 		workerAbilities.add(workerMove);
@@ -108,7 +107,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		MoveAbility warriorMove = (MoveAbility) AbilityFactory.createAbility(
 				MoveAbility.class.getSimpleName(), worker);
 		ArrayList<AbstractAbility> warriorAbilities = new ArrayList<AbstractAbility>();
-		warriorAbilities.add(AbilityFactory.createUsingMoveAbility(
+		warriorAbilities.add(AbilityFactory.createMoveableAbility(
 				AttackAbility.class.getSimpleName(), warrior, warriorMove));
 		warriorAbilities.add(warriorMove);
 		abilityReferenceMap
@@ -120,7 +119,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		MoveAbility archerMove = (MoveAbility) AbilityFactory.createAbility(
 				MoveAbility.class.getSimpleName(), worker);
 		ArrayList<AbstractAbility> archerAbilities = new ArrayList<AbstractAbility>();
-		archerAbilities.add(AbilityFactory.createUsingMoveAbility(
+		archerAbilities.add(AbilityFactory.createMoveableAbility(
 				AttackAbility.class.getSimpleName(), archer, archerMove));
 		archerAbilities.add(archerMove);
 		abilityReferenceMap.put(Ranged.class.getSimpleName(), archerAbilities);
@@ -261,7 +260,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 			for (AbstractAbility ability : abilitiesReferenceList) {
 
 				if (ability instanceof IMoveable) {
-					abilities.add(AbilityFactory.createUsingMoveAbility(ability
+					abilities.add(AbilityFactory.createMoveableAbility(ability
 							.getClass().getSimpleName(), pce, moveAbility));
 				} else {
 					abilities.add(AbilityFactory.createAbility(ability

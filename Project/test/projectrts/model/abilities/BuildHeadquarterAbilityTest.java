@@ -30,7 +30,7 @@ public class BuildHeadquarterAbilityTest {
 		MoveAbility move = new MoveAbility();
 		move.initialize(worker);
 		BuildHeadquarterAbility ab = (BuildHeadquarterAbility) AbilityFactory
-				.createUsingMoveAbility(
+				.createMoveableAbility(
 						BuildHeadquarterAbility.class.getSimpleName(), worker,
 						move);
 

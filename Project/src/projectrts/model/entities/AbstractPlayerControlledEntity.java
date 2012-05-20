@@ -47,7 +47,6 @@ public abstract class AbstractPlayerControlledEntity extends AbstractEntity
 		this.pcs = new PropertyChangeSupport(this);
 	}
 
-	// TODO Markus: Add javadoc
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 	}

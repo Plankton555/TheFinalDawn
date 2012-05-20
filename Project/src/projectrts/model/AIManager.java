@@ -10,7 +10,11 @@ import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Player;
 
-// TODO Markus: ADD JAVADOC!
+/**
+ * Manages the ai, both micro and strategic.
+ * 
+ * @author Markus Ekström
+ */
 class AIManager implements PropertyChangeListener {
 	private final AbilityManager abilityManager;
 	private final StrategicAI stratAI;
