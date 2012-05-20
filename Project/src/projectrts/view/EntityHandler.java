@@ -9,6 +9,7 @@ import projectrts.model.IGame;
 import projectrts.model.entities.IEntity;
 import projectrts.view.controls.MoveControl;
 import projectrts.view.spatials.AbstractSpatial;
+import projectrts.view.spatials.SelectSpatial;
 import projectrts.view.spatials.SpatialFactory;
 
 import com.jme3.app.SimpleApplication;
@@ -81,7 +82,7 @@ class EntityHandler implements PropertyChangeListener{
 	    	// The control will instantly translate it to the correct location.
 	    	Box circle = new Box(new Vector3f(0, 0, -1), 
 	    			(selectedEntities.get(i).getSize() + 0.3f)/2 * mod, (selectedEntities.get(i).getSize() + 0.3f)/2 * mod, 0);
-	    	AbstractSpatial circleSpatial = SpatialFactory.createEntitySpatial("SelectSpatial", selectedEntities.get(i).getName(), circle, selectedEntities.get(i));	
+	    	AbstractSpatial circleSpatial = SpatialFactory.createEntitySpatial(SelectSpatial.class.getSimpleName(), selectedEntities.get(i).getName(), circle, selectedEntities.get(i));	
 	    	// Attach spatial to the selected node, connecting it to the world.
 	    	selected.attachChild(circleSpatial);
     	}

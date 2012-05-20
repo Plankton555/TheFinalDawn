@@ -116,7 +116,7 @@ public class GameView{
 						(0.1f * mod) / 2, 0);
 
 				AbstractSpatial nodeSpatial = SpatialFactory
-						.createNodeSpatial("DebugNodeSpatial", nodes[i][j]
+						.createNodeSpatial(NodeSpatial.class.getSimpleName(), nodes[i][j]
 								.getClass().getSimpleName(), nodeShapes[i][j],
 								nodes[i][j]);
 				debug.attachChild(nodeSpatial);

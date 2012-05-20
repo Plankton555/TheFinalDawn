@@ -21,7 +21,7 @@ public final class WorkerSpatial extends AbstractSpatial implements
 
 	static {
 		SpatialFactory.registerSpatial(WorkerSpatial.class.getSimpleName(),
-				new WorkerSpatial("WorkerSpatialCreator", new Box()));
+				new WorkerSpatial(WorkerSpatial.class.getSimpleName()+"Creator", new Box()));
 	}
 
 	private WorkerSpatial(String name, Box box) {

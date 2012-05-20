@@ -21,7 +21,7 @@ public final class ResourceSpatial extends AbstractSpatial implements
 
 	static {
 		SpatialFactory.registerSpatial(ResourceSpatial.class.getSimpleName(),
-				new ResourceSpatial("ResourceSpatialCreator", new Box()));
+				new ResourceSpatial(ResourceSpatial.class.getSimpleName()+"Creator", new Box()));
 	}
 
 	private ResourceSpatial(String name, Box box) {

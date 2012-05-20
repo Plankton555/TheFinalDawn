@@ -21,8 +21,8 @@ public final class SelectSpatial extends AbstractSpatial implements
 		IEntitySpatial {
 
 	static {
-		SpatialFactory.registerSpatial("SelectSpatial", new SelectSpatial(
-				"SelectSpatialCreator", new Box()));
+		SpatialFactory.registerSpatial(SelectSpatial.class.getSimpleName(), new SelectSpatial(
+				SelectSpatial.class.getSimpleName()+"Creator", new Box()));
 	}
 
 	private SelectSpatial(String name, Box box) {

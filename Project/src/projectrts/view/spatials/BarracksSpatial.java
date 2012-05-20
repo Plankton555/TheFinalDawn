@@ -21,7 +21,7 @@ public final class BarracksSpatial extends AbstractSpatial implements
 
 	static {
 		SpatialFactory.registerSpatial(BarracksSpatial.class.getSimpleName(),
-				new BarracksSpatial("HeadquarterSpatialCreator", new Box()));
+				new BarracksSpatial(BarracksSpatial.class.getSimpleName()+"Creator", new Box()));
 	}
 
 	private BarracksSpatial(String name, Box box) {

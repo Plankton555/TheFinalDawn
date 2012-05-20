@@ -21,7 +21,7 @@ public final class WallSpatial extends AbstractSpatial implements
 
 	static {
 		SpatialFactory.registerSpatial(WallSpatial.class.getSimpleName(),
-				new WallSpatial("BarracksSpatialCreator", new Box()));
+				new WallSpatial(WallSpatial.class.getSimpleName()+"Creator", new Box()));
 	}
 
 	private WallSpatial(String name, Box box) {
