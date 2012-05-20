@@ -47,7 +47,6 @@ public interface IEntityManager {
 	 * @return All selected entities of the player.
 	 */
 	List<IPlayerControlledEntity> getSelectedEntitiesOfPlayer(IPlayer player);
-s
 	void addListener(PropertyChangeListener pcl);
 
 	/**
