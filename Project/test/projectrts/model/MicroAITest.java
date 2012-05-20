@@ -13,7 +13,6 @@ import projectrts.model.entities.Warrior;
 import projectrts.model.world.Position;
 
 public class MicroAITest {
-	// TODO Markus: PMD: Perhaps 'aiPlayer' could be replaced by a local variable.
 	private Player aiPlayer;
 	private Player humanPlayer;
 	private GameModel model;
