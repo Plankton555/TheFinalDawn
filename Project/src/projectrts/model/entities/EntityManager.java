@@ -233,7 +233,6 @@ public enum EntityManager implements IEntityManager {
 		return output;
 	}
 
-	// TODO Markus(?): Add javadoc
 	public boolean isSelected(AbstractPlayerControlledEntity entity) {
 		boolean ans = false;
 
@@ -293,7 +292,6 @@ public enum EntityManager implements IEntityManager {
 		return closestPCE;
 	}
 
-	// TODO Markus(?): Add javadoc
 	public AbstractPlayerControlledEntity getClosestEnemyStructure(
 			AbstractPlayerControlledEntity pce) {
 		List<AbstractEntity> nearbyEntities = getNearbyEntities(
