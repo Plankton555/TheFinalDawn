@@ -2,6 +2,7 @@ package projectrts.controller;
 
 import java.util.List;
 
+import projectrts.model.GameModel;
 import projectrts.model.IGame;
 import projectrts.model.abilities.AttackAbility;
 import projectrts.model.abilities.GatherResourceAbility;
@@ -18,6 +19,7 @@ import projectrts.view.GameView;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.controls.ActionListener;
+import com.jme3.math.Vector3f;
 
 /**
  * A digital listener, use if the input is digital - i.e. it can only be
@@ -44,6 +46,21 @@ class ActionInputHandler implements ActionListener{
 	}
 	
 	/**
+	 * Converts a Vector3f position from the world into a Position position in
+	 * model.
+	 * 
+	 * @param worldLoc
+	 *            The world position.
+	 * @return The model position in the form of a Position.
+	 */
+	public static Position convertWorldToModel(Vector3f worldLoc) {
+		float x = worldLoc.x / InGameState.MODEL_TO_WORLD;
+		float y = -worldLoc.y / InGameState.MODEL_TO_WORLD;
+		// TODO Markus: Should this method be called or not?
+		return GameModel.getPosition(x, y);
+	}
+	
+	/**
 	 * A digital listener, use if the input is digital - i.e. it can only be
 	 * either "on" or "off".
 	 */
@@ -53,18 +70,16 @@ class ActionInputHandler implements ActionListener{
 			app.stop();
 		}
 
-		if (app.getStateManager().getState(InGameState.class).isEnabled()) {
-			if (name.equals("mouseLeftButton") && keyPressed) {
-				handleLeftClick();
-			}
-			if (name.equals("mouseRightButton") && keyPressed) {
-				handleRightClick();
-			}
+		if (name.equals("mouseLeftButton") && keyPressed) {
+			handleLeftClick();
+		}
+		if (name.equals("mouseRightButton") && keyPressed) {
+			handleRightClick();
 		}
 	}
 
 	private void handleLeftClick() {
-		Position pos = InGameState.convertWorldToModel(app.getCamera()
+		Position pos = convertWorldToModel(app.getCamera()
 				.getWorldCoordinates(
 						app.getInputManager().getCursorPosition(), 0));
 		if (choosingPosition) {
@@ -92,7 +107,7 @@ class ActionInputHandler implements ActionListener{
 	}
 
 	private void handleRightClick() {
-		Position click = InGameState.convertWorldToModel(app.getCamera()
+		Position click = convertWorldToModel(app.getCamera()
 				.getWorldCoordinates(
 						app.getInputManager().getCursorPosition(), 0));
 		if (choosingPosition || choosingTarget) {
@@ -128,7 +143,7 @@ class ActionInputHandler implements ActionListener{
 	private void doMoveAbility() {
 		game.getAbilityManager().useAbilitySelected(
 				MoveAbility.class.getSimpleName(),
-				InGameState.convertWorldToModel(app.getCamera()
+				convertWorldToModel(app.getCamera()
 						.getWorldCoordinates(
 								app.getInputManager().getCursorPosition(),
 								0)), game.getHumanPlayer());

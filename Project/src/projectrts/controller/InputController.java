@@ -53,13 +53,13 @@ class InputController {
 	 * @param tpf
 	 *            Time-per-frame
 	 */
-	public void update(float tpf) {
+	public void update(float tpf, boolean enabled) {
 
-		if (app.getStateManager().getState(InGameState.class).isEnabled()) {
+		if (enabled) {
 			// do the following while game is RUNNING // modify scene graph...
 			updateCamera(tpf);
 			if (actionInputHandler.isChoosingPosition()) {
-				Position pos = InGameState.convertWorldToModel(app.getCamera()
+				Position pos = ActionInputHandler.convertWorldToModel(app.getCamera()
 						.getWorldCoordinates(
 								app.getInputManager().getCursorPosition(), 0));
 				view.drawNodes(game.getWorld().getNodesAt(pos, actionInputHandler.getBuildingSize()));
@@ -179,4 +179,6 @@ class InputController {
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 	}
+	
+	
 }

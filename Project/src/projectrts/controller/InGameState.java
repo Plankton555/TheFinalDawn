@@ -33,21 +33,6 @@ public class InGameState extends AbstractAppState {
 	// TODO Markus: Add javadoc (for this public field)
 	public static final float MODEL_TO_WORLD = 0.05f;
 
-	/**
-	 * Converts a Vector3f position from the world into a Position position in
-	 * model.
-	 * 
-	 * @param worldLoc
-	 *            The world position.
-	 * @return The model position in the form of a Position.
-	 */
-	public static Position convertWorldToModel(Vector3f worldLoc) {
-		float x = worldLoc.x / InGameState.MODEL_TO_WORLD;
-		float y = -worldLoc.y / InGameState.MODEL_TO_WORLD;
-		// TODO Markus: Should this method be called or not?
-		return GameModel.getPosition(x, y);
-	}
-
 	// TODO Markus: Add javadoc
 	public InGameState(IGame game, Nifty nifty) {
 		super();
@@ -121,7 +106,7 @@ public class InGameState extends AbstractAppState {
 	public void update(float tpf) {
 		if (isEnabled()) {
 			// do the following while game is RUNNING // modify scene graph...
-			input.update(tpf);
+			input.update(tpf, this.isEnabled());
 			game.update(tpf);
 			guiView.update(tpf);
 		}
