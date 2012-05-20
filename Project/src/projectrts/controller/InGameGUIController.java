@@ -1,10 +1,12 @@
 package projectrts.controller;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.List;
 
 import projectrts.io.ImageManager;
+import projectrts.model.IGame;
 import projectrts.model.abilities.IAbility;
-import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.view.GameGUIView;
@@ -23,11 +25,11 @@ import de.lessvoid.nifty.screen.ScreenController;
  * @author Filip Brynfors Modified by Jakob Svensson
  * 
  */
-public class InGameGUIController implements ScreenController {
+public class InGameGUIController implements ScreenController, PropertyChangeListener {
 	private final Nifty nifty;
 	private Screen screen;
 	private final GameGUIView guiView;
-	private final IAbilityManager abilityManager;
+	private final IGame game;
 	private final InputController input;
 
 	private IPlayerControlledEntity selectedPce;
@@ -44,14 +46,14 @@ public class InGameGUIController implements ScreenController {
 	 *            the nifty
 	 */
 	public InGameGUIController(InputController input, Nifty nifty,
-			GameGUIView guiView, IAbilityManager abilityManager) {
+			GameGUIView guiView, IGame game) {
 		this.input = input;
 		this.nifty = nifty;
 		this.guiView = guiView;
-		this.abilityManager = abilityManager;
+		this.game = game;
 
 		initializeGUI();
-		input.setGUIControl(this);
+		game.getEntityManager().addListener(this);
 	}
 
 	private void initializeGUI() {
@@ -81,7 +83,7 @@ public class InGameGUIController implements ScreenController {
 	 * @param selectedEntities
 	 *            the abilities of the selected Entity
 	 */
-	public void updateAbilities(List<IEntity> selectedEntities) {
+	private void updateAbilities(List<IEntity> selectedEntities) {
 		boolean oneIsSelected = selectedEntities.size() == 1;
 
 		if (oneIsSelected
@@ -159,7 +161,7 @@ public class InGameGUIController implements ScreenController {
 
 			int iNr = Integer.parseInt(nr);
 
-			List<IAbility> abilities = abilityManager.getAbilities(selectedPce);
+			List<IAbility> abilities = game.getAbilityManager().getAbilities(selectedPce);
 			if (iNr - 1 < abilities.size()) {
 				ability = abilities.get(iNr - 1);
 			}
@@ -168,5 +170,12 @@ public class InGameGUIController implements ScreenController {
 
 		}
 		return ability;
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent pce) {
+		if("entitySelected".equals(pce.getPropertyName())){
+			updateAbilities(game.getEntityManager().getSelectedEntities());
+		}
 	}
 }

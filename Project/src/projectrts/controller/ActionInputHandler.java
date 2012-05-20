@@ -36,7 +36,6 @@ class ActionInputHandler implements ActionListener {
 	private boolean choosingPosition = false;
 	private IAbility currentAbility;
 	private float buildingSize;
-	private InGameGUIController guiControl;
 
 	public ActionInputHandler(SimpleApplication app, IGame game, GameView view) {
 		this.app = app;
@@ -100,8 +99,6 @@ class ActionInputHandler implements ActionListener {
 
 		} else {
 			game.getEntityManager().select(pos, game.getHumanPlayer());
-			guiControl.updateAbilities(game.getEntityManager()
-					.getSelectedEntities());
 		}
 	}
 
@@ -167,14 +164,6 @@ class ActionInputHandler implements ActionListener {
 		return null;
 	}
 
-	/**
-	 * Sets the GUI Control
-	 * 
-	 * @param guiControl
-	 */
-	public void setGUIControl(InGameGUIController guiControl) {
-		this.guiControl = guiControl;
-	}
 
 	/**
 	 * Selects an ability

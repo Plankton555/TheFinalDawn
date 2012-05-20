@@ -159,15 +159,6 @@ class InputController {
 	}
 
 	/**
-	 * Sets the GUI Control
-	 * 
-	 * @param guiControl
-	 */
-	public void setGUIControl(InGameGUIController guiControl) {
-		actionInputHandler.setGUIControl(guiControl);
-	}
-
-	/**
 	 * Selects an ability
 	 * 
 	 * @param ability
