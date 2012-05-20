@@ -24,7 +24,8 @@ public final class EntityFactory {
 	 * @param pce
 	 *            An instance of the entity you want to register.
 	 */
-	public static void registerPCE(String pceType, AbstractPlayerControlledEntity pce) {
+	public static void registerPCE(String pceType,
+			AbstractPlayerControlledEntity pce) {
 		pceMap.put(pceType, pce);
 	}
 
@@ -85,5 +86,6 @@ public final class EntityFactory {
 		return npceMap.get(npceType).createNPCE(pos);
 	}
 
-	private EntityFactory() {}
+	private EntityFactory() {
+	}
 }

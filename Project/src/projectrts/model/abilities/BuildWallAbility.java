@@ -9,8 +9,8 @@ import projectrts.model.entities.Wall;
  * @author Jakob Svensson
  * 
  */
-class BuildWallAbility extends AbstractConstructAbility implements
-		IMoveable, IBuildStructureAbility {
+class BuildWallAbility extends AbstractConstructAbility implements IMoveable,
+		IBuildStructureAbility {
 	private static float buildTime = 1;
 	private static int buildCost = 50;
 

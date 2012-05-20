@@ -38,9 +38,11 @@ class WaveManager {
 	 */
 	public void update(float tpf) {
 		timePassed += tpf;
-		
-		if((timePassed > difficulty.getTimeBeforeWaveZero() && wave == 0) || (wave > 0 && 
-				timePassed >= (wave * difficulty.getWaveInterval() + difficulty.getTimeBeforeWaveZero()))) {
+
+		if ((timePassed > difficulty.getTimeBeforeWaveZero() && wave == 0)
+				|| (wave > 0 && timePassed >= (wave
+						* difficulty.getWaveInterval() + difficulty
+							.getTimeBeforeWaveZero()))) {
 			callNewWave();
 			wave++;
 			difficulty.update(timePassed, wave);
@@ -56,7 +58,7 @@ class WaveManager {
 	public void setDifficulty(AbstractDifficulty difficulty) {
 		this.difficulty = difficulty;
 	}
-	
+
 	public AbstractDifficulty getDifficulty() {
 		return difficulty;
 	}
@@ -84,7 +86,7 @@ class WaveManager {
 			EntityManager.INSTANCE.addNewPCE(Warrior.class.getSimpleName(),
 					aiPlayer, pos);
 		}
-		
+
 		for (int i = 0; i < difficulty.getNumberOfRangedPerWave(); i++) {
 			EntityManager.INSTANCE.addNewPCE(Ranged.class.getSimpleName(),
 					aiPlayer, pos);

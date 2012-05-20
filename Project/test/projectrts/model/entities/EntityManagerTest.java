@@ -18,8 +18,8 @@ public class EntityManagerTest {
 		new GameModel();
 		Player player = new Player();
 		EntityManager.INSTANCE.resetData();
-		EntityManager.INSTANCE
-				.addNewPCE(Worker.class.getSimpleName(), player, new Position(10, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(10, 10));
 		Position onUnit = new Position(10, 10);
 		Position closeToUnit = new Position(9.5f, 9.5f);
 		Position farFromUnit = new Position(5, 5);
@@ -43,8 +43,8 @@ public class EntityManagerTest {
 		new GameModel();
 		Player player = new Player();
 		EntityManager.INSTANCE.resetData();
-		EntityManager.INSTANCE
-				.addNewPCE(Worker.class.getSimpleName(), player, new Position(10, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(10, 10));
 		EntityManager.INSTANCE.update(1);
 		List<IPlayerControlledEntity> entities = EntityManager.INSTANCE
 				.getEntitiesOfPlayer(player);
@@ -54,14 +54,14 @@ public class EntityManagerTest {
 			assertTrue(e.getOwner().equals(player));
 		}
 
-		EntityManager.INSTANCE
-				.addNewPCE(Worker.class.getSimpleName(), player, new Position(11, 10));
-		EntityManager.INSTANCE
-				.addNewPCE(Worker.class.getSimpleName(), player, new Position(12, 10));
-		EntityManager.INSTANCE
-				.addNewPCE(Worker.class.getSimpleName(), player, new Position(13, 10));
-		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), new Player(), new Position(
-				10, 13));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(11, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(12, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(13, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(),
+				new Player(), new Position(10, 13));
 		EntityManager.INSTANCE.update(1);
 		entities = EntityManager.INSTANCE.getEntitiesOfPlayer(player);
 
@@ -76,21 +76,21 @@ public class EntityManagerTest {
 		new GameModel();
 		Player player = new Player();
 		EntityManager.INSTANCE.resetData();
-		EntityManager.INSTANCE
-				.addNewPCE(Worker.class.getSimpleName(), player, new Position(10, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(10, 10));
 		EntityManager.INSTANCE.update(1);
 		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();
 
 		assertTrue(entities.size() == 1);
 
-		EntityManager.INSTANCE
-				.addNewPCE(Worker.class.getSimpleName(), player, new Position(11, 10));
-		EntityManager.INSTANCE
-				.addNewPCE(Worker.class.getSimpleName(), player, new Position(12, 10));
-		EntityManager.INSTANCE
-				.addNewPCE(Worker.class.getSimpleName(), player, new Position(13, 10));
-		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), new Player(), new Position(
-				10, 13));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(11, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(12, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(13, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(),
+				new Player(), new Position(10, 13));
 		EntityManager.INSTANCE.update(1);
 		entities = EntityManager.INSTANCE.getAllEntities();
 
@@ -114,8 +114,8 @@ public class EntityManagerTest {
 		new GameModel();
 		Player player = new Player();
 		EntityManager.INSTANCE.resetData();
-		EntityManager.INSTANCE
-				.addNewPCE(Worker.class.getSimpleName(), player, new Position(10, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(10, 10));
 		EntityManager.INSTANCE.update(1);
 		List<AbstractEntity> entities = EntityManager.INSTANCE
 				.getNearbyEntities(new Position(15, 10), 2);
@@ -125,14 +125,14 @@ public class EntityManagerTest {
 				new Position(15, 10), 6);
 		assertTrue(entities.size() == 1);
 
-		EntityManager.INSTANCE
-				.addNewPCE(Worker.class.getSimpleName(), player, new Position(11, 10));
-		EntityManager.INSTANCE
-				.addNewPCE(Worker.class.getSimpleName(), player, new Position(12, 10));
-		EntityManager.INSTANCE
-				.addNewPCE(Worker.class.getSimpleName(), player, new Position(13, 10));
-		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), new Player(), new Position(
-				14, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(11, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(12, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(13, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(),
+				new Player(), new Position(14, 10));
 		EntityManager.INSTANCE.update(1);
 		entities = EntityManager.INSTANCE.getNearbyEntities(
 				new Position(15, 10), 3);

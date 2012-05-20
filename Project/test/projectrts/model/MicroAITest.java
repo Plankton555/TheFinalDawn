@@ -60,8 +60,7 @@ public class MicroAITest {
 		assertTrue(EntityManager.INSTANCE.isSelected(myWarrior));
 
 		// Update the model and check that the human controlled warrior is dead
-		// and that
-		// the enemy hasn't taken any damage.
+		// and that the enemy hasn't taken any damage.
 		for (int i = 0; i < 500; i++) {
 			model.update(1.0f);
 		}

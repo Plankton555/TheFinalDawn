@@ -83,5 +83,6 @@ public final class SpatialFactory {
 				box, node);
 	}
 
-	private SpatialFactory() {}
+	private SpatialFactory() {
+	}
 }

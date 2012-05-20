@@ -7,17 +7,17 @@ import com.jme3.input.controls.AnalogListener;
 import com.jme3.math.Vector3f;
 
 /**
- * An analog listener, use if the input is analog - i.e. it can take on
- * several values, not just "on" and "off".
+ * An analog listener, use if the input is analog - i.e. it can take on several
+ * values, not just "on" and "off".
  * 
  * @author Markus Ekstrom
  */
-class AnalogInputHandler implements AnalogListener{
+class AnalogInputHandler implements AnalogListener {
 	private final SimpleApplication app;
 	private final IGame game;
 	private static final float CAMERA_SPEED = InputController.CAMERA_SPEED;
 	private boolean mouseActivated = false;
-	
+
 	public AnalogInputHandler(SimpleApplication app, IGame game) {
 		this.app = app;
 		this.game = game;
@@ -64,7 +64,7 @@ class AnalogInputHandler implements AnalogListener{
 			app.getInputManager().deleteMapping("cameraDownMouse");
 		}
 	}
-	
+
 	public boolean getMouseActivated() {
 		return mouseActivated;
 	}

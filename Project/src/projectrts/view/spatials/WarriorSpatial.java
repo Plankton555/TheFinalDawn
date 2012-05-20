@@ -21,7 +21,8 @@ public final class WarriorSpatial extends AbstractSpatial implements
 
 	static {
 		SpatialFactory.registerSpatial(WarriorSpatial.class.getSimpleName(),
-				new WarriorSpatial(WarriorSpatial.class.getSimpleName()+"Creator", new Box()));
+				new WarriorSpatial(WarriorSpatial.class.getSimpleName()
+						+ "Creator", new Box()));
 	}
 
 	private WarriorSpatial(String name, Box box) {

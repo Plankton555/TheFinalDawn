@@ -163,7 +163,7 @@ public class AStarNode implements Comparable<AStarNode> {
 	public int compareTo(AStarNode other) {
 		return Integer.compare(getTotalCost(), other.getTotalCost());
 	}
-	
+
 	@Override
 	public int hashCode() {
 		// Eclipse-generated hashcode

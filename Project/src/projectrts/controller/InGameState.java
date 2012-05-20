@@ -90,8 +90,7 @@ public class InGameState extends AbstractAppState {
 	public void cleanup() {
 		// TODO Markus: PMD: Overriding method merely calls super
 		super.cleanup();
-		// unregister all my listeners, detach all my nodes, etc... // modify
-		// scene graph...
+		// unregister all my listeners, detach all my nodes, etc... // modify scene graph...
 	}
 
 	/**

@@ -21,7 +21,8 @@ public final class RangedSpatial extends AbstractSpatial implements
 
 	static {
 		SpatialFactory.registerSpatial(RangedSpatial.class.getSimpleName(),
-				new RangedSpatial(RangedSpatial.class.getSimpleName()+"Creator", new Box()));
+				new RangedSpatial(RangedSpatial.class.getSimpleName()
+						+ "Creator", new Box()));
 	}
 
 	private RangedSpatial(String name, Box box) {

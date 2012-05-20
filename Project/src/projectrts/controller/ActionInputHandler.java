@@ -22,12 +22,12 @@ import com.jme3.input.controls.ActionListener;
 import com.jme3.math.Vector3f;
 
 /**
- * A digital listener, use if the input is digital - i.e. it can only be
- * either "on" or "off".
+ * A digital listener, use if the input is digital - i.e. it can only be either
+ * "on" or "off".
  * 
  * @author Markus Ekstrom
  */
-class ActionInputHandler implements ActionListener{
+class ActionInputHandler implements ActionListener {
 	private final SimpleApplication app;
 	private final IGame game;
 	private final GameView view;
@@ -37,14 +37,13 @@ class ActionInputHandler implements ActionListener{
 	private IAbility currentAbility;
 	private float buildingSize;
 	private InGameGUIController guiControl;
-	
-	
+
 	public ActionInputHandler(SimpleApplication app, IGame game, GameView view) {
 		this.app = app;
 		this.game = game;
 		this.view = view;
 	}
-	
+
 	/**
 	 * Converts a Vector3f position from the world into a Position position in
 	 * model.
@@ -121,8 +120,8 @@ class ActionInputHandler implements ActionListener{
 			} else {
 				if (e instanceof Resource) {
 					game.getAbilityManager().useAbilitySelected(
-							GatherResourceAbility.class.getSimpleName(),
-							click, game.getHumanPlayer());
+							GatherResourceAbility.class.getSimpleName(), click,
+							game.getHumanPlayer());
 
 				} else if (e instanceof AbstractPlayerControlledEntity) {
 					AbstractPlayerControlledEntity pce = (AbstractPlayerControlledEntity) e;
@@ -145,8 +144,8 @@ class ActionInputHandler implements ActionListener{
 				MoveAbility.class.getSimpleName(),
 				convertWorldToModel(app.getCamera()
 						.getWorldCoordinates(
-								app.getInputManager().getCursorPosition(),
-								0)), game.getHumanPlayer());
+								app.getInputManager().getCursorPosition(), 0)),
+				game.getHumanPlayer());
 	}
 
 	private IEntity getEntityAtPosition(Position pos) {
@@ -157,17 +156,17 @@ class ActionInputHandler implements ActionListener{
 
 			// If the point is within the area of the unit
 			if (se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(),
-					unitPos.getX() - unitSize / 2, unitPos.getX()
-							+ unitSize / 2)
-					&& se.chalmers.pebjorn.javautils.Math.isWithin(
-							pos.getY(), unitPos.getY() - unitSize / 2,
-							unitPos.getY() + unitSize / 2)) {
+					unitPos.getX() - unitSize / 2, unitPos.getX() + unitSize
+							/ 2)
+					&& se.chalmers.pebjorn.javautils.Math.isWithin(pos.getY(),
+							unitPos.getY() - unitSize / 2, unitPos.getY()
+									+ unitSize / 2)) {
 				return entity;
 			}
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Sets the GUI Control
 	 * 
@@ -176,7 +175,7 @@ class ActionInputHandler implements ActionListener{
 	public void setGUIControl(InGameGUIController guiControl) {
 		this.guiControl = guiControl;
 	}
-	
+
 	/**
 	 * Selects an ability
 	 * 
@@ -203,17 +202,18 @@ class ActionInputHandler implements ActionListener{
 			}
 		}
 	}
-	
-	public boolean isChoosingPosition(){
+
+	public boolean isChoosingPosition() {
 		return choosingPosition;
 	}
-	
+
 	/**
-	 * If the player is choosing position (i.e. isChoosingPosition returns true) for a building, then
-	 * this method returns that building's size.
+	 * If the player is choosing position (i.e. isChoosingPosition returns true)
+	 * for a building, then this method returns that building's size.
+	 * 
 	 * @return A float representing the building's size.
 	 */
-	public float getBuildingSize(){
+	public float getBuildingSize() {
 		return buildingSize;
 	}
 }

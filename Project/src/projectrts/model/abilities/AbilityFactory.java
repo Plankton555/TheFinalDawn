@@ -40,12 +40,12 @@ final class AbilityFactory {
 					+ " before you can use it");
 		} else if (!(ability instanceof IMoveable)) {
 			throw new IllegalStateException(abilityType
-					+ " does not implement "
-					+ IMoveable.class.getSimpleName());
+					+ " does not implement " + IMoveable.class.getSimpleName());
 		}
 		IMoveable movableAbility = (IMoveable) ability;
 		return movableAbility.createAbility(entity, moveAbility);
 	}
 
-	private AbilityFactory() {}
+	private AbilityFactory() {
+	}
 }

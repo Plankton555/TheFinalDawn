@@ -12,8 +12,8 @@ import de.lessvoid.nifty.controls.label.builder.LabelBuilder;
  * 
  */
 public final class HighScoreGUICreator {
-	
-	private HighScoreGUICreator(){	
+
+	private HighScoreGUICreator() {
 	}
 
 	/**

@@ -96,7 +96,8 @@ public enum EntityManager implements IEntityManager {
 	 *            The position of the entity.
 	 */
 	public void addNewNPCE(String npce, Position pos) {
-		AbstractNonPlayerControlledEntity newNPCE = EntityFactory.createNPCE(npce, pos);
+		AbstractNonPlayerControlledEntity newNPCE = EntityFactory.createNPCE(
+				npce, pos);
 		entitiesAddQueue.add(newNPCE);
 	}
 
@@ -111,8 +112,8 @@ public enum EntityManager implements IEntityManager {
 	 *            The position of the entity.
 	 */
 	public void addNewPCE(String pce, Player iPlayer, Position pos) {
-		AbstractPlayerControlledEntity newPCE = EntityFactory.createPCE(pce, iPlayer,
-				pos);
+		AbstractPlayerControlledEntity newPCE = EntityFactory.createPCE(pce,
+				iPlayer, pos);
 		entitiesAddQueue.add(newPCE);
 	}
 
@@ -163,7 +164,8 @@ public enum EntityManager implements IEntityManager {
 	 * @return A PCE if there is one on the position that the player owns,
 	 *         otherwise null.
 	 */
-	public AbstractPlayerControlledEntity getPCEAtPosition(Position pos, Player player) {
+	public AbstractPlayerControlledEntity getPCEAtPosition(Position pos,
+			Player player) {
 		if (getPCEAtPosition(pos) != null) {
 			// TODO Markus: PMD: These nested if statements could be combined
 			if (getPCEAtPosition(pos).getOwner().equals(player)) {
@@ -203,9 +205,9 @@ public enum EntityManager implements IEntityManager {
 		AbstractPlayerControlledEntity entity = getPCEAtPosition(pos);
 		if (entity != null) { // No entity is at that position
 			selectedEntities.add(entity);
-			
+
 		}
-		pcs.firePropertyChange("entitySelected", null ,null);
+		pcs.firePropertyChange("entitySelected", null, null);
 	}
 
 	@Override
@@ -267,7 +269,8 @@ public enum EntityManager implements IEntityManager {
 	}
 
 	// TODO Markus: Add javadoc
-	public AbstractPlayerControlledEntity getClosestEnemy(AbstractPlayerControlledEntity pce) {
+	public AbstractPlayerControlledEntity getClosestEnemy(
+			AbstractPlayerControlledEntity pce) {
 		List<AbstractEntity> nearbyEntities = getNearbyEntities(
 				pce.getPosition(), pce.getSightRange());
 		AbstractPlayerControlledEntity closestPCE = null;

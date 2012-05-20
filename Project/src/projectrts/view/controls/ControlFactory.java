@@ -15,7 +15,7 @@ import com.jme3.scene.control.AbstractControl;
  * 
  */
 public final class ControlFactory {
-	
+
 	private static Map<String, AbstractControl> controlMap = new HashMap<String, AbstractControl>();
 
 	/**
@@ -27,7 +27,8 @@ public final class ControlFactory {
 	 * @param control
 	 *            An instance of the control you want to register.
 	 */
-	public static void registerControl(String controlType, AbstractControl control) {
+	public static void registerControl(String controlType,
+			AbstractControl control) {
 		controlMap.put(controlType, control);
 	}
 
@@ -64,13 +65,15 @@ public final class ControlFactory {
 	 *            The node the desired control should control.
 	 * @return An instance of the desired control.
 	 */
-	public static AbstractControl createNodeControl(String controlType, INode node) {
+	public static AbstractControl createNodeControl(String controlType,
+			INode node) {
 		if (controlMap.get(controlType) == null) {
 			throw new IllegalStateException("You must register " + controlType
 					+ " before you can use it");
 		}
 		return ((INodeControl) controlMap.get(controlType)).createControl(node);
 	}
-	
-	private ControlFactory() {}
+
+	private ControlFactory() {
+	}
 }

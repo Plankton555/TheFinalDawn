@@ -81,16 +81,17 @@ public class InGameGUIController implements ScreenController {
 	 * @param selectedEntities
 	 *            the abilities of the selected Entity
 	 */
-	public void updateAbilities(List<IEntity> selectedEntities){
-		boolean oneIsSelected = selectedEntities.size()==1;
-		
-		if(oneIsSelected && selectedEntities.get(0) instanceof IPlayerControlledEntity){
-    		selectedPce = (IPlayerControlledEntity) selectedEntities.get(0);
-    	} else {
-    		selectedPce = null;
-    	}
-    	guiView.updateSelected(selectedPce);
-    }
+	public void updateAbilities(List<IEntity> selectedEntities) {
+		boolean oneIsSelected = selectedEntities.size() == 1;
+
+		if (oneIsSelected
+				&& selectedEntities.get(0) instanceof IPlayerControlledEntity) {
+			selectedPce = (IPlayerControlledEntity) selectedEntities.get(0);
+		} else {
+			selectedPce = null;
+		}
+		guiView.updateSelected(selectedPce);
+	}
 
 	@Override
 	public void bind(Nifty nifty, Screen screen) {
@@ -124,9 +125,9 @@ public class InGameGUIController implements ScreenController {
 	 *            the ID of the button which the cursor is on
 	 */
 	public void buttonMouseEnter(String nr) {
-		try{
+		try {
 			showingTooltipID = Integer.parseInt(nr);
-		} catch(NumberFormatException e){
+		} catch (NumberFormatException e) {
 			showingTooltipID = 0;
 		}
 
@@ -141,12 +142,12 @@ public class InGameGUIController implements ScreenController {
 	 */
 	public void buttonMouseLeave(String nr) {
 		int iNr;
-		try{
+		try {
 			iNr = Integer.parseInt(nr);
-		} catch(NumberFormatException e){
+		} catch (NumberFormatException e) {
 			iNr = 0;
 		}
-		
+
 		if (iNr == showingTooltipID) {
 			guiView.showTooltip(null);
 		}
@@ -162,8 +163,8 @@ public class InGameGUIController implements ScreenController {
 			if (iNr - 1 < abilities.size()) {
 				ability = abilities.get(iNr - 1);
 			}
-			
-		} catch(NumberFormatException e) {
+
+		} catch (NumberFormatException e) {
 
 		}
 		return ability;

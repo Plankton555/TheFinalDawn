@@ -16,8 +16,8 @@ import projectrts.model.world.World;
  * @author Filip Brynfors, modified by Bjorn Persson Mattsson
  * 
  */
-public class MoveAbility extends AbstractAbility implements
-		IStationaryAbility, ITargetAbility, AStarUser {
+public class MoveAbility extends AbstractAbility implements IStationaryAbility,
+		ITargetAbility, AStarUser {
 	private Position targetPosition;
 
 	private World world;

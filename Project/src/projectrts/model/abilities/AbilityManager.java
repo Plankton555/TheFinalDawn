@@ -168,8 +168,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 					pce.setState(State.IDLE);
 					for (AbstractAbility ability : abilities) {
 						ability.update(tpf);
-						// TODO Markus: PMD: Deeply nested if..then statements
-						// are hard to read
+						// TODO Markus: PMD: Deeply nested if..then statements are hard to read
 						if (ability.isActive()) {
 							pce.setState(State.BUSY);
 						}
@@ -240,11 +239,13 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		if (evt.getNewValue() instanceof AbstractPlayerControlledEntity) {
-			addAbilitiesToEntity((AbstractPlayerControlledEntity) evt.getNewValue());
+			addAbilitiesToEntity((AbstractPlayerControlledEntity) evt
+					.getNewValue());
 		}
 
 		if (evt.getOldValue() instanceof AbstractPlayerControlledEntity) {
-			removeDeadAbilities((AbstractPlayerControlledEntity) evt.getOldValue());
+			removeDeadAbilities((AbstractPlayerControlledEntity) evt
+					.getOldValue());
 		}
 	}
 

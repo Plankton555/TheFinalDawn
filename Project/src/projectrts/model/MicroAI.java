@@ -27,7 +27,8 @@ class MicroAI {
 	 * @param unit
 	 *            The unit
 	 */
-	public MicroAI(AbstractPlayerControlledEntity pce, IAbilityManager abilityManager) {
+	public MicroAI(AbstractPlayerControlledEntity pce,
+			IAbilityManager abilityManager) {
 		this.myPCE = pce;
 		this.abilityManager = abilityManager;
 		this.entityManager = EntityManager.INSTANCE;

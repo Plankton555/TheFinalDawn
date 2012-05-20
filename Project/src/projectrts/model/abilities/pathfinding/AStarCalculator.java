@@ -80,10 +80,9 @@ class AStarCalculator implements Runnable {
 				for (AStarNode node : adjacentNodes) {
 					// if not an obstacle and not on closed list
 					if (!node.isObstacle(occupyingEntityID)
-							&& !closedList.contains(node)) { 
+							&& !closedList.contains(node)) {
 						// if on open list, check to see if new path is better
-						if (openList.contains(node))
-						{
+						if (openList.contains(node)) {
 							node.calculateCostFromStart(currentNode, true);
 						} else // if not on open list
 						{

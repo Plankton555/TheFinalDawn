@@ -12,8 +12,8 @@ import de.lessvoid.nifty.controls.button.builder.ButtonBuilder;
  */
 
 public final class MenuGUICreator {
-	
-	private MenuGUICreator(){	
+
+	private MenuGUICreator() {
 	}
 
 	/**
@@ -32,34 +32,44 @@ public final class MenuGUICreator {
 	}
 
 	private static PanelBuilder createMenuPanel() {
-		PanelBuilder builder = new PanelBuilder("Panel_Menu") {{
-			childLayoutVertical();
-			valignCenter();
-			width("150px");
-			
-			//Buttons
-			control(new ButtonBuilder("Button_Start", "Start Game") {{
-				width("100%");
-				alignCenter();
-				interactOnClick("buttonStartClicked()");
-			}});
-			control(new ButtonBuilder("Button_ChangeDifficulty") {{
-				width("100%");
-				alignCenter();
-				interactOnClick("buttonChangeClicked()");	
-			}});
-				
-			panel(new PanelBuilder("Panel_Spacer") {{
-				childLayoutCenter();
-				height("10px");
-			}});
-		
-			control(new ButtonBuilder("Button_Exit", "Exit Game") {{
-				width("100%");
-				alignCenter();
-				interactOnClick("buttonExitClicked()");
-			}});
-		}};
+		PanelBuilder builder = new PanelBuilder("Panel_Menu") {
+			{
+				childLayoutVertical();
+				valignCenter();
+				width("150px");
+
+				// Buttons
+				control(new ButtonBuilder("Button_Start", "Start Game") {
+					{
+						width("100%");
+						alignCenter();
+						interactOnClick("buttonStartClicked()");
+					}
+				});
+				control(new ButtonBuilder("Button_ChangeDifficulty") {
+					{
+						width("100%");
+						alignCenter();
+						interactOnClick("buttonChangeClicked()");
+					}
+				});
+
+				panel(new PanelBuilder("Panel_Spacer") {
+					{
+						childLayoutCenter();
+						height("10px");
+					}
+				});
+
+				control(new ButtonBuilder("Button_Exit", "Exit Game") {
+					{
+						width("100%");
+						alignCenter();
+						interactOnClick("buttonExitClicked()");
+					}
+				});
+			}
+		};
 
 		return builder;
 	}

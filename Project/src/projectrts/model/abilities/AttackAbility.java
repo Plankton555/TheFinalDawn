@@ -12,8 +12,8 @@ import projectrts.model.world.Position;
  * @author Filip Brynfors
  * 
  */
-public class AttackAbility extends AbstractAbility implements
-		IMoveable, ITargetAbility {
+public class AttackAbility extends AbstractAbility implements IMoveable,
+		ITargetAbility {
 	private AbstractPlayerControlledEntity target;
 
 	private MoveAbility moveAbility;

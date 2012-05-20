@@ -13,13 +13,13 @@ import com.jme3.scene.shape.Box;
  * @author Bjorn Persson Mattsson
  * 
  */
-public final class NodeSpatial extends AbstractSpatial implements
-		INodeSpatial {
+public final class NodeSpatial extends AbstractSpatial implements INodeSpatial {
 	private INode node;
 
 	static {
 		SpatialFactory.registerSpatial(NodeSpatial.class.getSimpleName(),
-				new NodeSpatial(NodeSpatial.class.getSimpleName()+"Creator", new Box()));
+				new NodeSpatial(NodeSpatial.class.getSimpleName() + "Creator",
+						new Box()));
 	}
 
 	private NodeSpatial(String name, Box box) {

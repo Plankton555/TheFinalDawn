@@ -22,7 +22,8 @@ public final class HeadquarterSpatial extends AbstractSpatial implements
 	static {
 		SpatialFactory.registerSpatial(
 				HeadquarterSpatial.class.getSimpleName(),
-				new HeadquarterSpatial(HeadquarterSpatial.class.getSimpleName()+"Creator", new Box()));
+				new HeadquarterSpatial(HeadquarterSpatial.class.getSimpleName()
+						+ "Creator", new Box()));
 	}
 
 	private HeadquarterSpatial(String name, Box box) {

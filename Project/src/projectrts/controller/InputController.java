@@ -26,8 +26,10 @@ import com.jme3.math.Vector3f;
  */
 class InputController {
 
-	// Before the mouse is moved it has the position (0, 0), causing the camera to move in that direction.
-	// mouseActivated suppresses the camera until set to true (which is done when the mouse is first moved).
+	// Before the mouse is moved it has the position (0, 0), causing the camera
+	// to move in that direction.
+	// mouseActivated suppresses the camera until set to true (which is done
+	// when the mouse is first moved).
 	private final SimpleApplication app;
 	private final IGame game; // The model
 	private final GameView view;
@@ -62,7 +64,8 @@ class InputController {
 				Position pos = ActionInputHandler.convertWorldToModel(app.getCamera()
 						.getWorldCoordinates(
 								app.getInputManager().getCursorPosition(), 0));
-				view.drawNodes(game.getWorld().getNodesAt(pos, actionInputHandler.getBuildingSize()));
+				view.drawNodes(game.getWorld().getNodesAt(pos,
+						actionInputHandler.getBuildingSize()));
 			}
 		}
 		// do something in an else statement while game is PAUSED, e.g. play an
@@ -154,7 +157,6 @@ class InputController {
 		this.app.getInputManager().addListener(actionInputHandler,
 				new String[] { "exit" });
 	}
-
 
 	/**
 	 * Sets the GUI Control

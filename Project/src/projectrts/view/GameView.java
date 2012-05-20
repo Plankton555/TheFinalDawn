@@ -32,20 +32,27 @@ import com.jme3.scene.shape.Box;
  * @author Markus Ekström
  * 
  */
-public class GameView{
+public class GameView {
 	private final SimpleApplication app;
 	private final IGame game;
-    private final Node debug = new Node("debug"); // The node for the debugging graphics
-    private Node mouseEffects = new Node("mouseEffects"); // The node for mouseEffects
-    private final static float mod = InGameState.MODEL_TO_WORLD; // The modifier value for converting lengths between model and world.
-    private EntityHandler entityHandler;
-    private TerrainHandler terrainHandler;
-    
-    private boolean debugNodes = false;
-    
-	static{
-		try
-		{
+	private final Node debug = new Node("debug"); // The node for the debugging
+													// graphics
+	private Node mouseEffects = new Node("mouseEffects"); // The node for
+															// mouseEffects
+	private final static float mod = InGameState.MODEL_TO_WORLD; // The modifier
+																	// value for
+																	// converting
+																	// lengths
+																	// between
+																	// model and
+																	// world.
+	private EntityHandler entityHandler;
+	private TerrainHandler terrainHandler;
+
+	private boolean debugNodes = false;
+
+	static {
+		try {
 			// Initialize the control classes.
 			Class.forName(MoveControl.class.getName());
 			Class.forName(NodeControl.class.getName());
@@ -71,7 +78,7 @@ public class GameView{
 		this.game = game;
 		entityHandler = new EntityHandler(app, game);
 		terrainHandler = new TerrainHandler(app);
-		
+
 	}
 
 	/**
@@ -115,37 +122,34 @@ public class GameView{
 						.getPosition().getY() * mod, 1), (0.1f * mod) / 2,
 						(0.1f * mod) / 2, 0);
 
-				AbstractSpatial nodeSpatial = SpatialFactory
-						.createNodeSpatial(NodeSpatial.class.getSimpleName(), nodes[i][j]
+				AbstractSpatial nodeSpatial = SpatialFactory.createNodeSpatial(
+						NodeSpatial.class.getSimpleName(), nodes[i][j]
 								.getClass().getSimpleName(), nodeShapes[i][j],
-								nodes[i][j]);
+						nodes[i][j]);
 				debug.attachChild(nodeSpatial);
 			}
 		}
 	}
 
-    
-    public void drawNodes(List<projectrts.model.world.INode> coveredNodes){
-    	   	
-    	List<INode> oldNodes = getNodes(mouseEffects.getChildren());
-    	
-    	for (INode node : coveredNodes){
-    		if (!oldNodes.contains(node)){
-    			addNodeSpatial(node);
-    		}
-    	}  	
-    	
-    	for (INode node : oldNodes){
-    		if (!coveredNodes.contains(node)){
-    			removeNodeSpatial(node);
-    		}
-    	}
-    	
-    	
-    }
-    
+	public void drawNodes(List<projectrts.model.world.INode> coveredNodes) {
 
-	private List<INode> getNodes(List<Spatial> coveredNodes){
+		List<INode> oldNodes = getNodes(mouseEffects.getChildren());
+
+		for (INode node : coveredNodes) {
+			if (!oldNodes.contains(node)) {
+				addNodeSpatial(node);
+			}
+		}
+
+		for (INode node : oldNodes) {
+			if (!coveredNodes.contains(node)) {
+				removeNodeSpatial(node);
+			}
+		}
+
+	}
+
+	private List<INode> getNodes(List<Spatial> coveredNodes) {
 		List<INode> output = new ArrayList<INode>();
 		NodeSpatial dSpatial;
 		for (Spatial spatial : coveredNodes) {
@@ -177,12 +181,12 @@ public class GameView{
 				* mod, -(float) node.getPosition().getY() * mod, 1),
 				(1f * mod) / 2, (1f * mod) / 2, 0);
 		AbstractSpatial nodeSpatial = SpatialFactory.createNodeSpatial(
-				NodeSpatial.class.getSimpleName(), node.getClass().getSimpleName(), nodeBox,
-				node);
+				NodeSpatial.class.getSimpleName(), node.getClass()
+						.getSimpleName(), nodeBox, node);
 		mouseEffects.attachChild(nodeSpatial);
 	}
-	
-	public void drawSelected(){
+
+	public void drawSelected() {
 		entityHandler.drawSelected();
 	}
 

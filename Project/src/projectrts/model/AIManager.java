@@ -41,8 +41,8 @@ class AIManager implements PropertyChangeListener {
 		}
 
 		if (evt.getNewValue() instanceof AbstractPlayerControlledEntity) {
-			microAIs.add(new MicroAI(
-					(AbstractPlayerControlledEntity) evt.getNewValue(), abilityManager));
+			microAIs.add(new MicroAI((AbstractPlayerControlledEntity) evt
+					.getNewValue(), abilityManager));
 		}
 	}
 }

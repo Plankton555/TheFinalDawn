@@ -44,9 +44,9 @@ public class GameGUIView implements PropertyChangeListener {
 	/**
 	 * Initializes the view
 	 */
-	public void initialize(){
+	public void initialize() {
 		Screen screen = nifty.getScreen("Screen_Game");
-		
+
 		updateHandler = new GUIUpdateHandler(game, screen);
 		updateHandler.updatePlayerInfo();
 
