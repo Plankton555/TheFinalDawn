@@ -38,13 +38,14 @@ public class GameView {
 	// The node for the debugging graphics
 	private final Node debug = new Node("debug");
 	// The node for mouseEffects
-	private Node mouseEffects = new Node("mouseEffects");
+	private final Node mouseEffects = new Node("mouseEffects");
 	// The modifier value for converting lengths between model and world.
 	// TODO Markus: PMD: Variables that are final and static should be in all caps.
 	private final static float mod = InGameState.MODEL_TO_WORLD;
-	private EntityHandler entityHandler;
-	private TerrainHandler terrainHandler;
+	private final EntityHandler entityHandler;
+	private final TerrainHandler terrainHandler;
 
+	// TODO Markus: PMD: Private field 'debugNodes' could be made final; it is only initialized in the declaration or constructor.
 	private boolean debugNodes = false;
 
 	static {

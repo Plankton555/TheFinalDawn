@@ -19,8 +19,8 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 // TODO Markus: ADD JAVADOC!
 class EntityHandler implements PropertyChangeListener {
-	private SimpleApplication app;
-	private IGame game;
+	private final SimpleApplication app;
+	private final IGame game;
 	// The node for all entities
 	private final Node entities = new Node("entities");
 	// The node for the selected graphics
