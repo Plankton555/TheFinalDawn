@@ -1,7 +1,7 @@
 package projectrts.model.abilities;
 
-import projectrts.model.entities.Barracks;
 import projectrts.model.entities.AbstractPlayerControlledEntity;
+import projectrts.model.entities.Barracks;
 
 /**
  * An ability for building Barracks

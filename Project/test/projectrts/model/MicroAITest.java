@@ -6,9 +6,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Player;
-import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.entities.Warrior;
 import projectrts.model.world.Position;
 

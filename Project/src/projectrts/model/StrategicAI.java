@@ -4,10 +4,10 @@ import java.util.List;
 
 import projectrts.model.abilities.AbilityManager;
 import projectrts.model.abilities.AttackAbility;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.Player;
-import projectrts.model.entities.AbstractPlayerControlledEntity;
 
 // TODO Markus: ADD JAVADOC!!!
 class StrategicAI {

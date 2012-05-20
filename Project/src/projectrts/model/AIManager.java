@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import projectrts.model.abilities.AbilityManager;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Player;
-import projectrts.model.entities.AbstractPlayerControlledEntity;
 
 // TODO Markus: ADD JAVADOC!
 class AIManager implements PropertyChangeListener {

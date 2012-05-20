@@ -2,8 +2,8 @@ package projectrts.model;
 
 import projectrts.model.abilities.AttackAbility;
 import projectrts.model.abilities.IAbilityManager;
-import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.AbstractPlayerControlledEntity;
+import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Worker;
 
 /**

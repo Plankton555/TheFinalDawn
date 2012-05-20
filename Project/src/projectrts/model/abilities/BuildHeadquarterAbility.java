@@ -1,7 +1,7 @@
 package projectrts.model.abilities;
 
-import projectrts.model.entities.Headquarter;
 import projectrts.model.entities.AbstractPlayerControlledEntity;
+import projectrts.model.entities.Headquarter;
 
 /**
  * An ability for building Headquarter

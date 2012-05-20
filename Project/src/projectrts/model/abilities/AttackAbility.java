@@ -1,9 +1,9 @@
 package projectrts.model.abilities;
 
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.entities.AbstractUnit;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IPlayerControlledEntity;
-import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.world.Position;
 
 /**

@@ -10,7 +10,7 @@ import projectrts.view.controls.MoveControl;
 import projectrts.view.controls.NodeControl;
 import projectrts.view.spatials.AbstractSpatial;
 import projectrts.view.spatials.BarracksSpatial;
-import projectrts.view.spatials.DebugNodeSpatial;
+import projectrts.view.spatials.NodeSpatial;
 import projectrts.view.spatials.HeadquarterSpatial;
 import projectrts.view.spatials.RangedSpatial;
 import projectrts.view.spatials.ResourceSpatial;
@@ -58,7 +58,7 @@ public class GameView{
 			Class.forName(BarracksSpatial.class.getName());
 			Class.forName(ResourceSpatial.class.getName());
 			Class.forName(SelectSpatial.class.getName());
-			Class.forName(DebugNodeSpatial.class.getName());
+			Class.forName(NodeSpatial.class.getName());
 			Class.forName(WallSpatial.class.getName());
 		} catch (ClassNotFoundException any) {
 			any.printStackTrace();
@@ -147,10 +147,10 @@ public class GameView{
 
 	private List<INode> getNodes(List<Spatial> coveredNodes){
 		List<INode> output = new ArrayList<INode>();
-		DebugNodeSpatial dSpatial;
+		NodeSpatial dSpatial;
 		for (Spatial spatial : coveredNodes) {
-			if (spatial instanceof DebugNodeSpatial) {
-				dSpatial = (DebugNodeSpatial) spatial;
+			if (spatial instanceof NodeSpatial) {
+				dSpatial = (NodeSpatial) spatial;
 				output.add(dSpatial.getNode());
 
 			}
@@ -160,11 +160,11 @@ public class GameView{
 	}
 
 	private void removeNodeSpatial(INode node) {
-		DebugNodeSpatial dSpatial;
+		NodeSpatial dSpatial;
 		for (Spatial spatial : mouseEffects.getChildren()) {
 
-			if (spatial instanceof DebugNodeSpatial) {
-				dSpatial = (DebugNodeSpatial) spatial;
+			if (spatial instanceof NodeSpatial) {
+				dSpatial = (NodeSpatial) spatial;
 				if (node.equals(dSpatial.getNode())) {
 					mouseEffects.detachChild(dSpatial);
 				}
@@ -177,7 +177,7 @@ public class GameView{
 				* mod, -(float) node.getPosition().getY() * mod, 1),
 				(1f * mod) / 2, (1f * mod) / 2, 0);
 		AbstractSpatial nodeSpatial = SpatialFactory.createNodeSpatial(
-				"DebugNodeSpatial", node.getClass().getSimpleName(), nodeBox,
+				NodeSpatial.class.getSimpleName(), node.getClass().getSimpleName(), nodeBox,
 				node);
 		mouseEffects.attachChild(nodeSpatial);
 	}
