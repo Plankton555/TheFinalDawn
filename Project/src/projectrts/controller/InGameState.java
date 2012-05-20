@@ -78,18 +78,6 @@ public class InGameState extends AbstractAppState {
 	}
 
 	/**
-	 * This method is probably called automatically when changing states, I
-	 * haven't looked it up though but I think it is not supposed to be called
-	 * manually.
-	 */
-	@Override
-	public void cleanup() {
-		// TODO Markus: PMD: Overriding method merely calls super
-		super.cleanup();
-		// unregister all my listeners, detach all my nodes, etc... // modify scene graph...
-	}
-
-	/**
 	 * The update loop, do not call manually!
 	 * 
 	 * Invoked automatically by SimpleApplication.
