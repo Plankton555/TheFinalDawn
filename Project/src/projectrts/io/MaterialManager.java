@@ -13,8 +13,7 @@ import com.jme3.material.Material;
  * @author Jakob Svensson
  * 
  */
-// TODO Jakob: PMD: A class which only has private constructors should be final
-public class MaterialManager {
+public final class MaterialManager {
 	private static Map<String, Material> materials = new HashMap<String, Material>();
 
 	private MaterialManager() {

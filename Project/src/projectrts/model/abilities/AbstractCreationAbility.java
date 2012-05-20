@@ -51,7 +51,7 @@ abstract class AbstractCreationAbility extends AbstractAbility {
 	@Override
 	public void useAbility(Position target) {
 		AbstractStructure as = (AbstractStructure) entity;
-		if (isActive() || as.trainingUnit()) {
+		if (isActive() || as.isTrainingUnit()) {
 			pcs.firePropertyChange("AlreadyTraining", null, null);
 		} else {
 			Player owner = (Player) entity.getOwner();
