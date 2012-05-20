@@ -70,7 +70,6 @@ public class MoveAbility extends AbstractAbility implements IStationaryAbility,
 	}
 
 	private void moveToNewPosition(float tpf) {
-		// TODO Plankton: PMD: Avoid if (x != y) ..; else ..;
 		if (path != null && !path.isEmpty()) { // if path already exists
 			entity.setPosition(calculateNextPosition(tpf));
 		} else // if (!pathAlreadyExists)
