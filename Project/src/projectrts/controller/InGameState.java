@@ -3,9 +3,7 @@ package projectrts.controller;
 import java.util.List;
 
 import projectrts.io.ImageManager;
-import projectrts.model.GameModel;
 import projectrts.model.IGame;
-import projectrts.model.world.Position;
 import projectrts.view.GameGUIView;
 import projectrts.view.GameView;
 
