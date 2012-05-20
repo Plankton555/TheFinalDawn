@@ -62,7 +62,6 @@ class ActionInputHandler implements ActionListener {
 	 * A digital listener, use if the input is digital - i.e. it can only be
 	 * either "on" or "off".
 	 */
-	// TODO Markus: PMD: The method 'onAction' has a Cyclomatic Complexity of 10.
 	public void onAction(String name, boolean keyPressed, float tpf) {
 		if (name.equals("exit") && keyPressed) {
 			app.stop();
