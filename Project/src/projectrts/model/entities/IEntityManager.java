@@ -5,7 +5,11 @@ import java.util.List;
 
 import projectrts.model.world.Position;
 
-//TODO Markus: ADD JAVADOC!!
+/**
+ * The interface for the EntityManager.
+ * 
+ * @author Markus Ekstrom
+ */
 public interface IEntityManager {
 
 	/**
