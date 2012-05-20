@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Player;
-import projectrts.model.entities.AbstractPlayerControlledEntity;
+import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.Warrior;
 import projectrts.model.world.Position;
 
@@ -17,9 +17,9 @@ public class MicroAITest {
 	private Player aiPlayer;
 	private Player humanPlayer;
 	private GameModel model;
-	private AbstractPlayerControlledEntity myWarrior;
-	private AbstractPlayerControlledEntity enemyWarrior;
-	
+	private PlayerControlledEntity myWarrior;
+	private PlayerControlledEntity enemyWarrior;
+
 	@Before
 	public void setUp() {
 		model = new GameModel();

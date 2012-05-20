@@ -5,7 +5,7 @@ import javax.vecmath.Vector2d;
 import projectrts.model.abilities.pathfinding.AStar;
 import projectrts.model.abilities.pathfinding.AStarPath;
 import projectrts.model.abilities.pathfinding.AStarUser;
-import projectrts.model.entities.AbstractPlayerControlledEntity;
+import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.world.INode;
 import projectrts.model.world.Position;
 import projectrts.model.world.World;
@@ -34,7 +34,7 @@ public class MoveAbility extends AbstractAbility implements
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(AbstractPlayerControlledEntity entity) {
+	protected void initialize(PlayerControlledEntity entity) {
 		this.entity = entity;
 		this.world = World.INSTANCE;
 		this.occupiedNode = world.getNodeAt(entity.getPosition());
@@ -116,7 +116,7 @@ public class MoveAbility extends AbstractAbility implements
 	}
 
 	@Override
-	public AbstractAbility createAbility(AbstractPlayerControlledEntity entity) {
+	public AbstractAbility createAbility(PlayerControlledEntity entity) {
 		MoveAbility newAbility = new MoveAbility();
 		newAbility.initialize(entity);
 		return newAbility;

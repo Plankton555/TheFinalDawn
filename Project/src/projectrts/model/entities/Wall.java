@@ -28,7 +28,7 @@ public class Wall extends AbstractStructure {
 	}
 
 	@Override
-	public AbstractPlayerControlledEntity createPCE(Player owner, Position pos) {
+	public PlayerControlledEntity createPCE(Player owner, Position pos) {
 		Wall newBarracks = new Wall();
 		newBarracks.initialize(owner, pos);
 		return newBarracks;

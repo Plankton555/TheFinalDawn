@@ -2,12 +2,13 @@ package projectrts.model;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Headquarter;
 import projectrts.model.entities.Player;
+import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.Warrior;
 import projectrts.model.world.Position;
 
@@ -15,8 +16,8 @@ public class StrategicAITest {
 	private Player aiPlayer;
 	private Player humanPlayer;
 	private GameModel model;
-	private AbstractPlayerControlledEntity enemyWarrior;
-	private AbstractPlayerControlledEntity myHQ;
+	private PlayerControlledEntity enemyWarrior;
+	private PlayerControlledEntity myHQ;
 
 	@Test
 	public void testUpdate() {

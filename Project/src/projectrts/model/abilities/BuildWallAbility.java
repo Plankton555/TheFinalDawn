@@ -1,6 +1,6 @@
 package projectrts.model.abilities;
 
-import projectrts.model.entities.AbstractPlayerControlledEntity;
+import projectrts.model.entities.PlayerControlledEntity;
 import projectrts.model.entities.Wall;
 
 /**
@@ -22,7 +22,7 @@ class BuildWallAbility extends AbstractConstructAbility implements
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(AbstractPlayerControlledEntity entity,
+	protected void initialize(PlayerControlledEntity entity,
 			MoveAbility moveAbility) {
 		super.initialize(entity, moveAbility);
 		this.setBuildCost(buildCost);
@@ -37,7 +37,7 @@ class BuildWallAbility extends AbstractConstructAbility implements
 	}
 
 	@Override
-	public AbstractAbility createAbility(AbstractPlayerControlledEntity entity,
+	public AbstractAbility createAbility(PlayerControlledEntity entity,
 			MoveAbility moveAbility) {
 		BuildWallAbility newAbility = new BuildWallAbility();
 		newAbility.initialize(entity, moveAbility);

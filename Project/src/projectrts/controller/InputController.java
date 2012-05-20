@@ -179,5 +179,4 @@ class InputController {
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 	}
-
 }

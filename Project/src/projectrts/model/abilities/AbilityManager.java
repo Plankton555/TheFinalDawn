@@ -16,8 +16,8 @@ import projectrts.model.entities.Headquarter;
 import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayer;
 import projectrts.model.entities.IPlayerControlledEntity;
-import projectrts.model.entities.AbstractPlayerControlledEntity;
-import projectrts.model.entities.AbstractPlayerControlledEntity.State;
+import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.PlayerControlledEntity.State;
 import projectrts.model.entities.Ranged;
 import projectrts.model.entities.Warrior;
 import projectrts.model.entities.Worker;
@@ -80,7 +80,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 
 		// Worker
 		ArrayList<AbstractAbility> workerAbilities = new ArrayList<AbstractAbility>();
-		AbstractPlayerControlledEntity worker = EntityFactory.createPCE(
+		PlayerControlledEntity worker = EntityFactory.createPCE(
 				Worker.class.getSimpleName(), null, new Position(-1, -1));
 		MoveAbility workerMove = (MoveAbility) AbilityFactory.createAbility(
 				MoveAbility.class.getSimpleName(), worker);
@@ -103,7 +103,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		abilityReferenceMap.put(Worker.class.getSimpleName(), workerAbilities);
 
 		// Warrior
-		AbstractPlayerControlledEntity warrior = EntityFactory.createPCE(
+		PlayerControlledEntity warrior = EntityFactory.createPCE(
 				Warrior.class.getSimpleName(), null, new Position(-1, -1));
 		MoveAbility warriorMove = (MoveAbility) AbilityFactory.createAbility(
 				MoveAbility.class.getSimpleName(), worker);
@@ -115,7 +115,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 				.put(Warrior.class.getSimpleName(), warriorAbilities);
 
 		// Archer
-		AbstractPlayerControlledEntity archer = EntityFactory.createPCE(
+		PlayerControlledEntity archer = EntityFactory.createPCE(
 				Ranged.class.getSimpleName(), null, new Position(-1, -1));
 		MoveAbility archerMove = (MoveAbility) AbilityFactory.createAbility(
 				MoveAbility.class.getSimpleName(), worker);
@@ -126,7 +126,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		abilityReferenceMap.put(Ranged.class.getSimpleName(), archerAbilities);
 
 		// Headquarter
-		AbstractPlayerControlledEntity headquarter = EntityFactory.createPCE(
+		PlayerControlledEntity headquarter = EntityFactory.createPCE(
 				Headquarter.class.getSimpleName(), null, new Position(-1, -1));
 		ArrayList<AbstractAbility> headquarterAbilities = new ArrayList<AbstractAbility>();
 		headquarterAbilities.add(AbilityFactory.createAbility(
@@ -135,7 +135,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 				headquarterAbilities);
 
 		// Barracks
-		AbstractPlayerControlledEntity barracks = EntityFactory.createPCE(
+		PlayerControlledEntity barracks = EntityFactory.createPCE(
 				Barracks.class.getSimpleName(), null, new Position(-1, -1));
 		ArrayList<AbstractAbility> barracksAbilities = new ArrayList<AbstractAbility>();
 		barracksAbilities.add(AbilityFactory.createAbility(
@@ -158,8 +158,8 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 	public void update(float tpf) {
 		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();
 		for (IEntity entity : entities) {
-			if (entity instanceof AbstractPlayerControlledEntity) {
-				AbstractPlayerControlledEntity pce = (AbstractPlayerControlledEntity) entity;
+			if (entity instanceof PlayerControlledEntity) {
+				PlayerControlledEntity pce = (PlayerControlledEntity) entity;
 				if (!pce.isDead()
 						&& abilityListsMap.get(pce.getEntityID()) != null
 						&& !abilityListsMap.get(pce.getEntityID()).isEmpty()) {
@@ -239,16 +239,16 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		if (evt.getNewValue() instanceof AbstractPlayerControlledEntity) {
-			addAbilitiesToEntity((AbstractPlayerControlledEntity) evt.getNewValue());
+		if (evt.getNewValue() instanceof PlayerControlledEntity) {
+			addAbilitiesToEntity((PlayerControlledEntity) evt.getNewValue());
 		}
 
-		if (evt.getOldValue() instanceof AbstractPlayerControlledEntity) {
-			removeDeadAbilities((AbstractPlayerControlledEntity) evt.getOldValue());
+		if (evt.getOldValue() instanceof PlayerControlledEntity) {
+			removeDeadAbilities((PlayerControlledEntity) evt.getOldValue());
 		}
 	}
 
-	private void addAbilitiesToEntity(AbstractPlayerControlledEntity pce) {
+	private void addAbilitiesToEntity(PlayerControlledEntity pce) {
 		ArrayList<AbstractAbility> abilitiesReferenceList = abilityReferenceMap
 				.get(pce.getClass().getSimpleName());
 		ArrayList<AbstractAbility> abilities = new ArrayList<AbstractAbility>();
@@ -281,7 +281,7 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 		abilityListsMap.put(pce.getEntityID(), abilities);
 	}
 
-	private void removeDeadAbilities(AbstractPlayerControlledEntity pce) {
+	private void removeDeadAbilities(PlayerControlledEntity pce) {
 		ArrayList<AbstractAbility> abilities = abilityListsMap.get(pce
 				.getEntityID());
 		INode occupiedNode = World.INSTANCE.getNodeAt(pce.getPosition());

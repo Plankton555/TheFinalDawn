@@ -9,7 +9,8 @@ import projectrts.model.world.Position;
  * @author Jakob Svensson
  * 
  */
-abstract class AbstractNonPlayerControlledEntity extends AbstractEntity {
+// TODO Jakob: PMD: Abstract classes should be named AbstractXXX
+abstract class NonPlayerControlledEntity extends AbstractEntity {
 
 	/**
 	 * Concrete version used for creating new instances according to factory
@@ -17,6 +18,5 @@ abstract class AbstractNonPlayerControlledEntity extends AbstractEntity {
 	 * 
 	 * @return A new instance of this class.
 	 */
-
-	public abstract AbstractNonPlayerControlledEntity createNPCE(Position pos);
+	public abstract NonPlayerControlledEntity createNPCE(Position pos);
 }

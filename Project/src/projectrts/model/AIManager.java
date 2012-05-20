@@ -8,7 +8,7 @@ import java.util.List;
 import projectrts.model.abilities.AbilityManager;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Player;
-import projectrts.model.entities.AbstractPlayerControlledEntity;
+import projectrts.model.entities.PlayerControlledEntity;
 
 // TODO Markus: ADD JAVADOC!
 class AIManager implements PropertyChangeListener {
@@ -32,7 +32,7 @@ class AIManager implements PropertyChangeListener {
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		if (evt.getOldValue() instanceof AbstractPlayerControlledEntity) {
+		if (evt.getOldValue() instanceof PlayerControlledEntity) {
 			for (int i = 0; i < microAIs.size(); i++) {
 				if (microAIs.get(i).getEntity().equals(evt.getOldValue())) {
 					microAIs.remove(i);
@@ -40,10 +40,9 @@ class AIManager implements PropertyChangeListener {
 			}
 		}
 
-
-		if (evt.getNewValue() instanceof AbstractPlayerControlledEntity) {
+		if (evt.getNewValue() instanceof PlayerControlledEntity) {
 			microAIs.add(new MicroAI(
-					(AbstractPlayerControlledEntity) evt.getNewValue(), abilityManager));
+					(PlayerControlledEntity) evt.getNewValue(), abilityManager));
 		}
 	}
 }

@@ -8,7 +8,7 @@ import projectrts.model.world.Position;
  * @author Jakob Svensson
  * 
  */
-public abstract class AbstractUnit extends AbstractPlayerControlledEntity{
+public abstract class AbstractUnit extends PlayerControlledEntity {
 	private float attackRange;
 
 	/**

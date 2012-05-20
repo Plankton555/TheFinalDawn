@@ -12,7 +12,9 @@ import projectrts.model.world.Position;
  * 
  * 
  */
-public abstract class AbstractPlayerControlledEntity extends AbstractEntity implements IPlayerControlledEntity{
+// TODO Jakob: PMD: Abstract classes should be named AbstractXXX
+public abstract class PlayerControlledEntity extends AbstractEntity implements
+		IPlayerControlledEntity {
 	private int currentHealth;
 	private int maxHealth;
 	private float sightRange;
@@ -156,5 +158,5 @@ public abstract class AbstractPlayerControlledEntity extends AbstractEntity impl
 	 *            the spawn position
 	 * @return the new pce
 	 */
-	public abstract AbstractPlayerControlledEntity createPCE(Player player, Position pos);
+	public abstract PlayerControlledEntity createPCE(Player player, Position pos);
 }

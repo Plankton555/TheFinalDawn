@@ -3,7 +3,7 @@ package projectrts.model.abilities;
 import java.util.HashMap;
 import java.util.Map;
 
-import projectrts.model.entities.AbstractPlayerControlledEntity;
+import projectrts.model.entities.PlayerControlledEntity;
 
 //TODO Markus: ADD JAVADOC!!
 final class AbilityFactory {
@@ -17,7 +17,7 @@ final class AbilityFactory {
 
 	// TODO Markus: Add javadoc
 	public static AbstractAbility createAbility(String abilityType,
-			AbstractPlayerControlledEntity entity) {
+			PlayerControlledEntity entity) {
 		AbstractAbility ability = abilityMap.get(abilityType);
 		if (ability == null) {
 			throw new IllegalStateException("You must register " + abilityType
@@ -32,8 +32,8 @@ final class AbilityFactory {
 	}
 
 	// TODO Markus: Add javadoc
-	public static AbstractAbility createUsingMoveAbility(String abilityType, 
-			AbstractPlayerControlledEntity entity, MoveAbility moveAbility) {
+	public static AbstractAbility createUsingMoveAbility(String abilityType,
+			PlayerControlledEntity entity, MoveAbility moveAbility) {
 		AbstractAbility ability = abilityMap.get(abilityType);
 		if (ability == null) {
 			throw new IllegalStateException("You must register " + abilityType
