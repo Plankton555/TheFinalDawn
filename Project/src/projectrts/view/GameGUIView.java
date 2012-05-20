@@ -92,13 +92,9 @@ public class GameGUIView implements PropertyChangeListener {
 		} else if ("ShowMessage".equals(pce.getPropertyName())) {
 			messageHandler.showMessage(pce.getNewValue().toString());
 
-		} else if (pce.getPropertyName().equals("entityRemoved")) {
-			// TODO Afton: Could these nested if statements be combined?
-			// /Plankton
-			if (pce.getOldValue() == selectedPce) {
-				selectedPce = null;
-				updateSelected(null);
-			}
+		} else if (pce.getPropertyName().equals("entityRemoved") && pce.getOldValue() == selectedPce) {
+			selectedPce = null;
+			updateSelected(null);
 		} else if ("TargetNotResource".equals(pce.getPropertyName())) {
 			messageHandler
 					.showMessage("Target is invalid, must target a Resource");
@@ -124,11 +120,8 @@ public class GameGUIView implements PropertyChangeListener {
 				updateHandler.showBuildInfo("Training Unit\nTime left: "
 						+ pce.getNewValue());
 			}
-		} else if ("BuildCompleted".equals(pce.getPropertyName())) {
-			// TODO Afton: PMD: These nested if statements could be combined
-			if (pce.getOldValue() == selectedPce) {
-				updateHandler.showBuildInfo("");
-			}
+		} else if ("BuildCompleted".equals(pce.getPropertyName()) && pce.getOldValue() == selectedPce) {
+			updateHandler.showBuildInfo("");
 		}
 	}
 

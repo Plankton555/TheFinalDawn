@@ -167,7 +167,7 @@ public class InGameGUIController implements ScreenController, PropertyChangeList
 			}
 
 		} catch (NumberFormatException e) {
-			// TODO Afton: PMD: Avoid empty catch blocks
+			
 		}
 		return ability;
 	}
