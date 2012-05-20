@@ -3,7 +3,7 @@ package projectrts.model.abilities;
 import projectrts.model.entities.AbstractUnit;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IPlayerControlledEntity;
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.world.Position;
 
 /**
@@ -14,7 +14,7 @@ import projectrts.model.world.Position;
  */
 public class AttackAbility extends AbstractAbility implements
 		IMoveable, ITargetAbility {
-	private PlayerControlledEntity target;
+	private AbstractPlayerControlledEntity target;
 
 	private MoveAbility moveAbility;
 	private double range;
@@ -27,7 +27,7 @@ public class AttackAbility extends AbstractAbility implements
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity,
+	protected void initialize(AbstractPlayerControlledEntity entity,
 			MoveAbility moveAbility) {
 		this.entity = entity;
 		this.moveAbility = moveAbility;
@@ -78,7 +78,7 @@ public class AttackAbility extends AbstractAbility implements
 	}
 
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity,
+	public AbstractAbility createAbility(AbstractPlayerControlledEntity entity,
 			MoveAbility moveAbility) {
 		AttackAbility newAbility = new AttackAbility();
 		newAbility.initialize(entity, moveAbility);

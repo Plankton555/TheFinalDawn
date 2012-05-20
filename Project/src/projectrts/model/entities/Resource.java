@@ -8,7 +8,7 @@ import projectrts.model.world.Position;
  * @author Jakob Svensson
  * 
  */
-public class Resource extends NonPlayerControlledEntity {
+public class Resource extends AbstractNonPlayerControlledEntity {
 
 	private static float size = 1;
 	private static int mineAmount = 4;
@@ -27,7 +27,7 @@ public class Resource extends NonPlayerControlledEntity {
 	}
 
 	@Override
-	public NonPlayerControlledEntity createNPCE(Position pos) {
+	public AbstractNonPlayerControlledEntity createNPCE(Position pos) {
 		Resource newResource = new Resource();
 		newResource.initialize(pos);
 		return newResource;

@@ -1,6 +1,6 @@
 package projectrts.model.abilities;
 
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 
 /**
  * Any ability that will NOT use a MoveAbility internally must implement this.
@@ -17,5 +17,5 @@ interface IStationaryAbility {
 	 *            The PlayerControlledEntity that is connected to this ability.
 	 * @return The new ability.
 	 */
-	AbstractAbility createAbility(PlayerControlledEntity entity);
+	AbstractAbility createAbility(AbstractPlayerControlledEntity entity);
 }

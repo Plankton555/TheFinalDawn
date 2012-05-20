@@ -21,7 +21,7 @@ public enum EntityManager implements IEntityManager {
 	private final List<AbstractEntity> allEntities = new ArrayList<AbstractEntity>();
 	private final List<AbstractEntity> entitiesAddQueue = new ArrayList<AbstractEntity>();
 	private final List<AbstractEntity> entitiesRemoveQueue = new ArrayList<AbstractEntity>();
-	private final List<PlayerControlledEntity> selectedEntities = new ArrayList<PlayerControlledEntity>();
+	private final List<AbstractPlayerControlledEntity> selectedEntities = new ArrayList<AbstractPlayerControlledEntity>();
 	private int idCounter = 0;
 	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -96,7 +96,7 @@ public enum EntityManager implements IEntityManager {
 	 *            The position of the entity.
 	 */
 	public void addNewNPCE(String npce, Position pos) {
-		NonPlayerControlledEntity newNPCE = EntityFactory.createNPCE(npce, pos);
+		AbstractNonPlayerControlledEntity newNPCE = EntityFactory.createNPCE(npce, pos);
 		entitiesAddQueue.add(newNPCE);
 	}
 
@@ -111,7 +111,7 @@ public enum EntityManager implements IEntityManager {
 	 *            The position of the entity.
 	 */
 	public void addNewPCE(String pce, Player iPlayer, Position pos) {
-		PlayerControlledEntity newPCE = EntityFactory.createPCE(pce, iPlayer,
+		AbstractPlayerControlledEntity newPCE = EntityFactory.createPCE(pce, iPlayer,
 				pos);
 		entitiesAddQueue.add(newPCE);
 	}
@@ -131,10 +131,10 @@ public enum EntityManager implements IEntityManager {
 
 	// TODO Markus: Possible duplicated code
 	@Override
-	public PlayerControlledEntity getPCEAtPosition(Position pos) {
+	public AbstractPlayerControlledEntity getPCEAtPosition(Position pos) {
 		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();
 		for (IEntity entity : entities) {
-			if (entity instanceof PlayerControlledEntity) {
+			if (entity instanceof AbstractPlayerControlledEntity) {
 				float unitSize = entity.getSize();
 				Position unitPos = entity.getPosition();
 
@@ -145,7 +145,7 @@ public enum EntityManager implements IEntityManager {
 						&& se.chalmers.pebjorn.javautils.Math.isWithin(
 								pos.getY(), unitPos.getY() - unitSize / 2,
 								unitPos.getY() + unitSize / 2)) {
-					return (PlayerControlledEntity) entity;
+					return (AbstractPlayerControlledEntity) entity;
 				}
 			}
 		}
@@ -163,7 +163,7 @@ public enum EntityManager implements IEntityManager {
 	 * @return A PCE if there is one on the position that the player owns,
 	 *         otherwise null.
 	 */
-	public PlayerControlledEntity getPCEAtPosition(Position pos, Player player) {
+	public AbstractPlayerControlledEntity getPCEAtPosition(Position pos, Player player) {
 		if (getPCEAtPosition(pos) != null) {
 			// TODO Markus: PMD: These nested if statements could be combined
 			if (getPCEAtPosition(pos).getOwner().equals(player)) {
@@ -175,10 +175,10 @@ public enum EntityManager implements IEntityManager {
 
 	// TODO Markus: Extract common code from getPlayerControlledEntityAtPosition and this method
 	@Override
-	public NonPlayerControlledEntity getNPCEAtPosition(Position pos) {
+	public AbstractNonPlayerControlledEntity getNPCEAtPosition(Position pos) {
 		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();
 		for (IEntity entity : entities) {
-			if (entity instanceof NonPlayerControlledEntity) {
+			if (entity instanceof AbstractNonPlayerControlledEntity) {
 				float unitSize = entity.getSize();
 				Position unitPos = entity.getPosition();
 
@@ -189,7 +189,7 @@ public enum EntityManager implements IEntityManager {
 						&& se.chalmers.pebjorn.javautils.Math.isWithin(
 								pos.getY(), unitPos.getY() - unitSize / 2,
 								unitPos.getY() + unitSize / 2)) {
-					return (NonPlayerControlledEntity) entity;
+					return (AbstractNonPlayerControlledEntity) entity;
 				}
 			}
 		}
@@ -200,7 +200,7 @@ public enum EntityManager implements IEntityManager {
 	public void select(Position pos, IPlayer owner) {
 		selectedEntities.clear();
 		// PlayerControlledEntity entity = getPCEAtPosition(pos, owner);
-		PlayerControlledEntity entity = getPCEAtPosition(pos);
+		AbstractPlayerControlledEntity entity = getPCEAtPosition(pos);
 		if (entity != null) { // No entity is at that position
 			selectedEntities.add(entity);
 			pcs.firePropertyChange("entitySelected", null ,null);
@@ -221,8 +221,8 @@ public enum EntityManager implements IEntityManager {
 			IPlayer owner) {
 		List<IPlayerControlledEntity> output = new ArrayList<IPlayerControlledEntity>();
 		for (IEntity entity : selectedEntities) {
-			if (entity instanceof PlayerControlledEntity) {
-				PlayerControlledEntity pce = (PlayerControlledEntity) entity;
+			if (entity instanceof AbstractPlayerControlledEntity) {
+				AbstractPlayerControlledEntity pce = (AbstractPlayerControlledEntity) entity;
 				if (pce.getOwner().equals(owner)) {
 					output.add(pce);
 				}
@@ -232,10 +232,10 @@ public enum EntityManager implements IEntityManager {
 	}
 
 	// TODO Markus(?): Add javadoc
-	public boolean isSelected(PlayerControlledEntity entity) {
+	public boolean isSelected(AbstractPlayerControlledEntity entity) {
 		boolean ans = false;
 
-		for (PlayerControlledEntity sEntity : selectedEntities) {
+		for (AbstractPlayerControlledEntity sEntity : selectedEntities) {
 			if (entity.equals(sEntity)) {
 				ans = true;
 			}
@@ -266,16 +266,16 @@ public enum EntityManager implements IEntityManager {
 	}
 
 	// TODO Markus: Add javadoc
-	public PlayerControlledEntity getClosestEnemy(PlayerControlledEntity pce) {
+	public AbstractPlayerControlledEntity getClosestEnemy(AbstractPlayerControlledEntity pce) {
 		List<AbstractEntity> nearbyEntities = getNearbyEntities(
 				pce.getPosition(), pce.getSightRange());
-		PlayerControlledEntity closestPCE = null;
+		AbstractPlayerControlledEntity closestPCE = null;
 
 		for (AbstractEntity entity : nearbyEntities) {
-			if (entity instanceof PlayerControlledEntity) {
-				PlayerControlledEntity otherPCE = (PlayerControlledEntity) entity;
+			if (entity instanceof AbstractPlayerControlledEntity) {
+				AbstractPlayerControlledEntity otherPCE = (AbstractPlayerControlledEntity) entity;
 				if (closestPCE == null && pce.getOwner() != otherPCE.getOwner()) {
-					closestPCE = (PlayerControlledEntity) entity;
+					closestPCE = (AbstractPlayerControlledEntity) entity;
 				} else if (closestPCE != null) {
 					// TODO Markus: PMD: Deeply nested if..then statements are hard to read
 					// TODO Markus: PMD: These nested if statements could be combined
@@ -283,7 +283,7 @@ public enum EntityManager implements IEntityManager {
 							entity.getPosition()) < Position.getDistance(
 							pce.getPosition(), closestPCE.getPosition())
 							&& pce.getOwner() != otherPCE.getOwner()) {
-						closestPCE = (PlayerControlledEntity) entity;
+						closestPCE = (AbstractPlayerControlledEntity) entity;
 					}
 				}
 			}
@@ -292,20 +292,20 @@ public enum EntityManager implements IEntityManager {
 	}
 
 	// TODO Markus(?): Add javadoc
-	public PlayerControlledEntity getClosestEnemyStructure(
-			PlayerControlledEntity pce) {
+	public AbstractPlayerControlledEntity getClosestEnemyStructure(
+			AbstractPlayerControlledEntity pce) {
 		List<AbstractEntity> nearbyEntities = getNearbyEntities(
 				pce.getPosition(),
 				(float) Math.sqrt(Math.pow(100, 2) + Math.pow(100, 2))); // TODO Markus: Change this
-		PlayerControlledEntity closestEnemyStruct = null;
+		AbstractPlayerControlledEntity closestEnemyStruct = null;
 
 		for (AbstractEntity entity : nearbyEntities) {
-			if (entity instanceof PlayerControlledEntity) {
-				PlayerControlledEntity otherPCE = (PlayerControlledEntity) entity;
+			if (entity instanceof AbstractPlayerControlledEntity) {
+				AbstractPlayerControlledEntity otherPCE = (AbstractPlayerControlledEntity) entity;
 				if (otherPCE instanceof AbstractStructure) {
 					if (closestEnemyStruct == null
 							&& pce.getOwner() != otherPCE.getOwner()) {
-						closestEnemyStruct = (PlayerControlledEntity) entity;
+						closestEnemyStruct = (AbstractPlayerControlledEntity) entity;
 					} else if (closestEnemyStruct != null) {
 						// TODO Markus: PMD: Deeply nested if..then statements are hard to read
 						// TODO Markus: PMD: These nested if statements could be combined
@@ -314,7 +314,7 @@ public enum EntityManager implements IEntityManager {
 								pce.getPosition(),
 								closestEnemyStruct.getPosition())
 								&& pce.getOwner() != otherPCE.getOwner()) {
-							closestEnemyStruct = (PlayerControlledEntity) entity;
+							closestEnemyStruct = (AbstractPlayerControlledEntity) entity;
 						}
 					}
 				}

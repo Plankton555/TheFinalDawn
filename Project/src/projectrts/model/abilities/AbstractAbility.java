@@ -3,7 +3,7 @@ package projectrts.model.abilities;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.world.Position;
 
 /**
@@ -18,7 +18,7 @@ abstract class AbstractAbility implements IAbility {
 	private float cooldown;
 	private float remainingCooldown = 0;
 	protected final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-	protected PlayerControlledEntity entity;
+	protected AbstractPlayerControlledEntity entity;
 
 	/**
 	 * Sets the max cooldown of the ability

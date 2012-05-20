@@ -29,7 +29,7 @@ public class Barracks extends AbstractStructure {
 	}
 
 	@Override
-	public PlayerControlledEntity createPCE(Player owner, Position pos) {
+	public AbstractPlayerControlledEntity createPCE(Player owner, Position pos) {
 		Barracks newBarracks = new Barracks();
 		newBarracks.initialize(owner, pos);
 		return newBarracks;

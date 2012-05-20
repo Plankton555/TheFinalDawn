@@ -3,7 +3,7 @@ package projectrts.model;
 import projectrts.model.abilities.AttackAbility;
 import projectrts.model.abilities.IAbilityManager;
 import projectrts.model.entities.EntityManager;
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.entities.Worker;
 
 /**
@@ -13,8 +13,8 @@ import projectrts.model.entities.Worker;
  * 
  */
 class MicroAI {
-	private final PlayerControlledEntity myPCE;
-	private PlayerControlledEntity target;
+	private final AbstractPlayerControlledEntity myPCE;
+	private AbstractPlayerControlledEntity target;
 	private final IAbilityManager abilityManager;
 	private final EntityManager entityManager;
 
@@ -27,7 +27,7 @@ class MicroAI {
 	 * @param unit
 	 *            The unit
 	 */
-	public MicroAI(PlayerControlledEntity pce, IAbilityManager abilityManager) {
+	public MicroAI(AbstractPlayerControlledEntity pce, IAbilityManager abilityManager) {
 		this.myPCE = pce;
 		this.abilityManager = abilityManager;
 		this.entityManager = EntityManager.INSTANCE;
@@ -40,7 +40,7 @@ class MicroAI {
 				target = null;
 				abilityManager.abortAbility(
 						AttackAbility.class.getSimpleName(), myPCE);
-				myPCE.setState(PlayerControlledEntity.State.IDLE);
+				myPCE.setState(AbstractPlayerControlledEntity.State.IDLE);
 			} else {
 				if (!EntityManager.INSTANCE.getClosestEnemy(myPCE).equals(
 						target)
@@ -55,7 +55,7 @@ class MicroAI {
 	}
 
 	// TODO Markus: Add javadoc
-	public PlayerControlledEntity getEntity() {
+	public AbstractPlayerControlledEntity getEntity() {
 		return myPCE;
 	}
 }

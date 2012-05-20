@@ -125,7 +125,6 @@ public class GameView{
 	}
 
     
-    //TODO Jakob: Add javadoc
     public void drawNodes(List<projectrts.model.world.INode> coveredNodes){
     	   	
     	List<INode> oldNodes = getNodes(mouseEffects.getChildren());

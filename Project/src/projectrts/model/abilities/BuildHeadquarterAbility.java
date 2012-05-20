@@ -1,7 +1,7 @@
 package projectrts.model.abilities;
 
 import projectrts.model.entities.Headquarter;
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 
 /**
  * An ability for building Headquarter
@@ -23,7 +23,7 @@ class BuildHeadquarterAbility extends AbstractConstructAbility implements
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity,
+	protected void initialize(AbstractPlayerControlledEntity entity,
 			MoveAbility moveAbility) {
 		super.initialize(entity, moveAbility);
 		this.setBuildCost(buildCost);
@@ -38,7 +38,7 @@ class BuildHeadquarterAbility extends AbstractConstructAbility implements
 	}
 
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity,
+	public AbstractAbility createAbility(AbstractPlayerControlledEntity entity,
 			MoveAbility moveAbility) {
 		BuildHeadquarterAbility newAbility = new BuildHeadquarterAbility();
 		newAbility.initialize(entity, moveAbility);

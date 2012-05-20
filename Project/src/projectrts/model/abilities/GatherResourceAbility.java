@@ -7,7 +7,7 @@ import projectrts.model.entities.AbstractStructure;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.Player;
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.entities.Resource;
 import projectrts.model.world.Position;
 
@@ -23,7 +23,7 @@ public class GatherResourceAbility extends AbstractAbility implements
 	public static final int RESOURCE_CARRIED_AMOUNT = 12;
 	private static final int RANGE = 1;
 	private Resource targetResource;
-	private PlayerControlledEntity entity;
+	private AbstractPlayerControlledEntity entity;
 	private AbstractAbility moveAbility;
 	private int resourceCarriedAmount = 0;
 	private static final float RECOVERY_TIME = .4f;
@@ -41,7 +41,7 @@ public class GatherResourceAbility extends AbstractAbility implements
 	/**
 	 * When subclassing, invoke this to initialize the ability.
 	 */
-	protected void initialize(PlayerControlledEntity entity,
+	protected void initialize(AbstractPlayerControlledEntity entity,
 			MoveAbility moveAbility) {
 
 		this.moveAbility = moveAbility;
@@ -83,7 +83,7 @@ public class GatherResourceAbility extends AbstractAbility implements
 	}
 
 	@Override
-	public AbstractAbility createAbility(PlayerControlledEntity entity,
+	public AbstractAbility createAbility(AbstractPlayerControlledEntity entity,
 			MoveAbility moveAbility) {
 		GatherResourceAbility newAbility = new GatherResourceAbility();
 		newAbility.initialize(entity, moveAbility);

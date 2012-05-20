@@ -33,7 +33,7 @@ public class Warrior extends AbstractUnit {
 	}
 
 	@Override
-	public PlayerControlledEntity createPCE(Player owner, Position pos) {
+	public AbstractPlayerControlledEntity createPCE(Player owner, Position pos) {
 		Warrior newWarrior = new Warrior();
 		newWarrior.initialize(owner, pos);
 		return newWarrior;

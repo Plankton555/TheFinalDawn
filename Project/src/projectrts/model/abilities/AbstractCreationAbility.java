@@ -4,7 +4,7 @@ import projectrts.model.abilities.pathfinding.AStar;
 import projectrts.model.entities.AbstractStructure;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Player;
-import projectrts.model.entities.PlayerControlledEntity;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.world.Position;
 
 /**
@@ -22,7 +22,7 @@ abstract class AbstractCreationAbility extends AbstractAbility {
 	private Position spawnPos;
 	private String entityToTrain;
 
-	protected void initialize(PlayerControlledEntity entity) {
+	protected void initialize(AbstractPlayerControlledEntity entity) {
 		this.entity = entity;
 		this.setCooldown(cooldown);
 	}

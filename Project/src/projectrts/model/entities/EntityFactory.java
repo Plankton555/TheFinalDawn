@@ -12,8 +12,8 @@ import projectrts.model.world.Position;
  * 
  */
 public final class EntityFactory {
-	private static Map<String, PlayerControlledEntity> pceMap = new HashMap<String, PlayerControlledEntity>();
-	private static Map<String, NonPlayerControlledEntity> npceMap = new HashMap<String, NonPlayerControlledEntity>();
+	private static Map<String, AbstractPlayerControlledEntity> pceMap = new HashMap<String, AbstractPlayerControlledEntity>();
+	private static Map<String, AbstractNonPlayerControlledEntity> npceMap = new HashMap<String, AbstractNonPlayerControlledEntity>();
 
 	/**
 	 * Registers a PlayerControlledEntity in the factory. Registering an entity
@@ -24,7 +24,7 @@ public final class EntityFactory {
 	 * @param pce
 	 *            An instance of the entity you want to register.
 	 */
-	public static void registerPCE(String pceType, PlayerControlledEntity pce) {
+	public static void registerPCE(String pceType, AbstractPlayerControlledEntity pce) {
 		pceMap.put(pceType, pce);
 	}
 
@@ -41,7 +41,7 @@ public final class EntityFactory {
 	 *            The position of the desired entity.
 	 * @return An instance of the desired entity.
 	 */
-	public static PlayerControlledEntity createPCE(String pceType,
+	public static AbstractPlayerControlledEntity createPCE(String pceType,
 			Player aiPlayer, Position pos) {
 		if (pceMap.get(pceType) == null) {
 			throw new IllegalStateException("You must register " + pceType
@@ -61,7 +61,7 @@ public final class EntityFactory {
 	 *            An instance of the entity you want to register.
 	 */
 	public static void registerNPCE(String npceType,
-			NonPlayerControlledEntity npce) {
+			AbstractNonPlayerControlledEntity npce) {
 		npceMap.put(npceType, npce);
 	}
 
@@ -76,7 +76,7 @@ public final class EntityFactory {
 	 *            The position of the desired entity.
 	 * @return An instance of the desired entity.
 	 */
-	public static NonPlayerControlledEntity createNPCE(String npceType,
+	public static AbstractNonPlayerControlledEntity createNPCE(String npceType,
 			Position pos) {
 		if (npceMap.get(npceType) == null) {
 			throw new IllegalStateException("You must register " + npceType

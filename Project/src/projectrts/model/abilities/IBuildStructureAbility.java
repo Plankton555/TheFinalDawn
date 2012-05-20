@@ -7,6 +7,5 @@ package projectrts.model.abilities;
  * 
  */
 public interface IBuildStructureAbility {
-	// TODO Jakob: Add javadoc
 	float getSizeOfBuilding();
 }

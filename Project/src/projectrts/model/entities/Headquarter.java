@@ -29,7 +29,7 @@ public class Headquarter extends AbstractStructure {
 	}
 
 	@Override
-	public PlayerControlledEntity createPCE(Player owner, Position pos) {
+	public AbstractPlayerControlledEntity createPCE(Player owner, Position pos) {
 		Headquarter newHQ = new Headquarter();
 		newHQ.initialize(owner, pos);
 		return newHQ;
