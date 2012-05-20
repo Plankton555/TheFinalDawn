@@ -203,8 +203,9 @@ public enum EntityManager implements IEntityManager {
 		AbstractPlayerControlledEntity entity = getPCEAtPosition(pos);
 		if (entity != null) { // No entity is at that position
 			selectedEntities.add(entity);
-			pcs.firePropertyChange("entitySelected", null ,null);
+			
 		}
+		pcs.firePropertyChange("entitySelected", null ,null);
 	}
 
 	@Override
