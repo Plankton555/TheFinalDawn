@@ -263,6 +263,7 @@ public enum EntityManager implements IEntityManager {
 		return output;
 	}
 
+	// TODO Markus: Add comments
 	public AbstractPlayerControlledEntity getClosestEnemy(
 			AbstractPlayerControlledEntity pce) {
 		List<AbstractEntity> nearbyEntities = getNearbyEntities(
@@ -286,6 +287,7 @@ public enum EntityManager implements IEntityManager {
 		return closestPCE;
 	}
 
+	// TODO Markus: Add comments
 	public AbstractPlayerControlledEntity getClosestEnemyStructure(
 			AbstractPlayerControlledEntity pce) {
 		List<IEntity> entities = this.getAllEntities();
