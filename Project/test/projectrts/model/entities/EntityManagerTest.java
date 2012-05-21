@@ -105,7 +105,11 @@ public class EntityManagerTest {
 	
 	@Test
 	public void testGetNPCEAtPosition() {
-		// TODO Implement this test
+		new GameModel();
+		EntityManager.INSTANCE.resetData();
+		EntityManager.INSTANCE.addNewNPCE(Resource.class.getSimpleName(), new Position(10, 10));
+		EntityManager.INSTANCE.addNewNPCE(Resource.class.getSimpleName(), new Position(7, 7));
+		// TODO Plankton is working here
 	}
 	
 	@Test
