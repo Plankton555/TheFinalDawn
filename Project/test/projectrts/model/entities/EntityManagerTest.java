@@ -90,7 +90,20 @@ public class EntityManagerTest {
 	
 	@Test
 	public void testGetEntityAtPosition() {
-		// TODO Implement this test
+		new GameModel();
+		Player player = new Player(null);
+		EntityManager.INSTANCE.resetData();
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(10, 10));
+		EntityManager.INSTANCE.addNewNPCE(Resource.class.getSimpleName(), new Position(20, 20));
+		EntityManager.INSTANCE.update(1);
+		
+		IEntity entity = EntityManager.INSTANCE.getEntityAtPosition(new Position(7, 7));
+		assertTrue(entity == null);
+		entity = EntityManager.INSTANCE.getEntityAtPosition(new Position(10, 10));
+		assertTrue(entity instanceof AbstractPlayerControlledEntity);
+		entity = EntityManager.INSTANCE.getEntityAtPosition(new Position(20, 20));
+		assertTrue(entity instanceof AbstractNonPlayerControlledEntity);
 	}
 	
 	@Test
@@ -101,6 +114,7 @@ public class EntityManagerTest {
 		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
 				new Position(10, 10));
 		EntityManager.INSTANCE.update(1);
+		
 		AbstractPlayerControlledEntity pce =
 				EntityManager.INSTANCE.getPCEAtPosition(new Position(7, 7));
 		assertTrue(pce == null);
@@ -110,7 +124,28 @@ public class EntityManagerTest {
 	
 	@Test
 	public void testGetPCEAtPositionPositionPlayer() {
-		// TODO Implement this test
+		new GameModel();
+		Player player1 = new Player(null);
+		Player player2 = new Player(null);
+		EntityManager.INSTANCE.resetData();
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player1,
+				new Position(10, 10));
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player2,
+				new Position(20, 20));
+		EntityManager.INSTANCE.update(1);
+		
+		AbstractPlayerControlledEntity pce =
+				EntityManager.INSTANCE.getPCEAtPosition(new Position(7, 7), player1);
+		assertTrue(pce == null);
+		pce = EntityManager.INSTANCE.getPCEAtPosition(new Position(10, 10), player1);
+		assertTrue(pce != null);
+		
+		pce = EntityManager.INSTANCE.getPCEAtPosition(new Position(10, 10), player2);
+		assertTrue(pce == null);
+		pce = EntityManager.INSTANCE.getPCEAtPosition(new Position(20, 20), player2);
+		assertTrue(pce != null);
+		pce = EntityManager.INSTANCE.getPCEAtPosition(new Position(20, 20), player1);
+		assertTrue(pce == null);
 	}
 	
 	@Test
@@ -119,6 +154,7 @@ public class EntityManagerTest {
 		EntityManager.INSTANCE.resetData();
 		EntityManager.INSTANCE.addNewNPCE(Resource.class.getSimpleName(), new Position(10, 10));
 		EntityManager.INSTANCE.update(1);
+		
 		AbstractNonPlayerControlledEntity npce =
 				EntityManager.INSTANCE.getNPCEAtPosition(new Position(7, 7));
 		assertTrue(npce == null);
