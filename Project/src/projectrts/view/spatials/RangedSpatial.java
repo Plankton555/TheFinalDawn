@@ -51,11 +51,11 @@ public final class RangedSpatial extends AbstractSpatial implements
 		if (entity instanceof AbstractPlayerControlledEntity) {
 			AbstractPlayerControlledEntity pce = (AbstractPlayerControlledEntity) entity;
 			if (pce.getOwner().getColor() == PlayerColor.BLUE) {
-				texture = TextureManager.getTexture("Marine");
+				texture = TextureManager.getTexture("Marine_blue");
 			}
 			else if (pce.getOwner().getColor() == PlayerColor.RED) {
 				// TODO Plankton: Fix texture
-				texture = TextureManager.getTexture("Barracks");
+				texture = TextureManager.getTexture("Marine_red");
 			}
 		}
 		material.setTexture("ColorMap", texture);

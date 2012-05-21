@@ -51,11 +51,11 @@ public final class WarriorSpatial extends AbstractSpatial implements
 		if (entity instanceof AbstractPlayerControlledEntity) {
 			AbstractPlayerControlledEntity pce = (AbstractPlayerControlledEntity) entity;
 			if (pce.getOwner().getColor() == PlayerColor.BLUE) {
-				texture = TextureManager.getTexture("Drone");
+				texture = TextureManager.getTexture("Drone_blue");
 			}
 			else if (pce.getOwner().getColor() == PlayerColor.RED) {
 				// TODO Plankton: Fix texture
-				texture = TextureManager.getTexture("GoldMine");
+				texture = TextureManager.getTexture("Drone_red");
 			}
 		}
 		material.setTexture("ColorMap", texture);

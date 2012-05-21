@@ -59,11 +59,17 @@ public class TextureManager {
 		textures.put("SCV",
 				assetManager.loadTexture("assets/sprites/SC_scv.png"));
 
-		textures.put("Drone",
-				assetManager.loadTexture("assets/sprites/SC_drone.png"));
+		textures.put("Drone_blue",
+				assetManager.loadTexture("assets/sprites/SC_drone_blue.png"));
+		
+		textures.put("Drone_red",
+				assetManager.loadTexture("assets/sprites/SC_drone_red.png"));
 
-		textures.put("Marine",
-				assetManager.loadTexture("assets/sprites/SC_marine.png"));
+		textures.put("Marine_blue",
+				assetManager.loadTexture("assets/sprites/SC_marine_blue.png"));
+		
+		textures.put("Marine_red",
+				assetManager.loadTexture("assets/sprites/SC_marine_red.png"));
 
 		textures.put("SelectSquare",
 				assetManager.loadTexture("assets/sprites/select_square.png"));
