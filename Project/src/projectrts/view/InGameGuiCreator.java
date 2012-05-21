@@ -122,7 +122,7 @@ public final class InGameGuiCreator {
 				control(new LabelBuilder("Label_Name") {
 					{
 						width("100%");
-						color("#00FF");
+						color(GREEN_COLOR);
 					}
 				});
 
