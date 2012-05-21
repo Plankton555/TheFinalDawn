@@ -24,7 +24,6 @@ import com.jme3.math.Vector3f;
  * @author Markus Ekström modified by Jakob Svensson
  * 
  */
-// TODO Markus: PMD: The class 'InputController' has a Cyclomatic Complexity of 3 (Highest = 10).
 class InputController {
 
 	// Before the mouse is moved it has the position (0, 0), causing the camera
@@ -82,9 +81,8 @@ class InputController {
 	 * 
 	 * @param tpf
 	 */
-	// TODO Markus: PMD: The method 'updateCamera' has a Cyclomatic Complexity of 10.
 	private void updateCamera(float tpf) {
-		if (analogInputHandler.getMouseActivated()) {
+		if (analogInputHandler.isMouseActivated()) {
 			Vector3f loc = app.getCamera().getLocation();
 			Vector2f mLoc = app.getInputManager().getCursorPosition();
 			float margin = CAMERA_MOVE_MARGIN;

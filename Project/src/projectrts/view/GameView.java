@@ -40,13 +40,11 @@ public class GameView {
 	// The node for mouseEffects
 	private final Node mouseEffects = new Node("mouseEffects");
 	// The modifier value for converting lengths between model and world.
-	// TODO Markus: PMD: Variables that are final and static should be in all caps.
-	private final static float mod = InGameState.MODEL_TO_WORLD;
+	private final static float MOD = InGameState.MODEL_TO_WORLD;
 	private final EntityHandler entityHandler;
 	private final TerrainHandler terrainHandler;
 
-	// TODO Markus: PMD: Private field 'debugNodes' could be made final; it is only initialized in the declaration or constructor.
-	private boolean debugNodes = false;
+	private final boolean debugNodes = false;
 
 	static {
 		try {
@@ -114,9 +112,9 @@ public class GameView {
 			nodeShapes[i] = new Box[nodes[i].length];
 			for (int j = 0; j < nodes[i].length; j++) {
 				nodeShapes[i][j] = new Box(new Vector3f((float) nodes[i][j]
-						.getPosition().getX() * mod, -(float) nodes[i][j]
-						.getPosition().getY() * mod, 1), (0.1f * mod) / 2,
-						(0.1f * mod) / 2, 0);
+						.getPosition().getX() * MOD, -(float) nodes[i][j]
+						.getPosition().getY() * MOD, 1), (0.1f * MOD) / 2,
+						(0.1f * MOD) / 2, 0);
 
 				AbstractSpatial nodeSpatial = SpatialFactory.createNodeSpatial(
 						NodeSpatial.class.getSimpleName(), nodes[i][j]
@@ -174,8 +172,8 @@ public class GameView {
 
 	private void addNodeSpatial(INode node) {
 		Box nodeBox = new Box(new Vector3f((float) node.getPosition().getX()
-				* mod, -(float) node.getPosition().getY() * mod, 1),
-				(1f * mod) / 2, (1f * mod) / 2, 0);
+				* MOD, -(float) node.getPosition().getY() * MOD, 1),
+				(1f * MOD) / 2, (1f * MOD) / 2, 0);
 		AbstractSpatial nodeSpatial = SpatialFactory.createNodeSpatial(
 				NodeSpatial.class.getSimpleName(), node.getClass()
 						.getSimpleName(), nodeBox, node);

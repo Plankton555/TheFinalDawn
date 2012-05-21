@@ -31,8 +31,7 @@ class EntityHandler implements PropertyChangeListener {
 	// The node for the selected graphics
 	private final Node selected = new Node("selected");
 	// The modifier value for converting lengths between model and world.
-	// TODO Markus: PMD: Variables that are final and static should be in all caps.
-	private final static float mod = InGameState.MODEL_TO_WORLD;
+	private final static float MOD = InGameState.MODEL_TO_WORLD;
 
 	public EntityHandler(SimpleApplication app, IGame game) {
 		this.app = app;
@@ -61,8 +60,8 @@ class EntityHandler implements PropertyChangeListener {
 		// instantly translated to the correct place by moveControl.
 		// Gets the size from the model and converts it to world size.
 		Box shape = new Box(new Vector3f(0, 0, 0),
-				(newEntity.getSize() * mod) / 2,
-				(newEntity.getSize() * mod) / 2, 0);
+				(newEntity.getSize() * MOD) / 2,
+				(newEntity.getSize() * MOD) / 2, 0);
 		// Create spatial.
 		AbstractSpatial entitySpatial = SpatialFactory.createEntitySpatial(
 				newEntity.getClass().getSimpleName() + "Spatial", newEntity
@@ -102,8 +101,8 @@ class EntityHandler implements PropertyChangeListener {
 			// The control will instantly translate it to the correct location.
 			Box circle = new Box(new Vector3f(0, 0, -1), (selectedEntities.get(
 					i).getSize() + 0.3f)
-					/ 2 * mod, (selectedEntities.get(i).getSize() + 0.3f) / 2
-					* mod, 0);
+					/ 2 * MOD, (selectedEntities.get(i).getSize() + 0.3f) / 2
+					* MOD, 0);
 			AbstractSpatial circleSpatial = SpatialFactory.createEntitySpatial(
 					SelectSpatial.class.getSimpleName(), selectedEntities
 							.get(i).getName(), circle, selectedEntities.get(i));
