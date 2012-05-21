@@ -4,7 +4,7 @@ import javax.vecmath.Vector2d;
 
 import projectrts.model.abilities.pathfinding.AStar;
 import projectrts.model.abilities.pathfinding.AStarPath;
-import projectrts.model.abilities.pathfinding.AStarUser;
+import projectrts.model.abilities.pathfinding.AStarUsable;
 import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.world.INode;
 import projectrts.model.world.Position;
@@ -17,7 +17,7 @@ import projectrts.model.world.World;
  * 
  */
 public class MoveAbility extends AbstractAbility implements IStationaryAbility,
-		ITargetAbility, AStarUser {
+		ITargetAbility, AStarUsable {
 	private Position targetPosition;
 
 	private World world;
@@ -140,7 +140,7 @@ public class MoveAbility extends AbstractAbility implements IStationaryAbility,
 	}
 
 	@Override
-	public void receivePath(AStarPath newPath) {
+	public synchronized void receivePath(AStarPath newPath) {
 		if (this.waitingForPath) {
 			this.path = newPath;
 

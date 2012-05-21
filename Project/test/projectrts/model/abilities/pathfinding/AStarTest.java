@@ -61,7 +61,7 @@ public class AStarTest {
 		Position targetPos = new Position(15.5, 20.5);
 		AStarNode endNode = new AStarNode(new Node(targetPos));
 
-		AStarUser astarUser = new AStarUser() {
+		AStarUsable astarUser = new AStarUsable() {
 
 			@Override
 			public void receivePath(AStarPath path) {

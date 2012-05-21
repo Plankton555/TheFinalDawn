@@ -75,7 +75,7 @@ public final class AStar {
 	 * @return An AStarPath from startPos to targetPos.
 	 */
 	public static void calculatePath(Position startPos, Position targetPos,
-			int heuristicModifier, int occupyingEntityID, AStarUser astarUser) {
+			int heuristicModifier, int occupyingEntityID, AStarUsable astarUser) {
 		checkInit();
 		AStarCalculator pathCalculator = new AStarCalculator(startPos,
 				targetPos, heuristicModifier, occupyingEntityID, astarUser,

@@ -12,7 +12,7 @@ class AStarCalculator implements Runnable {
 	private final Position targetPos;
 	private final int heuristicModifier;
 	private final int occupyingEntityID;
-	private final AStarUser astarUser;
+	private final AStarUsable astarUser;
 	private final IWorld world;
 
 	/**
@@ -33,7 +33,7 @@ class AStarCalculator implements Runnable {
 	 *            The AStarUser that will receive the path when it's calculated.
 	 */
 	public AStarCalculator(Position startPos, Position targetPos,
-			int heuristicModifier, int occupyingEntityID, AStarUser astarUser,
+			int heuristicModifier, int occupyingEntityID, AStarUsable astarUser,
 			IWorld world) {
 		this.startPos = startPos;
 		this.targetPos = targetPos;
