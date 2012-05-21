@@ -129,9 +129,16 @@ public enum EntityManager implements IEntityManager {
 		entitiesRemoveQueue.add(entity);
 	}
 
-	// TODO Markus: Possible duplicated code
-	@Override
-	public AbstractPlayerControlledEntity getPCEAtPosition(Position pos) {
+	/**
+	 * If there exists an entity at the passed position
+	 * it is returned, otherwise this method returns null.
+	 * 
+	 * @param pos
+	 *            The position to check.
+	 * @return An entity if there is one on the position,
+	 *         otherwise null.
+	 */
+	public IEntity getEntityAtPosition(Position pos) {
 		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();
 		for (IEntity entity : entities) {
 			if (entity instanceof AbstractPlayerControlledEntity) {
@@ -145,9 +152,18 @@ public enum EntityManager implements IEntityManager {
 						&& se.chalmers.pebjorn.javautils.Math.isWithin(
 								pos.getY(), unitPos.getY() - unitSize / 2,
 								unitPos.getY() + unitSize / 2)) {
-					return (AbstractPlayerControlledEntity) entity;
+					return entity;
 				}
 			}
+		}
+		return null;
+	}
+	
+	@Override
+	public AbstractPlayerControlledEntity getPCEAtPosition(Position pos) {
+		IEntity entity = getEntityAtPosition(pos);
+		if(entity instanceof AbstractPlayerControlledEntity) {
+			return (AbstractPlayerControlledEntity) entity;
 		}
 		return null;
 	}
@@ -165,34 +181,17 @@ public enum EntityManager implements IEntityManager {
 	 */
 	public AbstractPlayerControlledEntity getPCEAtPosition(Position pos,
 			Player player) {
-		if (getPCEAtPosition(pos) != null) {
-			// TODO Markus: PMD: These nested if statements could be combined
-			if (getPCEAtPosition(pos).getOwner().equals(player)) {
-				return getPCEAtPosition(pos);
-			}
+		if (getPCEAtPosition(pos) != null && getPCEAtPosition(pos).getOwner().equals(player)) {
+			return getPCEAtPosition(pos);
 		}
 		return null;
 	}
 
-	// TODO Markus: Extract common code from getPlayerControlledEntityAtPosition and this method
 	@Override
 	public AbstractNonPlayerControlledEntity getNPCEAtPosition(Position pos) {
-		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();
-		for (IEntity entity : entities) {
-			if (entity instanceof AbstractNonPlayerControlledEntity) {
-				float unitSize = entity.getSize();
-				Position unitPos = entity.getPosition();
-
-				// If the point is within the area of the unit
-				if (se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(),
-						unitPos.getX() - unitSize / 2, unitPos.getX()
-								+ unitSize / 2)
-						&& se.chalmers.pebjorn.javautils.Math.isWithin(
-								pos.getY(), unitPos.getY() - unitSize / 2,
-								unitPos.getY() + unitSize / 2)) {
-					return (AbstractNonPlayerControlledEntity) entity;
-				}
-			}
+		IEntity entity = getEntityAtPosition(pos);
+		if(entity instanceof AbstractNonPlayerControlledEntity) {
+			return (AbstractNonPlayerControlledEntity) entity;
 		}
 		return null;
 	}
