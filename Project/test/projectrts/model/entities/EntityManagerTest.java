@@ -203,20 +203,25 @@ public class EntityManagerTest {
 		Position closeToUnit = new Position(9.5f, 9.5f);
 		Position farFromUnit = new Position(5, 5);
 		EntityManager.INSTANCE.update(1);
+		AbstractPlayerControlledEntity pce = EntityManager.INSTANCE.getPCEAtPosition(onUnit);
+		
+		assertTrue(pce != null);
 
 		assertTrue(EntityManager.INSTANCE.getSelectedEntities().size() == 0);
+		assertTrue(!EntityManager.INSTANCE.isSelected(pce));
+		assertTrue(EntityManager.INSTANCE.getSelectedEntitiesOfPlayer(player).size()==0);
 
 		EntityManager.INSTANCE.select(onUnit, player);
 		assertTrue(EntityManager.INSTANCE.getSelectedEntities().size() != 0);
+		assertTrue(EntityManager.INSTANCE.isSelected(pce));
+		assertTrue(EntityManager.INSTANCE.getSelectedEntitiesOfPlayer(player).size()==1);
+		assertTrue(EntityManager.INSTANCE.getSelectedEntitiesOfPlayer(player).get(0).equals(pce));
 
 		EntityManager.INSTANCE.select(closeToUnit, player);
 		assertTrue(EntityManager.INSTANCE.getSelectedEntities().size() != 0);
 
 		EntityManager.INSTANCE.select(farFromUnit, player);
 		assertTrue(EntityManager.INSTANCE.getSelectedEntities().size() == 0);
-
-		// TODO Add test for getSelectedEntitiesOfPlayer()
-		// TODO Add test for isSelected
 	}
 
 	@Test
