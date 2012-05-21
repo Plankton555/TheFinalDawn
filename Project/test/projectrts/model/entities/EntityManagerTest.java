@@ -12,8 +12,6 @@ import projectrts.model.world.Position;
 
 public class EntityManagerTest {
 
-	// TODO Complete EntityManagerTest!!!
-
 	@Test
 	public void testGetEntitiesOfPlayer() {
 		new GameModel();
@@ -72,16 +70,6 @@ public class EntityManagerTest {
 
 		assertTrue(entities.size() == 5);
 	}
-	
-	@Test
-	public void testAddNewNPCE() {
-		// TODO Implement this test
-	}
-	
-	@Test
-	public void testAddNewPCE() {
-		// TODO Implement this test
-	}
 
 	@Test
 	public void testRequestNewEntityID() {
@@ -122,7 +110,6 @@ public class EntityManagerTest {
 	
 	@Test
 	public void testSelect() {
-		// This test requires the player to instantiate a unit in the constructor
 		new GameModel();
 		Player player = new Player(null);
 		EntityManager.INSTANCE.resetData();
