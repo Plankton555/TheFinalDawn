@@ -95,7 +95,17 @@ public class EntityManagerTest {
 	
 	@Test
 	public void testGetPCEAtPositionPosition() {
-		// TODO Implement this test
+		new GameModel();
+		Player player = new Player(null);
+		EntityManager.INSTANCE.resetData();
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(10, 10));
+		EntityManager.INSTANCE.update(1);
+		AbstractPlayerControlledEntity pce =
+				EntityManager.INSTANCE.getPCEAtPosition(new Position(7, 7));
+		assertTrue(pce == null);
+		pce = EntityManager.INSTANCE.getPCEAtPosition(new Position(10, 10));
+		assertTrue(pce != null);
 	}
 	
 	@Test
@@ -108,8 +118,12 @@ public class EntityManagerTest {
 		new GameModel();
 		EntityManager.INSTANCE.resetData();
 		EntityManager.INSTANCE.addNewNPCE(Resource.class.getSimpleName(), new Position(10, 10));
-		EntityManager.INSTANCE.addNewNPCE(Resource.class.getSimpleName(), new Position(7, 7));
-		// TODO Plankton is working here
+		EntityManager.INSTANCE.update(1);
+		AbstractNonPlayerControlledEntity npce =
+				EntityManager.INSTANCE.getNPCEAtPosition(new Position(7, 7));
+		assertTrue(npce == null);
+		npce = EntityManager.INSTANCE.getNPCEAtPosition(new Position(10, 10));
+		assertTrue(npce != null);
 	}
 	
 	@Test
