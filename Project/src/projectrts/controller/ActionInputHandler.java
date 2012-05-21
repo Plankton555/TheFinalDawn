@@ -1,8 +1,5 @@
 package projectrts.controller;
 
-import java.util.List;
-
-import projectrts.model.GameModel;
 import projectrts.model.IGame;
 import projectrts.model.abilities.AttackAbility;
 import projectrts.model.abilities.GatherResourceAbility;

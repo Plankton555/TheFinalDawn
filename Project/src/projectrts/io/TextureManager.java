@@ -73,6 +73,7 @@ public class TextureManager {
 
 		textures.put("SelectSquare",
 				assetManager.loadTexture("assets/sprites/select_square.png"));
+		// TODO Plankton: Fix barracks GUI picture!!!
 	}
 
 	/**

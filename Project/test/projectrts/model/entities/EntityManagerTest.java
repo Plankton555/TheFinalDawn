@@ -12,7 +12,7 @@ import projectrts.model.world.Position;
 
 public class EntityManagerTest {
 
-	// TODO EntityManagerTest
+	// TODO Complete EntityManagerTest!!!
 	@Test
 	public void testSelect() {
 		// This test requires the player to instantiate a unit in the constructor
