@@ -276,15 +276,12 @@ public enum EntityManager implements IEntityManager {
 				AbstractPlayerControlledEntity otherPCE = (AbstractPlayerControlledEntity) entity;
 				if (closestPCE == null && pce.getOwner() != otherPCE.getOwner()) {
 					closestPCE = (AbstractPlayerControlledEntity) entity;
-				} else if (closestPCE != null) {
-					// TODO Markus: PMD: Deeply nested if..then statements are hard to read
-					// TODO Markus: PMD: These nested if statements could be combined
-					if (Position.getDistance(pce.getPosition(),
-							entity.getPosition()) < Position.getDistance(
-							pce.getPosition(), closestPCE.getPosition())
-							&& pce.getOwner() != otherPCE.getOwner()) {
-						closestPCE = (AbstractPlayerControlledEntity) entity;
-					}
+				} else if (closestPCE != null &&
+						Position.getDistance(pce.getPosition(),
+								entity.getPosition()) < Position.getDistance(
+								pce.getPosition(), closestPCE.getPosition())
+								&& pce.getOwner() != otherPCE.getOwner()) {
+					closestPCE = (AbstractPlayerControlledEntity) entity;
 				}
 			}
 		}
