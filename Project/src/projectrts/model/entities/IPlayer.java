@@ -24,4 +24,7 @@ public interface IPlayer {
 	 * @return the amount of resources
 	 */
 	int getResources();
+
+	// TODO Plankton: Javadoc
+	PlayerColor getColor();
 }

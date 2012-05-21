@@ -16,7 +16,7 @@ public class EntityManagerTest {
 	@Test
 	public void testSelect() {
 		new GameModel();
-		Player player = new Player();
+		Player player = new Player(null);
 		EntityManager.INSTANCE.resetData();
 		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
 				new Position(10, 10));
@@ -41,7 +41,7 @@ public class EntityManagerTest {
 	@Test
 	public void testGetEntitiesOfPlayer() {
 		new GameModel();
-		Player player = new Player();
+		Player player = new Player(null);
 		EntityManager.INSTANCE.resetData();
 		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
 				new Position(10, 10));
@@ -61,7 +61,7 @@ public class EntityManagerTest {
 		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
 				new Position(13, 10));
 		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(),
-				new Player(), new Position(10, 13));
+				new Player(null), new Position(10, 13));
 		EntityManager.INSTANCE.update(1);
 		entities = EntityManager.INSTANCE.getEntitiesOfPlayer(player);
 
@@ -74,7 +74,7 @@ public class EntityManagerTest {
 	@Test
 	public void testGetAllEntities() {
 		new GameModel();
-		Player player = new Player();
+		Player player = new Player(null);
 		EntityManager.INSTANCE.resetData();
 		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
 				new Position(10, 10));
@@ -90,7 +90,7 @@ public class EntityManagerTest {
 		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
 				new Position(13, 10));
 		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(),
-				new Player(), new Position(10, 13));
+				new Player(null), new Position(10, 13));
 		EntityManager.INSTANCE.update(1);
 		entities = EntityManager.INSTANCE.getAllEntities();
 
@@ -112,7 +112,7 @@ public class EntityManagerTest {
 	@Test
 	public void testGetNearbyEntities() {
 		new GameModel();
-		Player player = new Player();
+		Player player = new Player(null);
 		EntityManager.INSTANCE.resetData();
 		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
 				new Position(10, 10));
@@ -132,7 +132,7 @@ public class EntityManagerTest {
 		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
 				new Position(13, 10));
 		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(),
-				new Player(), new Position(14, 10));
+				new Player(null), new Position(14, 10));
 		EntityManager.INSTANCE.update(1);
 		entities = EntityManager.INSTANCE.getNearbyEntities(
 				new Position(15, 10), 3);

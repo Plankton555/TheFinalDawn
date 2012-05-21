@@ -17,8 +17,8 @@ public class AttackAbilityTest {
 	public void test() {
 		new GameModel();
 
-		Player player1 = new Player();
-		Player player2 = new Player();
+		Player player1 = new Player(null);
+		Player player2 = new Player(null);
 		Position warriorSpawnPos = new Position(2.5f, 15.5f);
 		Position workerSpawnPos = new Position(5.5f, 15.5f);
 

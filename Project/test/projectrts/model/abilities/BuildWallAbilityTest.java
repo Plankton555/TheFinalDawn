@@ -21,7 +21,7 @@ public class BuildWallAbilityTest {
 	@Test
 	public void test() {
 		new GameModel();
-		Player player = new Player();
+		Player player = new Player(null);
 		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
 				new Position(10.5f, 10.5f));
 		EntityManager.INSTANCE.update(1);

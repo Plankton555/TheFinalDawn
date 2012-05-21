@@ -15,6 +15,7 @@ import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IEntityManager;
 import projectrts.model.entities.IPlayer;
 import projectrts.model.entities.Player;
+import projectrts.model.entities.PlayerColor;
 import projectrts.model.entities.Ranged;
 import projectrts.model.entities.Resource;
 import projectrts.model.entities.Warrior;
@@ -34,8 +35,8 @@ import projectrts.model.world.World;
 public class GameModel implements IGame, PropertyChangeListener {
 	private final World world = World.INSTANCE;
 	private final EntityManager entityManager = EntityManager.INSTANCE;
-	private final Player humanPlayer = new Player();
-	private final Player aiPlayer = new Player();
+	private final Player humanPlayer = new Player(PlayerColor.BLUE);
+	private final Player aiPlayer = new Player(PlayerColor.RED);
 	private final AIManager aiManager;
 	private final AbilityManager abilityManager;
 	private float gameTime = 0;

@@ -12,13 +12,15 @@ public class Player implements IPlayer {
 	public static final int RESOURCE_START_AMOUNT = 400;
 	private int resources;
 	private final PropertyChangeSupport pcs;
+	private final PlayerColor playerColor;
 
 	/**
 	 * Constructs a player
 	 */
-	public Player() {
+	public Player(PlayerColor playerColor) {
 		resources = RESOURCE_START_AMOUNT;
 		pcs = new PropertyChangeSupport(this);
+		this.playerColor = playerColor;
 	}
 
 	@Override
@@ -41,5 +43,10 @@ public class Player implements IPlayer {
 	public void addListener(PropertyChangeListener pcl) {
 		pcs.addPropertyChangeListener(pcl);
 
+	}
+
+	@Override
+	public PlayerColor getColor() {
+		return playerColor;
 	}
 }

@@ -23,7 +23,7 @@ public class GatherResourceAbilityTest {
 	public void test() {
 		new GameModel();
 
-		Player player = new Player();
+		Player player = new Player(null);
 		EntityManager.INSTANCE.addNewPCE("Worker", player, new Position(2.5f,
 				15.5f));
 		EntityManager.INSTANCE.addNewPCE("Headquarter", player, new Position(

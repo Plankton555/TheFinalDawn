@@ -8,7 +8,7 @@ public class PlayerTest {
 
 	@Test
 	public void test() {
-		Player p = new Player();
+		Player p = new Player(null);
 		assertTrue(p.getResources() == Player.RESOURCE_START_AMOUNT);
 
 		p.modifyResource(10);

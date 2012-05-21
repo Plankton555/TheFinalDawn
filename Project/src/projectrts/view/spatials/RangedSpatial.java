@@ -2,7 +2,9 @@ package projectrts.view.spatials;
 
 import projectrts.io.MaterialManager;
 import projectrts.io.TextureManager;
+import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.entities.IEntity;
+import projectrts.model.entities.PlayerColor;
 import projectrts.view.controls.ControlFactory;
 import projectrts.view.controls.MoveControl;
 
@@ -45,7 +47,17 @@ public final class RangedSpatial extends AbstractSpatial implements
 	public AbstractSpatial createSpatial(String name, Box box, IEntity entity) {
 		material = MaterialManager.getMaterial("Unshaded");
 		// material.setColor("Color", ColorRGBA.Magenta);
-		Texture texture = TextureManager.getTexture("Marine");
+		Texture texture = null;
+		if (entity instanceof AbstractPlayerControlledEntity) {
+			AbstractPlayerControlledEntity pce = (AbstractPlayerControlledEntity) entity;
+			if (pce.getOwner().getColor() == PlayerColor.BLUE) {
+				texture = TextureManager.getTexture("Marine");
+			}
+			else if (pce.getOwner().getColor() == PlayerColor.RED) {
+				// TODO Plankton: Fix texture
+				texture = TextureManager.getTexture("Barracks");
+			}
+		}
 		material.setTexture("ColorMap", texture);
 		material.getAdditionalRenderState().setBlendMode(BlendMode.Alpha);
 

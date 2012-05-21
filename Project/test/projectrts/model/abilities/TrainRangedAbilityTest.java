@@ -21,7 +21,7 @@ public class TrainRangedAbilityTest {
 	@Test
 	public void test() {
 		new GameModel();
-		Player player = new Player();
+		Player player = new Player(null);
 		EntityManager.INSTANCE.addNewPCE(Headquarter.class.getSimpleName(),
 				player, new Position(10f, 10f));
 		EntityManager.INSTANCE.update(1);
