@@ -141,19 +141,17 @@ public enum EntityManager implements IEntityManager {
 	public IEntity getEntityAtPosition(Position pos) {
 		List<IEntity> entities = EntityManager.INSTANCE.getAllEntities();
 		for (IEntity entity : entities) {
-			if (entity instanceof AbstractPlayerControlledEntity) {
-				float unitSize = entity.getSize();
-				Position unitPos = entity.getPosition();
+			float unitSize = entity.getSize();
+			Position unitPos = entity.getPosition();
 
-				// If the point is within the area of the unit
-				if (se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(),
-						unitPos.getX() - unitSize / 2, unitPos.getX()
-								+ unitSize / 2)
-						&& se.chalmers.pebjorn.javautils.Math.isWithin(
-								pos.getY(), unitPos.getY() - unitSize / 2,
-								unitPos.getY() + unitSize / 2)) {
-					return entity;
-				}
+			// If the point is within the area of the unit
+			if (se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(),
+					unitPos.getX() - unitSize / 2, unitPos.getX()
+							+ unitSize / 2)
+					&& se.chalmers.pebjorn.javautils.Math.isWithin(
+							pos.getY(), unitPos.getY() - unitSize / 2,
+							unitPos.getY() + unitSize / 2)) {
+				return entity;
 			}
 		}
 		return null;

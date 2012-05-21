@@ -44,20 +44,6 @@ public class GameModel implements IGame, PropertyChangeListener {
 	private final WaveManager level = new WaveManager(aiPlayer);
 
 	/**
-	 * Returns a position in the model with the given coordinates
-	 * 
-	 * @param x
-	 *            The x coordinate
-	 * @param y
-	 *            The y coordinate
-	 * @return A position with the given coordinates.
-	 */
-	public static Position getPosition(float x, float y) {
-		// TODO Markus: Should this method exist or not?
-		return new Position(x, y);
-	}
-
-	/**
 	 * Determines whether any of the provided nodes are occupied.
 	 * 
 	 * @param nodes

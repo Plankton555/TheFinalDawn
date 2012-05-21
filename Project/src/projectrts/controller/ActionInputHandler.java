@@ -11,6 +11,7 @@ import projectrts.model.abilities.IBuildStructureAbility;
 import projectrts.model.abilities.ITargetAbility;
 import projectrts.model.abilities.MoveAbility;
 import projectrts.model.entities.AbstractPlayerControlledEntity;
+import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.IEntity;
 import projectrts.model.entities.IPlayerControlledEntity;
 import projectrts.model.entities.Resource;
@@ -54,8 +55,7 @@ class ActionInputHandler implements ActionListener {
 	public static Position convertWorldToModel(Vector3f worldLoc) {
 		float x = worldLoc.x / InGameState.MODEL_TO_WORLD;
 		float y = -worldLoc.y / InGameState.MODEL_TO_WORLD;
-		// TODO Markus: Should this method be called or not?
-		return GameModel.getPosition(x, y);
+		return new Position(x, y);
 	}
 	
 	/**
@@ -110,7 +110,7 @@ class ActionInputHandler implements ActionListener {
 			view.clearNodes();
 			choosingTarget = false;
 		} else {
-			IEntity e = getEntityAtPosition(click);
+			IEntity e = EntityManager.INSTANCE.getEntityAtPosition(click);
 			if (e == null) {
 				doMoveAbility();
 			} else {
@@ -143,26 +143,6 @@ class ActionInputHandler implements ActionListener {
 								app.getInputManager().getCursorPosition(), 0)),
 				game.getHumanPlayer());
 	}
-
-	private IEntity getEntityAtPosition(Position pos) {
-		List<IEntity> entities = game.getEntityManager().getAllEntities();
-		for (IEntity entity : entities) {
-			float unitSize = entity.getSize();
-			Position unitPos = entity.getPosition();
-
-			// If the point is within the area of the unit
-			if (se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(),
-					unitPos.getX() - unitSize / 2, unitPos.getX() + unitSize
-							/ 2)
-					&& se.chalmers.pebjorn.javautils.Math.isWithin(pos.getY(),
-							unitPos.getY() - unitSize / 2, unitPos.getY()
-									+ unitSize / 2)) {
-				return entity;
-			}
-		}
-		return null;
-	}
-
 
 	/**
 	 * Selects an ability
