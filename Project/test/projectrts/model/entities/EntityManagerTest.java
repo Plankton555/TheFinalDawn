@@ -258,11 +258,43 @@ public class EntityManagerTest {
 	
 	@Test
 	public void testGetClosestEnemy() {
-		// TODO Implement this test
+		new GameModel();
+		Player player1 = new Player(null);
+		Player player2 = new Player(null);
+		entityManager.resetData();
+		entityManager.addNewPCE(Worker.class.getSimpleName(), player1,
+				new Position(10, 10));
+		entityManager.addNewPCE(Worker.class.getSimpleName(), player2,
+				new Position(13, 10));
+		entityManager.update(1);
+		AbstractPlayerControlledEntity pce1 = entityManager.getPCEAtPosition(new Position(10, 10));
+		AbstractPlayerControlledEntity pce2 = entityManager.getPCEAtPosition(new Position(13, 10));
+		
+		AbstractPlayerControlledEntity foundPCE = entityManager.getClosestEnemy(pce1);
+		assertTrue(foundPCE != null);
+		assertTrue(foundPCE.equals(pce2));
+		
+		foundPCE = entityManager.getClosestEnemy(pce2);
+		assertTrue(foundPCE != null);
+		assertTrue(foundPCE.equals(pce1));
 	}
 	
 	@Test
 	public void testGetClosestEnemyStructure() {
-		// TODO Implement this test
+		new GameModel();
+		Player player1 = new Player(null);
+		Player player2 = new Player(null);
+		entityManager.resetData();
+		entityManager.addNewPCE(Worker.class.getSimpleName(), player1,
+				new Position(10, 10));
+		entityManager.addNewPCE(Headquarter.class.getSimpleName(), player2,
+				new Position(13, 10));
+		entityManager.update(1);
+		AbstractPlayerControlledEntity unit = entityManager.getPCEAtPosition(new Position(10, 10));
+		AbstractPlayerControlledEntity building = entityManager.getPCEAtPosition(new Position(13, 10));
+		
+		AbstractPlayerControlledEntity foundPCE = entityManager.getClosestEnemy(unit);
+		assertTrue(foundPCE != null);
+		assertTrue(foundPCE.equals(building));
 	}
 }
