@@ -2,6 +2,7 @@ The project files are in the 'master' branch.
 All documentation files are in the 'docs' branch.
 
 
+The application is packaged as a jar file. The jar file is startable in windows with the StartGame.bat file. To run the jar file in linux, you simply use the command “java -jar FinalDawn.jar”. If the jar file by any reason wont work, it’s possible to open up the project in eclipse and run it from eclipse, alternatively create a new jar file.
 
 
 The Final Dawn
