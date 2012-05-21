@@ -20,7 +20,7 @@ import projectrts.model.world.Position;
 public class GatherResourceAbility extends AbstractAbility implements
 		IMoveable, ITargetAbility {
 
-	public static final int RESOURCE_CARRIED_AMOUNT = 12;
+	public static final int RESOURCE_CARRIED_AMOUNT = 4;
 	private static final int RANGE = 1;
 	private Resource targetResource;
 	private AbstractPlayerControlledEntity entity;

@@ -15,11 +15,11 @@ public final class MediumDifficulty extends AbstractDifficulty {
 
 	@Override
 	public void update(float totalTimePassed, int nextWaveNumber) {
-		if (nextWaveNumber % 2 == 0) {
+		if (nextWaveNumber % 7 == 0) {
 			warriorsPerWave++;
 		}
 
-		if (nextWaveNumber % 2 == 0) {
+		if (nextWaveNumber % 7 == 0) {
 			rangedPerWave++;
 		}
 	}

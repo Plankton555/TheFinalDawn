@@ -15,11 +15,11 @@ public final class NightmareDifficulty extends AbstractDifficulty {
 
 	@Override
 	public void update(float totalTimePassed, int nextWaveNumber) {
-		if (nextWaveNumber % 2 == 0 || nextWaveNumber % 3 == 0) {
+		if (nextWaveNumber % 5 == 0) {
 			warriorsPerWave++;
 		}
 
-		if (nextWaveNumber % 2 == 0 || nextWaveNumber % 5 == 0) {
+		if (nextWaveNumber % 5 == 0) {
 			rangedPerWave++;
 		}
 	}

@@ -15,11 +15,11 @@ public final class EasyDifficulty extends AbstractDifficulty {
 
 	@Override
 	public void update(float totalTimePassed, int nextWaveNumber) {
-		if (nextWaveNumber % 2 == 0) {
+		if (nextWaveNumber % 8 == 0) {
 			warriorsPerWave++;
 		}
 
-		if (nextWaveNumber % 3 == 0) {
+		if (nextWaveNumber % 8 == 0) {
 			rangedPerWave++;
 		}
 	}

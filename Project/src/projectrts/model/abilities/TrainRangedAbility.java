@@ -11,7 +11,7 @@ import projectrts.model.entities.Ranged;
  */
 class TrainRangedAbility extends AbstractCreationAbility implements
 		IStationaryAbility {
-	private static float buildTime = 8;
+	private static float buildTime = 16;
 	private static int buildCost = 150;
 
 	static {

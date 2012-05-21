@@ -11,7 +11,7 @@ import projectrts.model.entities.Warrior;
  */
 class TrainWarriorAbility extends AbstractCreationAbility implements
 		IStationaryAbility {
-	private static float buildTime = 7;
+	private static float buildTime = 14;
 	private static int buildCost = 100;
 
 	static {

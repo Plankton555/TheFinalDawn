@@ -11,7 +11,7 @@ import projectrts.model.world.Position;
 public class Resource extends AbstractNonPlayerControlledEntity {
 
 	private static float size = 1;
-	private static int mineAmount = 4;
+	private static int mineAmount = 1;
 	static {
 		EntityFactory.registerNPCE(Resource.class.getSimpleName(),
 				new Resource());

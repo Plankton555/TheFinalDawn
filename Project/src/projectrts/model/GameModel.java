@@ -65,7 +65,10 @@ public class GameModel implements IGame, PropertyChangeListener {
 		aiManager = new AIManager(aiPlayer, abilityManager);
 		entityManager.resetData();
 		entityManager.addListener(this);
-
+		initializeEntities();
+	}
+	
+	private void initializeEntities() {
 		// Place starting units
 		entityManager.addNewPCE(Warrior.class.getSimpleName(), humanPlayer,
 				new Position(50.5, 47.5));
@@ -82,12 +85,19 @@ public class GameModel implements IGame, PropertyChangeListener {
 		entityManager.addNewPCE(Barracks.class.getSimpleName(), humanPlayer,
 				new Position(47.5, 46.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(
-				54.5, 55.5));
+				74.5, 65.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(
 				54.5, 53.5));
 		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(
-				54.5, 51.5));
-
+				40.5, 51.5));
+		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(
+				39.5, 32.5));
+		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(
+				77.5, 77.5));
+		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(
+				21.5, 62.5));
+		entityManager.addNewNPCE(Resource.class.getSimpleName(), new Position(
+				33.5, 80.5));
 	}
 
 	@Override

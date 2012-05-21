@@ -148,7 +148,7 @@ public enum EntityManager implements IEntityManager {
 			if (se.chalmers.pebjorn.javautils.Math.isWithin(pos.getX(),
 					unitPos.getX() - unitSize / 2, unitPos.getX()
 							+ unitSize / 2)
-					&& se.chalmers.pebjorn.javautils.Math.isWithin(
+							&& se.chalmers.pebjorn.javautils.Math.isWithin(
 							pos.getY(), unitPos.getY() - unitSize / 2,
 							unitPos.getY() + unitSize / 2)) {
 				return entity;
