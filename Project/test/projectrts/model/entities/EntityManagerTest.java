@@ -85,7 +85,37 @@ public class EntityManagerTest {
 	
 	@Test
 	public void testRemoveEntity() {
-		// TODO Implement this test
+		new GameModel();
+		Player player = new Player(null);
+		EntityManager.INSTANCE.resetData();
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(10, 10));
+		EntityManager.INSTANCE.addNewNPCE(Resource.class.getSimpleName(), new Position(20, 20));
+		EntityManager.INSTANCE.update(1);
+		
+		IEntity entity = EntityManager.INSTANCE.getEntityAtPosition(new Position(10, 10));
+		AbstractPlayerControlledEntity pce = null;
+		AbstractNonPlayerControlledEntity npce = null;
+		if (entity instanceof AbstractPlayerControlledEntity) {
+			pce = (AbstractPlayerControlledEntity) entity;
+		}
+		entity = EntityManager.INSTANCE.getEntityAtPosition(new Position(20, 20));
+		if (entity instanceof AbstractNonPlayerControlledEntity) {
+			npce = (AbstractNonPlayerControlledEntity) entity;
+		}
+		assertTrue(pce != null);
+		assertTrue(npce != null);
+		assertTrue(EntityManager.INSTANCE.getAllEntities().size() == 2);
+		
+		EntityManager.INSTANCE.removeEntity(pce);
+		EntityManager.INSTANCE.update(1);
+		assertTrue(EntityManager.INSTANCE.getAllEntities().size() == 1);
+		assertTrue(EntityManager.INSTANCE.getEntityAtPosition(new Position(10, 10)) == null);
+		
+		EntityManager.INSTANCE.removeEntity(npce);
+		EntityManager.INSTANCE.update(1);
+		assertTrue(EntityManager.INSTANCE.getAllEntities().size() == 0);
+		assertTrue(EntityManager.INSTANCE.getEntityAtPosition(new Position(20, 20)) == null);
 	}
 	
 	@Test
