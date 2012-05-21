@@ -54,7 +54,6 @@ public final class WarriorSpatial extends AbstractSpatial implements
 				texture = TextureManager.getTexture("Drone_blue");
 			}
 			else if (pce.getOwner().getColor() == PlayerColor.RED) {
-				// TODO Plankton: Fix texture
 				texture = TextureManager.getTexture("Drone_red");
 			}
 		}

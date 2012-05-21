@@ -54,7 +54,6 @@ public final class RangedSpatial extends AbstractSpatial implements
 				texture = TextureManager.getTexture("Marine_blue");
 			}
 			else if (pce.getOwner().getColor() == PlayerColor.RED) {
-				// TODO Plankton: Fix texture
 				texture = TextureManager.getTexture("Marine_red");
 			}
 		}
