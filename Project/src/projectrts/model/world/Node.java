@@ -51,7 +51,7 @@ public class Node implements INode {
 	}
 
 	@Override
-	public boolean isOccupied(int occupyingEntityID) {
+	public synchronized boolean isOccupied(int occupyingEntityID) {
 		return (!(this.occupyingEntityID == occupyingEntityID || this.occupyingEntityID == 0));
 	}
 
@@ -65,7 +65,7 @@ public class Node implements INode {
 	}
 
 	@Override
-	public List<INode> getNeighbours() {
+	public synchronized List<INode> getNeighbours() {
 		List<INode> output = new ArrayList<INode>();
 		for (INode n : neighbours) {
 			output.add(n);
@@ -91,7 +91,7 @@ public class Node implements INode {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public synchronized boolean equals(Object obj) {
 		// Eclipse-generated equals method based on Position.
 		if (this == obj) {
 			return true;
@@ -114,7 +114,7 @@ public class Node implements INode {
 	}
 
 	@Override
-	public float getCost() {
+	public synchronized float getCost() {
 		return cost;
 	}
 
