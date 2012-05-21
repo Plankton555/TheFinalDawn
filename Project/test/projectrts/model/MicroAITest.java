@@ -72,7 +72,6 @@ public class MicroAITest {
 			aiManager.update(updateInterval);
 			abilityManager.update(updateInterval);
 			entityManager.update(updateInterval);
-			System.out.println(i);
 			if (myWarrior.isDead()
 					&& enemyWarrior.getCurrentHealth() >= enemyWarrior.getMaxHealth()) {
 				done = true;

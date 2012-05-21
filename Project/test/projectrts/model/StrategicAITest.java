@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import projectrts.model.abilities.AbilityManager;
 import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Headquarter;
@@ -17,29 +18,41 @@ public class StrategicAITest {
 	private GameModel model;
 	private AbstractPlayerControlledEntity enemyWarrior;
 	private AbstractPlayerControlledEntity myHQ;
+	private EntityManager entityManager = EntityManager.INSTANCE;
+	private AbilityManager abilityManager;
+	private AIManager aiManager;
 
 	@Test
 	public void testUpdate() {
 		model = new GameModel();
 		aiPlayer = (Player) model.getAIPlayer();
 		humanPlayer = (Player) model.getHumanPlayer();
-		EntityManager.INSTANCE.addNewPCE(Warrior.class.getSimpleName(),
+		abilityManager = new AbilityManager();
+		aiManager = new AIManager(aiPlayer, abilityManager);
+		entityManager.resetData();
+		entityManager.addNewPCE(Warrior.class.getSimpleName(),
 				aiPlayer, new Position(1.5, 1.5));
-		EntityManager.INSTANCE.addNewPCE(Headquarter.class.getSimpleName(),
+		entityManager.addNewPCE(Headquarter.class.getSimpleName(),
 				humanPlayer, new Position(1.5, 10.5));
 		model.update(1f);
-		enemyWarrior = EntityManager.INSTANCE.getPCEAtPosition(new Position(
+		enemyWarrior = entityManager.getPCEAtPosition(new Position(
 				1.5, 1.5), aiPlayer);
-		myHQ = EntityManager.INSTANCE.getPCEAtPosition(new Position(1.5, 10.5),
+		myHQ = entityManager.getPCEAtPosition(new Position(1.5, 10.5),
 				humanPlayer);
-		for (int i = 0; i < 500; i++) {
-			model.update(0.5f);
-			System.out.println(i);
-			// TODO Markus: Succeeds at 27 sec
+		
+		float updateInterval = 0.2f;
+		boolean done = false;
+		for (int i = 0; i < 2000; i++) {
+			aiManager.update(updateInterval);
+			abilityManager.update(updateInterval);
+			entityManager.update(updateInterval);
+			if ((enemyWarrior.getPosition().getX() != 1.5
+					|| enemyWarrior.getPosition().getY() != 1.5)
+					&& myHQ.isDead()) {
+				done = true;
+				break;
+			}
 		}
-		assertTrue(enemyWarrior.getPosition().getX() != 1.5
-				|| enemyWarrior.getPosition().getY() != 1.5);
-		assertTrue(myHQ.isDead());
-
+		assertTrue(done);
 	}
 }
