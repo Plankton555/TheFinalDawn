@@ -294,29 +294,22 @@ public enum EntityManager implements IEntityManager {
 
 	public AbstractPlayerControlledEntity getClosestEnemyStructure(
 			AbstractPlayerControlledEntity pce) {
-		List<AbstractEntity> nearbyEntities = getNearbyEntities(
-				pce.getPosition(),
-				(float) Math.sqrt(Math.pow(100, 2) + Math.pow(100, 2))); // TODO Markus: Change this
+		List<IEntity> entities = this.getAllEntities();
 		AbstractPlayerControlledEntity closestEnemyStruct = null;
 
-		for (AbstractEntity entity : nearbyEntities) {
-			if (entity instanceof AbstractPlayerControlledEntity) {
-				AbstractPlayerControlledEntity otherPCE = (AbstractPlayerControlledEntity) entity;
-				if (otherPCE instanceof AbstractStructure) {
-					if (closestEnemyStruct == null
-							&& pce.getOwner() != otherPCE.getOwner()) {
-						closestEnemyStruct = (AbstractPlayerControlledEntity) entity;
-					} else if (closestEnemyStruct != null) {
-						// TODO Markus: PMD: Deeply nested if..then statements are hard to read
-						// TODO Markus: PMD: These nested if statements could be combined
-						if (Position.getDistance(pce.getPosition(),
-								entity.getPosition()) < Position.getDistance(
-								pce.getPosition(),
-								closestEnemyStruct.getPosition())
-								&& pce.getOwner() != otherPCE.getOwner()) {
-							closestEnemyStruct = (AbstractPlayerControlledEntity) entity;
-						}
-					}
+		for (IEntity entity : entities) {
+			if (entity instanceof AbstractStructure) {
+				AbstractStructure closestEnemyStructure = (AbstractStructure) entity;
+				if (closestEnemyStruct == null
+						&& pce.getOwner() != closestEnemyStructure.getOwner()) {
+					closestEnemyStruct = (AbstractPlayerControlledEntity) entity;
+				} else if (closestEnemyStruct != null 
+						&& Position.getDistance(pce.getPosition(),
+							entity.getPosition()) < Position.getDistance(
+							pce.getPosition(),
+							closestEnemyStruct.getPosition())
+							&& pce.getOwner() != closestEnemyStructure.getOwner()) {
+					closestEnemyStruct = (AbstractPlayerControlledEntity) entity;
 				}
 			}
 		}
