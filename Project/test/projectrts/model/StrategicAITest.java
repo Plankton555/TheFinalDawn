@@ -34,6 +34,8 @@ public class StrategicAITest {
 				humanPlayer);
 		for (int i = 0; i < 500; i++) {
 			model.update(0.5f);
+			System.out.println(i);
+			// TODO Markus: Succeeds at 27 sec
 		}
 		assertTrue(enemyWarrior.getPosition().getX() != 1.5
 				|| enemyWarrior.getPosition().getY() != 1.5);

@@ -1,11 +1,11 @@
 package projectrts.model;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import projectrts.model.abilities.AbilityManager;
 import projectrts.model.entities.AbstractPlayerControlledEntity;
 import projectrts.model.entities.EntityManager;
 import projectrts.model.entities.Player;
@@ -18,20 +18,26 @@ public class MicroAITest {
 	private GameModel model;
 	private AbstractPlayerControlledEntity myWarrior;
 	private AbstractPlayerControlledEntity enemyWarrior;
+	private EntityManager entityManager = EntityManager.INSTANCE;
+	private AbilityManager abilityManager;
+	private AIManager aiManager;
 
 	@Before
 	public void setUp() {
 		model = new GameModel();
 		aiPlayer = (Player) model.getAIPlayer();
 		humanPlayer = (Player) model.getHumanPlayer();
-		EntityManager.INSTANCE.addNewPCE(Warrior.class.getSimpleName(),
+		abilityManager = new AbilityManager();
+		aiManager = new AIManager(aiPlayer, abilityManager);
+		entityManager.resetData();
+		entityManager.addNewPCE(Warrior.class.getSimpleName(),
 				humanPlayer, new Position(32.5, 42.5));
-		EntityManager.INSTANCE.addNewPCE(Warrior.class.getSimpleName(),
+		entityManager.addNewPCE(Warrior.class.getSimpleName(),
 				aiPlayer, new Position(32.5, 32.5));
 		model.update(1f);
-		myWarrior = EntityManager.INSTANCE.getPCEAtPosition(new Position(32.5,
+		myWarrior = entityManager.getPCEAtPosition(new Position(32.5,
 				42.5), humanPlayer);
-		enemyWarrior = EntityManager.INSTANCE.getPCEAtPosition(new Position(
+		enemyWarrior = entityManager.getPCEAtPosition(new Position(
 				32.5, 32.5), aiPlayer);
 	}
 
@@ -55,17 +61,24 @@ public class MicroAITest {
 
 		// Select the warrior controlled by the human player and make sure it is
 		// selected.
-		EntityManager.INSTANCE.select(new Position(32.5, 34.5), humanPlayer);
-		assertTrue(EntityManager.INSTANCE.isSelected(myWarrior));
+		entityManager.select(new Position(32.5, 34.5), humanPlayer);
+		assertTrue(entityManager.isSelected(myWarrior));
 
 		// Update the model and check that the human controlled warrior is dead
 		// and that the enemy hasn't taken any damage.
-		for (int i = 0; i < 500; i++) {
-			model.update(1.0f);
+		float updateInterval = 0.2f;
+		boolean done = false;
+		for (int i = 0; i < 2000; i++) {
+			aiManager.update(updateInterval);
+			abilityManager.update(updateInterval);
+			entityManager.update(updateInterval);
+			System.out.println(i);
+			if (myWarrior.isDead()
+					&& enemyWarrior.getCurrentHealth() >= enemyWarrior.getMaxHealth()) {
+				done = true;
+				break;
+			}
 		}
-		assertTrue(myWarrior.isDead());
-		assertFalse(enemyWarrior.getCurrentHealth() < enemyWarrior
-				.getMaxHealth());
-
+		assertTrue(done);
 	}
 }

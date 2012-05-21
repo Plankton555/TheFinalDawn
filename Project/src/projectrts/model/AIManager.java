@@ -15,7 +15,7 @@ import projectrts.model.entities.Player;
  * 
  * @author Markus Ekström
  */
-class AIManager implements PropertyChangeListener {
+public class AIManager implements PropertyChangeListener {
 	private final AbilityManager abilityManager;
 	private final StrategicAI stratAI;
 	private final List<MicroAI> microAIs = new ArrayList<MicroAI>();
