@@ -1,5 +1,6 @@
 package projectrts.model.abilities;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -45,9 +46,49 @@ public class AbilityManagerTest {
 				e.printStackTrace();
 			}
 			counter ++;
-			System.out.println(warrior.getPosition());
 			assertTrue(counter<100);
 		}
+	}
+	
+	@Test
+	public void testUseAbilitySelected(){
+		EntityManager.INSTANCE.select(warrior.getPosition(), warrior.getOwner());
+		am.useAbilitySelected(MoveAbility.class.getSimpleName(), new Position(2.5,3.5), warrior.getOwner());
+		int counter = 0;
+		while(!warrior.getPosition().equals(new Position(3.5,4.5))){
+			am.update(1);
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			counter ++;
+			assertTrue(counter<100);
+		}
+	}
+	
+	@Test
+	public void testAbortAbility(){
+		am.doAbility(MoveAbility.class.getSimpleName(), new Position (60.5,50.5), warrior);
+		for(int i=0;i<50;i++){	
+			am.update(1);
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		am.abortAbility(MoveAbility.class.getSimpleName(), warrior);
+		Position oldPos= warrior.getPosition();
+		for(int i=0;i<50;i++){	
+			am.update(1);
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		assertFalse(oldPos.equals(warrior.getPosition()));
 	}
 	
 	
