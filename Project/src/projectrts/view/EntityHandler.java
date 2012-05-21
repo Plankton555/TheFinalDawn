@@ -17,7 +17,12 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
-// TODO Markus: ADD JAVADOC!
+/**
+ * A class in charge of making sure that the spatials corresponding to 
+ * the model's entities are correct. 
+ * 
+ * @author Markus Ekstrom
+ */
 class EntityHandler implements PropertyChangeListener {
 	private final SimpleApplication app;
 	private final IGame game;
