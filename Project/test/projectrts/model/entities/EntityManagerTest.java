@@ -13,31 +13,6 @@ import projectrts.model.world.Position;
 public class EntityManagerTest {
 
 	// TODO Complete EntityManagerTest!!!
-	@Test
-	public void testSelect() {
-		// This test requires the player to instantiate a unit in the constructor
-		new GameModel();
-		Player player = new Player(null);
-		EntityManager.INSTANCE.resetData();
-		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
-				new Position(10, 10));
-		Position onUnit = new Position(10, 10);
-		Position closeToUnit = new Position(9.5f, 9.5f);
-		Position farFromUnit = new Position(5, 5);
-		EntityManager.INSTANCE.update(1);
-
-		assertTrue(EntityManager.INSTANCE.getSelectedEntities().size() == 0);
-
-		EntityManager.INSTANCE.select(onUnit, player);
-		assertTrue(EntityManager.INSTANCE.getSelectedEntities().size() != 0);
-
-		EntityManager.INSTANCE.select(closeToUnit, player);
-		assertTrue(EntityManager.INSTANCE.getSelectedEntities().size() != 0);
-
-		EntityManager.INSTANCE.select(farFromUnit, player);
-		assertTrue(EntityManager.INSTANCE.getSelectedEntities().size() == 0);
-
-	}
 
 	@Test
 	public void testGetEntitiesOfPlayer() {
@@ -97,6 +72,16 @@ public class EntityManagerTest {
 
 		assertTrue(entities.size() == 5);
 	}
+	
+	@Test
+	public void testAddNewNPCE() {
+		// TODO Implement this test
+	}
+	
+	@Test
+	public void testAddNewPCE() {
+		// TODO Implement this test
+	}
 
 	@Test
 	public void testRequestNewEntityID() {
@@ -108,6 +93,59 @@ public class EntityManagerTest {
 			assertTrue(!numbers.contains(nr));
 			numbers.add(nr);
 		}
+	}
+	
+	@Test
+	public void testRemoveEntity() {
+		// TODO Implement this test
+	}
+	
+	@Test
+	public void testGetEntityAtPosition() {
+		// TODO Implement this test
+	}
+	
+	@Test
+	public void testGetPCEAtPositionPosition() {
+		// TODO Implement this test
+	}
+	
+	@Test
+	public void testGetPCEAtPositionPositionPlayer() {
+		// TODO Implement this test
+	}
+	
+	@Test
+	public void testGetNPCEAtPosition() {
+		// TODO Implement this test
+	}
+	
+	@Test
+	public void testSelect() {
+		// This test requires the player to instantiate a unit in the constructor
+		new GameModel();
+		Player player = new Player(null);
+		EntityManager.INSTANCE.resetData();
+		EntityManager.INSTANCE.addNewPCE(Worker.class.getSimpleName(), player,
+				new Position(10, 10));
+		Position onUnit = new Position(10, 10);
+		Position closeToUnit = new Position(9.5f, 9.5f);
+		Position farFromUnit = new Position(5, 5);
+		EntityManager.INSTANCE.update(1);
+
+		assertTrue(EntityManager.INSTANCE.getSelectedEntities().size() == 0);
+
+		EntityManager.INSTANCE.select(onUnit, player);
+		assertTrue(EntityManager.INSTANCE.getSelectedEntities().size() != 0);
+
+		EntityManager.INSTANCE.select(closeToUnit, player);
+		assertTrue(EntityManager.INSTANCE.getSelectedEntities().size() != 0);
+
+		EntityManager.INSTANCE.select(farFromUnit, player);
+		assertTrue(EntityManager.INSTANCE.getSelectedEntities().size() == 0);
+
+		// TODO Add test for getSelectedEntitiesOfPlayer()
+		// TODO Add test for isSelected
 	}
 
 	@Test
@@ -138,5 +176,15 @@ public class EntityManagerTest {
 		entities = EntityManager.INSTANCE.getNearbyEntities(
 				new Position(15, 10), 3);
 		assertTrue(entities.size() == 3);
+	}
+	
+	@Test
+	public void testGetClosestEnemy() {
+		// TODO Implement this test
+	}
+	
+	@Test
+	public void testGetClosestEnemyStructure() {
+		// TODO Implement this test
 	}
 }

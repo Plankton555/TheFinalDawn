@@ -178,7 +178,7 @@ public enum EntityManager implements IEntityManager {
 	 *         otherwise null.
 	 */
 	public AbstractPlayerControlledEntity getPCEAtPosition(Position pos,
-			Player player) {
+			IPlayer player) {
 		if (getPCEAtPosition(pos) != null && getPCEAtPosition(pos).getOwner().equals(player)) {
 			return getPCEAtPosition(pos);
 		}
