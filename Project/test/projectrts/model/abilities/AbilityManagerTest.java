@@ -6,7 +6,6 @@ public class AbilityManagerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		// TODO Markus: PMD: Empty method?
+		// TODO Jakob: Do this test
 	}
-
 }

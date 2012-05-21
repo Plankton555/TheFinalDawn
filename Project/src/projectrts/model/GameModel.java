@@ -105,13 +105,9 @@ public class GameModel implements IGame, PropertyChangeListener {
 
 	@Override
 	public void update(float tpf) {
-		System.out.println("level.update()");
 		level.update(tpf);
-		System.out.println("aiManager.update()");
 		aiManager.update(tpf);
-		System.out.println("abilityManager.update()");
 		abilityManager.update(tpf);
-		System.out.println("entityManager.update()");
 		entityManager.update(tpf);
 		gameTime += tpf;
 	}
