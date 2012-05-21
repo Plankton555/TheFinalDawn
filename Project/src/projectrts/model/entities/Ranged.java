@@ -23,7 +23,7 @@ public class Ranged extends AbstractUnit {
 
 	protected void initialize(Player owner, Position spawnPos) {
 		super.initialize(owner, spawnPos);
-		this.setName(Ranged.class.getSimpleName());
+		this.setName("Marine");
 		this.setSightRange(SIGHT_RANGE);
 		this.setAttackRange(ATTACK_RANGE);
 		this.setMaxHealth(MAX_HEALTH);

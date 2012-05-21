@@ -162,17 +162,20 @@ public class AbilityManager implements PropertyChangeListener, IAbilityManager {
 				if (!pce.isDead()
 						&& abilityListsMap.get(pce.getEntityID()) != null
 						&& !abilityListsMap.get(pce.getEntityID()).isEmpty()) {
-					ArrayList<AbstractAbility> abilities = abilityListsMap
-							.get(pce.getEntityID());
-					pce.setState(State.IDLE);
-					for (AbstractAbility ability : abilities) {
-						ability.update(tpf);
-						// TODO Markus: PMD: Deeply nested if..then statements are hard to read
-						if (ability.isActive()) {
-							pce.setState(State.BUSY);
-						}
-					}
+					updateAbilities(pce, tpf);
 				}
+			}
+		}
+	}
+	
+	private void updateAbilities(AbstractPlayerControlledEntity pce, float tpf) {
+		ArrayList<AbstractAbility> abilities = abilityListsMap
+				.get(pce.getEntityID());
+		pce.setState(State.IDLE);
+		for (AbstractAbility ability : abilities) {
+			ability.update(tpf);
+			if (ability.isActive()) {
+				pce.setState(State.BUSY);
 			}
 		}
 	}

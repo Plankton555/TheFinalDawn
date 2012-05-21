@@ -32,7 +32,7 @@ class TrainRangedAbility extends AbstractCreationAbility implements
 
 	@Override
 	public String getName() {
-		return "Train Ranged";
+		return "Train Marine";
 	}
 
 	@Override
@@ -44,6 +44,6 @@ class TrainRangedAbility extends AbstractCreationAbility implements
 
 	@Override
 	public String getInfo() {
-		return "Trains a new Ranged\nCost: " + buildCost;
+		return "Trains a new Marine\nCost: " + buildCost;
 	}
 }
