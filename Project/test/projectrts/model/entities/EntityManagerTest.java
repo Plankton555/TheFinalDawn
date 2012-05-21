@@ -12,9 +12,10 @@ import projectrts.model.world.Position;
 
 public class EntityManagerTest {
 
-	// This test requires the player to instantiate a unit in the constructor
+	// TODO EntityManagerTest
 	@Test
 	public void testSelect() {
+		// This test requires the player to instantiate a unit in the constructor
 		new GameModel();
 		Player player = new Player(null);
 		EntityManager.INSTANCE.resetData();
