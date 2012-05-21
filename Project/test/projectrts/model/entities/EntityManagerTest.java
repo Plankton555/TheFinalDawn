@@ -293,7 +293,7 @@ public class EntityManagerTest {
 		AbstractPlayerControlledEntity unit = entityManager.getPCEAtPosition(new Position(10, 10));
 		AbstractPlayerControlledEntity building = entityManager.getPCEAtPosition(new Position(13, 10));
 		
-		AbstractPlayerControlledEntity foundPCE = entityManager.getClosestEnemy(unit);
+		AbstractPlayerControlledEntity foundPCE = entityManager.getClosestEnemyStructure(unit);
 		assertTrue(foundPCE != null);
 		assertTrue(foundPCE.equals(building));
 	}
