@@ -263,7 +263,12 @@ public enum EntityManager implements IEntityManager {
 		return output;
 	}
 
-	// TODO Markus: Add comments
+	/**
+	 * Returns the closest enemy within sight range of the passed entity.
+	 * 
+	 * @param pce A PlayerControlledEntity you want to find the closest enemy to.
+	 * @return The closest enemy of the passed PlayerControlledEntity
+	 */
 	public AbstractPlayerControlledEntity getClosestEnemy(
 			AbstractPlayerControlledEntity pce) {
 		List<AbstractEntity> nearbyEntities = getNearbyEntities(
@@ -287,7 +292,12 @@ public enum EntityManager implements IEntityManager {
 		return closestPCE;
 	}
 
-	// TODO Markus: Add comments
+	/**
+	 * Returns the closest enemy structure to the passed entity.
+	 * 
+	 * @param pce The PlayerControlledEntity you want the closest structure to.
+	 * @return The closest structure to the passed PlayerControlledEntity
+	 */
 	public AbstractPlayerControlledEntity getClosestEnemyStructure(
 			AbstractPlayerControlledEntity pce) {
 		List<IEntity> entities = this.getAllEntities();
